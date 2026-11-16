@@ -1,5 +1,13 @@
 # Vídeo Multimarcas
 
+## Orquestrador local em desenvolvimento
+
+Esta branch acrescenta o percurso **site → Codex/Claude Code → MP4** na versão 2.11.0: importação da ficha, planejamento pelo modelo da conversa, composição validada por camadas, mídia registrada, áudio/legendas, fila cancelável, FFmpeg e Remotion. Estilos, características e escopos são preservados. Skill, plugins específicos e runtime são distribuídos separadamente. [Como funciona e limites](docs/SITE-TO-VIDEO-2.11.md).
+
+O executor editorial da prova anterior é preservado. Execute `CHROME_PATH=/usr/bin/chromium npm run production:poc` para reproduzir sua prova técnica de 30 segundos com mídia e música originais. Não o use como vídeo solicitado por outro estilo. Um render é candidato com revisão audiovisual pendente; não há publicação ou geração paga automática.
+
+[Arquitetura e execução](docs/ORCHESTRATOR.md) · [Auditoria do estado anterior](docs/ORCHESTRATOR-AUDIT.md) · [Testes e evidências](docs/ORCHESTRATOR-VALIDATION.md).
+
 Edição **2.10.0**: **1.160 estilos em 29 subcategorias**, modo guiado, ícones no menu, referências e pacotes completos. A política de aprovação visual da main foi preservada junto aos controles de fidelidade. A expansão [2.9.0 reorganiza os anúncios por segmento](docs/SEGMENT-ADS-4.4.md). Use [Comece aqui](docs/START-HERE.md) para instalar.
 
 A experiência 2.10 está publicada no [espelho autorizado](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site). O domínio principal aguarda acesso ao cPanel para receber a atualização. [Estado verificado por destino](docs/GUIDED-DELIVERY-2.10.md).
