@@ -14,6 +14,8 @@ Remotion tem licença própria: https://www.remotion.dev/license. React, TypeScr
 
 ## Mídia de novos projetos
 
+O orquestrador local acrescenta `scripts/production-fixture.py` (mídia óptica 2D original de teste) e `server/score.mjs` (música instrumental e acentos procedurais originais), sob MIT. Os arquivos gerados ficam em `projects/`, ignorado pelo Git, e não são distribuídos como mídia comercial ou aprovação estética. Não há voz, pessoas, produto real ou música de terceiros na prova. Zod 4.6.7, usado para schemas, tem licença MIT no pacote instalado.
+
 Não há mídia privada de clientes. O Atlas inclui as prévias genéricas descritas abaixo. Para cada produção, registre origem e condições da mídia incorporada; não presuma que estar disponível publicamente concede licença de reutilização.
 
 ## Atlas visual

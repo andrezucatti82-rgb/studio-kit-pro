@@ -20,7 +20,10 @@
     "atlas": "node scripts/serve-atlas.mjs",
     "identity-check": "node scripts/identity-check.mjs",
     "plan": "node scripts/production-plan.mjs",
-    "fidelity-check": "node scripts/fidelity-check.mjs"
+    "fidelity-check": "node scripts/fidelity-check.mjs",
+    "production": "node scripts/production.mjs",
+    "production:serve": "node scripts/serve-production.mjs",
+    "production:poc": "node scripts/production.mjs --engineering-poc --root projects/orchestrator-poc"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.540",
@@ -28,7 +31,8 @@
     "@remotion/renderer": "4.0.540",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "remotion": "4.0.540"
+    "remotion": "4.0.540",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@types/node": "24.10.0",
