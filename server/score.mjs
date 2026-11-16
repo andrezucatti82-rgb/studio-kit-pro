@@ -10,5 +10,5 @@ export async function writeScore(file,plan){
  const pcm=Buffer.alloc(44+n*4);pcm.write('RIFF');pcm.writeUInt32LE(pcm.length-8,4);pcm.write('WAVEfmt ',8);pcm.writeUInt32LE(16,16);pcm.writeUInt16LE(1,20);pcm.writeUInt16LE(2,22);pcm.writeUInt32LE(sampleRate,24);pcm.writeUInt32LE(sampleRate*4,28);pcm.writeUInt16LE(4,32);pcm.writeUInt16LE(16,34);pcm.write('data',36);pcm.writeUInt32LE(n*4,40);
  for(let i=0;i<n;i++){const t=i/sampleRate,fade=Math.min(1,t/.1,(seconds-t)/.8),value=Math.round(Math.max(-.9,Math.min(.9,samples[i]*fade))*32767);pcm.writeInt16LE(value,44+i*4);pcm.writeInt16LE(value,46+i*4);}
  await fs.writeFile(file,pcm);
- return {origin:'original procedural composition',license:'MIT',bpm:100,sampleRate,durationSeconds:seconds,voice:'none'};
+ return {origin:'original procedural composition',license:'MIT',bpm:plan.audio.bpm,sampleRate,durationSeconds:seconds,voice:'none'};
 }

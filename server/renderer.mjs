@@ -10,10 +10,10 @@ export async function renderProduction(edited,work,{signal,onProgress=()=>{},con
  const {cancel,cancelSignal}=makeCancelSignal();signal?.addEventListener('abort',cancel,{once:true});
  try{
   const inputProps={plan:edited.plan};
-  const composition=await selectComposition({serveUrl,id:'GdaProduction',inputProps,browserExecutable});
+  const composition=await selectComposition({serveUrl,id:edited.plan.schemaVersion===2?'GdaGraph':'GdaProduction',inputProps,browserExecutable});
   signal?.throwIfAborted();
   const raw=path.join(work,'remotion.mp4'),output=path.join(work,'candidate.mp4');
-  await renderMedia({serveUrl,composition,inputProps,outputLocation:raw,codec:'h264',audioCodec:'aac',pixelFormat:'yuv420p',crf:18,browserExecutable,concurrency,cancelSignal,onProgress:({progress})=>onProgress(progress)});
+  await renderMedia({serveUrl,composition,inputProps,outputLocation:raw,codec:'h264',audioCodec:'aac',enforceAudioTrack:true,pixelFormat:'yuv420p',crf:18,browserExecutable,concurrency,cancelSignal,onProgress:({progress})=>onProgress(progress)});
   signal?.throwIfAborted();
   await run('ffmpeg',['-hide_banner','-loglevel','error','-y','-i',raw,'-map','0:v:0','-map','0:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-af','loudnorm=I=-16:TP=-1.5:LRA=7','-ar','48000','-t',String(composition.durationInFrames/composition.fps),'-movflags','+faststart',output],{signal});
   let start=0;const reviewFrames=new Set();

@@ -1,5 +1,13 @@
 # Instalar a skill
 
+## Pedidos do site no Codex e Claude Code · 2.11.0
+
+O agente deve ler `references/orchestrator-execution.md` e usar o modelo da própria conversa para planejar e executar. Para produção local, precisa também do runtime 2.11.0 ou checkout compatível; instalar só a skill não instala Node, FFmpeg, Chromium ou o motor. [Percurso completo](SITE-TO-VIDEO-2.11.md).
+
+No **Claude Code**, abrir o checkout carrega `CLAUDE.md`; a skill de projeto em `.claude/skills/` encaminha para a fonte canônica. Para outro projeto, execute `node scripts/install-agent.mjs --agent claude --project-root caminho/do/projeto`. Existe também o pacote `dist/video-multimarcas-claude-plugin.zip` e marketplace `.claude-plugin/marketplace.json`. Quando sua versão oferecer plugins: `claude plugin marketplace add andrezucatti82-rgb/studio-kit-pro`, depois `claude plugin install video-multimarcas@video-multimarcas-kit`. Reabra a sessão e confirme a versão carregada.
+
+O **runtime separado** em `dist/video-multimarcas-runtime.zip` pode ser extraído em pasta nova; confira seu manifesto/hashes, rode `npm ci`, `npm run check` e `npm run doctor`. Ele não leva mídia de clientes, credenciais ou fixtures completas da regressão. A galeria fornece o projeto/seleção; os originais precisam estar acessíveis ao agente.
+
 Copie a pasta `video-multimarcas` completa para a pasta de skills do seu agente, preservando `SKILL.md`, `references/`, `templates/` e `agents/`. Para agentes que usam a convenção do projeto, o destino é `.agents/skills/video-multimarcas/`.
 
 O identificador é `video-multimarcas`. Instale lado a lado com outras skills, sem sobrescrevê-las. Diga ao agente: “Use $video-multimarcas. Tema: ...”, acrescentando nome, site ou logo se quiser.
@@ -18,7 +26,7 @@ codex plugin list --json
 
 Para usar um checkout local, substitua o primeiro comando por `codex plugin marketplace add /caminho/absoluto/studio-kit-pro`. Use a origem já configurada quando atualizar uma instalação existente; não instale uma segunda cópia com outro nome de marketplace sem necessidade. Não remova a configuração pessoal `video-b-roll`.
 
-A versão do plugin é **2.10.0**, a do kit executável **2.10.0** e a do catálogo **4.4**, com **1.160 estilos em 29 subcategorias**. São componentes diferentes. `dist/release-manifest.json` registra versões e hashes. Para regenerar todos os pacotes após editar a skill, execute `python scripts/package-skill.py`; a pasta `plugins/video-multimarcas/` é gerada a partir de `.agents/skills/video-multimarcas/`.
+A versão do plugin é **2.11.0**, a do kit executável **2.11.0** e a do catálogo **4.4**, com **1.160 estilos em 29 subcategorias**. São componentes diferentes. `dist/release-manifest.json` registra versões e hashes. Para regenerar todos os pacotes após editar a skill, execute `python scripts/package-skill.py`; a pasta `plugins/video-multimarcas/` é gerada a partir de `.agents/skills/video-multimarcas/`.
 
 ## Atualizar uma instalação existente do Codex
 

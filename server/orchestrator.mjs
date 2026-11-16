@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
-import {requestSchema,validatePlan} from './schema.mjs';
+import {parseProductionRequest,validateProductionPlan as validatePlan} from './contracts.mjs';
 import {AssetStore,digest} from './assets.mjs';
 import {loadSkill} from './skills.mjs';
 import {createPlanner} from './planner.mjs';
@@ -10,13 +10,16 @@ import {renderProduction} from './renderer.mjs';
 import {validateVideo} from './validator.mjs';
 import {checkWorkflow} from '../scripts/workflow-gate.mjs';
 import {pendingReview} from './review-record.mjs';
+import {editGraph} from './graph-editor.mjs';
+import {assertHandoffContext} from './handoff.mjs';
+import {checkSampleApprovals} from './sample-approval.mjs';
 
 export const states=['queued','analyzing','planning','editing','rendering','validating','completed','failed','cancelled'];
 const terminal=new Set(['completed','failed','cancelled']);
 export async function atomicJson(file,value){const temporary=`${file}.tmp`;await fs.writeFile(temporary,JSON.stringify(value,null,2)+'\n');await fs.rename(temporary,file);}
 export class Orchestrator {
- constructor({root,planner=createPlanner(),renderer=renderProduction,validator=validateVideo,editor=editMedia,timeoutMs=15*60*1000,authorize,concurrency=2}={}){
-  if(!root)throw Error('Job root required');this.root=path.resolve(root);this.store=new AssetStore(path.join(this.root,'assets'));this.planner=planner;this.renderer=renderer;this.validator=validator;this.editor=editor;this.timeoutMs=timeoutMs;this.authorize=authorize;this.concurrency=concurrency;this.jobs=new Map();this.queue=[];this.active=null;this.persist=Promise.resolve();this.submissions=Promise.resolve();this.closing=false;
+ constructor({root,planner=createPlanner(),renderer=renderProduction,validator=validateVideo,editor,timeoutMs=15*60*1000,authorize,concurrency=2,context}={}){
+  if(!root)throw Error('Job root required');this.root=path.resolve(root);this.store=new AssetStore(path.join(this.root,'assets'));this.planner=planner;this.renderer=renderer;this.validator=validator;this.editor=editor??((plan,...args)=>(plan.schemaVersion===2?editGraph:editMedia)(plan,...args));this.timeoutMs=timeoutMs;this.authorize=authorize;this.concurrency=concurrency;this.context=context;this.jobs=new Map();this.queue=[];this.active=null;this.persist=Promise.resolve();this.submissions=Promise.resolve();this.closing=false;
  }
  async init(){await this.store.init();await fs.mkdir(path.join(this.root,'jobs'),{recursive:true});
   // Single-host, single-worker ownership. Never replay a rendering job after a crash.
@@ -31,14 +34,16 @@ export class Orchestrator {
  save(job){job.updatedAt=new Date().toISOString();const snapshot=structuredClone(job);this.persist=this.persist.then(()=>atomicJson(path.join(this.directory(job.id),'job.json'),snapshot));return this.persist;}
  async flush(){await this.persist;}
  async prepare(raw,{signal=AbortSignal.timeout(120000)}={}){
-  const request=requestSchema.parse(raw),assets=await Promise.all([...new Set([...request.assetIds,...(request.musicAssetId?[request.musicAssetId]:[])])].map(id=>this.store.verify(id)));
-  const skill=await loadSkill(request.styleId),plan=validatePlan(await this.planner.plan(request,assets,skill,{signal}),assets,request);
+  const request=parseProductionRequest(raw),assets=await Promise.all([...new Set([...request.assetIds,...(request.musicAssetId?[request.musicAssetId]:[])])].map(id=>this.store.verify(id)));
+  if(request.requestVersion===2)assertHandoffContext(this.context,request);
+  const skill=await loadSkill(request.styleId,{allowAgent:request.requestVersion===2,selectedStyleIds:request.selectedStyleIds}),plan=validatePlan(await this.planner.plan(request,assets,skill,{signal}),assets,request,this.context);
   return {request,plan,productionRequestSha256:digest(Buffer.from(JSON.stringify(request))),productionPlanSha256:digest(Buffer.from(JSON.stringify(plan))),limitations:skill.limitations};
  }
  submit(raw,options={}){const pending=this.submissions.then(()=>this.submitOnce(raw,options));this.submissions=pending.catch(()=>{});return pending;}
  async submitOnce(raw,{idempotencyKey,workflowFile}={}){
   if(this.closing)throw Error('Worker is stopping');
-  const request=requestSchema.parse(raw);
+  const request=parseProductionRequest(raw);
+  if(request.requestVersion===2)assertHandoffContext(this.context,request);
   for(const assetId of [...request.assetIds,...(request.musicAssetId?[request.musicAssetId]:[])])await this.store.verify(assetId);
   if(idempotencyKey && !/^[a-zA-Z0-9_-]{8,100}$/.test(idempotencyKey))throw Error('Invalid idempotency key');
   const fingerprint=digest(Buffer.from(JSON.stringify(request))),existing=[...this.jobs.values()].find(j=>idempotencyKey?j.idempotencyKey===idempotencyKey:(!terminal.has(j.state)&&j.fingerprint===fingerprint));
@@ -49,19 +54,20 @@ export class Orchestrator {
   else {
    if(!workflowFile)throw Error('Production requires the existing scoped workflow approvals (--workflow)');
    const workflow=JSON.parse(await fs.readFile(workflowFile,'utf8'));
-   const gate=checkWorkflow(workflow,'full-render',path.dirname(path.resolve(workflowFile)));
+   const gate=request.phase==='sample'?checkSampleApprovals(workflow,path.dirname(path.resolve(workflowFile))):checkWorkflow(workflow,'full-render',path.dirname(path.resolve(workflowFile)));
    if(!gate.ready)throw Error('Production approval pending: '+gate.errors.join('; '));
    // Bind preproduction to the exact executable inputs. An old approval cannot authorize a changed request.
    if(workflow.productionRequestSha256!==fingerprint)throw Error('Workflow is not bound to this exact production request');
    const artifact=workflow.artifacts?.edit_plan,approval=workflow.approvals?.edit_plan;
    if(!artifact?.file)throw Error('Workflow needs an approved edit_plan artifact; prepare the request first');
    const bytes=await fs.readFile(path.resolve(path.dirname(workflowFile),artifact.file)),hash=digest(bytes);
-   if(artifact.sha256!==hash||approval?.sha256!==hash||approval?.by!=='user'||approval?.status!=='approved'||!approval?.quote?.trim()||!approval?.messageRef?.trim()||approval?.basis?.integrated_sample!==workflow.artifacts.integrated_sample.sha256)throw Error('Executable edit plan needs matching scoped user approval based on the integrated sample');
-   approvedPlan=validatePlan(JSON.parse(bytes.toString()),await Promise.all([...new Set([...request.assetIds,...(request.musicAssetId?[request.musicAssetId]:[])])].map(id=>this.store.verify(id))),request);
+   const basis=request.phase==='sample'?'storyboard':'integrated_sample';
+   if(artifact.sha256!==hash||approval?.sha256!==hash||approval?.by!=='user'||approval?.status!=='approved'||!approval?.quote?.trim()||!approval?.messageRef?.trim()||approval?.basis?.[basis]!==workflow.artifacts[basis]?.sha256)throw Error('Executable edit plan needs matching scoped user approval based on the '+basis);
+   approvedPlan=validatePlan(JSON.parse(bytes.toString()),await Promise.all([...new Set([...request.assetIds,...(request.musicAssetId?[request.musicAssetId]:[])])].map(id=>this.store.verify(id))),request,this.context);
    authorization={mode:'production',workflowFile:path.resolve(workflowFile),fingerprint,planSha256:hash,executablePlanSha256:digest(Buffer.from(JSON.stringify(approvedPlan))),workflowSha256:digest(Buffer.from(JSON.stringify(workflow)))};
   }
   const id=randomUUID(),job={id,request,fingerprint,idempotencyKey,authorization,state:'queued',progress:0,logs:[{at:new Date().toISOString(),state:'queued',message:'Request accepted'}],attempts:0,reviewStatus:'review_pending',createdAt:new Date().toISOString()};
-  await fs.mkdir(this.directory(id),{recursive:false});if(approvedPlan)await atomicJson(path.join(this.directory(id),'approved-plan.json'),approvedPlan);this.jobs.set(id,job);await this.save(job);this.queue.push(id);queueMicrotask(()=>this.drain());return this.get(id);
+  await fs.mkdir(this.directory(id),{recursive:false});if(request.requestVersion===2)await atomicJson(path.join(this.directory(id),'input-context.json'),this.context);if(approvedPlan)await atomicJson(path.join(this.directory(id),'approved-plan.json'),approvedPlan);this.jobs.set(id,job);await this.save(job);this.queue.push(id);queueMicrotask(()=>this.drain());return this.get(id);
  }
  async cancel(id){const job=this.jobs.get(id);if(!job)throw Error('Job not found');if(terminal.has(job.state))return this.get(id);if(this.active?.id===id){this.active.controller.abort(Error('Cancelled by user'));await this.active.promise;}else{this.queue=this.queue.filter(v=>v!==id);job.state='cancelled';job.logs.push({at:new Date().toISOString(),state:'cancelled',message:'Cancelled before processing'});await this.save(job);}return this.get(id);}
  async wait(id){while(!terminal.has(this.get(id).state)){await new Promise(resolve=>setTimeout(resolve,50));}await this.flush();return this.get(id);}
@@ -75,11 +81,14 @@ export class Orchestrator {
    await stage('analyzing',5,'Inspecting and hashing original media');
    const assets=await Promise.all([...new Set([...job.request.assetIds,...(job.request.musicAssetId?[job.request.musicAssetId]:[])])].map(id=>this.store.verify(id)));
    await atomicJson(path.join(directory,'media-analysis.json'),assets);
-   const skill=await loadSkill(job.request.styleId);await atomicJson(path.join(directory,'skill-snapshot.json'),skill);
+   const context=job.request.requestVersion===2?JSON.parse(await fs.readFile(path.join(directory,'input-context.json'),'utf8')):undefined;
+   if(context)assertHandoffContext(context,job.request);
+   const skill=await loadSkill(job.request.styleId,{allowAgent:job.request.requestVersion===2,selectedStyleIds:job.request.selectedStyleIds});await atomicJson(path.join(directory,'skill-snapshot.json'),skill);
+   if(context?.catalogSnapshot?.sha256!==undefined&&context.catalogSnapshot.sha256!==skill.catalogSha256)throw Error('Catalogue changed after site import; review references before rendering');
    await stage('planning',12,job.authorization.mode==='production'?'Loading approved executable plan':`Planning provider: ${this.planner.name}`);
    const candidate=job.authorization.mode==='production'?JSON.parse(await fs.readFile(path.join(directory,'approved-plan.json'),'utf8')):await this.planner.plan(job.request,assets,skill,{signal});
    if(job.authorization.mode==='production'&&digest(Buffer.from(JSON.stringify(candidate)))!==job.authorization.executablePlanSha256)throw Error('Approved executable plan changed after submission');
-   const plan=validatePlan(candidate,assets,job.request);await atomicJson(path.join(directory,'edit-plan.json'),plan);
+   const plan=validatePlan(candidate,assets,job.request,context);await atomicJson(path.join(directory,'edit-plan.json'),plan);
    await stage('editing',20,'Trimming/reordering original media and preparing soundtrack');
    const edited=await this.editor(plan,this.store,work,{signal});await atomicJson(path.join(directory,'score-provenance.json'),edited.score);
    await stage('rendering',30,'Rendering frame-driven Remotion composition');

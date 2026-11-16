@@ -2,7 +2,9 @@
 
 ## Orquestrador local em desenvolvimento
 
-Esta branch acrescenta upload real, planejamento validado, fila cancelável, edição FFmpeg e renderização Remotion para um primeiro estilo editorial. A biblioteca e o fluxo guiado permanecem disponíveis. Execute `CHROME_PATH=/usr/bin/chromium npm run production:poc` para reproduzir a prova técnica de 30 segundos com mídia e música originais. O resultado é um candidato com revisão audiovisual pendente; não há publicação ou geração paga automática.
+Esta branch acrescenta o percurso **site → Codex/Claude Code → MP4** na versão 2.11.0: importação da ficha, planejamento pelo modelo da conversa, composição validada por camadas, mídia registrada, áudio/legendas, fila cancelável, FFmpeg e Remotion. Estilos, características e escopos são preservados. Skill, plugins específicos e runtime são distribuídos separadamente. [Como funciona e limites](docs/SITE-TO-VIDEO-2.11.md).
+
+O executor editorial da prova anterior é preservado. Execute `CHROME_PATH=/usr/bin/chromium npm run production:poc` para reproduzir sua prova técnica de 30 segundos com mídia e música originais. Não o use como vídeo solicitado por outro estilo. Um render é candidato com revisão audiovisual pendente; não há publicação ou geração paga automática.
 
 [Arquitetura e execução](docs/ORCHESTRATOR.md) · [Auditoria do estado anterior](docs/ORCHESTRATOR-AUDIT.md) · [Testes e evidências](docs/ORCHESTRATOR-VALIDATION.md).
 

@@ -1,0 +1,5 @@
+{
+  "name": "video-multimarcas-kit",
+  "owner": {"name": "Vídeo Multimarcas"},
+  "plugins": [{"name": "video-multimarcas", "source": "./plugins/video-multimarcas-claude", "description": "Produção de vídeos a partir da galeria, com orquestração local e fidelidade."}]
+}

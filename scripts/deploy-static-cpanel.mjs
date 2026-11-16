@@ -122,6 +122,7 @@ try{
 }catch(e){await upload(root,'index.html',oldBytes);receipt.status='rolled_back';await writeFile('deployment-backup/receipt.json',JSON.stringify(receipt,null,2));throw Error('Publication verification failed; original homepage restored.');}
 await writeFile('deployment-backup/receipt.json',JSON.stringify(receipt,null,2));await upload(backupDir,'receipt.json',Buffer.from(JSON.stringify(receipt,null,2)));
 // Remove the former library from all known static releases, including direct bookmarks.
+if(argv.includes('--retire-legacy-library')){
 const retired=['references.html','references.css','references.js','reference-bridge.js','visual-references.json'];
 const redirect=Buffer.from('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/"><meta name="robots" content="noindex"><title>Estilos de vídeo</title></head><body><a href="/">Explorar estilos de vídeo</a></body></html>');
 const previousDirs=entries.filter(x=>/^atlas-\d{14}$/.test(x.file||'')).map(x=>x.file);
@@ -145,4 +146,5 @@ for(const rel of ['',...previousDirs]){
  receipt.retiredLibraryFolders.push(rel||'root');
 }
 await writeFile('deployment-backup/receipt.json',JSON.stringify(receipt,null,2));await upload(backupDir,'receipt.json',Buffer.from(JSON.stringify(receipt,null,2)));
+}
 console.log(JSON.stringify({status:receipt.status,url:receipt.url,release,backupDir,previousSha256:receipt.previousSha256,newSha256:receipt.newSha256}));

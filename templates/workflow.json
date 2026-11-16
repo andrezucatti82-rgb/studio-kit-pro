@@ -5,6 +5,9 @@
   "artifacts": {
     "visual": {"file": "", "sha256": "", "description": "Moodboard, styleframes e storyboard apresentados; para clipe isolado, quadros aprovados daquele clipe"},
     "script": {"file": "", "sha256": ""},
+    "moodboard": {"file": "", "sha256": ""},
+    "storyboard": {"file": "", "sha256": ""},
+    "edit_plan": {"file": "", "sha256": ""},
     "animatic": {"file": "", "sha256": ""},
     "integrated_sample": {"file": "", "sha256": "", "components": [], "hardestShot": "", "transitionEvidence": ""}
   },
