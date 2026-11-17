@@ -73,17 +73,92 @@
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "4514b87738e4129d1283f99300e6cd630375bc10",
-    "sourceReady": false,
+    "sourceRevision": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
+    "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 586274,
-    "sha256": "3a34e457bee6b4120404571496452e9ce0bbffd46ed5fa70db4af4bb96e947a4",
+    "bytes": 586276,
+    "sha256": "6347228f5a9ed669c046cf6c61c83278ed28011125e73263fafd929fa0b22d03",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
     "fullProjectDownloadMiB": 697,
     "skills": 7,
     "presenterStyles": 60,
+    "verification": {
+      "checkedAt": "2026-11-17",
+      "sourceRevision": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
+      "javascriptTestsPassed": 206,
+      "pythonTestsPassed": 9,
+      "postPackageChecksPassed": 7,
+      "browser": {
+        "checks": [
+          "375px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
+          "1440px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
+          "failed package verification disables download"
+        ],
+        "errors": []
+      },
+      "searchBrowser": {
+        "checks": [
+          "375px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+          "1440px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+          "375px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+          "1440px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow"
+        ],
+        "errors": [],
+        "queryMilliseconds": [
+          1.8999999985098839,
+          2.399999998509884,
+          2,
+          3.3000000044703484,
+          1.5,
+          1.8000000044703484,
+          1.5,
+          3,
+          1.5,
+          1.6000000014901161,
+          1.6999999955296516,
+          3.5,
+          1.8999999985098839,
+          1.7999999970197678,
+          1.6000000014901161,
+          3.2999999970197678
+        ]
+      },
+      "linuxLatestSourceInstall": {
+        "status": "ready",
+        "sourceArchive": "local git archive of the pushed final revision; every protected hash verified by the actual installer",
+        "sourceRevision": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
+        "gitRemoteAndHead": "verified against actual GitHub source commit",
+        "npmCi": "passed",
+        "skills": 7,
+        "ffmpegFfprobe": "passed",
+        "realRendererBrowserStartup": "passed",
+        "actualSiteProjectImport": "passed",
+        "searchSmoke": {
+          "source": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
+          "status": "passed",
+          "styles": 1220,
+          "dogAliases": 39,
+          "cats": 4,
+          "aquarium": 1,
+          "compoundWords": true
+        }
+      },
+      "realGithubDownloadEvidence": {
+        "sourceRevision": "4514b87738e4129d1283f99300e6cd630375bc10",
+        "status": "ready",
+        "scope": "complete GitHub download and installation before the final compound-word matcher correction; unchanged shared installation engine"
+      },
+      "nativeWindowsMacOS": "not_run",
+      "missingSystemDependencyInstallation": "not_exercised_prerequisites_already_present",
+      "portableNodeBootstrap": "not_exercised_Node_already_present",
+      "nativeTutorialAutoOpen": "not_exercised",
+      "agentLogin": "not_exercised",
+      "accountsConnected": false,
+      "paidApisUsed": false,
+      "deployment": "not_performed"
+    },
     "localFile": "studio-kit-pro-installer.zip"
   }
 }
