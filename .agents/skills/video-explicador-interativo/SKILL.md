@@ -15,13 +15,21 @@ Receba o pedido completo, contribuições, roteiro/decisões válidos e mídia a
 
 Para **gravação**, preserve original e hash, identidade, roupa, voz, ambiente e relógio da fala. Para **avatar**, descubra a conexão e deixe o usuário confirmar o visual exato; reutilize uma seleção válida. Resolva a voz pessoal disponível/default ou explicitamente selecionada. Consentimento da pessoa, voz ativa, compatibilidade do visual e custo são verificações separadas. Selecionar uma receita de edição não autoriza gerar avatar ou clonar identidade/voz. Sem acesso, registre a dependência; não substitua a pessoa.
 
-O catálogo inclui `interactionPlan` por receita: quatro momentos com intenção de fala, gesto, informação, som, função e insumos. Use-o como direção editável, adaptada ao tema e aos escopos; `sourceTimes:null` significa que nenhum tempo foi medido. Os momentos não obrigam quatro cenas nem reiniciam decisões aprovadas. Faça somente as perguntas ainda pertinentes.
+O catálogo inclui `interactionPlan` por receita: quatro momentos com intenção de fala, gesto, informação, som, função e insumos. Use-o como direção editável, adaptada ao tema e aos escopos; `sourceTimes:null` significa que nenhum tempo foi medido. Os momentos não obrigam quatro cenas nem reiniciam decisões aprovadas. Faça somente as perguntas ainda pertinentes. Os insumos e as perguntas da receita são pistas a adaptar ao assunto: não exigir planta de imóvel para explicar um CRM só porque a referência usa um diagrama espacial. Preserve o mecanismo escolhido e peça somente cobertura/dados necessários ao vídeo real.
 
 ## Atuação e motion juntos
 
 Entregue por trecho: fala/âncora → gesto/olhar/pausa → elemento e espaço → âncora/oclusão → resposta visível → passagem/som → critério da amostra. Exemplo: apresentar formulário → o mesmo contato entra no CRM junto da palma → surge uma tarefa. Planeje espaço para mãos e grafismos antes de gerar, com rosto e legendas livres. O campo de movimento de um provedor é uma solicitação; coordenadas e tempos de cada gesto podem não estar disponíveis. Meça a atuação efetivamente obtida antes de ancorar o gráfico.
 
 Use tempos de fala, máscara temporal e trajetória vinculados ao original, com revisão de confiança/bordas/contato. O runtime consome dados verificados; não inclui ASR, segmentação ou detecção automática de mãos. Se o gesto essencial falhar, registre a falha e resolva a atuação/rota; não aprove um objeto flutuando para encobrir a falta de contato. Modelo 3D e novas vistas exigem cobertura/implementação compatíveis.
+
+## Diversidade e construção da explicação
+
+Leia `creativeDirection` da receita: mecanismo, composição e enquadramentos. A posição da pessoa é decidida por trecho, não travada à esquerda ou à direita. Pode ficar centralizada, alternar lados, aparecer em janela ou ceder o quadro a demonstração/interface/modelo. Não impor trocas de lado decorativas; cada mudança libera informação ou conduz a atenção. A cobertura real e os gestos disponíveis prevalecem; não espelhar a pessoa por padrão nem inventar outro take.
+
+A informação nasce da fala/ação: traço se desenha, dado se conecta, camada se separa, objeto se apoia, interface ocupa a tela, rota cresce ou o ambiente revela uma função. Não montar um apresentador imóvel ao lado de cartões prontos. Vidro, tabela, gráfico, documento, tipografia, produto, macro e exterior são recursos escolhidos pela função; não uma pele visual comum a todos os segmentos. A uniformidade de paleta ou a troca de nicho não bastam para definir outro estilo.
+
+As capas e os quadros públicos precisam mostrar objetivo visual fotorrealista coerente com o resultado proposto, com pessoas/cenas fictícias identificadas. Não usar bonecos, silhuetas ou esquemas vetoriais como substitutos do acabamento prometido. Diagramas técnicos podem existir dentro da cena para explicar; não transformam toda a referência em desenho. A amostra real continua necessária para provar gesto, sincronismo e execução.
 
 ## Naturalidade
 

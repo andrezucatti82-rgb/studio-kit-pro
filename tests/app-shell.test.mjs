@@ -372,6 +372,6 @@ test('an explicit style link renews visual approvals, preserves history and reta
 test('presenter storyboard steps show real selected recipe directions and retain them in the prompt',async()=>{
  const app=await boot();app.click('[data-nav-group="movement"]');app.click('[data-nav-family="explicadores"]');app.click('#grid [data-detail]');
  const host=app.document.querySelector('[data-presenter-story]');assert(host);assert.equal(host.querySelectorAll('[data-presenter-step]').length,4);
- const before=host.querySelector('[data-presenter-image]').src;app.click('[data-presenter-step="2"]');assert.notEqual(host.querySelector('[data-presenter-image]').src,before);assert.equal(host.querySelector('[data-presenter-step="2"]').getAttribute('aria-pressed'),'true');assert(host.querySelector('[data-beat="graphicAction"]').textContent.includes('relação'));
+ const before=host.querySelector('[data-presenter-image-host]').innerHTML;app.click('[data-presenter-step="2"]');assert.notEqual(host.querySelector('[data-presenter-image-host]').innerHTML,before);assert.equal(host.querySelector('[data-presenter-step="2"]').getAttribute('aria-pressed'),'true');assert.equal(host.querySelector('[data-beat="graphicAction"]').textContent,app.ctx.AtlasApp.getStyle(host.dataset.presenterStory).presenterEditing.interactionPlan.beats[2].graphicAction);
  app.click('#detailDialog [data-choose]');app.change('topic','Explicar CRM');app.click('#prepare');assert(app.ctx.AtlasApp.prompt().includes('interactionPlan'));assert(app.ctx.AtlasApp.prompt().includes('sourceTimes'));
 });

@@ -7,6 +7,8 @@ Um pacote completo, sete skills: **video-multimarcas** coordena **video-planejam
 
 Esta branch acrescenta **60 direções setoriais em 17 segmentos**, totalizando **1.220 estilos em 30 subcategorias**, e operadores para palavras temporizadas, trajetórias medidas, máscaras fornecidas e vídeo com alpha. As receitas servem para vídeo gravado ou avatar explicitamente escolhido, com originais e identidade preservados. Não incluem transcrição, segmentação ou tracking automáticos. [Direção social, 60 estilos, pesquisa e limites](docs/PRESENTER-SOCIAL-60.md) · [Prompt](style-atlas/dist/presenter-prompt.txt).
 
+As referências atuais usam 60 painéis fotorrealistas fictícios, com quatro momentos por estilo e direções específicas de composição. [Diversidade e endereçamento dos quadros](docs/REALISTIC-PRESENTER-4.7.md). São propostas estáticas, não vídeos produzidos.
+
 A publicação 2.11.0 no domínio foi verificada após o merge da PR #19. A preparação 2.12.0, seus pacotes e seus novos estudos são estados separados de um novo deploy e da homologação audiovisual de cada efeito.
 
 ## Orquestrador local em desenvolvimento
@@ -156,7 +158,7 @@ Verificar quadros de início, meio, fim e transições, além de reprodução in
 
 ## Pacotes de instalação e atualização
 
-[Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Pacotes preparados: plugin 2.12.0, kit 2.12.0 e catálogo 4.6 (1.220 estilos/30 subcategorias); instalação e publicação são verificadas separadamente. O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
+[Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Pacotes preparados: plugin 2.12.0, kit 2.12.0 e catálogo 4.7 (1.220 estilos/30 subcategorias); instalação e publicação são verificadas separadamente. O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
 
 ## Referências visuais para o pedido
 

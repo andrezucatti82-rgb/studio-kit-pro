@@ -133,3 +133,4 @@ if __name__=='__main__':
  build()
  import subprocess
  subprocess.check_call(['node',str(ROOT/'scripts/complete-presenter-catalog.mjs')],cwd=ROOT)
+ subprocess.check_call(['node',str(ROOT/'scripts/apply-realistic-presenters.mjs')],cwd=ROOT)

@@ -26,3 +26,5 @@ Informe arquivos/versões, fatos e fontes, dependências resolvidas/pendentes, c
 **Exemplo:** uma foto de produto permite planejar uma demonstração das vistas disponíveis. O plano inclui foto inspecionada, atributos confirmados e fonte; giro com verso oculto depende de cobertura adicional. A cor de uma referência complementar aplica-se apenas ao escopo escolhido, sem importar sua pessoa ou sua ação.
 
 Concluído neste módulo significa pré-produção entregue e seu estado registrado. Vídeo produzido e revisão audiovisual são etapas posteriores.
+
+Para explicadores, leia creativeDirection e planeje bloqueio/enquadramento por beat: a informação se constrói em resposta à fala/ação. Não padronizar pessoa à esquerda e cartão à direita. Varie mecanismo, escala, câmera e material conforme a função e o nicho. Referências públicas devem ter aparência realista do resultado pretendido; o storyboard técnico em silhuetas é apoio interno, não capa de entrega.

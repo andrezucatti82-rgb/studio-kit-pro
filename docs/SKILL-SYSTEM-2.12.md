@@ -2,7 +2,7 @@
 
 ## Objetivo e escopo
 
-Uma instalação completa oferece `video-multimarcas` como orquestradora e seis módulos: `video-planejamento`, `video-explicador-interativo`, `video-publicidade`, `video-edicao`, `video-tratamento` e `video-revisao`. A identidade dos plugins existentes é preservada. Runtime 2.12.0; catálogo 4.6, 1.220 estilos, 60 explicadores em 17 segmentos. Nenhuma publicação/merge faz parte desta entrega; atualizar PR #20 para revisão.
+Uma instalação completa oferece `video-multimarcas` como orquestradora e seis módulos: `video-planejamento`, `video-explicador-interativo`, `video-publicidade`, `video-edicao`, `video-tratamento` e `video-revisao`. A identidade dos plugins existentes é preservada. Runtime 2.12.0; catálogo 4.7, 1.220 estilos, 60 explicadores em 17 segmentos. Nenhuma publicação/merge faz parte desta entrega; atualizar PR #20 para revisão.
 
 Codex e Claude Code executam com runtime verificado. ChatGPT/Claude sem execução recebem o contrato completo, fazem as etapas disponíveis e explicam o recurso real ausente. O site prepara pedido/JSON e continua sem receber originais ou renderizar remotamente. A instalação não transfere contas, créditos, mídia ou consentimentos.
 

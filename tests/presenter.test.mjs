@@ -51,7 +51,7 @@ test('Remotion actually blurs glass and applies repeatable, subtle social finish
   flat.finishing.grainAmount=0;assert.deepEqual(await render(flat,'no-grain'),original);
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
-test('60 sector presenter directions append without changing any existing style, with 240 unique frames and honest requirements',async()=>{
+test('60 sector presenter directions append without changing any existing style, with 240 distinct complete reference frames and honest requirements',async()=>{
  validateCatalog(catalog);assert.equal(catalog.styles.length,1220);assert.equal(catalog.families.length,30);
  const previous=JSON.parse(await fs.readFile(new URL('../style-atlas/records/presenter-20/previous-catalog.json',import.meta.url),'utf8'));
  assert.equal(digest(Buffer.from(JSON.stringify(catalog.styles.slice(0,1160)))),previous.stylesSha256);
@@ -59,7 +59,7 @@ test('60 sector presenter directions append without changing any existing style,
  for(const s of rows){assert.equal(s.preset.avatar,false);assert.equal(s.presenterEditing.automaticSegmentation,false);assert.equal(s.presenterEditing.automaticGestureTracking,false);assert.equal(s.sequence.conceptApproval,'pending_user_review');assert(!s.preview);assert(s.presenterEditing.presenterSources.includes('explicitly_selected_avatar'));
   const finish=s.presenterEditing.finishProfile;assert.equal(finish.target,'social_media_not_cinema');assert.equal(finish.environment.default,'preserve_recorded_environment');assert.equal(finish.environment.labelGeneratedSimulation,true);assert.equal(finish.socialFinishing.skipGrainOnAlreadyNoisyFootage,true);
   graphPlanSchema.parse({...plan([presenter]),finishing:finish.socialFinishing.controls});assert.equal(s.artDirection.actualFootageOverrides,true);assert.deepEqual(s.executionPlan.artDirection,s.artDirection);
-  for(const f of s.sequence.frames){const data=await fs.readFile(new URL('../style-atlas/dist/'+f.src,import.meta.url));hashes.add(digest(data));}
+  for(const f of s.sequence.frames){const data=await fs.readFile(new URL('../style-atlas/dist/'+f.src,import.meta.url));hashes.add(digest(data)+JSON.stringify(f.crop||null));}
   const prompt=AtlasWorkflow.buildPrompt({selectedStyles:[{...s,referenceFrame:AtlasWorkflow.referenceFrame(s),visualSequence:s.sequence}],topic:'Uma explicação',format:'9:16',targetDurationSeconds:30,fidelityContract:AtlasWorkflow.fidelityContract});assert(prompt.includes(s.presenterEditing.recipeId));assert(prompt.includes(s.requirements));
  }
  assert.equal(hashes.size,240);

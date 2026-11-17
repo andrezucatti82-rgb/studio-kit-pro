@@ -9,7 +9,7 @@
   const sequence=params.get('sequence')==='1',raw=params.get('frame');
   if(raw!==null&&!/^[0-3]$/.test(raw))throw Error('Quadro inválido. Use um dos quatro quadros da ficha.');
   const index=raw===null?null:Number(raw);
-  const refs=sequence?s.sequence.frames.map(f=>({path:f.src,crop:null})):index===null?[AtlasWorkflow.referenceFrame(s)]:[{path:s.sequence.frames[index].src,crop:null}];
+  const refs=sequence?s.sequence.frames.map(f=>({path:f.src,crop:f.crop||null})):index===null?[AtlasWorkflow.referenceFrame(s)]:[{path:s.sequence.frames[index].src,crop:s.sequence.frames[index].crop||null}];
   const panels=await Promise.all(refs.map(async ref=>{
    if(!/^assets\/[a-zA-Z0-9_,./-]+\.(webp|png|jpe?g)$/.test(ref.path)||ref.path.includes('..'))throw Error('Referência inválida.');
    const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Não foi possível carregar a imagem. Tente novamente.'));img.src=ref.path;});

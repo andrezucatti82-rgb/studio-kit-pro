@@ -123,3 +123,8 @@ body[data-view="library"]:has(#selectionTray:not([hidden])) .guided-launch{displ
 @media(max-width:540px){.presenter-story-body{grid-template-columns:1fr}.presenter-story-body img{width:min(100%,240px);margin:auto}.presenter-step-buttons button{flex:1 1 42%;white-space:normal}}
 
 .install-kit{padding:clamp(1rem,4vw,2rem);border:1px solid #cbd9d5;background:#f1f5f2;border-radius:18px;margin-bottom:2rem}.install-kit .actions a{display:inline-flex;text-decoration:none;align-items:center;min-height:44px;box-sizing:border-box;max-width:100%;white-space:normal}.install-kit li{margin:.7rem 0}.install-nav{display:block;padding:.8rem 1rem;color:inherit;text-decoration:none;border-radius:10px;font-weight:600}#downloadStudioKit[aria-disabled=true]{opacity:.6;cursor:wait}
+/* Each crop addresses a complete panel of an original generated storyboard atlas. */
+.reference-panel{display:block;position:relative;overflow:hidden;width:100%;line-height:0}.reference-panel>img{display:block;border-radius:0!important}.preview>.reference-panel{height:auto;max-width:100%}.sequence-strip .reference-panel{height:auto;width:100%}.presenter-story-body>[data-presenter-image-host]{width:100%;max-width:300px;margin:auto}.frame-expand>.reference-panel{width:100%}.reference-panel img{margin:0!important}
+#sequenceViewport{position:relative;overflow:hidden;margin:auto;width:min(100%,760px)}
+
+.card .preview:has(>.reference-panel){aspect-ratio:var(--source-ratio)}#trayImages>.reference-panel{width:42px;flex:0 0 42px;height:auto;align-self:center}.sequence-strip button:has(>.reference-panel){height:auto}

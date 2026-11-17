@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-11-17",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.7",
+  "scope": "static conceptual references, site behavior and distribution; not audiovisual approval",
+  "javascriptTests": {
+    "passed": 198,
+    "failed": 0,
+    "skipped": 0
+  },
+  "pythonTests": {
+    "passed": 9
+  },
+  "typecheck": "passed",
+  "catalogValidation": "passed",
+  "previous1160StylesUnchanged": true,
+  "browser": {
+    "referencePanels": {
+      "checks": [
+        "375px: complete realistic panel, correct proportions, all four steps, exact-size/pixel PNG and complete-board export, expanded viewer crop",
+        "1440px: complete realistic panel, correct proportions, all four steps, exact-size/pixel PNG and complete-board export, expanded viewer crop"
+      ],
+      "errors": [],
+      "canonicalComplete": true
+    },
+    "gallery": {
+      "checks": [
+        "60 sector directions, 17 working sector filters, presenter requirements and actual prompt download",
+        "Downloaded project retains actual recipe and runtime 2.12.0 without claiming automatic tracking",
+        "Visible catalogue, loaded frames and no overflow at 320, 375, 768, 1440 and 1920 pixels"
+      ],
+      "errors": []
+    },
+    "installationPending": {
+      "checks": [
+        "375px: install navigation, pending-package guard, tutorial, four storyboard beats, actual copied prompt and exported complete project",
+        "1440px: install navigation, pending-package guard, tutorial, four storyboard beats, actual copied prompt and exported complete project",
+        "failed package verification disables download"
+      ],
+      "errors": []
+    }
+  },
+  "pageMode": {
+    "orderedPageSaves": true,
+    "claudeLinkInPageMode": true,
+    "pageLimitWarningWithoutLocalStorage": true,
+    "overLimitProjectDownload": true,
+    "pageErrors": []
+  },
+  "references": {
+    "boards": 60,
+    "completePanelAddresses": 240,
+    "fictionalPeopleAndPlaces": true,
+    "originalsPreserved": true,
+    "motionValidated": false,
+    "creativeApproval": "pending_user_review"
+  },
+  "installerFinalPinnedSourceTest": "recorded separately in download receipt after source commit",
+  "deployment": "not_performed",
+  "nativeWindowsMacOSTest": "not_run"
+}

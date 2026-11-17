@@ -67,3 +67,9 @@ A pesquisa da Meta e de campanhas públicas é distribuída somente como links, 
 ## Presenter social 60 — candidate 2.12.0
 
 `style-atlas/dist/assets/presenter-60/` adds 240 original procedural composition studies and small previews. Source: `style-atlas/records/presenter-60/build.py` and recipes; no reference-course or client frames are reused. Neutral silhouette markers represent layout only. Six unaltered, fictional OpenAI image_gen PNG concept boards are in `art/`; prompts, provenance and SHA256 are recorded in `art-directions.json`. They are proposed graphic/layout references, not actual people, projects, mandatory scenery, motion proof or approval. The current source-first/social finish direction overrides earlier polished exploratory prompts. Original generated PNGs were copied intact. No third-party voice, music, SFX or stock asset is redistributed in this expansion.
+
+## Explicadores fotorrealistas · catálogo 4.7
+
+As 60 referências públicas de explicadores usam originais PNG fictícios gerados com OpenAI image_gen em `style-atlas/dist/assets/presenter-realistic/`. Cada original reúne quatro enquadramentos completos, endereçados por retângulos normalizados; o original é preservado sem edição. Prompts, dimensões, SHA256, direções de composição e limites da proposta ficam em `style-atlas/records/presenter-realistic/`. Explorações substituídas são mantidas em `explorations/` como histórico. Os estudos procedurais de 4.6 permanecem arquivados e não são as referências atuais desses 60 estilos.
+
+Pessoas, lugares, produtos, interfaces, textos e dados ilustrativos não comprovam identidade, desempenho, geometria técnica, caso clínico ou resultado real. Diagramas devem ser reconstruídos e verificados na produção. Não foram gerados 60 vídeos, áudios ou movimentos. Não há reutilização de imagens dos cursos ou dos Reels pesquisados. Termos do provedor continuam aplicáveis; as referências estão pendentes de aprovação criativa.

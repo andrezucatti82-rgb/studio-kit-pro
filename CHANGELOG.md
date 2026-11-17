@@ -1,3 +1,11 @@
+# 2.12.0 — candidato para revisão
+
+- Sete skills modulares com orquestração, edição de apresentador e tratamento dedicado, compartilhadas por Codex/Claude Code e pelos pacotes.
+- 60 explicadores em 17 segmentos: 60 referências fotorrealistas fictícias, quatro momentos completos por estilo, enquadramento e interação específicos. Catálogo 4.7; os 1.160 estilos anteriores permanecem preservados.
+- Prompt e projeto transportam composição, construção da explicação, fontes, escopos e requisitos pertinentes ao tema; sem lado fixo do apresentador ou painel de vidro universal.
+- Um ZIP compacto baixa/verifica o projeto completo do GitHub, prepara dependências e sete skills locais, e oferece tutorial. Sem transferência de contas ou créditos.
+- Propostas estáticas não comprovam vídeo, sincronismo ou aprovação criativa. Entrega na PR #20; produção 2.11.0 permanece separada. Ver [referências](docs/REALISTIC-PRESENTER-4.7.md), [instalador](docs/INSTALLER-2.12.md) e [tratamento](docs/VIDEO-TREATMENT-AUDIT.md).
+
 # 2.8.1 — Escolher partes substitui direção completa
 
 - Marcar uma característica específica desmarca a direção completa; marcar direção completa substitui partes no seletor. Evita incorporar aparência, movimento ou áudio que a pessoa não quis selecionar.

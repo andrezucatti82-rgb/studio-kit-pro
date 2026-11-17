@@ -61,7 +61,7 @@
   viewerStyle=s;viewerIndex=Number.isInteger(index)&&index>=0&&index<4?index:0;returnFocus=trigger;updateFrame();$('sequenceDialog').showModal();
  }
  function updateFrame(){
-  const f=viewerStyle.sequence.frames[viewerIndex];$('sequenceImage').src=(window.ATLAS_IMAGE_ASSET_BASE||base())+f.src;$('sequenceImage').alt=f.alt||f.caption||viewerStyle.name;
+  const f=viewerStyle.sequence.frames[viewerIndex];$('sequenceImage').src=(window.ATLAS_IMAGE_ASSET_BASE||base())+f.src;$('sequenceImage').alt=f.alt||f.caption||viewerStyle.name;const image=$('sequenceImage'),viewport=$('sequenceViewport');if(f.crop){const [x,y,w,h]=f.crop;viewport.style.aspectRatio=f.width+'/'+f.height;image.style.cssText=`position:absolute;width:${100/w}%;height:${100/h}%;max-width:none;max-height:none;left:${-100*x/w}%;top:${-100*y/h}%;object-fit:fill`;}else{viewport.style.aspectRatio='';image.style.cssText='position:static;width:100%;height:auto;';}
   $('sequenceTitle').textContent=viewerStyle.name;$('sequenceCaption').textContent=f.label+' · '+(f.caption||f.action||'');$('sequencePosition').textContent=`${viewerIndex+1} / 4`;
   $('sequencePrev').disabled=viewerIndex===0;$('sequenceNext').disabled=viewerIndex===3;
   $('sequenceDownload').dataset.sequenceDownload=viewerStyle.id;$('sequenceDownload').dataset.frameIndex=viewerIndex;

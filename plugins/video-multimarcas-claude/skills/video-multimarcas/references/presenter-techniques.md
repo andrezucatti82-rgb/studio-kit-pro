@@ -1,6 +1,6 @@
 # Vinte mecanismos, sessenta direções
 
-Os mecanismos abaixo são composição/técnica; as 60 receitas do catálogo 4.6 aplicam essas ideias a 17 segmentos. Selecionar um mecanismo exige verificar seus insumos e demonstrar sua ação; não anuncia extração automática ou 20 efeitos certificados.
+Os mecanismos abaixo são composição/técnica; as 60 receitas do catálogo 4.7 aplicam essas ideias a 17 segmentos. Selecionar um mecanismo exige verificar seus insumos e demonstrar sua ação; não anuncia extração automática ou 20 efeitos certificados.
 
 | Mecanismo | Insumos e prova específica |
 |---|---|

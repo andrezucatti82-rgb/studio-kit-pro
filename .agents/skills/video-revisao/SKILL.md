@@ -32,3 +32,5 @@ Use uma revisão consolidada do candidato, com lista concreta de falhas e corre�
 Forneça vídeo acessível, duração medida, legenda, fonte/projeto editável, recursos/licenças, relatório do hash exato, limitações restantes e próxima ação. `npm run review`/`workflow-gate` validam registros; não criam fatos nem aprovações. Entregar o MP4 de avatar bruto como se fosse a edição final não satisfaz um pedido com interação/motion.
 
 Publicação é um escopo próprio: revisão técnica ou aceite visual não autoriza subir vídeo em contas, publicar site, gastar novas tentativas ou executar merge. O projeto deve distinguir fonte no GitHub, pacote preparado, instalação carregada e domínio publicado.
+
+Para a biblioteca de explicadores, compare composição e mecanismo entre direções: trocar somente rosto, cor ou texto de um cartão não cria diversidade. Confira também a adequação por beat da posição/escala da pessoa e se a informação nasce da explicação. Para uma produção específica, preserve o original; a biblioteca não obriga deslocamentos ou espelhamentos artificiais.

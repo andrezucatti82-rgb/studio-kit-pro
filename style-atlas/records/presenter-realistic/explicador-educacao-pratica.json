@@ -1,0 +1,35 @@
+{
+  "id": "explicador-educacao-pratica",
+  "path": "assets/presenter-realistic/explicador-educacao-pratica.png",
+  "generator": "image_gen",
+  "sourceArtifact": "exec-2951ef96-f166-4c55-b141-b5fac95525de.png",
+  "layout": "2x2_independent_complete_photorealistic_frames",
+  "sha256": "4657c3e9bbb8cf9a4a94f6e3d9c47378aded816d843517c4a1664dfff0c3560e",
+  "fictionalPeopleAndPlaces": true,
+  "motionValidated": false,
+  "status": "proposed_visual_reference_not_produced_video",
+  "creativeDirection": {
+    "version": 1,
+    "visualMode": "real_task_walkthrough",
+    "presenterBlocking": [
+      "right",
+      "voice_only",
+      "left",
+      "center"
+    ],
+    "compositionIdea": "Uma tarefa real é executada e seus estados são destacados; o apresentador só volta quando orienta uma decisão.",
+    "shotLanguage": [
+      "pessoa à direita",
+      " demonstração",
+      " pessoa à esquerda",
+      " resumo"
+    ],
+    "graphicMaterial": "chosen_by_function_no_default_panel",
+    "fixedPresenterSide": false,
+    "digitalMirroringDefault": false,
+    "motionFollowsExplanation": true,
+    "sourceCoverageRequired": true,
+    "conceptualReferenceOnly": true
+  },
+  "prompt": "Create an original PHOTOREALISTIC target-result storyboard for an edited SOCIAL-MEDIA explainer video. Exactly one image canvas with a precise 2x2 grid of four complete independent camera frames. Strongly prefer a portrait overall canvas, but never crop heads or essential hands. Tiny even gutters, NO outer title, NO website/mockup or page decoration. SAME original fictional presenter, clothes, environment and objects throughout the four states of this one style. IMPORTANT: follow creativeDirection.presenterBlocking and shotLanguage FOR EACH QUADRANT IN ORDER. The presenter MUST NOT remain on the same side by default. Use center, right, left, small inset or a full-screen demonstration without a visible person according to the specific shot plan. Vary framing, point of view, scale, camera motivation and interaction meaningfully. The information must visibly be BUILT DURING the explanation: a line is drawn, pieces assemble, a word moves behind the person, a route grows, a product opens, an interface takes over, a real action reveals a detail. The presenter looks, points, holds, draws, demonstrates or makes room for that action. Not a person talking beside a pre-made card. DO NOT default to glass, rounded floating panels, checklists, beige cards, generic blue UI or repeated left-person/right-information layouts. Glass is allowed ONLY if creativeDirection.graphicMaterial is exactly 'glass'. Otherwise choose the actual physical scene, direct anchored labels, real paper, clean typography, a model, a full-screen map/interface, or another material specified by visualMode. An exterior/technical simulation must be labeled 'Simulação' and must not imply a presenter actually visited it. Use a plausible ordinary everyday professional environment, real-looking skin/materials, natural or practical light, slight fine texture, moderate social-video color finishing. Not luxury AI interiors, plastic skin, fashion retouch or heavy cinema grading. Dynamic sectors may be energetic and use strong purposeful movement, but no neon HUD, sci-fi holograms, videogame look or semantic clutter. Natural hands and anatomy; restrained teeth/mouth. Use the wardrobe supplied, do not default everyone to navy blue. Keep text VERY SHORT, readable Portuguese, essential to the mechanism. No paragraphs, no large disclaimer boxes, no automatic 'Em resumo' checklist. Professional constraints are instructions to follow, not text to print. No invented numeric claims, measurements, results or credentials. No logos. Four moments: context, reveal/build, interaction/change, resolution — staging and composition must follow the specific style rather than a universal card template. These are fictional visual references, not produced footage or proof of animation.\nSPECIFIC STYLE BRIEF: {\"id\":\"explicador-educacao-pratica\",\"name\":\"Da explicação à prática\",\"sector\":\"educacao\",\"sectorName\":\"Educação e treinamento\",\"mechanism\":\"steps\",\"action\":\"Uma ação real e seus estados se alternam com o apresentador; o resumo permite retomar o procedimento.\",\"states\":[\"A pessoa situa o assunto: ensinar uma tarefa verificável.\",\"Uma ação real e seus estados se alternam com o apresentador; o resumo permite retomar o procedimento.\",\"A relação relevante responde ao tempo da fala; rosto e mãos permanecem livres.\",\"A pessoa conclui a ideia e o resumo preserva o contexto de educação e treinamento.\"],\"environment\":\"ordinary classroom or training workspace, everyday materials and whiteboard\",\"constraints\":\"Fontes verificadas, unidades e sequência corretas. Analogias e simulações identificadas; não apresentar exemplo como evidência empírica.\",\"presenter\":\"fictional Brazilian adult woman, age 42, medium olive skin and wavy dark hair\",\"creativeDirection\":{\"version\":1,\"visualMode\":\"real_task_walkthrough\",\"presenterBlocking\":[\"right\",\"voice_only\",\"left\",\"center\"],\"compositionIdea\":\"Uma tarefa real é executada e seus estados são destacados; o apresentador só volta quando orienta uma decisão.\",\"shotLanguage\":[\"pessoa à direita\",\" demonstração\",\" pessoa à esquerda\",\" resumo\"],\"graphicMaterial\":\"chosen_by_function_no_default_panel\",\"fixedPresenterSide\":false,\"digitalMirroringDefault\":false,\"motionFollowsExplanation\":true,\"sourceCoverageRequired\":true,\"conceptualReferenceOnly\":true},\"wardrobe\":\"dark olive practical shirt\",\"constraintHandling\":\"Apply professional constraints silently; do not print their wording as paragraphs on panels.\"}"
+}

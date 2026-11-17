@@ -1,6 +1,6 @@
 # Apresentador e explicação — 2.12.0
 
-Use para edição de pessoa gravada ou avatar explicitamente solicitado. As 60 receitas do catálogo 4.6 são direções originais; seus estudos não comprovam animação, tracking ou recorte automático.
+Use para edição de pessoa gravada ou avatar explicitamente solicitado. As 60 receitas do catálogo 4.7 são direções originais; seus estudos não comprovam animação, tracking ou recorte automático.
 
 ## Primeiro, descobrir o que existe
 
@@ -48,3 +48,9 @@ Para cada beat, mostrar trecho da fala, tempo no bruto e no editado, gesto obser
 Entregue roteiro/EDL, moodboard e storyboard visuais nas etapas aplicáveis. A amostra precisa provar a interação mais difícil e a transição, não somente a abertura. Não gerar vídeo IA antes dos aceites existentes. Quadros, typecheck, testes e leitura de metadados não substituem playback, escuta e aprovação criativa. Sem revisão integral, `review_pending`.
 
 Fontes técnicas: https://github.com/SYSTRAN/faster-whisper ; https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker ; https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker ; https://ai.google.dev/edge/mediapipe/solutions/vision/image_segmenter ; https://github.com/facebookresearch/sam2 ; https://www.remotion.dev/docs/offthreadvideo .
+
+## Referências e composição por trecho
+
+No catálogo visual 4.7, cada explicador tem uma direção de composição própria. Use creativeDirection e interactionPlan: a informação é construída pela fala/ação e a pessoa muda de escala/posição quando isso ajuda, sem lado fixo nem espelhamento automático. Cobertura real, máscaras e trajetórias verificadas limitam a execução. Quatro momentos não obrigam quatro cenas.
+
+As imagens de referência são quadros fotorrealistas fictícios, não vídeos produzidos. Quando sequence.frames[].crop estiver presente, ele identifica um painel completo de um original 2×2: [x,y,w,h] normalizado. Não interpretar o arquivo inteiro como um único plano nem cortar partes do painel. O download do site exporta o painel individual; o arquivo original completo permanece preservado. Diagramas funcionais dentro da fotografia são permitidos; bonecos/esquemas não substituem a referência do acabamento final.

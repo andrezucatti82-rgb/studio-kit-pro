@@ -1,43 +1,15 @@
 {
   "version": 1,
   "kitVersion": "2.12.0",
-  "sourceRevision": "335403661421d55e3fb4f29d69e30f04df33d4a2",
-  "sourceReady": true,
+  "sourceRevision": "512345704bb1e84034f9caed86fc7c28c60782a6",
+  "sourceReady": false,
   "download": "downloads/studio-kit-pro-installer.zip",
-  "bytes": 577940,
-  "sha256": "564a912d221e36151cc55c1117ecdac9d79dfe45e7389f9f9493ead1b3205b54",
+  "bytes": 585797,
+  "sha256": "6ecbfad3f686e4448a76914e8ee6f264add64b0d05b5f0a9b6307a4ebf60bf68",
   "tutorial": "como-instalar.html",
   "scope": "local project for Codex and Claude Code; no automatic web-account installation",
   "internetRequired": true,
-  "fullProjectDownloadMiB": 545,
+  "fullProjectDownloadMiB": 695,
   "skills": 7,
-  "presenterStyles": 60,
-  "verification": {
-    "dateUTC": "2026-11-17T07:43:27.801896+00:00",
-    "sourceRevision": "335403661421d55e3fb4f29d69e30f04df33d4a2",
-    "linuxGithubInstallation": "ready",
-    "javascriptPassed": 195,
-    "pythonPassed": 9,
-    "artifactChecksPassed": 7,
-    "browserChecks": [
-      "375px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
-      "1440px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
-      "failed package verification disables download"
-    ],
-    "freshInstallationSiteProjectImport": "passed on identical Node runtime source before PowerShell-only fix",
-    "sameRevisionResumeAndProjectPreservation": "passed on identical Node runtime source before PowerShell-only fix",
-    "nativePlatformsTested": [
-      "linux"
-    ],
-    "nativePlatformsPending": [
-      "windows",
-      "macOS"
-    ],
-    "automaticSystemToolInstall": "not_run_prerequisites_already_present",
-    "portableNodeBootstrap": "not_run_existing_Node_reused",
-    "providerAccountsConnected": false,
-    "aiVideoGenerated": false,
-    "mergePerformed": false,
-    "deploymentPerformed": false
-  }
+  "presenterStyles": 60
 }

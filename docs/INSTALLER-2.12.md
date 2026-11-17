@@ -30,12 +30,14 @@ O instalador recusa pasta pessoal, fonte adulterada, links/paths inseguros e tro
 
 ## Fichas e prompts
 
-As 60 direções em 17 segmentos mantêm seus IDs e imagens de origem. Cada ficha possui interactionPlan editável com fala, pessoa, informação, função, som, insumos e perguntas por momento. O usuário navega pelos quatro estados no site; prompt/JSON preservam a receita e os escopos. sourceTimes:null e timingEvidence:pending_actual_source evitam transformar roteiro em tempo medido. Quatro momentos não obrigam quatro cenas. Nenhuma fala, avatar ou vídeo novo foi gerado.
+As 60 direções em 17 segmentos mantêm seus IDs; as referências visuais foram revistas após a crítica aos esquemas. Cada ficha possui interactionPlan editável com fala, pessoa, informação, função, som, insumos e perguntas por momento. O usuário navega pelos quatro estados no site; prompt/JSON preservam a receita e os escopos. sourceTimes:null e timingEvidence:pending_actual_source evitam transformar roteiro em tempo medido. Quatro momentos não obrigam quatro cenas. Nenhuma fala, avatar ou vídeo novo foi gerado.
 
 A skill especializada lê o plano e resolve somente faltas pertinentes. Video-tratamento separa acabamento/diagnóstico da montagem; video-revisao continua exigindo playback e escuta reais. Não inventar ASR, segmentação ou detector de gestos por selecionar a ficha.
 
 ## Verificações e limites
 
-Antes de fixar a origem: 195 testes JavaScript + 9 Python, typecheck, integridade dos pacotes, fontes/links e regressões de site. No Chromium em 375/1440 px: quatro momentos, prompt realmente copiado, projeto baixado, tutorial e bloqueio do download indisponível. O registro final da PR acrescenta a prova do ZIP liberado e da instalação a partir do GitHub.
+Antes de fixar a origem: 198 testes JavaScript + 9 Python, typecheck, integridade dos pacotes, fontes/links e regressões de site. No Chromium em 375/1440 px: quatro momentos, prompt realmente copiado, projeto baixado, tutorial e bloqueio do download indisponível. O registro final da PR acrescenta a prova do ZIP liberado e da instalação a partir do GitHub.
 
 A inicialização de FFmpeg/FFprobe e Chromium foi executada em Linux. Windows/macOS têm wrappers preparados e instruções específicas, mas não foram executados em máquinas nativas nesta sessão. Instalação de sistema, política administrada, bibliotecas de browser e autenticação podem exigir ação local. Não prometer um instalador universal sem requisitos.
+
+Na revisão visual 4.7, as fotos conceituais e os perfis de composição entram na revisão fixa obtida pelo instalador. O site deve preservar crop de painel completo no prompt/JSON e nos PNGs. Nenhuma aprovação de um esquema anterior é herdada automaticamente para a nova referência visual.

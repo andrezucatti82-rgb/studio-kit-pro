@@ -1,6 +1,6 @@
 # Apresentador + explicação para redes sociais — candidato 2.12.0
 
-A proposta combina pessoa preservada, demonstração sincronizada e acabamento natural. Não depende de transformar a pessoa inteira em uma geração IA. O 2.11.0 já compõe vídeo, texto, gráficos, áudio e cortes explícitos. O candidato 2.12.0 acrescenta os operadores descritos abaixo e 60 direções em 17 segmentos, levando o catálogo 4.6 a 1.220 estilos/30 subcategorias. As 60 direções são conceitos de edição, não 60 vídeos prontos.
+A proposta combina pessoa preservada, demonstração sincronizada e acabamento natural. Não depende de transformar a pessoa inteira em uma geração IA. O 2.11.0 já compõe vídeo, texto, gráficos, áudio e cortes explícitos. O candidato 2.12.0 acrescenta os operadores descritos abaixo e 60 direções em 17 segmentos, levando o catálogo 4.7 a 1.220 estilos/30 subcategorias. As 60 direções são conceitos de edição, não 60 vídeos prontos.
 
 ## Pesquisa e o que aproveitar
 
@@ -21,7 +21,7 @@ Podemos acrescentar à experiência: revisão explícita da EDL antes de cortar,
 
 Se a imagem original necessária não existir, pesquisar referências antes de gerar IA e identificar o resultado como simulação. Não inventar geometria de uma ponte, cômodos de um imóvel, cotas, resultados clínicos ou características do produto. Uma simulação contextual não prova visita da pessoa nem serve de cálculo técnico.
 
-Os seis painéis IA são referências exploratórias de composição; as quatro primeiras explorações eram mais polidas e não substituem esta direção atual de cotidiano/redes sociais. Pessoas/lugares são fictícios. Os 240 estados esquemáticos originais descrevem a sequência de edição; não são a aparência prometida do vídeo. Painéis originais foram mantidos intactos, com prompts e SHA256 em `style-atlas/records/presenter-60/art-directions.json`.
+No histórico anterior, os seis painéis IA eram referências exploratórias de composição; as quatro primeiras explorações eram mais polidas e não substituem esta direção atual de cotidiano/redes sociais. Pessoas/lugares são fictícios. Os 240 estados esquemáticos originais descrevem a sequência de edição; não são a aparência prometida do vídeo. Painéis originais foram mantidos intactos, com prompts e SHA256 em `style-atlas/records/presenter-60/art-directions.json`.
 
 ## Recursos executáveis e limites
 
@@ -84,7 +84,7 @@ O site candidato adiciona filtro por 17 segmentos, seis painéis e quatro estado
 
 A referência canônica da skill documenta operadores e limites; o empacotador sincroniza Codex/Claude e runtime. GitHub: [PR #20](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/20), candidato ainda separado da produção 2.11.0. Preparar código/pacotes não instala em outra conta nem publica o domínio.
 
-## Validação
+## Validação inicial dos operadores (registro histórico)
 
 Verificações: typecheck, 170 testes JavaScript + 9 Python, validador e whitespace passaram. Houve render real com comparação de pixels para alpha, âncora medida, blur do fundo e grão determinístico/desativável. No Chromium, os 17 filtros, download de prompt/projeto, importação CLI e galeria de 320–1920 px passaram; a regressão guiada também passou. Registro: `style-atlas/records/presenter-60/validation.json`. Typecheck, testes, comparação de pixels do render e QA do navegador não equivalem a playback/escuta de uma produção real ou aprovação dos conceitos. Antes de vídeo IA, as etapas visuais aplicáveis devem estar aprovadas; antes do filme completo, revisar a amostra representativa com o bruto escolhido.
 
@@ -93,3 +93,11 @@ Verificações: typecheck, 170 testes JavaScript + 9 Python, validador e whitesp
 As 60 fichas agora incluem interactionPlan com intenção da fala, ação da pessoa, resposta gráfica, direção sonora, função e requisitos por momento. O site permite navegar pelos quatro momentos e leva o mesmo plano ao prompt/JSON. sourceTimes continua null: não são tempos medidos nem 60 vídeos completos. O material existente é preservado, e a amostra futura precisa comprovar gesto, contato e sincronismo.
 
 O botão Instalar ferramenta oferece um único ZIP compacto; o instalador obtém a revisão fixa completa do GitHub, confere hashes, prepara dependências/skills locais e abre o tutorial. Codex/Claude Code e login são conferidos separadamente. Detalhes em [instalação](INSTALL-SKILL.md).
+
+## Revisão visual 4.7 e diversidade
+
+As referências públicas dos explicadores passam a quadros fotorrealistas específicos, com pessoas/cenas fictícias e quatro painéis completos. Os esquemas vetoriais anteriores ficam como registro histórico; não representam a aparência prometida. O original de cada imagem gerada é preservado, com prompt e hash. Os painéis têm crop normalizado para visualização/exportação individual sem ocultar partes da cena.
+
+creativeDirection distingue mecanismo, material, enquadramento, construção da informação e posição/escala da pessoa por trecho. Há tipografia em profundidade, objeto na palma, modelo em corte, lousa física, mapa dominante, interface, macro tátil, trajetória corporal, exterior contextual e diálogo, entre outras composições. Vidro é uma opção específica, não formato obrigatório. Diversidade não significa trocar só cor, personagem ou texto num mesmo cartão. A animação acompanha os tempos/gestos reais e precisa de prova na amostra.
+
+A revisão 4.7 passou em 198 testes JavaScript e 9 Python, typecheck e validação. O navegador conferiu galeria/filtros de 320–1920 px, navegação/exportação dos painéis em 375/1440 px, prompt/JSON e Page. Registro: `style-atlas/records/presenter-realistic/validation.json`. A prova da instalação da revisão fixa fica no recibo do download.

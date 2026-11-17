@@ -25,8 +25,13 @@ with sync_playwright() as p:
   page.evaluate("AtlasShell.view('library')")
   page.locator('#briefVisual [data-detail]').evaluate('(e)=>e.click()');page.wait_for_selector('#detailDialog[open]')
   style=page.evaluate("AtlasApp.getStyle('explicador-diagrama-ao-lado')")
+  with page.expect_download() as reference:page.locator('#detailDialog [data-frame]').first.click()
+  reference_file=out/f'reference-{width}.png';reference.value.save_as(str(reference_file))
+  from PIL import Image
+  assert Image.open(reference_file).size==(style['sequence']['frames'][style['sequence']['heroIndex']]['width'],style['sequence']['frames'][style['sequence']['heroIndex']]['height'])
+
   for index,beat in enumerate(style['presenterEditing']['interactionPlan']['beats']):
-   page.locator(f'[data-presenter-step="{index}"]').click();assert page.locator('[data-beat="graphicAction"]').inner_text()==beat['graphicAction'];assert page.locator('[data-beat="speechIntent"]').inner_text()==beat['speechIntent'];page.locator('[data-presenter-image]').wait_for();page.wait_for_function('document.querySelector("[data-presenter-image]").complete && document.querySelector("[data-presenter-image]").naturalWidth>0')
+   page.locator(f'[data-presenter-step="{index}"]').click();assert page.locator('[data-beat="graphicAction"]').inner_text()==beat['graphicAction'];assert page.locator('[data-beat="speechIntent"]').inner_text()==beat['speechIntent'];page.locator('[data-presenter-image-host] img').wait_for();page.wait_for_function('document.querySelector("[data-presenter-image-host] img").complete && document.querySelector("[data-presenter-image-host] img").naturalWidth>0')
   if width==375:page.screenshot(path=str(out/'storyboard-mobile.png'),full_page=False,animations='disabled')
   page.locator('#detailDialog [data-choose]').click();page.locator('#topic').fill('Como conectar formulários de anúncio a um CRM');page.locator('#prepare').click();page.wait_for_selector('#handoff:not([hidden])');page.locator('#copyPrompt').click();assert 'interactionPlan' in page.evaluate('navigator.clipboard.readText()')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
