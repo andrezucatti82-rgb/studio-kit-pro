@@ -43,7 +43,7 @@ test('caption timing, source trims and readable animation are enforced before ex
  assert.deepEqual(deterministicPlan(cues,[asset],skill).scenes.map(s=>s.durationFrames),[180,240,480]);
 });
 test('skill adapter preserves full source hashes, style mechanism and existing fidelity rules',()=>{
- assert.equal(skill.style.id,STYLE_ID);assert.equal(skill.catalogVersion,'4.5');assert(skill.records.some(r=>r.file.endsWith('scene.js')));
+ assert.equal(skill.style.id,STYLE_ID);assert.equal(skill.catalogVersion,'4.6');assert(skill.records.some(r=>r.file.endsWith('scene.js')));
  for(const r of skill.records)assert.equal(digest(Buffer.from(r.content)),r.sha256);
  assert.equal(skill.rules.inventAngles,false);assert.match(skill.style.motion,/cedem espaço/);
 });

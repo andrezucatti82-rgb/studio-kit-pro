@@ -62,3 +62,8 @@ Mais 684 sequências conceituais geradas com OpenAI image_gen completam os 720 e
 Os 380 novos estudos usam imagens conceituais fictícias geradas com OpenAI image_gen, extraídas em quatro quadros completos e miniaturas. Prompts, hashes, recortes e limites da revisão constam em style-atlas/records/segments-440/. Não são fotos de produtos reais, depoimentos ou provas de execução e vendas. Os 780 estudos anteriores permanecem preservados.
 
 A pesquisa da Meta e de campanhas públicas é distribuída somente como links, metadados selecionados e trechos curtos. Capturas de anúncios, filmes, músicas, rostos e ativos reais das campanhas não são redistribuídos nem incorporados aos estudos. Consultar sources.json, meta-references.json e RESEARCH.md para escopo e atribuição.
+
+
+## Presenter social 60 — candidate 2.12.0
+
+`style-atlas/dist/assets/presenter-60/` adds 240 original procedural composition studies and small previews. Source: `style-atlas/records/presenter-60/build.py` and recipes; no reference-course or client frames are reused. Neutral silhouette markers represent layout only. Six unaltered, fictional OpenAI image_gen PNG concept boards are in `art/`; prompts, provenance and SHA256 are recorded in `art-directions.json`. They are proposed graphic/layout references, not actual people, projects, mandatory scenery, motion proof or approval. The current source-first/social finish direction overrides earlier polished exploratory prompts. Original generated PNGs were copied intact. No third-party voice, music, SFX or stock asset is redistributed in this expansion.

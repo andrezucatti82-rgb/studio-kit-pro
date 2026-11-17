@@ -16,13 +16,18 @@ with sync_playwright() as p:
  page=browser.new_page(viewport={'width':1440,'height':1000},accept_downloads=True)
  page.on('pageerror',lambda e:result['errors'].append(str(e)))
  page.goto(base);page.wait_for_function('window.ATLAS_READY===true');choose_family(page)
- assert page.locator('#grid .card').count()==20
- page.screenshot(path=str(out/'catalogo-desktop.png'),animations='disabled')
+ assert page.locator('#grid .card').count()==40
+ page.locator('#loadMore').click();assert page.locator('#grid .card').count()==60
+ options=page.locator('#presenterSector option').evaluate_all('(o)=>o.map(x=>({value:x.value,label:x.label}))');assert len(options)==18
+ for option in options[1:]:
+  page.select_option('#presenterSector',option['value']);assert page.locator('#grid .card').count() in [3,4]
+  assert page.locator('#grid .card img').first.get_attribute('src').endswith('.png')
+ page.select_option('#presenterSector','');page.screenshot(path=str(out/'catalogo-desktop.png'),animations='disabled')
  page.locator('#grid [data-detail]').first.click()
  assert 'A pessoa participa' in page.locator('#detailDialog').inner_text()
  with page.expect_download() as dl:page.locator('#detailDialog a[download]').click()
  dl.value.save_as(str(out/'prompt-site.txt'));assert 'trajetória' in (out/'prompt-site.txt').read_text()
- result['checks'].append('20 original directions, presenter requirements and actual prompt download')
+ result['checks'].append('60 sector directions, 17 working sector filters, presenter requirements and actual prompt download')
  page.locator('#detailDialog [data-choose]').first.click();page.evaluate("AtlasShell.view('brief')")
  page.locator('#topic').fill('Explicar faturamento e custos com meu vídeo gravado')
  page.locator('#prepare').click();page.wait_for_selector('#handoff:not([hidden])')
@@ -32,10 +37,11 @@ with sync_playwright() as p:
  dl.value.save_as(str(out/'projeto-video.json'));bundle=json.loads((out/'projeto-video.json').read_text())
  assert bundle['orchestrator']['runtimeVersion']=='2.12.0'
  assert bundle['brief']['selectedStyles'][0]['presenterEditing']['automaticGestureTracking'] is False
+ assert bundle['brief']['selectedStyles'][0]['executionPlan']['finishProfile']['target']=='social_media_not_cinema'
  result['checks'].append('Downloaded project retains actual recipe and runtime 2.12.0 without claiming automatic tracking')
  for width in [320,375,768,1440,1920]:
   tab=browser.new_page(viewport={'width':width,'height':950});tab.goto(base);tab.wait_for_function('window.ATLAS_READY===true');choose_family(tab)
-  assert tab.locator('#grid .card').count()==20
+  assert tab.locator('#grid .card').count()==40
   assert not tab.locator('#categoryDrawer').is_visible()
   assert tab.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
   tab.wait_for_function('Array.from(document.querySelectorAll("#grid img")).filter(i=>{const r=i.getBoundingClientRect();return i.checkVisibility()&&r.top<innerHeight&&r.bottom>0}).every(i=>i.complete&&i.naturalWidth>0)')

@@ -110,16 +110,16 @@ test('Page migration retains 4.1 favourites and resets approvals when reference 
  assert.equal(resumed.getStorageReads(),0);
 });
 
-test('two-level categories partition all 1180 styles and never render example-style shortcuts',async()=>{
+test('two-level categories partition all 1220 styles and never render example-style shortcuts',async()=>{
  const {document:d,ctx,click}=await boot();const catalog=ctx.AtlasApp.getCatalog(),groups=ctx.AtlasNavigation.groups;
  assert.equal(groups.length,6);
  const families=groups.flatMap(g=>g.families);
  assert.equal(families.length,30);assert.equal(new Set(families).size,30);
  assert.deepEqual(new Set(families),new Set(catalog.families.map(f=>f.id)));
- assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1180);
+ assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1220);
  assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,30);
  assert.equal(d.querySelectorAll('#categoryTiles [data-visual-family]').length,3);
- for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',180],['visual',240]]){
+ for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',220],['visual',240]]){
   click('[data-nav-group="'+id+'"]');
   assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+total+' estilos'));
   assert.equal(ctx.AtlasApp.categorySelection().group,id);
@@ -144,7 +144,7 @@ test('two-level categories partition all 1180 styles and never render example-st
  assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,0,'navigation does not change the brief');
  click('.category-all');assert.equal(d.getElementById('familySelect').value,'');
  assert.equal(ctx.AtlasApp.categorySelection().group,'');
- assert.match(d.getElementById('resultCount').textContent,/^1180 estilos/);
+ assert.match(d.getElementById('resultCount').textContent,/^1220 estilos/);
  assert.equal(d.querySelectorAll('#grid .card').length,24);
 });
 test('browsing parents and subcategories preserves selected styles, contributions and approvals',async()=>{

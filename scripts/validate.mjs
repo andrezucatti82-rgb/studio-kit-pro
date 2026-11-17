@@ -40,11 +40,14 @@ export function validate(p){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const input=JSON.parse(fs.readFileSync(process.argv[2]||'templates/project.json','utf8'));(input.selectedStyles?validatePreset:validate)(input);console.log('Project valid. This does not certify creative quality.');}
 
 export function validateCatalog(c){
- if(c.styles.length!==1180||new Set(c.styles.map(s=>s.id)).size!==1180)throw Error('1180 unique styles required');
+ if(c.styles.length!==1220||new Set(c.styles.map(s=>s.id)).size!==1220)throw Error('1220 unique styles required');
  if(c.families.length!==30)throw Error('30 subcategories required');
  for(const f of c.families)if(f.count!==c.styles.filter(s=>s.family===f.id).length)throw Error('Family count mismatch: '+f.id);
  for(const f of c.families.filter(f=>f.id.startsWith('ads-')))if(f.count!==40)throw Error('Forty ads per grouped segment required: '+f.id);
- const presenters=c.styles.filter(s=>s.family==='explicadores');if(presenters.length!==20)throw Error('Twenty presenter directions required');
+ const presenters=c.styles.filter(s=>s.family==='explicadores');if(presenters.length!==60)throw Error('Sixty presenter directions required');
+ const sectorCounts={corretores:4,dentistas:4,arquitetos:4,lojas:4,advogados:4,esteticas:4,fitness:4,procedimentos:3,gastronomia:3,pets:3,moda:3,engenharia:4,interiores:3,eventos:4,educacao:3,agro:3,turismo:3};
+ for(const [sector,count]of Object.entries(sectorCounts))if(presenters.filter(s=>s.presenterEditing?.sector===sector).length!==count)throw Error('Presenter sector count mismatch: '+sector);
+ for(const s of presenters){const p=s.presenterEditing,f=p?.finishProfile;if(!p?.narrationRequired||!p.captionsRequired||f?.environment?.default!=='preserve_recorded_environment'||f?.environment?.automaticBackgroundReplacement!==false||!f?.graphics?.purposeRequired||f?.music?.status!=='planned_not_generated'||f?.audiovisualProof!==false)throw Error('Presenter direction must preserve real environment and honest audio/graphics status: '+s.id);}
  for(const s of presenters)if(!s.presenterEditing||s.presenterEditing.referenceIsExecutionProof!==false||!s.presenterEditing.avatarOptInRequired||s.presenterEditing.automaticGestureTracking!==false||s.presenterEditing.automaticSegmentation!==false)throw Error('Presenter direction must state actual capabilities: '+s.id);
  const safe=v=>typeof v==='string'&&/^assets\/[a-zA-Z0-9_,./-]+\.webp$/.test(v)&&!v.includes('..');
  for(const s of c.styles){

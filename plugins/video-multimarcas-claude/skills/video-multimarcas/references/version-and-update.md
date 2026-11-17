@@ -1,6 +1,6 @@
 # Versão, instalação e atualização
 
-Esta edição é `video-multimarcas` **2.12.0**, genérica e independente de `video-b-roll`. O kit executável é 2.12.0; estilos são catálogo 4.5 (1.180/30 subcategorias). Não confunda versão da skill, do plugin, do kit e dos catálogos.
+Esta edição é `video-multimarcas` **2.12.0**, genérica e independente de `video-b-roll`. O kit executável é 2.12.0; estilos são catálogo 4.6 (1.220/30 subcategorias). Não confunda versão da skill, do plugin, do kit e dos catálogos.
 
 Fontes públicas:
 - Repositório: https://github.com/andrezucatti82-rgb/studio-kit-pro

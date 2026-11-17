@@ -5,6 +5,8 @@ import {bezierProgress} from './motion.mjs';
 import {KineticType} from './Motion';
 import {musicGainAt} from './audio.mjs';
 import {anchorPositionAt,layerVisibleAt} from './presenter.mjs';
+import {glassStyle} from './glass.mjs';
+import {SocialFinish} from './SocialFinish';
 import type {GraphAnimation,GraphLayer,RenderGraphPlan} from './graph-types';
 
 function valueAt(animation:GraphAnimation,frame:number){const k=animation.keyframes;if(frame<=k[0].frame)return k[0].value;for(let i=1;i<k.length;i++)if(frame<=k[i].frame){const a=k[i-1],b=k[i],t=bezierProgress((frame-a.frame)/(b.frame-a.frame),b.easing);return a.value+(b.value-a.value)*t;}return k[k.length-1].value;}
@@ -14,10 +16,10 @@ function Layer({layer:l,sceneId,plan}:{layer:GraphLayer;sceneId:string;plan:Rend
  const f=useCurrentFrame(),props:Record<string,number>={x:l.x,y:l.y,opacity:l.opacity,scale:l.scale,rotation:l.rotation,reveal:1,tracking:0,pathProgress:l.type==='path'?l.progress:1};
  for(const animation of l.animations)props[animation.property]=valueAt(animation,f);
  if(l.anchorTrack)Object.assign(props,anchorPositionAt(l.anchorTrack,f,l.width,l.height));
- const style:React.CSSProperties={position:'absolute',visibility:layerVisibleAt(l.active,f)?'visible':'hidden',left:props.x*plan.output.width,top:props.y*plan.output.height,width:l.width*plan.output.width,height:l.height*plan.output.height,opacity:Math.max(0,Math.min(1,props.opacity)),transform:`rotate(${props.rotation}deg) scale(${props.scale})`,transformOrigin:'center',clipPath:`inset(0 ${100*(1-Math.max(0,Math.min(1,props.reveal)))}% 0 0)`};
+ const style:React.CSSProperties={position:'absolute',visibility:layerVisibleAt(l.active,f)?'visible':'hidden',left:props.x*plan.output.width,top:props.y*plan.output.height,width:l.width*plan.output.width,height:l.height*plan.output.height,opacity:Math.max(0,Math.min(1,props.opacity)),transform:`rotate(${props.rotation}deg) scale(${props.scale})`,transformOrigin:'center',clipPath:l.type==='shape'&&l.material&&props.reveal===1?undefined:`inset(0 ${100*(1-Math.max(0,Math.min(1,props.reveal)))}% 0 0)`};
  let content:React.ReactNode;
  if(l.type==='media'){const media=plan.media[`${sceneId}:${l.id}`],css:React.CSSProperties={width:'100%',height:'100%',objectFit:'contain',borderRadius:l.radius*100+'%'};content=media.kind==='video'?<OffthreadVideo src={staticFile(media.src)} transparent={media.transparent??false} volume={l.volume} style={css}/>:<Img src={staticFile(media.src)} style={css}/>;}
- else if(l.type==='shape')content=<div style={{width:'100%',height:'100%',background:l.fill,borderRadius:l.shape==='ellipse'?'50%':l.radius*100+'%'}}/>;
+ else if(l.type==='shape')content=<div style={{width:'100%',height:'100%',...glassStyle(l.fill,l.material),borderRadius:l.shape==='ellipse'?'50%':l.radius*100+'%'}}/>;
  else if(l.type==='path')content=<svg viewBox="0 0 1000 1000" preserveAspectRatio="none" style={{width:'100%',height:'100%',overflow:'visible'}}><path d={l.d} fill="none" stroke={l.color} strokeWidth={l.strokeWidth} pathLength="1" strokeDasharray="1" strokeDashoffset={1-props.pathProgress}/></svg>;
  else content=<div ref={textRef} style={{fontFamily:l.font,fontWeight:l.weight,fontSize:l.fontSize,lineHeight:1.1,textAlign:l.align,color:l.color,letterSpacing:props.tracking,whiteSpace:'pre-wrap',overflowWrap:'break-word'}}>{l.kinetic==='speech'?l.speechWords!.map((w,i)=><React.Fragment key={i}>{i>0?' ':''}<span style={{opacity:f>=w.fromFrame?1:0,color:f>=w.fromFrame&&f<w.toFrame?(l.highlightColor??l.color):l.color}}>{w.text}</span></React.Fragment>):l.kinetic==='none'?l.text:<KineticType text={l.text} frame={f} animation={{unit:l.kinetic,delayFrames:0,staggerFrames:l.staggerFrames,durationFrames:l.enterFrames,easing:[.22,.75,.2,1],tracking:props.tracking}}/>}</div>;
  return <div style={style}>{content}</div>;
@@ -28,7 +30,7 @@ export function GraphFilm({plan}:{plan:RenderGraphPlan}){
  const frame=useCurrentFrame(),timeline=buildTimeline(plan.scenes),cap=plan.captions.find(c=>frame/plan.output.fps>=c.start&&frame/plan.output.fps<c.end);
  return <AbsoluteFill style={{background:plan.scenes[0].background,fontFamily:'Geist'}}>
   <style>{plan.fontSources.map(f=>`@font-face{font-family:'${f.family}';font-weight:${f.weight};src:url('${staticFile(f.src)}')}`).join('')+'*{box-sizing:border-box}'}</style>
-  {timeline.clips.map(c=><Sequence key={plan.scenes[c.index].id} from={c.from} durationInFrames={c.durationInFrames+c.overlapAfter}><Held plan={plan} index={c.index}/></Sequence>)}
+  <SocialFinish options={plan.finishing}>{timeline.clips.map(c=><Sequence key={plan.scenes[c.index].id} from={c.from} durationInFrames={c.durationInFrames+c.overlapAfter}><Held plan={plan} index={c.index}/></Sequence>)}</SocialFinish>
   {plan.renderAudio.map((t,i)=><Sequence key={i} from={t.fromFrame} durationInFrames={t.durationFrames}><Audio src={staticFile(t.src)} volume={f=>{const fade=Math.min(1,f/Math.max(1,t.fadeFrames),(t.durationFrames-f)/Math.max(1,t.fadeFrames));return t.volume*fade*(t.role==='music'?musicGainAt(f+t.fromFrame,plan.renderAudio,plan.output.fps):1);}}/></Sequence>)}
   {plan.musicSrc&&<Audio src={staticFile(plan.musicSrc)} volume={f=>plan.audio.proceduralScore ? .28*musicGainAt(f,plan.renderAudio,plan.output.fps):0}/>}
   {cap&&<div style={{position:'absolute',left:'6%',right:'6%',bottom:'9%',display:'flex',justifyContent:'center'}}><span style={{background:'#142b35ed',color:'#fff',fontFamily:plan.captionFont,fontSize:plan.output.width>plan.output.height?28:30,lineHeight:1.3,padding:'10px 18px',textAlign:'center'}}>{cap.text}</span></div>}

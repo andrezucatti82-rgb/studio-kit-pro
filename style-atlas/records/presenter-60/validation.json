@@ -1,0 +1,101 @@
+{
+  "candidateVersion": "2.12.0",
+  "catalogVersion": "4.6",
+  "dateUTC": "2026-11-17T03:26:36.157863+00:00",
+  "styleCount": 1220,
+  "presenterDirections": 60,
+  "sectorCount": 17,
+  "compositionStates": 240,
+  "artBoards": 6,
+  "tests": {
+    "javascript": {
+      "passed": 170,
+      "failed": 0
+    },
+    "python": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "projectValidator": "passed",
+    "diffWhitespace": "passed"
+  },
+  "renderer": {
+    "kind": "synthetic_technical_still_tests",
+    "actualAlphaAndMeasuredAnchor": true,
+    "actualBackdropBlur": true,
+    "deterministicSubtleGrain": true,
+    "disabledGrainNeutral": true,
+    "creativeApproval": false,
+    "continuousPlayback": "not_reviewed",
+    "listening": "not_run"
+  },
+  "browser": {
+    "checks": [
+      "60 sector directions, 17 working sector filters, presenter requirements and actual prompt download",
+      "Downloaded project retains actual recipe and runtime 2.12.0 without claiming automatic tracking",
+      "Visible catalogue, loaded frames and no overflow at 320, 375, 768, 1440 and 1920 pixels"
+    ],
+    "errors": []
+  },
+  "guidedRegression": {
+    "checks": [
+      "375px: one-photo declaration, three alternatives, selection, materials and prepared request",
+      "Claude destination and actual clipboard copy",
+      "Four independent starter downloads with complete request and canonical project",
+      "Reference frame and four-frame sequence download as PNG",
+      "Reload restores selected style, briefing and platform",
+      "Valid import and rejected invalid import without project loss",
+      "Persistent storage failure warning without losing open choices",
+      "Library without horizontal overflow at 320, 375, 768, 1440 and 1920px; mobile retains two columns",
+      "Receipt fixture avoids automatic re-request; long filename wraps; reduced motion and keyboard handoff controls work"
+    ],
+    "errors": []
+  },
+  "downloadedProjectCLIImport": "passed",
+  "paidExternalAPIsUsed": false,
+  "newAIVideosProduced": false,
+  "mergedOrDeployed": false,
+  "conceptApproval": "pending_user_review",
+  "notes": [
+    "First 1160 catalogue styles are unchanged by hash comparison.",
+    "17 segment filters, full art reference, original-footage-first policy and finish profile preserved in export.",
+    "Masks, tracks and speech times require supplied verified input; extractors are not installed.",
+    "Packages are prepared artifacts, not evidence of installation elsewhere."
+  ],
+  "packages": {
+    "plugin": "video-multimarcas",
+    "pluginVersion": "2.12.0",
+    "kitVersion": "2.12.0",
+    "catalogVersion": "4.6",
+    "styleCount": 1220,
+    "categoryCount": 30,
+    "installationScope": "Packages do not install or update a ChatGPT account automatically.",
+    "packages": {
+      "video-multimarcas-claude-plugin.zip": {
+        "bytes": 81619,
+        "sha256": "d8aec1b9751f90eea8c2be2cb8643f2b7cbc7744d7617c98c6814e26e5bb2248"
+      },
+      "video-multimarcas-plugin.zip": {
+        "bytes": 82093,
+        "sha256": "a3193f213382d50699649435a970816d38b2366c3c3212bc741e5db7466f3aa8"
+      },
+      "video-multimarcas-runtime.zip": {
+        "bytes": 2358859,
+        "sha256": "938030a21a3fd809be7e64e9807c64a3741a033df512ff329cf152f0e14d7dc0"
+      },
+      "video-multimarcas.skill": {
+        "bytes": 80970,
+        "sha256": "11b738068af59ecaa2bad30e8337a8a35838668ea94fc4296e9b1506d4fbdc5e"
+      },
+      "video-multimarcas.zip": {
+        "bytes": 80970,
+        "sha256": "11b738068af59ecaa2bad30e8337a8a35838668ea94fc4296e9b1506d4fbdc5e"
+      }
+    }
+  },
+  "handoffCapabilityRegression": {
+    "passed": 10,
+    "failed": 0
+  }
+}

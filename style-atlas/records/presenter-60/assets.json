@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "explicador-diagrama-ao-lado",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "corretores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-diagrama-ao-lado-01.webp",
+        "sha256": "7109083bfc3dc1e6a351009303050e0c37f27e25d50b10f1217c8fadaaf7b847"
+      },
+      {
+        "path": "assets/presenter-60/explicador-diagrama-ao-lado-02.webp",
+        "sha256": "93e0898b7ac27491c1748db3bc29ae7b22722b5f2bb87445845071ffe0c9f59d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-diagrama-ao-lado-03.webp",
+        "sha256": "163a897deac46bdc9092c4ba79ba213122f4c3ba7d289423cabed113be0966d1"
+      },
+      {
+        "path": "assets/presenter-60/explicador-diagrama-ao-lado-04.webp",
+        "sha256": "5bba75acad439e5ce69eb335a718b0d11fe13025de8210a76e8680b2ceb3a4b6"
+      }
+    ]
+  },
+  {
+    "id": "explicador-texto-atras",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "corretores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-texto-atras-01.webp",
+        "sha256": "8dcc8e2fc6f0beb0c629947d871a88025589436479361502be031cdaefd461fa"
+      },
+      {
+        "path": "assets/presenter-60/explicador-texto-atras-02.webp",
+        "sha256": "c9eff921b81f9b5ef970a7a603b633d6800a2709c0b559fa1e8b7a1771ed9838"
+      },
+      {
+        "path": "assets/presenter-60/explicador-texto-atras-03.webp",
+        "sha256": "d73d784ba49f6a922c047659b42d18cb8adfcbd7e4bcd3ebc08d3a22524426e8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-texto-atras-04.webp",
+        "sha256": "70af39f2e4164b813c7d62c10e8c985f02bcd9e80d0a1a14106b40c397c09da7"
+      }
+    ]
+  },
+  {
+    "id": "explicador-objeto-na-mao",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "corretores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-objeto-na-mao-01.webp",
+        "sha256": "0be13984d681da09d6d3dd570b7c901a930a40160355baada3463f66d6104a78"
+      },
+      {
+        "path": "assets/presenter-60/explicador-objeto-na-mao-02.webp",
+        "sha256": "d209474507e6349a8b934174985753bf0b98fee2f972a2147cb94d2c45f3c53c"
+      },
+      {
+        "path": "assets/presenter-60/explicador-objeto-na-mao-03.webp",
+        "sha256": "ac252663281af9ea43e8981293e5ad150a12bc39dc5c7ddf51bff4a1f8f0b8a2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-objeto-na-mao-04.webp",
+        "sha256": "d87dd58fb7a3ea343a5fd891e9e8b70aa4662bdf6af0aa2685825a9804dec11c"
+      }
+    ]
+  },
+  {
+    "id": "explicador-toque-e-resposta",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "corretores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-toque-e-resposta-01.webp",
+        "sha256": "686a8a3594ef4ee3cd9ec7a49e63fff11a9da211a17ed1e053c0daf96486ec03"
+      },
+      {
+        "path": "assets/presenter-60/explicador-toque-e-resposta-02.webp",
+        "sha256": "2c212b92de2476463907a57874216f673335913d33af463791860b6f0359f20e"
+      },
+      {
+        "path": "assets/presenter-60/explicador-toque-e-resposta-03.webp",
+        "sha256": "9a8d93d3f8919b413b5d7f93e2b1e5e5e9a992653f2b5ef7010d98a5bd1a1bf8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-toque-e-resposta-04.webp",
+        "sha256": "bf199942288914859a7d9091eb5670241eae544edfd6013f963ff630575f2ce7"
+      }
+    ]
+  },
+  {
+    "id": "explicador-orbita-frente-tras",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "dentistas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-orbita-frente-tras-01.webp",
+        "sha256": "c79619a6181c93d6ac08d9333d8f08be1885f34e2386306984a4a906d3a11581"
+      },
+      {
+        "path": "assets/presenter-60/explicador-orbita-frente-tras-02.webp",
+        "sha256": "3046d9b91e841b7add498bff58a04448741c63d7ad794de9d32ab7a13e24bf33"
+      },
+      {
+        "path": "assets/presenter-60/explicador-orbita-frente-tras-03.webp",
+        "sha256": "3c0164736086eeeba47225e2a36553c4fa223c519edee4b88a6ef4198b94448f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-orbita-frente-tras-04.webp",
+        "sha256": "10238cd3248db8f7bfd6a2e9f45339662ec646cbcd9760d39ad5335aa2998c16"
+      }
+    ]
+  },
+  {
+    "id": "explicador-produto-em-camadas",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "dentistas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-produto-em-camadas-01.webp",
+        "sha256": "649f5a1ccc7fe23f6b1db363adf4eab4fa8da97d6a73e55c0c8803988f7ffc98"
+      },
+      {
+        "path": "assets/presenter-60/explicador-produto-em-camadas-02.webp",
+        "sha256": "7bbcb186e210d4eb48eb4a23d1083538eeba96d36982c58cc7162139c2918733"
+      },
+      {
+        "path": "assets/presenter-60/explicador-produto-em-camadas-03.webp",
+        "sha256": "755d0520ff9b7b258a184cb10823b528ff81b5cdc3d1badb3728f081c94c5c78"
+      },
+      {
+        "path": "assets/presenter-60/explicador-produto-em-camadas-04.webp",
+        "sha256": "474ab0a8a4bc1555603e3169cd026e1ef143d8bbe07787be6ef7434b8c434699"
+      }
+    ]
+  },
+  {
+    "id": "explicador-corte-tecnico",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "dentistas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-corte-tecnico-01.webp",
+        "sha256": "0e4f0aaca3e2ff754d3a282a6bda7aea2d4ab456dddc190753278e806fad81b5"
+      },
+      {
+        "path": "assets/presenter-60/explicador-corte-tecnico-02.webp",
+        "sha256": "c50fd49a1a44bc1c1bec4b0867d7042f12d3ede26310e82a80e3b684cdcbf2d2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-corte-tecnico-03.webp",
+        "sha256": "9ba5c9fbc748bce47faf2828b0e2ca15445913df9467a61e0065609c38b0362e"
+      },
+      {
+        "path": "assets/presenter-60/explicador-corte-tecnico-04.webp",
+        "sha256": "cf517914b899c39831bde060010ba4230b6745dc93fc2e23be0380cf36e17d84"
+      }
+    ]
+  },
+  {
+    "id": "explicador-lousa-desenhada",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "dentistas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-lousa-desenhada-01.webp",
+        "sha256": "cfdb59368462d13a6d52ef95a9d1506324c3bf8b04b49c055ea51d980e6730ec"
+      },
+      {
+        "path": "assets/presenter-60/explicador-lousa-desenhada-02.webp",
+        "sha256": "ddccb02eef45d0e2b709036640033903fc256d318b6191027fc0bbfc78c69dd4"
+      },
+      {
+        "path": "assets/presenter-60/explicador-lousa-desenhada-03.webp",
+        "sha256": "68171f5eca37fc95935f1af550f859cd605526e14934f3880b0457cd087f40fd"
+      },
+      {
+        "path": "assets/presenter-60/explicador-lousa-desenhada-04.webp",
+        "sha256": "7798fff9760e86ad84ebcc94984525e21a78cacd2a61c6f8020d809a47b146e9"
+      }
+    ]
+  },
+  {
+    "id": "explicador-fluxograma-vivo",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "arquitetos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-fluxograma-vivo-01.webp",
+        "sha256": "688df1752d4c3baa5d0fd15e592b6905b5ee916c33776e87d4de856237c3ce9f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fluxograma-vivo-02.webp",
+        "sha256": "62024254db3eaaae2c4113ef795dff1e7eb1f253dcd564a5f218bc1e4d09552c"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fluxograma-vivo-03.webp",
+        "sha256": "3f1afdfa955bac5e233636d0bcb55f4edbd7904acd0e70dea60b7916e6231ea2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fluxograma-vivo-04.webp",
+        "sha256": "a3998f4f3e6a1fffb67c050c7891bad39fd67042f7567a140a708cf1ae057ec6"
+      }
+    ]
+  },
+  {
+    "id": "explicador-dados-no-gesto",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "arquitetos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-dados-no-gesto-01.webp",
+        "sha256": "f42bdb44ab9b5bbd442c8471b5712fbc1f98ca905cb815d5174a33e5eb1c5692"
+      },
+      {
+        "path": "assets/presenter-60/explicador-dados-no-gesto-02.webp",
+        "sha256": "3006934eb33d68310267e30aedf89d2d120daf788236eb6ddbfbde0bb55b9833"
+      },
+      {
+        "path": "assets/presenter-60/explicador-dados-no-gesto-03.webp",
+        "sha256": "d2df2f386a025fe0ea9cd6240562dffff4d2a868055e3eb98804e8f16dcfd0e8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-dados-no-gesto-04.webp",
+        "sha256": "cad1d062f7a915f0dd41171ea17b4224f2e22d05d4521677a3584b453f0e084b"
+      }
+    ]
+  },
+  {
+    "id": "explicador-antes-depois",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "arquitetos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-antes-depois-01.webp",
+        "sha256": "5787047993f51004195d584740cfafdd08173db51e5493951abf6aad283ccba8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-antes-depois-02.webp",
+        "sha256": "ccc0437cc3683902d59793bf929193d49811d81019b84ee4c60a4fe094e63cd6"
+      },
+      {
+        "path": "assets/presenter-60/explicador-antes-depois-03.webp",
+        "sha256": "289d9d03c8ac66d6fc750566844d1abbc9c7f58a1f65d448de8b3879f4a4e02d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-antes-depois-04.webp",
+        "sha256": "6826bb6975934955530b27d4133d541b1cdaae4236a5bff23b68cbebb888b999"
+      }
+    ]
+  },
+  {
+    "id": "explicador-mitos-e-fatos",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "arquitetos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-mitos-e-fatos-01.webp",
+        "sha256": "a0652097ba1cd1df44ec5de8c925f93cbbc0f4d004b877c244124d74796c1209"
+      },
+      {
+        "path": "assets/presenter-60/explicador-mitos-e-fatos-02.webp",
+        "sha256": "d6f474f119ced0639bfac70bd3c2b4dc70866ac7369d6fc8c02a1cd1a892648b"
+      },
+      {
+        "path": "assets/presenter-60/explicador-mitos-e-fatos-03.webp",
+        "sha256": "c469448cdaf39063676888b8bc78dedf5962e8e2bffbfe1f083e150e1414f681"
+      },
+      {
+        "path": "assets/presenter-60/explicador-mitos-e-fatos-04.webp",
+        "sha256": "4c558559296ca4e6c2580ce42c90d982065cbdb12336a14b9b71ad1f79a2593f"
+      }
+    ]
+  },
+  {
+    "id": "explicador-cenario-contextual",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "lojas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-cenario-contextual-01.webp",
+        "sha256": "f4e88fc6e4ba6c97c7296e860403e6db87b3f4b8f1b0744fa61a009db8319ee9"
+      },
+      {
+        "path": "assets/presenter-60/explicador-cenario-contextual-02.webp",
+        "sha256": "2f0a9d492f1ff6f1266e4395529d7edec34d7f2e9fa19d812f929a3fb5845191"
+      },
+      {
+        "path": "assets/presenter-60/explicador-cenario-contextual-03.webp",
+        "sha256": "00b13cbf9d2ca199774d2ab451e1471b9e71ab533346551780106f7920a8a3c0"
+      },
+      {
+        "path": "assets/presenter-60/explicador-cenario-contextual-04.webp",
+        "sha256": "5bd7765df11876ccd271168f9d8eb83c9645e196e0c158ee541b54611ce9c759"
+      }
+    ]
+  },
+  {
+    "id": "explicador-apresentador-em-janela",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "lojas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-apresentador-em-janela-01.webp",
+        "sha256": "4244ebaf6a3736ee02598abb39e72323683afc0aa9bee2b355eca12eefb052bc"
+      },
+      {
+        "path": "assets/presenter-60/explicador-apresentador-em-janela-02.webp",
+        "sha256": "d73d620edce2f3bc65bccfb39588b35724684541038f294294d32482169dd387"
+      },
+      {
+        "path": "assets/presenter-60/explicador-apresentador-em-janela-03.webp",
+        "sha256": "5630a1eef7217b1e91f85cfb6a9475e909bd1abd4b10c67bfaa31b7187fe3e16"
+      },
+      {
+        "path": "assets/presenter-60/explicador-apresentador-em-janela-04.webp",
+        "sha256": "438ab36de8f4faa8a5b8bb1e2cffb10a1570f2e19a86db833e2a5acb123ee4f8"
+      }
+    ]
+  },
+  {
+    "id": "explicador-zoom-para-interface",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "lojas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-zoom-para-interface-01.webp",
+        "sha256": "7477e174b95a8e7eb79319e4363bf9bb07b64454a84bc4ce9566a55ce8112809"
+      },
+      {
+        "path": "assets/presenter-60/explicador-zoom-para-interface-02.webp",
+        "sha256": "3d3ad2aa0575c3d12108416e9e44b3488f233e2d0291965ebc31a6a4da07512f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-zoom-para-interface-03.webp",
+        "sha256": "1e4e8201e5eccadc18bf73b880bfcaa1eebc7cecad67a4e85b013a8cd8b3d1cf"
+      },
+      {
+        "path": "assets/presenter-60/explicador-zoom-para-interface-04.webp",
+        "sha256": "f830cba1c074146058998dc7cad08e4dc7bab7d99537517fe98c68f05eeea4f1"
+      }
+    ]
+  },
+  {
+    "id": "explicador-linha-do-tempo",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "lojas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-linha-do-tempo-01.webp",
+        "sha256": "954384af62d6da1a3293b94ac418e5d0cc5ae517084b834f1124adb0e1edc863"
+      },
+      {
+        "path": "assets/presenter-60/explicador-linha-do-tempo-02.webp",
+        "sha256": "cdc7478fa6026ef5f8358c99653a82499e5741ba9d2d314ec5029b5f51561471"
+      },
+      {
+        "path": "assets/presenter-60/explicador-linha-do-tempo-03.webp",
+        "sha256": "dbfdac54cb7486fe7bb6ea56fb4c4cf3d505ec5c9efb51f2fca394f4fc738f92"
+      },
+      {
+        "path": "assets/presenter-60/explicador-linha-do-tempo-04.webp",
+        "sha256": "21c998c02a554b321009e0f6915bbd32eab590ad23e42e7be3b84f78ead2c7b5"
+      }
+    ]
+  },
+  {
+    "id": "explicador-clones-dialogando",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "advogados",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-clones-dialogando-01.webp",
+        "sha256": "229405d4c37e5b49dadcf83e6ea1eed514e5f90efef1043da054ec7e432058aa"
+      },
+      {
+        "path": "assets/presenter-60/explicador-clones-dialogando-02.webp",
+        "sha256": "5b8b91bef1fe6865b55ef157f93d86fb718eaeba69955fca6c92d673640f5f4d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-clones-dialogando-03.webp",
+        "sha256": "64ad893cd711062ea83e73ecc8c8045007f3d796278bf682d534de8e256844d3"
+      },
+      {
+        "path": "assets/presenter-60/explicador-clones-dialogando-04.webp",
+        "sha256": "6688c77ef61c644003757ed430d614631bcdf04276c9d074ff226cb670a67893"
+      }
+    ]
+  },
+  {
+    "id": "explicador-mapa-e-rota",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "advogados",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-mapa-e-rota-01.webp",
+        "sha256": "ce08153edfd5d5db2851e3ca30e76cae5da0e3f3d44c7d69d41378b295bf24aa"
+      },
+      {
+        "path": "assets/presenter-60/explicador-mapa-e-rota-02.webp",
+        "sha256": "1252fadd37905f8e4721b41ee0fbe972d5bedbafb380c358cbef332867cd1383"
+      },
+      {
+        "path": "assets/presenter-60/explicador-mapa-e-rota-03.webp",
+        "sha256": "ea8a28bf0352d2d426814ad57c1f5234b3038a123a0066bc4765afabdc2e6239"
+      },
+      {
+        "path": "assets/presenter-60/explicador-mapa-e-rota-04.webp",
+        "sha256": "d5d33a0f110358af1bf7d1a192bdc9447d3d396b8a5ff7ab0ff5d05a938147d2"
+      }
+    ]
+  },
+  {
+    "id": "explicador-metafora-visual",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "advogados",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-metafora-visual-01.webp",
+        "sha256": "43a4cd0124590b25712513bd1ebf7dd7036374a957892961a18b3ee1df053d7d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-metafora-visual-02.webp",
+        "sha256": "27d7c36aaa4169b4c568650326f08a6d9ce492e5d9f4980c783c0a7a0bae7a6a"
+      },
+      {
+        "path": "assets/presenter-60/explicador-metafora-visual-03.webp",
+        "sha256": "a64dec5bbab2dc7329f85e3f226aea290f1ebd245a1350c54267564f4ede0bf9"
+      },
+      {
+        "path": "assets/presenter-60/explicador-metafora-visual-04.webp",
+        "sha256": "6a4c2afc6ddf09e3b89354376d616a71fa51c07ecee3784a0a19da99bfa9facd"
+      }
+    ]
+  },
+  {
+    "id": "explicador-tres-passos",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "advogados",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-tres-passos-01.webp",
+        "sha256": "c401a00c8694029b3c721cef0afdb05efa8b2060ef6d90f0aa747571451406f1"
+      },
+      {
+        "path": "assets/presenter-60/explicador-tres-passos-02.webp",
+        "sha256": "09f254d9f2ea796bc72e912292c327dc701fd8b2e9ab19f083ae64500562ba9d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-tres-passos-03.webp",
+        "sha256": "8709a7e91271445df306d6bcc722de84a94a9d2430a4079828b65d5a9b16f822"
+      },
+      {
+        "path": "assets/presenter-60/explicador-tres-passos-04.webp",
+        "sha256": "9c8fbc9cdadb8a46c08833061d156fd9425790458d0ddc8ff9f3bbbbfb5e6d13"
+      }
+    ]
+  },
+  {
+    "id": "explicador-estetica-ritual",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "esteticas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-estetica-ritual-01.webp",
+        "sha256": "322aa154e82c54ab76d4cb070bd3020464d1c7c4d6e245395f80523892c3efd9"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-ritual-02.webp",
+        "sha256": "987c1f460e00cc56a9cf91b0a381624b36424eaaa2ef4cfbf76e7dcffba74edc"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-ritual-03.webp",
+        "sha256": "3f86fbbf67f3f892a6a60c5c9909cf8fa2aeaa13ade92ccf390737afa10ce1a1"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-ritual-04.webp",
+        "sha256": "61701e643030a4a983a7803b680ad9bc65505918618aa23130a1ea9638c13e4d"
+      }
+    ]
+  },
+  {
+    "id": "explicador-estetica-textura",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "esteticas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-estetica-textura-01.webp",
+        "sha256": "c3e1b27a1e3f51a5ed1f827d0f15b0a8279d91b714ffff4b979b8ec0af14c010"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-textura-02.webp",
+        "sha256": "b9bf892d7b7ee4d8d467b8cbb473e674b7236687c5014f2c70c789dd982abab8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-textura-03.webp",
+        "sha256": "3b05b2bdee41db26af56e1763439504eed9e7c9b95ed3b379ea23eb3a03d9b24"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-textura-04.webp",
+        "sha256": "f9b834f3cfcb8208e9acc2e63b7770b0e91dd4ecc6445d8271b44c1c0e3a1378"
+      }
+    ]
+  },
+  {
+    "id": "explicador-estetica-atendimento",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "esteticas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-estetica-atendimento-01.webp",
+        "sha256": "5d042cb3717beada34aaf1e5158d4bd6ed8ca225532cfe5e4f0a4464545014b0"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-atendimento-02.webp",
+        "sha256": "59255839f1c74830caf160de23ad0a16dca052a2ab85baa14aec128e8100095a"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-atendimento-03.webp",
+        "sha256": "7385bb79246833d152938c20be709ed38f7c298815d3f437c3cfe3acc4116172"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-atendimento-04.webp",
+        "sha256": "ea0dd2500a15eac28a37955f3b56df794928caf8abe76a56f918e84a9226309a"
+      }
+    ]
+  },
+  {
+    "id": "explicador-estetica-materiais",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "esteticas",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-estetica-materiais-01.webp",
+        "sha256": "2dc54ed7c82ca70be43c24ed4453e024f916a91a6a4bc45df90a335fae810fc5"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-materiais-02.webp",
+        "sha256": "f36e3ca59a6f76dcead0f2e42d1fd2259169eed8388bc02e423b2e3722193d03"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-materiais-03.webp",
+        "sha256": "5a2a8c53b9882ff1324143c3abea0248c307c65b82a18c2d0962f4ec12692563"
+      },
+      {
+        "path": "assets/presenter-60/explicador-estetica-materiais-04.webp",
+        "sha256": "db431dfd21bd39e4301e659b4d8f2bcac8c7551f7508bf360ff426137ea1a823"
+      }
+    ]
+  },
+  {
+    "id": "explicador-fitness-alinhamento",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "fitness",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-fitness-alinhamento-01.webp",
+        "sha256": "df9a800c25aa97650584eb57e42424f5ea833b7923f1aa7dc647cacbf680e017"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-alinhamento-02.webp",
+        "sha256": "678860c61a07b39d4fb64d3111e86bcc8c217f59cfd8992e679f5b4fe7e2662d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-alinhamento-03.webp",
+        "sha256": "0bf2bf77b463addec5f3623908252c180719a35991d4d555cecfc0331d3d8f21"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-alinhamento-04.webp",
+        "sha256": "06056db7f3b4abdca89d9cead28680766d00a95b3d6bc38c9d53467dba345c5f"
+      }
+    ]
+  },
+  {
+    "id": "explicador-fitness-progressao",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "fitness",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-fitness-progressao-01.webp",
+        "sha256": "a9511ee6c0cfa919d03057035f10b466de44988662036580880f2d7f6c031e5e"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-progressao-02.webp",
+        "sha256": "dbc08b6282cb79f3b5e1cb2f62da898c53b6540420d7d9629296149ca81d90a0"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-progressao-03.webp",
+        "sha256": "487fa12c2e3d1730abaf443478d7ddf34f76b9f4b1a1461393a6887c4d4e6d35"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-progressao-04.webp",
+        "sha256": "0b2579e77977703f59bfd93fc3c7c665dd6f984a7720162b361a08bda2bf3b4a"
+      }
+    ]
+  },
+  {
+    "id": "explicador-fitness-ritmo",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "fitness",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-fitness-ritmo-01.webp",
+        "sha256": "bc36a0699c4034a1bd77a80830fa3f03ef204e7d5cfe4c61af5ce0096bb56f18"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-ritmo-02.webp",
+        "sha256": "281ffbbc6689e67a1bdc70b9f4433d06c67178c8be3c3f6f1388663ae1aa249a"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-ritmo-03.webp",
+        "sha256": "3c6cd9a1fdfad690286b7796e74c61b33e84d4f6edd97570e67630c529ee7802"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-ritmo-04.webp",
+        "sha256": "8d8cf33625e14d905ecec4e2544e711d0952ddf2bba5ef1d0d6fa14d74b87adb"
+      }
+    ]
+  },
+  {
+    "id": "explicador-fitness-equipamento",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "fitness",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-fitness-equipamento-01.webp",
+        "sha256": "c80255ee02eb8e13c628f9b49d233cfc85a06e687dd10e7263f1bbcd7c2c439d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-equipamento-02.webp",
+        "sha256": "8022a08737dbe9eb939a72bf2b466397f31efd4161f13163b192e83fd02e1427"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-equipamento-03.webp",
+        "sha256": "431e10628e76898404c70fe60f0da240e349a44984b2dcb8b1c9a190215a4d6d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-fitness-equipamento-04.webp",
+        "sha256": "4260032e5632b41d15b2bdc0e11fb3578360fc20a43803e1a3a9527bd07bb47e"
+      }
+    ]
+  },
+  {
+    "id": "explicador-procedimento-consulta",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "procedimentos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-procedimento-consulta-01.webp",
+        "sha256": "301def84fcc37bf75e0563ad0e9948ff6f796c9019674161367c211b5d725d87"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-consulta-02.webp",
+        "sha256": "2209eabab78919260962cdedb1762be0f7f3fd624bbe2935f670d304c924d0cd"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-consulta-03.webp",
+        "sha256": "faa98b2a312972bb189e278697ca1e29c8bb2a07fbac5364197cd1794b9889d4"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-consulta-04.webp",
+        "sha256": "44d65fb9a7b0aeacc3fbc7bd41f440552cdfaca7c635d011266f288943931b5c"
+      }
+    ]
+  },
+  {
+    "id": "explicador-procedimento-camadas",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "procedimentos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-procedimento-camadas-01.webp",
+        "sha256": "a8c94072e7fa22df4892836c42978f8dc86e67ff85c0195cd4e7f0dc96a874ca"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-camadas-02.webp",
+        "sha256": "317c0e6da36d4ebbc80832e7d557ca7b55d2a7bca6a8671ec478ddbf2c5cc48d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-camadas-03.webp",
+        "sha256": "00e46822aa021b4d6149deaf9f8901b5e7b355efbab1c3430315638bc2433540"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-camadas-04.webp",
+        "sha256": "c3f7174a334433cd6440020f788dfcfd53a59313f303c2d0a98940de28af34a4"
+      }
+    ]
+  },
+  {
+    "id": "explicador-procedimento-jornada",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "procedimentos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-procedimento-jornada-01.webp",
+        "sha256": "cdb7906b60ba908127142eff4bea011fda52a838146dd14560732e0fdf46359a"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-jornada-02.webp",
+        "sha256": "713ad02c208cca1d14f67717397d2c7f3747deccdd31ff1566ddace75432a7b7"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-jornada-03.webp",
+        "sha256": "00d7c7518490b12770da60464388f7a127ce0ed874bd01f906482df962bd0fd4"
+      },
+      {
+        "path": "assets/presenter-60/explicador-procedimento-jornada-04.webp",
+        "sha256": "798670d564965d5e71eaab03214f4aca7ac00f9b135b83140787c423bf333897"
+      }
+    ]
+  },
+  {
+    "id": "explicador-gastro-ingredientes",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "gastronomia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-gastro-ingredientes-01.webp",
+        "sha256": "c13c0eeb2a13aa802a1eaae0c457742cf52f0e1ef5a2e8cb70d72dee09aa491f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-ingredientes-02.webp",
+        "sha256": "6a85cc75d120bc4b11bad455e25280d6a1f8fa3f762d11d0a50173a4b1ab8933"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-ingredientes-03.webp",
+        "sha256": "2905e74e96d8073fe6e2a33964de7580c96db66a5edafea056c01c9a852463f2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-ingredientes-04.webp",
+        "sha256": "b81cf41929c224fa5a9ef5ce8ad7ec4800d8e5a2b0b2647083daf63584b8e744"
+      }
+    ]
+  },
+  {
+    "id": "explicador-gastro-transformacao",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "gastronomia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-gastro-transformacao-01.webp",
+        "sha256": "628b09202eef6ccf8bcda216df4224a0cf7845b7f018b07b8d2d118b7ff553b2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-transformacao-02.webp",
+        "sha256": "c8c8acbff52322b74543148ef54a99d8a0c83ae5e0d36acff264273d6b31986a"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-transformacao-03.webp",
+        "sha256": "ef30a0df0b8ae0a2c1b99863fc86677566fa5161bc130ab0fa783a9fa2c3b7ef"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-transformacao-04.webp",
+        "sha256": "a43d9925901d5ea8eeb242617108416f530bf53e65dcae7366ceeb59f2a36900"
+      }
+    ]
+  },
+  {
+    "id": "explicador-gastro-menu",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "gastronomia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-gastro-menu-01.webp",
+        "sha256": "88ec8500f9a3b28c9c896ee8cdaa967eecced38e5567cc576cf62057af64c578"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-menu-02.webp",
+        "sha256": "8beaa1ba91003268fb6d319c85352ed30d1f5ae28657ab8b873b9e77f26551b4"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-menu-03.webp",
+        "sha256": "ad291f2c52b7a3fb50ed765390e0ba1e12693ccae8ba921e0de2bb337cbb567c"
+      },
+      {
+        "path": "assets/presenter-60/explicador-gastro-menu-04.webp",
+        "sha256": "629fc2223732cac41731503962427db34cfab0cca0813caf97738808cc1ad9e5"
+      }
+    ]
+  },
+  {
+    "id": "explicador-pet-rotina",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "pets",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-pet-rotina-01.webp",
+        "sha256": "91b0a3bd7208a1dc990a4762f1de9e8a318a6f17ba6daa629880b69248a9cfc9"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-rotina-02.webp",
+        "sha256": "c998d95b7f37ad49a08c8b0882310f6159720fc0e5f5e822d173e7aea1176735"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-rotina-03.webp",
+        "sha256": "4df7761968e7ec81c36510271428451f326d7ca6bb1feb6a1dfc58424b7dff9d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-rotina-04.webp",
+        "sha256": "dd26dbfdda8eb32f046a8530a720ba2749060e724656a5fd914a97f14a81b90e"
+      }
+    ]
+  },
+  {
+    "id": "explicador-pet-detalhe",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "pets",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-pet-detalhe-01.webp",
+        "sha256": "c0c99b82c7702c453bc40edcb1d98c230710a34e77646ca2cbfd71b11ee14ee3"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-detalhe-02.webp",
+        "sha256": "98e5d63fb26ac2de887e58939a38608e097c6193337d3b2b6a0109a0dd33e5af"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-detalhe-03.webp",
+        "sha256": "4951682986fda7f69ecf2c78a31392968d0dcbd3f7a20a8a123703a9ad52b440"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-detalhe-04.webp",
+        "sha256": "e6d3184849c3903bb4b3adec133faee07568c3373d8100d6d1a96b88c39c2823"
+      }
+    ]
+  },
+  {
+    "id": "explicador-pet-servico",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "pets",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-pet-servico-01.webp",
+        "sha256": "7b2749270d8e73170a2ead3f559360e2245a6be1042be30a2f8b6966b64a525c"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-servico-02.webp",
+        "sha256": "0e1b06b5c333fbc52f45d2a854ed18ac1708741b4530d4f1baf9b0dddbe942d3"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-servico-03.webp",
+        "sha256": "f719222e207ee1a93d65fbb42a5268665171c653af4fb2cb35b4ce04c1d18719"
+      },
+      {
+        "path": "assets/presenter-60/explicador-pet-servico-04.webp",
+        "sha256": "157cc1a1b5752c74d5a8db2a5a9a0be1fe560c2b75c59486445a93d5d3d60d50"
+      }
+    ]
+  },
+  {
+    "id": "explicador-moda-caimento",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "moda",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-moda-caimento-01.webp",
+        "sha256": "f1bf50a2dd0f93aff575da64ac59ec4822ed5a9a99ce12ee0a23a598b18c4234"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-caimento-02.webp",
+        "sha256": "e24d46af5669f416077b9ae2d10eccab194a1e48328b1fd0c729126c627f9ae5"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-caimento-03.webp",
+        "sha256": "6d92389b0206de6656b95ca80520c1b555397a0c5e8783d57cf14e3f4d2ba97e"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-caimento-04.webp",
+        "sha256": "8ebe181e1ca0694c8a5192e1bc6d58e927e0664aac2a0633fc44e1ace0b096cf"
+      }
+    ]
+  },
+  {
+    "id": "explicador-moda-atelier",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "moda",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-moda-atelier-01.webp",
+        "sha256": "9ee189ecc799c102a73b2639e753a2f18d343e3222438fd766b79133a52cb150"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-atelier-02.webp",
+        "sha256": "811eb1ec7e8c108e811e322c3605dd9a3503aa07637b8ba676328dcb56a28c71"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-atelier-03.webp",
+        "sha256": "6fe0c807f9e23cd360a93877e2f7e4d2ff6c04dc328b10ba2b30ffede5803bbb"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-atelier-04.webp",
+        "sha256": "ff4f78dc5bda18ddc74e9c9eb4eb0f637918af308a69178b19bcf36f17d31937"
+      }
+    ]
+  },
+  {
+    "id": "explicador-moda-composicao",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "moda",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-moda-composicao-01.webp",
+        "sha256": "d68bb2ed94b34dc592d5cfda1cbb855966ac15c9cdcb2e7a4f98084748f38941"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-composicao-02.webp",
+        "sha256": "9dcf5f24c22de6c4bc78cb93b7cd5bf057b657f862491ef2aff17267a31a94aa"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-composicao-03.webp",
+        "sha256": "5d8f03ae5449359046f40d94e245e3c0437fb3502a09fb8dd6fd4e883ea41eab"
+      },
+      {
+        "path": "assets/presenter-60/explicador-moda-composicao-04.webp",
+        "sha256": "d4902e9beca2a7417b2ab75084eeebbc55e3853b1c6bbea8daa59e9aae743ca6"
+      }
+    ]
+  },
+  {
+    "id": "explicador-engenharia-exterior",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "engenharia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-engenharia-exterior-01.webp",
+        "sha256": "208855b73f9581a4baf59e3e19e804e5096cbbf4bf8ebe7e113362a40df25b7d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-exterior-02.webp",
+        "sha256": "49310e6816ff61498937aa4068f6bda77ae0e251de8352a58b22fa7f992c4324"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-exterior-03.webp",
+        "sha256": "0f9cd69abfdb44d288d7b677b1d73bac087c7d985f36e439b0b3bf457c58d3c5"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-exterior-04.webp",
+        "sha256": "b075d36c2e838fe3d72dade29c4cb23ac27c6d962aa313b3e88cdcea3533a77d"
+      }
+    ]
+  },
+  {
+    "id": "explicador-engenharia-etapas",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "engenharia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-engenharia-etapas-01.webp",
+        "sha256": "3e2029a131504ff2f9e799f46b24b8e7c8ef8cc910a688b35a66529bd9b9cf94"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-etapas-02.webp",
+        "sha256": "84fe599c9a75e52298bf8cbc21fcf6c5dd7c9295c37bf924aba686c4c6cc2acf"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-etapas-03.webp",
+        "sha256": "12f7383487213be6d8ae69b7761c3be9c7652064728c0affc4162d964d922a71"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-etapas-04.webp",
+        "sha256": "3941afe38b1ccfb80d82669e57f655cf15f826b6620320a13a3044c3a3a69126"
+      }
+    ]
+  },
+  {
+    "id": "explicador-engenharia-mecanismo",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "engenharia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-engenharia-mecanismo-01.webp",
+        "sha256": "e75cbaa35497da8d59aa7e3c9f1d68537e642f7923ace6fbe8ee504d3c981c4c"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-mecanismo-02.webp",
+        "sha256": "2f8d4d8238ddb70d4b2089580e76b3af7903b973b652e763e06e7fb66453c056"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-mecanismo-03.webp",
+        "sha256": "8364197d9496f1e1a82dc1efff72dd9acf61a3dcf8528637733ecf508e0aa3fc"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-mecanismo-04.webp",
+        "sha256": "0a53343fea4781239e17bd71d45fd76f2206118a39faceb92312b0fcf98e0c88"
+      }
+    ]
+  },
+  {
+    "id": "explicador-engenharia-dados",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "engenharia",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-engenharia-dados-01.webp",
+        "sha256": "1c5033ce236e6e305d894dc4146ff319556a9103085339b6aab909eb20e3169b"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-dados-02.webp",
+        "sha256": "34b0954e5201f71817b5373f55d36c48419a56c90902f17dc04e97a1abc5f5e4"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-dados-03.webp",
+        "sha256": "f55bd1d05384ea1b80f18a6d9aac7556846110a5b45a63bb17972889685b1371"
+      },
+      {
+        "path": "assets/presenter-60/explicador-engenharia-dados-04.webp",
+        "sha256": "d83aedb17642f121115b2280ff824b29d8fa0d368e1c03bac719b352babc5026"
+      }
+    ]
+  },
+  {
+    "id": "explicador-interiores-circulacao",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "interiores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-interiores-circulacao-01.webp",
+        "sha256": "b3b01ceefe660168e191d6f4f268fe86998ba7868afd7dc1b867e7ba3a3140ff"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-circulacao-02.webp",
+        "sha256": "508aea9b36105d00844ecef4140041f2afa25bab76dd43e1f009cd302df2b411"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-circulacao-03.webp",
+        "sha256": "85b4c972bca882a087a13d67c237316d874f70d8cf7e077afa8107781e6a0a74"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-circulacao-04.webp",
+        "sha256": "2d42fd39b0191a6b9d6adcbd037aa5b139ac8d11e65a584fc20c1371df8c2126"
+      }
+    ]
+  },
+  {
+    "id": "explicador-interiores-luz",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "interiores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-interiores-luz-01.webp",
+        "sha256": "8d300ee5ffe002a31cea4feb6af6baa9aa3d2309776fcf7c94b11da6e4d64379"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-luz-02.webp",
+        "sha256": "43a3ae409423a8313004ede69c915e6d49c7751462106add42febfe831edf1b5"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-luz-03.webp",
+        "sha256": "a607143ef298e49cb828d16be3574974bcf183df0e0146ee9fe1f6d28fc98b37"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-luz-04.webp",
+        "sha256": "63bec1494f539f568716f2fb7fd012c3b89195ad53d93dee511c0c84d4bee9f6"
+      }
+    ]
+  },
+  {
+    "id": "explicador-interiores-materiais",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "interiores",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-interiores-materiais-01.webp",
+        "sha256": "feb2d9acce4daedbfdd7f8432b0b54102ba4d9feb77c83e642a5c57d0abb133c"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-materiais-02.webp",
+        "sha256": "b98eecc07071c94afc6bb5d1bab66e7151819e5b780db60efd32563b62f59764"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-materiais-03.webp",
+        "sha256": "207fac50956700370b43373d8135c80f85cc0b2584be257b17bd5b2b8a3e6450"
+      },
+      {
+        "path": "assets/presenter-60/explicador-interiores-materiais-04.webp",
+        "sha256": "00e31e61e63395657c08ccb15cf63e3e1f8a84858eec482e1b5d4e5b7abdc0b5"
+      }
+    ]
+  },
+  {
+    "id": "explicador-evento-palco",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "eventos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-evento-palco-01.webp",
+        "sha256": "454e8ca48a378be9c8b69d0e083823469395750ad9e40fd01ba963c001db2998"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-palco-02.webp",
+        "sha256": "97afc5d2952f7ea60ba314b77c22a6eb11d594ad53af8d0a8e60fa0ae73e5e4f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-palco-03.webp",
+        "sha256": "26df9b15d4c40c5219c799497d8bf2480fe260b6899d70d2b6c28c2fca445ce7"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-palco-04.webp",
+        "sha256": "a0c11d226c8299aa2f937bd4dd46f3eaa7a715065824e909a0d74af38c15437c"
+      }
+    ]
+  },
+  {
+    "id": "explicador-evento-mapa",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "eventos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-evento-mapa-01.webp",
+        "sha256": "e0a19f50dd92fe8feda586bc0d903e97dba238e30b1002305c89fc2c8bfdf478"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-mapa-02.webp",
+        "sha256": "39a0caf9a56004d75650647ecad51d51b4027146abb55169c81443e8181ece36"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-mapa-03.webp",
+        "sha256": "ee7bb3dd0186e190bf63a0f616136c4128d3d68e67f7bea5b1544acc002bd3e0"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-mapa-04.webp",
+        "sha256": "f85f85f356061096632a578fec0a2e0090eff572ae1b4375449c58af0f17bef2"
+      }
+    ]
+  },
+  {
+    "id": "explicador-evento-percurso",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "eventos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-evento-percurso-01.webp",
+        "sha256": "d51f530a1a0a2029cac4a016b95a2999e213609555448cad963454e5ed43d1c2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-percurso-02.webp",
+        "sha256": "4d293b22492d70c7c4dadc0a3345a63ab6cbe9fe8e1496fef3b0ec07edd66e83"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-percurso-03.webp",
+        "sha256": "68592cb274cbbf028270c2a42683206db73e3f7b42a13ff1c69dc883eb0b7740"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-percurso-04.webp",
+        "sha256": "3b006f8f1ab8216454c5f4479fdf067052ecbc76c68f4761abe274fc1520dc8a"
+      }
+    ]
+  },
+  {
+    "id": "explicador-evento-luz",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "eventos",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-evento-luz-01.webp",
+        "sha256": "ba6cfb5f16f8aa3eb353fa5c558644d1a60e275b6b830caf89f21a9a6c1f5c07"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-luz-02.webp",
+        "sha256": "e6df99aa933ec13c5a24b420fe460f09fbdf630eb63d6c15cd54894924deb6a8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-luz-03.webp",
+        "sha256": "c02b69baea20b265d010944e6a2589e7416bd69d98aee419be64d80b743d6e23"
+      },
+      {
+        "path": "assets/presenter-60/explicador-evento-luz-04.webp",
+        "sha256": "831be73952cfd461068941bcb94f65824d02b9df8676b84f984eeb915e8b5cc1"
+      }
+    ]
+  },
+  {
+    "id": "explicador-educacao-conceito",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "educacao",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-educacao-conceito-01.webp",
+        "sha256": "70ef8662da11402a2201ace55e8ec6a0f6175fb6ae9f88d40810e0b4103bacb3"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-conceito-02.webp",
+        "sha256": "abcae3c592b6c8c32f0356fc929ad9b4aeffbea56b9c2ea6081b2a9a50c22498"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-conceito-03.webp",
+        "sha256": "b3ca2df7b4146447fc5ca11e8aa0430a0fa3512ac74868ea5dd76a1af8ac05fa"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-conceito-04.webp",
+        "sha256": "f06cbd887f852a1ab1722ed32a9b5fca47c5bdc93fc8507085120b6206dc60c7"
+      }
+    ]
+  },
+  {
+    "id": "explicador-educacao-simulacao",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "educacao",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-educacao-simulacao-01.webp",
+        "sha256": "3047ef5e33b442868c7125ae539d30408fe69cffaad6c022345cfc49e2ca8b58"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-simulacao-02.webp",
+        "sha256": "11cabdafe04726e029193ff9e4c7d04211e8647ce809370b412537e6f7a5cc14"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-simulacao-03.webp",
+        "sha256": "e855b209d3c2bac056a4eef6ca03e5f74dde75a97f7156dee582a271b37893dc"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-simulacao-04.webp",
+        "sha256": "1772080b0865542edf6e47a9b5e9ea21d6cde10a6c4956ac8724a456f436f733"
+      }
+    ]
+  },
+  {
+    "id": "explicador-educacao-pratica",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "educacao",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-educacao-pratica-01.webp",
+        "sha256": "24561c423a5238be419d2cfd586d50748225ec6adcab4f426da8673945006e4b"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-pratica-02.webp",
+        "sha256": "ece2e72e927130bce2bbe194afe2bb2eeacd84e161b23cde82ddb48635fd39d4"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-pratica-03.webp",
+        "sha256": "3ba62c106326f054a66f40357b83b64436a0cef76c2f69b793167a0f41ce4bd8"
+      },
+      {
+        "path": "assets/presenter-60/explicador-educacao-pratica-04.webp",
+        "sha256": "58d6272a486c2474dca712b8b2d610ce70ace59fac0132b75d60abd2b7d46323"
+      }
+    ]
+  },
+  {
+    "id": "explicador-agro-ciclo",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "agro",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-agro-ciclo-01.webp",
+        "sha256": "3556e8afaddf2dddde0ff76024f2db9a9a179bc5125dbafc588e450dc4007e61"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-ciclo-02.webp",
+        "sha256": "4355bab51e7b5828f57e3b304ee3152df493fbb3ab55ae8a1b57fc7c905410fe"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-ciclo-03.webp",
+        "sha256": "1849b74c151dc4a9df444a7d81cf2f126ba0396878f382c7bd61008a8ef412f2"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-ciclo-04.webp",
+        "sha256": "582efddb971ae8921cab57b54bc9e8fba86d0fb7574bd5ea8b9d3292655bb7b8"
+      }
+    ]
+  },
+  {
+    "id": "explicador-agro-maquina",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "agro",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-agro-maquina-01.webp",
+        "sha256": "33ca4ad6cd73a7b1a20dec198c8faafb85c339ed0c115827dc81dfcf80d6e03f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-maquina-02.webp",
+        "sha256": "97723b4d1194c4c463cc13fabc9ae091059ce82b636b1ece9c33a708d6411866"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-maquina-03.webp",
+        "sha256": "8ba76a23f884d9f934341a983be96026640bb8fd68e4fb067cdc1067932b5f67"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-maquina-04.webp",
+        "sha256": "9e035d58a6a61c0f4cff27d83ab1d0a8e89fe0dfc26eaedec5def4f4b3788d8d"
+      }
+    ]
+  },
+  {
+    "id": "explicador-agro-territorio",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "agro",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-agro-territorio-01.webp",
+        "sha256": "3d91e14ac5a60da9481da0dac85433bbbc88306692778d4ab9601d40e3f3850d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-territorio-02.webp",
+        "sha256": "f8f47d4ce77601bc553a0d4f8c11691d4e921237b66eb97353799fc24714670d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-territorio-03.webp",
+        "sha256": "cd0ceb81c7f890c4919e6f114bc8527a563122cd1a81d2fa0517621d16ce0d0a"
+      },
+      {
+        "path": "assets/presenter-60/explicador-agro-territorio-04.webp",
+        "sha256": "1353b0d4ea33046ec125c3f7aa308af9828a15b2b438674b48756c5067c5df7b"
+      }
+    ]
+  },
+  {
+    "id": "explicador-turismo-percurso",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "turismo",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-turismo-percurso-01.webp",
+        "sha256": "61616d45f15ce13a98a927e2e4240e6802d99cf0e386793ef06fbc9941cc364d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-percurso-02.webp",
+        "sha256": "1bbccbf1e295e091173b213fde54328f343abf757ae11c8044ebf456bf3e1398"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-percurso-03.webp",
+        "sha256": "c61196fff43c6a7fc0c03a35930b45a57d29ad7556cdc3e7269de3fa62bb333d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-percurso-04.webp",
+        "sha256": "e1850c56fe7846918818e339258af56a8d907405b6e0307ec6191e7f2016c1de"
+      }
+    ]
+  },
+  {
+    "id": "explicador-turismo-hospedagem",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "turismo",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-turismo-hospedagem-01.webp",
+        "sha256": "e18750436e66c3e093a31a8aacb925786a32b8f65473a8faf837a047880c8136"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-hospedagem-02.webp",
+        "sha256": "b541f571fadebc8147c7d35bbf2802a90f792a05967f9372f936df7f023ebfe6"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-hospedagem-03.webp",
+        "sha256": "7747c6048e33bbb93f95984fbf72c1b91541b048f8ee47adefcaa4b00541250f"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-hospedagem-04.webp",
+        "sha256": "f4d844cb28a5ea7c5b29fd0260434871b4279e12ea9c58e4d230bcdc4b4877ed"
+      }
+    ]
+  },
+  {
+    "id": "explicador-turismo-contexto",
+    "generator": "Original procedural editorial composition",
+    "source": "build.py + recipes.py",
+    "sector": "turismo",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-60/explicador-turismo-contexto-01.webp",
+        "sha256": "701ffa1f04d1c9fb358f5e94332abea98c613996eb6d84b489499d9cbcbcf72d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-contexto-02.webp",
+        "sha256": "78cdf59099e618a48b25d4d4de833404f065a91c3b1f935f3db69129fb35310d"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-contexto-03.webp",
+        "sha256": "935b0caa14bd8baa2c1049afde1510be66289ae7f381baf451ea20edb954acd3"
+      },
+      {
+        "path": "assets/presenter-60/explicador-turismo-contexto-04.webp",
+        "sha256": "ee7695b118703a75df1aded5f8afe300cbfbcab9be147f162f5438dd4e036c19"
+      }
+    ]
+  }
+]

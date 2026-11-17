@@ -19,16 +19,52 @@ function plan(layers){return graphPlanSchema.parse({schemaVersion:2,provider:'ag
 const presenter={id:'presenter',type:'media',assetId:'original',sourceStartSeconds:0,x:0,y:0,width:1,height:1};
 const shape={id:'object',type:'shape',shape:'rect',fill:'#FFCC00',x:.1,y:.1,width:.1,height:.1,anchorTrack:{sourceAssetId:'original',sourceStartSeconds:0,origin:'manual',space:'output-normalized',points:[{frame:0,x:.2,y:.5,confidence:1},{frame:59,x:.8,y:.5,confidence:1}]}};
 const assets=[{id:'original',kind:'video',durationSeconds:2,width:192,height:108,hasAudio:false}];
-test('20 original presenter directions append without changing any existing style, with 80 unique frames and honest requirements',async()=>{
- validateCatalog(catalog);assert.equal(catalog.styles.length,1180);assert.equal(catalog.families.length,30);
+test('presenter selection requires real speech and captions while color-only contributions remain independent',()=>{
+ const p=plan([presenter]);const context={contextSha256:p.contextSha256,styles:[{id:styleId,presenterEditing:{narrationRequired:true}}],combination:{entries:[{styleId,contributions:[{aspect:'style_direction',scope:'film'}]}]},referenceManifest:{styles:[{styleId,frames:[{number:1}]}]}};
+ assert.throws(()=>validateGraphPlan(p,assets,undefined,context),/actual speech/);
+ p.scenes[0].layers[0].volume=1;p.captions=[{start:0,end:1,text:'Fala de teste'}];
+ assert.throws(()=>validateGraphPlan(p,assets,undefined,context),/actual speech/);
+ validateGraphPlan(p,[{...assets[0],hasAudio:true}],undefined,context);
+ p.scenes[0].layers[0].volume=0;p.audio.tracks=[{assetId:'voice',role:'narration',fromFrame:0,durationFrames:60,sourceStartSeconds:0,volume:0,fadeFrames:0,loop:false}];const spokenAssets=[...assets,{id:'voice',kind:'audio',durationSeconds:2,hasAudio:true}];assert.throws(()=>validateGraphPlan(p,spokenAssets,undefined,context),/actual speech/);p.audio.tracks[0].volume=1;validateGraphPlan(p,spokenAssets,undefined,context);p.audio.tracks=[];
+ p.scenes[0].layers[0].volume=0;p.captions=[];p.styleBindings[0].aspect='color';context.combination.entries[0].contributions[0].aspect='color';validateGraphPlan(p,assets,undefined,context);
+});
+test('social finishing is opt-in and rejects excessive grading, grain and glass controls',()=>{
+ const p=plan([{id:'panel',type:'shape',shape:'rect',fill:'#FFFFFF',x:.1,y:.1,width:.3,height:.3,material:{type:'glass'}}]);
+ assert.equal(p.finishing,undefined);assert.equal(p.scenes[0].layers[0].material.blurPixels,14);
+ for(const finishing of [{grainAmount:.1},{saturation:2},{shadowLift:.1},{highlightCompression:.2},{brightness:1.2}])assert.throws(()=>graphPlanSchema.parse({...p,finishing}));
+ assert.throws(()=>graphPlanSchema.parse({...p,scenes:[{...p.scenes[0],layers:[{...p.scenes[0].layers[0],material:{type:'soft-light',fillOpacity:.8}}]}]}));
+});
+test('Remotion actually blurs glass and applies repeatable, subtle social finishing', {timeout:120000},async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'social-finish-'));
+ try{
+  const stripes=Array.from({length:32},(_,i)=>({id:'stripe'+i,type:'shape',shape:'rect',fill:i%2?'#FFFFFF':'#000000',x:i/32,y:0,width:1/32,height:1}));
+  const panel=(y,blurPixels)=>({id:'glass'+Math.round(y*100),type:'shape',shape:'rect',fill:'#FFFFFF',x:.1,y,width:.8,height:.25,material:{type:'glass',fillOpacity:.15,blurPixels,borderOpacity:0,shadowOpacity:0}});
+  const p=validateGraphPlan(plan([...stripes,panel(.1,0),panel(.6,28)]),[]);
+  const serveUrl=await bundle({entryPoint:path.resolve('src/production/index.tsx'),outDir:path.join(root,'bundle')}),browserExecutable=process.env.CHROME_PATH||'/usr/bin/chromium';
+  const render=async(p,name,frame=0)=>{const inputProps={plan:{...p,media:{},fontSources:[],renderAudio:[]}},composition=await selectComposition({serveUrl,id:'GdaGraph',inputProps,browserExecutable}),file=path.join(root,name+'.png');await renderStill({serveUrl,composition,inputProps,frame,output:file,imageFormat:'png',browserExecutable});return execFileSync('ffmpeg',['-v','error','-i',file,'-frames:v','1','-f','rawvideo','-pix_fmt','rgb24','pipe:1'],{maxBuffer:4000000});};
+  const pixels=await render(p,'glass'),at=(buf,x,y)=>buf[(y*1280+x)*3];
+  const sharp=Math.abs(at(pixels,580,150)-at(pixels,620,150)),blurred=Math.abs(at(pixels,580,500)-at(pixels,620,500));assert(sharp>200);assert(blurred<sharp*.6,`Backdrop blur must visibly reduce stripe contrast: sharp=${sharp}, blurred=${blurred}`);
+  const flat=plan([{id:'flat',type:'shape',shape:'rect',fill:'#808080',x:0,y:0,width:1,height:1}]);
+  const original=await render(flat,'original');flat.finishing=graphPlanSchema.parse({...flat,finishing:{brightness:1,contrast:1,saturation:1,shadowLift:0,highlightCompression:0,grainAmount:.04,seed:7}}).finishing;
+  const a=await render(flat,'grain'),b=await render(flat,'repeat'),c=await render(flat,'next',4);assert.deepEqual(a,b);assert.notDeepEqual(a,c);
+  let changed=0,max=0;for(let i=0;i<a.length;i+=30){const d=Math.abs(a[i]-original[i]);max=Math.max(max,d);if(d)changed++;}assert(changed>100);assert(max<=8,'Social grain must remain subtle');
+  flat.finishing.grainAmount=0;assert.deepEqual(await render(flat,'no-grain'),original);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('60 sector presenter directions append without changing any existing style, with 240 unique frames and honest requirements',async()=>{
+ validateCatalog(catalog);assert.equal(catalog.styles.length,1220);assert.equal(catalog.families.length,30);
  const previous=JSON.parse(await fs.readFile(new URL('../style-atlas/records/presenter-20/previous-catalog.json',import.meta.url),'utf8'));
  assert.equal(digest(Buffer.from(JSON.stringify(catalog.styles.slice(0,1160)))),previous.stylesSha256);
- const rows=catalog.styles.filter(s=>s.family==='explicadores'),hashes=new Set();assert.equal(rows.length,20);
+ const rows=catalog.styles.filter(s=>s.family==='explicadores'),hashes=new Set();assert.equal(rows.length,60);
  for(const s of rows){assert.equal(s.preset.avatar,false);assert.equal(s.presenterEditing.automaticSegmentation,false);assert.equal(s.presenterEditing.automaticGestureTracking,false);assert.equal(s.sequence.conceptApproval,'pending_user_review');assert(!s.preview);assert(s.presenterEditing.presenterSources.includes('explicitly_selected_avatar'));
+  const finish=s.presenterEditing.finishProfile;assert.equal(finish.target,'social_media_not_cinema');assert.equal(finish.environment.default,'preserve_recorded_environment');assert.equal(finish.environment.labelGeneratedSimulation,true);assert.equal(finish.socialFinishing.skipGrainOnAlreadyNoisyFootage,true);
+  graphPlanSchema.parse({...plan([presenter]),finishing:finish.socialFinishing.controls});assert.equal(s.artDirection.actualFootageOverrides,true);assert.deepEqual(s.executionPlan.artDirection,s.artDirection);
   for(const f of s.sequence.frames){const data=await fs.readFile(new URL('../style-atlas/dist/'+f.src,import.meta.url));hashes.add(digest(data));}
   const prompt=AtlasWorkflow.buildPrompt({selectedStyles:[{...s,referenceFrame:AtlasWorkflow.referenceFrame(s),visualSequence:s.sequence}],topic:'Uma explicação',format:'9:16',targetDurationSeconds:30,fidelityContract:AtlasWorkflow.fidelityContract});assert(prompt.includes(s.presenterEditing.recipeId));assert(prompt.includes(s.requirements));
  }
- assert.equal(hashes.size,80);
+ assert.equal(hashes.size,240);
+ const boards=JSON.parse(await fs.readFile(new URL('../style-atlas/records/presenter-60/art-directions.json',import.meta.url),'utf8'));assert.equal(boards.length,6);
+ for(const board of boards){assert.equal(digest(await fs.readFile(new URL('../style-atlas/dist/'+board.path,import.meta.url))),board.sha256);assert.equal(board.status,'proposed_not_execution_proof');}
 });
 test('measured anchor uses registered original footage, rejects gaps, uncertain points, conflicting motion and offscreen results',()=>{
  const p=plan([presenter,shape]);validateGraphPlan(p,assets);assert.deepEqual(anchorPositionAt(p.scenes[0].layers[1].anchorTrack,29.5,.1,.1),{x:.45,y:.45});assert(layerVisibleAt({fromFrame:10,durationFrames:5},14));assert(!layerVisibleAt({fromFrame:10,durationFrames:5},15));
@@ -53,7 +89,7 @@ test('a supplied mask creates genuine alpha video through FFmpeg without alterin
   const wrong=structuredClone(matte);wrong.width=100;assert.throws(()=>validateGraphPlan(p,[original,wrong]),/dimensions/);
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
-test('Remotion composites the actual transparent clip and moves the measured object across the presenter', {timeout:120000},async()=>{
+test('Remotion composites the actual transparent clip and moves the measured object across the presenter', {timeout:122000},async()=>{
  const root=await fs.mkdtemp(path.join(os.tmpdir(),'presenter-render-'));
  try{
   const video=path.join(root,'original.mp4'),mask=path.join(root,'mask.png');

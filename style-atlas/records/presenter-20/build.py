@@ -95,6 +95,7 @@ def frame_image(index,step,mechanism,name,action):
 
 def build():
  catalog_file=DIST/'catalog.json';catalog=json.loads(catalog_file.read_text())
+ if catalog['version']!='4.5':raise SystemExit('Historical 20-style builder. Use records/presenter-60/build.py for catalogue 4.6; no file changed.')
  old=[s for s in catalog['styles'] if s.get('edition')!='4.5'];catalog['styles']=old
  catalog['families']=[f for f in catalog['families'] if f['id']!='explicadores']
  catalog['families'].append({'id':'explicadores','name':'Apresentador e explicação','kind':'Edição com apresentador','count':20})

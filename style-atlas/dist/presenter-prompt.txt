@@ -4,6 +4,12 @@ Quero editar o vídeo anexado para que a explicação seja demonstrada visualmen
 
 Primeiro inspecione o bruto e a fala. Preserve o original e seu hash, rosto, corpo, roupa e voz. Não regenere minha pessoa para trocar o cenário. Confira quais ferramentas e arquivos realmente existem; não use APIs pagas sem orçamento e autorização específica. Não confunda uma receita do catálogo com um recurso automático instalado.
 
+A finalidade é rede social, não cinema. Preserve o ambiente cotidiano da gravação; avatar também deve começar num local plausível. Ajuste energia e linguagem ao nicho: pode ser dinâmico, desde que cada movimento tenha função. Use transparências legíveis, diagramas, gráficos, tabelas, ícones e widgets para demonstrar a ideia, sem HUD de videogame, neon excessivo ou informação concorrente. Uma ação principal por vez; movimentos secundários a serviço dela.
+
+Se faltar uma imagem original necessária, pesquise primeiro a aparência e os fatos em fontes verificáveis. Pode propor e gerar uma imagem IA baseada nessas referências, como simulação identificada; não inventar geometria, medidas ou presença da pessoa no local. Conservar fontes e direitos de materiais reais. Ilustração conceitual não substitui projeto técnico ou evidência de produto.
+
+Aplique acabamento final natural: ajustar cor, exposição, altas luzes e sombras preservando pele, materiais e detalhes. Brilhos suaves podem marcar uma revelação ou informação; não aplicar aura permanente no corpo. Adicionar granulação monocromática muito leve apenas quando ajudar a reduzir a aparência plástica; desativar em bruto já ruidoso. Evitar look cinematográfico pesado, contraste extremo e textura que piore a compressão. Conferir também em tela de celular. Usar finishing nativo com controles conservadores, não prometer relighting físico.
+
 Proponha uma edição orientada pela explicação: informação entra quando é citada, diagrama se constrói na ordem do raciocínio, gesto causa uma resposta e o resultado fica tempo suficiente para ser entendido. Não quero elementos decorativos aleatórios nem efeito em cada palavra. Mantenha rosto e mãos livres e as legendas nas áreas seguras.
 
 Mostre o plano por trecho: fala e tempos no bruto/editado, corte proposto e motivo, elemento visual, ação, ponto de ancoragem, ordem frente/atrás, fonte dos dados, duração, transição e áudio. Não cortar palavras ou respirações úteis. Se mudar o corte, remapear palavras, gestos, máscaras e som.

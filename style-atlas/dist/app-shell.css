@@ -109,3 +109,8 @@ body[data-view="library"]:has(#selectionTray:not([hidden])) .guided-launch{displ
 @media(max-width:700px){#briefDialog[data-stage="review"] .brief-preview{order:1}}
 /* Imported file names are data and may be long. */
 .summary-materials span{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+
+/* Sector is a browsing filter; it never changes a saved brief. */
+#presenterSectorWrap{flex:0 1 270px;min-width:0;max-width:100%}#presenterSector{width:100%;max-width:100%}
+
+.art-direction img{display:block;width:100%;height:auto;max-height:720px;object-fit:contain;background:#e8e6de;border-radius:12px}

@@ -1,6 +1,6 @@
 # Apresentador e explicação — 2.12.0
 
-Use para edição de pessoa gravada ou avatar explicitamente solicitado. As 20 receitas do catálogo 4.5 são direções originais; seus estudos não comprovam animação, tracking ou recorte automático.
+Use para edição de pessoa gravada ou avatar explicitamente solicitado. As 60 receitas do catálogo 4.6 são direções originais; seus estudos não comprovam animação, tracking ou recorte automático.
 
 ## Primeiro, descobrir o que existe
 
@@ -24,6 +24,22 @@ Crie uma EDL de cortes no relógio do original. Não tratar silêncio como erro:
 - **Ancoragem:** `anchorTrack:{sourceAssetId,sourceStartSeconds,origin:"manual"|"externally_measured",space:"output-normalized",offsetX,offsetY,points:[{frame,x,y,confidence}]}`. Pontos na composição de saída, relativos à cena, após trim/crop e enquadramento. Devem cobrir toda a janela visível, ser ordenados, permanecer dentro do quadro e ter confiança mínima de 0,7. A origem deve ser o mesmo vídeo original presente na cena. Não pode coexistir com animação de x/y. Conferir o contato no vídeo; trajetórias não fazem detecção automática.
 - **Máscara:** camada de vídeo pode declarar `maskAssetId` e `maskStartSeconds` (padrão: mesmo trim do vídeo; máscara estática começa em zero). A máscara registrada precisa das mesmas dimensões do original, sem áudio, e duração suficiente. Branco mantém; preto remove; cinzas preservam transparência parcial. FFmpeg compõe alpha e o mantém em WebM VP9; Remotion recebe vídeo transparente. Alpha existente também é preservado. Uma máscara estática não acompanha uma pessoa que se move.
 - **Profundidade:** a ordem de `layers` é a ordem de composição. Fundo → elemento atrás → pessoa recortada → elemento da frente. Órbitas e trocas de ordem usam camadas com intervalos explícitos. Isso não estima profundidade física nem colisão 3D.
+
+## Direção para redes sociais
+
+A fonte manda: manter ambiente cotidiano da gravação e identidade. Não substituir automaticamente por cenário de luxo gerado. Um avatar começa em ambiente realista compatível; não é obrigado a parecer um estúdio. Gráficos e intensidade seguem nicho/mensagem. Pode haver muito movimento quando ensina: uma ação principal por beat, secundárias relacionadas e pausas para entender. Evitar HUD de videogame, saturação gratuita e elementos concorrentes. O público precisa compreender, não contar efeitos.
+
+Quando faltar o original, pesquisar a aparência e fatos antes de propor geração IA autorizada de imagem. Identificar a simulação e guardar fontes; não fingir visita, vista, medidas ou estado atual. Exteriores combinam tomada geral, escala, ponto de atenção e mecanismo simplificado; a ponte real precisa ter geometria reconhecível e fatos conferidos. Arquivo do cliente prevalece sobre o painel exploratório.
+
+`finishProfile` orienta voz, som, materiais e acabamento; não contém áudio produzido. As 60 receitas cobrem 17 segmentos. Preservar fala original uma única vez ou usar voz autorizada. SFX marcam mudanças de informação, contato ou ambiente; música é opcional e recua sob a voz. Conferir mixagem por escuta. O runtime já normaliza loudness; isso não prova clareza nem licença.
+
+## Transparência, luz e acabamento nativos
+
+Formas podem declarar `material:{type:"glass",fillOpacity:.82,blurPixels:14,borderOpacity:.35,shadowOpacity:.14,shadowBlur:24}`. Composição usa transparência, blur real do fundo, borda e sombra CSS; não é refração física. Para brilho discreto: `material:{type:"soft-light",fillOpacity:.12,blurPixels:22}` em forma com cor, escala e posição explícitas; animar opacidade e janela `active` conforme um acontecimento. Não usar aura permanente.
+
+O grafo aceita `finishing:{brightness:1,contrast:1.02,saturation:1,shadowLift:.005,highlightCompression:.01,grainAmount:.012,seed:1}`. Em `finishProfile.socialFinishing.controls` há valores de partida; ajustar após inspecionar o original, não copiar os metadados para o schema estrito. A opção é ausente/no-op nos planos antigos. Faixas: brilho/contraste .9–1.1, saturação .85–1.15, elevação de sombras 0–.04, compressão das altas luzes 0–.05, ruído 0–.045. É correção global conservadora com textura monocromática determinística; não relighting físico, denoising ou recuperação de dados estourados. Legendas ficam fora do tratamento para preservar contraste.
+
+Alvo: redes sociais, pele natural, branco coerente, sombra legível, materiais com textura. Desativar grainAmount em bruto já ruidoso. Revisar a compressão final; grão excessivo consome bitrate. Não aplicar LUT dramática, vinheta pesada ou desfoque de pele como padrão.
 
 ## Plano que a pessoa aprova
 
