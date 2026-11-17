@@ -94,8 +94,9 @@ for folder in [*[f'.agents/skills/{sid}' for sid in skill_ids[1:]],*[f'.claude/s
     for source in (root/folder).rglob('*'):
         if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff','.sh','.cmd','.ps1'] or source.name.startswith('LICENSE')):
             runtime_files.add(source)
-for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js']:
+for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js','search.js']:
     runtime_files.add(root/'style-atlas/dist'/runtime_name)
+runtime_files.add(root/'style-atlas/records/search/overrides.json')
 runtime_files=sorted(runtime_files)
 manifest_files={p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in runtime_files}
 runtime_manifest={'version':1,'runtimeVersion':json.loads((root/'package.json').read_text())['version'],'sourceRepository':'https://github.com/andrezucatti82-rgb/studio-kit-pro','clientMediaIncluded':False,'providerCredentialsIncluded':False,'catalogReferenceImagesIncluded':False,'fullRegressionFixturesIncluded':False,'files':manifest_files}

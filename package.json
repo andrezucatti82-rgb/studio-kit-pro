@@ -27,7 +27,8 @@
     "video": "node scripts/video.mjs",
     "video:inspect": "node scripts/inspect-media.mjs",
     "setup:verify": "node scripts/setup-check.mjs",
-    "package": "python3 scripts/package-skill.py && python3 scripts/package-installer.py"
+    "search:index": "node scripts/build-search-index.mjs",
+    "package": "node scripts/build-search-index.mjs && python3 scripts/package-skill.py && python3 scripts/package-installer.py"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.540",

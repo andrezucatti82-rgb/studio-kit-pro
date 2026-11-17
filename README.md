@@ -3,6 +3,8 @@
 
 Um pacote completo, sete skills: **video-multimarcas** coordena **video-planejamento**, **video-explicador-interativo**, **video-publicidade**, **video-edicao**, **video-tratamento** e **video-revisao**. O site exporta a aplicação de cada estilo e o roteamento correspondente. Codex/Claude Code executam com runtime verificado; chat sem execução conclui etapas disponíveis e informa dependências. [Instalador e tutorial](docs/COMECE-AQUI.html) · [Cobertura de tratamento](docs/VIDEO-TREATMENT-AUDIT.md) · [Instalação](docs/INSTALL-SKILL.md) · [Arquitetura e limites](docs/SKILL-SYSTEM-2.12.md).
 
+A busca do candidato 2.12.0 usa tags internas nos 1.220 estilos, sinônimos, acentos e combinação de termos. [Busca por conteúdo e manutenção das tags](docs/SEARCH.md).
+
 ## Apresentador e explicação · 2.12.0 em preparação
 
 Esta branch acrescenta **60 direções setoriais em 17 segmentos**, totalizando **1.220 estilos em 30 subcategorias**, e operadores para palavras temporizadas, trajetórias medidas, máscaras fornecidas e vídeo com alpha. As receitas servem para vídeo gravado ou avatar explicitamente escolhido, com originais e identidade preservados. Não incluem transcrição, segmentação ou tracking automáticos. [Direção social, 60 estilos, pesquisa e limites](docs/PRESENTER-SOCIAL-60.md) · [Prompt](style-atlas/dist/presenter-prompt.txt).

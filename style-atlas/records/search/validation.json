@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-11-17",
+  "catalogVersion": "4.7",
+  "searchMetadataVersion": 1,
+  "styles": 1220,
+  "tagAssociations": 12630,
+  "visuallyCuratedReferences": 45,
+  "exampleResults": {
+    "cachorro": 39,
+    "cao": 39,
+    "caes": 39,
+    "gato": 4,
+    "aquario": 1
+  },
+  "javascriptRegressionTestsPassed": 206,
+  "pythonRegressionTestsPassed": 9,
+  "finalFocusedTestsPassed": 46,
+  "finalFocusedReason": "result count now reports matching subcategories rather than all catalogue subcategories",
+  "typecheck": "passed",
+  "catalogValidation": "passed",
+  "browser": {
+    "checks": [
+      "375px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+      "1440px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+      "375px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+      "1440px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow"
+    ],
+    "errors": [],
+    "queryMilliseconds": [
+      1,
+      0.7999999970197678,
+      0.6000000014901161,
+      2.600000001490116,
+      1.2999999970197678,
+      0.8999999985098839,
+      0.8000000044703484,
+      2.5999999940395355,
+      1.5,
+      0.7999999970197678,
+      0.6000000014901161,
+      2.7999999970197678,
+      0.9000000059604645,
+      1.2999999970197678,
+      0.7000000029802322,
+      2.5
+    ]
+  },
+  "pageRegression": {
+    "orderedPageSaves": true,
+    "claudeLinkInPageMode": true,
+    "pageLimitWarningWithoutLocalStorage": true,
+    "overLimitProjectDownload": true,
+    "pageErrors": []
+  },
+  "existingVisualStylesUnchanged": true,
+  "paidApisUsed": false,
+  "publication": "not_performed",
+  "installerSourceVerification": "see installation.json after final pin"
+}

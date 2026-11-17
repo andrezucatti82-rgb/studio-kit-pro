@@ -32,7 +32,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null}={}){
  };
  document.fonts={add(){}};ctx.window=ctx;ctx.globalThis=ctx;
  vm.createContext(ctx);
- for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
+ for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','search.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
  for(let i=0;i<150&&!ctx.ATLAS_READY&&!errors.length;i++)await new Promise(r=>setTimeout(r,10));
  assert.equal(errors.map(e=>e.stack).join('\n'),'');assert.equal(ctx.ATLAS_READY,true,'app initialized');
  const click=selector=>{const el=document.querySelector(selector);assert.ok(el,selector);el.dispatchEvent(new dom.Event('click',{bubbles:true}));};
@@ -374,4 +374,16 @@ test('presenter storyboard steps show real selected recipe directions and retain
  const host=app.document.querySelector('[data-presenter-story]');assert(host);assert.equal(host.querySelectorAll('[data-presenter-step]').length,4);
  const before=host.querySelector('[data-presenter-image-host]').innerHTML;app.click('[data-presenter-step="2"]');assert.notEqual(host.querySelector('[data-presenter-image-host]').innerHTML,before);assert.equal(host.querySelector('[data-presenter-step="2"]').getAttribute('aria-pressed'),'true');assert.equal(host.querySelector('[data-beat="graphicAction"]').textContent,app.ctx.AtlasApp.getStyle(host.dataset.presenterStory).presenterEditing.interactionPlan.beats[2].graphicAction);
  app.click('#detailDialog [data-choose]');app.change('topic','Explicar CRM');app.click('#prepare');assert(app.ctx.AtlasApp.prompt().includes('interactionPlan'));assert(app.ctx.AtlasApp.prompt().includes('sourceTimes'));
+});
+
+test('content search opens the whole catalogue, finds hidden dog synonyms and retains explicit refinements and choices',async()=>{
+ const app=await boot(),d=app.document;app.click('[data-nav-family="ads-joias"]');app.ctx.AtlasApp.chooseStyle('vidro-e-refracao');const chosen=app.ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id);
+ const input=d.getElementById('search'),search=q=>{input.value=q;input.dispatchEvent(new app.ctx.Event('input',{bubbles:true}));};search('cachorro');
+ assert.equal(d.getElementById('familySelect').value,'');assert.equal(app.ctx.AtlasApp.categorySelection().group,'');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));assert.match(d.getElementById('searchScopeText').textContent,/todas/);assert.match(d.getElementById('resultCount').textContent,/39 estilos · 4 subcategorias/);
+ const first=[...d.querySelectorAll('#grid .card')].map(e=>e.dataset.styleId);search('cães');assert.deepEqual([...d.querySelectorAll('#grid .card')].map(e=>e.dataset.styleId),first);assert.deepEqual(app.ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id),chosen);
+ app.click('[data-nav-family="ads-pets"]');assert.equal(d.getElementById('searchEverywhere').hidden,false);assert(!d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));app.click('#searchEverywhere');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));
+ search('cachorro xyzzy');assert.equal(d.querySelectorAll('#grid .card').length,0);assert.equal(d.getElementById('empty').hidden,false);search('');assert.equal(d.getElementById('searchScope').hidden,true);assert(d.querySelectorAll('#grid .card').length>0);
+});
+test('Page search uses hidden tags and semantic aliases without localStorage',async()=>{
+ const app=await boot({page:true}),input=app.document.getElementById('search');input.value='MAOS';input.dispatchEvent(new app.ctx.Event('input',{bubbles:true}));assert(app.document.querySelector('[data-style-id="demonstracao-com-maos"]'));assert.equal(app.getStorageReads(),0);assert.equal(app.document.querySelectorAll('.search-tags').length,0);
 });

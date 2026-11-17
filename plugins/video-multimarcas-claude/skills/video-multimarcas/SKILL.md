@@ -42,4 +42,4 @@ Preço atual, quantidade/escopo/tentativas e autorização específica antecedem
 
 Preserve originais, identidade, voz, rótulos, arquitetura, dados e cobertura real. A fala fica a 1× e os tempos seguem a locução medida. Entregue MP4 acessível, legenda, projeto/fontes e revisão do hash exato. Técnica, playback, escuta, aprovação criativa, instalação e publicação são estados distintos; sem revisão integral, `review_pending`. Não publicar ou executar merge por inferência.
 
-[Instalação e versão](references/version-and-update.md) · [execução de estilos](references/style-execution.md) · [guia detalhado](references/production-guide.md).
+[Encontrar estilos por conteúdo](references/style-discovery.md) · [Instalação e versão](references/version-and-update.md) · [execução de estilos](references/style-execution.md) · [guia detalhado](references/production-guide.md).

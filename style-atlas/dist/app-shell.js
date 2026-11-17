@@ -127,10 +127,13 @@
   }).join('');
  }
  function sync(){
-  if(!catalog)return;const f=family(),parentId=parent(),key=f+'|'+parentId;if(key===lastFamily)return;lastFamily=key;
+  if(!catalog)return;const searching=!!$('search').value.trim(),f=family(),parentId=parent(),key=f+'|'+parentId;
+  $('categoryExplorer').hidden=searching;const titleGroup=groups.find(g=>g.families.includes(f)||g.id===parentId),titleName=byFamily.get(f)?.name||titleGroup?.name,titleCount=f?byFamily.get(f).count:titleGroup?groupCount(titleGroup):catalog.styles.length;
+  $('categoryResultsTitle').textContent=searching?'Resultados da busca':titleName?`${titleName} · ${titleCount} estilos`:'Todos os estilos';
+  if(key===lastFamily)return;lastFamily=key;
   const g=groups.find(g=>g.families.includes(f)||g.id===parentId);if(g){activeGroup=g.id;expanded=g.id}else expanded='';
   sidebar();visual();const name=byFamily.get(f)?.name||g?.name,count=f?byFamily.get(f).count:g?groupCount(g):catalog.styles.length;
-  $('categoryResultsTitle').textContent=name?`${name} · ${count} estilos`:'Todos os estilos';
+  $('categoryResultsTitle').textContent=searching?'Resultados da busca':name?`${name} · ${count} estilos`:'Todos os estilos';
   $('exploreCategory').textContent=name?`Explorar ${count} estilos`:'Explorar todos os estilos';
  }
  function choose(id,{close=false}={}){

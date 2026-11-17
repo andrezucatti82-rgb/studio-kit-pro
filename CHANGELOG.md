@@ -1,5 +1,7 @@
 # 2.12.0 — candidato para revisão
 
+- Busca local por conteúdo nos 1.220 estilos: tags internas, sinônimos/plurais, termos combinados e curadoria visual de pets. Busca global ao começar, com refinamento explícito por categoria e preservação do projeto.
+
 - Sete skills modulares com orquestração, edição de apresentador e tratamento dedicado, compartilhadas por Codex/Claude Code e pelos pacotes.
 - 60 explicadores em 17 segmentos: 60 referências fotorrealistas fictícias, quatro momentos completos por estilo, enquadramento e interação específicos. Catálogo 4.7; os 1.160 estilos anteriores permanecem preservados.
 - Prompt e projeto transportam composição, construção da explicação, fontes, escopos e requisitos pertinentes ao tema; sem lado fixo do apresentador ou painel de vidro universal.

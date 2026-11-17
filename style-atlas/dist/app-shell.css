@@ -128,3 +128,6 @@ body[data-view="library"]:has(#selectionTray:not([hidden])) .guided-launch{displ
 #sequenceViewport{position:relative;overflow:hidden;margin:auto;width:min(100%,760px)}
 
 .card .preview:has(>.reference-panel){aspect-ratio:var(--source-ratio)}#trayImages>.reference-panel{width:42px;flex:0 0 42px;height:auto;align-self:center}.sequence-strip button:has(>.reference-panel){height:auto}
+
+.search-scope{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px}.search-scope[hidden]{display:none}.search-scope p{margin:0}.search-scope button{white-space:normal;text-align:left}
+.category-explorer[hidden]{display:none}
