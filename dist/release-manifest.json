@@ -50,73 +50,40 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 145818,
-      "sha256": "91945ae86cc4040e20a4b87b20a5b8078c21e5a9ec9b7d8cbf779877e0a0bf61"
+      "bytes": 149475,
+      "sha256": "82cb90c53551f51a379797cf9b927bbd3df63b4e7c1d5d8ab582aae2efaeef45"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 146273,
-      "sha256": "f8de9d374e26cacfc5af6249fa0b9325184da324d6c8244aa02604ed91c75ce9"
+      "bytes": 149930,
+      "sha256": "ebbb4160b29a76bb1d97517c761ffddb8f3b497868f500da91318406b17e8586"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 2737906,
-      "sha256": "b87b725f3e6598f323daad3e26edcfd40196dc5265a9575b2ef93d9f129f1136"
+      "bytes": 2741561,
+      "sha256": "e814b13dee2e7c6315fffad9b3c5af39c733e7c3907e9c55be741da1e60aa1ff"
     },
     "video-multimarcas.skill": {
-      "bytes": 120269,
-      "sha256": "68fded1f52c5c3dfeabda0c214c15d26691d112e90d493dbe9a3479985130c06"
+      "bytes": 123926,
+      "sha256": "ec12cbb6bd22950d0c26c3f410813c1f1f98dab5a9b57c5be186f0056b37ff6e"
     },
     "video-multimarcas.zip": {
-      "bytes": 120269,
-      "sha256": "68fded1f52c5c3dfeabda0c214c15d26691d112e90d493dbe9a3479985130c06"
+      "bytes": 123926,
+      "sha256": "ec12cbb6bd22950d0c26c3f410813c1f1f98dab5a9b57c5be186f0056b37ff6e"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "8d5aeacd5bafed288c41f6e11a2900910e3ee019",
-    "sourceReady": true,
+    "sourceRevision": "434ad5f35268deaeb0271ac12eb5285cbb327f58",
+    "sourceReady": false,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 586444,
-    "sha256": "b22d58bbf8f5908e337e08cac44cb4e1c27534eb76fdcfc28fb87f14c32d77a2",
+    "bytes": 590095,
+    "sha256": "58014278d337ab5ec02275c5f2b4b5a4f070ba37817250f4f9384c9d2cfc9d6e",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
     "fullProjectDownloadMiB": 697,
     "skills": 7,
     "presenterStyles": 60,
-    "verification": {
-      "checkedAt": "2026-11-17",
-      "sourceRevision": "8d5aeacd5bafed288c41f6e11a2900910e3ee019",
-      "packageAndStaticChecksPassed": 10,
-      "documentationLinks": "passed",
-      "compactArchivesBundleLocalTutorial": true,
-      "installedREADMEAndMainBranchGuide": "passed",
-      "linuxInstall": {
-        "status": "ready",
-        "sourceOrigin": "local git archive of the pushed documentation revision; protected hashes verified",
-        "gitRemoteAndHead": "verified against actual GitHub source commit",
-        "npmCi": "passed",
-        "skills": 7,
-        "ffmpegFfprobe": "passed",
-        "realRendererBrowserStartup": "passed"
-      },
-      "functionalCodeBaseline": {
-        "mergeCommit": "054ebcc143ef2f6a99ac9dba6fcfc55132dc6597",
-        "productionCodeUnchanged": true,
-        "javascriptTestsPassed": 206,
-        "pythonTestsPassed": 9
-      },
-      "nativeWindowsMacOS": "not_run",
-      "portableNodeBootstrap": "not_exercised_Node_already_present",
-      "missingSystemDependencyInstallation": "not_exercised_prerequisites_already_present",
-      "agentLogin": "not_exercised",
-      "accountsConnected": false,
-      "paidApisUsed": false,
-      "publication": {
-        "siteVersion": "2.12.0",
-        "purpose": "documentation and packaged help synchronization"
-      }
-    },
     "localFile": "studio-kit-pro-installer.zip"
   }
 }

@@ -6,9 +6,9 @@
  fetch(new URL('installation.json',base)).then(response=>{if(!response.ok)throw Error();return response.json()}).then(data=>{
   if(data.version!==1||data.download!=='downloads/studio-kit-pro-installer.zip'||data.tutorial!=='como-instalar.html'||!Number.isFinite(data.bytes))throw Error();
   tutorial.href=new URL(data.tutorial,base).href;
-  if(!data.sourceReady){status.textContent='O candidato está sendo preparado para revisão. O download será liberado quando corresponder à revisão fixada.';return;}
+  if(!data.sourceReady){status.textContent='Estamos atualizando o pacote. Aguarde um pouco e tente baixar novamente.';return;}
   button.href=new URL(data.download,base).href;button.removeAttribute('aria-disabled');button.textContent='Baixar instalador completo · '+(data.bytes/1024/1024).toLocaleString('pt-BR',{maximumFractionDigits:1})+' MB';
-  status.textContent='Versão '+data.kitVersion+' · '+data.skills+' skills · '+data.presenterStyles+' explicadores. O instalador baixa o projeto completo e as dependências; reserve 3 GB livres.';
+  status.textContent='Versão '+data.kitVersion+'. Você vai precisar de internet e 3 GB livres no computador. Siga o tutorial para começar.';
  }).catch(()=>{status.textContent='Não foi possível verificar o pacote. Tente novamente ou consulte o tutorial.';});
  function open(){window.AtlasShell?.view('help');document.getElementById('installTitle').focus({preventScroll:true});document.getElementById('instalar').scrollIntoView({behavior:'auto',block:'start'});}
  document.addEventListener('click',event=>{if(event.target.closest('[data-install-open]')){event.preventDefault();open();}if(event.target.closest('#downloadStudioKit[aria-disabled=true]'))event.preventDefault();});
