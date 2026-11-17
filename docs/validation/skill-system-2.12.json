@@ -1,0 +1,115 @@
+{
+  "candidateVersion": "2.12.0",
+  "catalogVersion": "4.6",
+  "dateUTC": "2026-11-17T05:35:47.355047+00:00",
+  "scope": "one complete six-skill kit and precise site-to-agent handoff",
+  "skills": [
+    "video-multimarcas",
+    "video-planejamento",
+    "video-explicador-interativo",
+    "video-publicidade",
+    "video-edicao",
+    "video-revisao"
+  ],
+  "checks": {
+    "javascript": {
+      "passed": 183,
+      "failed": 0
+    },
+    "python": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "projectValidator": "passed",
+    "whitespace": "passed",
+    "archiveCanonicalIntegrity": "passed",
+    "portableAndPluginReferenceClosure": "passed",
+    "freshInstallAndUpdate": "passed in temporary project fixtures",
+    "rollbackAfterBackupFailure": "passed",
+    "legacyContextHashAndArtifactsPreserved": "passed",
+    "actualDownloadedProjectImport": "passed",
+    "format4x5Restored": "passed",
+    "cleanupAfterStagingFailure": "passed"
+  },
+  "browserCandidate": {
+    "checks": [
+      "375px: briefSection without selection opens guided start",
+      "375px: style intent, actual clipboard for both destinations, complete JSON download and restored selection",
+      "1440px: briefSection without selection opens guided start",
+      "1440px: style intent, actual clipboard for both destinations, complete JSON download and restored selection"
+    ],
+    "errors": [],
+    "publicSite": {
+      "status": 200,
+      "title": "GDA Vídeos · Atlas Vídeo Multimarcas",
+      "interactionTested": false
+    }
+  },
+  "browserRegressions": {
+    "guided": {
+      "checks": [
+        "375px: one-photo declaration, three alternatives, selection, materials and prepared request",
+        "Claude destination and actual clipboard copy",
+        "Four independent starter downloads with complete request and canonical project",
+        "Reference frame and four-frame sequence download as PNG",
+        "Reload restores selected style, briefing and platform",
+        "Valid import and rejected invalid import without project loss",
+        "Persistent storage failure warning without losing open choices",
+        "Library without horizontal overflow at 320, 375, 768, 1440 and 1920px; mobile retains two columns",
+        "Receipt fixture avoids automatic re-request; long filename wraps; reduced motion and keyboard handoff controls work"
+      ],
+      "errors": []
+    },
+    "presenter": {
+      "checks": [
+        "60 sector directions, 17 working sector filters, presenter requirements and actual prompt download",
+        "Downloaded project retains actual recipe and runtime 2.12.0 without claiming automatic tracking",
+        "Visible catalogue, loaded frames and no overflow at 320, 375, 768, 1440 and 1920 pixels"
+      ],
+      "errors": []
+    }
+  },
+  "publicBaseline": {
+    "source": "public_site_before_candidate_publication",
+    "changesMade": "local browser state only; no video generation or chat submission",
+    "status": 200,
+    "kitVersion": "2.11.0",
+    "initialView": "library",
+    "hashOpenedGuided": false,
+    "hasBriefSectionAnchor": false,
+    "promptContainsSelectedStyle": true,
+    "promptHasIntentSummary": false,
+    "destinations": {
+      "chatgpt": "https://chatgpt.com/",
+      "claude": "https://claude.ai/new"
+    },
+    "hasSkillRouting": false,
+    "catalogVersion": "4.4",
+    "selectedStyleCount": 1,
+    "interactionTested": true
+  },
+  "skillApplicationReview": {
+    "control": "single broad skill; no named specialists; presenter metadata emitted even for palette-only; stale installation counts",
+    "method": "read-only baseline/application scenarios and independent code review",
+    "cases": [
+      "own-avatar CRM hand interaction and discreet mouth",
+      "single-photo product ad without avatar",
+      "palette-only presenter plus full ad",
+      "local hook only",
+      "sound-only approved-project revision",
+      "chat without renderer",
+      "complete installation and embedded fallback"
+    ],
+    "result": "specialist/coordinator instructions resolve; functional scopes route correctly; actual rendering and review limits retained",
+    "reviewFinding": "backup rollback and existing-context migration addressed by failing-then-passing regressions",
+    "limits": "not a benchmark of every model; no claim of perfect understanding or produced user video"
+  },
+  "tenPresenterDirectionsExportBytes": 597396,
+  "importLimitBytes": 2097152,
+  "paidExternalGeneration": false,
+  "newAIVideoProduced": false,
+  "globalOrAccountInstallationPerformed": false,
+  "mergedOrDeployed": false,
+  "packages": "Current artifacts and SHA256 are in dist/release-manifest.json; do not infer publication or installation from packaging."
+}

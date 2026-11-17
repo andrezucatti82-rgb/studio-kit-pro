@@ -5,27 +5,64 @@
   "catalogVersion": "4.6",
   "styleCount": 1220,
   "categoryCount": 30,
+  "skillSystem": {
+    "version": 1,
+    "kitVersion": "2.12.0",
+    "orchestrator": "video-multimarcas",
+    "skills": [
+      {
+        "id": "video-multimarcas",
+        "name": "Orquestração",
+        "role": "coordinator"
+      },
+      {
+        "id": "video-planejamento",
+        "name": "Planejamento e direção",
+        "role": "planning"
+      },
+      {
+        "id": "video-explicador-interativo",
+        "name": "Apresentador e explicação",
+        "role": "presenter"
+      },
+      {
+        "id": "video-publicidade",
+        "name": "Publicidade e ofertas",
+        "role": "advertising"
+      },
+      {
+        "id": "video-edicao",
+        "name": "Edição, motion e áudio",
+        "role": "editing"
+      },
+      {
+        "id": "video-revisao",
+        "name": "Revisão e entrega",
+        "role": "review"
+      }
+    ]
+  },
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 81619,
-      "sha256": "d8aec1b9751f90eea8c2be2cb8643f2b7cbc7744d7617c98c6814e26e5bb2248"
+      "bytes": 108241,
+      "sha256": "55ccb761157c6dd4788d31f5e1d7b077fbfcfec8ebab0dc8b882f429669e35e8"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 82093,
-      "sha256": "a3193f213382d50699649435a970816d38b2366c3c3212bc741e5db7466f3aa8"
+      "bytes": 108706,
+      "sha256": "fc55b5db8e30a1a2418a68419858bf16028e9db9da57c11045a28dfc8529459d"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 2358859,
-      "sha256": "938030a21a3fd809be7e64e9807c64a3741a033df512ff329cf152f0e14d7dc0"
+      "bytes": 2400125,
+      "sha256": "3b1dea142c9c57d212e00f6f0b807e8d1e88cff7ad4cda0b2c015e9eb0d798f1"
     },
     "video-multimarcas.skill": {
-      "bytes": 80970,
-      "sha256": "11b738068af59ecaa2bad30e8337a8a35838668ea94fc4296e9b1506d4fbdc5e"
+      "bytes": 97927,
+      "sha256": "0eece3eb1b0d1e149b69b0e09daa78c4dce7b9fc2c0a3e1a094431429504386d"
     },
     "video-multimarcas.zip": {
-      "bytes": 80970,
-      "sha256": "11b738068af59ecaa2bad30e8337a8a35838668ea94fc4296e9b1506d4fbdc5e"
+      "bytes": 97927,
+      "sha256": "0eece3eb1b0d1e149b69b0e09daa78c4dce7b9fc2c0a3e1a094431429504386d"
     }
   }
 }

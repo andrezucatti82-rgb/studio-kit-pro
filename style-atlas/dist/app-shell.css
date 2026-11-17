@@ -114,3 +114,5 @@ body[data-view="library"]:has(#selectionTray:not([hidden])) .guided-launch{displ
 #presenterSectorWrap{flex:0 1 270px;min-width:0;max-width:100%}#presenterSector{width:100%;max-width:100%}
 
 .art-direction img{display:block;width:100%;height:auto;max-height:720px;object-fit:contain;background:#e8e6de;border-radius:12px}
+
+.style-intent-summary{margin:22px 0;padding:18px;border:1px solid #ddd9cf;border-radius:12px}.style-intent-summary ol{padding-left:22px}.style-intent-summary li{padding:8px 0}.style-intent-summary p{overflow-wrap:anywhere}

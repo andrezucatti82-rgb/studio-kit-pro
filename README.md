@@ -1,4 +1,7 @@
-# Vídeo Multimarcas
+# Studio Kit Pro · Vídeo Multimarcas
+
+
+Um pacote completo, seis skills: **video-multimarcas** coordena **video-planejamento**, **video-explicador-interativo**, **video-publicidade**, **video-edicao** e **video-revisao**. O site exporta a aplicação de cada estilo e o roteamento correspondente. Codex/Claude Code executam com runtime verificado; chat sem execução conclui etapas disponíveis e informa dependências. [Instalação](docs/INSTALL-SKILL.md) · [Arquitetura e limites](docs/SKILL-SYSTEM-2.12.md).
 
 ## Apresentador e explicação · 2.12.0 em preparação
 

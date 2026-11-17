@@ -1,7 +1,9 @@
 {
   "name": "video-multimarcas",
   "version": "2.12.0",
-  "description": "Produção de vídeo a partir da galeria com o próprio Claude Code, runtime local, fidelidade e aprovações.",
-  "author": {"name": "Vídeo Multimarcas"},
+  "description": "Kit completo com uma orquestradora e cinco skills para planejamento, explicação interativa, publicidade, edição e revisão.",
+  "author": {
+    "name": "Vídeo Multimarcas"
+  },
   "skills": "./skills/"
 }

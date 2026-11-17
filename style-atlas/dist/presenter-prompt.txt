@@ -1,4 +1,4 @@
-Use $video-multimarcas e leia references/presenter-interaction.md.
+Use $video-multimarcas como orquestradora e $video-explicador-interativo para a explicação. O pacote completo inclui as duas e os módulos comuns; se apenas a orquestradora estiver disponível, leia references/skill-modules/video-explicador-interativo.md e references/presenter-interaction.md.
 
 Quero editar o vídeo anexado para que a explicação seja demonstrada visualmente junto da pessoa. Use o projeto-video.json da galeria, preservando os estilos, características e escopos que escolhi. Tema: [ASSUNTO]. Formato: [9:16]. Duração desejada: [30 s ou duração da fala]. Apresentador: [meu vídeo gravado / avatar já fornecido / avatar a selecionar explicitamente].
 

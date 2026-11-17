@@ -40,6 +40,22 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null}={}){
  return {ctx,document,click,change,store,getState:()=>state,getStorageReads:()=>storageReads,errors};
 }
 
+test('briefSection link opens the guided start with no choice and resumes the selected brief',async()=>{
+ const fresh=await boot({hash:'#briefSection'});await new Promise(r=>setTimeout(r,20));assert.equal(fresh.document.getElementById('guidedDialog').open,true);
+ const first=await boot();first.click('#grid [data-choose]');await new Promise(r=>setTimeout(r,20));
+ const saved=JSON.parse(first.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({saved,hash:'#briefSection'});await new Promise(r=>setTimeout(r,20));assert.equal(resumed.document.body.dataset.view,'brief');assert.equal(resumed.document.getElementById('briefDialog').open,true);assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,1);
+});
+
+test('brief review describes the actual styles and selected scope before handoff',async()=>{
+ const app=await boot();app.ctx.AtlasApp.chooseStyle('explicador-diagrama-ao-lado');app.change('topic','Explicar CRM');app.click('#prepare');await new Promise(r=>setTimeout(r,30));
+ const summary=app.document.getElementById('styleIntentSummary');assert(summary,'Missing readable intent summary');assert.match(summary.textContent,/Apresentador/);assert.match(summary.textContent,/Direção completa/);assert.match(summary.textContent,/Filme inteiro/);
+ assert.match(app.document.getElementById('summaryMaterials').textContent,/Filmagem original ou avatar escolhido/);
+});
+
+test('restoring a 4:5 brief preserves its format in the next generated request',async()=>{
+ const app=await boot();app.click('#grid [data-choose]');app.change('format','4:5');await new Promise(r=>setTimeout(r,20));const saved=JSON.parse(app.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().format,'4:5');assert.match(resumed.ctx.AtlasApp.prompt(),/4:5/);
+});
+
 test('app: choose ten, prepare 90 seconds, keep technical prompt collapsed, persist and resume',async()=>{
  const app=await boot();const {document:d,ctx,click,change}=app;
  const ids=[...d.querySelectorAll('#grid [data-choose]')].slice(0,11).map(x=>x.dataset.choose);

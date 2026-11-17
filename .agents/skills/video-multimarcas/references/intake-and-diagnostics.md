@@ -44,7 +44,7 @@ Saúde: serviço, identificação pública confirmada e informações revisadas 
 
 ## Prioridade de geração de vídeo
 
-Avalie primeiro o HeyGen pela API HTTP direta. Confirme na documentação oficial o endpoint/modelo apropriado à cena; autenticação por leitura não comprova saldo, acesso ao modelo ou fidelidade. Não faça geração paga apenas para testar conexão. Se houver necessidade comprovada de outra execução, explique o motivo e proponha alternativa para aprovação. Não troque silenciosamente de provedor; respeite a preferência e as autorizações do usuário. Montagem, motion em código, tipografia, som e revisão continuam etapas próprias.
+Avalie primeiro a conexão HeyGen existente e compatível; use a API HTTP direta quando apropriada. Confirme na documentação oficial o endpoint/modelo apropriado à cena; autenticação por leitura não comprova saldo, acesso ao modelo ou fidelidade. Não faça geração paga apenas para testar conexão. Se houver necessidade comprovada de outra execução, explique o motivo e proponha alternativa para aprovação. Não troque silenciosamente de provedor; respeite a preferência e as autorizações do usuário. Montagem, motion em código, tipografia, som e revisão continuam etapas próprias.
 
 
 ## Anúncios por segmento

@@ -38,10 +38,13 @@
   if(!window.AtlasCurrentChoice)return;
   const c=window.AtlasCurrentChoice(),esc=AtlasViews.esc;
   $('requestSummary').innerHTML=[['Tema',c.topic||'Definir no briefing'],['Marca ou site',c.brand||'Identidade a definir'],['Formato e duração',`${c.format} · ${c.targetDurationSeconds} segundos`],['Tipografia',c.typography==='auto'?'Seguir o estilo e a marca':c.typography]].map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd><button type="button" data-edit-brief aria-label="Editar ${esc(k)}">✎</button></div>`).join('');
+  const intent=AtlasWorkflow.intentSummary(c),route=intent.skillRouting,primary=AtlasWorkflow.skillSystem.skills.find(s=>s.id===route.primarySkill);
+  $('styleIntentSummary').innerHTML='<h3>Como aplicar sua escolha</h3><p>'+esc(primary?.name||'Edição do vídeo')+'</p><ol>'+intent.styles.map(s=>'<li><strong>'+esc(s.name)+'</strong><span>'+esc(s.role==='principal'?' · Principal':' · Complementar')+'</span><p>'+s.contributions.map(v=>esc(v.label)+' · '+esc(v.scopeLabel)).join('<br>')+'</p></li>').join('')+'</ol><p class="small">O pedido leva as referências e estas aplicações para a conversa. O agente confere seus arquivos e pergunta somente o que faltar.</p>';
   const ids=new Set(['product','property','ui','data','clinical','course','coverage','presenter','legal','food','pets','automotive','travel','beauty','homeService','childcare','identity','voice','brand','facts']);
   const materials=c.intake.items.filter(x=>ids.has(x.id)).sort((a,b)=>Number(['brand','facts','identity','voice'].includes(a.id))-Number(['brand','facts','identity','voice'].includes(b.id)));
   const plan=c.productionContract.materials;
   $('summaryMaterials').replaceChildren(...plan.now.map(text=>{const row=document.createElement('li');const title=document.createElement('strong');title.textContent=text;row.append(title);const need=plan.dependencies.find(x=>x.label===text);if(need&&need.action==='verify_access'){const note=document.createElement('span');note.textContent='Já registrado'+(need.file?' · '+need.file:'')+'; conferir acesso na conversa';row.append(note)}else if(need&&need.action==='request_replacement'){const note=document.createElement('span');note.textContent='Original registrado como inadequado; '+need.alternative;row.append(note)}return row}));
+  if(c.productionContract.presenterInput?.required){const li=document.createElement('li'),label=document.createElement('strong'),note=document.createElement('span');label.textContent='Filmagem original ou avatar escolhido';note.textContent=c.productionContract.presenterInput.instruction;li.append(label,note);$('summaryMaterials').prepend(li);}
   $('handoffMaterialNotes').replaceChildren();for(const [label,items] of [['Opcional',plan.optional],['Somente se o roteiro precisar',plan.later]]){const p=document.createElement('p');p.textContent=label+': '+items.join(' ');$('handoffMaterialNotes').append(p)}
   $('referenceFiles').innerHTML='<h3>Referências para anexar</h3>'+c.selectedStyles.map(s=>`<div class="reference-file"><strong>${esc(s.name)}</strong><div><button type="button" class="text-button" data-frame="${esc(s.id)}">Baixar quadro · PNG</button><button type="button" class="text-button" data-board="${esc(s.id)}">Baixar sequência · PNG</button></div></div>`).join('')+'<p class="small">Arquivos identificados pelo ID do estilo. Eles mostram a direção; os originais do seu assunto continuam sendo a referência principal.</p>';
   updatePlatform();
@@ -76,7 +79,9 @@
  $('sequenceDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')$('sequencePrev').click();if(e.key==='ArrowRight')$('sequenceNext').click()});
  $('sequenceDialog').addEventListener('close',()=>returnFocus?.focus());
  window.AtlasShell={openBrief,selectionChanged,prepared(){setStage('review');$('handoffTitle').focus({preventScroll:true})},edit(){setStage('briefing')},view,afterRender(){window.AtlasNavigation?.sync();document.querySelectorAll('#grid [data-style-id]').forEach(card=>card.classList.toggle('is-selected',selected.some(s=>s.id===card.dataset.styleId)))}};
- window.addEventListener('atlas:ready',()=>{ready=true;renderSummary();if(document.body.dataset.view!=='brief')view('library');});
+ function routeBriefHash(){if(window.location.hash!=='#briefSection')return;if(selected.length)openBrief();else{view('library');$('startGuided').click();}}
+ window.addEventListener('hashchange',()=>{if(ready)routeBriefHash()});
+ window.addEventListener('atlas:ready',()=>{ready=true;renderSummary();if(document.body.dataset.view!=='brief')view('library');setTimeout(routeBriefHash,0);});
 })();
 
 /* Hybrid category navigation. It filters the existing catalogue; it never changes a brief. */

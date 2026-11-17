@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "kitVersion": "2.12.0",
+  "orchestrator": "video-multimarcas",
+  "skills": [
+    {
+      "id": "video-multimarcas",
+      "name": "Orquestração",
+      "role": "coordinator"
+    },
+    {
+      "id": "video-planejamento",
+      "name": "Planejamento e direção",
+      "role": "planning"
+    },
+    {
+      "id": "video-explicador-interativo",
+      "name": "Apresentador e explicação",
+      "role": "presenter"
+    },
+    {
+      "id": "video-publicidade",
+      "name": "Publicidade e ofertas",
+      "role": "advertising"
+    },
+    {
+      "id": "video-edicao",
+      "name": "Edição, motion e áudio",
+      "role": "editing"
+    },
+    {
+      "id": "video-revisao",
+      "name": "Revisão e entrega",
+      "role": "review"
+    }
+  ]
+}

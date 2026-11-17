@@ -49,4 +49,4 @@ Aplique também `identity-preservation.md`, registre `identityPreservation` e ex
 
 ## Prioridade de geração de vídeo
 
-Avalie primeiro o HeyGen pela API HTTP direta. Confirme na documentação oficial o endpoint/modelo apropriado à cena; autenticação por leitura não comprova saldo, acesso ao modelo ou fidelidade. Não faça geração paga apenas para testar conexão. Use outra solução quando houver necessidade comprovada, informando o motivo e preservando a direção aprovada. Montagem, motion em código, tipografia, som e revisão continuam etapas próprias.
+Avalie primeiro a conexão HeyGen existente e compatível; use a API HTTP direta quando apropriada. Confirme na documentação oficial o endpoint/modelo apropriado à cena; autenticação por leitura não comprova saldo, acesso ao modelo ou fidelidade. Não faça geração paga apenas para testar conexão. Use outra solução quando houver necessidade comprovada, informando o motivo e preservando a direção aprovada. Montagem, motion em código, tipografia, som e revisão continuam etapas próprias.

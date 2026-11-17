@@ -13,7 +13,7 @@ Ao informar a versão ao usuário, confira o arquivo efetivamente carregado e o 
 A instalação não fornece gerador de vídeo, contas, créditos ou credenciais. Descubra as capacidades reais e explique bloqueios verificados conforme `intake-and-diagnostics.md`. Nunca altere permissões, remova plugins ou troque uma skill pessoal pela genérica para tentar resolver uma atualização.
 
 
-Confira os 1.160 estilos, os quadros individuais, o contrato de fidelidade, o moodboard e storyboard com aprovações próprias, e a amostra de 10 segundos.
+Confira os 1.220 estilos, os quadros individuais, o contrato de fidelidade, o moodboard e storyboard com aprovações próprias, e a amostra de 10 segundos.
 
 A edição 2.7 acrescenta produção guiada, três receitas planejadas, ajustes por intenção e coordenação registrada. Conferir `references/guided-production.md` e `templates/coordinator-plan.json`. Preparar um pedido ou uma receita não comprova geração/revisão audiovisual.
 
@@ -29,4 +29,6 @@ A edição 2.10.0 acrescenta kit TXT/JSON/PNG individual, destino ChatGPT/Claude
 
 ## Execução da galeria · 2.12.0
 
-O pedido e os pacotes agora incluem a ponte para o runtime e para planos escritos pelo próprio Codex/Claude Code. Leia orchestrator-execution.md. O runtime suporta composição declarativa por camadas e mídia compatível; resolver 1.160 IDs não certifica execução de todas as técnicas. Há plugin próprio para Claude Code e um pacote de runtime separado. Instalar instruções não instala o motor, transfere conexões nem autoriza gastos.
+O pedido e os pacotes agora incluem a ponte para o runtime e para planos escritos pelo próprio Codex/Claude Code. Leia orchestrator-execution.md. O runtime suporta composição declarativa por camadas e mídia compatível; resolver os IDs do catálogo não certifica execução de todas as técnicas. Há plugin próprio para Claude Code e um pacote de runtime separado. Instalar instruções não instala o motor, transfere conexões nem autoriza gastos.
+
+A edição candidata 2.12.0 organiza um pacote completo: video-multimarcas coordena video-planejamento, video-explicador-interativo, video-publicidade, video-edicao e video-revisao. O contrato compartilhado calcula skillRouting/intentSummary pelas contribuições e escopos. O pacote mínimo incorpora referências dos módulos; o plugin registra os seis IDs. Preparação não equivale a publicação ou instalação em outra conta.

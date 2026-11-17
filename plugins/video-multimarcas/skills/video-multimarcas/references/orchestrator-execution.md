@@ -32,3 +32,5 @@ Não habilite avatar por padrão. Seleção de apresentador fictício autoriza s
 Sem mídia, conexão, técnica, licença ou aceites, explique a entrega afetada e o motivo verificado, conclua as partes independentes e peça só o que resolve a próxima dependência. Não termine em planejamento se a execução já é possível e autorizada. Nunca troque a referência por um template genérico para afirmar conclusão.
 
 O runtime mantém a fila e artefatos em `projects/`, fora do Git. Skill/plugin distribui instruções; runtime distribui o motor; instalação em outro computador e conexão às contas desse computador precisam de verificação própria. Não afirme que instalar um pacote na conta atual atualiza Claude Code ou outro dispositivo.
+
+Em contextos válidos importados antes do roteamento modular, a retomada preserva o contexto/hash e os artefatos. O comando context fornece effectiveSkillRouting fora do contexto imutável; leia esses módulos. Uma alteração real de fonte, catálogo, estilo ou escopo continua exigindo a revisão correspondente.

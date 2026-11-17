@@ -1,22 +1,51 @@
-# Instalar a skill
+# Instalar o Studio Kit Pro · candidato 2.12.0
 
-## Pedidos do site no Codex e Claude Code · 2.11.0
+Esta documentação descreve a PR #20, ainda em revisão. Preparar os pacotes não publica o domínio nem atualiza instalações externas. Confira a branch/commit e `dist/release-manifest.json`; `main` e o site podem distribuir uma versão anterior até uma publicação autorizada.
 
-O agente deve ler `references/orchestrator-execution.md` e usar o modelo da própria conversa para planejar e executar. Para produção local, precisa também do runtime 2.11.0 ou checkout compatível; instalar só a skill não instala Node, FFmpeg, Chromium ou o motor. [Percurso completo](SITE-TO-VIDEO-2.11.md).
+## Um pacote, seis skills
 
-No **Claude Code**, abrir o checkout carrega `CLAUDE.md`; a skill de projeto em `.claude/skills/` encaminha para a fonte canônica. Para outro projeto, execute `node scripts/install-agent.mjs --agent claude --project-root caminho/do/projeto`. Existe também o pacote `dist/video-multimarcas-claude-plugin.zip` e marketplace `.claude-plugin/marketplace.json`. Quando sua versão oferecer plugins: `claude plugin marketplace add andrezucatti82-rgb/studio-kit-pro`, depois `claude plugin install video-multimarcas@video-multimarcas-kit`. Reabra a sessão e confirme a versão carregada.
+O plugin existente `video-multimarcas` continua com o mesmo identificador e instala o conjunto:
 
-O **runtime separado** em `dist/video-multimarcas-runtime.zip` pode ser extraído em pasta nova; confira seu manifesto/hashes, rode `npm ci`, `npm run check` e `npm run doctor`. Ele não leva mídia de clientes, credenciais ou fixtures completas da regressão. A galeria fornece o projeto/seleção; os originais precisam estar acessíveis ao agente.
+| Entrada | Responsabilidade |
+|---|---|
+| `video-multimarcas` | Orquestração e continuidade |
+| `video-planejamento` | Pesquisa, materiais, roteiro e direção |
+| `video-explicador-interativo` | Pessoa/avatar e explicação em interação |
+| `video-publicidade` | Argumento, demonstração, oferta e CTA |
+| `video-edicao` | B-roll, edição, motion, legendas e áudio |
+| `video-revisao` | Evidências, revisão audiovisual e entrega |
 
-Copie a pasta `video-multimarcas` completa para a pasta de skills do seu agente, preservando `SKILL.md`, `references/`, `templates/` e `agents/`. Para agentes que usam a convenção do projeto, o destino é `.agents/skills/video-multimarcas/`.
+O pedido do site leva `skillRouting`, `intentSummary`, estilos, contribuições/escopos e referências. A orquestradora escolhe os módulos pertinentes. Responsabilidades são do projeto, não prova de agentes paralelos, e não reiniciam etapas aprovadas.
 
-O identificador é `video-multimarcas`. Instale lado a lado com outras skills, sem sobrescrevê-las. Diga ao agente: “Use $video-multimarcas. Tema: ...”, acrescentando nome, site ou logo se quiser.
+## Codex ou Claude Code no checkout
 
-O arquivo `.skill` é um ZIP instalável em ferramentas compatíveis com esse formato. Se o seu agente não tiver importador, use o ZIP e copie a pasta manualmente. Compatibilidade de importação depende do agente. O renderizador e a configuração inicial estão no repositório completo, não no pacote mínimo da skill.
+Para testar este candidato em pasta nova:
 
-## Plugin para Codex
+```bash
+git clone --branch feat/interactive-presenter-styles https://github.com/andrezucatti82-rgb/studio-kit-pro.git
+cd studio-kit-pro
+npm ci
+npm run doctor
+```
 
-O pacote `dist/video-multimarcas-plugin.zip` contém o manifesto de plugin e a skill completa. O repositório também fornece um marketplace com apenas a versão multimarcas. Com um Codex CLI que ofereça `codex plugin`, execute:
+`AGENTS.md` e `CLAUDE.md` orientam a produção; `.agents/skills/` contém as fontes canônicas e `.claude/skills/` tem os seis arquivos de descoberta. Abra uma nova sessão do agente e confirme quais instruções foram carregadas. O diagnóstico verifica arquivos/comandos locais; conexão, saldo, modelo, playback e escuta precisam de verificações próprias.
+
+Diga: “Use $video-multimarcas e execute o pedido anexado.” Envie `projeto-video.json` e seus originais. O agente importa o pedido no runtime 2.12.0 e usa o modelo da própria conversa para planejar; outra API OpenAI/Anthropic não é obrigatória para interpretar a ficha. O usuário não precisa escrever o plano técnico.
+
+Para instalar todas as seis skills em **outro projeto** já existente:
+
+```bash
+node scripts/install-agent.mjs --agent codex --project-root /caminho/do/projeto
+node scripts/install-agent.mjs --agent claude --project-root /caminho/do/projeto
+```
+
+Escolha o comando do seu agente. O instalador verifica as seis fontes, prepara a atualização, faz backup das versões anteriores e atualiza somente os seis IDs do kit. Outras skills e configurações permanecem preservadas. O resultado informa caminhos e backups. Ele instala instruções; não copia runtime, mídia ou conexões para o projeto de destino. O agente deve localizar o checkout/runtime compatível ao executar. Reabra a sessão e confira a versão.
+
+## Plugins completos
+
+`dist/video-multimarcas-plugin.zip` é o plugin Codex com seis skills; `dist/video-multimarcas-claude-plugin.zip` é o plugin Claude Code com as mesmas fontes. Use o fluxo de instalação disponível na sua versão do agente.
+
+Quando o Codex CLI oferecer marketplace/plugin:
 
 ```bash
 codex plugin marketplace add andrezucatti82-rgb/studio-kit-pro --ref main
@@ -24,26 +53,41 @@ codex plugin add video-multimarcas@video-multimarcas-kit --json
 codex plugin list --json
 ```
 
-Para usar um checkout local, substitua o primeiro comando por `codex plugin marketplace add /caminho/absoluto/studio-kit-pro`. Use a origem já configurada quando atualizar uma instalação existente; não instale uma segunda cópia com outro nome de marketplace sem necessidade. Não remova a configuração pessoal `video-b-roll`.
-
-A versão do plugin é **2.11.0**, a do kit executável **2.11.0** e a do catálogo **4.4**, com **1.160 estilos em 29 subcategorias**. São componentes diferentes. `dist/release-manifest.json` registra versões e hashes. Para regenerar todos os pacotes após editar a skill, execute `python scripts/package-skill.py`; a pasta `plugins/video-multimarcas/` é gerada a partir de `.agents/skills/video-multimarcas/`.
-
-## Atualizar uma instalação existente do Codex
-
-Para a origem Git configurada como `video-multimarcas-kit`, atualize o snapshot antes de reinstalar:
+Esses comandos usam `main`. Para testar a PR, use o checkout local do candidato como origem do marketplace. Preserve o nome e a origem já configurados ao atualizar; não instale cópias concorrentes desnecessariamente. Para uma origem Git existente:
 
 ```bash
 codex plugin marketplace upgrade video-multimarcas-kit --json
 codex plugin add video-multimarcas@video-multimarcas-kit --json
-codex plugin list --marketplace video-multimarcas-kit --json
 ```
 
-Se o marketplace usa um checkout local, execute `git pull --ff-only` nesse checkout e reinstale usando o nome já configurado. Se houver alterações locais, preserve-as e resolva a atualização sem descartá-las. Reabra a sessão e confira a versão efetivamente carregada. Instalação pela pasta de skills exige atualizar a pasta completa, não somente `SKILL.md`.
+No Claude Code com suporte a plugins:
 
+```bash
+claude plugin marketplace add andrezucatti82-rgb/studio-kit-pro
+claude plugin install video-multimarcas@video-multimarcas-kit
+```
 
-## ChatGPT e outros dispositivos
+Uma instalação pessoal `video-b-roll` é separada deste kit. Não removê-la, atualizá-la ou sobrescrevê-la como parte desses comandos.
 
-Instalar no Codex deste computador ou ambiente não atualiza o pacote da conta do ChatGPT nem outro computador. Se sua interface oferecer importação de plugins personalizados, use o ZIP do plugin no fluxo de atualização existente. Se ela aceitar apenas skills, use `.skill` ou o ZIP correspondente. Não há um botão universal garantido para todos os planos e superfícies. Sem importação compatível, use o pedido da galeria e anexe as instruções no projeto/conversa.
+## Pacote mínimo, runtime e chat
 
+`dist/video-multimarcas.skill` e `.zip` contêm a orquestradora e todas as instruções dos módulos incorporadas em `references/skill-modules/`. Isso permite ler os módulos em interfaces que importam uma única skill, embora não registre cinco entradas extras nesses hosts. Os plugins completos registram os seis nomes. Compatibilidade de importação depende da interface; não existe um botão universal garantido.
 
-A edição 2.10.0 inclui `references/conversation-and-continuity.md`, `templates/continuity-record.json`, contrato compartilhado de produção e coordenação. Consulte [o registro da entrega](https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/GUIDED-DELIVERY-2.10.md) para commits e publicações efetivamente confirmados. Gerar ou baixar os pacotes não atualiza instalações nem a conta do ChatGPT/Claude.
+`dist/video-multimarcas-runtime.zip` inclui código executável, fontes das seis skills, catálogo textual e manifesto de integridade. Extraia numa pasta nova, rode `npm ci`, `npm run check` e `npm run doctor`. Não inclui imagens de referência do catálogo, mídia de clientes, contas, credenciais ou fixtures completas da regressão. Referências são obtidas do site/repositório ou anexadas pelo usuário.
+
+No ChatGPT/Claude sem execução verificada, a conversa pode fazer as etapas disponíveis e informar a dependência para a produção. Abrir o chat pelo site não envia mensagens, transfere os originais, instala ferramentas ou inicia geração. Cole o pedido e anexe JSON/arquivos; na Page, o estado disponível também deve ser conferido. A ficha mantém continuidade para uma sessão com execução quando necessário.
+
+## Versão e manutenção
+
+Candidato: plugin **2.12.0**, runtime **2.12.0**, catálogo **4.6**, **1.220 estilos/30 subcategorias**, incluindo **60 explicadores em 17 segmentos**. Verifique hashes e arquivos em `dist/release-manifest.json`; pacote preparado, pacote baixado, instruções carregadas, instalação na conta e domínio publicado são estados separados.
+
+Fontes editáveis: `.agents/skills/<id>/`. As referências comuns pertencem à orquestradora; as cópias incorporadas e os diretórios `plugins/` são gerados por:
+
+```bash
+python scripts/package-skill.py
+npm run check
+npm test
+npm run validate
+```
+
+O empacotador produz os dois plugins completos, o pacote portátil e o runtime com a mesma versão, sem material pessoal. Atualizar somente `SKILL.md` pode deixar referências incompatíveis; atualize o conjunto completo e confira sua versão efetivamente carregada.
