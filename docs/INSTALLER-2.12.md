@@ -24,7 +24,7 @@ A origem imutável pode conter metadados de download da preparação anterior, b
 
 ## Preservação e diagnóstico
 
-O instalador recusa pasta pessoal, fonte adulterada, links/paths inseguros e troca de revisão. A retomada da mesma revisão verifica arquivos e preserva projects/. Git existente com outro remoto/HEAD também é preservado e interrompe a etapa. Não instala em projetos pessoais automaticamente, não faz commit/push do usuário nem fornece aprovações criativas.
+O instalador recusa pasta pessoal, fonte adulterada, links/paths inseguros e troca de revisão. Em rede com proxy, usa curl sem exibir os valores de configuração; fora dela, usa o download nativo do Node. A retomada da mesma revisão verifica arquivos e preserva projects/. Git existente com outro remoto/HEAD também é preservado e interrompe a etapa. Não instala em projetos pessoais automaticamente, não faz commit/push do usuário nem fornece aprovações criativas.
 
 `installation-report.json` distingue fonte verificada, runtime pendente, instalação em andamento, falha por etapa e ready. Ready comprova somente os testes locais executados, não acesso ao agente, provedor, qualidade ou publicação de vídeo. Falhas de download/ferramenta/gerenciador têm causa visível e são retomáveis.
 

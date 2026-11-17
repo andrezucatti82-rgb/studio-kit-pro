@@ -38,7 +38,15 @@ async function run(command,args,{cwd,env=process.env,capture=false}={}){
 }
 const available=async command=>run(command,command==='git'?['--version']:['-version'],{capture:true}).then(()=>true,()=>false);
 async function download(manifest,target){
- const response=await fetch(`https://codeload.github.com/${manifest.repository}/tar.gz/${manifest.sourceRevision}`,{redirect:'error',signal:AbortSignal.timeout(30*60*1000)});
+ const url=`https://codeload.github.com/${manifest.repository}/tar.gz/${manifest.sourceRevision}`;
+ // Native fetch in Node 22 does not honor proxy environment settings. System curl
+ // does, including corporate certificate configuration; never print proxy values.
+ if(process.env.HTTPS_PROXY||process.env.https_proxy||process.env.ALL_PROXY||process.env.all_proxy){
+  console.log('Usando o transporte do sistema para a configuração de rede existente.');
+  await run('curl',['--fail','--silent','--show-error','--location','--proto','=https','--proto-redir','=https','--max-time','1800','--max-filesize','1073741824','--output',target,url]);
+  if((await fs.stat(target)).size>1024*1024*1024)throw Error('Download excede 1 GiB.');return;
+ }
+ const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(30*60*1000)});
  if(!response.ok||!response.body)throw Error('GitHub indisponível: HTTP '+response.status);
  let bytes=0;const bound=new Transform({transform(data,encoding,callback){bytes+=data.length;callback(bytes>1024*1024*1024?Error('Download excede 1 GiB.'):null,data);}});
  await pipeline(Readable.fromWeb(response.body),bound,createWriteStream(target,{flags:'wx'}));
