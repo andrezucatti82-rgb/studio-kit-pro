@@ -4,7 +4,7 @@ Set-Location $PSScriptRoot
 Write-Host 'Studio Kit Pro — projeto, dependências e skills locais. Precisa de internet.'
 try {
   $NodeOK = $false
-  if (Get-Command node -ErrorAction SilentlyContinue) { & node -e 'process.exit(Number(process.versions.node.split(".")[0])>=22?0:1)'; $NodeOK = ($LASTEXITCODE -eq 0) }
+  if (Get-Command node -ErrorAction SilentlyContinue) { & node -e 'process.exit(parseInt(process.versions.node)>=22?0:1)'; $NodeOK = ($LASTEXITCODE -eq 0) }
   if (-not $NodeOK) {
     $Arch = if ($env:PROCESSOR_ARCHITECTURE -match 'ARM64') { 'arm64' } else { 'x64' }
     $Tools = Join-Path $PSScriptRoot '.studio-tools'
