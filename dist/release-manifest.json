@@ -73,17 +73,54 @@
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "512345704bb1e84034f9caed86fc7c28c60782a6",
-    "sourceReady": false,
+    "sourceRevision": "14a1cd37f346de79e25d08551b253103ed8950ea",
+    "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 585797,
-    "sha256": "6ecbfad3f686e4448a76914e8ee6f264add64b0d05b5f0a9b6307a4ebf60bf68",
+    "bytes": 585796,
+    "sha256": "d163fb5f84be94b1e59a08c86ae8448b5e2a484e4501623330418f74b517dc05",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
     "fullProjectDownloadMiB": 695,
     "skills": 7,
     "presenterStyles": 60,
+    "verification": {
+      "checkedAt": "2026-11-17",
+      "sourceRevision": "14a1cd37f346de79e25d08551b253103ed8950ea",
+      "javascriptTestsPassed": 198,
+      "pythonTestsPassed": 9,
+      "postPackageChecksPassed": 7,
+      "browser": {
+        "checks": [
+          "375px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
+          "1440px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
+          "failed package verification disables download"
+        ],
+        "errors": []
+      },
+      "linuxFullGithubInstall": {
+        "status": "ready",
+        "bootstrap": "extracted actual compact ZIP; shared installation engine executed",
+        "githubDownload": true,
+        "sourceHashesVerified": true,
+        "gitHeadMatchesSource": true,
+        "npmCi": "passed",
+        "skills": 7,
+        "ffmpegFfprobe": "passed",
+        "realRendererBrowserStartup": "passed",
+        "actualSiteProjectImport": "passed",
+        "fourReferencePanelAddressesPreserved": true,
+        "currentPresenterTreatmentRouting": "passed"
+      },
+      "nativeWindowsMacOS": "not_run",
+      "missingSystemDependencyInstallation": "not_exercised_prerequisites_already_present",
+      "portableNodeBootstrap": "not_exercised_Node_already_present",
+      "nativeTutorialAutoOpen": "not_exercised",
+      "agentLogin": "not_exercised",
+      "accountsConnected": false,
+      "audiovisualApproval": false,
+      "deployment": "not_performed"
+    },
     "localFile": "studio-kit-pro-installer.zip"
   }
 }
