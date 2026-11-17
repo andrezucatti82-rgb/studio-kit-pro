@@ -1,0 +1,17 @@
+Use $video-multimarcas e leia references/presenter-interaction.md.
+
+Quero editar o vídeo anexado para que a explicação seja demonstrada visualmente junto da pessoa. Use o projeto-video.json da galeria, preservando os estilos, características e escopos que escolhi. Tema: [ASSUNTO]. Formato: [9:16]. Duração desejada: [30 s ou duração da fala]. Apresentador: [meu vídeo gravado / avatar já fornecido / avatar a selecionar explicitamente].
+
+Primeiro inspecione o bruto e a fala. Preserve o original e seu hash, rosto, corpo, roupa e voz. Não regenere minha pessoa para trocar o cenário. Confira quais ferramentas e arquivos realmente existem; não use APIs pagas sem orçamento e autorização específica. Não confunda uma receita do catálogo com um recurso automático instalado.
+
+Proponha uma edição orientada pela explicação: informação entra quando é citada, diagrama se constrói na ordem do raciocínio, gesto causa uma resposta e o resultado fica tempo suficiente para ser entendido. Não quero elementos decorativos aleatórios nem efeito em cada palavra. Mantenha rosto e mãos livres e as legendas nas áreas seguras.
+
+Mostre o plano por trecho: fala e tempos no bruto/editado, corte proposto e motivo, elemento visual, ação, ponto de ancoragem, ordem frente/atrás, fonte dos dados, duração, transição e áudio. Não cortar palavras ou respirações úteis. Se mudar o corte, remapear palavras, gestos, máscaras e som.
+
+Use somente o que estiver implementado e demonstrado. Para palavra atrás do corpo ou cenário novo, use máscara temporal conferida. Para objeto na mão ou toque, use trajetória e instante de contato medidos no take, com revisão de falhas; não substituir por animação aleatória. Para produto desmontado ou câmera 3D, exigir modelo/vistas compatíveis. Se algo faltar, explique e prepare as etapas independentes sem anunciar o efeito como pronto.
+
+Todo texto, número, linha e rótulo deve permanecer editável. Transcrição precisa ter tempos reais; não inventar alinhamento. Use o áudio original uma única vez, música discreta com ducking quando pertinente e SFX apenas nos acontecimentos. Um avatar novo depende de seleção, direitos, conexão e aprovação próprios; não clonar pessoa ou voz por inferência.
+
+Apresente roteiro/EDL, moodboard e storyboard visuais para os aceites aplicáveis. Depois, proponha a amostra de até 10 segundos da interação mais difícil e de sua transição. Não iniciar geração de vídeo IA antes dos aceites exigidos, nem o filme completo antes da aprovação da amostra. Reutilize aprovações válidas já documentadas.
+
+Quando a produção estiver autorizada, execute pelo runtime da galeria e entregue arquivos reais: MP4, legenda, projeto editável, fontes/licenças, EDL e relatório. Verificação técnica não substitui assistir e ouvir o vídeo inteiro; sem revisão audiovisual integral, manter review_pending. Pergunte apenas o que bloquear a próxima etapa.

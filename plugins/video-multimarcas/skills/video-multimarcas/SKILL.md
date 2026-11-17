@@ -16,13 +16,17 @@ Não substituir recursos prometidos por uma solução visual mais simples sem ap
 
 # Vídeo Multimarcas
 
+## Edição com apresentador, pessoa gravada ou avatar
+
+Para explicações que acompanham a fala, gestos, mão, texto atrás do corpo ou troca de fundo, leia [apresentador e interação](references/presenter-interaction.md). As 20 receitas novas incluem requisitos próprios. O runtime aceita palavras temporizadas, trajetórias medidas, máscaras fornecidas e alpha; não inclui extração automática desses dados nem geometria 3D universal. Preservar originais, fonte do apresentador e todos os gates. Escolher uma receita não autoriza gerar ou clonar pessoa.
+
 ## Executar pedidos do site no Codex e Claude Code
 
-Leia [execução pelo orquestrador](references/orchestrator-execution.md). Use o próprio modelo da conversa para planejar; importe o projeto completo no runtime 2.11.0, preserve cada estilo/característica/escopo e produza os arquivos de verdade. A skill isolada não contém o motor: localize ou prepare o runtime, sem exigir outra API de modelo por padrão. Descubra conexões existentes de stock, imagem e HeyGen antes de pedir configurações. Geração cobrada exige aviso prévio e autorização específica; mantenha todos os gates visuais, de fidelidade e revisão. Não substituir o pedido pelo vídeo da prova nem encerrar em prompts quando a execução autorizada for possível.
+Leia [execução pelo orquestrador](references/orchestrator-execution.md). Use o próprio modelo da conversa para planejar; importe o projeto completo no runtime 2.12.0, preserve cada estilo/característica/escopo e produza os arquivos de verdade. A skill isolada não contém o motor: localize ou prepare o runtime, sem exigir outra API de modelo por padrão. Descubra conexões existentes de stock, imagem e HeyGen antes de pedir configurações. Geração cobrada exige aviso prévio e autorização específica; mantenha todos os gates visuais, de fidelidade e revisão. Não substituir o pedido pelo vídeo da prova nem encerrar em prompts quando a execução autorizada for possível.
 
 Transforme uma temática em um vídeo final, com pesquisa verificável e direção original. Esta é uma skill independente: nunca altere outra skill ou reutilize automaticamente identidade, voz, contas ou arquivos de trabalhos anteriores.
 
-Edição do pacote: **2.11.0**. O atlas contém **1.160 estilos em 29 subcategorias**. Esses números descrevem o acervo desta edição, não as ferramentas conectadas à sessão. Para confirmar instalação, versão e limites entre superfícies, leia [versão e atualização](references/version-and-update.md).
+Edição do pacote: **2.12.0**. O atlas contém **1.180 estilos em 30 subcategorias**. Esses números descrevem o acervo desta edição, não as ferramentas conectadas à sessão. Para confirmar instalação, versão e limites entre superfícies, leia [versão e atualização](references/version-and-update.md).
 
 ## Provedor prioritário para geração de vídeo
 

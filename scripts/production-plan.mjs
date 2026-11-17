@@ -45,7 +45,7 @@ export function prepareProduction(presetFile,output){
   execution.contributionBindings=[];
   execution.fidelityRecord='fidelity-plan.json';
   execution.targetDurationSeconds=AtlasWorkflow.normalizeDuration(preset.targetDurationSeconds);
-  execution.selectedStyles=styles.map(s=>({id:s.id,name:s.name,avatar:s.preset?.avatar===true,signature:s.signature,uses:s.uses,motion:s.motion,resources:s.resources,audio:s.audio,requirements:s.requirements,proof:s.proof,novelty:s.novelty,readiness:s.readiness,productFidelity:s.preset.productFidelity,referenceFrame:AtlasWorkflow.referenceFrame(s),visualSequence:s.sequence,executionPlan:s.executionPlan,advertising:s.advertising,selectedAspects:selectedParts(s)}));
+  execution.selectedStyles=styles.map(s=>({id:s.id,name:s.name,avatar:s.preset?.avatar===true,signature:s.signature,uses:s.uses,motion:s.motion,resources:s.resources,audio:s.audio,requirements:s.requirements,proof:s.proof,novelty:s.novelty,readiness:s.readiness,productFidelity:s.preset.productFidelity,referenceFrame:AtlasWorkflow.referenceFrame(s),visualSequence:s.sequence,executionPlan:s.executionPlan,advertising:s.advertising,presenterEditing:s.presenterEditing,selectedAspects:selectedParts(s)}));
   execution.styleRoles=styles.map((s,i)=>({contributions:styleCombination.entries[i].contributions,styleId:s.id,role:i===0?'principal':'complementary',shotIds:[],use:'',exclude:'',status:'planning'}));
   fs.writeFileSync(executionFile,JSON.stringify(execution,null,2)+'\n');
  };

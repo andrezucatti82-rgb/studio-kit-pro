@@ -40,9 +40,12 @@ export function validate(p){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const input=JSON.parse(fs.readFileSync(process.argv[2]||'templates/project.json','utf8'));(input.selectedStyles?validatePreset:validate)(input);console.log('Project valid. This does not certify creative quality.');}
 
 export function validateCatalog(c){
- if(c.styles.length!==1160||new Set(c.styles.map(s=>s.id)).size!==1160)throw Error('1160 unique styles required');
- if(c.families.length!==29)throw Error('29 subcategories required');
- for(const f of c.families.slice(18))if(f.count!==40||c.styles.filter(s=>s.family===f.id).length!==40)throw Error('Forty ads per grouped segment required: '+f.id);
+ if(c.styles.length!==1180||new Set(c.styles.map(s=>s.id)).size!==1180)throw Error('1180 unique styles required');
+ if(c.families.length!==30)throw Error('30 subcategories required');
+ for(const f of c.families)if(f.count!==c.styles.filter(s=>s.family===f.id).length)throw Error('Family count mismatch: '+f.id);
+ for(const f of c.families.filter(f=>f.id.startsWith('ads-')))if(f.count!==40)throw Error('Forty ads per grouped segment required: '+f.id);
+ const presenters=c.styles.filter(s=>s.family==='explicadores');if(presenters.length!==20)throw Error('Twenty presenter directions required');
+ for(const s of presenters)if(!s.presenterEditing||s.presenterEditing.referenceIsExecutionProof!==false||!s.presenterEditing.avatarOptInRequired||s.presenterEditing.automaticGestureTracking!==false||s.presenterEditing.automaticSegmentation!==false)throw Error('Presenter direction must state actual capabilities: '+s.id);
  const safe=v=>typeof v==='string'&&/^assets\/[a-zA-Z0-9_,./-]+\.webp$/.test(v)&&!v.includes('..');
  for(const s of c.styles){
   if(!s.proof||!s.requirements||!s.preset?.productFidelity||!['voice','music','sfx','mix'].every(k=>s.audio?.[k]))throw Error('Incomplete fidelity fields: '+s.id);

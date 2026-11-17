@@ -17,10 +17,21 @@ export async function editGraph(plan,store,work,{signal}={}){
   await fs.copyFile(source,path.join(publicDir,'fonts',file));fonts.push({family,weight,src:`fonts/${file}`});
  }
  const media={};let n=0;
- for(const scene of plan.scenes)for(const layer of scene.layers){if(layer.type!=='media')continue;signal?.throwIfAborted();const a=await store.verify(layer.assetId),src=`media-${n++}.${a.kind==='video'?'mp4':a.codec==='png'?'png':a.codec==='webp'?'webp':'jpg'}`;
+ for(const scene of plan.scenes)for(const layer of scene.layers){if(layer.type!=='media')continue;signal?.throwIfAborted();const a=await store.verify(layer.assetId),transparent=a.kind==='video'&&Boolean(a.hasAlpha||layer.maskAssetId),src=`media-${n++}.${a.kind==='video'?(transparent?'webm':'mp4'):a.codec==='png'?'png':a.codec==='webp'?'webp':'jpg'}`;
   if(a.kind==='image')await fs.copyFile(store.file(a.id),path.join(publicDir,src));
+  else if(transparent){
+   const inputs=['-ss',String(layer.sourceStartSeconds),...(a.hasAlpha&&a.codec==='vp9'?['-c:v','libvpx-vp9']:[]),'-i',store.file(a.id)];
+   const fps=plan.output.fps;
+   let filter=`[0:v]fps=${fps},format=rgba,scale=trunc(iw/2)*2:trunc(ih/2)*2,setsar=1[cutout]`;
+   if(layer.maskAssetId){
+    const mask=await store.verify(layer.maskAssetId);
+    inputs.push(...(mask.kind==='image'?['-stream_loop','-1']:['-ss',String(layer.maskStartSeconds??layer.sourceStartSeconds)]),'-i',store.file(mask.id));
+    filter=`[0:v]fps=${fps},setpts=PTS-STARTPTS,format=rgba[original];[1:v]fps=${fps},setpts=PTS-STARTPTS,format=gray[mask];[original][mask]alphamerge,scale=trunc(iw/2)*2:trunc(ih/2)*2,setsar=1[cutout]`;
+   }
+   await run('ffmpeg',['-hide_banner','-loglevel','error','-y','-protocol_whitelist','file,pipe',...inputs,'-t',String(scene.durationFrames/fps),'-filter_complex_threads','1','-filter_complex',filter,'-map','[cutout]','-map','0:a:0?','-c:v','libvpx-vp9','-lossless','1','-auto-alt-ref','0','-pix_fmt','yuva420p','-c:a','libopus',path.join(publicDir,src)],{signal});
+  }
   else await run('ffmpeg',['-hide_banner','-loglevel','error','-y','-protocol_whitelist','file,pipe','-ss',String(layer.sourceStartSeconds),'-i',store.file(a.id),'-t',String(scene.durationFrames/plan.output.fps),'-map','0:v:0','-map','0:a:0?','-vf',`fps=${plan.output.fps},scale=trunc(iw/2)*2:trunc(ih/2)*2,setsar=1`,'-c:v','libx264','-preset','fast','-crf','18','-pix_fmt','yuv420p','-c:a','aac','-movflags','+faststart',path.join(publicDir,src)],{signal});
-  media[`${scene.id}:${layer.id}`]={src,kind:a.kind};
+  media[`${scene.id}:${layer.id}`]={src,kind:a.kind,transparent};
  }
  const audio=[];for(const [i,track]of plan.audio.tracks.entries()){await store.verify(track.assetId);const src=`audio-${i}.wav`;await run('ffmpeg',['-v','error','-y','-protocol_whitelist','file,pipe',...(track.loop?['-stream_loop','-1']:[]),'-ss',String(track.sourceStartSeconds),'-i',store.file(track.assetId),'-t',String(track.durationFrames/plan.output.fps),'-vn','-ar','48000','-ac','2',path.join(publicDir,src)],{signal});audio.push({...track,src});}
  // Always supply an audio stream; explicitly silent when the approved plan has no sound.

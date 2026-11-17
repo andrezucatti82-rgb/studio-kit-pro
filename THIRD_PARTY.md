@@ -1,5 +1,9 @@
 # Licenças e procedência
 
+## Apresentador e explicação · catálogo 4.5
+
+Os 80 estudos e 80 thumbnails em `style-atlas/dist/assets/presenter-20/` são composições esquemáticas originais produzidas por `style-atlas/records/presenter-20/build.py`, com Geist OFL já distribuída. Não reutilizam frames, rosto, voz, materiais ou receitas privadas do SuperEditor IA ou dos Reels pesquisados. Fonte e SHA256 por quadro em `style-atlas/records/presenter-20/assets.json`. Os estudos não são aprovação de vídeo. Referências públicas aparecem como links e análise técnica em `docs/INTERACTIVE-PRESENTER-2.12.md`.
+
 ## Fontes
 
 `public/fonts/Geist-Regular.ttf` e `Geist-Bold.ttf`: Geist, licença SIL Open Font License. Cópia integral em `public/fonts/Geist-OFL.txt`.

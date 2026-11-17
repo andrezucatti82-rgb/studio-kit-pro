@@ -1,0 +1,47 @@
+{
+  "version": "2.12.0",
+  "catalogVersion": "4.5",
+  "styleCount": 1180,
+  "families": 30,
+  "newDirections": 20,
+  "newFrames": 80,
+  "existingStyleDataPreserved": true,
+  "checks": {
+    "javascript": {
+      "passed": 167,
+      "failed": 0
+    },
+    "python": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "catalog": "passed",
+    "originalFrames": "sha256 recorded",
+    "ffmpegAlpha": "passed with synthetic original and supplied mask",
+    "remotionComposition": "two real rendered frames, alpha and measured anchor pixel checks",
+    "browserRegression": "passed",
+    "browserNewStyles": "passed with the mobile drawer closed, visible cards and loaded images",
+    "siteExportAndRuntimeImport": "passed using actual browser-downloaded project"
+  },
+  "limitations": {
+    "coursePrivateMaterialsInspected": false,
+    "referencePlaybackAndListening": "sampled frames and public descriptions; no full audiovisual review",
+    "automaticTranscriptionInstalled": false,
+    "automaticSegmentationInstalled": false,
+    "automaticGestureTrackingInstalled": false,
+    "realPresenterFootageValidated": false,
+    "creativeApproval": "pending",
+    "productionPublication": "not_performed"
+  },
+  "generation": {
+    "paidVideoVoiceApisInvoked": false,
+    "externalModelsInstalled": false,
+    "storyboards": "two original illustrative proposals, not identity references or approved footage"
+  },
+  "publicSiteReadback": {
+    "httpStatus": 200,
+    "version": "2.11.0",
+    "release": "atlas-20261116034528"
+  }
+}

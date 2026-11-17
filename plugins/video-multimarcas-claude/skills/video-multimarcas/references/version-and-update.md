@@ -1,6 +1,6 @@
 # Versão, instalação e atualização
 
-Esta edição é `video-multimarcas` **2.11.0**, genérica e independente de `video-b-roll`. O kit executável é 2.11.0; estilos são catálogo 4.4 (1.160/29 subcategorias). Não confunda versão da skill, do plugin, do kit e dos catálogos.
+Esta edição é `video-multimarcas` **2.12.0**, genérica e independente de `video-b-roll`. O kit executável é 2.12.0; estilos são catálogo 4.5 (1.180/30 subcategorias). Não confunda versão da skill, do plugin, do kit e dos catálogos.
 
 Fontes públicas:
 - Repositório: https://github.com/andrezucatti82-rgb/studio-kit-pro
@@ -27,6 +27,6 @@ A edição 2.9.0 acrescenta 380 conceitos e reorganiza os anúncios em 11 subcat
 
 A edição 2.10.0 acrescenta kit TXT/JSON/PNG individual, destino ChatGPT/Claude, declaração inicial leve de materiais, contrato compartilhado, conferência de recebimento e continuidade rica. Leia conversation-and-continuity.md. Commit, publicação e instalação são estados separados; confira o destino e a versão efetivamente recebidos. Gerar pacotes não os instala em contas.
 
-## Execução da galeria · 2.11.0
+## Execução da galeria · 2.12.0
 
 O pedido e os pacotes agora incluem a ponte para o runtime e para planos escritos pelo próprio Codex/Claude Code. Leia orchestrator-execution.md. O runtime suporta composição declarativa por camadas e mídia compatível; resolver 1.160 IDs não certifica execução de todas as técnicas. Há plugin próprio para Claude Code e um pacote de runtime separado. Instalar instruções não instala o motor, transfere conexões nem autoriza gastos.

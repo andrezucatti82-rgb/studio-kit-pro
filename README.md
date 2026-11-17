@@ -1,5 +1,11 @@
 # Vídeo Multimarcas
 
+## Apresentador e explicação · 2.12.0 em preparação
+
+Esta branch acrescenta **20 direções originais**, totalizando **1.180 estilos em 30 subcategorias**, e operadores para palavras temporizadas, trajetórias medidas, máscaras fornecidas e vídeo com alpha. As receitas servem para vídeo gravado ou avatar explicitamente escolhido, com originais e identidade preservados. Não incluem transcrição, segmentação ou tracking automáticos. [Análise das referências, recursos, storyboards e limites](docs/INTERACTIVE-PRESENTER-2.12.md) · [Prompt](style-atlas/dist/presenter-prompt.txt).
+
+A publicação 2.11.0 no domínio foi verificada após o merge da PR #19. A preparação 2.12.0, seus pacotes e seus novos estudos são estados separados de um novo deploy e da homologação audiovisual de cada efeito.
+
 ## Orquestrador local em desenvolvimento
 
 Esta branch acrescenta o percurso **site → Codex/Claude Code → MP4** na versão 2.11.0: importação da ficha, planejamento pelo modelo da conversa, composição validada por camadas, mídia registrada, áudio/legendas, fila cancelável, FFmpeg e Remotion. Estilos, características e escopos são preservados. Skill, plugins específicos e runtime são distribuídos separadamente. [Como funciona e limites](docs/SITE-TO-VIDEO-2.11.md).
@@ -10,7 +16,7 @@ O executor editorial da prova anterior é preservado. Execute `CHROME_PATH=/usr/
 
 Edição **2.10.0**: **1.160 estilos em 29 subcategorias**, modo guiado, ícones no menu, referências e pacotes completos. A política de aprovação visual da main foi preservada junto aos controles de fidelidade. A expansão [2.9.0 reorganiza os anúncios por segmento](docs/SEGMENT-ADS-4.4.md). Use [Comece aqui](docs/START-HERE.md) para instalar.
 
-A experiência 2.10 está publicada no [espelho autorizado](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site). O domínio principal aguarda acesso ao cPanel para receber a atualização. [Estado verificado por destino](docs/GUIDED-DELIVERY-2.10.md).
+A experiência 2.10 está publicada no [espelho autorizado](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site). O domínio principal recebeu a versão 2.11.0 após a PR #19; o recibo daquela publicação é separado desta preparação. [Estado verificado por destino](docs/GUIDED-DELIVERY-2.10.md).
 
 **Skill pública de uso geral.** Identificador: `video-multimarcas`. Adapta cada produção à marca informada; não carrega identidade ou voz pessoal como padrão.
 
@@ -147,7 +153,7 @@ Verificar quadros de início, meio, fim e transições, além de reprodução in
 
 ## Pacotes de instalação e atualização
 
-[Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Plugin 2.9.0, kit 2.9.0 e catálogo 4.4 (1.160 estilos/29 subcategorias). O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
+[Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Pacotes preparados: plugin 2.12.0, kit 2.12.0 e catálogo 4.5 (1.180 estilos/30 subcategorias); instalação e publicação são verificadas separadamente. O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
 
 ## Referências visuais para o pedido
 
