@@ -2,8 +2,8 @@
   "version": 1,
   "catalogVersion": "4.8",
   "kitVersion": "2.12.0",
-  "status": "local_verified_publication_pending",
-  "verifiedAt": "2026-11-17T17:03:29.966370+00:00",
+  "status": "published_and_verified",
+  "verifiedAt": "2026-11-17T17:35:30.965949+00:00",
   "counts": {
     "styles": 1425,
     "mainCategories": 7,
@@ -64,9 +64,88 @@
     "clientMediaOrCredentialsIncluded": false
   },
   "publication": {
-    "status": "pending"
+    "status": "published",
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "release": "atlas-20261117171430",
+    "distributionCommit": "debd663965ec9d4a66556986098b34020b62f16f",
+    "entrySha256": "bb382e87fef8b9c4c5d445bf4c6ef4373f182b14da111eb14b543d4600992a11",
+    "backupVerified": true,
+    "previousEntrySha256": "9c15ffe12dd8f53963c148de63256b990ada9ee26347b7bf7d6d6ec7ec2fa80d",
+    "previousReleasePreserved": true,
+    "changedPublicFilesHashVerified": 279,
+    "unchangedFamilySamplesVerified": 29,
+    "stageBrowser": {
+      "surface": "stage",
+      "url": "https://videos.gerenciadordeanuncios.com.br/atlas-20261117171430/",
+      "release": "atlas-20261117171430",
+      "checks": [
+        "1440px: HTTP 200, actual 2.12.0/catalogue 4.8/1425 styles, dog aliases 39/cats 4/aquarium 1, 265 realistic explainers/four beats/panel PNG, actual prompt and project with treatment, actual installer ZIP/hash and tutorial popup, no overflow",
+        "375px: HTTP 200, actual 2.12.0/catalogue 4.8/1425 styles, dog aliases 39/cats 4/aquarium 1, 265 realistic explainers/four beats/panel PNG, actual prompt and project with treatment, actual installer ZIP/hash and tutorial popup, no overflow"
+      ],
+      "errors": []
+    },
+    "liveBrowser": {
+      "surface": "live",
+      "url": "https://videos.gerenciadordeanuncios.com.br/",
+      "release": "atlas-20261117171430",
+      "checks": [
+        "1440px: HTTP 200, actual 2.12.0/catalogue 4.8/1425 styles, dog aliases 39/cats 4/aquarium 1, 265 realistic explainers/four beats/panel PNG, actual prompt and project with treatment, actual installer ZIP/hash and tutorial popup, no overflow",
+        "375px: HTTP 200, actual 2.12.0/catalogue 4.8/1425 styles, dog aliases 39/cats 4/aquarium 1, 265 realistic explainers/four beats/panel PNG, actual prompt and project with treatment, actual installer ZIP/hash and tutorial popup, no overflow"
+      ],
+      "errors": []
+    }
   },
   "freshInstallation": {
-    "status": "pending"
-  }
+    "status": "ready",
+    "platform": "linux",
+    "sourceRevision": "f375f38f5009e8fb1596786df010e39f8206b96c",
+    "sourceAcquisition": "local git archive of the pinned public commit; every manifest source file verified",
+    "sourceArchiveBytes": 790957962,
+    "gitMetadataFetch": "real public GitHub fetch",
+    "steps": {
+      "source": "passed",
+      "systemDependencies": "passed",
+      "git": "passed",
+      "dependencies": "passed",
+      "skills": {
+        "status": "passed",
+        "count": 7,
+        "discovery": "both"
+      },
+      "runtime": "passed"
+    },
+    "conditions": {
+      "preinstalledNodeGitFfmpegAndChromium": true,
+      "portableNodeBootstrap": "not_exercised",
+      "missingSystemDependencyPreparation": "not_exercised",
+      "nativeWindowsMacOS": "not_tested",
+      "operatingSystemTutorialAutoOpen": "not_exercised",
+      "agentAccountLogin": "not_tested"
+    },
+    "websiteToInstalledRuntime": {
+      "websiteDownloadImported": true,
+      "requestSha256": "1573d16d08bbd1f6e481af264f95612c5736562aded28386521c335d55f6f9ce",
+      "styleId": "explicador-agencias-do-anuncio-ao-caixa-com-evidencias",
+      "runtimeVersion": "2.12.0",
+      "modules": [
+        "video-planejamento",
+        "video-explicador-interativo",
+        "video-edicao",
+        "video-tratamento",
+        "video-revisao"
+      ],
+      "depthAndDomainPreserved": true,
+      "modelApiRequired": false,
+      "renderedVideo": false,
+      "liveDownloadMatchesImportedRequest": true
+    },
+    "installer": {
+      "bytes": 619907,
+      "sha256": "b09811cb04acdbf09f8f8a6c8d2aa7305b06a569821d071f6a4d5fac3abf50ed",
+      "downloadUrl": "https://videos.gerenciadordeanuncios.com.br/atlas-20261117171430/downloads/studio-kit-pro-installer.zip",
+      "sourceReady": true
+    },
+    "accountsOrProviderCreditsTransferred": false
+  },
+  "sourceRevision": "f375f38f5009e8fb1596786df010e39f8206b96c"
 }
