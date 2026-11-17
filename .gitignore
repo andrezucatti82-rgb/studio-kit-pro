@@ -14,3 +14,7 @@ deployment-backup/
 __pycache__/
 *.pyc
 style-atlas/records/catalog-source.json
+
+# Installer-owned local runtime and reports
+.studio-tools/
+installation-report.json

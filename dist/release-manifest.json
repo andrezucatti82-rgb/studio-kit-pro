@@ -50,24 +50,40 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 136418,
-      "sha256": "b94245b498dd55943e3cb5bc92202f2c6e5ba80c09fe39f20780228f710a7a91"
+      "bytes": 137933,
+      "sha256": "8c2e9f18b0d67c866fb5a9ad50ea43b241ebc9f2b8decf5d4c720df3a8cc99b8"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 136883,
-      "sha256": "784c3dddd5e830e0bf7c333d68b2ae0a6b478fe3585bc00c06e4912682ae4a5f"
+      "bytes": 138388,
+      "sha256": "97c25331bfe3de601dd854b44e78016ee6f6dd54ee38dce0fcb4a35587ddadcd"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 2443777,
-      "sha256": "05cc518a435541c095c30bdb74f56a70a4a5c31d2ee60277dc46c7cd5d1fd307"
+      "bytes": 2614959,
+      "sha256": "fbd9ff9ec6628721733b202bde4a0ced9d51799109c00d7fb344a1a9b03174cb"
     },
     "video-multimarcas.skill": {
-      "bytes": 112235,
-      "sha256": "a28116446207ce3c57114beb010d0eab231819f298ecea504edda736c5b13be3"
+      "bytes": 113558,
+      "sha256": "cb41a308d0eee4491a9b698dd840d4cac0ed440a5c0e14df5bff8a298d5df1f6"
     },
     "video-multimarcas.zip": {
-      "bytes": 112235,
-      "sha256": "a28116446207ce3c57114beb010d0eab231819f298ecea504edda736c5b13be3"
+      "bytes": 113558,
+      "sha256": "cb41a308d0eee4491a9b698dd840d4cac0ed440a5c0e14df5bff8a298d5df1f6"
     }
+  },
+  "installer": {
+    "version": 1,
+    "kitVersion": "2.12.0",
+    "sourceRevision": "bacd161c94b7379cbad4b8f305884c8b0467e76f",
+    "sourceReady": false,
+    "download": "downloads/studio-kit-pro-installer.zip",
+    "bytes": 577603,
+    "sha256": "476bc69d3b913b03e25c97bd579831937ad674813b35dad7a5788866ceb31d91",
+    "tutorial": "como-instalar.html",
+    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
+    "internetRequired": true,
+    "fullProjectDownloadMiB": 545,
+    "skills": 7,
+    "presenterStyles": 60,
+    "localFile": "studio-kit-pro-installer.zip"
   }
 }

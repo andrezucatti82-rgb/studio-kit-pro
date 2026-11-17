@@ -32,7 +32,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null}={}){
  };
  document.fonts={add(){}};ctx.window=ctx;ctx.globalThis=ctx;
  vm.createContext(ctx);
- for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
+ for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
  for(let i=0;i<150&&!ctx.ATLAS_READY&&!errors.length;i++)await new Promise(r=>setTimeout(r,10));
  assert.equal(errors.map(e=>e.stack).join('\n'),'');assert.equal(ctx.ATLAS_READY,true,'app initialized');
  const click=selector=>{const el=document.querySelector(selector);assert.ok(el,selector);el.dispatchEvent(new dom.Event('click',{bubbles:true}));};
@@ -368,3 +368,10 @@ test('an explicit style link renews visual approvals, preserves history and reta
  test('optional image origin keeps the catalogue local and all reference links on the real media origin',async()=>{
  const origin='https://media.example.org/verified-release/';const a=await boot({imageOrigin:origin});a.ctx.AtlasApp.chooseStyle('publicidade-cinematografica');const c=a.ctx.AtlasCurrentChoice();assert.ok(a.document.querySelector('#grid img').getAttribute('src').startsWith(origin));assert.ok(c.catalogUrl.includes('example.org/release/catalog.json'));assert.equal(c.referenceAssetOrigin,origin);const m=a.ctx.AtlasWorkflow.referenceManifest(c);assert.ok(m.styles[0].principal.startsWith(origin));assert.ok(m.styles[0].frames.every(f=>f.url.startsWith(origin)));assert.equal(c.productionContract.references.styles[0].principal,m.styles[0].principal);assert.equal(a.getStorageReads()>0,true);
  });
+
+test('presenter storyboard steps show real selected recipe directions and retain them in the prompt',async()=>{
+ const app=await boot();app.click('[data-nav-group="movement"]');app.click('[data-nav-family="explicadores"]');app.click('#grid [data-detail]');
+ const host=app.document.querySelector('[data-presenter-story]');assert(host);assert.equal(host.querySelectorAll('[data-presenter-step]').length,4);
+ const before=host.querySelector('[data-presenter-image]').src;app.click('[data-presenter-step="2"]');assert.notEqual(host.querySelector('[data-presenter-image]').src,before);assert.equal(host.querySelector('[data-presenter-step="2"]').getAttribute('aria-pressed'),'true');assert(host.querySelector('[data-beat="graphicAction"]').textContent.includes('relação'));
+ app.click('#detailDialog [data-choose]');app.change('topic','Explicar CRM');app.click('#prepare');assert(app.ctx.AtlasApp.prompt().includes('interactionPlan'));assert(app.ctx.AtlasApp.prompt().includes('sourceTimes'));
+});

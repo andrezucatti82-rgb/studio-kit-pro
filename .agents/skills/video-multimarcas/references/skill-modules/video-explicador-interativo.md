@@ -15,6 +15,8 @@ Receba o pedido completo, contribuições, roteiro/decisões válidos e mídia a
 
 Para **gravação**, preserve original e hash, identidade, roupa, voz, ambiente e relógio da fala. Para **avatar**, descubra a conexão e deixe o usuário confirmar o visual exato; reutilize uma seleção válida. Resolva a voz pessoal disponível/default ou explicitamente selecionada. Consentimento da pessoa, voz ativa, compatibilidade do visual e custo são verificações separadas. Selecionar uma receita de edição não autoriza gerar avatar ou clonar identidade/voz. Sem acesso, registre a dependência; não substitua a pessoa.
 
+O catálogo inclui `interactionPlan` por receita: quatro momentos com intenção de fala, gesto, informação, som, função e insumos. Use-o como direção editável, adaptada ao tema e aos escopos; `sourceTimes:null` significa que nenhum tempo foi medido. Os momentos não obrigam quatro cenas nem reiniciam decisões aprovadas. Faça somente as perguntas ainda pertinentes.
+
 ## Atuação e motion juntos
 
 Entregue por trecho: fala/âncora → gesto/olhar/pausa → elemento e espaço → âncora/oclusão → resposta visível → passagem/som → critério da amostra. Exemplo: apresentar formulário → o mesmo contato entra no CRM junto da palma → surge uma tarefa. Planeje espaço para mãos e grafismos antes de gerar, com rosto e legendas livres. O campo de movimento de um provedor é uma solicitação; coordenadas e tempos de cada gesto podem não estar disponíveis. Meça a atuação efetivamente obtida antes de ancorar o gráfico.

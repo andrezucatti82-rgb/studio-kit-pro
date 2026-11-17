@@ -21,3 +21,5 @@ Todo texto, número, linha e rótulo deve permanecer editável. Transcrição pr
 Apresente roteiro/EDL, moodboard e storyboard visuais para os aceites aplicáveis. Depois, proponha a amostra de até 10 segundos da interação mais difícil e de sua transição. Não iniciar geração de vídeo IA antes dos aceites exigidos, nem o filme completo antes da aprovação da amostra. Reutilize aprovações válidas já documentadas.
 
 Quando a produção estiver autorizada, execute pelo runtime da galeria e entregue arquivos reais: MP4, legenda, projeto editável, fontes/licenças, EDL e relatório. Verificação técnica não substitui assistir e ouvir o vídeo inteiro; sem revisão audiovisual integral, manter review_pending. Pergunte apenas o que bloquear a próxima etapa.
+
+Leia presenterEditing.interactionPlan no projeto exportado: intenções de fala, participação da pessoa, ação gráfica, som e função por momento. Adapte ao assunto e à fonte; sourceTimes=null indica tempos ainda não medidos. Pergunte somente as faltas relevantes. Use video-tratamento antes da revisão e confira a matriz de capacidades.

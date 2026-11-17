@@ -87,3 +87,9 @@ A referência canônica da skill documenta operadores e limites; o empacotador s
 ## Validação
 
 Verificações: typecheck, 170 testes JavaScript + 9 Python, validador e whitespace passaram. Houve render real com comparação de pixels para alpha, âncora medida, blur do fundo e grão determinístico/desativável. No Chromium, os 17 filtros, download de prompt/projeto, importação CLI e galeria de 320–1920 px passaram; a regressão guiada também passou. Registro: `style-atlas/records/presenter-60/validation.json`. Typecheck, testes, comparação de pixels do render e QA do navegador não equivalem a playback/escuta de uma produção real ou aprovação dos conceitos. Antes de vídeo IA, as etapas visuais aplicáveis devem estar aprovadas; antes do filme completo, revisar a amostra representativa com o bruto escolhido.
+
+## Finalização das fichas e instalação compacta
+
+As 60 fichas agora incluem interactionPlan com intenção da fala, ação da pessoa, resposta gráfica, direção sonora, função e requisitos por momento. O site permite navegar pelos quatro momentos e leva o mesmo plano ao prompt/JSON. sourceTimes continua null: não são tempos medidos nem 60 vídeos completos. O material existente é preservado, e a amostra futura precisa comprovar gesto, contato e sincronismo.
+
+O botão Instalar ferramenta oferece um único ZIP compacto; o instalador obtém a revisão fixa completa do GitHub, confere hashes, prepara dependências/skills locais e abre o tutorial. Codex/Claude Code e login são conferidos separadamente. Detalhes em [instalação](INSTALL-SKILL.md).

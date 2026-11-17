@@ -1,12 +1,13 @@
 import {spawnSync} from 'node:child_process';
-import {existsSync} from 'node:fs';
+import {existsSync,readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import '../style-atlas/dist/workflow.js';
 export function commandStatus(p){if(p.error)return {status:p.error.code==='ENOENT'?'missing':'unverified',reason:p.error.code||'execution_error'};return {status:p.status===0?'available':'unverified',reason:p.status===0?'version_command_succeeded':'exit_'+p.status};}
 export function diagnose(){
+ let cachedBrowser;try{cachedBrowser=JSON.parse(readFileSync('.cache/setup-runtime.json','utf8')).browserPath;}catch{}
  const checks=[],file=(item,ok)=>checks.push({item,status:ok?'available':'missing',reason:'local_files'});
  file('Node.js >= 22',Number(process.versions.node.split('.')[0])>=22);file('Dependências locais (npm ci)',existsSync('node_modules/remotion/package.json'));
- for(const [item,cmd,args] of [['FFmpeg','ffmpeg',['-version']],['FFprobe','ffprobe',['-version']],['Chromium',process.env.CHROME_PATH||'chromium',['--version']],['Blender (opcional)','blender',['--version']]])checks.push({item,...commandStatus(spawnSync(cmd,args,{encoding:'utf8',timeout:10000}))});
+ for(const [item,cmd,args] of [['FFmpeg','ffmpeg',['-version']],['FFprobe','ffprobe',['-version']],['Chromium',process.env.CHROME_PATH||cachedBrowser||'chromium',['--version']],['Blender (opcional)','blender',['--version']]])checks.push({item,...commandStatus(spawnSync(cmd,args,{encoding:'utf8',timeout:10000}))});
  for(const s of AtlasWorkflow.skillSystem.skills)file('Skill '+s.id,existsSync('.agents/skills/'+s.id+'/SKILL.md'));
  file('Módulos portáteis e registro',existsSync('.agents/skills/video-multimarcas/references/skill-system.json'));file('Atlas local',existsSync('style-atlas/dist/catalog.json'));
  checks.push({item:'HeyGen API direta',status:'unverified',reason:process.env.HEYGEN_API_KEY?'credential_present_authentication_not_tested':'credential_not_configured'});

@@ -129,4 +129,7 @@ def build():
   c['styles'].append(s);manifest.append({'id':sid,'generator':'Original procedural editorial composition','source':'build.py + recipes.py','sector':sector,'motionValidated':False,'frames':records})
  assert len(c['styles'])==1220 and len(manifest)==60
  path.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n');(OUT/'assets.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n');(OUT/'sectors.json').write_text(json.dumps(SECTORS,ensure_ascii=False,indent=2)+'\n');print('60 sector directions, 240 original studies; speech, audio and motion remain pending production.')
-if __name__=='__main__':build()
+if __name__=='__main__':
+ build()
+ import subprocess
+ subprocess.check_call(['node',str(ROOT/'scripts/complete-presenter-catalog.mjs')],cwd=ROOT)

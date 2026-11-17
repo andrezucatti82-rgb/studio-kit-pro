@@ -88,11 +88,11 @@ with zipfile.ZipFile(root/'dist/video-multimarcas-claude-plugin.zip','w',zipfile
 # A small executable runtime, separate from instructions and from the full media catalogue.
 # Only these public source trees are allowed; never archive projects, .env, caches or node_modules.
 runtime_files=set()
-for runtime_name in ['AGENTS.md','CLAUDE.md','README.md','THIRD_PARTY.md','LICENSE','package.json','package-lock.json','tsconfig.json']:
+for runtime_name in ['AGENTS.md','CLAUDE.md','README.md','THIRD_PARTY.md','LICENSE','package.json','package-lock.json','tsconfig.json','studio.sh','STUDIO.cmd']:
     runtime_files.add(root/runtime_name)
-for folder in [*[f'.agents/skills/{sid}' for sid in skill_ids[1:]],*[f'.claude/skills/{sid}' for sid in skill_ids[1:]],'server','src','scripts','templates','docs','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
+for folder in [*[f'.agents/skills/{sid}' for sid in skill_ids[1:]],*[f'.claude/skills/{sid}' for sid in skill_ids[1:]],'server','src','scripts','templates','docs','packaging','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
     for source in (root/folder).rglob('*'):
-        if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff'] or source.name.startswith('LICENSE')):
+        if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff','.sh','.cmd','.ps1'] or source.name.startswith('LICENSE')):
             runtime_files.add(source)
 for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js']:
     runtime_files.add(root/'style-atlas/dist'/runtime_name)

@@ -21,3 +21,7 @@ test('every homepage script and stylesheet resolves inside the release, includin
  for(const file of ['favicon.ico','favicon-32.png','favicon-16.png','apple-touch-icon.png']){assert.ok(html.includes(`href="${release}/assets/${file}"`));assert.ok(fs.existsSync(new URL('../style-atlas/dist/assets/'+file,import.meta.url)));}
  assert.throws(()=>releaseEntryHtml(source,'../other'),/Invalid/);
 });
+test('installer ZIP and tutorial links stay inside the immutable release',()=>{
+ const html=releaseEntryHtml('<a href="downloads/studio-kit-pro-installer.zip" download>ZIP</a><a href="como-instalar.html">Tutorial</a>','atlas-20261117090000');
+ assert(html.includes('href="atlas-20261117090000/downloads/studio-kit-pro-installer.zip"'));assert(html.includes('href="atlas-20261117090000/como-instalar.html"'));
+});

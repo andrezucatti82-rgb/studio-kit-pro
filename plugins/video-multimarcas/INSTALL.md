@@ -2,6 +2,18 @@
 
 Esta documentação descreve a PR #20, ainda em revisão. Preparar os pacotes não publica o domínio nem atualiza instalações externas. Confira a branch/commit e `dist/release-manifest.json`; `main` e o site podem distribuir uma versão anterior até uma publicação autorizada.
 
+## Instalação recomendada: um ZIP
+
+No site candidato, use **Instalar ferramenta → Baixar instalador completo**. Extraia o ZIP e abra `LEIA-PRIMEIRO.html`. Execute `INSTALAR.cmd` no Windows ou `sh install.sh` no macOS/Linux. O instalador compacto fixa uma revisão do GitHub e confere os hashes antes de executar. Precisa de internet: baixa o projeto completo, inclusive referências visuais, e dependências; reserve 3 GB livres.
+
+Aproveita Node.js 22+ ou prepara Node.js 24 portátil, instala dependências com `npm ci`, verifica as sete skills locais para Codex/Claude Code e testa FFmpeg/FFprobe e abertura do navegador de renderização. Pode instalar Git/FFmpeg via winget, Homebrew ou apt quando o gerenciador estiver disponível e pode pedir confirmação local. Não altera políticas de execução, contas, outras skills globais ou projetos existentes. Requisitos não atendidos deixam status de falha/pendência e instrução de retomada; não anunciam instalação pronta.
+
+Ao concluir, abre o [tutorial completo](COMECE-AQUI.html). Abra a pasta instalada no Codex ou Claude Code e inicie nova sessão. Os aplicativos dos agentes e seus logins são requisitos separados; este pacote instala o projeto, não uma conta. Para CLI e Node portátil, use `studio.sh`/`STUDIO.cmd`; o modo `atlas` abre o catálogo local. As configurações de descoberta já pertencem ao repositório; não é necessário instalar plugins globais duplicados.
+
+Uma retomada da mesma revisão confere os arquivos e preserva `projects/`. Outra versão ou pasta pessoal exige destino novo. O relatório `installation-report.json` distingue `source_verified_runtime_pending`, `installing`, `failed` e `ready`; `ready` comprova somente os testes locais descritos.
+
+O ZIP está em `style-atlas/dist/downloads/studio-kit-pro-installer.zip`; `installation.json` registra revisão, hash e disponibilidade. Só é liberado no site quando os arquivos protegidos correspondem ao commit fixado. Preparar isso na PR não publica o domínio. Git clone, plugins e pacotes menores continuam opções avançadas abaixo.
+
 ## Um pacote, sete skills
 
 O plugin existente `video-multimarcas` continua com o mesmo identificador e instala o conjunto:
@@ -85,7 +97,7 @@ Candidato: plugin **2.12.0**, runtime **2.12.0**, catálogo **4.6**, **1.220 est
 Fontes editáveis: `.agents/skills/<id>/`. As referências comuns pertencem à orquestradora; as cópias incorporadas e os diretórios `plugins/` são gerados por:
 
 ```bash
-python scripts/package-skill.py
+npm run package
 npm run check
 npm test
 npm run validate
