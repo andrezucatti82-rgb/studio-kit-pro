@@ -56,7 +56,7 @@
   function search(query){
    const q=normalize(String(query??'').slice(0,256)),terms=[...new Map(units(q).map(u=>[u.value,u])).values()];if(!terms.length)return entries.map(e=>({style:e.style,score:0}));
    return entries.flatMap(e=>{
-    const matches=terms.map(t=>e.tokens.has(t.value)||(!t.known&&t.value.length>=3&&[...e.words].some(w=>w.startsWith(t.value))));if(matches.some(m=>!m))return [];
+    const matches=terms.map(t=>e.tokens.has(t.value)||e.words.has(normalize(t.value))||(!t.known&&t.value.length>=3&&[...e.words].some(w=>w.startsWith(t.value))));if(matches.some(m=>!m))return [];
     const score=(e.title===q?1000:e.title.includes(q)?300:0)+terms.reduce((n,t)=>n+(e.titleTokens.has(t.value)?30:0)+(e.tokens.has(t.value)?10:1),0);
     return [{style:e.style,score,order:e.order}];
    }).sort((a,b)=>b.score-a.score||a.order-b.order);

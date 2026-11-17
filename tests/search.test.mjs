@@ -24,6 +24,7 @@ test('multiple search concepts can occur in different fields and exact titles ra
 });
 test('technical and subject tags remain specific, and declared presenter avatar support is searchable',()=>{
  assert(ids('planta baixa').includes('explicador-diagrama-ao-lado'));assert(ids('avatar diagrama').some(id=>id.startsWith('explicador-')));assert(ids('CRM').includes('pipeline-comercial-em-acao'));
+ const compound=S.createIndex([{id:'bath',name:'Rotina',signature:'Banho e tosa'}]);for(const q of ['banho','tosa','banho e tosa'])assert.equal(compound.search(q).length,1,q);
  const idx=S.createIndex([{id:'one',name:'Produto azul',motion:'A câmera mostra o produto. Sem neon ou 3D. Zoom em foto não substitui ação.',resources:['Letreiros, legendas sincronizadas, diagramas e CTA recompostos em código editável'],requirements:'Não criar cachorro nem gráfico.'}]);
  for(const q of ['neon','3D','zoom','cachorro','gráfico','diagrama'])assert.equal(idx.search(q).length,0,q);
 });
