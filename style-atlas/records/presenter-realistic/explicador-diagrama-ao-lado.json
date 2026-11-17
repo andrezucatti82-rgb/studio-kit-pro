@@ -1,0 +1,12 @@
+{
+  "id": "explicador-diagrama-ao-lado",
+  "path": "assets/presenter-realistic/explicador-diagrama-ao-lado.png",
+  "generator": "image_gen",
+  "sourceArtifact": "exec-25e44efc-21c5-4978-b387-dca07c87396b.png",
+  "layout": "2x2_independent_complete_photorealistic_portrait_frames",
+  "sha256": "2112138473aaf903671ee65362a7f822e40c7e56ccb5acbd2b69d56b8ffc7123",
+  "fictionalPeopleAndPlaces": true,
+  "motionValidated": false,
+  "status": "proposed_visual_reference_not_produced_video",
+  "purpose": "Realistic target appearance for Planta em vidro; replaces crude procedural placeholder."
+}

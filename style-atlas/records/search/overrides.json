@@ -1,0 +1,1457 @@
+{
+  "pet-em-uso-cotidiano": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "fecho",
+      "guia",
+      "passeio"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/style-sequences/pet-em-uso-cotidiano-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/style-sequences/pet-em-uso-cotidiano-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/style-sequences/pet-em-uso-cotidiano-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/style-sequences/pet-em-uso-cotidiano-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ajuste-para-pet-em-manequim-medido": {
+    "tags": [
+      "cachorro",
+      "manequim",
+      "peitoral",
+      "medidas",
+      "ajuste",
+      "diagrama"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/style-sequences/ajuste-para-pet-em-manequim-medido-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/style-sequences/ajuste-para-pet-em-manequim-medido-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/style-sequences/ajuste-para-pet-em-manequim-medido-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/style-sequences/ajuste-para-pet-em-manequim-medido-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-compra-acompanha-o-porte": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "fita métrica",
+      "medidas",
+      "comparação"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-acompanha-o-porte-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-acompanha-o-porte-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-acompanha-o-porte-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-acompanha-o-porte-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-passeio-comeca-no-encaixe": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "fecho",
+      "guia",
+      "passeio"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-passeio-comeca-no-encaixe-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-passeio-comeca-no-encaixe-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-passeio-comeca-no-encaixe-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-passeio-comeca-no-encaixe-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-cama-encontra-o-lugar-do-gato": {
+    "tags": [
+      "gato",
+      "cama",
+      "tecido",
+      "medidas",
+      "apartamento"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-cama-encontra-o-lugar-do-gato-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cama-encontra-o-lugar-do-gato-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cama-encontra-o-lugar-do-gato-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cama-encontra-o-lugar-do-gato-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-brinquedo-nao-e-para-todo-mundo": {
+    "tags": [
+      "cachorro",
+      "brinquedo",
+      "bola",
+      "medidas",
+      "limpeza"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-brinquedo-nao-e-para-todo-mundo-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-brinquedo-nao-e-para-todo-mundo-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-brinquedo-nao-e-para-todo-mundo-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-brinquedo-nao-e-para-todo-mundo-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-agua-tem-uma-rotina-propria": {
+    "tags": [
+      "gato",
+      "bebedouro",
+      "fonte de água",
+      "limpeza",
+      "cozinha"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-tem-uma-rotina-propria-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-tem-uma-rotina-propria-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-tem-uma-rotina-propria-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-tem-uma-rotina-propria-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-porcao-vem-da-orientacao": {
+    "tags": [
+      "cachorro",
+      "ração",
+      "embalagem",
+      "porção",
+      "comedouro",
+      "veterinária"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-porcao-vem-da-orientacao-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-porcao-vem-da-orientacao-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-porcao-vem-da-orientacao-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-porcao-vem-da-orientacao-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-transporte-comeca-parado": {
+    "tags": [
+      "cachorro",
+      "caixa de transporte",
+      "ventilação",
+      "carro"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-transporte-comeca-parado-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-transporte-comeca-parado-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-transporte-comeca-parado-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-transporte-comeca-parado-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-banho-tem-etapas-nao-milagres": {
+    "tags": [
+      "cachorro",
+      "banho",
+      "tosa",
+      "produto de higiene",
+      "diluição"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-banho-tem-etapas-nao-milagres-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-banho-tem-etapas-nao-milagres-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-banho-tem-etapas-nao-milagres-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-banho-tem-etapas-nao-milagres-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-guia-cabe-na-mao-de-quem-usa": {
+    "tags": [
+      "cachorro",
+      "guia",
+      "mosquetão",
+      "passeio",
+      "mão"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-guia-cabe-na-mao-de-quem-usa-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-guia-cabe-na-mao-de-quem-usa-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-guia-cabe-na-mao-de-quem-usa-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-guia-cabe-na-mao-de-quem-usa-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-uma-compra-recorrente-com-controle": {
+    "tags": [
+      "cachorro",
+      "ração",
+      "assinatura",
+      "reposição",
+      "celular"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-uma-compra-recorrente-com-controle-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-uma-compra-recorrente-com-controle-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-uma-compra-recorrente-com-controle-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-uma-compra-recorrente-com-controle-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-pelo-no-tecido-vira-uma-pergunta": {
+    "tags": [
+      "cachorro",
+      "escova",
+      "limpeza",
+      "sofá",
+      "tecido"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-pelo-no-tecido-vira-uma-pergunta-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-pelo-no-tecido-vira-uma-pergunta-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-pelo-no-tecido-vira-uma-pergunta-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-pelo-no-tecido-vira-uma-pergunta-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-consulta-comeca-com-informacao": {
+    "tags": [
+      "cachorro",
+      "veterinária",
+      "consulta",
+      "clínica",
+      "agendamento"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-consulta-comeca-com-informacao-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-consulta-comeca-com-informacao-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-consulta-comeca-com-informacao-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-consulta-comeca-com-informacao-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-arranhador-ocupa-um-espaco-real": {
+    "tags": [
+      "gato",
+      "arranhador",
+      "montagem",
+      "medidas",
+      "apartamento"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-arranhador-ocupa-um-espaco-real-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-arranhador-ocupa-um-espaco-real-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-arranhador-ocupa-um-espaco-real-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-arranhador-ocupa-um-espaco-real-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-premio-tem-contexto": {
+    "tags": [
+      "cachorro",
+      "petisco",
+      "embalagem",
+      "porção"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-premio-tem-contexto-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-premio-tem-contexto-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-premio-tem-contexto-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-premio-tem-contexto-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-roupa-respeita-o-corpo-do-pet": {
+    "tags": [
+      "cachorro",
+      "roupa",
+      "medidas",
+      "tecido"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-roupa-respeita-o-corpo-do-pet-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-roupa-respeita-o-corpo-do-pet-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-roupa-respeita-o-corpo-do-pet-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-roupa-respeita-o-corpo-do-pet-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-kit-de-viagem-sem-adivinhacao": {
+    "tags": [
+      "cachorro",
+      "kit de viagem",
+      "bolsa",
+      "garrafa",
+      "comedouro"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-kit-de-viagem-sem-adivinhacao-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-kit-de-viagem-sem-adivinhacao-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-kit-de-viagem-sem-adivinhacao-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-kit-de-viagem-sem-adivinhacao-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-coleira-tem-um-dado-importante": {
+    "tags": [
+      "cachorro",
+      "coleira",
+      "identificação",
+      "computador"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-coleira-tem-um-dado-importante-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-coleira-tem-um-dado-importante-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-coleira-tem-um-dado-importante-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-coleira-tem-um-dado-importante-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-atendimento-acompanha-a-rotina": {
+    "tags": [
+      "cachorro",
+      "banho",
+      "tosa",
+      "atendimento",
+      "agendamento"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-atendimento-acompanha-a-rotina-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-atendimento-acompanha-a-rotina-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-atendimento-acompanha-a-rotina-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-atendimento-acompanha-a-rotina-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-compra-certa-para-o-aquario": {
+    "tags": [
+      "aquário",
+      "peixe",
+      "filtro",
+      "limpeza",
+      "água"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-certa-para-o-aquario-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-certa-para-o-aquario-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-certa-para-o-aquario-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-compra-certa-para-o-aquario-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-um-passeio-depois-da-organizacao": {
+    "tags": [
+      "cachorro",
+      "kit de passeio",
+      "bolsa",
+      "garrafa",
+      "guia"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-um-passeio-depois-da-organizacao-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-passeio-depois-da-organizacao-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-passeio-depois-da-organizacao-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-passeio-depois-da-organizacao-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-portao-abre-um-mundo-de-escolhas": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "guia",
+      "passeio",
+      "campanha",
+      "cenografia"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-portao-abre-um-mundo-de-escolhas-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-portao-abre-um-mundo-de-escolhas-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-portao-abre-um-mundo-de-escolhas-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-portao-abre-um-mundo-de-escolhas-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-textura-do-carinho-sem-humanizar": {
+    "tags": [
+      "cachorro",
+      "cama",
+      "tecido",
+      "textura",
+      "medidas"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-textura-do-carinho-sem-humanizar-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-textura-do-carinho-sem-humanizar-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-textura-do-carinho-sem-humanizar-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-textura-do-carinho-sem-humanizar-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-cidade-cabe-no-caminho-da-guia": {
+    "tags": [
+      "cachorro",
+      "guia",
+      "mosquetão",
+      "passeio",
+      "parque"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-cidade-cabe-no-caminho-da-guia-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cidade-cabe-no-caminho-da-guia-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cidade-cabe-no-caminho-da-guia-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cidade-cabe-no-caminho-da-guia-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-estoque-vira-calendario-visual": {
+    "tags": [
+      "cachorro",
+      "ração",
+      "estoque",
+      "calendário",
+      "reposição"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-estoque-vira-calendario-visual-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-estoque-vira-calendario-visual-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-estoque-vira-calendario-visual-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-estoque-vira-calendario-visual-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-um-brinquedo-em-palco-de-descoberta": {
+    "tags": [
+      "cachorro",
+      "brinquedo",
+      "bola",
+      "brincadeira"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-um-brinquedo-em-palco-de-descoberta-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-brinquedo-em-palco-de-descoberta-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-brinquedo-em-palco-de-descoberta-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-brinquedo-em-palco-de-descoberta-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-tamanho-desenha-a-escolha": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "medidas",
+      "fita métrica"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-tamanho-desenha-a-escolha-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-tamanho-desenha-a-escolha-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-tamanho-desenha-a-escolha-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-tamanho-desenha-a-escolha-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-cuidado-entra-pela-porta-da-clinica": {
+    "tags": [
+      "cachorro",
+      "veterinária",
+      "consulta",
+      "clínica"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-entra-pela-porta-da-clinica-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-entra-pela-porta-da-clinica-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-entra-pela-porta-da-clinica-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-entra-pela-porta-da-clinica-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-material-em-duas-escalas-de-uso": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "fecho",
+      "tecido",
+      "macro",
+      "passeio"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-material-em-duas-escalas-de-uso-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-material-em-duas-escalas-de-uso-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-material-em-duas-escalas-de-uso-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-material-em-duas-escalas-de-uso-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-rotina-vista-do-armario": {
+    "tags": [
+      "cachorro",
+      "escova",
+      "higiene",
+      "armário",
+      "organização"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-rotina-vista-do-armario-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-rotina-vista-do-armario-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-rotina-vista-do-armario-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-rotina-vista-do-armario-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-uma-escolha-com-todos-os-lados-disponiveis": {
+    "tags": [
+      "gato",
+      "bolsa de transporte",
+      "fecho",
+      "ventilação",
+      "produto"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-uma-escolha-com-todos-os-lados-disponiveis-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-uma-escolha-com-todos-os-lados-disponiveis-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-uma-escolha-com-todos-os-lados-disponiveis-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-uma-escolha-com-todos-os-lados-disponiveis-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-agua-encontra-o-desenho-do-produto": {
+    "tags": [
+      "cachorro",
+      "bebedouro",
+      "água",
+      "limpeza",
+      "produto"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-encontra-o-desenho-do-produto-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-encontra-o-desenho-do-produto-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-encontra-o-desenho-do-produto-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-agua-encontra-o-desenho-do-produto-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-pedido-chega-com-uma-lista-clara": {
+    "tags": [
+      "cachorro",
+      "kit",
+      "embalagem",
+      "brinquedo",
+      "peitoral",
+      "unboxing"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-pedido-chega-com-uma-lista-clara-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-pedido-chega-com-uma-lista-clara-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-pedido-chega-com-uma-lista-clara-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-pedido-chega-com-uma-lista-clara-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-experiencia-comeca-com-os-termos": {
+    "tags": [
+      "cachorro",
+      "veterinária",
+      "plano de saúde",
+      "diagrama",
+      "atendimento"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-experiencia-comeca-com-os-termos-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-experiencia-comeca-com-os-termos-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-experiencia-comeca-com-os-termos-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-experiencia-comeca-com-os-termos-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-cor-da-peca-nao-muda-com-o-cenario": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "cor",
+      "coleção",
+      "passeio"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-cor-da-peca-nao-muda-com-o-cenario-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cor-da-peca-nao-muda-com-o-cenario-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cor-da-peca-nao-muda-com-o-cenario-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-cor-da-peca-nao-muda-com-o-cenario-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-cuidado-cabe-em-uma-sequencia-util": {
+    "tags": [
+      "cachorro",
+      "banho",
+      "produto de higiene",
+      "demonstração"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-cabe-em-uma-sequencia-util-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-cabe-em-uma-sequencia-util-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-cabe-em-uma-sequencia-util-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-cuidado-cabe-em-uma-sequencia-util-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-brincadeira-muda-o-enquadramento": {
+    "tags": [
+      "cachorro",
+      "brinquedo",
+      "bola",
+      "brincadeira",
+      "jardim"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-brincadeira-muda-o-enquadramento-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-brincadeira-muda-o-enquadramento-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-brincadeira-muda-o-enquadramento-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-brincadeira-muda-o-enquadramento-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-casa-vista-com-companhia": {
+    "tags": [
+      "cachorro",
+      "cama",
+      "tecido",
+      "sala",
+      "interiores"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-casa-vista-com-companhia-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-casa-vista-com-companhia-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-casa-vista-com-companhia-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-casa-vista-com-companhia-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-um-detalhe-para-cada-etapa-do-passeio": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "guia",
+      "comedouro",
+      "passeio"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-um-detalhe-para-cada-etapa-do-passeio-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-detalhe-para-cada-etapa-do-passeio-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-detalhe-para-cada-etapa-do-passeio-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-um-detalhe-para-cada-etapa-do-passeio-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-o-servico-ganha-uma-apresentacao-sem-susto": {
+    "tags": [
+      "veterinária",
+      "clínica",
+      "atendimento",
+      "luvas",
+      "produto de higiene"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-o-servico-ganha-uma-apresentacao-sem-susto-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-servico-ganha-uma-apresentacao-sem-susto-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-servico-ganha-uma-apresentacao-sem-susto-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-o-servico-ganha-uma-apresentacao-sem-susto-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "ads26-pets-a-ultima-pergunta-antes-da-compra": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "comparação",
+      "compra",
+      "atendimento"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/segments-440/ads26-pets-a-ultima-pergunta-antes-da-compra-01.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-ultima-pergunta-antes-da-compra-02.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-ultima-pergunta-antes-da-compra-03.webp",
+          "crop": null
+        },
+        {
+          "src": "assets/segments-440/ads26-pets-a-ultima-pergunta-antes-da-compra-04.webp",
+          "crop": null
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "explicador-pet-rotina": {
+    "tags": [
+      "cachorro",
+      "escova",
+      "ração",
+      "passeio",
+      "rotina",
+      "lousa"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/presenter-realistic/explicador-pet-rotina.png",
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-rotina.png",
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-rotina.png",
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-rotina.png",
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "explicador-pet-detalhe": {
+    "tags": [
+      "cachorro",
+      "peitoral",
+      "guia",
+      "acolchoado",
+      "ajuste",
+      "diagrama"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/presenter-realistic/explicador-pet-detalhe.png",
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-detalhe.png",
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-detalhe.png",
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-detalhe.png",
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  },
+  "explicador-pet-servico": {
+    "tags": [
+      "cachorro",
+      "banho",
+      "tosa",
+      "atendimento",
+      "etapas",
+      "diagrama"
+    ],
+    "evidence": {
+      "basis": "viewed_all_four_catalogue_reference_panels",
+      "frames": [
+        {
+          "src": "assets/presenter-realistic/explicador-pet-servico.png",
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-servico.png",
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-servico.png",
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "src": "assets/presenter-realistic/explicador-pet-servico.png",
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "scope": "fictional reference content and illustrative objects; not a real product or clinical claim"
+    }
+  }
+}

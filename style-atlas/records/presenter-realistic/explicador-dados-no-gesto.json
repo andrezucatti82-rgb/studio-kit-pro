@@ -1,0 +1,35 @@
+{
+  "id": "explicador-dados-no-gesto",
+  "path": "assets/presenter-realistic/explicador-dados-no-gesto.png",
+  "generator": "image_gen",
+  "sourceArtifact": "exec-a8c33abb-ec2d-4a77-a8f0-4c21abc29989.png",
+  "layout": "2x2_independent_complete_photorealistic_frames",
+  "sha256": "3031c40428ae347ce8a4035589bfe5179d46bd26aa35a09b12132c27c3339336",
+  "fictionalPeopleAndPlaces": true,
+  "motionValidated": false,
+  "status": "proposed_visual_reference_not_produced_video",
+  "creativeDirection": {
+    "version": 1,
+    "visualMode": "on_surface_dimensions",
+    "presenterBlocking": [
+      "left",
+      "right",
+      "voice_only",
+      "center"
+    ],
+    "compositionIdea": "Cotas ficam ancoradas na parede e mobiliário reais; o gesto revela uma medida confirmada por vez.",
+    "shotLanguage": [
+      "ambiente aberto",
+      " pessoa à direita",
+      " detalhe da cota",
+      " conjunto central"
+    ],
+    "graphicMaterial": "chosen_by_function_no_default_panel",
+    "fixedPresenterSide": false,
+    "digitalMirroringDefault": false,
+    "motionFollowsExplanation": true,
+    "sourceCoverageRequired": true,
+    "conceptualReferenceOnly": true
+  },
+  "prompt": "Create an original PHOTOREALISTIC target-result storyboard for an edited SOCIAL-MEDIA explainer video. Exactly one image canvas with a precise 2x2 grid of four complete independent camera frames. Strongly prefer a portrait overall canvas, but never crop heads or essential hands. Tiny even gutters, NO outer title, NO website/mockup or page decoration. SAME original fictional presenter, clothes, environment and objects throughout the four states of this one style. IMPORTANT: follow creativeDirection.presenterBlocking and shotLanguage FOR EACH QUADRANT IN ORDER. The presenter MUST NOT remain on the same side by default. Use center, right, left, small inset or a full-screen demonstration without a visible person according to the specific shot plan. Vary framing, point of view, scale, camera motivation and interaction meaningfully. The information must visibly be BUILT DURING the explanation: a line is drawn, pieces assemble, a word moves behind the person, a route grows, a product opens, an interface takes over, a real action reveals a detail. The presenter looks, points, holds, draws, demonstrates or makes room for that action. Not a person talking beside a pre-made card. DO NOT default to glass, rounded floating panels, checklists, beige cards, generic blue UI or repeated left-person/right-information layouts. Glass is allowed ONLY if creativeDirection.graphicMaterial is exactly 'glass'. Otherwise choose the actual physical scene, direct anchored labels, real paper, clean typography, a model, a full-screen map/interface, or another material specified by visualMode. An exterior/technical simulation must be labeled 'Simulação' and must not imply a presenter actually visited it. Use a plausible ordinary everyday professional environment, real-looking skin/materials, natural or practical light, slight fine texture, moderate social-video color finishing. Not luxury AI interiors, plastic skin, fashion retouch or heavy cinema grading. Dynamic sectors may be energetic and use strong purposeful movement, but no neon HUD, sci-fi holograms, videogame look or semantic clutter. Natural hands and anatomy; restrained teeth/mouth. Use the wardrobe supplied, do not default everyone to navy blue. Keep text VERY SHORT, readable Portuguese, essential to the mechanism. No paragraphs, no large disclaimer boxes, no automatic 'Em resumo' checklist. Professional constraints are instructions to follow, not text to print. No invented numeric claims, measurements, results or credentials. No logos. Four moments: context, reveal/build, interaction/change, resolution — staging and composition must follow the specific style rather than a universal card template. These are fictional visual references, not produced footage or proof of animation.\nSPECIFIC STYLE BRIEF: {\"id\":\"explicador-dados-no-gesto\",\"name\":\"Cotas no lugar certo\",\"sector\":\"arquitetos\",\"sectorName\":\"Arquitetura e interiores\",\"mechanism\":\"dimensions\",\"action\":\"A indicação do arquiteto ativa cotas verificadas, mantendo o espaço e a escala compreensíveis.\",\"states\":[\"A pessoa situa o assunto: proporção e circulação no projeto.\",\"A indicação do arquiteto ativa cotas verificadas, mantendo o espaço e a escala compreensíveis.\",\"A relação relevante responde ao tempo da fala; rosto e mãos permanecem livres.\",\"A pessoa conclui a ideia e o resumo preserva o contexto de arquitetura e interiores.\"],\"environment\":\"working architecture studio with used materials and plans\",\"constraints\":\"Projeto, planta, cotas e materiais reais precisam de origem. Render conceitual identificado; preservar geometria e não inventar espaços ocultos.\",\"presenter\":\"fictional Brazilian adult woman, age 34, dark skin and short natural textured hair\",\"creativeDirection\":{\"version\":1,\"visualMode\":\"on_surface_dimensions\",\"presenterBlocking\":[\"left\",\"right\",\"voice_only\",\"center\"],\"compositionIdea\":\"Cotas ficam ancoradas na parede e mobiliário reais; o gesto revela uma medida confirmada por vez.\",\"shotLanguage\":[\"ambiente aberto\",\" pessoa à direita\",\" detalhe da cota\",\" conjunto central\"],\"graphicMaterial\":\"chosen_by_function_no_default_panel\",\"fixedPresenterSide\":false,\"digitalMirroringDefault\":false,\"motionFollowsExplanation\":true,\"sourceCoverageRequired\":true,\"conceptualReferenceOnly\":true},\"wardrobe\":\"muted ochre casual shirt\",\"constraintHandling\":\"Apply professional constraints silently; do not print their wording as paragraphs on panels.\"}"
+}

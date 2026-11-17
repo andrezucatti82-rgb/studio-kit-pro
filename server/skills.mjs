@@ -3,6 +3,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {STYLE_ID} from './schema.mjs';
+import '../style-atlas/dist/workflow.js';
 export const repoRoot=fileURLToPath(new URL('../',import.meta.url));
 const references=['creative-direction.md','production-and-qa.md','advertising-and-fidelity.md','style-execution.md','execution-fidelity.md','identity-preservation.md','natural-finish.md','universal-visual-approval.md'];
 export async function loadSkill(styleId=STYLE_ID,{allowAgent=false,selectedStyleIds=[styleId]}={}) {
@@ -10,7 +11,7 @@ export async function loadSkill(styleId=STYLE_ID,{allowAgent=false,selectedStyle
  const style=catalog.styles.find(s=>s.id===styleId);
  if (!style || !allowAgent&&styleId!==STYLE_ID) throw Error('Style has no tested local executor');
  const styles=selectedStyleIds.map(id=>{const item=catalog.styles.find(s=>s.id===id);if(!item)throw Error('Unknown selected style');return item;});
- const files=['.agents/skills/video-multimarcas/SKILL.md',...references.map(s=>`.agents/skills/video-multimarcas/references/${s}`),'style-atlas/records/motion-campaign/scene.js'];
+ const files=[...AtlasWorkflow.skillSystem.skills.map(s=>`.agents/skills/${s.id}/SKILL.md`),...references.map(s=>`.agents/skills/video-multimarcas/references/${s}`),'.agents/skills/video-tratamento/references/capabilities.json','.agents/skills/video-tratamento/references/coverage.md','style-atlas/records/motion-campaign/scene.js'];
  const records=await Promise.all(files.map(async file=>{const content=await fs.readFile(path.join(repoRoot,file),'utf8');return {file,sha256:createHash('sha256').update(content).digest('hex'),content};}));
  return {catalogVersion:catalog.version,catalogSha256:createHash('sha256').update(raw).digest('hex'),style,styles,records,
    rules:{preserveOriginals:true,inventAngles:false,avatar:false,fit:'contain'},

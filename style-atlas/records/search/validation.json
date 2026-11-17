@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-17",
+  "catalogVersion": "4.7",
+  "searchMetadataVersion": 1,
+  "styles": 1220,
+  "tagAssociations": 12630,
+  "visuallyCuratedReferences": 45,
+  "exampleResults": {
+    "cachorro": 39,
+    "cão": 39,
+    "cães": 39,
+    "gato": 4,
+    "aquário": 1,
+    "vidro": 27,
+    "gráficos": 125,
+    "planta baixa": 23,
+    "avatar diagrama": 4,
+    "banho": 7,
+    "tosa": 3,
+    "banho e tosa": 2
+  },
+  "javascriptRegressionTestsPassed": 206,
+  "pythonRegressionTestsPassed": 9,
+  "typecheck": "passed",
+  "catalogValidation": "passed",
+  "browser": {
+    "checks": [
+      "375px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+      "1440px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+      "375px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
+      "1440px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow"
+    ],
+    "errors": [],
+    "queryMilliseconds": [
+      1.8999999985098839,
+      2.399999998509884,
+      2,
+      3.3000000044703484,
+      1.5,
+      1.8000000044703484,
+      1.5,
+      3,
+      1.5,
+      1.6000000014901161,
+      1.6999999955296516,
+      3.5,
+      1.8999999985098839,
+      1.7999999970197678,
+      1.6000000014901161,
+      3.2999999970197678
+    ]
+  },
+  "pageRegression": {
+    "orderedPageSaves": true,
+    "claudeLinkInPageMode": true,
+    "pageLimitWarningWithoutLocalStorage": true,
+    "overLimitProjectDownload": true,
+    "pageErrors": []
+  },
+  "existingVisualStylesUnchanged": true,
+  "paidApisUsed": false,
+  "publication": "not_performed",
+  "installerSourceVerification": "see installation.json after final pin",
+  "compoundWords": "literal terms inside compound tags are searchable; banho/tosa/banho e tosa covered"
+}

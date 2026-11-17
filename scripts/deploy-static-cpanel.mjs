@@ -36,7 +36,7 @@ async function files(dir,rel=''){
  const out=[];for(const e of await readdir(path.join(dir,rel),{withFileTypes:true})){
   if(e.name.startsWith('.'))throw Error('Hidden file in static bundle.');const r=path.join(rel,e.name);
   if(e.isSymbolicLink())throw Error('Symlink in static bundle.');if(e.isDirectory())out.push(...await files(dir,r));
-  else {if(!/\.(html|css|js|json|png|webp|jpe?g|svg|ico|woff2?|ttf|txt|mp4)$/i.test(e.name))throw Error('Unexpected static asset type.');out.push(r.split(path.sep).join('/'));}
+  else {if(!/\.(html|css|js|json|png|webp|jpe?g|svg|ico|woff2?|ttf|txt|mp4|zip)$/i.test(e.name))throw Error('Unexpected static asset type.');out.push(r.split(path.sep).join('/'));}
  }return out;
 }
 const info=await api('DomainInfo','single_domain_data',{domain});

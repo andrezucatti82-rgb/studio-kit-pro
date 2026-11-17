@@ -32,13 +32,29 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null}={}){
  };
  document.fonts={add(){}};ctx.window=ctx;ctx.globalThis=ctx;
  vm.createContext(ctx);
- for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
+ for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','search.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
  for(let i=0;i<150&&!ctx.ATLAS_READY&&!errors.length;i++)await new Promise(r=>setTimeout(r,10));
  assert.equal(errors.map(e=>e.stack).join('\n'),'');assert.equal(ctx.ATLAS_READY,true,'app initialized');
  const click=selector=>{const el=document.querySelector(selector);assert.ok(el,selector);el.dispatchEvent(new dom.Event('click',{bubbles:true}));};
  const change=(id,value)=>{const el=document.getElementById(id);el.value=value;el.dispatchEvent(new dom.Event('change',{bubbles:true}));};
  return {ctx,document,click,change,store,getState:()=>state,getStorageReads:()=>storageReads,errors};
 }
+
+test('briefSection link opens the guided start with no choice and resumes the selected brief',async()=>{
+ const fresh=await boot({hash:'#briefSection'});await new Promise(r=>setTimeout(r,20));assert.equal(fresh.document.getElementById('guidedDialog').open,true);
+ const first=await boot();first.click('#grid [data-choose]');await new Promise(r=>setTimeout(r,20));
+ const saved=JSON.parse(first.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({saved,hash:'#briefSection'});await new Promise(r=>setTimeout(r,20));assert.equal(resumed.document.body.dataset.view,'brief');assert.equal(resumed.document.getElementById('briefDialog').open,true);assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,1);
+});
+
+test('brief review describes the actual styles and selected scope before handoff',async()=>{
+ const app=await boot();app.ctx.AtlasApp.chooseStyle('explicador-diagrama-ao-lado');app.change('topic','Explicar CRM');app.click('#prepare');await new Promise(r=>setTimeout(r,30));
+ const summary=app.document.getElementById('styleIntentSummary');assert(summary,'Missing readable intent summary');assert.match(summary.textContent,/Apresentador/);assert.match(summary.textContent,/Direção completa/);assert.match(summary.textContent,/Filme inteiro/);
+ assert.match(app.document.getElementById('summaryMaterials').textContent,/Filmagem original ou avatar escolhido/);
+});
+
+test('restoring a 4:5 brief preserves its format in the next generated request',async()=>{
+ const app=await boot();app.click('#grid [data-choose]');app.change('format','4:5');await new Promise(r=>setTimeout(r,20));const saved=JSON.parse(app.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().format,'4:5');assert.match(resumed.ctx.AtlasApp.prompt(),/4:5/);
+});
 
 test('app: choose ten, prepare 90 seconds, keep technical prompt collapsed, persist and resume',async()=>{
  const app=await boot();const {document:d,ctx,click,change}=app;
@@ -110,16 +126,16 @@ test('Page migration retains 4.1 favourites and resets approvals when reference 
  assert.equal(resumed.getStorageReads(),0);
 });
 
-test('two-level categories partition all 1160 styles and never render example-style shortcuts',async()=>{
+test('two-level categories partition all 1220 styles and never render example-style shortcuts',async()=>{
  const {document:d,ctx,click}=await boot();const catalog=ctx.AtlasApp.getCatalog(),groups=ctx.AtlasNavigation.groups;
  assert.equal(groups.length,6);
  const families=groups.flatMap(g=>g.families);
- assert.equal(families.length,29);assert.equal(new Set(families).size,29);
+ assert.equal(families.length,30);assert.equal(new Set(families).size,30);
  assert.deepEqual(new Set(families),new Set(catalog.families.map(f=>f.id)));
- assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1160);
- assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,29);
+ assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1220);
+ assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,30);
  assert.equal(d.querySelectorAll('#categoryTiles [data-visual-family]').length,3);
- for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',160],['visual',240]]){
+ for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',220],['visual',240]]){
   click('[data-nav-group="'+id+'"]');
   assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+total+' estilos'));
   assert.equal(ctx.AtlasApp.categorySelection().group,id);
@@ -144,7 +160,7 @@ test('two-level categories partition all 1160 styles and never render example-st
  assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,0,'navigation does not change the brief');
  click('.category-all');assert.equal(d.getElementById('familySelect').value,'');
  assert.equal(ctx.AtlasApp.categorySelection().group,'');
- assert.match(d.getElementById('resultCount').textContent,/^1160 estilos/);
+ assert.match(d.getElementById('resultCount').textContent,/^1220 estilos/);
  assert.equal(d.querySelectorAll('#grid .card').length,24);
 });
 test('browsing parents and subcategories preserves selected styles, contributions and approvals',async()=>{
@@ -190,7 +206,7 @@ test('all catalog kinds are filterable and new segments collect their specific o
  assert.deepEqual(new Set([...d.querySelectorAll('#kind option')].map(o=>o.value).filter(Boolean)),new Set(c.styles.map(s=>s.kind)));
  change('kind','Anúncio narrado');assert.equal(d.querySelectorAll('#grid .card').length,24);assert.match(d.getElementById('resultCount').textContent,/440 estilos/);change('kind','');
  click('[data-nav-group="natural-ads"]');
- for(const f of c.families.slice(18)){
+ for(const f of c.families.filter(f=>f.id.startsWith('ads-'))){
   click('[data-nav-family="'+f.id+'"]');click('#grid [data-detail]');click('#detailDialog [data-choose]');
   const ids=ctx.AtlasCurrentChoice().intake.items.map(x=>x.id);
   if(f.id==='ads-juridico'){assert.ok(ids.includes('legal'));assert.ok(!ids.includes('product'));}
@@ -352,3 +368,22 @@ test('an explicit style link renews visual approvals, preserves history and reta
  test('optional image origin keeps the catalogue local and all reference links on the real media origin',async()=>{
  const origin='https://media.example.org/verified-release/';const a=await boot({imageOrigin:origin});a.ctx.AtlasApp.chooseStyle('publicidade-cinematografica');const c=a.ctx.AtlasCurrentChoice();assert.ok(a.document.querySelector('#grid img').getAttribute('src').startsWith(origin));assert.ok(c.catalogUrl.includes('example.org/release/catalog.json'));assert.equal(c.referenceAssetOrigin,origin);const m=a.ctx.AtlasWorkflow.referenceManifest(c);assert.ok(m.styles[0].principal.startsWith(origin));assert.ok(m.styles[0].frames.every(f=>f.url.startsWith(origin)));assert.equal(c.productionContract.references.styles[0].principal,m.styles[0].principal);assert.equal(a.getStorageReads()>0,true);
  });
+
+test('presenter storyboard steps show real selected recipe directions and retain them in the prompt',async()=>{
+ const app=await boot();app.click('[data-nav-group="movement"]');app.click('[data-nav-family="explicadores"]');app.click('#grid [data-detail]');
+ const host=app.document.querySelector('[data-presenter-story]');assert(host);assert.equal(host.querySelectorAll('[data-presenter-step]').length,4);
+ const before=host.querySelector('[data-presenter-image-host]').innerHTML;app.click('[data-presenter-step="2"]');assert.notEqual(host.querySelector('[data-presenter-image-host]').innerHTML,before);assert.equal(host.querySelector('[data-presenter-step="2"]').getAttribute('aria-pressed'),'true');assert.equal(host.querySelector('[data-beat="graphicAction"]').textContent,app.ctx.AtlasApp.getStyle(host.dataset.presenterStory).presenterEditing.interactionPlan.beats[2].graphicAction);
+ app.click('#detailDialog [data-choose]');app.change('topic','Explicar CRM');app.click('#prepare');assert(app.ctx.AtlasApp.prompt().includes('interactionPlan'));assert(app.ctx.AtlasApp.prompt().includes('sourceTimes'));
+});
+
+test('content search opens the whole catalogue, finds hidden dog synonyms and retains explicit refinements and choices',async()=>{
+ const app=await boot(),d=app.document;app.click('[data-nav-family="ads-joias"]');app.ctx.AtlasApp.chooseStyle('vidro-e-refracao');const chosen=app.ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id);
+ const input=d.getElementById('search'),search=q=>{input.value=q;input.dispatchEvent(new app.ctx.Event('input',{bubbles:true}));};search('cachorro');
+ assert.equal(d.getElementById('familySelect').value,'');assert.equal(app.ctx.AtlasApp.categorySelection().group,'');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));assert.match(d.getElementById('searchScopeText').textContent,/todas/);assert.match(d.getElementById('resultCount').textContent,/39 estilos · 4 subcategorias/);
+ const first=[...d.querySelectorAll('#grid .card')].map(e=>e.dataset.styleId);search('cães');assert.deepEqual([...d.querySelectorAll('#grid .card')].map(e=>e.dataset.styleId),first);assert.deepEqual(app.ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id),chosen);
+ app.click('[data-nav-family="ads-pets"]');assert.equal(d.getElementById('searchEverywhere').hidden,false);assert(!d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));app.click('#searchEverywhere');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));
+ search('cachorro xyzzy');assert.equal(d.querySelectorAll('#grid .card').length,0);assert.equal(d.getElementById('empty').hidden,false);search('');assert.equal(d.getElementById('searchScope').hidden,true);assert(d.querySelectorAll('#grid .card').length>0);
+});
+test('Page search uses hidden tags and semantic aliases without localStorage',async()=>{
+ const app=await boot({page:true}),input=app.document.getElementById('search');input.value='MAOS';input.dispatchEvent(new app.ctx.Event('input',{bubbles:true}));assert(app.document.querySelector('[data-style-id="demonstracao-com-maos"]'));assert.equal(app.getStorageReads(),0);assert.equal(app.document.querySelectorAll('.search-tags').length,0);
+});

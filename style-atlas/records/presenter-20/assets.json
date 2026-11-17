@@ -1,0 +1,482 @@
+[
+  {
+    "id": "explicador-diagrama-ao-lado",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-diagrama-ao-lado-01.webp",
+        "sha256": "150192396531a686918433ac4fa654aa67b863949893bb17612fb4a5ee5b0b78"
+      },
+      {
+        "path": "assets/presenter-20/explicador-diagrama-ao-lado-02.webp",
+        "sha256": "6ccb19a7c4b38ae6f6cd09a984501023d0b225c0d5be06ee41e7c37f02ce757d"
+      },
+      {
+        "path": "assets/presenter-20/explicador-diagrama-ao-lado-03.webp",
+        "sha256": "c994f4944277e1c3f6716759bd213586ccca3a3c1939e3d79c50687541a40f71"
+      },
+      {
+        "path": "assets/presenter-20/explicador-diagrama-ao-lado-04.webp",
+        "sha256": "b1f61da9c0fa6bcecdfe65a17862440b4c181a35f2bbe378ac02c012adf4e553"
+      }
+    ]
+  },
+  {
+    "id": "explicador-texto-atras",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-texto-atras-01.webp",
+        "sha256": "5335943f116bca973dd6cdb1fd6e5aaeef29774a38d5b9c6769810a8d0129b53"
+      },
+      {
+        "path": "assets/presenter-20/explicador-texto-atras-02.webp",
+        "sha256": "65515fca9a4f5e41947d38c455511318d4919f75dffe88e0a98eb368a002b850"
+      },
+      {
+        "path": "assets/presenter-20/explicador-texto-atras-03.webp",
+        "sha256": "47096d8730d0b70918cd531a12d552ea700180db6cfea1e23d20e6a745c53d40"
+      },
+      {
+        "path": "assets/presenter-20/explicador-texto-atras-04.webp",
+        "sha256": "e104757765893151ea1f0ccde7393437ea7409e2703f47e96d74c17270d05c0f"
+      }
+    ]
+  },
+  {
+    "id": "explicador-objeto-na-mao",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-objeto-na-mao-01.webp",
+        "sha256": "1cade73376605e825d004d6979d34d39b94d73fa1ba76c50cc9569142f179cc5"
+      },
+      {
+        "path": "assets/presenter-20/explicador-objeto-na-mao-02.webp",
+        "sha256": "dad186f3653800930af4ab8b7fe4b440f27d66344ac6c4b611cc6795f9fff1d4"
+      },
+      {
+        "path": "assets/presenter-20/explicador-objeto-na-mao-03.webp",
+        "sha256": "8f94db9b64b41054936187c0b0795874fadc0670302a1a440a52a834b028382e"
+      },
+      {
+        "path": "assets/presenter-20/explicador-objeto-na-mao-04.webp",
+        "sha256": "a8dfd61c3bdafe339146ff8531763972d82a255457d4b34e96c11b35709114f6"
+      }
+    ]
+  },
+  {
+    "id": "explicador-toque-e-resposta",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-toque-e-resposta-01.webp",
+        "sha256": "dae74b83c2665479edd903e59c2f190a007131d675bdff6c4df7f418d4a14769"
+      },
+      {
+        "path": "assets/presenter-20/explicador-toque-e-resposta-02.webp",
+        "sha256": "230b43ed5a15791a595fcd01e5e049de44cd49be0aa744c237974f2b4995814c"
+      },
+      {
+        "path": "assets/presenter-20/explicador-toque-e-resposta-03.webp",
+        "sha256": "c9417764c76253885c7973d7694ce749569139e13e4f92e2eeedf04d5a548879"
+      },
+      {
+        "path": "assets/presenter-20/explicador-toque-e-resposta-04.webp",
+        "sha256": "be43311e3dc5340e47773dea560d3932a18c028a1b2ca671ee570389185ed8c4"
+      }
+    ]
+  },
+  {
+    "id": "explicador-orbita-frente-tras",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-orbita-frente-tras-01.webp",
+        "sha256": "ed30774a5627e32eea94708da75086417905d424d4ca6d3b06e99b9207525de8"
+      },
+      {
+        "path": "assets/presenter-20/explicador-orbita-frente-tras-02.webp",
+        "sha256": "78222fdacbffeb063e52c803e20bd65a20d88a9b01a3307dae508e83d4f7b3af"
+      },
+      {
+        "path": "assets/presenter-20/explicador-orbita-frente-tras-03.webp",
+        "sha256": "476c91d8ebee63c0c20fcba0cb1b4bddfcaa169ba8484d01bcd0033eca31ff37"
+      },
+      {
+        "path": "assets/presenter-20/explicador-orbita-frente-tras-04.webp",
+        "sha256": "353ac8fff7858c8c58558b65d83acb1b8b1bac8750d2e577cdc83d8f4f14b463"
+      }
+    ]
+  },
+  {
+    "id": "explicador-produto-em-camadas",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-produto-em-camadas-01.webp",
+        "sha256": "e89caebb2c25545a5cbdc138532ff8f0e09c11077c908109db5ef2e8c17030d4"
+      },
+      {
+        "path": "assets/presenter-20/explicador-produto-em-camadas-02.webp",
+        "sha256": "81a83af1985963e98f288d269c3fb8dfcb0f68925611d2ab7a3dad2a54bd16d6"
+      },
+      {
+        "path": "assets/presenter-20/explicador-produto-em-camadas-03.webp",
+        "sha256": "33e967f8a0fe675789017f2ee53e86bbf2d07709fc3f9fc3012e481830b80a10"
+      },
+      {
+        "path": "assets/presenter-20/explicador-produto-em-camadas-04.webp",
+        "sha256": "16acf97d6d807ec0e6af464e5a074031bbb013e4ad29c1d31139bc41e77ef78c"
+      }
+    ]
+  },
+  {
+    "id": "explicador-corte-tecnico",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-corte-tecnico-01.webp",
+        "sha256": "880878b10939d6629e8995bbdb4c06de53bc68565c634ec46205c5e967a55b98"
+      },
+      {
+        "path": "assets/presenter-20/explicador-corte-tecnico-02.webp",
+        "sha256": "99fba683269baa995025e8a0ec3bbc9ec60b552641fdbe82dfb173083b5a555d"
+      },
+      {
+        "path": "assets/presenter-20/explicador-corte-tecnico-03.webp",
+        "sha256": "8b8189df555c983b7fe2364db81255a09b84b75286c1145ceb75c98bd72116d6"
+      },
+      {
+        "path": "assets/presenter-20/explicador-corte-tecnico-04.webp",
+        "sha256": "1ee400746bc217f9f23c7b9c568c035d30179229c25b2f4786c0475a2fb9e96b"
+      }
+    ]
+  },
+  {
+    "id": "explicador-lousa-desenhada",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-lousa-desenhada-01.webp",
+        "sha256": "d337d42a0873dcc5a589d5719181f4bbe78d65f895d7f226b1e5d369a4b4f1a1"
+      },
+      {
+        "path": "assets/presenter-20/explicador-lousa-desenhada-02.webp",
+        "sha256": "918413ff8fc2db5822d63fc51fae053c78fd2e7c2f8bd23a5ed1cfa8cdcd6aba"
+      },
+      {
+        "path": "assets/presenter-20/explicador-lousa-desenhada-03.webp",
+        "sha256": "dd9847efff7acfd1f0a37fecfcc17821422f53fb7441538ce241ae11e584bb89"
+      },
+      {
+        "path": "assets/presenter-20/explicador-lousa-desenhada-04.webp",
+        "sha256": "2d1dd89b299d2e401de40e731fabe23bd48d4022acb5b5af96d5f539cd54f923"
+      }
+    ]
+  },
+  {
+    "id": "explicador-fluxograma-vivo",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-fluxograma-vivo-01.webp",
+        "sha256": "377074daad3bddc8ef08c19ffb69d24097ab40bc527c668742aa207cbda1734f"
+      },
+      {
+        "path": "assets/presenter-20/explicador-fluxograma-vivo-02.webp",
+        "sha256": "96c7f660e6c09c94fb29769e431bcde36f4553461a5da5dfca4bef643662d67b"
+      },
+      {
+        "path": "assets/presenter-20/explicador-fluxograma-vivo-03.webp",
+        "sha256": "59c426e6baca456c167088ff70854fac678a4564e3d70fbd5aad23467a39fc1c"
+      },
+      {
+        "path": "assets/presenter-20/explicador-fluxograma-vivo-04.webp",
+        "sha256": "4f427c668ea29f93e8af1331b938674d010a7f4d268e7c090fdbb26be7306703"
+      }
+    ]
+  },
+  {
+    "id": "explicador-dados-no-gesto",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-dados-no-gesto-01.webp",
+        "sha256": "97fbfc746ca30c362f8ccb213d22ca10b1a0215469bb457c263123a02813c5d8"
+      },
+      {
+        "path": "assets/presenter-20/explicador-dados-no-gesto-02.webp",
+        "sha256": "055fa55fd1252a4579dc6bd7064d47c4fc86ab6b793209f6eac3651906e0883d"
+      },
+      {
+        "path": "assets/presenter-20/explicador-dados-no-gesto-03.webp",
+        "sha256": "6a438f594097854215540993cad02864c7a0701269b2260ac63e3a1dae61f857"
+      },
+      {
+        "path": "assets/presenter-20/explicador-dados-no-gesto-04.webp",
+        "sha256": "eab8c0592a69cece767f98a0c7a519cc0d18cb2ac334a6a157ecfee3954ea62b"
+      }
+    ]
+  },
+  {
+    "id": "explicador-antes-depois",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-antes-depois-01.webp",
+        "sha256": "b5197d00ea7d6d85fd78709c9ca2841e1179e41a109bf313ea3fe9ace776f675"
+      },
+      {
+        "path": "assets/presenter-20/explicador-antes-depois-02.webp",
+        "sha256": "a06f5a435639e42ab8b6faeab8da977e388eca47279699a461f87ed702f1c0dd"
+      },
+      {
+        "path": "assets/presenter-20/explicador-antes-depois-03.webp",
+        "sha256": "5c2c19fecb6657108708a00aa478bf9b90a3634e1062e8db113767ca2e934f63"
+      },
+      {
+        "path": "assets/presenter-20/explicador-antes-depois-04.webp",
+        "sha256": "d4568d34553b17e3369f3bb514aa7973857e5ff181e29af6648010d600756e74"
+      }
+    ]
+  },
+  {
+    "id": "explicador-mitos-e-fatos",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-mitos-e-fatos-01.webp",
+        "sha256": "bc5b9760490a1cdfb9bfaa82545db207ae44101b3e3c12c5e93ace730fe5257a"
+      },
+      {
+        "path": "assets/presenter-20/explicador-mitos-e-fatos-02.webp",
+        "sha256": "645c9c17b389e33f1ed32c7d7ffda3b68851038b2550a78afef4c9d0f2383e9c"
+      },
+      {
+        "path": "assets/presenter-20/explicador-mitos-e-fatos-03.webp",
+        "sha256": "7ba375dd3acd1241993e589e39a38db22e623b79fc196067836db35ffc467829"
+      },
+      {
+        "path": "assets/presenter-20/explicador-mitos-e-fatos-04.webp",
+        "sha256": "f67977ad0337c79a40aa277303e313f71f836bf3094d99fa7d4be6da69f7b9d7"
+      }
+    ]
+  },
+  {
+    "id": "explicador-cenario-contextual",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-cenario-contextual-01.webp",
+        "sha256": "2221a69169e002d1620fa0e8796fc41aeef672a86445c938a691539d78a9558b"
+      },
+      {
+        "path": "assets/presenter-20/explicador-cenario-contextual-02.webp",
+        "sha256": "f099be594dc5d14cf116bb4ce823b1446c8ab0b0730f9304e9434044725e3f3e"
+      },
+      {
+        "path": "assets/presenter-20/explicador-cenario-contextual-03.webp",
+        "sha256": "65c89f4717c388f3aa9657cc8d5f31bf9ca3e9952ce492d0b5c32f5242f6b83e"
+      },
+      {
+        "path": "assets/presenter-20/explicador-cenario-contextual-04.webp",
+        "sha256": "e4106316c660d24b750b2c002c2d62b57d426738943c0b018ac2b649517bf480"
+      }
+    ]
+  },
+  {
+    "id": "explicador-apresentador-em-janela",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-apresentador-em-janela-01.webp",
+        "sha256": "57afcc3b67871907651a6e51204b2a1cdbfa26d4ba68be332b8ced9d3cabe651"
+      },
+      {
+        "path": "assets/presenter-20/explicador-apresentador-em-janela-02.webp",
+        "sha256": "68b91b9e2b4ded73864c1ed4c2315711e61d575cf88c69fbfea10cd1a7c7a967"
+      },
+      {
+        "path": "assets/presenter-20/explicador-apresentador-em-janela-03.webp",
+        "sha256": "e271c31905e00b5e3a52ca88693f80cb9d52996a6ab1b011d1cf2ff80f24a4ad"
+      },
+      {
+        "path": "assets/presenter-20/explicador-apresentador-em-janela-04.webp",
+        "sha256": "29ef0a31e12a8ca264bb4b164aab097685c8b576602e13ad4461763f807c0eec"
+      }
+    ]
+  },
+  {
+    "id": "explicador-zoom-para-interface",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-zoom-para-interface-01.webp",
+        "sha256": "71bb8a9f2d0efd2e0ea4b208d1aba938044eed078480533ef25db772466956f9"
+      },
+      {
+        "path": "assets/presenter-20/explicador-zoom-para-interface-02.webp",
+        "sha256": "2d150da1b552aecac4363332ce2cb75fb929b6d55508617c675154c0b2d07737"
+      },
+      {
+        "path": "assets/presenter-20/explicador-zoom-para-interface-03.webp",
+        "sha256": "4b0926b1aa2b21b8a925c0e7b2792a30086406aab60954718cc81b33f50f21b8"
+      },
+      {
+        "path": "assets/presenter-20/explicador-zoom-para-interface-04.webp",
+        "sha256": "f0a47992b1b24c2cc0119ae7fc4645fbb0933942809ce8d593d84e19706c73eb"
+      }
+    ]
+  },
+  {
+    "id": "explicador-linha-do-tempo",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-linha-do-tempo-01.webp",
+        "sha256": "05fbb45600263029de71915a36917fd4b9eb33919640cf070768688d9224ee30"
+      },
+      {
+        "path": "assets/presenter-20/explicador-linha-do-tempo-02.webp",
+        "sha256": "331943c890d58c0757513e15d48dc0fb61e0fcbf74ea0716055f939ce5e01a28"
+      },
+      {
+        "path": "assets/presenter-20/explicador-linha-do-tempo-03.webp",
+        "sha256": "13d96cce05aaabfae9ccae0494c330246d11c373ccb57bf505c1cd25c39e8c81"
+      },
+      {
+        "path": "assets/presenter-20/explicador-linha-do-tempo-04.webp",
+        "sha256": "8ecd9da93cbe902bf2d572e6c8442908951930e1dd9a7197e97c2c51aca51ab6"
+      }
+    ]
+  },
+  {
+    "id": "explicador-clones-dialogando",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-clones-dialogando-01.webp",
+        "sha256": "6440ecc243a235bacafe8336842b2b048e677e8f76ebe9d678a595c1fc54f5f4"
+      },
+      {
+        "path": "assets/presenter-20/explicador-clones-dialogando-02.webp",
+        "sha256": "bc1f46a07ba01ca7dc8767f625710eb4b94dffb92a456577e3bdf78855ab0388"
+      },
+      {
+        "path": "assets/presenter-20/explicador-clones-dialogando-03.webp",
+        "sha256": "7a473c769b341a4d26652f980241ac6577bc6791ea83cf3dccf0158d5c78cd35"
+      },
+      {
+        "path": "assets/presenter-20/explicador-clones-dialogando-04.webp",
+        "sha256": "74ea1b39a28007e2b871f1646df2f09f76fead04537c4304dafedb1321cc2a9f"
+      }
+    ]
+  },
+  {
+    "id": "explicador-mapa-e-rota",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-mapa-e-rota-01.webp",
+        "sha256": "316f070cd48df68288816c2be1ae9b53c4121aabda91b992996d29d3300e630e"
+      },
+      {
+        "path": "assets/presenter-20/explicador-mapa-e-rota-02.webp",
+        "sha256": "460ccbdb5193b78f1dc4c15df0ca6d32450f858b2f8172214345d2e2afab7fdf"
+      },
+      {
+        "path": "assets/presenter-20/explicador-mapa-e-rota-03.webp",
+        "sha256": "bb9cb5c12fc569d53d4d6c8a56539629207a6d03f79a636a9a5db6f593f6435f"
+      },
+      {
+        "path": "assets/presenter-20/explicador-mapa-e-rota-04.webp",
+        "sha256": "346fcfd9ecc476e6a8cca63db684bac7868f0821d73b921cfe47e28487695485"
+      }
+    ]
+  },
+  {
+    "id": "explicador-metafora-visual",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-metafora-visual-01.webp",
+        "sha256": "06ff2a4eea4d5c23452c408a674fde4ef66b0b7e900f2430b46e3d5df827c57c"
+      },
+      {
+        "path": "assets/presenter-20/explicador-metafora-visual-02.webp",
+        "sha256": "0b0256f604a47847c7dc50ed1c4060de2e62a17fbcad89972d5a34c37a17836b"
+      },
+      {
+        "path": "assets/presenter-20/explicador-metafora-visual-03.webp",
+        "sha256": "a6b1e06ee64e182d3a86cef5afe9c1e648a726dcb5260933e5432c5341f0f738"
+      },
+      {
+        "path": "assets/presenter-20/explicador-metafora-visual-04.webp",
+        "sha256": "eaf342b420d83736d0ce67dd107a2aaca97753e0517a142639be9a813189d35d"
+      }
+    ]
+  },
+  {
+    "id": "explicador-tres-passos",
+    "generator": "Original Python/Pillow schematic illustration",
+    "source": "build.py",
+    "motionValidated": false,
+    "frames": [
+      {
+        "path": "assets/presenter-20/explicador-tres-passos-01.webp",
+        "sha256": "d5f2afe2b0289bde3d9a9142b11b65269414912565d361f542dd538d3aa8050e"
+      },
+      {
+        "path": "assets/presenter-20/explicador-tres-passos-02.webp",
+        "sha256": "ddb6b60aa24eac7293d3c210eee0cc042b08d5ada5eebf72dba862ca59c57cbd"
+      },
+      {
+        "path": "assets/presenter-20/explicador-tres-passos-03.webp",
+        "sha256": "58c888bb699136f170b3ad22629d3e14e10dd1d1ebe320c10364d5fd8cccc418"
+      },
+      {
+        "path": "assets/presenter-20/explicador-tres-passos-04.webp",
+        "sha256": "2b862d05990b43dba6faf0d38cfdd656345ed72d632f3d45df1efc0a7c55c2c7"
+      }
+    ]
+  }
+]

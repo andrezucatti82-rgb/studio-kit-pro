@@ -1,0 +1,77 @@
+{
+  "candidateVersion": "2.12.0",
+  "sourceBaseCommit": "386d467f99bcbfabd1887c46f6650fc8d393efaf",
+  "dateUTC": "2026-11-17T06:51:30.569078+00:00",
+  "scope": "dedicated finishing skill, capability audit and read-only technical diagnosis; PR20 review only",
+  "capabilities": {
+    "groups": 6,
+    "items": 70,
+    "statusMeaning": "Counts are checklist rows, not weighted feature coverage",
+    "counts": {
+      "integrated": 3,
+      "fixed": 5,
+      "partial": 31,
+      "not_integrated": 31
+    }
+  },
+  "skills": {
+    "count": 7,
+    "new": "video-tratamento",
+    "routeVersion": 2,
+    "position": "after video-edicao, before video-revisao",
+    "legacyRouteAndContext": "v1 accepted when validated selections/core match; original context bytes/hash preserved, effective route recomputed"
+  },
+  "checks": {
+    "javascript": {
+      "passed": 188,
+      "failed": 0
+    },
+    "python": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "projectValidator": "passed",
+    "doctor": "seven local skill sources and portable registry passed; provider access not checked",
+    "archiveCanonicalIntegrity": "passed",
+    "portableReferenceClosure": "passed",
+    "freshInstallAndRollback": "passed",
+    "readOnlyInspection": "real synthetic H264/AAC + loudness measurement, source bytes/hash unchanged; CLI JSON matches",
+    "unknownMetadata": "missing color, zero/unknown bit depth and frame rate kept unknown; HLG/multichannel/source limits flagged"
+  },
+  "browser": {
+    "checks": [
+      "375px: briefSection without selection opens guided start",
+      "375px: style intent, actual clipboard for both destinations, complete JSON download and restored selection",
+      "1440px: briefSection without selection opens guided start",
+      "1440px: style intent, actual clipboard for both destinations, complete JSON download and restored selection"
+    ],
+    "errors": [],
+    "publicSite": {
+      "status": 200,
+      "title": "GDA Vídeos · Atlas Vídeo Multimarcas",
+      "interactionTested": false
+    }
+  },
+  "instructionScenarios": [
+    "HLG/Log to Rec709 requires managed conversion",
+    "4K 10bit422 ProRes master is not native H264 social output",
+    "noise and wrong white balance are not fixed by grain",
+    "5.1/Atmos and exact loudness need specialized route",
+    "standalone lacks graph SocialFinish/loudnorm"
+  ],
+  "reviewFixes": [
+    "executable finishing vs catalog finishProfile clarified",
+    "FFprobe zero bit depth normalized to null",
+    "current effectiveSkillRouting used when legacy context retained"
+  ],
+  "notPerformed": [
+    "paid API calls",
+    "avatar/video generation",
+    "new professional image/audio processors",
+    "perceptual playback/listening of a client video",
+    "installation in external accounts",
+    "merge",
+    "deployment"
+  ]
+}

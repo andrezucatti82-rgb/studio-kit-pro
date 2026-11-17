@@ -1,0 +1,240 @@
+{
+  "corretores": {
+    "name": "Corretores e imóveis",
+    "count": 4,
+    "board": "espacos-produtos",
+    "colors": [
+      "#132D32",
+      "#D0B88A",
+      "#F3EFE6"
+    ],
+    "voice": "Próxima e segura, com pausas para observar os ambientes.",
+    "music": "Piano textural e ambiente discreto, sem crescendo de urgência.",
+    "sound": "Ambiente do imóvel, passo sutil e abertura suave de painel.",
+    "constraints": "Usar fotos, planta, áreas e localização autorizadas. Não inventar cômodos, metragem, vista, condições ou valorização."
+  },
+  "dentistas": {
+    "name": "Dentistas e odontologia",
+    "count": 4,
+    "board": "saude-cuidados",
+    "colors": [
+      "#1D3F3E",
+      "#A8BCAC",
+      "#F6F2E9"
+    ],
+    "voice": "Clara e acolhedora; linguagem compreensível, sem alarmismo.",
+    "music": "Texturas leves e piano espaçado sob a fala.",
+    "sound": "Toque cerâmico discreto nos destaques; sem ruídos clínicos invasivos.",
+    "constraints": "Conteúdo educativo revisado por profissional. Esquemas ilustrativos não são diagnóstico; sem garantir resultados, fabricar casos ou alterar dentes de paciente."
+  },
+  "arquitetos": {
+    "name": "Arquitetura e interiores",
+    "count": 4,
+    "board": "espacos-produtos",
+    "colors": [
+      "#282D31",
+      "#B9A58D",
+      "#EAE6DD"
+    ],
+    "voice": "Contemplativa e precisa, explicando decisões do projeto.",
+    "music": "Ambient arquitetônico com pulso lento e espaço.",
+    "sound": "Foley de papel, material e deslocamento delicado de planos.",
+    "constraints": "Projeto, planta, cotas e materiais reais precisam de origem. Render conceitual identificado; preservar geometria e não inventar espaços ocultos."
+  },
+  "lojas": {
+    "name": "Lojas e produtos",
+    "count": 4,
+    "board": "espacos-produtos",
+    "colors": [
+      "#302633",
+      "#C7AEB6",
+      "#F2EAEC"
+    ],
+    "voice": "Conversacional, objetiva e sem superlativos não comprovados.",
+    "music": "Pulso editorial discreto, sem competir com a demonstração.",
+    "sound": "Foley do produto e clique macio nos atributos demonstrados.",
+    "constraints": "Usar modelo, variante, rótulo e atributos confirmados. Não inventar certificações, avaliações, estoque, preço ou desempenho."
+  },
+  "advogados": {
+    "name": "Advogados e informação jurídica",
+    "count": 4,
+    "board": "direito-movimento",
+    "colors": [
+      "#1C2835",
+      "#AB957B",
+      "#EFECE5"
+    ],
+    "voice": "Sóbria e didática, com leitura confortável e sem pressão comercial.",
+    "music": "Ambiente quase imperceptível, com pausas de silêncio.",
+    "sound": "Papel e marcação discreta ao organizar uma informação.",
+    "constraints": "Revisar fonte, jurisdição, data e regras profissionais aplicáveis. Sem promessa de êxito, caso fictício apresentado como real, urgência comercial ou exposição de cliente."
+  },
+  "esteticas": {
+    "name": "Estética e cuidados",
+    "count": 4,
+    "board": "saude-cuidados",
+    "colors": [
+      "#4C3C37",
+      "#D6B7A4",
+      "#F5EEE7"
+    ],
+    "voice": "Calma e sensorial, descrevendo o cuidado sem prometer transformação.",
+    "music": "Ambient orgânico e texturas suaves, com espaço para o ambiente real.",
+    "sound": "Tampa, tecido e água, somente quando correspondem à ação.",
+    "constraints": "Confirmar serviço e habilitação; preservar pele e corpo. Sem diagnóstico, alteração física, antes/depois fabricado ou eficácia não comprovada."
+  },
+  "fitness": {
+    "name": "Fitness e movimento",
+    "count": 4,
+    "board": "direito-movimento",
+    "colors": [
+      "#232D35",
+      "#CA9479",
+      "#E9E8E2"
+    ],
+    "voice": "Energética com controle; instruções claras e pausas no gesto.",
+    "music": "Pulso contido e preciso, adaptado ao movimento e à fala.",
+    "sound": "Respiração e contato reais; acento seco discreto na mudança de etapa.",
+    "constraints": "Técnica revisada por profissional e adequada ao público. Sem diagnóstico, prescrição individual implícita, promessa de emagrecimento ou alteração corporal."
+  },
+  "procedimentos": {
+    "name": "Procedimentos estéticos",
+    "count": 3,
+    "board": "saude-cuidados",
+    "colors": [
+      "#26424C",
+      "#A6C2C8",
+      "#F2F4F1"
+    ],
+    "voice": "Informativa e tranquila, priorizando indicação, limites e acompanhamento.",
+    "music": "Textura clínica leve; silêncio nos trechos de orientação relevante.",
+    "sound": "Abertura de painel quase inaudível, sem dramatização invasiva.",
+    "constraints": "Conteúdo clínico revisado pelo profissional habilitado. Sem indicação individual, garantia de resultado, execução fictícia, imagens gráficas ou prova clínica fabricada."
+  },
+  "gastronomia": {
+    "name": "Gastronomia",
+    "count": 3,
+    "board": "sensorial-atelier",
+    "colors": [
+      "#352821",
+      "#C99E6B",
+      "#F3E8D9"
+    ],
+    "voice": "Sensorial e natural, deixando a ação e o som do preparo respirarem.",
+    "music": "Texturas acústicas e pulso leve nos cortes motivados.",
+    "sound": "Foley real de corte, crosta, vapor e louça, conforme a cena.",
+    "constraints": "Ingredientes e preparo correspondem ao produto. Confirmar origem, alérgenos, segurança e informações nutricionais; não inferir propriedades por uma imagem."
+  },
+  "pets": {
+    "name": "Pets e cuidados animais",
+    "count": 3,
+    "board": "sensorial-atelier",
+    "colors": [
+      "#25423A",
+      "#B3B69A",
+      "#F0EFE5"
+    ],
+    "voice": "Afetuosa com sobriedade, falando ao responsável adulto.",
+    "music": "Trilha orgânica leve, sem infantilização excessiva.",
+    "sound": "Ambiente e manejo reais, acentos muito suaves nas etapas.",
+    "constraints": "Manejo seguro e espécie identificada. Não simular diagnóstico, estresse ou tratamento; alegações clínicas exigem revisão veterinária."
+  },
+  "moda": {
+    "name": "Moda e atelier",
+    "count": 3,
+    "board": "sensorial-atelier",
+    "colors": [
+      "#28252D",
+      "#B69FA6",
+      "#F2EEEE"
+    ],
+    "voice": "Editorial e próxima, destacando construção, uso e textura.",
+    "music": "Pulso de passarela discreto, com pausas para a fala e o tecido.",
+    "sound": "Foley de tecido, zíper e corte editorial, sem efeito constante.",
+    "constraints": "Preservar corpo, caimento, cor e construção da peça real. Sem afinar silhueta, inventar material ou modificar características físicas."
+  },
+  "engenharia": {
+    "name": "Engenharia",
+    "count": 4,
+    "board": "projetos-eventos",
+    "colors": [
+      "#263B46",
+      "#93ABB6",
+      "#ECEEEB"
+    ],
+    "voice": "Direta e explicativa, distinguindo modelo, medição e exemplo.",
+    "music": "Pulso técnico moderado, com pausa para a demonstração.",
+    "sound": "Ambiente e acento mecânico vinculados à ação, sem dramatização gratuita.",
+    "constraints": "Conferir geometria, unidades, normas e fontes técnicas. Simulações identificadas; não apresentar animação como cálculo, medição ou prova de segurança."
+  },
+  "interiores": {
+    "name": "Design de interiores",
+    "count": 3,
+    "board": "projetos-eventos",
+    "colors": [
+      "#3F3932",
+      "#C9B59B",
+      "#F0EAE0"
+    ],
+    "voice": "Conversacional, ligando escolhas ao uso cotidiano do espaço.",
+    "music": "Textura leve e ritmo adaptado aos detalhes mostrados.",
+    "sound": "Materiais, tecido e ambiente, com acentos suaves nas comparações.",
+    "constraints": "Usar ambiente, medidas, materiais e mobiliário confirmados. Estudo de proposta identificado; não inventar metragem, circulação ou desempenho de iluminação."
+  },
+  "eventos": {
+    "name": "Produção de eventos",
+    "count": 4,
+    "board": "projetos-eventos",
+    "colors": [
+      "#29313B",
+      "#BC9B83",
+      "#F0ECE7"
+    ],
+    "voice": "Envolvente e objetiva, mostrando a experiência e a operação do evento.",
+    "music": "Energia conforme o evento, com pausas de orientação e voz sempre clara.",
+    "sound": "Ambiente, montagem e acentos de luz motivados pela passagem de etapa.",
+    "constraints": "Distinguir projeto de evento realizado. Palco, lotação, acessos, saídas, rotas e capacidades exigem dados e revisão técnica; não simular aprovação ou segurança."
+  },
+  "educacao": {
+    "name": "Educação e treinamento",
+    "count": 3,
+    "board": "conhecimento-territorio",
+    "colors": [
+      "#2B3840",
+      "#B5AD84",
+      "#F1F0E7"
+    ],
+    "voice": "Didática e próxima, com pausas para pensar e compreender.",
+    "music": "Discreta na explicação; ritmo pode crescer nos exemplos.",
+    "sound": "Acentos funcionais nas relações, sem efeito em cada palavra.",
+    "constraints": "Fontes verificadas, unidades e sequência corretas. Analogias e simulações identificadas; não apresentar exemplo como evidência empírica."
+  },
+  "agro": {
+    "name": "Agronegócio",
+    "count": 3,
+    "board": "conhecimento-territorio",
+    "colors": [
+      "#2E3D32",
+      "#B3AF76",
+      "#F0EDE1"
+    ],
+    "voice": "Prática e clara, com vocabulário apropriado ao produtor.",
+    "music": "Texturas orgânicas e pulso conforme a operação real.",
+    "sound": "Ambiente rural e máquina reais, sem encobrir a explicação.",
+    "constraints": "Confirmar cultura, localização, máquina, dados e condições. Sem inventar produtividade, recomendação agronômica, eficácia, certificação ou segurança."
+  },
+  "turismo": {
+    "name": "Turismo e hotelaria",
+    "count": 3,
+    "board": "conhecimento-territorio",
+    "colors": [
+      "#2D4046",
+      "#BFA78B",
+      "#F0ECE3"
+    ],
+    "voice": "Convidativa e informativa, com descrições verificáveis.",
+    "music": "Energia da experiência e espaço para o som do lugar.",
+    "sound": "Ambiente real, deslocamento e acentos funcionais de percurso.",
+    "constraints": "Verificar destino, percurso, distância, estrutura e condições. Conteúdo gerado identificado; não inventar comodidades nem sugerir visita pessoal não realizada."
+  }
+}

@@ -1,5 +1,9 @@
 # Licenças e procedência
 
+## Apresentador e explicação · catálogo 4.5
+
+Os 80 estudos e 80 thumbnails em `style-atlas/dist/assets/presenter-20/` são composições esquemáticas originais produzidas por `style-atlas/records/presenter-20/build.py`, com Geist OFL já distribuída. Não reutilizam frames, rosto, voz, materiais ou receitas privadas do SuperEditor IA ou dos Reels pesquisados. Fonte e SHA256 por quadro em `style-atlas/records/presenter-20/assets.json`. Os estudos não são aprovação de vídeo. Referências públicas aparecem como links e análise técnica em `docs/INTERACTIVE-PRESENTER-2.12.md`.
+
 ## Fontes
 
 `public/fonts/Geist-Regular.ttf` e `Geist-Bold.ttf`: Geist, licença SIL Open Font License. Cópia integral em `public/fonts/Geist-OFL.txt`.
@@ -58,3 +62,14 @@ Mais 684 sequências conceituais geradas com OpenAI image_gen completam os 720 e
 Os 380 novos estudos usam imagens conceituais fictícias geradas com OpenAI image_gen, extraídas em quatro quadros completos e miniaturas. Prompts, hashes, recortes e limites da revisão constam em style-atlas/records/segments-440/. Não são fotos de produtos reais, depoimentos ou provas de execução e vendas. Os 780 estudos anteriores permanecem preservados.
 
 A pesquisa da Meta e de campanhas públicas é distribuída somente como links, metadados selecionados e trechos curtos. Capturas de anúncios, filmes, músicas, rostos e ativos reais das campanhas não são redistribuídos nem incorporados aos estudos. Consultar sources.json, meta-references.json e RESEARCH.md para escopo e atribuição.
+
+
+## Presenter social 60 — candidate 2.12.0
+
+`style-atlas/dist/assets/presenter-60/` adds 240 original procedural composition studies and small previews. Source: `style-atlas/records/presenter-60/build.py` and recipes; no reference-course or client frames are reused. Neutral silhouette markers represent layout only. Six unaltered, fictional OpenAI image_gen PNG concept boards are in `art/`; prompts, provenance and SHA256 are recorded in `art-directions.json`. They are proposed graphic/layout references, not actual people, projects, mandatory scenery, motion proof or approval. The current source-first/social finish direction overrides earlier polished exploratory prompts. Original generated PNGs were copied intact. No third-party voice, music, SFX or stock asset is redistributed in this expansion.
+
+## Explicadores fotorrealistas · catálogo 4.7
+
+As 60 referências públicas de explicadores usam originais PNG fictícios gerados com OpenAI image_gen em `style-atlas/dist/assets/presenter-realistic/`. Cada original reúne quatro enquadramentos completos, endereçados por retângulos normalizados; o original é preservado sem edição. Prompts, dimensões, SHA256, direções de composição e limites da proposta ficam em `style-atlas/records/presenter-realistic/`. Explorações substituídas são mantidas em `explorations/` como histórico. Os estudos procedurais de 4.6 permanecem arquivados e não são as referências atuais desses 60 estilos.
+
+Pessoas, lugares, produtos, interfaces, textos e dados ilustrativos não comprovam identidade, desempenho, geometria técnica, caso clínico ou resultado real. Diagramas devem ser reconstruídos e verificados na produção. Não foram gerados 60 vídeos, áudios ou movimentos. Não há reutilização de imagens dos cursos ou dos Reels pesquisados. Termos do provedor continuam aplicáveis; as referências estão pendentes de aprovação criativa.

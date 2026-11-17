@@ -12,7 +12,7 @@
   if(materials.includes('photos'))materials=materials.filter(v=>v!=='one_photo');
   return {objective:OBJECTIVES.includes(b.objective)?b.objective:'other',subject:clean(b.subject),materials:materials.length?materials:['idea'],complexity:['simple','balanced','advanced'].includes(b.complexity)?b.complexity:'balanced'};
  }
- const families={product:['anuncios','ecommerce','campanhas','ads-joias','ads-casa','ads-moda','ads-alimentacao','ads-pets','ads-automotivo','ads-beleza','ads-infantil'],service:['campanhas','hibridos','cinema','ads-juridico','ads-turismo','ads-servicos','ads-pets','ads-automotivo','saude'],explain:['software','tecnologia','apresentacoes','infoprodutores','motion'],brand:['cinema','grafico','motion-campanha','hibridos','campanhas'],other:['cinema','grafico','hibridos','apresentacoes']};
+ const families={product:['anuncios','ecommerce','campanhas','ads-joias','ads-casa','ads-moda','ads-alimentacao','ads-pets','ads-automotivo','ads-beleza','ads-infantil'],service:['campanhas','hibridos','cinema','ads-juridico','ads-turismo','ads-servicos','ads-pets','ads-automotivo','saude'],explain:['explicadores','software','tecnologia','apresentacoes','infoprodutores','motion'],brand:['cinema','grafico','motion-campanha','hibridos','campanhas'],other:['cinema','grafico','hibridos','apresentacoes']};
  const topics=[
   [/\b(joia|joias|anel|aneis|brinco|brincos|colar|colares)\b/,'ads-joias','joias'],
   [/\b(capacho|capachos|fibra de coco|decoracao|luminaria|cortina|tapete)\b/,'ads-casa','casa e decoração'],

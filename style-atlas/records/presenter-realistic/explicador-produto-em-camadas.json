@@ -1,0 +1,35 @@
+{
+  "id": "explicador-produto-em-camadas",
+  "path": "assets/presenter-realistic/explicador-produto-em-camadas.png",
+  "generator": "image_gen",
+  "sourceArtifact": "exec-e6d3afb8-cdd9-422d-98a6-bed05b89bfe1.png",
+  "layout": "2x2_independent_complete_photorealistic_frames",
+  "sha256": "f2f2817dc8bb025aa93b8c7728d9451a4acdd9e07138e4b23f80c79fea81dd44",
+  "fictionalPeopleAndPlaces": true,
+  "motionValidated": false,
+  "status": "proposed_visual_reference_not_produced_video",
+  "creativeDirection": {
+    "version": 1,
+    "visualMode": "exploded_anatomical_model",
+    "presenterBlocking": [
+      "right",
+      "left",
+      "inset_left",
+      "center"
+    ],
+    "compositionIdea": "Modelo dental educativo ocupa o quadro e abre por camadas; a pessoa muda de escala para guiar a leitura.",
+    "shotLanguage": [
+      "dentista à direita",
+      " modelo dominante",
+      " aproximação técnica com janela",
+      " pessoa e modelo"
+    ],
+    "graphicMaterial": "chosen_by_function_no_default_panel",
+    "fixedPresenterSide": false,
+    "digitalMirroringDefault": false,
+    "motionFollowsExplanation": true,
+    "sourceCoverageRequired": true,
+    "conceptualReferenceOnly": true
+  },
+  "prompt": "Create an original PHOTOREALISTIC target-result storyboard for an edited SOCIAL-MEDIA explainer video. Exactly one image canvas with a precise 2x2 grid of four complete independent camera frames. Strongly prefer a portrait overall canvas, but never crop heads or essential hands. Tiny even gutters, NO outer title, NO website/mockup or page decoration. SAME original fictional presenter, clothes, environment and objects throughout the four states of this one style. IMPORTANT: follow creativeDirection.presenterBlocking and shotLanguage FOR EACH QUADRANT IN ORDER. The presenter MUST NOT remain on the same side by default. Use center, right, left, small inset or a full-screen demonstration without a visible person according to the specific shot plan. Vary framing, point of view, scale, camera motivation and interaction meaningfully. The information must visibly be BUILT DURING the explanation: a line is drawn, pieces assemble, a word moves behind the person, a route grows, a product opens, an interface takes over, a real action reveals a detail. The presenter looks, points, holds, draws, demonstrates or makes room for that action. Not a person talking beside a pre-made card. DO NOT default to glass, rounded floating panels, checklists, beige cards, generic blue UI or repeated left-person/right-information layouts. Glass is allowed ONLY if creativeDirection.graphicMaterial is exactly 'glass'. Otherwise choose the actual physical scene, direct anchored labels, real paper, clean typography, a model, a full-screen map/interface, or another material specified by visualMode. An exterior/technical simulation must be labeled 'Simulação' and must not imply a presenter actually visited it. Use a plausible ordinary everyday professional environment, real-looking skin/materials, natural or practical light, slight fine texture, moderate social-video color finishing. Not luxury AI interiors, plastic skin, fashion retouch or heavy cinema grading. Dynamic sectors may be energetic and use strong purposeful movement, but no neon HUD, sci-fi holograms, videogame look or semantic clutter. Natural hands and anatomy; restrained teeth/mouth. Use the wardrobe supplied, do not default everyone to navy blue. Keep text VERY SHORT, readable Portuguese, essential to the mechanism. No paragraphs, no large disclaimer boxes, no automatic 'Em resumo' checklist. Professional constraints are instructions to follow, not text to print. No invented numeric claims, measurements, results or credentials. No logos. Four moments: context, reveal/build, interaction/change, resolution — staging and composition must follow the specific style rather than a universal card template. These are fictional visual references, not produced footage or proof of animation.\nSPECIFIC STYLE BRIEF: {\"id\":\"explicador-produto-em-camadas\",\"name\":\"Estrutura com clareza\",\"sector\":\"dentistas\",\"sectorName\":\"Dentistas e odontologia\",\"mechanism\":\"tooth\",\"action\":\"Um esquema odontológico aprovado se separa em partes nomeadas conforme a fala.\",\"states\":[\"A pessoa situa o assunto: uma estrutura dental em esquema.\",\"Um esquema odontológico aprovado se separa em partes nomeadas conforme a fala.\",\"A relação relevante responde ao tempo da fala; rosto e mãos permanecem livres.\",\"A pessoa conclui a ideia e o resumo preserva o contexto de dentistas e odontologia.\"],\"environment\":\"ordinary real-looking dental consultation room, clinical furniture, no patient\",\"constraints\":\"Conteúdo educativo revisado por profissional. Esquemas ilustrativos não são diagnóstico; sem garantir resultados, fabricar casos ou alterar dentes de paciente.\",\"presenter\":\"fictional Brazilian adult man, age 39, medium brown skin and short dark hair\",\"creativeDirection\":{\"version\":1,\"visualMode\":\"exploded_anatomical_model\",\"presenterBlocking\":[\"right\",\"left\",\"inset_left\",\"center\"],\"compositionIdea\":\"Modelo dental educativo ocupa o quadro e abre por camadas; a pessoa muda de escala para guiar a leitura.\",\"shotLanguage\":[\"dentista à direita\",\" modelo dominante\",\" aproximação técnica com janela\",\" pessoa e modelo\"],\"graphicMaterial\":\"chosen_by_function_no_default_panel\",\"fixedPresenterSide\":false,\"digitalMirroringDefault\":false,\"motionFollowsExplanation\":true,\"sourceCoverageRequired\":true,\"conceptualReferenceOnly\":true},\"wardrobe\":\"plain white clinical coat over dark olive practical shirt\",\"constraintHandling\":\"Apply professional constraints silently; do not print their wording as paragraphs on panels.\"}"
+}

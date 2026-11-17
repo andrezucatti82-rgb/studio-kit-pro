@@ -1,0 +1,35 @@
+{
+  "id": "explicador-interiores-luz",
+  "path": "assets/presenter-realistic/explicador-interiores-luz.png",
+  "generator": "image_gen",
+  "sourceArtifact": "exec-6aaa7680-9792-48c2-9ce2-708971e8d7d5.png",
+  "layout": "2x2_independent_complete_photorealistic_frames",
+  "sha256": "8db04136f08ad3ca2868c5de74b252d723635ddcbe2fcb8774b1a726302d3039",
+  "fictionalPeopleAndPlaces": true,
+  "motionValidated": false,
+  "status": "proposed_visual_reference_not_produced_video",
+  "creativeDirection": {
+    "version": 1,
+    "visualMode": "real_light_zones",
+    "presenterBlocking": [
+      "left",
+      "voice_only",
+      "right",
+      "center"
+    ],
+    "compositionIdea": "Diferentes cenas de luz transformam zonas reais, com transição suave e rótulos discretos; não há cartão de vidro.",
+    "shotLanguage": [
+      "pessoa à esquerda",
+      " zona de luz",
+      " uso e pessoa à direita",
+      " conjunto"
+    ],
+    "graphicMaterial": "chosen_by_function_no_default_panel",
+    "fixedPresenterSide": false,
+    "digitalMirroringDefault": false,
+    "motionFollowsExplanation": true,
+    "sourceCoverageRequired": true,
+    "conceptualReferenceOnly": true
+  },
+  "prompt": "Create an original PHOTOREALISTIC target-result storyboard for an edited SOCIAL-MEDIA explainer video. Exactly one image canvas with a precise 2x2 grid of four complete independent camera frames. Strongly prefer a portrait overall canvas, but never crop heads or essential hands. Tiny even gutters, NO outer title, NO website/mockup or page decoration. SAME original fictional presenter, clothes, environment and objects throughout the four states of this one style. IMPORTANT: follow creativeDirection.presenterBlocking and shotLanguage FOR EACH QUADRANT IN ORDER. The presenter MUST NOT remain on the same side by default. Use center, right, left, small inset or a full-screen demonstration without a visible person according to the specific shot plan. Vary framing, point of view, scale, camera motivation and interaction meaningfully. The information must visibly be BUILT DURING the explanation: a line is drawn, pieces assemble, a word moves behind the person, a route grows, a product opens, an interface takes over, a real action reveals a detail. The presenter looks, points, holds, draws, demonstrates or makes room for that action. Not a person talking beside a pre-made card. DO NOT default to glass, rounded floating panels, checklists, beige cards, generic blue UI or repeated left-person/right-information layouts. Glass is allowed ONLY if creativeDirection.graphicMaterial is exactly 'glass'. Otherwise choose the actual physical scene, direct anchored labels, real paper, clean typography, a model, a full-screen map/interface, or another material specified by visualMode. An exterior/technical simulation must be labeled 'Simulação' and must not imply a presenter actually visited it. Use a plausible ordinary everyday professional environment, real-looking skin/materials, natural or practical light, slight fine texture, moderate social-video color finishing. Not luxury AI interiors, plastic skin, fashion retouch or heavy cinema grading. Dynamic sectors may be energetic and use strong purposeful movement, but no neon HUD, sci-fi holograms, videogame look or semantic clutter. Natural hands and anatomy; restrained teeth/mouth. Use the wardrobe supplied, do not default everyone to navy blue. Keep text VERY SHORT, readable Portuguese, essential to the mechanism. No paragraphs, no large disclaimer boxes, no automatic 'Em resumo' checklist. Professional constraints are instructions to follow, not text to print. No invented numeric claims, measurements, results or credentials. No logos. Four moments: context, reveal/build, interaction/change, resolution — staging and composition must follow the specific style rather than a universal card template. These are fictional visual references, not produced footage or proof of animation.\nSPECIFIC STYLE BRIEF: {\"id\":\"explicador-interiores-luz\",\"name\":\"Luz para cada uso\",\"sector\":\"interiores\",\"sectorName\":\"Design de interiores\",\"mechanism\":\"lighting\",\"action\":\"Zonas e cenas de luz são demonstradas como estudo, com intensidade e contexto coerentes com o projeto.\",\"states\":[\"A pessoa situa o assunto: comparar intenções de iluminação.\",\"Zonas e cenas de luz são demonstradas como estudo, com intensidade e contexto coerentes com o projeto.\",\"A relação relevante responde ao tempo da fala; rosto e mãos permanecem livres.\",\"A pessoa conclui a ideia e o resumo preserva o contexto de design de interiores.\"],\"environment\":\"ordinary lived-in apartment, actual furniture, practical space, no luxury showroom\",\"constraints\":\"Usar ambiente, medidas, materiais e mobiliário confirmados. Estudo de proposta identificado; não inventar metragem, circulação ou desempenho de iluminação.\",\"presenter\":\"fictional Brazilian adult woman, age 34, dark skin and short natural textured hair\",\"creativeDirection\":{\"version\":1,\"visualMode\":\"real_light_zones\",\"presenterBlocking\":[\"left\",\"voice_only\",\"right\",\"center\"],\"compositionIdea\":\"Diferentes cenas de luz transformam zonas reais, com transição suave e rótulos discretos; não há cartão de vidro.\",\"shotLanguage\":[\"pessoa à esquerda\",\" zona de luz\",\" uso e pessoa à direita\",\" conjunto\"],\"graphicMaterial\":\"chosen_by_function_no_default_panel\",\"fixedPresenterSide\":false,\"digitalMirroringDefault\":false,\"motionFollowsExplanation\":true,\"sourceCoverageRequired\":true,\"conceptualReferenceOnly\":true},\"wardrobe\":\"soft muted blue work shirt\",\"constraintHandling\":\"Apply professional constraints silently; do not print their wording as paragraphs on panels.\"}"
+}

@@ -1,0 +1,27 @@
+Use $video-multimarcas como orquestradora e $video-explicador-interativo para a explicação. O pacote completo inclui as duas e os módulos comuns; se apenas a orquestradora estiver disponível, leia references/skill-modules/video-explicador-interativo.md e references/presenter-interaction.md.
+
+Quero editar o vídeo anexado para que a explicação seja demonstrada visualmente junto da pessoa. Use o projeto-video.json da galeria, preservando os estilos, características e escopos que escolhi. Tema: [ASSUNTO]. Formato: [9:16]. Duração desejada: [30 s ou duração da fala]. Apresentador: [meu vídeo gravado / avatar já fornecido / avatar a selecionar explicitamente].
+
+Primeiro inspecione o bruto e a fala. Preserve o original e seu hash, rosto, corpo, roupa e voz. Não regenere minha pessoa para trocar o cenário. Confira quais ferramentas e arquivos realmente existem; não use APIs pagas sem orçamento e autorização específica. Não confunda uma receita do catálogo com um recurso automático instalado.
+
+A finalidade é rede social, não cinema. Preserve o ambiente cotidiano da gravação; avatar também deve começar num local plausível. Ajuste energia e linguagem ao nicho: pode ser dinâmico, desde que cada movimento tenha função. Use transparências legíveis, diagramas, gráficos, tabelas, ícones e widgets para demonstrar a ideia, sem HUD de videogame, neon excessivo ou informação concorrente. Uma ação principal por vez; movimentos secundários a serviço dela.
+
+Se faltar uma imagem original necessária, pesquise primeiro a aparência e os fatos em fontes verificáveis. Pode propor e gerar uma imagem IA baseada nessas referências, como simulação identificada; não inventar geometria, medidas ou presença da pessoa no local. Conservar fontes e direitos de materiais reais. Ilustração conceitual não substitui projeto técnico ou evidência de produto.
+
+Aplique acabamento final natural: ajustar cor, exposição, altas luzes e sombras preservando pele, materiais e detalhes. Brilhos suaves podem marcar uma revelação ou informação; não aplicar aura permanente no corpo. Adicionar granulação monocromática muito leve apenas quando ajudar a reduzir a aparência plástica; desativar em bruto já ruidoso. Evitar look cinematográfico pesado, contraste extremo e textura que piore a compressão. Conferir também em tela de celular. Usar finishing nativo com controles conservadores, não prometer relighting físico.
+
+Proponha uma edição orientada pela explicação: informação entra quando é citada, diagrama se constrói na ordem do raciocínio, gesto causa uma resposta e o resultado fica tempo suficiente para ser entendido. Não quero elementos decorativos aleatórios nem efeito em cada palavra. Mantenha rosto e mãos livres e as legendas nas áreas seguras.
+
+Mostre o plano por trecho: fala e tempos no bruto/editado, corte proposto e motivo, elemento visual, ação, ponto de ancoragem, ordem frente/atrás, fonte dos dados, duração, transição e áudio. Não cortar palavras ou respirações úteis. Se mudar o corte, remapear palavras, gestos, máscaras e som.
+
+Use somente o que estiver implementado e demonstrado. Para palavra atrás do corpo ou cenário novo, use máscara temporal conferida. Para objeto na mão ou toque, use trajetória e instante de contato medidos no take, com revisão de falhas; não substituir por animação aleatória. Para produto desmontado ou câmera 3D, exigir modelo/vistas compatíveis. Se algo faltar, explique e prepare as etapas independentes sem anunciar o efeito como pronto.
+
+Todo texto, número, linha e rótulo deve permanecer editável. Transcrição precisa ter tempos reais; não inventar alinhamento. Use o áudio original uma única vez, música discreta com ducking quando pertinente e SFX apenas nos acontecimentos. Um avatar novo depende de seleção, direitos, conexão e aprovação próprios; não clonar pessoa ou voz por inferência.
+
+Apresente roteiro/EDL, moodboard e storyboard visuais para os aceites aplicáveis. Depois, proponha a amostra de até 10 segundos da interação mais difícil e de sua transição. Não iniciar geração de vídeo IA antes dos aceites exigidos, nem o filme completo antes da aprovação da amostra. Reutilize aprovações válidas já documentadas.
+
+Quando a produção estiver autorizada, execute pelo runtime da galeria e entregue arquivos reais: MP4, legenda, projeto editável, fontes/licenças, EDL e relatório. Verificação técnica não substitui assistir e ouvir o vídeo inteiro; sem revisão audiovisual integral, manter review_pending. Pergunte apenas o que bloquear a próxima etapa.
+
+Leia presenterEditing.interactionPlan no projeto exportado: intenções de fala, participação da pessoa, ação gráfica, som e função por momento. Adapte ao assunto e à fonte; sourceTimes=null indica tempos ainda não medidos. Pergunte somente as faltas relevantes. Use video-tratamento antes da revisão e confira a matriz de capacidades.
+
+DIVERSIDADE: leia creativeDirection e decida por trecho o enquadramento e a posição da pessoa (centro, esquerda, direita, janela ou demonstração dominante). A informação precisa ser construída pela fala/ação: linhas, dados, camadas, rotas, objetos e interfaces respondem ao raciocínio. Não aplicar o mesmo apresentador lateral com cartões de vidro em todas as direções. Não espelhar a pessoa por padrão; confira a cobertura e os gestos reais. As referências fotorrealistas são propostas fictícias, não comprovação do vídeo final.

@@ -24,7 +24,8 @@ export class AssetStore {
    const durationSeconds=Number(metadata.format?.duration??video?.duration??audio?.duration??0);
    if(!kind || (!image&&(!Number.isFinite(durationSeconds)||durationSeconds<=0||durationSeconds>3600)))throw Error('Unsupported media duration');
    if(video && (video.width>3840||video.height>3840||video.width<16||video.height<16))throw Error('Media dimensions outside 16–3840 pixels');
-   const record={id,name:String(name).slice(0,180),kind,durationSeconds: image?0:durationSeconds,width:video?.width,height:video?.height,codec:video?.codec_name??audio?.codec_name,hasAudio:Boolean(audio),sha256:hash,bytes:bytes.length,rights:rights.trim().slice(0,1000),createdAt:new Date().toISOString()};
+   const hasAlpha=Boolean(video&&(/^(?:yuva|rgba|bgra|argb|abgr|gbrap|ya)/.test(video.pix_fmt||'')||String(video.tags?.alpha_mode??'')==='1'));
+   const record={id,name:String(name).slice(0,180),kind,durationSeconds: image?0:durationSeconds,width:video?.width,height:video?.height,codec:video?.codec_name??audio?.codec_name,hasAudio:Boolean(audio),hasAlpha,sha256:hash,bytes:bytes.length,rights:rights.trim().slice(0,1000),createdAt:new Date().toISOString()};
    await fs.writeFile(path.join(this.root,`${id}.json`),JSON.stringify(record,null,2));
    return record;
   }catch(error){await fs.rm(file,{force:true});throw error;}

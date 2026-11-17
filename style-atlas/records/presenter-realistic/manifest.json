@@ -1,0 +1,3306 @@
+{
+  "version": 1,
+  "catalogVersion": "4.7",
+  "images": [
+    {
+      "id": "explicador-diagrama-ao-lado",
+      "path": "assets/presenter-realistic/explicador-diagrama-ao-lado.png",
+      "sha256": "2112138473aaf903671ee65362a7f822e40c7e56ccb5acbd2b69d56b8ffc7123",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-texto-atras",
+      "path": "assets/presenter-realistic/explicador-texto-atras.png",
+      "sha256": "f7c860b8613b1315aef5aae72f8732e0b8e4d40002b09fa2fe8b49e1b655b154",
+      "width": 1199,
+      "height": 1312,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-objeto-na-mao",
+      "path": "assets/presenter-realistic/explicador-objeto-na-mao.png",
+      "sha256": "77d9994fcbf685dd7a11ebcd3b6a2f9e57a4d283e14515045707478f36f0d428",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-toque-e-resposta",
+      "path": "assets/presenter-realistic/explicador-toque-e-resposta.png",
+      "sha256": "06c75b9f3a4a46c5f42fc62c926f4b4655100812131fa220328840f1533974bc",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-orbita-frente-tras",
+      "path": "assets/presenter-realistic/explicador-orbita-frente-tras.png",
+      "sha256": "85428fcefb9305a905699d396b283920f07b15e0af51da677a8b928526f0a6dc",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-produto-em-camadas",
+      "path": "assets/presenter-realistic/explicador-produto-em-camadas.png",
+      "sha256": "f2f2817dc8bb025aa93b8c7728d9451a4acdd9e07138e4b23f80c79fea81dd44",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-corte-tecnico",
+      "path": "assets/presenter-realistic/explicador-corte-tecnico.png",
+      "sha256": "989411abc1c321dc77ba854c4cf789baaac39e28da6ee76182b4ef9966ed6ced",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-lousa-desenhada",
+      "path": "assets/presenter-realistic/explicador-lousa-desenhada.png",
+      "sha256": "1e50415be33efa3a961c9f0d4bdd59ee97cfe687e59f38c9e0f53b6d74163250",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-fluxograma-vivo",
+      "path": "assets/presenter-realistic/explicador-fluxograma-vivo.png",
+      "sha256": "f771fa26486c28996f94ffb85b21f60b5ea3f366abe01ed0793013152fdcf129",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-dados-no-gesto",
+      "path": "assets/presenter-realistic/explicador-dados-no-gesto.png",
+      "sha256": "3031c40428ae347ce8a4035589bfe5179d46bd26aa35a09b12132c27c3339336",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-antes-depois",
+      "path": "assets/presenter-realistic/explicador-antes-depois.png",
+      "sha256": "99af614893b05faca83cf86a382281ec204b052f5498890326caee653ac11035",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-mitos-e-fatos",
+      "path": "assets/presenter-realistic/explicador-mitos-e-fatos.png",
+      "sha256": "3ac2310ee170ca2ebf7c389760d9514a4b6da7411f180df3e95d46b6be0dc869",
+      "width": 1199,
+      "height": 1312,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 600,
+          "height": 656
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-cenario-contextual",
+      "path": "assets/presenter-realistic/explicador-cenario-contextual.png",
+      "sha256": "12940cb559869433d41726f517121ed171f1da95653ea7800947d7db8839b105",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-apresentador-em-janela",
+      "path": "assets/presenter-realistic/explicador-apresentador-em-janela.png",
+      "sha256": "3b8d4fb4c1c50b9946464099c391dce24c68695ab9e902138bed5dc1eab40679",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-zoom-para-interface",
+      "path": "assets/presenter-realistic/explicador-zoom-para-interface.png",
+      "sha256": "635584a0aaa1f396294ccb0951857e65e642311c21b9e90b64d9406fd4c7de6d",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-linha-do-tempo",
+      "path": "assets/presenter-realistic/explicador-linha-do-tempo.png",
+      "sha256": "fc069a0690f56791406446b9694107e06fe41084ee9d08bbbfdadd3a6b5b7d8f",
+      "width": 1089,
+      "height": 1444,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 545,
+          "height": 722
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 545,
+          "height": 722
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 545,
+          "height": 722
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 545,
+          "height": 722
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-clones-dialogando",
+      "path": "assets/presenter-realistic/explicador-clones-dialogando.png",
+      "sha256": "1aaf4712147884a785e512de1a824f5e53a5e37c608b6fa458d78bfd61a9bba6",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-mapa-e-rota",
+      "path": "assets/presenter-realistic/explicador-mapa-e-rota.png",
+      "sha256": "7403d98d181a4e8c536d80a8bf95db2b663b2f529276c7798c0ecd3a78f1020d",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-metafora-visual",
+      "path": "assets/presenter-realistic/explicador-metafora-visual.png",
+      "sha256": "cb1dd8257ded5a08e8a129831f44dd11581ebd3d7a49a9469037ebbe629b88ed",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-tres-passos",
+      "path": "assets/presenter-realistic/explicador-tres-passos.png",
+      "sha256": "58acf8d5ae2e74080349abbf11f4909f0248c7b2c93526be3b77bda5c61c353c",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-estetica-ritual",
+      "path": "assets/presenter-realistic/explicador-estetica-ritual.png",
+      "sha256": "fdc9b369cc3fb9107fd34e1c1060d6ddffff0e8016918e06d1ada147bc1085b3",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-estetica-textura",
+      "path": "assets/presenter-realistic/explicador-estetica-textura.png",
+      "sha256": "1bcfaaf7b543dddc4ca859fd2259ad77206314486102014ebbbf0ff0d5b46a8b",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-estetica-atendimento",
+      "path": "assets/presenter-realistic/explicador-estetica-atendimento.png",
+      "sha256": "5250a56c6959f8568693ddb95ef6b3e110460eaad1be7d3fde5cce471dbe5493",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-estetica-materiais",
+      "path": "assets/presenter-realistic/explicador-estetica-materiais.png",
+      "sha256": "fc6874348de6b2f28f38e8b2b1deaa30dfd658f20b00a12fd21f12e89ea26dcd",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-fitness-alinhamento",
+      "path": "assets/presenter-realistic/explicador-fitness-alinhamento.png",
+      "sha256": "80e5ba43e16898965a573133175b529f60f3ef85943eae6fd144a08e703f16c3",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-fitness-progressao",
+      "path": "assets/presenter-realistic/explicador-fitness-progressao.png",
+      "sha256": "5bed2024803f198cf9f5c154d4fa04403c0c5fbabf7047a810812e25b5ea44a4",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-fitness-ritmo",
+      "path": "assets/presenter-realistic/explicador-fitness-ritmo.png",
+      "sha256": "4d319356cdb6a1e082cfea44e8c68bd3ae6815542cf7fea5d863cf247f1cfcdf",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-fitness-equipamento",
+      "path": "assets/presenter-realistic/explicador-fitness-equipamento.png",
+      "sha256": "121b99453fbf56e94d1516790eb1897a9a4b8827af5338cbaffbe26fbbb2ba9a",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-procedimento-consulta",
+      "path": "assets/presenter-realistic/explicador-procedimento-consulta.png",
+      "sha256": "c9a69cfdfb52be9c1aa1df2b5df82672b8844a56f78b46a44395e67071e152ce",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-procedimento-camadas",
+      "path": "assets/presenter-realistic/explicador-procedimento-camadas.png",
+      "sha256": "c44893b3a3021f66b4187ba1bd80d410917f98000a0a385f500923957f2f83db",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-procedimento-jornada",
+      "path": "assets/presenter-realistic/explicador-procedimento-jornada.png",
+      "sha256": "3c4c06f91a3a2810f9bdb2b9277ee923b04e6b69ff6e727e5074fbd52b1f4a19",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-gastro-ingredientes",
+      "path": "assets/presenter-realistic/explicador-gastro-ingredientes.png",
+      "sha256": "fafd8514e1cb3d6dca433fcc62c6bc578871652bf87aa61d19599503903912e3",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-gastro-transformacao",
+      "path": "assets/presenter-realistic/explicador-gastro-transformacao.png",
+      "sha256": "0a565e83534d130761fcc5c6d8345729624dc03ebce178346a5f0ca1e472675e",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-gastro-menu",
+      "path": "assets/presenter-realistic/explicador-gastro-menu.png",
+      "sha256": "d3305de53e224cbbe8c392d87bcf4865946ef69a21bcdeb192aaf83c2f75654c",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-pet-rotina",
+      "path": "assets/presenter-realistic/explicador-pet-rotina.png",
+      "sha256": "16f5ea037f2992178fa30ee521e797944764a2a51440e8b5863e92fb6896230d",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-pet-detalhe",
+      "path": "assets/presenter-realistic/explicador-pet-detalhe.png",
+      "sha256": "297a907f539f8f1cf486569496b7508cf6bb100bd46af59770292cd45d3afdd2",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-pet-servico",
+      "path": "assets/presenter-realistic/explicador-pet-servico.png",
+      "sha256": "0b82714806461db8cc59797d55346ab1b705893f318d5bce96c060955b415938",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-moda-caimento",
+      "path": "assets/presenter-realistic/explicador-moda-caimento.png",
+      "sha256": "aee3e768f203c384e2f6cc2c058512bd732888e40cccd523dd00f23813988c4b",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-moda-atelier",
+      "path": "assets/presenter-realistic/explicador-moda-atelier.png",
+      "sha256": "3c2b50716d9f6772238ea32c5c63eca2885bdff3899a00a89ae4416e22bd201a",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-moda-composicao",
+      "path": "assets/presenter-realistic/explicador-moda-composicao.png",
+      "sha256": "8aad7811833bcf722b4ac4322580e31d2184cab307e7062ac54b336bafd90938",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-engenharia-exterior",
+      "path": "assets/presenter-realistic/explicador-engenharia-exterior.png",
+      "sha256": "88577c9b8724eef8d4e661d13326f8bf487cfb30435616bb190256a69cb4182e",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-engenharia-etapas",
+      "path": "assets/presenter-realistic/explicador-engenharia-etapas.png",
+      "sha256": "be00e7e3d5b30f16e82aee6a583df3283cbc6016d436ca4b009e280147a6aa85",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-engenharia-mecanismo",
+      "path": "assets/presenter-realistic/explicador-engenharia-mecanismo.png",
+      "sha256": "f7dc50b173c3bc4051b94363ccf6fcacc5031bf4d00ce7f7d9092d2901b528a6",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-engenharia-dados",
+      "path": "assets/presenter-realistic/explicador-engenharia-dados.png",
+      "sha256": "1666eb8fe0365c57dc68a0e524a49db5cf6c1cc84603e90060b592272aa79400",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-interiores-circulacao",
+      "path": "assets/presenter-realistic/explicador-interiores-circulacao.png",
+      "sha256": "1a39dc3db704d6436c0732ba961f1002f81ab50681dceaeafe7fc9b1c8e1a82f",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-interiores-luz",
+      "path": "assets/presenter-realistic/explicador-interiores-luz.png",
+      "sha256": "8db04136f08ad3ca2868c5de74b252d723635ddcbe2fcb8774b1a726302d3039",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-interiores-materiais",
+      "path": "assets/presenter-realistic/explicador-interiores-materiais.png",
+      "sha256": "b0b728566c3cd1c247927af73180ad657e5551308c9b185b75f49c304b4894c3",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-evento-palco",
+      "path": "assets/presenter-realistic/explicador-evento-palco.png",
+      "sha256": "bb37f19c49e406ab65d08eb73b6f75aadb3a4c1894c8eb431f67164848c73437",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-evento-mapa",
+      "path": "assets/presenter-realistic/explicador-evento-mapa.png",
+      "sha256": "4e5c06ba5939681db3e3219faadd5e3d805669384d9322e9a550ec4392400bcc",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-evento-percurso",
+      "path": "assets/presenter-realistic/explicador-evento-percurso.png",
+      "sha256": "2f577c65e874bae6e2eb035062baea5de8824fdf711dad44e4ec930ff6c4eba3",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-evento-luz",
+      "path": "assets/presenter-realistic/explicador-evento-luz.png",
+      "sha256": "55a0438d1c55d2b5ea528bd9917741e610fdcebc186b646361d801772a97c4a0",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-educacao-conceito",
+      "path": "assets/presenter-realistic/explicador-educacao-conceito.png",
+      "sha256": "6326e228f8b8528e0e0768ab93d27fe15f51a670674ab5a218104193cfc8bb64",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-educacao-simulacao",
+      "path": "assets/presenter-realistic/explicador-educacao-simulacao.png",
+      "sha256": "df3707ed7f401bbc6d44847bca448d1327a7306e0d8ddcf506b038cfba62c363",
+      "width": 1086,
+      "height": 1449,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 725
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 725
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 725
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 725
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-educacao-pratica",
+      "path": "assets/presenter-realistic/explicador-educacao-pratica.png",
+      "sha256": "4657c3e9bbb8cf9a4a94f6e3d9c47378aded816d843517c4a1664dfff0c3560e",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-agro-ciclo",
+      "path": "assets/presenter-realistic/explicador-agro-ciclo.png",
+      "sha256": "1c97a2551f8202434894a26e3a09c7f45c96c77ca90fd9c9eeaeb0950dbe9174",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-agro-maquina",
+      "path": "assets/presenter-realistic/explicador-agro-maquina.png",
+      "sha256": "8a813909acd8059bd290ad53077d436fc757f3229be5255b9d2de2c241a944a4",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-agro-territorio",
+      "path": "assets/presenter-realistic/explicador-agro-territorio.png",
+      "sha256": "726952dad5f5145ad0cc505a2a349eb11a250b3b30106bc59a3d579e0982f6bc",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-turismo-percurso",
+      "path": "assets/presenter-realistic/explicador-turismo-percurso.png",
+      "sha256": "ebbc50da651558cf1f1a0578b7ea6fe06fd9a36dfed4963ed5ad291bc72d4e00",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-turismo-hospedagem",
+      "path": "assets/presenter-realistic/explicador-turismo-hospedagem.png",
+      "sha256": "ea5db31eaffdb16d5aa0a39687ccf409763baf28e69db2c26c09f462cf4f569e",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    },
+    {
+      "id": "explicador-turismo-contexto",
+      "path": "assets/presenter-realistic/explicador-turismo-contexto.png",
+      "sha256": "69a94f289f36e912461c6202f1cd091fd5b2d6af733d0f2adba0367b8d426d0a",
+      "width": 1086,
+      "height": 1448,
+      "frames": [
+        {
+          "number": 1,
+          "crop": [
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 2,
+          "crop": [
+            0.5,
+            0,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 3,
+          "crop": [
+            0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        },
+        {
+          "number": 4,
+          "crop": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "width": 543,
+          "height": 724
+        }
+      ],
+      "motionValidated": false,
+      "conceptApproval": "pending_user_review"
+    }
+  ]
+}

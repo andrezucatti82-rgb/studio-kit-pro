@@ -1,6 +1,6 @@
 ---
 name: video-multimarcas
-description: Produzir o vídeo solicitado pela galeria com o orquestrador, mídia real, motion editável, aprovações e entrega MP4.
+description: Use when a Studio Kit Pro or visual-gallery request combines video styles, needs a production workflow, or must resume an existing video project across Codex, Claude Code, ChatGPT, or Claude.
 ---
 
-Read the complete canonical skill at `.agents/skills/video-multimarcas/SKILL.md` from the repository root. Read its `references/orchestrator-execution.md` for gallery requests and follow `CLAUDE.md` and `AGENTS.md`. This file is a project discovery bridge, not a second copy of the production rules. If the canonical skill is missing, use the complete distributable skill/plugin; never claim this bridge contains the renderer.
+Read the complete canonical instructions at `.agents/skills/video-multimarcas/SKILL.md` from the repository root, together with `CLAUDE.md` and `AGENTS.md`. This is a project discovery bridge for kit 2.12.0, not a second copy of production rules. If canonical files are missing, use the complete release plugin/runtime. The portable coordinator also embeds the specialist instructions under `references/skill-modules/`.

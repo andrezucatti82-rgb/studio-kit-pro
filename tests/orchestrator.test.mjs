@@ -42,8 +42,8 @@ test('caption timing, source trims and readable animation are enforced before ex
  const cues=requestSchema.parse({...raw(asset.id),captions:[{start:0,end:5.8,text:'Uma ideia.'},{start:6,end:13.8,text:'Uma nova hierarquia.'},{start:14,end:30,text:'Uma conclusão que conecta.'}]});
  assert.deepEqual(deterministicPlan(cues,[asset],skill).scenes.map(s=>s.durationFrames),[180,240,480]);
 });
-test('skill adapter preserves full source hashes, style mechanism and existing fidelity rules',()=>{
- assert.equal(skill.style.id,STYLE_ID);assert.equal(skill.catalogVersion,'4.4');assert(skill.records.some(r=>r.file.endsWith('scene.js')));
+test('skill adapter preserves full source hashes, style mechanism and existing fidelity rules',async()=>{
+ assert.equal(skill.style.id,STYLE_ID);assert.equal(skill.catalogVersion,JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url),'utf8')).version);assert(skill.records.some(r=>r.file.endsWith('scene.js')));
  for(const r of skill.records)assert.equal(digest(Buffer.from(r.content)),r.sha256);
  assert.equal(skill.rules.inventAngles,false);assert.match(skill.style.motion,/cedem espaço/);
 });
