@@ -6,7 +6,7 @@
   "styleCount": 1220,
   "categoryCount": 30,
   "skillSystem": {
-    "version": 1,
+    "version": 2,
     "kitVersion": "2.12.0",
     "orchestrator": "video-multimarcas",
     "skills": [
@@ -36,6 +36,11 @@
         "role": "editing"
       },
       {
+        "id": "video-tratamento",
+        "name": "Tratamento e finalização técnica",
+        "role": "finishing"
+      },
+      {
         "id": "video-revisao",
         "name": "Revisão e entrega",
         "role": "review"
@@ -45,24 +50,24 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 108241,
-      "sha256": "55ccb761157c6dd4788d31f5e1d7b077fbfcfec8ebab0dc8b882f429669e35e8"
+      "bytes": 136418,
+      "sha256": "b94245b498dd55943e3cb5bc92202f2c6e5ba80c09fe39f20780228f710a7a91"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 108706,
-      "sha256": "fc55b5db8e30a1a2418a68419858bf16028e9db9da57c11045a28dfc8529459d"
+      "bytes": 136883,
+      "sha256": "784c3dddd5e830e0bf7c333d68b2ae0a6b478fe3585bc00c06e4912682ae4a5f"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 2400125,
-      "sha256": "3b1dea142c9c57d212e00f6f0b807e8d1e88cff7ad4cda0b2c015e9eb0d798f1"
+      "bytes": 2443777,
+      "sha256": "05cc518a435541c095c30bdb74f56a70a4a5c31d2ee60277dc46c7cd5d1fd307"
     },
     "video-multimarcas.skill": {
-      "bytes": 97927,
-      "sha256": "0eece3eb1b0d1e149b69b0e09daa78c4dce7b9fc2c0a3e1a094431429504386d"
+      "bytes": 112235,
+      "sha256": "a28116446207ce3c57114beb010d0eab231819f298ecea504edda736c5b13be3"
     },
     "video-multimarcas.zip": {
-      "bytes": 97927,
-      "sha256": "0eece3eb1b0d1e149b69b0e09daa78c4dce7b9fc2c0a3e1a094431429504386d"
+      "bytes": 112235,
+      "sha256": "a28116446207ce3c57114beb010d0eab231819f298ecea504edda736c5b13be3"
     }
   }
 }

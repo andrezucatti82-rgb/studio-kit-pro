@@ -7,6 +7,8 @@ description: Use when a rendered video, revised edit, representative sample, cap
 
 Avalie o arquivo exato contra o briefing e seus escopos. Receba MP4 candidato, hash, plano, originais, referências inspecionadas, legenda e registros de decisão. Leia [produção e qualidade](../video-multimarcas/references/production-and-qa.md), [identidade](../video-multimarcas/references/identity-preservation.md), [execução fiel](../video-multimarcas/references/execution-fidelity.md) e [aprovações](../video-multimarcas/references/universal-visual-approval.md).
 
+Receba também a receita e o relatório de `video-tratamento`. Metadados, medição de loudness e tags HDR não certificam conformidade nem substituem playback/escuta. Confira o hash e a saída efetiva após qualquer tratamento.
+
 ## Evidências separadas
 
 | Verificação | Evidência necessária |

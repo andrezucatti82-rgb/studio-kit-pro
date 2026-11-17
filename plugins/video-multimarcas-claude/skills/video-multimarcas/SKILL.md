@@ -5,7 +5,7 @@ description: Use when a Studio Kit Pro or visual-gallery request combines video 
 
 # Vídeo Multimarcas — orquestradora do Studio Kit Pro
 
-Candidato **2.12.0**; catálogo **4.6**, **1.220 estilos/30 subcategorias**, incluindo **60 explicadores/17 segmentos**. Esta skill coordena um único projeto e cinco especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos.
+Candidato **2.12.0**; catálogo **4.6**, **1.220 estilos/30 subcategorias**, incluindo **60 explicadores/17 segmentos**. Esta skill coordena um único projeto e seis especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos.
 
 ## Primeiro, resolver o pedido real
 
@@ -20,7 +20,8 @@ Resuma o vídeo entendido, os materiais realmente recebidos e a próxima entrega
 | Pesquisa, materiais, roteiro, direção e painéis | [video-planejamento](references/skill-modules/video-planejamento.md) |
 | Pessoa gravada/avatar e explicação interativa | [video-explicador-interativo](references/skill-modules/video-explicador-interativo.md) |
 | Argumento, demonstração, oferta e CTA | [video-publicidade](references/skill-modules/video-publicidade.md) |
-| B-roll, montagem, motion, áudio e acabamento | [video-edicao](references/skill-modules/video-edicao.md) |
+| B-roll, montagem, motion e mix de faixas | [video-edicao](references/skill-modules/video-edicao.md) |
+| Cor, textura, restauração, diagnóstico e especificação técnica | [video-tratamento](references/skill-modules/video-tratamento.md) |
 | Evidência audiovisual e entrega | [video-revisao](references/skill-modules/video-revisao.md) |
 
 No pacote completo, esses módulos também são skills registradas com os mesmos nomes. As referências incorporadas são geradas das mesmas fontes para hosts que importam uma única skill. Leia apenas os módulos pertinentes; responsabilidades não significam agentes paralelos executados. A orquestradora mantém decisões/arquivos e recebe de cada módulo resultado, pendências, evidência e próxima ação.

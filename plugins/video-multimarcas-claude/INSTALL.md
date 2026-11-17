@@ -2,7 +2,7 @@
 
 Esta documentação descreve a PR #20, ainda em revisão. Preparar os pacotes não publica o domínio nem atualiza instalações externas. Confira a branch/commit e `dist/release-manifest.json`; `main` e o site podem distribuir uma versão anterior até uma publicação autorizada.
 
-## Um pacote, seis skills
+## Um pacote, sete skills
 
 O plugin existente `video-multimarcas` continua com o mesmo identificador e instala o conjunto:
 
@@ -13,6 +13,7 @@ O plugin existente `video-multimarcas` continua com o mesmo identificador e inst
 | `video-explicador-interativo` | Pessoa/avatar e explicação em interação |
 | `video-publicidade` | Argumento, demonstração, oferta e CTA |
 | `video-edicao` | B-roll, edição, motion, legendas e áudio |
+| `video-tratamento` | Diagnóstico, cor/textura, finalização sonora e limites técnicos |
 | `video-revisao` | Evidências, revisão audiovisual e entrega |
 
 O pedido do site leva `skillRouting`, `intentSummary`, estilos, contribuições/escopos e referências. A orquestradora escolhe os módulos pertinentes. Responsabilidades são do projeto, não prova de agentes paralelos, e não reiniciam etapas aprovadas.
@@ -28,22 +29,22 @@ npm ci
 npm run doctor
 ```
 
-`AGENTS.md` e `CLAUDE.md` orientam a produção; `.agents/skills/` contém as fontes canônicas e `.claude/skills/` tem os seis arquivos de descoberta. Abra uma nova sessão do agente e confirme quais instruções foram carregadas. O diagnóstico verifica arquivos/comandos locais; conexão, saldo, modelo, playback e escuta precisam de verificações próprias.
+`AGENTS.md` e `CLAUDE.md` orientam a produção; `.agents/skills/` contém as fontes canônicas e `.claude/skills/` tem os sete arquivos de descoberta. Abra uma nova sessão do agente e confirme quais instruções foram carregadas. O diagnóstico verifica arquivos/comandos locais; conexão, saldo, modelo, playback e escuta precisam de verificações próprias.
 
 Diga: “Use $video-multimarcas e execute o pedido anexado.” Envie `projeto-video.json` e seus originais. O agente importa o pedido no runtime 2.12.0 e usa o modelo da própria conversa para planejar; outra API OpenAI/Anthropic não é obrigatória para interpretar a ficha. O usuário não precisa escrever o plano técnico.
 
-Para instalar todas as seis skills em **outro projeto** já existente:
+Para instalar todas as sete skills em **outro projeto** já existente:
 
 ```bash
 node scripts/install-agent.mjs --agent codex --project-root /caminho/do/projeto
 node scripts/install-agent.mjs --agent claude --project-root /caminho/do/projeto
 ```
 
-Escolha o comando do seu agente. O instalador verifica as seis fontes, prepara a atualização, faz backup das versões anteriores e atualiza somente os seis IDs do kit. Outras skills e configurações permanecem preservadas. O resultado informa caminhos e backups. Ele instala instruções; não copia runtime, mídia ou conexões para o projeto de destino. O agente deve localizar o checkout/runtime compatível ao executar. Reabra a sessão e confira a versão.
+Escolha o comando do seu agente. O instalador verifica as sete fontes, prepara a atualização, faz backup das versões anteriores e atualiza somente os sete IDs do kit. Outras skills e configurações permanecem preservadas. O resultado informa caminhos e backups. Ele instala instruções; não copia runtime, mídia ou conexões para o projeto de destino. O agente deve localizar o checkout/runtime compatível ao executar. Reabra a sessão e confira a versão.
 
 ## Plugins completos
 
-`dist/video-multimarcas-plugin.zip` é o plugin Codex com seis skills; `dist/video-multimarcas-claude-plugin.zip` é o plugin Claude Code com as mesmas fontes. Use o fluxo de instalação disponível na sua versão do agente.
+`dist/video-multimarcas-plugin.zip` é o plugin Codex com sete skills; `dist/video-multimarcas-claude-plugin.zip` é o plugin Claude Code com as mesmas fontes. Use o fluxo de instalação disponível na sua versão do agente.
 
 Quando o Codex CLI oferecer marketplace/plugin:
 
@@ -71,9 +72,9 @@ Uma instalação pessoal `video-b-roll` é separada deste kit. Não removê-la, 
 
 ## Pacote mínimo, runtime e chat
 
-`dist/video-multimarcas.skill` e `.zip` contêm a orquestradora e todas as instruções dos módulos incorporadas em `references/skill-modules/`. Isso permite ler os módulos em interfaces que importam uma única skill, embora não registre cinco entradas extras nesses hosts. Os plugins completos registram os seis nomes. Compatibilidade de importação depende da interface; não existe um botão universal garantido.
+`dist/video-multimarcas.skill` e `.zip` contêm a orquestradora e todas as instruções dos módulos incorporadas em `references/skill-modules/`. Isso permite ler os módulos em interfaces que importam uma única skill, embora não registre seis entradas extras nesses hosts. Os plugins completos registram os sete nomes. Compatibilidade de importação depende da interface; não existe um botão universal garantido.
 
-`dist/video-multimarcas-runtime.zip` inclui código executável, fontes das seis skills, catálogo textual e manifesto de integridade. Extraia numa pasta nova, rode `npm ci`, `npm run check` e `npm run doctor`. Não inclui imagens de referência do catálogo, mídia de clientes, contas, credenciais ou fixtures completas da regressão. Referências são obtidas do site/repositório ou anexadas pelo usuário.
+`dist/video-multimarcas-runtime.zip` inclui código executável, fontes das sete skills, catálogo textual e manifesto de integridade. Extraia numa pasta nova, rode `npm ci`, `npm run check` e `npm run doctor`. Não inclui imagens de referência do catálogo, mídia de clientes, contas, credenciais ou fixtures completas da regressão. Referências são obtidas do site/repositório ou anexadas pelo usuário.
 
 No ChatGPT/Claude sem execução verificada, a conversa pode fazer as etapas disponíveis e informar a dependência para a produção. Abrir o chat pelo site não envia mensagens, transfere os originais, instala ferramentas ou inicia geração. Cole o pedido e anexe JSON/arquivos; na Page, o estado disponível também deve ser conferido. A ficha mantém continuidade para uma sessão com execução quando necessário.
 

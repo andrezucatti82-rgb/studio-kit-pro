@@ -10,7 +10,7 @@ test('Codex, Claude and runtime archives match canonical files, versions and int
 from pathlib import Path
 import json,hashlib,zipfile
 r=Path.cwd();version=json.loads((r/'package.json').read_text())['version'];release=json.loads((r/'dist/release-manifest.json').read_text());assert release['kitVersion']==version and release['pluginVersion']==version
-ids=[s['id'] for s in release['skillSystem']['skills']];assert len(ids)==6
+ids=[s['id'] for s in release['skillSystem']['skills']];assert len(ids)==7
 for name,record in release['packages'].items():assert hashlib.sha256((r/'dist'/name).read_bytes()).hexdigest()==record['sha256']
 for archive_name,manifest_name in [('video-multimarcas-plugin.zip','.codex-plugin/plugin.json'),('video-multimarcas-claude-plugin.zip','.claude-plugin/plugin.json')]:
  with zipfile.ZipFile(r/'dist'/archive_name) as z:
@@ -19,6 +19,8 @@ for archive_name,manifest_name in [('video-multimarcas-plugin.zip','.codex-plugi
    if f.is_file():assert z.read('skills/video-multimarcas/'+f.relative_to(r/'.agents/skills/video-multimarcas').as_posix())==f.read_bytes()
   import re,posixpath
   for sid in ids:
+   for f in (r/'.agents/skills'/sid).rglob('*'):
+    if f.is_file():assert z.read('skills/'+sid+'/'+f.relative_to(r/'.agents/skills'/sid).as_posix())==f.read_bytes()
    entry='skills/'+sid+'/SKILL.md';body=z.read(entry).decode();assert body==(r/'.agents/skills'/sid/'SKILL.md').read_text()
    for target in re.findall(r'\]\(([^)]+)\)',body):
     if ':' not in target and not target.startswith('#'):assert posixpath.normpath(posixpath.join(posixpath.dirname(entry),target.split('#')[0])) in z.namelist(),(entry,target)

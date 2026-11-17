@@ -2,11 +2,12 @@
 from pathlib import Path
 import hashlib,json,shutil,zipfile,subprocess
 root=Path(__file__).resolve().parent.parent
+subprocess.check_call(['node','scripts/build-treatment-docs.mjs'],cwd=root)
 skill=root/'.agents/skills/video-multimarcas'
-# The shared browser/Node contract owns the six registered kit IDs.
+# The shared browser/Node contract owns the registered kit IDs.
 system=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import './style-atlas/dist/workflow.js'; process.stdout.write(JSON.stringify(AtlasWorkflow.skillSystem))"],cwd=root,text=True))
 skill_ids=[s['id'] for s in system['skills']]
-assert skill_ids[0]=='video-multimarcas' and len(skill_ids)==6 and len(set(skill_ids))==6
+assert skill_ids[0]=='video-multimarcas' and len(skill_ids)==7 and len(set(skill_ids))==7
 for skill_id in skill_ids:
     assert (root/'.agents/skills'/skill_id/'SKILL.md').is_file(),skill_id
 # Portable one-skill hosts can read complete embedded specialist instructions.
@@ -14,6 +15,12 @@ embedded=skill/'references/skill-modules';embedded.mkdir(exist_ok=True)
 for skill_id in skill_ids[1:]:
     body=(root/'.agents/skills'/skill_id/'SKILL.md').read_text()
     body=body.replace('../video-multimarcas/references/','../')
+    owned=root/'.agents/skills'/skill_id/'references'
+    if owned.exists():
+        target=embedded/skill_id/'references'
+        if target.exists():shutil.rmtree(target)
+        shutil.copytree(owned,target)
+        body=body.replace('](references/',']('+skill_id+'/references/')
     (embedded/(skill_id+'.md')).write_text(body)
 (skill/'references/skill-system.json').write_text(json.dumps(system,ensure_ascii=False,indent=2)+'\n')
 

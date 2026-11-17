@@ -24,7 +24,8 @@
     "production": "node scripts/production.mjs",
     "production:serve": "node scripts/serve-production.mjs",
     "production:poc": "node scripts/production.mjs --engineering-poc --root projects/orchestrator-poc",
-    "video": "node scripts/video.mjs"
+    "video": "node scripts/video.mjs",
+    "video:inspect": "node scripts/inspect-media.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.540",
