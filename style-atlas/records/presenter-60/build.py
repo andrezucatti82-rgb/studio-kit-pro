@@ -104,7 +104,9 @@ def draw_frame(index,step,row,profile):
 BOARDS={'corretores':('espacos-produtos',0),'arquitetos':('espacos-produtos',50),'lojas':('espacos-produtos',100),'dentistas':('saude-cuidados',0),'esteticas':('saude-cuidados',50),'procedimentos':('saude-cuidados',100),'advogados':('direito-movimento',0),'fitness':('direito-movimento',100),'gastronomia':('sensorial-atelier',0),'pets':('sensorial-atelier',50),'moda':('sensorial-atelier',100),'engenharia':('projetos-eventos',0),'interiores':('projetos-eventos',50),'eventos':('projetos-eventos',100),'educacao':('conhecimento-territorio',0),'agro':('conhecimento-territorio',50),'turismo':('conhecimento-territorio',100)}
 
 def build():
- path=DIST/'catalog.json';c=json.loads(path.read_text());base=[s for s in c['styles'] if s['family']!='explicadores'];assert len(base)==1160
+ path=DIST/'catalog.json';c=json.loads(path.read_text())
+ if c.get('presenterCollection',{}).get('styles',60)>60:raise SystemExit('Historical sixty-style builder: use scripts/build-presenter-commercial.mjs for the current collection; no current data was changed.')
+ base=[s for s in c['styles'] if s['family']!='explicadores'];assert len(base)==1160
  c['styles']=base;c['version']='4.6';c['families']=[f for f in c['families'] if f['id']!='explicadores']+[{'id':'explicadores','name':'Apresentador e explicação','kind':'Edição com apresentador','count':60}]
  if not any(s['id']=='editia-public-reference' for s in c['research']['sources']):c['research']['sources'].append({'id':'editia-public-reference','title':'EDIT.IA PRO — página e demonstrações públicas','url':'https://editiapro.com/','note':'Referência de recursos e fluxo; trechos públicos examinados sem faixa de áudio.'})
  assets=DIST/'assets/presenter-60';assets.mkdir(exist_ok=True);manifest=[]

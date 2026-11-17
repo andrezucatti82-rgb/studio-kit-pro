@@ -40,17 +40,23 @@ export function validate(p){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const input=JSON.parse(fs.readFileSync(process.argv[2]||'templates/project.json','utf8'));(input.selectedStyles?validatePreset:validate)(input);console.log('Project valid. This does not certify creative quality.');}
 
 export function validateCatalog(c){
- if(c.styles.length!==1220||new Set(c.styles.map(s=>s.id)).size!==1220)throw Error('1220 unique styles required');
+ if(c.styles.length!==1425||new Set(c.styles.map(s=>s.id)).size!==1425)throw Error('1425 unique styles required');
  if(c.families.length!==30)throw Error('30 subcategories required');
  for(const f of c.families)if(f.count!==c.styles.filter(s=>s.family===f.id).length)throw Error('Family count mismatch: '+f.id);
  for(const f of c.families.filter(f=>f.id.startsWith('ads-')))if(f.count!==40)throw Error('Forty ads per grouped segment required: '+f.id);
- const presenters=c.styles.filter(s=>s.family==='explicadores');if(presenters.length!==60)throw Error('Sixty presenter directions required');
+ const presenters=c.styles.filter(s=>s.family==='explicadores');if(presenters.length!==265)throw Error('265 presenter directions required');
  const sectorCounts={corretores:4,dentistas:4,arquitetos:4,lojas:4,advogados:4,esteticas:4,fitness:4,procedimentos:3,gastronomia:3,pets:3,moda:3,engenharia:4,interiores:3,eventos:4,educacao:3,agro:3,turismo:3};
+ const commercial=JSON.parse(fs.readFileSync(new URL('../style-atlas/records/presenter-180/briefs.json',import.meta.url)));if(commercial.length!==205)throw Error('205 authored commercial directions required');for(const b of commercial)sectorCounts[b.sector]=(sectorCounts[b.sector]||0)+1;
+ if(Object.keys(sectorCounts).length!==53||new Set(presenters.map(s=>s.presenterEditing?.sector)).size!==53)throw Error('Fifty-three presenter sectors required');
  for(const [sector,count]of Object.entries(sectorCounts))if(presenters.filter(s=>s.presenterEditing?.sector===sector).length!==count)throw Error('Presenter sector count mismatch: '+sector);
+ for(const b of commercial){const s=presenters.find(s=>s.id===b.id),p=s?.presenterEditing,d=p?.interactionPlan?.depthComposition;if(!s||s.edition!=='4.8'||p.recipeId!==b.id||d?.layerOrder?.length!==4||d?.graphicEvolution?.length!==4||new Set(d.graphicEvolution).size!==4||p.interactionPlan.narrativeStructure!==b.depthComposition.structure||p.interactionPlan.sourceTimes!==null)throw Error('Missing authored progressive depth direction: '+b.id);if(!p.interactionPlan.beats.every(beat=>beat.layerOrder?.length===4&&beat.depthAction&&beat.timingEvidence==='pending_actual_source'))throw Error('Depth needs speech/action and honest source timing: '+b.id);}
  for(const s of presenters){const p=s.presenterEditing,f=p?.finishProfile;if(!p?.narrationRequired||!p.captionsRequired||f?.environment?.default!=='preserve_recorded_environment'||f?.environment?.automaticBackgroundReplacement!==false||!f?.graphics?.purposeRequired||f?.music?.status!=='planned_not_generated'||f?.audiovisualProof!==false)throw Error('Presenter direction must preserve real environment and honest audio/graphics status: '+s.id);}
+ for(const s of presenters)if(s.sequence?.sourceKind!=='photorealistic_generated_reference'||s.image?.sourceKind!=='image_gen')throw Error('Presenter reference must be photographic, not a procedural placeholder: '+s.id);
  for(const s of presenters)if(!s.presenterEditing||s.presenterEditing.referenceIsExecutionProof!==false||!s.presenterEditing.avatarOptInRequired||s.presenterEditing.automaticGestureTracking!==false||s.presenterEditing.automaticSegmentation!==false)throw Error('Presenter direction must state actual capabilities: '+s.id);
  const safe=v=>typeof v==='string'&&/^assets\/[a-zA-Z0-9_,./-]+\.(webp|png)$/.test(v)&&!v.includes('..');
+ const sources=new Map((c.research?.sources||[]).map(r=>[r.id,r]));
  for(const s of c.styles){
+  if((s.researchRefs||[]).some(id=>!sources.get(id)?.title||!/^https?:\/\//.test(sources.get(id)?.url||'')))throw Error('Unresolved research reference: '+s.id);
   if(!s.proof||!s.requirements||!s.preset?.productFidelity||!['voice','music','sfx','mix'].every(k=>s.audio?.[k]))throw Error('Incomplete fidelity fields: '+s.id);
   if(c.visualEdition==='film-sequences-1'){
    if(['4.3','4.4'].includes(s.edition)){const a=s.advertising;if(!a||!['DBO','AIDA'].includes(a.framework)||a.narrationRequired!==true||a.captionsRequired!==true||!a.cta||a.captions?.editable!==true||a.captions?.synchronized!==true||a.targetDurationRange?.[0]!==30||a.targetDurationRange?.[1]!==45||s.audio.narrationRequired!==true||s.audio.captionsRequired!==true)throw Error('Incomplete narrated ad contract: '+s.id);}

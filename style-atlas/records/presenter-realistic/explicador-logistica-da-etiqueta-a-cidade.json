@@ -1,0 +1,16 @@
+{
+  "id": "explicador-logistica-da-etiqueta-a-cidade",
+  "path": "assets/presenter-realistic/explicador-logistica-da-etiqueta-a-cidade.webp",
+  "generator": "image_gen",
+  "sourceArtifact": "exec-98f6ad21-1a7f-4b61-ab7f-406785a36324.png",
+  "sourceOriginalSha256": "c6e03010aa35ffb99eb74e95647133479d585ce7211a73ce2c55afa6becdf13b",
+  "deliveryEncoding": "webp_quality_95_no_resize_or_crop",
+  "layout": "2x2_independent_complete_photorealistic_frames",
+  "sha256": "6aab76ec01c3a4de2fa2172caaf66225817583c3106d71ad78cc64847d7f3f30",
+  "width": 1086,
+  "height": 1448,
+  "fictionalPeopleAndPlaces": true,
+  "motionValidated": false,
+  "status": "proposed_visual_reference_not_produced_video",
+  "generationBrief": "Original depth pilot: one fictional 28-year-old Brazilian woman with short natural curls, tattoos and olive work shirt in a parcel shop. CAMINHO is occluded behind her, a route starts at the parcel on her palm and moves behind/above her wrist, then builds a labelled simulated tabletop city, and resolves in the completed route. Four different complete shots, a 2x2 original, no actual tracking/motion proof."
+}

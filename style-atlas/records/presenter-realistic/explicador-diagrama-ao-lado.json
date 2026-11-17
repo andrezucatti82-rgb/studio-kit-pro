@@ -8,5 +8,13 @@
   "fictionalPeopleAndPlaces": true,
   "motionValidated": false,
   "status": "proposed_visual_reference_not_produced_video",
-  "purpose": "Realistic target appearance for Planta em vidro; replaces crude procedural placeholder."
+  "purpose": "Realistic target appearance for Planta em vidro; replaces crude procedural placeholder.",
+  "thumbnail": {
+    "path": "assets/presenter-realistic/previews/explicador-diagrama-ao-lado.webp",
+    "sha256": "905af0208ddf02186e3f671528a8835bef411c260bc1c14f9e067a40b1796670",
+    "width": 1086,
+    "height": 1448,
+    "derivation": "webp_quality_90_format_transcode_only_no_resize_crop_or_artwork_edit",
+    "originalReferencePreserved": true
+  }
 }

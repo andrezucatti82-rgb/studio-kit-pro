@@ -1,6 +1,6 @@
 # Busca por conteúdo dos estilos
 
-A busca usa o catálogo inteiro e tags internas por estilo. Não exige exibir chips ou palavras-chave nos cartões. O catálogo visual continua 4.7: acrescentar metadados de busca não altera imagens, receitas, IDs, ordem original ou aprovações de referência.
+A busca usa o catálogo inteiro e tags internas por estilo. Não exige exibir chips ou palavras-chave nos cartões. No catálogo visual 4.8, os 1.425 estilos usam o mesmo módulo de busca. A manutenção de tags não altera imagens nem aprovações; os 205 novos IDs são acrescentados ao acervo anterior.
 
 Digite um assunto, objeto, material, profissão ou recurso. “Cachorro”, “cão”, “cães” e “dog” usam o mesmo conceito; “mãos” e “maos” são equivalentes. Termos diferentes são combinados: “cachorro vidro” pede um estilo com os dois, e “avatar diagrama” combina apresentação e explicação. Títulos exatos têm prioridade; o restante segue relevância e ordem estável. Fragmentos com pelo menos três letras também procuram o início de palavras. Não há serviço externo, embeddings ou API paga.
 

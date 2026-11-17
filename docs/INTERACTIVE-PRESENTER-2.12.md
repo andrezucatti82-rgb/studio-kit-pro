@@ -6,7 +6,7 @@ O studio-kit-pro 2.11.0 já tem boa parte da infraestrutura necessária para ess
 
 O caminho adequado é compor em torno de um vídeo preservado, com tempo da fala, camadas gráficas, recorte e trajetórias. O mesmo processo pode usar um MP4 de avatar autorizado. Gerar o vídeo inteiro novamente para colocar uma palavra atrás da cabeça aumenta o risco de mudar rosto, roupa, gesto e voz sem necessidade.
 
-Esta branch 2.12.0 acrescenta operadores verificáveis. A proposta inicial de 20 receitas foi ampliada para 60 em 17 segmentos; veja [a revisão social atual](PRESENTER-SOCIAL-60.md). As vinte interações abaixo registram a pesquisa inicial, não a lista final de nomes do catálogo. Não afirma ter instalado uma solução automática de transcrição, segmentação, tracking ou modelagem 3D. A versão publicada anteriormente é 2.11.0; código preparado e pacotes não constituem publicação do domínio nem instalação no computador de outra pessoa.
+Esta branch 2.12.0 acrescenta operadores verificáveis. A proposta inicial de 20 receitas foi ampliada para 60 em 17 segmentos; veja [a revisão social atual](PRESENTER-SOCIAL-60.md). As vinte interações abaixo registram a pesquisa inicial, não a lista final de nomes do catálogo. Não afirma ter instalado uma solução automática de transcrição, segmentação, tracking ou modelagem 3D. A publicação inicial 2.12.0 está documentada em RELEASE-2.12.md. A ampliação comercial 4.8 reúne 265 direções/53 segmentos; veja PRESENTER-COMMERCIAL.md. Código e pacotes não constituem instalação no computador de outra pessoa.
 
 ## O que foi pesquisado
 
@@ -56,7 +56,7 @@ Fontes primárias consultadas: [faster-whisper](https://github.com/SYSTRAN/faste
 
 - **Skill canônica:** referência de apresentador, inspeção do bruto, planejamento por fala, limites de máscara/gesto, consentimento e revisão. Codex e Claude compartilham a mesma regra.
 - **Runtime:** schema, validação, composição e arquivos reais. Receitas não executam operações que o motor não implementa. Arquivos desconhecidos, máscaras incompatíveis e trajetórias insuficientes são rejeitados.
-- **Site:** categoria “Motion e apresentações” → “Apresentador + explicação”; 60 fichas setoriais com quatro estados originais, recursos e limitações. O total passa a 1.220 estilos e 30 subcategorias. O site prepara o pedido; continua sem receber o vídeo ou executar um backend remoto de edição.
+- **Site:** categoria principal “Apresentador + explicação”; 265 fichas setoriais com quatro estados originais, recursos e limitações. O total passa a 1.425 estilos em sete categorias principais, preservando 30 famílias de catálogo. O site prepara o pedido; continua sem receber o vídeo ou executar um backend remoto de edição.
 - **Plugins:** Codex, Claude, skill ZIP e runtime gerados da fonte canônica, com versão e hashes no manifesto. Preparar o pacote não atualiza uma instalação externa.
 - **GitHub e publicação:** branch/PR, regressão preservada, evidências técnicas e revisão antes do merge/publicação. A autorização anterior foi específica para 2.11.0; o estado de 2.12.0 deve ser declarado separadamente.
 

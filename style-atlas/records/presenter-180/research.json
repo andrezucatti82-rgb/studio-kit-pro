@@ -1,0 +1,246 @@
+{
+  "reviewDate": "2026-11-17",
+  "purpose": "Original commercially useful presenter-led motion directions; references inform principles, never copied media, identity, script or campaign claims.",
+  "observationLimit": "Public creator/agency/award pages, professional and government guidance, press reports and indexed video metadata were researched on 17 November 2026. Complete video playback could not be obtained; no frame-by-frame viewing claimed. Historical reported or indexed views are reach indicators, not a ranking of engagement, retention, saves or sales. No private analytics were available.",
+  "sources": [
+    {
+      "id": "eames-powers-of-ten",
+      "title": "Powers of Ten — Eames Office",
+      "url": "https://www.eamesoffice.com/the-work/powers-of-ten/",
+      "verifiedRecognition": "C.I.N.E. 1978 Golden Eagle listed by Eames Office; preservation in US National Film Registry also stated, which is recognition rather than an award.",
+      "principle": "Changing scale connects a human situation to a larger or smaller explanatory system.",
+      "adaptation": "Motivated scale journeys for energy, logistics, materials and technical services; generated microscopic views are identified models, never real microscopy."
+    },
+    {
+      "id": "dandad-welcome-home",
+      "title": "Apple Welcome Home — D&AD archive",
+      "url": "https://www.dandad.org/work/d-ad-awards-archive/welcome-home",
+      "verifiedRecognition": "D&AD 2018; archive lists Yellow, Graphite and Wood Pencils.",
+      "principle": "Physical space and visual effects respond to human action.",
+      "adaptation": "Purposeful transitions between object, gesture and environment; preserve the customer's actual location and available views."
+    },
+    {
+      "id": "dandad-street-summer",
+      "title": "Channel 4 Street Summer — D&AD archive",
+      "url": "https://www.dandad.org/work/d-ad-awards-archive/street-summer",
+      "verifiedRecognition": "D&AD 2012; Yellow and Wood Pencils listed.",
+      "principle": "Zooming and panning connect performers and locations while maintaining a coherent visual world.",
+      "adaptation": "Commercial walkthroughs and changes of point of view that reveal a useful relationship."
+    },
+    {
+      "id": "oneshow-truth-rigor",
+      "title": "The Truth Is Worth It: Rigor — The One Show",
+      "url": "https://www.oneclub.org/awards/theoneshow/-award/33132/the-truth-is-worth-it-rigor/",
+      "verifiedRecognition": "2019 One Show Film Gold Pencil; annual ID OS_FI19002G.",
+      "principle": "A short film can organize evidence into an understandable narrative.",
+      "adaptation": "Evidence-led explanations of documents, inspection and business processes; no copied copy or factual claims."
+    },
+    {
+      "id": "motionawards-airmax16",
+      "title": "Air Max Day 16 — Motion Awards",
+      "url": "https://2016.motionawards.com/winner/commercial-campaign/",
+      "creatorPortfolio": "https://mvsm.com/project/air-max-day-16",
+      "verifiedRecognition": "2016 Motion Awards winner, Commercial / Campaign.",
+      "principle": "Kinetic physical metaphors can reveal product design and process.",
+      "adaptation": "Objects assemble, separate and reconnect to explain a product or service; literal physical claims still require sources."
+    },
+    {
+      "id": "johnny-harris-maps",
+      "title": "How I Make My Maps — Johnny Harris",
+      "url": "https://www.youtube.com/watch?v=GsojLuJpe_0",
+      "observation": "Indexed official-channel metadata; no full-playback claim or award claim for this particular video.",
+      "principle": "Use maps and visual explanations as part of the reasoning."
+    },
+    {
+      "id": "apple-guided-tour",
+      "title": "A Guided Tour of iPhone 16 and iPhone 16 Pro — Apple",
+      "url": "https://www.youtube.com/watch?v=4YYQOF7ZENg",
+      "observation": "Indexed official-channel metadata; no full-playback claim or award claim.",
+      "principle": "Presenter-led product demonstration in recognizable everyday situations."
+    },
+    {
+      "id": "31agency-lacoste",
+      "title": "Rotate the Look — 31 Agency case study",
+      "url": "https://31-agency.com/en/projects/lacoste-rotate-the-look",
+      "observation": "Agency case study of a presenter-led social Reel, product details, edit, color and sound; not an award claim.",
+      "principle": "A human invitation can lead to a product film with motivated detail shots."
+    },
+    {
+      "id": "birkholz-sommelier",
+      "title": "The Perfume Sommelier — Birkholz",
+      "url": "https://www.birkholz-perfumes.com/en/pages/the-parfum-sommelier-6",
+      "observation": "Brand page describes perfume education and links the sommelier's TikTok; no full social-video viewing claim.",
+      "principle": "Demonstrate real objects and explain one aspect of a product in accessible language."
+    },
+    {
+      "id": "nose-masternose",
+      "title": "MasterNose — Nose Paris",
+      "url": "https://noseparis.com/it/masternose",
+      "observation": "Official educational series description, not an award claim.",
+      "principle": "Practical product education through one focused question and demonstrable materials."
+    },
+    {
+      "id": "buck-work",
+      "title": "BUCK — work portfolio",
+      "url": "https://buck.co/work",
+      "observation": "Portfolio descriptions for branding, product, live action, motion and systems; no blanket award claim.",
+      "principle": "A coherent design system can support different narrative and motion expressions."
+    },
+    {
+      "id": "mcmv-official",
+      "title": "Minha Casa, Minha Vida — Ministério das Cidades",
+      "url": "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/habitacao/programa-minha-casa-minha-vida/mcmv-fgts",
+      "observation": "Official programme page confirms the current name Minha Casa, Minha Vida; page updated 28 October 2026. Eligibility, rates and conditions must be checked for the actual production.",
+      "principle": "Explain the buying process with current sources; never infer approval, subsidy or payment from a fictional apartment."
+    },
+    {
+      "id": "cadore-public-report",
+      "title": "Tiago Cadore — Diário do Comércio, 27 February 2025",
+      "url": "https://dcomercio.com.br/publicacao/s/tiago-cadore-vende-imoveis-com-videos-divertidos-e-funk-no-instagram",
+      "observation": "Article reports 2.8 million views for a routine video and 520 thousand for a musical luxury-property presentation, at publication. Reported historical counts, not independently verified current platform engagement or sales.",
+      "principle": "A presenter with personality can make the property memorable; original scripts and licensed sound only."
+    },
+    {
+      "id": "martins-public-report",
+      "title": "Ricardo Martins — Exame",
+      "url": "https://exame.com/mercado-imobiliario/corretor-de-imoveis-fenomeno-no-tiktok/",
+      "observation": "Article describes a 30-second apartment video with a car in the living room; six million weekly views refers to reported aggregate reach, not a verified individual-post ranking.",
+      "principle": "A concrete unusual property detail can open a useful explanation; no invented amenities."
+    },
+    {
+      "id": "veronica-property-tours",
+      "title": "Verônica Kreitchmann — Jornal do Comércio",
+      "url": "https://www.jornaldocomercio.com/ge2/capa/2026/08/1260361-e-olha-essa-oportunidade-conheca-corretora-de-porto-alegre-que-viralizou-com-tours-de-imoveis.html",
+      "observation": "Public report of tours and a recognizable presenter persona; no comparable per-post ranking or retention data.",
+      "principle": "A guided visit connects place, detail and everyday use."
+    },
+    {
+      "id": "enes-tour-indexed",
+      "title": "Enes Yilmazer — Bel Air home tour",
+      "url": "https://www.youtube.com/watch?v=kJbPtD7F798",
+      "observation": "Public indexed metadata snapshot: 2,554,346 views and 41,000 likes, published 2 March 2020. Snapshot is not a current live count. Complete playback was unavailable; no shot-by-shot analysis claimed.",
+      "principle": "Relate architectural detail to a guided spatial journey, using authorized coverage."
+    },
+    {
+      "id": "efp-implants-explained",
+      "title": "Dental implants explained — European Federation of Periodontology",
+      "url": "https://www.efp.org/for-patients/dental-implants/dental-implants-explained/",
+      "observation": "Primary patient-education source; components, assessment and restoration depend on individual clinical conditions.",
+      "principle": "Use a model to distinguish implant support from the restoration, without diagnosing a viewer."
+    },
+    {
+      "id": "efp-implants-faq",
+      "title": "Dental implants FAQs — European Federation of Periodontology",
+      "url": "https://www.efp.org/for-patients/dental-implants/faqs/",
+      "observation": "Primary patient-education source on components, integration and individual care. No universal healing deadline is transferred into the catalogue.",
+      "principle": "Explain biological integration and maintenance in accessible language."
+    },
+    {
+      "id": "aaoms-implant-process",
+      "title": "How do dental implants work? — AAOMS MyOMS",
+      "url": "https://myoms.org/what-we-do/dental-implant-surgery/how-do-dental-implants-work/",
+      "observation": "Professional-association patient guide. Suitability and loading are clinical decisions, not a universal sequence or promise.",
+      "principle": "Separate educational stages from personal indication and timing."
+    },
+    {
+      "id": "straumann-immediate-patients",
+      "title": "Immediate procedure — Straumann patient guide",
+      "url": "https://www.straumann.com/en/patients/treatment-steps/immediate-procedure.html",
+      "observation": "Manufacturer patient guide, not independent comparative evidence; immediate options depend on assessment and conditions.",
+      "principle": "Distinguish placement, provisional restoration and loading without promising immediate treatment."
+    },
+    {
+      "id": "cfo-video-ethics",
+      "title": "Divulgação em vídeos — Conselho Federal de Odontologia",
+      "url": "https://website.cfo.org.br/divulgacao-em-videos-veja-o-que-e-permitido-pelo-codigo-de-etica-odontologico/",
+      "observation": "Professional-regulator educational guidance; check current applicable rules for the real publication. No patient records, fake credentials or clinical-result claims are included.",
+      "principle": "Prefer informative models and professional review over sensational procedure imagery."
+    },
+    {
+      "id": "implant-animation-indexed",
+      "title": "Dental Implant Procedure — indexed YouTube reference",
+      "url": "https://www.youtube.com/watch?v=pmD_xFnXv8k",
+      "observation": "Indexed snapshot: 21,043,692 views and 321,000 likes; publication 22 June 2026. Only public indexed title/description/metrics, no full playback. Popularity is not clinical-quality evidence.",
+      "principle": "A model can decompose components; clinical claims require primary professional sources."
+    },
+    {
+      "id": "implant-process-indexed",
+      "title": "Dental implant process in 4K — indexed YouTube reference",
+      "url": "https://www.youtube.com/watch?v=9xmAu45qSU4",
+      "observation": "Indexed snapshot: 40,834,373 views and 96,000 likes; publication 22 March 2022. No complete playback or engagement-ranking claim.",
+      "principle": "Show structural relationships clearly, without reproducing surgical instructions."
+    },
+    {
+      "id": "ingage-workplace",
+      "title": "INGAGE — equipe e ambiente de trabalho",
+      "url": "https://ingagedigital.com.br/carreiras",
+      "observation": "Public official careers page and its workplace photograph (IMG_3715.jpg), inspected privately. Reference for ordinary dual-monitor workstations, daylight and personal desk items, not a copied person or office.",
+      "principle": "Use practical contemporary workwear, real desk proportions, cables, notebooks and varied adult professionals."
+    },
+    {
+      "id": "ghfly-workplace",
+      "title": "GhFly — ambiente da agência, Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/vozes/parana-sa/na-ghfly-dar-oportunidades-de-carreira-e-a-formula-para-reter-bons-profissionais/",
+      "observation": "Public press-photo search result describes a team in an open office with dual monitors, everyday objects and glass partitions. Original full photo retrieval failed; no full-photo viewing claim.",
+      "principle": "Anchor the environment in ordinary team operations rather than a futuristic control room."
+    },
+    {
+      "id": "shopify-analytics-overview",
+      "title": "Shopify — visão geral das Análises",
+      "url": "https://help.shopify.com/pt-BR/manual/reports-and-analytics/shopify-reports/overview-dashboard/using-the-overview-dashboard",
+      "observation": "Official product guidance consulted for metrics, time filters, period comparisons and report drill-down. Mock interfaces in new styles are illustrative, not live Shopify accounts.",
+      "principle": "Build one question at a time; keep metric definition, denominator, period and source coherent."
+    },
+    {
+      "id": "google-attribution-report",
+      "title": "Google Analytics — attribution and conversion reporting",
+      "url": "https://support.google.com/analytics/answer/10596866?hl=en",
+      "observation": "Official attribution guide consulted; platform settings and report availability can change. No account was accessed and no campaign was run.",
+      "principle": "Connect events and attribution windows without presenting attributed revenue as causal lift or profit."
+    },
+    {
+      "id": "google-conversion-lift",
+      "title": "Google Ads — comparação de tipos de Lift",
+      "url": "https://support.google.com/google-ads/answer/14097991?hl=pt-BR",
+      "observation": "Official measurement guidance; causal conclusions require appropriate design, eligibility and evidence. Not a performance promise.",
+      "principle": "Separate observation, attribution, hypothesis and incremental-effect evidence."
+    },
+    {
+      "id": "nist-generative-ai-profile",
+      "title": "NIST — Generative Artificial Intelligence Profile",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "observation": "NIST AI 600-1; primary guidance on evaluation, provenance, ongoing review and oversight. Not certification of a fictional business solution.",
+      "principle": "Make document origins, human review, exceptions, test criteria and limitations visible in business explanations."
+    },
+    {
+      "id": "google-ad-auction",
+      "title": "Google Ads — classificação do anúncio e leilão",
+      "url": "https://support.google.com/google-ads/answer/1752122?hl=pt-BR",
+      "observation": "Official definition consulted. Bid, ad/landing-page quality, thresholds, competition, search context and expected asset impact can matter. No fixed weight ranking or universal formula is inferred.",
+      "principle": "A partial educational model can relate selected criteria without inventing their relative weights or guaranteeing delivery/sales."
+    },
+    {
+      "id": "crc-contribution-margin",
+      "title": "CRCSP/CRCRS — técnicas e práticas de gestão de custos",
+      "url": "https://www.crcrs.org.br/arquivos/livros/crcsp_m04.pdf",
+      "observation": "Public professional education material distinguishes contribution after variable costs from the amount remaining after fixed costs. A business video still needs the actual cost definitions and responsible review.",
+      "principle": "Show contribution margin and fixed-cost/result stages separately; do not label contribution as net profit."
+    }
+  ],
+  "redistribution": "No reference-portfolio, social-network or YouTube media is redistributed. New public images are original fictional ImageGen references. Award recognition belongs to the cited works, never to this catalogue.",
+  "specialistScope": {
+    "realEstateNewStyles": 30,
+    "implantNewStyles": 10,
+    "currentProgrammeName": "Minha Casa, Minha Vida",
+    "sourcesControlClaims": true,
+    "noPaidAPIsUsed": true,
+    "noReferenceMediaRedistributed": true,
+    "businessNewStyles": 20,
+    "businessPractices": [
+      "performance agency",
+      "paid traffic",
+      "ecommerce consulting",
+      "AI for business"
+    ]
+  }
+}

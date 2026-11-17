@@ -1,6 +1,6 @@
 # Anúncios narrados: natural/UGC e campanha elaborada
 
-O catálogo 4.7 preserva 440 direções de anúncios em 11 subcategorias, com 40 conceitos em cada: moda e vestuário; alimentação e bebidas; casa e decoração; joias e acessórios; serviços jurídicos; pets; automotivo e mobilidade; turismo e hospedagem; beleza e autocuidado; serviços residenciais; infantil e maternidade. Total: 1.220 estilos em 30 subcategorias. Os 780 IDs e quadros anteriores permanecem na mesma ordem. Os 380 novos são conceitos fictícios pendentes de aprovação do usuário, com quatro quadros por proposta.
+O catálogo 4.8 preserva 440 direções de anúncios em 11 subcategorias, com 40 conceitos em cada: moda e vestuário; alimentação e bebidas; casa e decoração; joias e acessórios; serviços jurídicos; pets; automotivo e mobilidade; turismo e hospedagem; beleza e autocuidado; serviços residenciais; infantil e maternidade. Total atual: 1.425 estilos em sete categorias principais, incluindo 265 explicadores. Na expansão publicitária 4.4, os 780 IDs e quadros anteriores foram preservados na mesma ordem. Seus 380 novos são conceitos fictícios pendentes de aprovação do usuário, com quatro quadros por proposta.
 
 ## Do preset ao filme
 

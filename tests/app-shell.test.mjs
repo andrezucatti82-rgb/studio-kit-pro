@@ -126,16 +126,16 @@ test('Page migration retains 4.1 favourites and resets approvals when reference 
  assert.equal(resumed.getStorageReads(),0);
 });
 
-test('two-level categories partition all 1220 styles and never render example-style shortcuts',async()=>{
+test('two-level categories partition all 1425 styles and never render example-style shortcuts',async()=>{
  const {document:d,ctx,click}=await boot();const catalog=ctx.AtlasApp.getCatalog(),groups=ctx.AtlasNavigation.groups;
- assert.equal(groups.length,6);
+ assert.equal(groups.length,7);
  const families=groups.flatMap(g=>g.families);
  assert.equal(families.length,30);assert.equal(new Set(families).size,30);
  assert.deepEqual(new Set(families),new Set(catalog.families.map(f=>f.id)));
- assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1220);
- assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,30);
+ assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1425);
+ assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,29);
  assert.equal(d.querySelectorAll('#categoryTiles [data-visual-family]').length,3);
- for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',220],['visual',240]]){
+ for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',160],['visual',240]]){
   click('[data-nav-group="'+id+'"]');
   assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+total+' estilos'));
   assert.equal(ctx.AtlasApp.categorySelection().group,id);
@@ -160,7 +160,7 @@ test('two-level categories partition all 1220 styles and never render example-st
  assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,0,'navigation does not change the brief');
  click('.category-all');assert.equal(d.getElementById('familySelect').value,'');
  assert.equal(ctx.AtlasApp.categorySelection().group,'');
- assert.match(d.getElementById('resultCount').textContent,/^1220 estilos/);
+ assert.match(d.getElementById('resultCount').textContent,/^1425 estilos/);
  assert.equal(d.querySelectorAll('#grid .card').length,24);
 });
 test('browsing parents and subcategories preserves selected styles, contributions and approvals',async()=>{
@@ -168,7 +168,7 @@ test('browsing parents and subcategories preserves selected styles, contribution
  click('#grid [data-choose="publicidade-cinematografica"]');
  ctx.AtlasApp.setStyleContributions('publicidade-cinematografica',[{aspect:'lighting',scope:'film'}]);
  const before=JSON.stringify(ctx.AtlasApp.exportBundle());
- for(const group of ctx.AtlasNavigation.groups){click('[data-nav-group="'+group.id+'"]');for(const id of group.families)click('[data-nav-family="'+id+'"]');}
+ for(const group of ctx.AtlasNavigation.groups){click('[data-nav-group="'+group.id+'"]');if(!group.directFamily)for(const id of group.families)click('[data-nav-family="'+id+'"]');}
  click('.category-all');
  assert.equal(JSON.stringify(ctx.AtlasApp.exportBundle()),before);
  assert.equal(d.querySelectorAll('[data-nav-style],.category-shortcuts').length,0);
@@ -370,7 +370,7 @@ test('an explicit style link renews visual approvals, preserves history and reta
  });
 
 test('presenter storyboard steps show real selected recipe directions and retain them in the prompt',async()=>{
- const app=await boot();app.click('[data-nav-group="movement"]');app.click('[data-nav-family="explicadores"]');app.click('#grid [data-detail]');
+ const app=await boot();app.click('[data-nav-group="presenters"]');app.click('#grid [data-detail]');
  const host=app.document.querySelector('[data-presenter-story]');assert(host);assert.equal(host.querySelectorAll('[data-presenter-step]').length,4);
  const before=host.querySelector('[data-presenter-image-host]').innerHTML;app.click('[data-presenter-step="2"]');assert.notEqual(host.querySelector('[data-presenter-image-host]').innerHTML,before);assert.equal(host.querySelector('[data-presenter-step="2"]').getAttribute('aria-pressed'),'true');assert.equal(host.querySelector('[data-beat="graphicAction"]').textContent,app.ctx.AtlasApp.getStyle(host.dataset.presenterStory).presenterEditing.interactionPlan.beats[2].graphicAction);
  app.click('#detailDialog [data-choose]');app.change('topic','Explicar CRM');app.click('#prepare');assert(app.ctx.AtlasApp.prompt().includes('interactionPlan'));assert(app.ctx.AtlasApp.prompt().includes('sourceTimes'));
@@ -386,4 +386,18 @@ test('content search opens the whole catalogue, finds hidden dog synonyms and re
 });
 test('Page search uses hidden tags and semantic aliases without localStorage',async()=>{
  const app=await boot({page:true}),input=app.document.getElementById('search');input.value='MAOS';input.dispatchEvent(new app.ctx.Event('input',{bubbles:true}));assert(app.document.querySelector('[data-style-id="demonstracao-com-maos"]'));assert.equal(app.getStorageReads(),0);assert.equal(app.document.querySelectorAll('.search-tags').length,0);
+});
+
+test('presenters are a main category with fifty-three sector choices; vehicle and florist filters preserve the brief',async()=>{
+ const {document:d,ctx,click}=await boot();
+ click('#grid [data-choose="publicidade-cinematografica"]');
+ const before=JSON.stringify(ctx.AtlasApp.exportBundle());
+ ctx.AtlasShell.view('library');click('[data-nav-group="presenters"]');
+ const main=d.querySelector('[data-nav-group="presenters"]');assert.equal(main.dataset.directFamily,'explicadores');assert.equal(main.hasAttribute('aria-expanded'),false);
+ assert.equal(d.querySelector('[data-nav-family="explicadores"]'),null);assert.match(d.getElementById('resultCount').textContent,/^265 estilos/);
+ assert.equal(d.querySelectorAll('[data-visual-sector]').length,53);assert.equal(d.getElementById('presenterSectorWrap').hidden,false);
+ for(const [sector,count]of [['revendas-veiculos',5],['floriculturas',9],['confeitarias',9],['livrarias',5],['bares',5]]){
+  click('[data-visual-sector="'+sector+'"]');assert.equal(d.getElementById('presenterSector').value,sector);assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+count+' estilos'));assert.equal(d.querySelectorAll('#grid .card').length,count);
+ }
+ assert.equal(JSON.stringify(ctx.AtlasApp.exportBundle()),before);
 });

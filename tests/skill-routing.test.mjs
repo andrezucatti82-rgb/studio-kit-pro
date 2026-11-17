@@ -14,7 +14,7 @@ test('kit exposes a coordinator and six discoverable specialists',()=>{
  assert.equal(typeof W.skillRouting,'function','Missing structured skill routing');
  assert.equal(W.skillSystem.orchestrator,'video-multimarcas');assert.equal(W.skillSystem.skills.length,7);
 });
-test('all sixty presenter directions route interaction work to the presenter specialist',()=>{
+test('all 265 presenter directions route interaction work to the presenter specialist',()=>{
  assert.equal(typeof W.skillRouting,'function');
  for(const s of catalog.styles.filter(s=>s.presenterEditing)){const r=W.skillRouting(choice([s],{[s.id]:[{aspect:'style_direction',scope:'film'}]}));assert.equal(r.primarySkill,'video-explicador-interativo');assert(r.modules.includes('video-planejamento'));assert(r.modules.includes('video-edicao'));assert(r.modules.includes('video-revisao'));}
 });

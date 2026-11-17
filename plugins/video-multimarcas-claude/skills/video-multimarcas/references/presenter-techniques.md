@@ -1,6 +1,6 @@
-# Vinte mecanismos, sessenta direções
+# Mecanismos de interação, 265 direções
 
-Os mecanismos abaixo são composição/técnica; as 60 receitas do catálogo 4.7 aplicam essas ideias a 17 segmentos. Selecionar um mecanismo exige verificar seus insumos e demonstrar sua ação; não anuncia extração automática ou 20 efeitos certificados.
+Os mecanismos abaixo são composição/técnica; as 265 receitas do catálogo 4.8 aplicam essas ideias a 53 segmentos. Selecionar um mecanismo exige verificar seus insumos e demonstrar sua ação; não anuncia extração automática ou 20 efeitos certificados.
 
 | Mecanismo | Insumos e prova específica |
 |---|---|

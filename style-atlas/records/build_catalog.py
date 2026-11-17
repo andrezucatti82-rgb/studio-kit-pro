@@ -1,6 +1,10 @@
 import json,unicodedata
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+# This historical base builder predates grouped ads and presenter collections.
+existing=ROOT/'dist/catalog.json'
+if existing.exists() and len(json.loads(existing.read_text())['styles'])>720:
+ raise SystemExit('Legacy base builder cannot overwrite a newer catalogue. See style-atlas/README.md for the current consolidation workflow.')
 # name | visual signature | example topic | suggested use | production resources | motion direction
 families=[('cinema','Cinema e fotografia','Estética',[
 ('Publicidade cinematográfica','Luz dramática, materiais táteis e enquadramentos de campanha.','Perfume âmbar sobre pedra molhada','Lançamentos, produtos premium, campanhas de marca','Filmagem ou B-roll licenciado; vídeo IA; color grading; foley','Travelling curto, detalhes em macro e cortes motivados pelo produto'),
@@ -172,6 +176,9 @@ from complete_contract import apply as complete_contract
 complete_contract(catalog)
 from visual_preproduction import apply as apply_visual_preproduction
 apply_visual_preproduction(catalog)
+output=ROOT/'dist/catalog.json'
+if output.exists() and len(json.loads(output.read_text())['styles'])>len(catalog['styles']):
+ raise SystemExit('Legacy base builder cannot overwrite a newer catalogue. See style-atlas/README.md for the current consolidation workflow.')
 (ROOT/'dist/catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2))
 (ROOT/'records/catalog-source.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2))
 print('720 presets, 18 families; all include use, resources, motion and 10-second approval flow.')

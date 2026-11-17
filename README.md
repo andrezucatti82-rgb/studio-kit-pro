@@ -3,13 +3,13 @@
 
 Um pacote completo, sete skills: **video-multimarcas** coordena **video-planejamento**, **video-explicador-interativo**, **video-publicidade**, **video-edicao**, **video-tratamento** e **video-revisao**. O site exporta a aplicação de cada estilo e o roteamento correspondente. Codex/Claude Code executam com runtime verificado; chat sem execução conclui etapas disponíveis e informa dependências. [Instalador e tutorial](docs/COMECE-AQUI.html) · [Cobertura de tratamento](docs/VIDEO-TREATMENT-AUDIT.md) · [Instalação](docs/INSTALL-SKILL.md) · [Arquitetura e limites](docs/SKILL-SYSTEM-2.12.md).
 
-A busca da versão 2.12.0 usa tags internas nos 1.220 estilos, sinônimos, acentos e combinação de termos. [Busca por conteúdo e manutenção das tags](docs/SEARCH.md).
+A busca da versão 2.12.0 usa tags internas nos 1.425 estilos, sinônimos, acentos e combinação de termos. [Busca por conteúdo e manutenção das tags](docs/SEARCH.md).
 
 ## Apresentador e explicação · 2.12.0 publicada
 
-A versão 2.12.0 inclui **60 direções setoriais em 17 segmentos**, totalizando **1.220 estilos em 30 subcategorias**, e operadores para palavras temporizadas, trajetórias medidas, máscaras fornecidas e vídeo com alpha. As receitas servem para vídeo gravado ou avatar explicitamente escolhido, com originais e identidade preservados. Não incluem transcrição, segmentação ou tracking automáticos. [Direção social, 60 estilos, pesquisa e limites](docs/PRESENTER-SOCIAL-60.md) · [Prompt](style-atlas/dist/presenter-prompt.txt).
+A versão 2.12.0 inclui **265 direções com apresentador em 53 segmentos**, totalizando **1.425 estilos em sete categorias principais**, e operadores para palavras temporizadas, trajetórias medidas, máscaras fornecidas e vídeo com alpha. As receitas servem para vídeo gravado ou avatar explicitamente escolhido, com originais e identidade preservados. Não incluem transcrição, segmentação ou tracking automáticos. [Direções comerciais, profundidade e pesquisa](docs/PRESENTER-COMMERCIAL.md) · [Prompt](style-atlas/dist/presenter-prompt.txt).
 
-As referências atuais usam 60 painéis fotorrealistas fictícios, com quatro momentos por estilo e direções específicas de composição. [Diversidade e endereçamento dos quadros](docs/REALISTIC-PRESENTER-4.7.md). São propostas estáticas, não vídeos produzidos.
+As referências com apresentador usam 265 painéis fotorrealistas fictícios, com quatro momentos completos por estilo. A categoria tem acesso principal próprio; roteiros, câmera, profundidade e informação variam pela finalidade comercial. [Direção e pesquisa](docs/PRESENTER-COMMERCIAL.md). São propostas estáticas, não vídeos produzidos.
 
 A versão **2.12.0 está publicada** em [GDA Vídeos](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar), após o merge da PR #20. O instalador único e o tutorial estão disponíveis no site. [Entrega, verificações e limites](docs/RELEASE-2.12.md). A publicação do catálogo não aprova automaticamente o movimento, o áudio ou a identidade de um vídeo produzido.
 
@@ -55,7 +55,7 @@ Esta edição está consolidada na branch `main`. [Instalar a edição revisada]
 
 **Edição 4.4 / skill 2.9.0:** os 1.160 estilos têm capa e três momentos adicionais, com plano de execução no pedido. Menu em dois níveis: seis categorias principais e 29 subcategorias, sem atalhos de estilos. Galeria com duas colunas no celular, explorador visual recolhível e menu deslizante. [Detalhes e verificações](docs/HYBRID-NAVIGATION.md). [Como usar](docs/VISUAL-APP-4.2.md) · [Testes e limites da entrega](docs/VISUAL-APP-4.2-DELIVERY.md).
 
-[Abrir o Atlas público](https://videos.gerenciadordeanuncios.com.br/): 1.160 direções em 29 famílias, imagens, usos, recursos, comparação, tipografia e briefing. Inclui produtos, imóveis, softwares, apresentações e 40 avatares fictícios, além de 24 combinações tipográficas com prévia real. Código e assets genéricos em [style-atlas/](style-atlas/).
+[Abrir o Atlas público](https://videos.gerenciadordeanuncios.com.br/): 1.425 direções em sete categorias principais, imagens, usos, recursos, comparação, tipografia e briefing. Inclui produtos, imóveis, softwares, apresentações e 40 avatares fictícios, além de 24 combinações tipográficas com prévia real. Código e assets genéricos em [style-atlas/](style-atlas/).
 
 A primeira entrega é **roteiro e moodboard visual para aprovação; após o aceite, storyboard visual para aprovação própria e, depois, amostra de 10 segundos**. O site externo copia o pedido; não envia automaticamente ao chat. Fotos, vídeos e capturas reais são anexados na conversa de produção. O agente preserva produto/rótulo, arquitetura/entorno e interface; não inventa vistas ocultas ou resultados. Veja [regras de publicidade e fidelidade](.agents/skills/video-multimarcas/references/advertising-and-fidelity.md).
 
@@ -160,7 +160,7 @@ Verificar quadros de início, meio, fim e transições, além de reprodução in
 
 ## Pacotes de instalação e atualização
 
-[Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Pacotes preparados: plugin 2.12.0, kit 2.12.0 e catálogo 4.7 (1.220 estilos/30 subcategorias); instalação e publicação são verificadas separadamente. O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
+[Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Pacotes preparados: plugin 2.12.0, kit 2.12.0 e catálogo 4.8 (1.425 estilos em sete categorias); instalação e publicação são verificadas separadamente. O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
 
 ## Referências visuais para o pedido
 

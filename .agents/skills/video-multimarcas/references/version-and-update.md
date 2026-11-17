@@ -1,6 +1,6 @@
 # Versão, instalação e atualização
 
-Esta edição é `video-multimarcas` **2.12.0**, genérica e independente de `video-b-roll`. O kit executável é 2.12.0; estilos são catálogo 4.7 (1.220/30 subcategorias). Não confunda versão da skill, do plugin, do kit e dos catálogos.
+Esta edição é `video-multimarcas` **2.12.0**, genérica e independente de `video-b-roll`. O kit executável é 2.12.0; estilos são catálogo 4.8 (1.425 estilos, sete categorias). Não confunda versão da skill, do plugin, do kit e dos catálogos.
 
 Fontes públicas:
 - Repositório: https://github.com/andrezucatti82-rgb/studio-kit-pro
@@ -13,7 +13,7 @@ Ao informar a versão ao usuário, confira o arquivo efetivamente carregado e o 
 A instalação não fornece gerador de vídeo, contas, créditos ou credenciais. Descubra as capacidades reais e explique bloqueios verificados conforme `intake-and-diagnostics.md`. Nunca altere permissões, remova plugins ou troque uma skill pessoal pela genérica para tentar resolver uma atualização.
 
 
-Confira os 1.220 estilos, os quadros individuais, o contrato de fidelidade, o moodboard e storyboard com aprovações próprias, e a amostra de 10 segundos.
+Confira os 1.425 estilos, os quadros individuais, o contrato de fidelidade, o moodboard e storyboard com aprovações próprias, e a amostra de 10 segundos.
 
 A edição 2.7 acrescenta produção guiada, três receitas planejadas, ajustes por intenção e coordenação registrada. Conferir `references/guided-production.md` e `templates/coordinator-plan.json`. Preparar um pedido ou uma receita não comprova geração/revisão audiovisual.
 
@@ -35,4 +35,6 @@ A edição candidata 2.12.0 organiza um pacote completo: video-multimarcas coord
 
 A versão 2.12.0 também oferece um instalador compacto único com revisão fixa e hashes, tutorial, verificação local e descoberta das sete skills no projeto Codex/Claude Code. O download depende de internet e não instala contas web. As 60 fichas têm interactionPlan editável por momento; os tempos reais permanecem pendentes do take.
 
-A revisão visual candidata 4.7 mantém os 1.220 IDs e substitui as referências esquemáticas públicas dos 60 explicadores por quadros fotorrealistas originais. creativeDirection define composição/mecanismo e bloqueio por trecho; pessoa lateral e vidro deixam de ser padrões globais. Os quatro painéis completos de cada arquivo original têm crop normalizado explícito, preservado na ficha, prompt, JSON, visualizador e PNG. Os estudos anteriores permanecem históricos; não são a aparência prometida. Movimento e som continuam pendentes de produção/revisão.
+A revisão visual 4.7 mantém os 1.220 IDs e substitui as referências esquemáticas públicas dos 60 explicadores por quadros fotorrealistas originais. creativeDirection define composição/mecanismo e bloqueio por trecho; pessoa lateral e vidro deixam de ser padrões globais. Os quatro painéis completos de cada arquivo original têm crop normalizado explícito, preservado na ficha, prompt, JSON, visualizador e PNG. Os estudos anteriores permanecem históricos; não são a aparência prometida. Movimento e som continuam pendentes de produção/revisão.
+
+A revisão 4.8 acrescenta 205 direções comerciais às 60 anteriores, formando 265 explicadores em 53 segmentos e 1.425 estilos no total. A categoria tem acesso principal próprio e as imagens usam encaixe completo em cartões, detalhes e assistente guiado. `depthComposition` e `narrativeStructure` vinculam fala/ação, estados e profundidade; não certificam execução automática. O instalador fixa a revisão de fonte correspondente; uma cópia já instalada não se atualiza só porque o site mudou.

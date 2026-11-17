@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "catalogVersion": "4.8",
+  "kitVersion": "2.12.0",
+  "status": "local_verified_publication_pending",
+  "verifiedAt": "2026-11-17T17:03:29.966370+00:00",
+  "counts": {
+    "styles": 1425,
+    "mainCategories": 7,
+    "presenterDirections": 265,
+    "presenterSectors": 53,
+    "newPresenterDirections": 205,
+    "referenceFrames": 5700,
+    "presenterReferenceFrames": 1060
+  },
+  "catalogSha256": "6ddeda217f90192ccc164b9f085a0097985abc5817cd6d5d33d78ed1f7fadd2f",
+  "checks": {
+    "javascriptTestsPassed": 215,
+    "pythonTestsPassed": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed",
+    "browserWidths": [
+      1440,
+      375
+    ],
+    "allCardCoversLoaded": true,
+    "uniformStagesByViewport": true,
+    "completePanelsAndSourceRatios": true,
+    "allPresenterSectorFilters": true,
+    "compareBriefSelectionTrayWizard": "passed",
+    "tenStylePortableProject": {
+      "catalogVersion": "4.8",
+      "selected": 10,
+      "bytes": 1063980,
+      "limit": 2097152,
+      "ids": [
+        "explicador-agencias-do-anuncio-ao-caixa-com-evidencias",
+        "explicador-ecommerce-a-margem-se-abre-por-pedido",
+        "explicador-trafego-pago-o-leilao-tem-criterios-nao-garantias",
+        "explicador-agencias-o-orcamento-encontra-a-capacidade",
+        "explicador-trafego-pago-escalar-exige-olhar-as-margens",
+        "explicador-agencias-da-marca-ao-resultado-mensuravel",
+        "explicador-agencias-uma-reuniao-dentro-do-dashboard",
+        "explicador-agencias-o-criativo-muda-uma-hipotese",
+        "explicador-ecommerce-o-produto-precisa-responder-duvidas",
+        "explicador-ia-negocios-a-ia-assiste-a-operacao"
+      ],
+      "imported": true,
+      "scope": "Ten largest presenter records with actual website choice fields and full portable project."
+    },
+    "legacyCatalogOverwriteRefused": true,
+    "legacyPreviewTranscodes": {
+      "originalBoardsPreserved": 60,
+      "smallPreviewBytesBefore": 141259055,
+      "smallPreviewBytesAfter": 14414986,
+      "sameDimensionsAndFraming": true
+    }
+  },
+  "limits": {
+    "newCompleteStyleVideosProduced": 0,
+    "staticReferencesAreAudiovisualProof": false,
+    "externalReferenceFilmsFullPlayback": "not_performed",
+    "externalPaidProviderApiCalls": 0,
+    "clientMediaOrCredentialsIncluded": false
+  },
+  "publication": {
+    "status": "pending"
+  },
+  "freshInstallation": {
+    "status": "pending"
+  }
+}

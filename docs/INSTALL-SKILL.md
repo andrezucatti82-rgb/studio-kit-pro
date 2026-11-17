@@ -92,7 +92,7 @@ No ChatGPT/Claude sem execução verificada, a conversa pode fazer as etapas dis
 
 ## Versão e manutenção
 
-Candidato: plugin **2.12.0**, runtime **2.12.0**, catálogo **4.7**, **1.220 estilos/30 subcategorias**, incluindo **60 explicadores em 17 segmentos**. Verifique hashes e arquivos em `dist/release-manifest.json`; pacote preparado, pacote baixado, instruções carregadas, instalação na conta e domínio publicado são estados separados.
+Distribuição: plugin **2.12.0**, runtime **2.12.0**, catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores em 53 segmentos**. Verifique hashes e arquivos em `dist/release-manifest.json`; pacote preparado, pacote baixado, instruções carregadas, instalação na conta e domínio publicado são estados separados.
 
 Fontes editáveis: `.agents/skills/<id>/`. As referências comuns pertencem à orquestradora; as cópias incorporadas e os diretórios `plugins/` são gerados por:
 

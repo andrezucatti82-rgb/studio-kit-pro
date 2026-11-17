@@ -2,7 +2,21 @@
 
 A versão 2.12.0 está publicada em [GDA Vídeos](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar). A [PR #20](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/20) foi integrada por `054ebcc143ef2f6a99ac9dba6fcfc55132dc6597`, com autorização de publicação. O site oferece um instalador compacto único e o tutorial de uso.
 
-## O que está disponível
+## Ampliação comercial do catálogo 4.8
+
+A ampliação mantém o runtime 2.12.0 e reúne 1.425 estilos em sete categorias principais, incluindo 265 explicadores em 53 segmentos. São 205 direções comerciais adicionais, com referências fictícias ultrarrealistas, construção da informação por fala/ação, profundidade e variações de câmera. A categoria Apresentador + explicação tem acesso próprio; os 1.220 IDs anteriores são preservados. Veja [direção e limites da coleção](PRESENTER-COMMERCIAL.md).
+
+A apresentação dos painéis completos foi uniformizada em cartões, categorias, comparação, seleção e assistente guiado. Isso padroniza a navegação sem impor um layout criativo único aos estilos. A documentação, os prompts e os pacotes são gerados das fontes canônicas. A evidência abaixo descreve a publicação inicial 4.7; não deve ser atribuída aos novos estilos.
+
+## Validação da ampliação 4.8
+
+A regressão passou em **215 testes JavaScript e 9 Python**, além da checagem TypeScript e validação do projeto. Os testes conferem os 5.700 endereços de quadros, os originais e as máscaras/tempos desconhecidos, sem certificar execução audiovisual das receitas.
+
+No navegador real, os 1.425 cartões e os 53 filtros setoriais foram conferidos a 1440 e 375 px: arquivos carregados, estágios consistentes por tamanho de tela, quadros completos e proporções preservadas. Comparação, seleção, briefing, bandeja e assistente também passaram pela conferência de encaixe. Os dez maiores pedidos completos foram exportados e importados com escopos distintos em 1.063.980 bytes, abaixo do limite de 2 MiB do importador.
+
+As prévias dos 60 PNGs anteriores passaram de 141.259.055 para 14.414.986 bytes em WebP, com mesmas dimensões/enquadramento e originais preservados. Os exemplos guiados foram alinhados ao catálogo 4.8; geradores históricos não podem sobrescrever o acervo ampliado. [Recibo da ampliação e verificações de instalação/publicação](https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/dist/atlas-4.8-verification.json).
+
+## O que foi publicado inicialmente
 
 - Catálogo 4.7: 1.220 estilos, 30 subcategorias e seis categorias principais.
 - 60 explicadores em 17 segmentos, com referências fotorrealistas fictícias e quatro momentos por estilo; composição, fala, informação e participação da pessoa seguem no prompt/JSON.
@@ -19,7 +33,7 @@ O instalador é fixado a uma revisão de fonte. Consulte `sourceRevision`, `sha2
 
 ## Limites que continuam válidos
 
-A publicação do site não é aprovação de 60 vídeos. Referências estáticas fictícias não comprovam movimento, áudio, sincronismo, identidade ou afirmações técnicas. Cada produção ainda precisa dos originais, dados reais e aceites aplicáveis à sua versão.
+A publicação do site não é aprovação de 265 vídeos. Referências estáticas fictícias não comprovam movimento, áudio, sincronismo, identidade ou afirmações técnicas. Cada produção ainda precisa dos originais, dados reais e aceites aplicáveis à sua versão.
 
 A instalação e a inicialização do runtime foram verificadas em Linux. Windows/macOS têm wrappers e instruções, mas ainda não receberam testes nativos nesta entrega. Preparação de dependências ausentes, bootstrap portátil e abertura automática do tutorial no sistema não foram exercitados nos testes que já possuíam os pré-requisitos. O recibo identifica a origem exata de cada verificação.
 

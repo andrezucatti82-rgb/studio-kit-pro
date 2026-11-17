@@ -31,3 +31,24 @@ test('technical and subject tags remain specific, and declared presenter avatar 
 test('prefix matching, empty searches and hostile inputs do not turn into regex or HTML',()=>{
  assert(ids('cachorr').includes('pet-em-uso-cotidiano'));assert.equal(ids('').length,c.styles.length);assert.equal(ids('zzqxnqzz').length,0);assert.equal(ids('<script>alert(1)</script>').length,0);assert.equal(ids('[').length,c.styles.length);
 });
+
+test('commercial presenter subjects support common singulars, plurals and business names',()=>{
+ for(const group of [['flor','flores','floricultura'],['confeitaria','confeitarias'],['moto','motos','motocicleta'],['livro','livros'],['papelaria','papelarias'],['bar','bares','pubs']]){
+  const expected=ids(group[0]).sort();assert(expected.some(id=>id.startsWith('explicador-')),group[0]);
+  for(const q of group)assert.deepEqual(ids(q).sort(),expected,q);
+ }
+ assert(ids('flores').includes('explicador-floriculturas-um-arranjo-nasce-do-gesto'));
+ assert(ids('motocicleta').includes('explicador-revendas-veiculos-o-detalhe-que-muda-o-uso'));
+ assert(ids('pubs').includes('explicador-bares-a-noite-tem-programacao'));
+});
+
+test('implant education and the current housing programme are discoverable by aliases',()=>{
+ for(const q of ['implante','implantes','implantes dentários'])assert.deepEqual(ids(q).sort(),ids('implante').sort());
+ assert(ids('implantes').includes('explicador-dentistas-implante-pilar-e-coroa-em-conversa'));
+ assert.deepEqual(ids('MCMV').sort(),ids('minha casa minha vida').sort());assert(ids('MCMV').length>=5);
+});
+
+test('business specialisms find their new authored directions by the terms customers use',()=>{
+ for(const q of ['gestor de tráfego','tráfego pago','mídia paga'])assert.deepEqual(ids(q).sort(),ids('tráfego pago').sort());
+ for(const [q,id]of [['performance','explicador-agencias-do-anuncio-ao-caixa-com-evidencias'],['gestor de tráfego','explicador-trafego-pago-o-clique-tem-um-caminho'],['e-commerce','explicador-ecommerce-a-margem-se-abre-por-pedido'],['IA negócios','explicador-ia-negocios-a-resposta-mostra-de-onde-veio']])assert(ids(q).includes(id),q);
+});

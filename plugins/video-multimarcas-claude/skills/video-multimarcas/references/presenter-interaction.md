@@ -1,6 +1,6 @@
 # Apresentador e explicação — 2.12.0
 
-Use para edição de pessoa gravada ou avatar explicitamente solicitado. As 60 receitas do catálogo 4.7 são direções originais; seus estudos não comprovam animação, tracking ou recorte automático.
+Use para edição de pessoa gravada ou avatar explicitamente solicitado. As 265 receitas do catálogo 4.8 são direções originais; seus estudos não comprovam animação, tracking ou recorte automático.
 
 ## Primeiro, descobrir o que existe
 
@@ -31,7 +31,7 @@ A fonte manda: manter ambiente cotidiano da gravação e identidade. Não substi
 
 Quando faltar o original, pesquisar a aparência e fatos antes de propor geração IA autorizada de imagem. Identificar a simulação e guardar fontes; não fingir visita, vista, medidas ou estado atual. Exteriores combinam tomada geral, escala, ponto de atenção e mecanismo simplificado; a ponte real precisa ter geometria reconhecível e fatos conferidos. Arquivo do cliente prevalece sobre o painel exploratório.
 
-`finishProfile` orienta voz, som, materiais e acabamento; não contém áudio produzido. As 60 receitas cobrem 17 segmentos. Preservar fala original uma única vez ou usar voz autorizada. SFX marcam mudanças de informação, contato ou ambiente; música é opcional e recua sob a voz. Conferir mixagem por escuta. O runtime já normaliza loudness; isso não prova clareza nem licença.
+`finishProfile` orienta voz, som, materiais e acabamento; não contém áudio produzido. As 265 receitas cobrem 53 segmentos. Preservar fala original uma única vez ou usar voz autorizada. SFX marcam mudanças de informação, contato ou ambiente; música é opcional e recua sob a voz. Conferir mixagem por escuta. O runtime já normaliza loudness; isso não prova clareza nem licença.
 
 ## Transparência, luz e acabamento nativos
 
@@ -51,6 +51,6 @@ Fontes técnicas: https://github.com/SYSTRAN/faster-whisper ; https://ai.google.
 
 ## Referências e composição por trecho
 
-No catálogo visual 4.7, cada explicador tem uma direção de composição própria. Use creativeDirection e interactionPlan: a informação é construída pela fala/ação e a pessoa muda de escala/posição quando isso ajuda, sem lado fixo nem espelhamento automático. Cobertura real, máscaras e trajetórias verificadas limitam a execução. Quatro momentos não obrigam quatro cenas.
+No catálogo visual 4.8, cada explicador tem uma direção de composição própria. Use creativeDirection e interactionPlan: a informação é construída pela fala/ação e a pessoa muda de escala/posição quando isso ajuda, sem lado fixo nem espelhamento automático. Cobertura real, máscaras e trajetórias verificadas limitam a execução. Quatro momentos não obrigam quatro cenas.
 
 As imagens de referência são quadros fotorrealistas fictícios, não vídeos produzidos. Quando sequence.frames[].crop estiver presente, ele identifica um painel completo de um original 2×2: [x,y,w,h] normalizado. Não interpretar o arquivo inteiro como um único plano nem cortar partes do painel. O download do site exporta o painel individual; o arquivo original completo permanece preservado. Diagramas funcionais dentro da fotografia são permitidos; bonecos/esquemas não substituem a referência do acabamento final.

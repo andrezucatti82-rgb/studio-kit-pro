@@ -131,3 +131,33 @@ body[data-view="library"]:has(#selectionTray:not([hidden])) .guided-launch{displ
 
 .search-scope{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px}.search-scope[hidden]{display:none}.search-scope p{margin:0}.search-scope button{white-space:normal;text-align:left}
 .category-explorer[hidden]{display:none}
+
+/* Full-frame presentation: uniform stage, source proportions, no art-direction cover crop. */
+.card .preview,.card .preview:has(>.reference-panel){aspect-ratio:3/4;container-type:size;position:relative;background:#eeeae2;display:grid;place-items:center}
+.card .preview>.reference-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * var(--frame-ratio)));height:auto;max-width:none;max-height:none;margin:0}
+.reference-panel>img{aspect-ratio:auto!important;max-height:none!important;object-fit:fill}
+.card .preview>img.preview-media{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}
+.category-tile-image{container-type:size;position:relative;background:#eeeae2}
+.category-tile-image>.reference-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * var(--frame-ratio)));height:auto;max-width:none;max-height:none}
+.category-tile-image>img{object-fit:contain}
+.presenter-story{margin-top:2rem;background:transparent;border-color:var(--line);color:var(--ink)}
+.category-group-toggle[data-direct-family] .category-chevron{display:none}
+
+/* Three complete moments fit a wide category banner without a face/detail cover crop. */
+.category-tile-sequence{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+.category-tile-crop{display:block;position:relative;min-width:0;height:100%;container-type:size;overflow:hidden}
+.category-tile-crop>.reference-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * var(--frame-ratio)));height:auto;max-width:none;max-height:none}
+.category-tile-crop>img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Every fixed preview stage uses the same complete-panel fit, including the wizard. */
+.brief-style-image,.detail-image{position:relative;container-type:size;background-color:#eeeae2}
+.detail-image{aspect-ratio:3/4}
+.brief-style-image>.reference-panel,.detail-image>.reference-panel,.guided-reference>.reference-panel,.tray-reference>.reference-panel{position:absolute;inset:auto;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * var(--frame-ratio)));height:auto;max-width:none;max-height:none;margin:0}
+.brief-style-image>img.preview-media,.detail-image>img.preview-media{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.guided-reference{position:relative;container-type:size;display:block;overflow:hidden;background:#eeeae2;border-radius:10px;margin:0;padding:0}
+.guided-choice>.guided-reference{flex:0 0 105px;width:105px;height:150px}
+.guided-choice>div{min-width:0}
+.guided-option>button:first-child>.guided-reference{width:100%;height:clamp(180px,28dvh,280px);margin:0;padding:0;border-radius:0}
+.guided-option>button:first-child>.guided-reference>img,.guided-choice>.guided-reference>img{display:block;width:100%;height:100%;object-fit:contain;margin:0;padding:0}
+.tray-reference{display:block;position:relative;container-type:size;flex:0 0 42px;width:42px;height:56px;background:#eeeae2;border-radius:5px;overflow:hidden}
+#trayImages>.tray-reference>img{width:100%;height:100%;object-fit:contain}

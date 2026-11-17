@@ -46,7 +46,7 @@ with zipfile.ZipFile(p) as z:
   assert hashlib.sha256((r/name).read_bytes()).hexdigest()==record['sha256'],name
 `],{stdio:'pipe'});
 });
-test('all sixty interactive briefs keep required inputs and unknown source timing',async()=>{
- const catalog=JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url),'utf8')),styles=catalog.styles.filter(s=>s.presenterEditing);assert.equal(styles.length,60);
+test('all 265 interactive briefs keep required inputs and unknown source timing',async()=>{
+ const catalog=JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url),'utf8')),styles=catalog.styles.filter(s=>s.presenterEditing);assert.equal(styles.length,265);
  for(const s of styles){const p=s.presenterEditing.interactionPlan;assert(p?.techniqueLabel,s.id);assert.equal(p.beats.length,4);assert.equal(p.sourceTimes,null);assert.equal(p.exampleOnly,true);assert(p.requiredInputs.length>=3);assert.equal(p.beats[3].soundIntent,s.presenterEditing.finishProfile.soundEvents[2].sound);assert(p.beats.every(b=>b.timingEvidence==='pending_actual_source'&&b.graphicAction&&b.presenterAction&&b.purpose));assert.deepEqual(s.executionPlan.presenterEditing.interactionPlan,p);}
 });

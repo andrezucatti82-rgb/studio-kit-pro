@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {referenceImageInfo} from '../scripts/reference-image-info.mjs';
 import '../style-atlas/dist/workflow.js';
 
 const root=new URL('../style-atlas/',import.meta.url);
@@ -10,11 +11,11 @@ const catalog=read('dist/catalog.json');
 const provenance=[...read('records/sequences-720/assets.json'),...read('records/natural-ads-60/assets.json'),...read('records/segments-440/assets.json'),...read('records/presenter-realistic/manifest.json').images];
 const W=globalThis.AtlasWorkflow;
 
-test('1220 distinct visual sequences preserve IDs, four complete frames and review boundaries',()=>{
- assert.equal(catalog.styles.length,1220);
+test('1425 distinct visual sequences preserve IDs, four complete frames and review boundaries',()=>{
+ assert.equal(catalog.styles.length,1425);
  assert.equal(catalog.visualEditionStatus,'complete');
- assert.equal(provenance.length,1220);
- assert.equal(new Set(catalog.styles.map(s=>s.id)).size,1220);
+ assert.equal(provenance.length,1425);
+ assert.equal(new Set(catalog.styles.map(s=>s.id)).size,1425);
  const hashes=new Set();
  for(const s of catalog.styles){
   const record=provenance.find(r=>r.id===s.id);
@@ -27,7 +28,7 @@ test('1220 distinct visual sequences preserve IDs, four complete frames and revi
   for(const [i,f] of s.sequence.frames.entries()){
    assert.ok(f.width>=300&&f.height>=300,s.id);
    const data=fs.readFileSync(new URL('dist/'+f.src,root));
-   if(f.crop){assert.equal(data.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.deepEqual(f.crop,record.frames[i].crop);assert.equal(f.width,Math.round(data.readUInt32BE(16)*f.crop[2]));assert.equal(f.height,Math.round(data.readUInt32BE(20)*f.crop[3]));}
+   if(f.crop){const info=referenceImageInfo(data);assert.deepEqual(f.crop,record.frames[i].crop);assert.equal(f.width,Math.round(info.width*f.crop[2]));assert.equal(f.height,Math.round(info.height*f.crop[3]));}
    else assert.equal(data.toString('ascii',8,12),'WEBP');
    const hash=createHash('sha256').update(data).digest('hex');
    hashes.add(hash+JSON.stringify(f.crop||null));if(f.crop)assert.equal(hash,record.sha256,s.id);
@@ -45,7 +46,7 @@ test('1220 distinct visual sequences preserve IDs, four complete frames and revi
   assert.equal(s.executionPlan.movementLanguage,s.motion);
   assert.deepEqual(s.executionPlan.resources,s.resources);
  }
- assert.equal(hashes.size,4880,'each frame has a distinct complete address, never a repeated cover');
+ assert.equal(hashes.size,5700,'each frame has a distinct complete address, never a repeated cover');
 });
 
 test('old and expanded styles hand off the actual sequence, action plan and neutral approval rules',()=>{

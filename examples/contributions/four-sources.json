@@ -3,7 +3,7 @@
   "brand": "Marca fictícia a definir",
   "format": "9:16",
   "typography": "auto",
-  "catalogVersion": "4.3",
+  "catalogVersion": "4.8",
   "targetDurationSeconds": 30,
   "firstDeliverySeconds": 10,
   "selectedStyles": [
@@ -46,5 +46,6 @@
       }
     ]
   },
-  "approvalRequiredBeforeFullVideo": true
+  "approvalRequiredBeforeFullVideo": true,
+  "catalogUrl": "https://raw.githubusercontent.com/andrezucatti82-rgb/studio-kit-pro/main/style-atlas/dist/catalog.json"
 }

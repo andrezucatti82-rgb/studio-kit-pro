@@ -18,7 +18,7 @@ Não substituir recursos prometidos por uma solução visual mais simples sem ap
 
 ## Edição com apresentador, pessoa gravada ou avatar
 
-Para explicações que acompanham a fala, gestos, mão, texto atrás do corpo ou troca de fundo, leia [apresentador e interação](presenter-interaction.md). As 60 receitas setoriais em 17 segmentos incluem requisitos próprios. O runtime aceita palavras temporizadas, trajetórias medidas, máscaras fornecidas e alpha; não inclui extração automática desses dados nem geometria 3D universal. Preservar originais, fonte do apresentador e todos os gates. Escolher uma receita não autoriza gerar ou clonar pessoa.
+Para explicações que acompanham a fala, gestos, mão, texto atrás do corpo ou troca de fundo, leia [apresentador e interação](presenter-interaction.md). As 265 receitas setoriais em 53 segmentos incluem requisitos próprios. O runtime aceita palavras temporizadas, trajetórias medidas, máscaras fornecidas e alpha; não inclui extração automática desses dados nem geometria 3D universal. Preservar originais, fonte do apresentador e todos os gates. Escolher uma receita não autoriza gerar ou clonar pessoa.
 
 ## Executar pedidos do site no Codex e Claude Code
 
@@ -26,7 +26,7 @@ Leia [execução pelo orquestrador](orchestrator-execution.md). Use o próprio m
 
 Transforme uma temática em um vídeo final, com pesquisa verificável e direção original. Esta é uma skill independente: nunca altere outra skill ou reutilize automaticamente identidade, voz, contas ou arquivos de trabalhos anteriores.
 
-Edição do pacote: **2.12.0**. O atlas contém **1.220 estilos em 30 subcategorias**. Esses números descrevem o acervo desta edição, não as ferramentas conectadas à sessão. Para confirmar instalação, versão e limites entre superfícies, leia [versão e atualização](version-and-update.md).
+Edição do pacote: **2.12.0**. O atlas contém **1.425 estilos em sete categorias**. Esses números descrevem o acervo desta edição, não as ferramentas conectadas à sessão. Para confirmar instalação, versão e limites entre superfícies, leia [versão e atualização](version-and-update.md).
 
 ## Provedor prioritário para geração de vídeo
 

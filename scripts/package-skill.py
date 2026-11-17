@@ -111,6 +111,8 @@ for folder in [*[f'.agents/skills/{sid}' for sid in skill_ids[1:]],*[f'.claude/s
 for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js','search.js']:
     runtime_files.add(root/'style-atlas/dist'/runtime_name)
 runtime_files.add(root/'style-atlas/records/search/overrides.json')
+for name in ['briefs.json','research.json']:
+    runtime_files.add(root/'style-atlas/records/presenter-180'/name)
 runtime_files=sorted(runtime_files)
 manifest_files={p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in runtime_files}
 runtime_manifest={'version':1,'runtimeVersion':json.loads((root/'package.json').read_text())['version'],'sourceRepository':'https://github.com/andrezucatti82-rgb/studio-kit-pro','clientMediaIncluded':False,'providerCredentialsIncluded':False,'catalogReferenceImagesIncluded':False,'fullRegressionFixturesIncluded':False,'files':manifest_files}
@@ -122,7 +124,7 @@ with zipfile.ZipFile(root/'dist/video-multimarcas-runtime.zip') as archive:
     assert all(not any(part in ['projects','node_modules','.env','.git'] for part in Path(n).parts) for n in archive.namelist())
     for relative,sha in manifest_files.items():assert hashlib.sha256(archive.read('video-multimarcas-runtime/'+relative)).hexdigest()==sha
 catalog=json.loads((root/'style-atlas/dist/catalog.json').read_text(encoding='utf-8'))
-release={'plugin':name,'pluginVersion':manifest['version'],'kitVersion':json.loads((root/'package.json').read_text(encoding='utf-8'))['version'],'catalogVersion':catalog['version'],'styleCount':len(catalog['styles']),'categoryCount':len(catalog['families']),'skillSystem':system,'installationScope':'Packages do not install or update a ChatGPT account automatically.','packages':{}}
+release={'plugin':name,'pluginVersion':manifest['version'],'kitVersion':json.loads((root/'package.json').read_text(encoding='utf-8'))['version'],'catalogVersion':catalog['version'],'styleCount':len(catalog['styles']),'categoryCount':len(catalog['families']),'mainCategoryCount':7,'presenterStyleCount':sum(bool(s.get('presenterEditing')) for s in catalog['styles']),'presenterSectorCount':len({s['presenterEditing']['sector'] for s in catalog['styles'] if s.get('presenterEditing')}),'skillSystem':system,'installationScope':'Packages do not install or update a ChatGPT account automatically.','packages':{}}
 for source in sorted((root/'dist').glob('video-multimarcas*')):
     if source.is_file():release['packages'][source.name]={'bytes':source.stat().st_size,'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}
 (root/'dist/release-manifest.json').write_text(json.dumps(release,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

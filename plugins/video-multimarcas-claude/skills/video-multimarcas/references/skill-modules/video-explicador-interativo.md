@@ -1,11 +1,11 @@
 ---
 name: video-explicador-interativo
-description: Use when recorded presenters or explicitly selected avatars explain concepts through speech-synchronized diagrams, hand/object interaction, masks, tracking, depth, contextual environments, or the sixty presenter recipes.
+description: Use when recorded presenters or explicitly selected avatars explain concepts through speech-synchronized diagrams, hand/object interaction, masks, tracking, depth, contextual environments, or commercial presenter-led recipes.
 ---
 
 # Explicador interativo · 2.12.0
 
-Planeje pessoa e explicação como uma atuação conjunta. Os vinte mecanismos são técnicas; as sessenta receitas são aplicações em dezessete segmentos. Uma receita não certifica extração automática ou qualidade em qualquer bruto.
+Planeje pessoa e explicação como uma atuação conjunta. Os vinte mecanismos são técnicas; as 265 receitas são aplicações em cinquenta e três segmentos. Uma receita não certifica extração automática ou qualidade em qualquer bruto.
 
 Leia [contrato dos operadores](../presenter-interaction.md), [características e escopos](../style-contributions.md) e [aprovação visual](../universal-visual-approval.md). O mapa dos mecanismos fica em [vinte mecanismos](../presenter-techniques.md).
 
@@ -30,6 +30,10 @@ Leia `creativeDirection` da receita: mecanismo, composição e enquadramentos. A
 A informação nasce da fala/ação: traço se desenha, dado se conecta, camada se separa, objeto se apoia, interface ocupa a tela, rota cresce ou o ambiente revela uma função. Não montar um apresentador imóvel ao lado de cartões prontos. Vidro, tabela, gráfico, documento, tipografia, produto, macro e exterior são recursos escolhidos pela função; não uma pele visual comum a todos os segmentos. A uniformidade de paleta ou a troca de nicho não bastam para definir outro estilo.
 
 As capas e os quadros públicos precisam mostrar objetivo visual fotorrealista coerente com o resultado proposto, com pessoas/cenas fictícias identificadas. Não usar bonecos, silhuetas ou esquemas vetoriais como substitutos do acabamento prometido. Diagramas técnicos podem existir dentro da cena para explicar; não transformam toda a referência em desenho. A amostra real continua necessária para provar gesto, sincronismo e execução.
+
+## Aplicações comerciais e linguagem de câmera
+
+Para as 205 novas aplicações comerciais do catálogo 4.8, leia [direção comercial e profundidade](../commercial-presenter-direction.md). Use `depthComposition` e `narrativeStructure` como propostas, com estado anterior, fala/ação que dispara a transformação, ordem de camadas, oclusão e consequência. Os 25 adicionais incluem revendas de carros/motos, floricultura, confeitaria/padaria, livraria/papelaria e bares/pubs. Incluem também 30 novas direções imobiliárias e dez educativas sobre implantes e 20 para performance/tráfego/e-commerce/IA de negócios, com fontes e insumos específicos. Não reutilizar um roteiro ou layout universal ao trocar o nicho.
 
 ## Naturalidade
 
