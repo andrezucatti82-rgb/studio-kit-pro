@@ -1,6 +1,6 @@
 # Referências dos explicadores · catálogo 4.7
 
-O candidato 2.12.0 apresenta 60 direções de edição com pessoas e ambientes fotorrealistas fictícios. Cada estilo tem quatro momentos independentes e uma direção de composição própria. As referências são propostas estáticas; não são 60 vídeos, nem aprovação de movimento, sincronismo ou identidade.
+A versão 2.12.0 apresenta 60 direções de edição com pessoas e ambientes fotorrealistas fictícios. Cada estilo tem quatro momentos independentes e uma direção de composição própria. As referências são propostas estáticas; não são 60 vídeos, nem aprovação de movimento, sincronismo ou identidade.
 
 | Recurso | Papel na explicação | Variação de composição |
 |---|---|---|
@@ -25,4 +25,4 @@ A pessoa pode escolher qualquer mecanismo e adaptá-lo ao tema, preservando as c
 
 Os testes conferem os 60 originais e seus hashes, 240 endereços não sobrepostos, proporções, navegação dos quatro momentos e exportação PNG. A verificação em navegador usa larguras de celular e desktop. Isso comprova comportamento da galeria e integridade dos arquivos; playback, escuta e amostra integrada continuam necessários para um vídeo real. Windows e macOS só podem ser declarados testados após execução nativa.
 
-Produção permanece na versão 2.11.0. Esta atualização integra a PR #20 para revisão, sem merge nem publicação automática.
+A versão 2.12.0 foi publicada no domínio GDA Vídeos após o merge autorizado da PR #20. [Entrega e verificações](RELEASE-2.12.md). Referências estáticas continuam propostas fictícias; a publicação do site não aprova vídeos individuais.

@@ -1,4 +1,4 @@
-# Studio Kit Pro — sistema de skills 2.12.0 (candidato)
+# Studio Kit Pro — sistema de skills 2.12.0
 
 ## Objetivo e escopo
 
@@ -28,7 +28,7 @@ Roteamento principal e parcial; seleção mista; pedido antigo; metadado adulter
 
 O link `#briefSection` abre a produção guiada quando não há seleção e retoma o briefing quando há uma escolha válida. A revisão mostra o principal, complementares, características e aplicações narrativas. O explicador inclui a dependência de filmagem original ou avatar escolhido, a conferir na conversa.
 
-Foram examinados o prompt e o JSON realmente baixados do site público 2.11.0: a seleção já era preservada, mas não havia `intentSummary`/`skillRouting`, e a âncora não abria o briefing. O acesso HTTP simples retornou 406; no Chromium houve resposta 200 e inspeção interativa. O candidato foi verificado separadamente em Chromium local, sem publicação. Os destinos ChatGPT/Claude abrem as páginas corretas; abrir o link não envia o pedido automaticamente.
+Foram examinados o prompt e o JSON realmente baixados do site público 2.11.0: a seleção já era preservada, mas não havia `intentSummary`/`skillRouting`, e a âncora não abria o briefing. O acesso HTTP simples retornou 406; no Chromium houve resposta 200 e inspeção interativa. Durante a preparação, o candidato foi verificado separadamente em Chromium local. Depois da autorização, a PR #20 foi integrada e a 2.12.0 foi verificada no domínio público, em 375/1440 px; consulte [estado da entrega](RELEASE-2.12.md). Os destinos ChatGPT/Claude abrem as páginas corretas; abrir o link não envia o pedido automaticamente.
 
 Pedidos antigos sem rota continuam importáveis. Contextos válidos anteriores ao roteamento ou com a rota v1 de seis skills, com fonte e dados centrais iguais, mantêm seus bytes/hash e artefatos; `effectiveSkillRouting` é fornecido fora do contexto imutável. A rota v2 inclui tratamento; runtimeContext recalcula a rota efetiva sem alterar o contexto anterior. Uma alteração real continua exigindo revisão. A atualização das sete skills tem backup/rollback; uma falha ao preparar o backup não deve deixar instalação parcial nem arquivos de staging.
 

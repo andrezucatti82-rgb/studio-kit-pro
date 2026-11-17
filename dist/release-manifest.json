@@ -50,115 +50,40 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 141641,
-      "sha256": "490a79b42da790e821aa59a6b7f9a3bfac0210f26debd06bb04ba1af2130f5cc"
+      "bytes": 145818,
+      "sha256": "91945ae86cc4040e20a4b87b20a5b8078c21e5a9ec9b7d8cbf779877e0a0bf61"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 142096,
-      "sha256": "89cd5eced3de292ec842555208e4ea6fc98eeb24140285661ac6293bc794e0bf"
+      "bytes": 146273,
+      "sha256": "f8de9d374e26cacfc5af6249fa0b9325184da324d6c8244aa02604ed91c75ce9"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 2734783,
-      "sha256": "e89e884f49ae5c83788151c286fb0266a4ac8626a9e132e6fac3ca5b89acbece"
+      "bytes": 2737906,
+      "sha256": "b87b725f3e6598f323daad3e26edcfd40196dc5265a9575b2ef93d9f129f1136"
     },
     "video-multimarcas.skill": {
-      "bytes": 116160,
-      "sha256": "8c5b7359318a36402c140d3c35d24d84eb8cc5bc9a700fe2a16828b8ef4e5e56"
+      "bytes": 120269,
+      "sha256": "68fded1f52c5c3dfeabda0c214c15d26691d112e90d493dbe9a3479985130c06"
     },
     "video-multimarcas.zip": {
-      "bytes": 116160,
-      "sha256": "8c5b7359318a36402c140d3c35d24d84eb8cc5bc9a700fe2a16828b8ef4e5e56"
+      "bytes": 120269,
+      "sha256": "68fded1f52c5c3dfeabda0c214c15d26691d112e90d493dbe9a3479985130c06"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
-    "sourceReady": true,
+    "sourceRevision": "054ebcc143ef2f6a99ac9dba6fcfc55132dc6597",
+    "sourceReady": false,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 586276,
-    "sha256": "6347228f5a9ed669c046cf6c61c83278ed28011125e73263fafd929fa0b22d03",
+    "bytes": 586444,
+    "sha256": "686bdc3bc55bfcdb56f175cce7f226e5d91ca70d752fd2a55cb7176422bcb47f",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
     "fullProjectDownloadMiB": 697,
     "skills": 7,
     "presenterStyles": 60,
-    "verification": {
-      "checkedAt": "2026-11-17",
-      "sourceRevision": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
-      "javascriptTestsPassed": 206,
-      "pythonTestsPassed": 9,
-      "postPackageChecksPassed": 7,
-      "browser": {
-        "checks": [
-          "375px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
-          "1440px: install navigation, actual ZIP/hash, tutorial, four storyboard beats, actual copied prompt and exported complete project",
-          "failed package verification disables download"
-        ],
-        "errors": []
-      },
-      "searchBrowser": {
-        "checks": [
-          "375px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
-          "1440px site: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
-          "375px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow",
-          "1440px Page: global tags and synonyms, dog/cat/aquarium precision, pagination, category refinement, multiword queries, focus/selection preserved, no overflow"
-        ],
-        "errors": [],
-        "queryMilliseconds": [
-          1.8999999985098839,
-          2.399999998509884,
-          2,
-          3.3000000044703484,
-          1.5,
-          1.8000000044703484,
-          1.5,
-          3,
-          1.5,
-          1.6000000014901161,
-          1.6999999955296516,
-          3.5,
-          1.8999999985098839,
-          1.7999999970197678,
-          1.6000000014901161,
-          3.2999999970197678
-        ]
-      },
-      "linuxLatestSourceInstall": {
-        "status": "ready",
-        "sourceArchive": "local git archive of the pushed final revision; every protected hash verified by the actual installer",
-        "sourceRevision": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
-        "gitRemoteAndHead": "verified against actual GitHub source commit",
-        "npmCi": "passed",
-        "skills": 7,
-        "ffmpegFfprobe": "passed",
-        "realRendererBrowserStartup": "passed",
-        "actualSiteProjectImport": "passed",
-        "searchSmoke": {
-          "source": "9a24a0c50dfe8fbef283b66c504f9d6c46709865",
-          "status": "passed",
-          "styles": 1220,
-          "dogAliases": 39,
-          "cats": 4,
-          "aquarium": 1,
-          "compoundWords": true
-        }
-      },
-      "realGithubDownloadEvidence": {
-        "sourceRevision": "4514b87738e4129d1283f99300e6cd630375bc10",
-        "status": "ready",
-        "scope": "complete GitHub download and installation before the final compound-word matcher correction; unchanged shared installation engine"
-      },
-      "nativeWindowsMacOS": "not_run",
-      "missingSystemDependencyInstallation": "not_exercised_prerequisites_already_present",
-      "portableNodeBootstrap": "not_exercised_Node_already_present",
-      "nativeTutorialAutoOpen": "not_exercised",
-      "agentLogin": "not_exercised",
-      "accountsConnected": false,
-      "paidApisUsed": false,
-      "deployment": "not_performed"
-    },
     "localFile": "studio-kit-pro-installer.zip"
   }
 }

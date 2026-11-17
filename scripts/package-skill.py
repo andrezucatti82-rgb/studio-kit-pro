@@ -1,9 +1,20 @@
 """Package the generic skill without project media or local credentials."""
 from pathlib import Path
-import hashlib,json,shutil,zipfile,subprocess
+import hashlib,json,shutil,zipfile,subprocess,re
+from urllib.parse import urljoin
 root=Path(__file__).resolve().parent.parent
 subprocess.check_call(['node','scripts/build-treatment-docs.mjs'],cwd=root)
 skill=root/'.agents/skills/video-multimarcas'
+# INSTALL moves out of docs in compact archives. Keep the tutorial local and
+# resolve other documentation links at their canonical public GitHub location.
+install_text=(root/'docs/INSTALL-SKILL.md').read_text()
+install_base='https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/'
+def install_link(match):
+    target=match.group(1)
+    if ':' in target or target.startswith('#') or target=='COMECE-AQUI.html':return match.group(0)
+    return ']('+urljoin(install_base,target)+')'
+install_text=re.sub(r'\]\(([^)]+)\)',install_link,install_text)
+
 # The shared browser/Node contract owns the registered kit IDs.
 system=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import './style-atlas/dist/workflow.js'; process.stdout.write(JSON.stringify(AtlasWorkflow.skillSystem))"],cwd=root,text=True))
 skill_ids=[s['id'] for s in system['skills']]
@@ -31,7 +42,8 @@ for ext in ['skill','zip']:
         for source in sorted(skill.rglob('*')):
             if source.is_file():
                 archive.write(source,'video-multimarcas/'+source.relative_to(skill).as_posix())
-        archive.write(root/'docs/INSTALL-SKILL.md','video-multimarcas/INSTALL.md')
+        archive.writestr('video-multimarcas/INSTALL.md',install_text)
+        archive.write(root/'docs/COMECE-AQUI.html','video-multimarcas/COMECE-AQUI.html')
         archive.writestr('video-multimarcas/LICENSE',(root/'LICENSE').read_text(encoding='utf-8').split('\nScope:')[0].rstrip()+'\n')
     with zipfile.ZipFile(output) as archive:
         assert archive.testzip() is None
@@ -56,7 +68,8 @@ for skill_id in skill_ids[1:]:
     shutil.copytree(root/'.agents/skills'/skill_id,target)
 (plugin/'.codex-plugin').mkdir(parents=True,exist_ok=True)
 (plugin/'.codex-plugin/plugin.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-shutil.copy2(root/'docs/INSTALL-SKILL.md',plugin/'INSTALL.md')
+(plugin/'INSTALL.md').write_text(install_text)
+shutil.copy2(root/'docs/COMECE-AQUI.html',plugin/'COMECE-AQUI.html')
 (plugin/'LICENSE').write_text((root/'LICENSE').read_text(encoding='utf-8').split('\nScope:')[0].rstrip()+'\n',encoding='utf-8')
 output=root/'dist/video-multimarcas-plugin.zip'
 with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as archive:
@@ -79,7 +92,8 @@ for skill_id in skill_ids[1:]:
     shutil.copytree(root/'.agents/skills'/skill_id,target)
 (claude/'.claude-plugin').mkdir(parents=True,exist_ok=True)
 shutil.copy2(root/'packaging/video-multimarcas.claude-plugin.json',claude/'.claude-plugin/plugin.json')
-shutil.copy2(root/'docs/INSTALL-SKILL.md',claude/'INSTALL.md')
+(claude/'INSTALL.md').write_text(install_text)
+shutil.copy2(root/'docs/COMECE-AQUI.html',claude/'COMECE-AQUI.html')
 shutil.copy2(plugin/'LICENSE',claude/'LICENSE')
 with zipfile.ZipFile(root/'dist/video-multimarcas-claude-plugin.zip','w',zipfile.ZIP_DEFLATED) as archive:
     for source in sorted(claude.rglob('*')):

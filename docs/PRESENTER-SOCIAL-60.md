@@ -1,6 +1,6 @@
-# Apresentador + explicação para redes sociais — candidato 2.12.0
+# Apresentador + explicação para redes sociais — 2.12.0
 
-A proposta combina pessoa preservada, demonstração sincronizada e acabamento natural. Não depende de transformar a pessoa inteira em uma geração IA. O 2.11.0 já compõe vídeo, texto, gráficos, áudio e cortes explícitos. O candidato 2.12.0 acrescenta os operadores descritos abaixo e 60 direções em 17 segmentos, levando o catálogo 4.7 a 1.220 estilos/30 subcategorias. As 60 direções são conceitos de edição, não 60 vídeos prontos.
+A proposta combina pessoa preservada, demonstração sincronizada e acabamento natural. Não depende de transformar a pessoa inteira em uma geração IA. O 2.11.0 já compõe vídeo, texto, gráficos, áudio e cortes explícitos. A versão 2.12.0 acrescenta os operadores descritos abaixo e 60 direções em 17 segmentos, levando o catálogo 4.7 a 1.220 estilos/30 subcategorias. As 60 direções são conceitos de edição, não 60 vídeos prontos.
 
 ## Pesquisa e o que aproveitar
 
@@ -25,7 +25,7 @@ No histórico anterior, os seis painéis IA eram referências exploratórias de 
 
 ## Recursos executáveis e limites
 
-| Camada | Candidato 2.12.0 | Ainda depende de |
+| Camada | Implementação 2.12.0 | Ainda depende de |
 |---|---|---|
 | Texto, gráficos, SVG, tabela construída em camadas, keyframes, janela | Executável com plano autorado | Conteúdo/dados e direção corretos |
 | Palavras na fala | `speechWords` e validação de texto/tempos | Transcrição/alinhamento reais; ASR não instalado |
@@ -80,9 +80,9 @@ Tempos indicativos; ajustar à fala real, sem dividir o vídeo uniformemente. R�
 
 ## Entrega por superfície
 
-O site candidato adiciona filtro por 17 segmentos, seis painéis e quatro estados por estilo. O projeto exportado leva `presenterEditing`, fontes/requisitos e `finishProfile` para o agente. O [prompt completo](../style-atlas/dist/presenter-prompt.txt) incorpora ambiente real, IA como fallback pesquisado, motion com propósito e acabamento social.
+O site publicado oferece filtro por 17 segmentos, 60 painéis fotorrealistas fictícios e quatro momentos por estilo. Os seis painéis exploratórios anteriores permanecem como histórico. O projeto exportado leva `presenterEditing`, fontes/requisitos e `finishProfile` para o agente. O [prompt completo](../style-atlas/dist/presenter-prompt.txt) incorpora ambiente real, IA como fallback pesquisado, motion com propósito e acabamento social.
 
-A referência canônica da skill documenta operadores e limites; o empacotador sincroniza Codex/Claude e runtime. GitHub: [PR #20](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/20), candidato ainda separado da produção 2.11.0. Preparar código/pacotes não instala em outra conta nem publica o domínio.
+A referência canônica da skill documenta operadores e limites; o empacotador sincroniza Codex/Claude e runtime. GitHub: [PR #20](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/20), integrada e publicada como versão 2.12.0. Preparar futuros pacotes não instala em outra conta nem publica automaticamente; consulte [estado da entrega](RELEASE-2.12.md).
 
 ## Validação inicial dos operadores (registro histórico)
 

@@ -15,6 +15,11 @@ for name,record in release['packages'].items():assert hashlib.sha256((r/'dist'/n
 for archive_name,manifest_name in [('video-multimarcas-plugin.zip','.codex-plugin/plugin.json'),('video-multimarcas-claude-plugin.zip','.claude-plugin/plugin.json')]:
  with zipfile.ZipFile(r/'dist'/archive_name) as z:
   assert z.testzip() is None;assert json.loads(z.read(manifest_name))['version']==version
+  import re,posixpath
+  for target in re.findall(r'\]\(([^)]+)\)',z.read('INSTALL.md').decode()):
+   if ':' not in target and not target.startswith('#'):assert target in z.namelist(),target
+  assert z.read('COMECE-AQUI.html')==(r/'docs/COMECE-AQUI.html').read_bytes()
+  assert 'https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/RELEASE-2.12.md' in z.read('INSTALL.md').decode()
   for f in (r/'.agents/skills/video-multimarcas').rglob('*'):
    if f.is_file():assert z.read('skills/video-multimarcas/'+f.relative_to(r/'.agents/skills/video-multimarcas').as_posix())==f.read_bytes()
   import re,posixpath
@@ -25,6 +30,9 @@ for archive_name,manifest_name in [('video-multimarcas-plugin.zip','.codex-plugi
    for target in re.findall(r'\]\(([^)]+)\)',body):
     if ':' not in target and not target.startswith('#'):assert posixpath.normpath(posixpath.join(posixpath.dirname(entry),target.split('#')[0])) in z.namelist(),(entry,target)
 with zipfile.ZipFile(r/'dist/video-multimarcas.skill') as z:
+ for target in re.findall(r'\]\(([^)]+)\)',z.read('video-multimarcas/INSTALL.md').decode()):
+  if ':' not in target and not target.startswith('#'):assert 'video-multimarcas/'+target in z.namelist(),target
+ assert z.read('video-multimarcas/COMECE-AQUI.html')==(r/'docs/COMECE-AQUI.html').read_bytes()
  for sid in ids[1:]:
   entry='video-multimarcas/references/skill-modules/'+sid+'.md';body=z.read(entry).decode()
   for target in re.findall(r'\]\(([^)]+)\)',body):

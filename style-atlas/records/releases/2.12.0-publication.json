@@ -1,0 +1,30 @@
+{
+  "version": "2.12.0",
+  "catalogVersion": "4.7",
+  "domain": "https://videos.gerenciadordeanuncios.com.br/",
+  "initialRelease": "atlas-20261117103619",
+  "mergeCommit": "054ebcc143ef2f6a99ac9dba6fcfc55132dc6597",
+  "sourceCommit": "054ebcc143ef2f6a99ac9dba6fcfc55132dc6597",
+  "backup": {
+    "location": "outside_document_root",
+    "readbackVerified": true,
+    "previousReleasePreserved": true
+  },
+  "changedPublicFilesHashVerified": 730,
+  "unchangedVisualSamplesVerified": 29,
+  "publicBrowserVerification": {
+    "surface": "live",
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "release": "atlas-20261117103619",
+    "checks": [
+      "1440px: HTTP 200, actual 2.12.0/catalogue 4.7/1220 styles, dog aliases 39/cats 4/aquarium 1, 60 realistic explainers/four beats/panel PNG, actual prompt and project with treatment, actual installer ZIP/hash and tutorial popup, no overflow",
+      "375px: HTTP 200, actual 2.12.0/catalogue 4.7/1220 styles, dog aliases 39/cats 4/aquarium 1, 60 realistic explainers/four beats/panel PNG, actual prompt and project with treatment, actual installer ZIP/hash and tutorial popup, no overflow"
+    ],
+    "errors": []
+  },
+  "javascriptRegressionTests": 206,
+  "pythonRegressionTests": 9,
+  "nativeWindowsMacOS": "not_run",
+  "audiovisualApproval": "not_implied_by_site_publication",
+  "paidApisUsed": false
+}

@@ -1,10 +1,10 @@
-# Instalar o Studio Kit Pro · candidato 2.12.0
+# Instalar o Studio Kit Pro · 2.12.0
 
-Esta documentação descreve a PR #20, ainda em revisão. Preparar os pacotes não publica o domínio nem atualiza instalações externas. Confira a branch/commit e `dist/release-manifest.json`; `main` e o site podem distribuir uma versão anterior até uma publicação autorizada.
+A versão 2.12.0 está publicada no site e integrada à `main` pela PR #20. [Estado da entrega e limites verificados](RELEASE-2.12.md). O instalador fixa uma revisão imutável, registrada em `installation.json`; novas instalações não atualizam automaticamente pastas anteriores.
 
 ## Instalação recomendada: um ZIP
 
-No site candidato, use **Instalar ferramenta → Baixar instalador completo**. Extraia o ZIP e abra `LEIA-PRIMEIRO.html`. Execute `INSTALAR.cmd` no Windows ou `sh install.sh` no macOS/Linux. O instalador compacto fixa uma revisão do GitHub e confere os hashes antes de executar. Precisa de internet: baixa o projeto completo, inclusive referências visuais, e dependências; reserve 3 GB livres.
+No [site público](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar), use **Instalar ferramenta → Baixar instalador completo**. Extraia o ZIP e abra `LEIA-PRIMEIRO.html`. Execute `INSTALAR.cmd` no Windows ou `sh install.sh` no macOS/Linux. O instalador compacto fixa uma revisão do GitHub e confere os hashes antes de executar. Precisa de internet: baixa o projeto completo, inclusive referências visuais, e dependências; reserve 3 GB livres.
 
 Aproveita Node.js 22+ ou prepara Node.js 24 portátil, instala dependências com `npm ci`, verifica as sete skills locais para Codex/Claude Code e testa FFmpeg/FFprobe e abertura do navegador de renderização. Pode instalar Git/FFmpeg via winget, Homebrew ou apt quando o gerenciador estiver disponível e pode pedir confirmação local. Não altera políticas de execução, contas, outras skills globais ou projetos existentes. Requisitos não atendidos deixam status de falha/pendência e instrução de retomada; não anunciam instalação pronta.
 
@@ -12,7 +12,7 @@ Ao concluir, abre o [tutorial completo](COMECE-AQUI.html). Abra a pasta instalad
 
 Uma retomada da mesma revisão confere os arquivos e preserva `projects/`. Outra versão ou pasta pessoal exige destino novo. O relatório `installation-report.json` distingue `source_verified_runtime_pending`, `installing`, `failed` e `ready`; `ready` comprova somente os testes locais descritos.
 
-O ZIP está em `style-atlas/dist/downloads/studio-kit-pro-installer.zip`; `installation.json` registra revisão, hash e disponibilidade. Só é liberado no site quando os arquivos protegidos correspondem ao commit fixado. Preparar isso na PR não publica o domínio. Git clone, plugins e pacotes menores continuam opções avançadas abaixo.
+O ZIP está em `style-atlas/dist/downloads/studio-kit-pro-installer.zip`; `installation.json` registra revisão, hash e disponibilidade. Só é liberado no site quando os arquivos protegidos correspondem ao commit fixado. O ZIP atualmente oferecido no site corresponde à publicação autorizada; preparar futuros pacotes não os publica automaticamente. Git clone, plugins e pacotes menores continuam opções avançadas abaixo.
 
 ## Um pacote, sete skills
 
@@ -32,10 +32,10 @@ O pedido do site leva `skillRouting`, `intentSummary`, estilos, contribuições/
 
 ## Codex ou Claude Code no checkout
 
-Para testar este candidato em pasta nova:
+Para obter a versão da `main` em uma pasta nova:
 
 ```bash
-git clone --branch feat/interactive-presenter-styles https://github.com/andrezucatti82-rgb/studio-kit-pro.git
+git clone --branch main https://github.com/andrezucatti82-rgb/studio-kit-pro.git
 cd studio-kit-pro
 npm ci
 npm run doctor
@@ -66,7 +66,7 @@ codex plugin add video-multimarcas@video-multimarcas-kit --json
 codex plugin list --json
 ```
 
-Esses comandos usam `main`. Para testar a PR, use o checkout local do candidato como origem do marketplace. Preserve o nome e a origem já configurados ao atualizar; não instale cópias concorrentes desnecessariamente. Para uma origem Git existente:
+Esses comandos usam `main`. Para testar mudanças ainda não publicadas, use o checkout local da branch correspondente como origem do marketplace. Preserve o nome e a origem já configurados ao atualizar; não instale cópias concorrentes desnecessariamente. Para uma origem Git existente:
 
 ```bash
 codex plugin marketplace upgrade video-multimarcas-kit --json

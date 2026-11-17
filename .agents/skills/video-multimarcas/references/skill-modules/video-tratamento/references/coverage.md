@@ -1,6 +1,6 @@
-# Cobertura de tratamento · candidato 2.12.0
+# Cobertura de tratamento · 2.12.0
 
-Auditoria de 17/11/2026 do código candidato da PR #20. O site público continua na versão 2.11.0. Esta matriz descreve implementação do repositório; não atribui ao produto todos os filtros que um FFmpeg instalado possa oferecer.
+Auditoria iniciada em 17/11/2026 sobre o código da PR #20, quando o site ainda estava na 2.11.0. A PR foi integrada e a versão 2.12.0 está publicada; consulte [estado da entrega](https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/RELEASE-2.12.md). Esta matriz descreve implementação do repositório; não atribui ao produto todos os filtros que um FFmpeg instalado possa oferecer.
 
 **Integrado**: operador existente, com limites indicados. **Fixo**: valor usado pelo runtime, sem seletor. **Parcial**: apenas parte do pedido. **Não integrado**: exige desenvolvimento ou ferramenta externa verificada. A skill orienta e diagnostica; não implementa os processadores ausentes.
 

@@ -5,7 +5,7 @@ description: Use when a Studio Kit Pro or visual-gallery request combines video 
 
 # Vídeo Multimarcas — orquestradora do Studio Kit Pro
 
-Candidato **2.12.0**; catálogo **4.7**, **1.220 estilos/30 subcategorias**, incluindo **60 explicadores/17 segmentos**. Esta skill coordena um único projeto e seis especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
+Versão **2.12.0**; catálogo **4.7**, **1.220 estilos/30 subcategorias**, incluindo **60 explicadores/17 segmentos**. Esta skill coordena um único projeto e seis especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
 
 ## Primeiro, resolver o pedido real
 

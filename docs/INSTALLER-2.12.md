@@ -1,6 +1,6 @@
-# Instalação compacta e fichas interativas · candidato 2.12.0
+# Instalação compacta e fichas interativas · 2.12.0
 
-Escopo escolhido: um instalador compacto com internet, Codex e Claude Code locais, finalização das 60 fichas/orientações. Os 60 vídeos completos ficam para etapa posterior. Entrega na PR #20 para revisão, sem merge/deploy ou APIs pagas.
+Escopo escolhido: um instalador compacto com internet, Codex e Claude Code locais, finalização das 60 fichas/orientações. Os 60 vídeos completos ficam para etapa posterior. A PR #20 foi integrada e a versão 2.12.0 foi publicada, com backup e verificação pública. [Recibo resumido e limites](RELEASE-2.12.md). Não foram usadas APIs pagas.
 
 ## Fluxo do usuário
 
@@ -18,7 +18,7 @@ Escopo escolhido: um instalador compacto com internet, Codex e Claude Code locai
 
 O código deve ser commitado primeiro. O empacotador então fixa esse SHA e só marca `sourceReady:true` quando não há diferenças nos arquivos protegidos. Um segundo commit pode registrar somente os arquivos de distribuição/metadados gerados. Isso permite uma origem imutável real sem a autorreferência impossível do hash do próprio pacote dentro do seu commit.
 
-O botão fica indisponível se o pacote não corresponde a uma revisão fixa ou não pôde ser verificado. Preparação na PR não publica o domínio; os novos downloads dependem da futura publicação autorizada.
+O botão fica indisponível se o pacote não corresponde a uma revisão fixa ou não pôde ser verificado. A versão 2.12.0 já foi publicada com autorização. Preparar uma atualização futura continua separado de publicá-la.
 
 A origem imutável pode conter metadados de download da preparação anterior, bloqueados pelo mesmo mecanismo; o projeto instalado e o tutorial funcionam independentemente de baixar outro instalador. Para atualizar, usar o download vigente do site e uma pasta nova.
 
@@ -36,7 +36,7 @@ A skill especializada lê o plano e resolve somente faltas pertinentes. Video-tr
 
 ## Verificações e limites
 
-Antes de fixar a origem: 198 testes JavaScript + 9 Python, typecheck, integridade dos pacotes, fontes/links e regressões de site. No Chromium em 375/1440 px: quatro momentos, prompt realmente copiado, projeto baixado, tutorial e bloqueio do download indisponível. O registro final da PR acrescenta a prova do ZIP liberado e da instalação a partir do GitHub.
+Na revisão publicada: 206 testes JavaScript + 9 Python, typecheck, integridade dos pacotes, fontes/links e regressões de site. No Chromium em 375/1440 px: quatro momentos, prompt realmente copiado, projeto baixado, tutorial e bloqueio do download indisponível. O registro da publicação inclui o ZIP realmente baixado, o tutorial, o teste de instalação Linux e a origem exata de cada verificação.
 
 A inicialização de FFmpeg/FFprobe e Chromium foi executada em Linux. Windows/macOS têm wrappers preparados e instruções específicas, mas não foram executados em máquinas nativas nesta sessão. Instalação de sistema, política administrada, bibliotecas de browser e autenticação podem exigir ação local. Não prometer um instalador universal sem requisitos.
 
