@@ -1,5 +1,5 @@
 {
-  "plugin": "research.json",
+  "plugin": "video-multimarcas",
   "pluginVersion": "2.12.0",
   "kitVersion": "2.12.0",
   "catalogVersion": "4.8",
@@ -54,33 +54,33 @@
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
       "bytes": 154750,
-      "sha256": "9787b5b209d9af62e740826e2c691737ceb45db39899e87ffffd49def9fa76a7"
+      "sha256": "2725ca18d524eb999f2d29956cb3670797de5aa791248a0bc5c5878967aebce7"
     },
     "video-multimarcas-plugin.zip": {
       "bytes": 155205,
-      "sha256": "2b5fd5e58fa5c77668c86d5aeb93d567b78b97171c552fd825e91840b233fbe3"
+      "sha256": "6bb0fb9f7f91b01eb748675ca4f9f20bcd5a43c4e3d0fede3dbcaf5a73b1d65e"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4124242,
-      "sha256": "8528778ab5bca7f217889b18737ff29e985a95d9ffe92370993b2485ebad9ca9"
+      "bytes": 4131037,
+      "sha256": "fecaafaa97f2d780d065e7c8ead6177c52b94b54e927da08a36a694e204aae26"
     },
     "video-multimarcas.skill": {
       "bytes": 128857,
-      "sha256": "666ca9923b4e2c4325834cddc5f0e6ed51f993f5caedf25f0a76d93267cdccd7"
+      "sha256": "e3d3df04120d7ce775be02baf20f0bf84ede60a1b956e5f4c12da8c7fa3956a6"
     },
     "video-multimarcas.zip": {
       "bytes": 128857,
-      "sha256": "666ca9923b4e2c4325834cddc5f0e6ed51f993f5caedf25f0a76d93267cdccd7"
+      "sha256": "e3d3df04120d7ce775be02baf20f0bf84ede60a1b956e5f4c12da8c7fa3956a6"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "653a8549dec51a99c2e8ced358b91c9ebcf36f30",
+    "sourceRevision": "04cfeec86d0a40e56f59286dca94e0e947a795b7",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 620772,
-    "sha256": "cc63e918b65062255ddc8f4bc6df3178c0df8c26e1f0eed5357f937d4b07c704",
+    "bytes": 621055,
+    "sha256": "bc932b36f9d6f5696a2a16cc47f58208ef3c298ec201750f696933a674b70541",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
