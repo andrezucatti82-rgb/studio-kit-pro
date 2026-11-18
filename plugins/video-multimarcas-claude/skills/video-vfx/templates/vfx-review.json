@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "recordType": "vfx-review",
+  "status": "review_pending",
+  "projectId": "",
+  "shotId": "",
+  "version": 1,
+  "artifact": {
+    "file": "",
+    "sha256": "",
+    "firstFrame": null,
+    "lastFrameInclusive": null
+  },
+  "reviewer": "",
+  "reviewedAt": "",
+  "toolAndVersion": "",
+  "viewDisplay": "",
+  "technical": {
+    "status": "not_checked",
+    "evidence": []
+  },
+  "frameInspection": {
+    "status": "not_checked",
+    "frames": [],
+    "observations": []
+  },
+  "playback": {
+    "status": "not_checked",
+    "scope": "",
+    "observations": []
+  },
+  "listening": {
+    "status": "not_checked",
+    "scope": "",
+    "observations": [],
+    "notApplicableReason": ""
+  },
+  "checks": [
+    {
+      "area": "tracking",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "matte",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "cleanup",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "cg-fx",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "color-alpha",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "identity",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "optics",
+      "status": "not_checked",
+      "evidence": []
+    },
+    {
+      "area": "editorial",
+      "status": "not_checked",
+      "evidence": []
+    }
+  ],
+  "issues": [],
+  "creativeApprovalRecordRef": "",
+  "nextAction": "Revisar arquivo real; registrar somente verificações observadas."
+}

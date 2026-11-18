@@ -22,7 +22,7 @@ with sync_playwright() as p:
    assert page.locator('#chatLink').get_attribute('href')==('https://claude.ai/new' if platform=='claude' else 'https://chatgpt.com/')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
   with page.expect_download() as d:page.locator('[data-starter-file="projeto-video.json"]').click()
-  file=out/f'project-{width}.json';d.value.save_as(str(file));bundle=json.loads(file.read_text());route=bundle['orchestrator']['skillRouting'];assert route['primarySkill']=='video-explicador-interativo';assert 'video-revisao' in route['modules'];assert route['version']==2 and 'video-tratamento' in route['modules'];assert bundle['project']['conversationPlatform']=='claude';assert route['filesTransferred'] is False
+  file=out/f'project-{width}.json';d.value.save_as(str(file));bundle=json.loads(file.read_text());route=bundle['orchestrator']['skillRouting'];assert route['primarySkill']=='video-explicador-interativo';assert 'video-revisao' in route['modules'];assert route['version']==3 and 'video-tratamento' in route['modules'];assert bundle['project']['conversationPlatform']=='claude';assert route['filesTransferred'] is False
   page.screenshot(path=str(out/f'brief-{width}.png'),full_page=True,animations='disabled');page.reload();page.wait_for_function('window.ATLAS_READY===true');assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')=='explicador-diagrama-ao-lado'
   result['checks'].append(f'{width}px: style intent, actual clipboard for both destinations, complete JSON download and restored selection')
   context.close()

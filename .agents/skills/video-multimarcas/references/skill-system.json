@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "kitVersion": "2.12.0",
   "orchestrator": "video-multimarcas",
   "skills": [
@@ -27,6 +27,11 @@
       "id": "video-edicao",
       "name": "Edição, motion e áudio",
       "role": "editing"
+    },
+    {
+      "id": "video-vfx",
+      "name": "VFX e composição por plano",
+      "role": "vfx"
     },
     {
       "id": "video-tratamento",

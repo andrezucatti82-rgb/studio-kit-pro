@@ -34,3 +34,5 @@ Forneça vídeo acessível, duração medida, legenda, fonte/projeto editável, 
 Publicação é um escopo próprio: revisão técnica ou aceite visual não autoriza subir vídeo em contas, publicar site, gastar novas tentativas ou executar merge. O projeto deve distinguir fonte no GitHub, pacote preparado, instalação carregada e domínio publicado.
 
 Para a biblioteca de explicadores, compare composição e mecanismo entre direções: trocar somente rosto, cor ou texto de um cartão não cria diversidade. Confira também a adequação por beat da posição/escala da pessoa e se a informação nasce da explicação. Para uma produção específica, preserve o original; a biblioteca não obriga deslocamentos ou espelhamentos artificiais.
+
+Se houver VFX, receba `vfx-review.json`, comp e manifesto. Confira tracking, bordas/alpha, oclusões, contato, luz, grão e continuidade no candidato integrado. QA por plano alimenta esta revisão consolidada; não herdar aprovação criativa nem revisão do hash anterior.

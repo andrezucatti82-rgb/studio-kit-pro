@@ -1,11 +1,11 @@
 {
   "name": "video-multimarcas",
   "version": "2.12.0",
-  "description": "Kit completo com uma orquestradora e seis especialidades para planejamento, explicação interativa, publicidade, edição, tratamento e revisão.",
+  "description": "Kit completo com uma orquestradora e sete especialidades para planejamento, explicação interativa, publicidade, edição, VFX, tratamento e revisão.",
   "skills": "./skills/",
   "interface": {
     "displayName": "Vídeo Multimarcas",
-    "shortDescription": "Um kit, sete skills: do estilo ao vídeo revisado.",
+    "shortDescription": "Um kit, oito skills: do estilo ao vídeo revisado.",
     "defaultPrompt": [
       "Use $video-multimarcas como orquestradora do Studio Kit Pro 2.12.0. Leia references/skill-routing.md e use skillRouting/intentSummary do pedido validado para selecionar as especialidades. Preserve estilos, características, escopos, mídia e decisões. Confirme ferramentas, capacidades e faltas reais; faça até três perguntas pertinentes, sem repetir escolhas. Planeje atuação e motion juntos quando houver apresentador; paleta isolada não exige avatar. Importe e execute o projeto no Codex/Claude Code com runtime verificado. Em chat sem execução, conclua etapas disponíveis e informe dependências. Visuais concretos, aceites próprios e custo autorizado antecedem geração. Entregue arquivos reais com estado honesto de revisão."
     ]

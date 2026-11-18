@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "recordType": "vfx-plan",
+  "status": "planning",
+  "projectId": "",
+  "version": 1,
+  "coordinatorRecords": {
+    "brief": "brief.json",
+    "coordinator": "coordinator-plan.json",
+    "shotPlan": "shot-plan.json",
+    "fidelity": "fidelity-plan.json",
+    "preproduction": "preproduction-plan.json",
+    "workflow": "workflow.json",
+    "review": "review.json"
+  },
+  "capabilities": [],
+  "decisions": [],
+  "budget": {
+    "currency": "USD",
+    "estimate": null,
+    "authorizationRecord": "",
+    "verifiedAt": ""
+  },
+  "shots": [
+    {
+      "id": "",
+      "coordinatorShotId": "",
+      "shotPlanId": "",
+      "fidelityShotId": "",
+      "status": "planning",
+      "effect": "",
+      "recipe": "",
+      "intent": {
+        "initialState": "",
+        "action": "",
+        "result": ""
+      },
+      "invariants": [],
+      "plate": {
+        "file": "",
+        "sha256": "",
+        "width": null,
+        "height": null,
+        "fps": {
+          "numerator": null,
+          "denominator": null
+        },
+        "firstFrame": null,
+        "lastFrameInclusive": null,
+        "handlesBefore": null,
+        "handlesAfter": null,
+        "pixelAspect": null,
+        "timecode": "",
+        "inputColorSpace": "",
+        "transferFunction": "",
+        "range": "",
+        "alphaMode": "unknown"
+      },
+      "assets": [],
+      "references": [],
+      "missingInputs": [],
+      "executor": {
+        "name": "",
+        "tool": "",
+        "version": "",
+        "mode": "not_assigned",
+        "verified": false,
+        "evidence": ""
+      },
+      "technique": {
+        "tracking": "",
+        "lensWorkflow": "",
+        "rotoAndHoldouts": "",
+        "depthAndOcclusion": "",
+        "lightingAndContact": "",
+        "motionBlurAndGrain": "",
+        "nodesOrLayers": []
+      },
+      "color": {
+        "workingSpace": "",
+        "ocioConfig": "",
+        "ocioVersion": "",
+        "inputTransforms": [],
+        "dataChannels": [],
+        "viewDisplay": "",
+        "outputTransform": "",
+        "alphaConvention": ""
+      },
+      "approvalRecordRefs": [],
+      "dependencies": [],
+      "acceptanceCriteria": [],
+      "proof": {
+        "hardestRange": {
+          "firstFrame": null,
+          "lastFrameInclusive": null
+        },
+        "reason": "",
+        "trackTestFile": "",
+        "meanSolveErrorPixels": null,
+        "playbackEvidence": "",
+        "status": "not_checked"
+      },
+      "outputs": {
+        "editableProject": "",
+        "comp": "",
+        "passes": [],
+        "codec": "",
+        "colorSpace": "",
+        "alphaMode": "",
+        "reviewRecord": "vfx-review.json"
+      },
+      "issues": []
+    }
+  ],
+  "nextAction": "Inspecionar materiais e verificar capacidades antes de executar.",
+  "history": []
+}

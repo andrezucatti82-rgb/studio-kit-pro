@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "375px: both destinations clipboard, real TXT/JSON downloads, VFX route, palette-only exclusion, persisted scope and effects adjustment",
+    "1440px: both destinations clipboard, real TXT/JSON downloads, VFX route, palette-only exclusion, persisted scope and effects adjustment"
+  ],
+  "errors": [],
+  "audiovisualValidation": "not_run",
+  "embeddedPage": {
+    "orderedPageSaves": true,
+    "claudeLinkInPageMode": true,
+    "pageLimitWarningWithoutLocalStorage": true,
+    "overLimitProjectDownload": true,
+    "pageErrors": []
+  }
+}

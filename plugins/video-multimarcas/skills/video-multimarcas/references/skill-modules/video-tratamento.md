@@ -26,3 +26,5 @@ Se a matriz indicar ausência, descubra a ferramenta local/conexão real e teste
 ## Saída para revisão
 
 Entregue candidato acessível e hash, relatório antes/depois, receita/valores aplicados, rota/versão, perfil de destino, intermediários pertinentes e limitações. Não sobreponha o original. Só reencodifique quando necessário e mantenha uma fonte de qualidade para revisões. `video-revisao` confere arquivo, movimento, som e entrega. Relatório técnico não comprova playback, escuta, aprovação criativa, conformidade HDR/Dolby/broadcast/DCP nem autorização para publicar.
+
+`video-vfx` responde por cor/alpha/passes dentro da composição e sua ida/volta; este módulo conserva tratamento global e destino final. Use o manifesto VFX para evitar transformação duplicada e preserve identidade/cor factual. Cleanup localizado/roto/integração de efeitos não são restauração global.

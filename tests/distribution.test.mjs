@@ -10,7 +10,7 @@ test('Codex, Claude and runtime archives match canonical files, versions and int
 from pathlib import Path
 import json,hashlib,zipfile
 r=Path.cwd();version=json.loads((r/'package.json').read_text())['version'];release=json.loads((r/'dist/release-manifest.json').read_text());assert release['kitVersion']==version and release['pluginVersion']==version
-ids=[s['id'] for s in release['skillSystem']['skills']];assert len(ids)==7
+ids=[s['id'] for s in release['skillSystem']['skills']];assert len(ids)==8
 for name,record in release['packages'].items():assert hashlib.sha256((r/'dist'/name).read_bytes()).hexdigest()==record['sha256']
 for archive_name,manifest_name in [('video-multimarcas-plugin.zip','.codex-plugin/plugin.json'),('video-multimarcas-claude-plugin.zip','.claude-plugin/plugin.json')]:
  with zipfile.ZipFile(r/'dist'/archive_name) as z:

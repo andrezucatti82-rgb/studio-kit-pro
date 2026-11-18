@@ -23,4 +23,4 @@ try{
  if(failures.length)throw new AggregateError([error,...failures],'Kit update failed; inspect reported rollback/cleanup failures and backups');
  throw error;
 }
-const main=records[0];console.log(JSON.stringify({agent,scope:'project',skill:main.path,backup:main.backup,skills:records.map(r=>({id:r.id,path:r.path,backup:r.backup,status:r.source===r.path?'already_present':'installed'})),runtimeIncluded:false,connectionsTransferred:false,note:'Complete seven-skill kit. Other skills/configuration are untouched. Reopen the agent; verify runtime and connections separately.'},null,2));
+const main=records[0];console.log(JSON.stringify({agent,scope:'project',skill:main.path,backup:main.backup,skills:records.map(r=>({id:r.id,path:r.path,backup:r.backup,status:r.source===r.path?'already_present':'installed'})),runtimeIncluded:false,connectionsTransferred:false,note:'Complete eight-skill kit. Other skills/configuration are untouched. Reopen the agent; verify runtime and connections separately.'},null,2));

@@ -5,7 +5,7 @@ description: Use when a Studio Kit Pro or visual-gallery request combines video 
 
 # Vídeo Multimarcas — orquestradora do Studio Kit Pro
 
-Versão **2.12.0**; catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores/53 segmentos**. Esta skill coordena um único projeto e seis especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
+Versão **2.12.0**; catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores/53 segmentos**. Esta skill coordena um único projeto e sete especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
 
 ## Primeiro, resolver o pedido real
 
@@ -21,6 +21,7 @@ Resuma o vídeo entendido, os materiais realmente recebidos e a próxima entrega
 | Pessoa gravada/avatar e explicação interativa | [video-explicador-interativo](references/skill-modules/video-explicador-interativo.md) |
 | Argumento, demonstração, oferta e CTA | [video-publicidade](references/skill-modules/video-publicidade.md) |
 | B-roll, montagem, motion e mix de faixas | [video-edicao](references/skill-modules/video-edicao.md) |
+| VFX por plano: tracking, roto, key, cleanup e CG/FX | [video-vfx](references/skill-modules/video-vfx.md) |
 | Cor, textura, restauração, diagnóstico e especificação técnica | [video-tratamento](references/skill-modules/video-tratamento.md) |
 | Evidência audiovisual e entrega | [video-revisao](references/skill-modules/video-revisao.md) |
 
