@@ -22,7 +22,7 @@ with sync_playwright() as p:
   trigger=page.locator('[data-folio-open-group="natural-ads"]' if width>900 else '#folioOpenMenu');trigger.click()
   assert page.locator('#folioMenu').evaluate('e=>e.tagName')=='SECTION'
   assert page.locator('#folioMenu').evaluate('e=>getComputedStyle(e).position')=='static'
-  assert page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top+scrollY')>original+200
+  assert page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top+scrollY')>original+100
   assert page.locator('.app-main').evaluate('e=>getComputedStyle(e).filter')=='none'
   assert page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top')>=page.locator('#folioMenu').evaluate('e=>e.getBoundingClientRect().bottom')
   no_layer(page);page.screenshot(path=str(out/f'menu-{width}.png'),animations='disabled')
@@ -31,7 +31,7 @@ with sync_playwright() as p:
   if width<=900:page.locator('[data-folio-group="natural-ads"]').click()
   assert page.locator('#folioMenu [data-folio-family]').count()==11
   page.locator('#folioMenu [data-folio-family="ads-pets"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
-  page.locator('#folioOpenMenu').click();page.locator('#folioMenu [data-folio-close]').first.click();expect(page.locator('#folioOpenMenu')).to_be_focused()
+  page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
   page.locator('#folioOpenMenu').click();page.locator('#folioOpenMenu').click();expect(page.locator('#folioMenu')).not_to_be_visible()
   page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click()
   saved=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')

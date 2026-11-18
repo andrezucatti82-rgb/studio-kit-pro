@@ -86,7 +86,7 @@ with sync_playwright() as p:
   # Persisted favorites and selection survive reload in the real site adapter.
   page.reload();page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')==style_id
-  page.locator('#folioBrowseAll').click();page.locator('#favoriteFilter').click()
+  page.locator('#folioBrowseAll').click();page.locator('#folioCategoryFilters>summary').click();page.locator('#favoriteFilter').click()
   assert page.locator('#grid [data-style-id]').count()==1
   assert page.locator('#grid [data-style-id]').first.get_attribute('data-style-id')==style_id
   page.locator('#folioHeader [data-app-view="help"]').click();expect(page.locator('#instalar')).to_be_visible()
