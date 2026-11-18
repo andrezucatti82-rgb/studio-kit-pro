@@ -15,7 +15,17 @@ with sync_playwright() as p:
    expect(page.locator('#folioOpenMenu')).to_be_visible()
    page.evaluate('scrollTo(0,1300)');assert abs(page.locator('#folioHeader').bounding_box()['y'])<1
    assert not page.evaluate('document.documentElement.scrollWidth>innerWidth');page.evaluate('scrollTo(0,0)')
-  fixed();page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();page.locator('#folioContinue').click()
+  fixed()
+  if width>700:
+   page.locator('[data-folio-open-group="natural-ads"]').click()
+   parent=page.locator('[data-folio-open-group="natural-ads"]');child=page.locator('[data-folio-family="ads-moda"]')
+   assert parent.evaluate('e=>getComputedStyle(e).fontSize')==child.evaluate('e=>getComputedStyle(e).fontSize')=='14px'
+   assert page.locator('.folio-text-links').evaluate('e=>parseFloat(getComputedStyle(e).columnGap)')<=24
+   if width>900:assert page.locator('.folio-text-links').evaluate('e=>Math.max(...getComputedStyle(e).gridTemplateColumns.split(" ").map(parseFloat))')<=230
+   parent.hover();assert parent.evaluate('e=>getComputedStyle(e).color')=='rgb(52, 199, 106)'
+   child.hover();assert child.evaluate('e=>getComputedStyle(e).color')=='rgb(52, 199, 106)'
+   page.screenshot(path=str(out/f'compact-menu-{width}.png'),animations='disabled');page.keyboard.press('Escape');page.locator('#folioHeader .folio-brand').click()
+  page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();page.locator('#folioContinue').click()
   page.locator('#topic').fill('Explicar um serviço com exemplos visuais');page.locator('#brand').fill('Minha marca');page.locator('#duration').select_option('45');page.locator('#topic').focus();fixed()
   page.screenshot(path=str(out/f'brief-{width}.png'),animations='disabled')
   page.locator('#openFonts').click();fixed();page.locator('#fontDialog [data-close]').click();page.locator('#folioContinue').click();expect(page.locator('#handoff')).to_be_visible();fixed()

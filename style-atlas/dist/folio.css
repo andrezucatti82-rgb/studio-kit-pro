@@ -302,8 +302,8 @@ body[data-folio=true]{font-family:'Folio UI',Arial,Helvetica,sans-serif}body[dat
 .folio-category-bar{display:flex;align-items:center;gap:6px;max-width:1600px;margin:0 auto;padding:0 40px 18px;overflow-x:auto;scrollbar-width:none}
 .folio-category-bar::-webkit-scrollbar{display:none}
 body:not([data-folio=true]) .folio-category-bar{display:none}
-.folio-category-bar>button{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;padding:10px 14px;min-height:44px;border:0;border-radius:999px;background:transparent;color:#b5b5b5;font-size:13px;font-weight:500;white-space:nowrap}
-.folio-category-bar>button:hover{color:#fff}
+.folio-category-bar>button{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;padding:10px 14px;min-height:44px;border:0;border-radius:999px;background:transparent;color:#b5b5b5;font-size:14px;font-weight:400;white-space:nowrap}
+.folio-category-bar>button:hover,.folio-category-bar>button:focus-visible{color:var(--folio-active-green)}
 .folio-category-bar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 
@@ -311,7 +311,7 @@ body:not([data-folio=true]) .folio-category-bar{display:none}
 @media(min-width:1200px){
  body[data-folio=true] .folio-header{gap:12px}
  .folio-header .folio-category-bar{flex:1;min-width:0;justify-content:center;padding:0;margin:0;gap:0}
- .folio-header .folio-category-bar>button{font-size:12px;padding:10px 9px;gap:4px}
+ .folio-header .folio-category-bar>button{font-size:14px;padding:10px 9px;gap:4px}
  .folio-header .folio-desktop-nav[data-folio-home]{display:none}
  .folio-header>nav:not(.folio-category-bar){gap:10px;flex:none}
  .folio-header .folio-brand{flex:none}
@@ -363,11 +363,11 @@ html:has(body[data-folio=true]){scroll-behavior:auto}
 body[data-folio=true] #folioMenu{position:static;width:calc(100% - 80px);max-width:1520px;margin:0 auto 8px;padding:0 0 8px;border:0;border-bottom:1px solid var(--line);background:transparent;box-shadow:none}
 body[data-folio=true] #folioMenu[hidden]{display:none!important}
 #folioMenu button{min-height:40px;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--muted);font:400 14px/1.5 'Folio UI',Arial,sans-serif;text-align:left;cursor:pointer}
-#folioMenu button:hover,#folioMenu button:focus-visible{color:var(--ink);text-decoration:none}
-#folioMenu .folio-text-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px 28px;align-items:start}
+#folioMenu button:hover,#folioMenu button:focus-visible{color:var(--folio-active-green);text-decoration:none}
+#folioMenu .folio-text-links{display:grid;grid-template-columns:repeat(4,max-content);gap:0 24px;align-items:start;justify-content:start}
 #folioMenu .folio-text-links button{width:100%;overflow-wrap:anywhere}
 @media(max-width:900px){#folioMenu .folio-text-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 20px}}
-@media(max-width:700px){body[data-folio=true] #folioMenu{width:calc(100% - 40px);margin:0 auto 8px}#folioMenu button{min-height:44px;font-size:13px}}
+@media(max-width:700px){body[data-folio=true] #folioMenu{width:calc(100% - 40px);margin:0 auto 8px}#folioMenu button{min-height:44px;font-size:14px}}
 
 /* Opening a category reveals its words immediately below the header. */
 body[data-folio=true]:has(#folioMenu:not([hidden])) .folio-header{padding-bottom:8px}
@@ -400,7 +400,7 @@ body[data-folio=true] :is(button,a,input,select,textarea):focus-visible{outline-
 body[data-folio=true] :is(.frame-expand,.reference-panel,.guided-reference,.detail-image,.brief-style-image){background:#151515}
 
 #folioMenu button>span{display:inline-block;max-width:100%;transform-origin:left center;transition:transform .16s ease}
-@media(hover:hover) and (pointer:fine){#folioMenu button:hover>span{transform:scale(1.04)}}
+@media(hover:hover) and (pointer:fine){#folioMenu button:hover>span{transform:scale(1.08)}}
 @media(prefers-reduced-motion:reduce){#folioMenu button>span{transition:none}}
 
 /* One fixed navigation area. Reference pages and categories remain in flow. */
@@ -413,9 +413,10 @@ body[data-folio=true] #folioHeader [data-folio-choice]{display:none!important}
 .folio-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#071c0f20;font-size:11px}
 body[data-folio=true] #folioHeader #compareBar{position:static;inset:auto;order:4;flex:1 0 100%;display:flex;justify-content:flex-end;gap:12px;margin:0;padding:4px 0 0;border:0;border-radius:0;box-shadow:none;background:transparent;width:auto;max-width:none}
 body[data-folio=true] #folioHeader #compareBar[hidden]{display:none!important}
-body[data-folio=true] .folio-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5}
+body[data-folio=true] .folio-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5;font-size:14px;font-weight:400}
+body[data-folio=true] .folio-category-bar>button:is(:hover,:focus-visible){color:var(--folio-active-green)}
 .folio-category-bar>button>span{display:inline-block;transform-origin:center;transition:transform .16s ease}
-@media(hover:hover) and (pointer:fine){.folio-category-bar>button:hover>span{transform:scale(1.04)}}
+@media(hover:hover) and (pointer:fine){.folio-category-bar>button:hover>span{transform:scale(1.08)}}
 body[data-folio=true] .app-main main,body[data-folio=true] #folioPanelHost,body[data-folio=true] #briefDialog.brief-workspace{padding-bottom:48px}
 body[data-folio=true] :is(#prepare,#copyPrompt,#guidedNext){display:none!important}
 html:has(body[data-folio=true]){scroll-padding-top:calc(var(--folio-header-height,140px) + 8px)}
