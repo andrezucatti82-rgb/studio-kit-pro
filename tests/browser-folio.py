@@ -66,12 +66,11 @@ with sync_playwright() as p:
   page.locator('#folioHeader .folio-brand').click()
   page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-goal="sell"]').click()
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
-  page.locator('#folioOpenMenu').click();expect(page.locator('#folioMenu')).to_be_visible()
-  page.locator('[data-folio-group="technology"]').click();expect(page.locator('#folioMenu')).to_be_visible()
+  page.locator('[data-folio-open-group="technology"]').click();expect(page.locator('#folioMenu')).to_be_visible()
   page.locator('[data-folio-family="software"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
   assert page.evaluate('AtlasApp.categorySelection().family')=='software'
   expect(page.locator('#folioCollectionTitle')).to_be_focused()
-  page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');assert page.evaluate('document.activeElement.id')=='folioOpenMenu'
+  page.locator('[data-folio-open-group="technology"]').click();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
   page.locator('#folioHeader .folio-brand').click();page.locator('#folioNiche').select_option('dentistas')
   page.locator('#search').fill('cachorro');assert page.evaluate('AtlasFolio.getState().niche')==''
   assert page.locator('#grid .folio-card').count()>0

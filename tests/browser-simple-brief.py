@@ -6,12 +6,17 @@ parser=argparse.ArgumentParser();parser.add_argument('--base',default='http://12
 report={'viewports':[],'errors':[]}
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
- for width in [390,1440]:
+ for width in [320,375,390,1440]:
   context=b.new_context(viewport={'width':width,'height':900});page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
   page.goto(args.base);page.wait_for_function('window.ATLAS_READY && document.body.dataset.folio')
   page.locator('#folioContinue').click();page.locator('#guidedSubject').fill('Apresentar um consultório com naturalidade');page.locator('#folioContinue').click();page.locator('#guidedBrowse').click()
   page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();style=page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')
-  page.locator('#folioContinue').click();expect(page.locator('#guidedSubject')).to_have_value('Apresentar um consultório com naturalidade');page.locator('#folioContinue').click();page.locator('#folioContinue').click();page.locator('#folioContinue').click();page.locator('#folioContinue').click();expect(page.locator('#handoff')).to_be_visible()
+  page.locator('#folioContinue').click();expect(page.locator('#guidedSubject')).to_have_value('Apresentar um consultório com naturalidade')
+  for step in range(4):
+   if width<=700:
+    assert page.evaluate('''()=>{const mark=document.querySelector('.folio-brand').getBoundingClientRect(),cta=document.querySelector('#folioContinue').getBoundingClientRect(),help=document.querySelector('#folioHeader>nav:last-of-type').getBoundingClientRect();return mark.right+5<=cta.left&&cta.right+5<=help.left}'''),(width,step)
+   page.locator('#folioContinue').click()
+  expect(page.locator('#handoff')).to_be_visible()
   assert page.evaluate('AtlasCurrentChoice().selectedStyles.length')==1
   prompt=page.locator('#promptOutput').input_value();assert 'visualDescription' in prompt and 'colorAndLighting' in prompt and 'typography' in prompt and 'não precisa baixar' in prompt
   page.evaluate('(id)=>AtlasApp.detail(id)',style);expect(page.locator('#detailDialog')).to_be_visible();assert page.locator('#detailDialog [data-add], #detailDialog [data-frame], #detailDialog [data-board]').count()==0

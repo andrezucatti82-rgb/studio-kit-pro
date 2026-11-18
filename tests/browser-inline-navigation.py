@@ -19,7 +19,7 @@ with sync_playwright() as p:
   context=browser.new_context(viewport={'width':width,'height':height});page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
   page.goto(args.base);page.wait_for_function('window.ATLAS_READY && document.body.dataset.folio');page.evaluate('document.fonts.ready')
   original=page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top+scrollY')
-  trigger=page.locator('[data-folio-open-group="natural-ads"]' if width>900 else '#folioOpenMenu');trigger.click()
+  trigger=page.locator('[data-folio-open-group="natural-ads"]');trigger.click()
   assert page.locator('#folioMenu').evaluate('e=>e.tagName')=='SECTION'
   assert page.locator('#folioMenu').evaluate('e=>getComputedStyle(e).position')=='static'
   assert page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top+scrollY')>original+100
@@ -27,12 +27,11 @@ with sync_playwright() as p:
   assert page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top')>=page.locator('#folioMenu').evaluate('e=>e.getBoundingClientRect().bottom')
   no_layer(page);page.screenshot(path=str(out/f'menu-{width}.png'),animations='disabled')
   # The surrounding page stays usable; clicking it does not dismiss a popup.
-  page.locator('#folioCollectionTitle' if width>900 else '#folioDiscoveryTitle').click();expect(page.locator('#folioMenu')).to_be_visible()
-  if width<=900:page.locator('[data-folio-group="natural-ads"]').click()
+  page.locator('#folioCollectionTitle').click();expect(page.locator('#folioMenu')).to_be_visible()
   assert page.locator('#folioMenu [data-folio-family]').count()==11
   page.locator('#folioMenu [data-folio-family="ads-pets"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
-  page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
-  page.locator('#folioOpenMenu').click();page.locator('#folioOpenMenu').click();expect(page.locator('#folioMenu')).not_to_be_visible()
+  page.locator('[data-folio-open-group="natural-ads"]').click();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="natural-ads"]')).to_be_focused()
+  page.locator('[data-folio-open-group="natural-ads"]').click();page.locator('[data-folio-open-group="natural-ads"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
   page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click()
   saved=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')
   # A full style and a nested original frame are sequential pages, not layers.

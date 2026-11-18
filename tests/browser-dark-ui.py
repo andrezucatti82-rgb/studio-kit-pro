@@ -14,14 +14,10 @@ with sync_playwright() as p:
   assert 'Folio UI' in page.evaluate('getComputedStyle(document.body).fontFamily')
   assert page.evaluate('getComputedStyle(document.body).colorScheme')=='dark'
   for weight in [400,500,600,700]:assert page.evaluate('async w=>(await document.fonts.load(w+\' 16px "Folio UI"\',"Fólio Ação Informações")).length>0',weight)
-  page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();assert page.locator('#grid [data-choose]').first.evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(20, 43, 30)';page.locator('#folioHeader .folio-brand').click()
+  page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();assert page.locator('#grid [data-choose]').first.evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(40, 46, 17)';page.locator('#folioHeader .folio-brand').click()
   before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)');groups=page.evaluate('AtlasNavigation.groups');seen=set()
   for group in groups:
-   if width>900:trigger=page.locator('[data-folio-open-group="'+group['id']+'"]');trigger.click()
-   else:
-    trigger=page.locator('#folioOpenMenu');trigger.click();assert page.locator('#folioMenuGroups [data-folio-group]').count()==7
-    assert len(page.locator('.folio-text-links').evaluate('e=>getComputedStyle(e).gridTemplateColumns').split())==2
-    page.locator('[data-folio-group="'+group['id']+'"]').click()
+   trigger=page.locator('[data-folio-open-group="'+group['id']+'"]');trigger.click()
    if group.get('directFamily'):
     expect(page.locator('#folioMenu')).not_to_be_visible();assert page.evaluate('AtlasApp.categorySelection().family')==group['directFamily'];seen.add(group['directFamily'])
    else:
@@ -36,8 +32,7 @@ with sync_playwright() as p:
    assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   assert len(seen)==page.evaluate('AtlasApp.getCatalog().families.length')
   # Category words begin at the header; choosing one puts real styles next.
-  if width>900:page.locator('[data-folio-open-group="natural-ads"]').click()
-  else:page.locator('#folioOpenMenu').click();page.locator('[data-folio-group="natural-ads"]').click()
+  page.locator('[data-folio-open-group="natural-ads"]').click()
   assert page.locator('#folioMenu .folio-menu-tools').count()==0
   first=page.locator('#folioMenu button').first.bounding_box();header=page.locator('#folioHeader').bounding_box();assert 0<=first['y']-header['y']-header['height']<=8
   page.screenshot(path=str(out/f'menu-{width}.png'),animations='disabled')
@@ -46,19 +41,20 @@ with sync_playwright() as p:
   assert not page.locator('#folioSearch').is_visible()
   assert page.locator('#folioCategoryFilters').count()==0
   expect(page.locator('#kind')).to_be_visible();assert page.locator('#videoFilter').count()==0
-  page.locator('#favoriteFilter').click();expect(page.locator('#favoriteFilter')).to_have_attribute('aria-pressed','true');assert page.locator('#favoriteFilter').evaluate('e=>getComputedStyle(e,"::after").backgroundColor')=='rgb(52, 199, 106)'
+  page.locator('#favoriteFilter').click();expect(page.locator('#favoriteFilter')).to_have_attribute('aria-pressed','true');assert page.locator('#favoriteFilter').evaluate('e=>getComputedStyle(e,"::after").backgroundColor')=='rgb(226, 255, 59)'
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   page.locator('#favoriteFilter').click();page.screenshot(path=str(out/f'category-{width}.png'),animations='disabled')
   page.locator('#folioHeader .folio-brand').click();expect(page.locator('#folioSearch')).to_be_visible()
-  page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
+  assert page.locator('#folioOpenMenu').count()==0
+  page.locator('[data-folio-open-group="natural-ads"]').click();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="natural-ads"]')).to_be_focused()
   assert page.locator('#folioMenu input, #folioMenu small, #folioMenu svg, #folioMenu footer, #folioMenu h2, #folioMenu h3').count()==0
   page.set_viewport_size({'width':1440,'height':1000});page.locator('[data-folio-open-group="technology"]').click();family=page.locator('#folioMenu [data-folio-family]').first
-  expect(family).to_be_focused();page.set_viewport_size({'width':375,'height':812});expect(family).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
-  page.locator('#folioOpenMenu').click();page.locator('[data-folio-group="technology"]').click();page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenu [data-folio-family]').first).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
+  expect(family).to_be_focused();page.set_viewport_size({'width':375,'height':812});expect(family).to_be_focused();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
+  page.locator('[data-folio-open-group="technology"]').click();page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenu [data-folio-family]').first).to_be_focused();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
   page.set_viewport_size({'width':width,'height':height})
   page.locator('#folioContinue').click()
-  assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(52, 199, 106)'
-  assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).color')=='rgb(7, 28, 15)'
+  assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(226, 255, 59)'
+  assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).color')=='rgb(22, 27, 5)'
   expect(page.locator('#topic')).to_be_visible()
   if width<=700:
    rect=page.locator('#topic').bounding_box();assert rect['y']>=0 and rect['y']+rect['height']<=height
@@ -78,7 +74,7 @@ with sync_playwright() as p:
   page.locator('#appHelp .workflow').scroll_into_view_if_needed();page.screenshot(path=str(out/f'help-workflow-{width}.png'),animations='disabled')
   page.screenshot(path=str(out/f'help-{width}.png'),animations='disabled')
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  report['viewports'].append({'width':width,'allCategoriesReachable':len(groups),'allFamiliesReachable':len(seen),'darkFields':True,'localFonts':4,'allHelpCardsContrast':True,'resizeFocusPreserved':True,'simpleTextMenu':True,'directCategoryLayout':True,'stateDrivenGreenAccent':True,'projectPreserved':True})
+  report['viewports'].append({'width':width,'allCategoriesReachable':len(groups),'allFamiliesReachable':len(seen),'darkFields':True,'localFonts':4,'allHelpCardsContrast':True,'resizeFocusPreserved':True,'simpleTextMenu':True,'directCategoryLayout':True,'stateDrivenLimeAccent':True,'projectPreserved':True})
   page.close()
  b.close()
 assert not report['errors'],report
