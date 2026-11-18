@@ -21,12 +21,12 @@ with sync_playwright() as p:
   page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-photo img, .folio-shelf:first-child img.folio-photo")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
   assert not page.locator('.app-mobile-brand').is_visible()
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  # Preview frames are filled and two complete columns fit the mobile content width; originals remain in the viewer.
-  stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']/stage['width']-16/9)<.02
+  # The complete artwork fits its native frame; two complete columns still fit on mobile.
+  stage=page.locator('.folio-portrait').first.bounding_box();ratio=page.locator('.folio-portrait').first.evaluate('e=>{const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return h/w;}');assert abs(stage['height']/stage['width']-ratio)<.02
   if width<=700:
    first=page.locator('.folio-shelf').first.locator('.folio-card').nth(0).bounding_box();second=page.locator('.folio-shelf').first.locator('.folio-card').nth(1).bounding_box()
    assert abs(first['y']-second['y'])<2 and second['x']+second['width']<=width-17
-  assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".reference-panel");if(!p)return getComputedStyle(e.querySelector("img")).objectFit==="cover";const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();return b.width>=a.width-.5 && b.height>=a.height-.5;}')
+  assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".reference-panel")||e.querySelector("img");const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();return ["left","top","right","bottom"].every(k=>Math.abs(a[k]-b[k])<.6) && !e.querySelector(".folio-reference");}')
   page.screenshot(path=str(out/f'home-{width}.png'),full_page=False,animations='disabled')
   rail=page.locator('.folio-shelf-rail').first;rail.evaluate('(e)=>e.scrollLeft=220');assert rail.evaluate('(e)=>e.scrollLeft')>0
   page.locator('[data-folio-goal="present"]').click();expect(page.locator('#folio-shelf-people-and-business')).to_be_visible()
@@ -92,6 +92,30 @@ with sync_playwright() as p:
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
   report['viewports'].append({'width':width,'height':height,'portraitRatio':stage['height']/stage['width']})
   report['checks'].append(f'{width}px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help')
+  context.close()
+ # Render every real card through the same production adapter; inspect layout,
+ # not fictional pixel content. Block image downloads for this geometry-only pass.
+ report['catalogueGeometry']=[]
+ for width in [375,1440]:
+  context=browser.new_context(viewport={'width':width,'height':900})
+  page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
+  page.goto(args.base);page.wait_for_function('window.ATLAS_READY && document.body.dataset.folio==="true"')
+  page.locator('#folioBrowseAll').click()
+  context.route('**/*',lambda route:route.abort() if route.request.resource_type=='image' else route.continue_())
+  geometry=page.evaluate('''()=>{
+   const items=AtlasApp.getCatalog().styles;
+   AtlasFolio.update({items,shown:items,selected:[],favorites:[],compared:[],family:'',group:'',query:'',kind:'',onlyFav:false,onlyVideo:false});
+   const bad=[];
+   for(const card of document.querySelectorAll('#grid .folio-card')){
+    const stage=card.querySelector('.folio-portrait'),panel=stage.querySelector('.reference-panel')||stage.querySelector('img');
+    const a=stage.getBoundingClientRect(),b=panel.getBoundingClientRect();
+    const [w,h]=FolioCollections.previewRatio(AtlasApp.getStyle(card.dataset.styleId)).split('/').map(Number);
+    if(['left','top','right','bottom'].some(k=>Math.abs(a[k]-b[k])>.6)||Math.abs(a.width/a.height-w/h)>.002||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
+   }
+   return {count:document.querySelectorAll('#grid .folio-card').length,bad};
+  }''')
+  assert geometry['count']==1425 and not geometry['bad'],geometry
+  report['catalogueGeometry'].append({'width':width,**geometry})
   context.close()
  browser.close()
 

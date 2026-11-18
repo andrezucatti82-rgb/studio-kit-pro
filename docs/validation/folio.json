@@ -20,22 +20,34 @@
       {
         "width": 375,
         "height": 812,
-        "portraitRatio": 1.7777670278637772
+        "portraitRatio": 1.335139318885449
       },
       {
         "width": 390,
         "height": 844,
-        "portraitRatio": 1.7777366863905326
+        "portraitRatio": 1.335151627218935
       },
       {
         "width": 430,
         "height": 932,
-        "portraitRatio": 1.7777777777777777
+        "portraitRatio": 1.3351521164021165
       },
       {
         "width": 1440,
         "height": 1000,
-        "portraitRatio": 1.7777549342105263
+        "portraitRatio": 1.3351151315789473
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
       }
     ]
   },
@@ -49,7 +61,7 @@
       "no viewport overflow"
     ],
     "errors": [],
-    "embeddedBytes": 247191
+    "embeddedBytes": 247479
   },
   "domChecks": "4 Fólio-specific integration tests passed, including Page state without localStorage",
   "evidence": [
@@ -60,14 +72,14 @@
   ],
   "limits": [
     "Static references do not imply completed video or audiovisual approval",
-    "Discovery thumbnails fill portrait frames with preview-only cover cropping. Full reference panels remain available in the viewer and exports.",
+    "Every discovery frame follows the original panel aspect ratio without cover cropping, stretching or an overlaid reference label. Full source panels remain available in the viewer and exports.",
     "No paid provider API used",
     "Public site and existing published Page were not changed"
   ],
   "mobilePresentation": "Two complete columns in the discovery shelves and opened collections",
   "automatedChecks": {
     "typecheck": "passed",
-    "javascriptTests": 222,
+    "javascriptTests": 223,
     "pythonTests": 9,
     "projectValidation": "passed",
     "paidProviderApisUsed": false

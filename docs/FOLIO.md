@@ -17,6 +17,6 @@ Abrir um grupo no menu mostra suas opções. Escolher uma categoria final fecha 
 
 `folio-model.js` is the pure discovery taxonomy; every catalogue family is reachable in each goal. `folio-ui.js` adapts the existing search, selections, contributions and workflow. `folio.css` contains the additive responsive theme; it does not recolor the style references themselves. The mark is an original vector interpretation of the selected folded-paper concept; Source Serif 4 and Geist use the existing licensed font assets.
 
-Discovery previews fill their 9:16 frames with a centered cover crop. On mobile, the shelves and opened collections show two complete columns. This presentation crop does not modify source assets: full panels remain available in the detailed viewer and exported references. Discovery goals, category filters and niche choices never grant approvals or change a saved production brief.
+Each preview frame follows the original artwork’s proportions, including wide panels. The complete panel fills its frame without cropping or stretching. The reference label sits below the image so it cannot hide artwork. On mobile, the shelves and opened collections show two complete columns. Source assets remain unchanged: full panels remain available in the detailed viewer and exported references. Discovery goals, category filters and niche choices never grant approvals or change a saved production brief.
 
 Local preview: `npm ci`, then `npm run atlas`, then open `http://127.0.0.1:8770`.

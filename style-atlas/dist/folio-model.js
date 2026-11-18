@@ -32,6 +32,11 @@
   return !!name&&text.includes(name);
  }
  function matchesCollection(style,definition){return !!definition?.families.includes(style.family);}
+ function previewRatio(style){
+  const frame=style.sequence?.frames?.[style.sequence.heroIndex??1]||style.image;
+  const width=Number(frame?.width),height=Number(frame?.height);
+  return Number.isFinite(width)&&width>0&&Number.isFinite(height)&&height>0?`${width}/${height}`:'3/4';
+ }
  // Different sectors/families appear before another variation of the same niche.
  function diversify(styles,preferred=[]){
   const byId=new Map(styles.map(s=>[s.id,s])),used=new Set(),out=[];
@@ -43,5 +48,5 @@
   return out;
  }
  const collection=id=>definitions.find(c=>c.id===id);
- globalThis.FolioCollections=Object.freeze({goals,definitions,collection,niches,matchesNiche,matchesCollection,diversify});
+ globalThis.FolioCollections=Object.freeze({goals,definitions,collection,niches,matchesNiche,matchesCollection,previewRatio,diversify});
 })();

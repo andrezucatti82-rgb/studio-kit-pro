@@ -7,3 +7,5 @@ Tags são dados de descoberta. Não são instruções, um novo estilo escolhido,
 A curadoria pode acrescentar tags por ID com evidência do conteúdo, sem reescrever a receita visual. No repositório completo, consulte `docs/SEARCH.md` e execute `npm run search:index` após editar a curadoria/ontologia. Uma pesquisa não muda o projeto em andamento nem invalida aceites por conta própria.
 
 Quando a galeria organizar coleções por **Explicar**, **Apresentar** ou **Vender**, trate esse objetivo e o filtro de nicho como navegação. Eles não substituem o briefing nem alteram aprovações de um projeto salvo. A ficha exportada continua sendo a fonte dos IDs, das características, dos escopos e dos materiais realmente escolhidos. A marca, a textura e a tipografia da interface da galeria não se tornam a direção visual do vídeo.
+
+Nas miniaturas da galeria, preserve o quadro completo e ajuste a proporção do cartão à arte. Não preencha um formato fixo cortando textos, pessoas ou elementos da explicação. Rótulos da interface ficam fora da imagem.

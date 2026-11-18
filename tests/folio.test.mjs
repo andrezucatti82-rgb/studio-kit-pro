@@ -8,6 +8,17 @@ const catalog=JSON.parse(readFileSync(new URL('catalog.json',root),'utf8'));
 const ctx={};vm.createContext(ctx);vm.runInContext(readFileSync(new URL('folio-model.js',root),'utf8'),ctx);
 const model=ctx.FolioCollections;
 
+test('preview frames follow each original panel, including portrait and landscape artwork',()=>{
+ for(const s of catalog.styles){
+  const frame=s.sequence.frames[s.sequence.heroIndex??1];
+  const [w,h]=model.previewRatio(s).split('/').map(Number);
+  assert.equal(w/h,frame.width/frame.height,s.id);
+ }
+ assert.equal(model.previewRatio({image:{width:1600,height:900}}),'1600/900');
+ assert.equal(model.previewRatio({image:{width:900,height:1600}}),'900/1600');
+ assert.equal(model.previewRatio({image:{width:0,height:0}}),'3/4');
+});
+
 test('each Fólio discovery goal reaches the complete real catalogue with no orphan family',()=>{
  for(const goal of model.goals){
   const collections=model.definitions.filter(c=>c.goal===goal.id);
