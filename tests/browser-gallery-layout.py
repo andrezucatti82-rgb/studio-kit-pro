@@ -25,7 +25,7 @@ with sync_playwright() as p:
   page.route('**/*',lambda route:route.abort() if route.request.resource_type=='image' else route.continue_())
   result=page.evaluate('''()=>{let items=AtlasApp.getCatalog().styles;AtlasFolio.update({items,shown:items,selected:[],favorites:[],compared:[],family:'',group:'',query:'',kind:'',onlyFav:false,onlyVideo:false});return {count:items.length,bad:[...document.querySelectorAll('#grid .folio-portrait')].filter(e=>{let a=e.getBoundingClientRect(),b=e.querySelector('.folio-artwork').firstElementChild.getBoundingClientRect(),[w,h]=e.style.getPropertyValue('--folio-source-ratio').split('/').map(Number);return b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||!!e.querySelector('.folio-image-fill')}).length}}''')
   assert result=={'count':1425,'bad':0},result
-  page.evaluate('scrollTo(0,800)');expect(page.locator('.folio-to-top')).to_be_visible();page.locator('.folio-to-top').click();expect(page.locator('#folioCollectionTitle')).to_be_focused()
+  assert page.locator('.folio-to-top').count()==0
   report['layouts'].append({'width':width,'columns':columns,'all1425FillFrame':True,'uniformThreeByFourHeight':True,'compactHeight':compact['height']})
   page.close()
  for reduced in ['no-preference','reduce']:
@@ -34,12 +34,9 @@ with sync_playwright() as p:
   cover=page.locator('.folio-cover').first
   page.locator('.folio-shelf').first.locator('.folio-artwork img').evaluate_all('async es=>{await Promise.all(es.map(async e=>{e.loading="eager";await e.decode()}))}')
   cover.hover();bounds=cover.bounding_box();page.mouse.move(bounds['x']+bounds['width']*.4,bounds['y']+bounds['height']*.4)
-  if reduced=='no-preference':
-   expect(cover).to_have_class('folio-cover is-lit')
-   assert cover.evaluate('e=>e.style.getPropertyValue("--light-x")')
-  else:
-   assert cover.evaluate('e=>getComputedStyle(e).transform')=='none'
-   assert not cover.evaluate('e=>e.classList.contains("is-lit")')
+  assert cover.evaluate('e=>getComputedStyle(e,"::after").content')=='none'
+  assert not cover.evaluate('e=>e.classList.contains("is-lit")')
+  if reduced=='reduce':assert cover.evaluate('e=>getComputedStyle(e).transform')=='none'
   page.screenshot(path=str(out/f'hover-{reduced}.png'),animations='disabled')
   report['motion'].append({'reducedMotion':reduced,'passed':True});page.close()
  b.close()

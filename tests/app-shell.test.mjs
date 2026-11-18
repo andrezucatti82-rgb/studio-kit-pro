@@ -26,7 +26,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}
  const events=new dom.EventTarget();
  const ctx={document,Event:dom.Event,URL,URLSearchParams,Blob,console:{error:e=>errors.push(e)},setTimeout,clearTimeout,
   location:{search:'',hash,href:'https://example.org/release/index.html'},matchMedia:()=>({matches:true,addEventListener(){}}),requestAnimationFrame:()=>0,cancelAnimationFrame(){},
-  scrollTo(){},confirm:()=>true,FontFace:class{load(){return Promise.resolve(this)}},
+  getComputedStyle:()=>({paddingLeft:"0px"}),scrollTo(){},confirm:()=>true,FontFace:class{load(){return Promise.resolve(this)}},
   fetch:async name=>({ok:true,json:async()=>JSON.parse(await read(String(name)))}),
   navigator:{clipboard:{writeText:async text=>{ctx.copied=text}}},
   localStorage:{getItem(k){storageReads++;return store.get(k)||null},setItem(k,v){store.set(k,v)},removeItem(k){store.delete(k)}},
@@ -418,8 +418,8 @@ test('Fólio goals and niche browsing preserve selections, contribution scopes a
 
 test('Fólio expands menu parents, dismisses a final category and searches beyond a niche',async()=>{
  const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
- click('#folioOpenMenu');assert.equal(d.getElementById('folioMenu').hidden,false);
- click('[data-folio-group="technology"]');assert.equal(d.getElementById('folioMenu').hidden,false);
+ assert.equal(d.getElementById('folioOpenMenu'),null);
+ click('[data-folio-open-group="technology"]');assert.equal(d.getElementById('folioMenu').hidden,false);
  click('[data-folio-family="software"]');assert.equal(d.getElementById('folioMenu').hidden,true);assert.equal(ctx.AtlasApp.categorySelection().family,'software');
  click('[data-folio-home]');change('folioNiche','dentistas');
  d.getElementById('search').value='cachorro';d.getElementById('search').dispatchEvent(new ctx.Event('input',{bubbles:true}));

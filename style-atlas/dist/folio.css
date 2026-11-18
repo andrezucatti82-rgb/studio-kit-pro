@@ -16,10 +16,9 @@ body[data-folio=true] .skip-link{left:20px}
 .folio-to-top[hidden]{display:none}
 body:not([data-view=library]) .folio-to-top{display:none}
 .folio-cover{position:relative;transition:box-shadow .2s ease,transform .2s ease}
-.folio-cover::after{content:'';position:absolute;inset:0;z-index:3;border:1px solid #ffffff12;border-radius:inherit;pointer-events:none}
+.folio-cover::after{content:none}
 @media(hover:hover) and (pointer:fine){
  .folio-cover:hover{transform:translateY(-3px);box-shadow:0 10px 24px #00000070}
- .folio-cover.is-lit::after{border-color:#ffffff45;box-shadow:inset 0 0 14px #ffffff18;background:radial-gradient(140px circle at var(--light-x,50%) var(--light-y,50%),#ffffff12,transparent 80%)}
  .folio-cover:hover .folio-cover-hint{opacity:1}
 }
 .folio-cover:focus-visible{outline-offset:-3px}
@@ -98,7 +97,7 @@ body[data-folio-mode=catalogue] .folio-collection-heading p{display:none}
 .folio-save[aria-pressed=true] svg{fill:#ffffff1a}
 .folio-compare{display:flex;align-items:center;gap:7px;min-height:44px;font-size:11px;margin:0;color:var(--muted)}
 .folio-compare input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
-.folio-card.is-selected .folio-cover{box-shadow:0 0 0 2px var(--accent)}
+.folio-card.is-selected .folio-cover{box-shadow:0 0 0 2px var(--folio-accent)}
 .folio-more-card{flex:0 0 calc((100% - 70px)/6);border:1px solid var(--line);background:transparent;align-self:flex-start;aspect-ratio:3/4;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;color:var(--accent);scroll-snap-align:start}
 .folio-more-card>span{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
 .folio-more-card svg{width:23px;height:23px}.folio-more-card strong{font-size:14px;line-height:1.5}.folio-more-card small{font-size:11px;color:var(--muted)}
@@ -157,9 +156,9 @@ body[data-folio=true] .mobile-app-nav svg{fill:none;stroke:currentColor;stroke-w
 @media(min-width:701px) and (max-width:1199px){body[data-folio=true] #grid{grid-template-columns:repeat(4,minmax(0,1fr))}.folio-card,.folio-more-card{flex-basis:calc((100% - 42px)/4)}}
 @media(min-width:701px) and (max-width:899px){body[data-folio=true] #grid{grid-template-columns:repeat(3,minmax(0,1fr))}.folio-card,.folio-more-card{flex-basis:calc((100% - 28px)/3)}}
 @media(max-width:700px){
- body[data-folio=true] .folio-header{padding:17px 19px 12px;border-bottom:0;gap:10px}
+ body[data-folio=true] .folio-header{padding:17px 20px 12px;border-bottom:0;gap:10px}
  .folio-brand{gap:6px}.folio-brand>img{width:30px;height:34px}.folio-wordmark{font-size:32px;letter-spacing:-1.5px;padding-bottom:2px}.folio-endorsement{font-size:7px;letter-spacing:1px;margin:13px 0 0 3px}
- .folio-header nav{gap:5px}.folio-header nav .folio-desktop-nav{display:none}.folio-header nav button{font-size:11px}.folio-header .folio-help{gap:6px}.folio-header .folio-help svg{width:19px;height:19px}.folio-header #folioOpenMenu{margin-right:-9px;padding:10px}
+ .folio-header nav{gap:5px}.folio-header nav .folio-desktop-nav{display:none}.folio-header nav button{font-size:11px}.folio-header .folio-help{gap:6px}.folio-header .folio-help svg{width:19px;height:19px}
  body[data-folio=true] .app-main main{padding:0 20px 118px;width:100%;max-width:none;overflow:visible}
  .folio-search{margin-bottom:19px}.folio-search input{min-height:44px;font-size:12px;padding:10px 35px}.folio-search .search>span{font-size:23px;left:12px}
  .folio-discovery h1{font-size:25px;letter-spacing:-.75px;line-height:1.15;margin-bottom:10px;max-width:360px}
@@ -172,10 +171,10 @@ body[data-folio=true] .mobile-app-nav svg{fill:none;stroke:currentColor;stroke-w
  body[data-folio-mode=catalogue] .folio-collection-heading{gap:12px}body[data-folio-mode=catalogue] .folio-collection-heading h1{font-size:23px}
  .folio-collection-heading{margin-bottom:8px}.folio-back{padding:0;min-height:36px}.folio-collection-heading h1{font-size:27px;line-height:1.1;margin:7px 0 8px;letter-spacing:-.85px}.folio-collection-heading p{font-size:12px;line-height:1.5}.folio-back span{font-size:11px}
  body[data-folio-mode=collection] .folio-search{display:none}
- body[data-folio-mode=collection] .folio-header>.folio-collection-back{display:grid;margin-left:-9px;font-size:23px}
+ body[data-folio-mode=collection] .folio-header>.folio-collection-back{display:none}
  body[data-folio-mode=collection] .folio-header .folio-brand{margin-right:auto}
- body[data-folio-mode=collection] .folio-header .folio-help{display:none}
- body[data-folio-mode=collection] .folio-collection-heading>.folio-back{display:none}
+ body[data-folio-mode=collection] .folio-header .folio-help{display:inline-flex}
+ body[data-folio-mode=collection] .folio-collection-heading>.folio-back{display:inline-flex}
  body[data-folio-mode=collection] .folio-scope{border:0}
  body[data-folio-mode=collection] .folio-niche{max-width:72%;border:1px solid var(--line);border-radius:24px;padding-left:10px}
  body[data-folio-mode=collection] .folio-niche select{padding-right:25px;min-height:36px;font-size:11px}
@@ -277,7 +276,7 @@ body[data-folio=true] .folio-choice-icon small{background:#f5f5f5;color:#111;bor
 @media(max-width:700px){
  .folio-header nav button{padding:8px 10px}
  .folio-header .folio-help{font-size:0;gap:0;justify-content:center;width:44px;height:44px;background:var(--surface);border-radius:50%}
- .folio-header #folioOpenMenu{margin-right:0}
+
  .folio-search input{min-height:50px;font-size:14px;padding-left:43px}
  .folio-discovery h1{font-size:27px;line-height:1.18;letter-spacing:-.8px;margin-bottom:18px}
  .folio-goals button{min-height:42px;font-size:12px}
@@ -303,14 +302,14 @@ body[data-folio=true]{font-family:'Folio UI',Arial,Helvetica,sans-serif}body[dat
 .folio-category-bar::-webkit-scrollbar{display:none}
 body:not([data-folio=true]) .folio-category-bar{display:none}
 .folio-category-bar>button{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;padding:10px 14px;min-height:44px;border:0;border-radius:999px;background:transparent;color:#b5b5b5;font-size:14px;font-weight:400;white-space:nowrap}
-.folio-category-bar>button:hover,.folio-category-bar>button:focus-visible{color:var(--folio-active-green)}
+.folio-category-bar>button:hover,.folio-category-bar>button:focus-visible{color:var(--folio-accent)}
 .folio-category-bar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 
-@media(max-width:700px){.folio-category-bar{display:none}}
+
 @media(min-width:1200px){
  body[data-folio=true] .folio-header{gap:12px}
- .folio-header .folio-category-bar{flex:1;min-width:0;justify-content:center;padding:0;margin:0;gap:0}
+ .folio-header .folio-category-bar{flex:1;min-width:0;justify-content:safe center;padding:0;margin:0;gap:0}
  .folio-header .folio-category-bar>button{font-size:14px;padding:10px 9px;gap:4px}
  .folio-header .folio-desktop-nav[data-folio-home]{display:none}
  .folio-header>nav:not(.folio-category-bar){gap:10px;flex:none}
@@ -336,7 +335,7 @@ body[data-folio=true] .presenter-step-buttons [aria-pressed=true]{background:#f5
 body[data-folio=true] .sequence-strip button{background:#1b1b1b;border-color:#383838}
 body[data-folio=true] .font-card:hover{border-color:#888}
 body[data-folio=true] .font-label,body[data-folio=true] .font-state{font-family:'Folio UI',Arial,sans-serif}
-@media(max-width:700px){.folio-header .folio-category-bar{display:none}}
+
 /* Keep the old shell hidden while the catalogue is loading. Readiness remains
    the separate ATLAS_READY signal; the static attribute only declares a theme. */
 body[data-theme=dark] #sidebarHome,body[data-theme=dark] .app-mobile-brand,body[data-theme=dark] .folio-legacy-heading{display:none!important}
@@ -363,10 +362,10 @@ html:has(body[data-folio=true]){scroll-behavior:auto}
 body[data-folio=true] #folioMenu{position:static;width:calc(100% - 80px);max-width:1520px;margin:0 auto 8px;padding:0 0 8px;border:0;border-bottom:1px solid var(--line);background:transparent;box-shadow:none}
 body[data-folio=true] #folioMenu[hidden]{display:none!important}
 #folioMenu button{min-height:40px;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--muted);font:400 14px/1.5 'Folio UI',Arial,sans-serif;text-align:left;cursor:pointer}
-#folioMenu button:hover,#folioMenu button:focus-visible{color:var(--folio-active-green);text-decoration:none}
-#folioMenu .folio-text-links{display:grid;grid-template-columns:repeat(4,max-content);gap:0 24px;align-items:start;justify-content:start}
+#folioMenu button:hover,#folioMenu button:focus-visible{color:var(--folio-accent);text-decoration:none}
+#folioMenu .folio-text-links{display:grid;grid-template-columns:repeat(var(--folio-menu-columns,4),minmax(0,max-content));gap:0 24px;padding-left:var(--folio-menu-start,0);align-items:start;justify-content:start}
 #folioMenu .folio-text-links button{width:100%;overflow-wrap:anywhere}
-@media(max-width:900px){#folioMenu .folio-text-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 20px}}
+@media(max-width:900px){#folioMenu .folio-text-links{grid-template-columns:repeat(var(--folio-menu-columns,2),minmax(0,max-content));gap:2px 20px}}
 @media(max-width:700px){body[data-folio=true] #folioMenu{width:calc(100% - 40px);margin:0 auto 8px}#folioMenu button{min-height:44px;font-size:14px}}
 
 /* Opening a category reveals its words immediately below the header. */
@@ -382,17 +381,17 @@ body[data-folio-browse=category] .folio-catalogue-controls .extra-filters summar
 body[data-folio-browse=category] #grid{padding-top:8px}
 body[data-view=library][data-folio-browse=category] .resultbar{display:none!important}
 /* Color marks real state and the next action, while the canvas stays neutral. */
-body[data-folio=true]{--folio-active-green:#34c76a}
-body[data-folio=true] :is(#folioContinue,#folioChoiceContinue,#prepare,#downloadStudioKit,#copyPrompt,#guidedNext,#selectionTray [data-app-view=brief]):not(:disabled):not([aria-disabled=true]){background:var(--folio-active-green);border-color:#4ddd7e;color:#071c0f}
-body[data-folio=true] .folio-goals button[aria-pressed=true],body[data-folio=true] .brief-steps [aria-current=step]{background:#142b1e;color:#9de8b7}
+body[data-folio=true]{--folio-accent:#e2ff3b;--accent:var(--folio-accent)}
+body[data-folio=true] :is(#folioContinue,#folioChoiceContinue,#prepare,#downloadStudioKit,#copyPrompt,#guidedNext,#selectionTray [data-app-view=brief]):not(:disabled):not([aria-disabled=true]){background:var(--folio-accent);border-color:#d3ed38;color:#161b05}
+body[data-folio=true] .folio-goals button[aria-pressed=true],body[data-folio=true] .brief-steps [aria-current=step]{background:#282e11;color:#e2ff3b}
 body[data-folio=true] #favoriteFilter{display:inline-flex;align-items:center;gap:8px}
 body[data-folio=true] #favoriteFilter::after{content:'';display:block;flex:none;width:24px;height:14px;border-radius:999px;background:radial-gradient(circle at 7px 7px,#c8c8c8 0 4px,transparent 4.5px),#444}
-body[data-folio=true] #favoriteFilter[aria-pressed=true]{background:#142b1e;border-color:#28683e;color:#9de8b7}
-body[data-folio=true] #favoriteFilter[aria-pressed=true]::after{background:radial-gradient(circle at 17px 7px,#fff 0 4px,transparent 4.5px),var(--folio-active-green)}
-body[data-folio=true] .folio-save[aria-pressed=true]{color:#64df91}
-body[data-folio=true] .folio-add[aria-pressed=true]{background:#142b1e;border-color:#28683e;color:#9de8b7}
-body[data-folio=true] input[type=checkbox]{accent-color:var(--folio-active-green)}
-body[data-folio=true] :is(button,a,input,select,textarea):focus-visible{outline-color:#64df91}
+body[data-folio=true] #favoriteFilter[aria-pressed=true]{background:#282e11;border-color:#607021;color:#e2ff3b}
+body[data-folio=true] #favoriteFilter[aria-pressed=true]::after{background:radial-gradient(circle at 17px 7px,#fff 0 4px,transparent 4.5px),var(--folio-accent)}
+body[data-folio=true] .folio-save[aria-pressed=true]{color:#e2ff3b}
+body[data-folio=true] .folio-add[aria-pressed=true]{background:#282e11;border-color:#607021;color:#e2ff3b}
+body[data-folio=true] input[type=checkbox]{accent-color:var(--folio-accent)}
+body[data-folio=true] :is(button,a,input,select,textarea):focus-visible{outline-color:#e2ff3b}
 
 
 
@@ -410,11 +409,11 @@ body[data-folio=true] #folioHeader [data-folio-choice]{display:none!important}
 .folio-header-progress{display:flex;align-items:center;gap:10px;order:1;flex:none}
 .folio-header>nav:not(.folio-category-bar){order:2}
 .folio-header-progress button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 16px;font-size:13px;white-space:nowrap}
-.folio-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#071c0f20;font-size:11px}
+.folio-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#161b0520;font-size:11px}
 body[data-folio=true] #folioHeader #compareBar{position:static;inset:auto;order:4;flex:1 0 100%;display:flex;justify-content:flex-end;gap:12px;margin:0;padding:4px 0 0;border:0;border-radius:0;box-shadow:none;background:transparent;width:auto;max-width:none}
 body[data-folio=true] #folioHeader #compareBar[hidden]{display:none!important}
 body[data-folio=true] .folio-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5;font-size:14px;font-weight:400}
-body[data-folio=true] .folio-category-bar>button:is(:hover,:focus-visible){color:var(--folio-active-green)}
+body[data-folio=true] .folio-category-bar>button:is(:hover,:focus-visible){color:var(--folio-accent)}
 .folio-category-bar>button>span{display:inline-block;transform-origin:center;transition:transform .16s ease}
 @media(hover:hover) and (pointer:fine){.folio-category-bar>button:hover>span{transform:scale(1.08)}}
 body[data-folio=true] .app-main main,body[data-folio=true] #folioPanelHost,body[data-folio=true] #briefDialog.brief-workspace{padding-bottom:48px}
@@ -432,9 +431,21 @@ body[data-folio=true] .folio-catalogue-controls :is(button,select){min-height:44
 body[data-folio=true] .folio-catalogue-controls select{padding-right:24px;cursor:pointer}
 body[data-folio=true] .folio-catalogue-controls select option{background:#222;color:#f5f5f5}
 body[data-folio=true] .folio-catalogue-controls #allFilter{display:none}
-body[data-folio=true] .folio-catalogue-controls #favoriteFilter[aria-pressed=true]{background:transparent;border:0;color:#9de8b7}
+body[data-folio=true] .folio-catalogue-controls #favoriteFilter[aria-pressed=true]{background:transparent;border:0;color:#e2ff3b}
 body[data-folio=true] .folio-catalogue-controls :is(button,select):hover{color:#f5f5f5}
 @media(max-width:700px){body[data-folio=true] .folio-catalogue-controls{gap:0 16px}body[data-folio=true] .folio-catalogue-controls :is(button,select){font-size:12px}body[data-folio=true] .folio-catalogue-controls #kind{max-width:170px}}
 
 body[data-folio-mode=collection] .folio-catalogue-controls{display:flex;margin:8px 0}
 body[data-folio=true] :is([data-frame],[data-board],[data-sequence-download],#styleCombinationSummary,#addMoreStyles){display:none!important}
+
+/* Category words are the navigation on every screen size. */
+@media(max-width:700px){
+ body[data-folio=true] .folio-header{display:grid;grid-template-columns:max-content minmax(0,1fr) auto;gap:6px 10px}
+ .folio-header .folio-brand{grid-column:1;grid-row:1;min-width:0}.folio-header .folio-endorsement{display:none}
+ .folio-header-progress{grid-column:2;grid-row:1;order:initial;flex:none}.folio-header-progress button{min-width:0;width:100%;padding:9px 12px;white-space:normal;line-height:1.2}
+ .folio-header>nav:not(.folio-category-bar){grid-column:3;grid-row:1;margin:0}
+ .folio-header .folio-category-bar{display:flex;grid-column:1/-1;grid-row:2;order:initial;min-width:0;width:100%;padding:0;margin:0;gap:16px;justify-content:flex-start}
+ .folio-header .folio-category-bar>button{padding:8px 0;font-size:14px;flex:none}
+ body[data-folio=true] #folioHeader #compareBar{grid-column:1/-1;grid-row:3}
+}
+@media(hover:hover) and (pointer:fine){.folio-card h3 button:hover,.folio-shelf-tools button:hover,.folio-save:hover{color:var(--folio-accent)}}

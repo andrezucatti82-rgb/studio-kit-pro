@@ -23,4 +23,5 @@ test('presentation crops address only their original logical panels and never mu
  assert.equal(JSON.stringify(catalog),original);
  const example=catalog.styles.find(s=>s.id==='natural-advocacia-antes-da-assinatura-uma-conversa');
  for(let i=0;i<4;i++)assert(ctx.AtlasFramePresentation[example.id][i],'the reported white border must be handled in all four moments');
+ const jewelry=report.frames.filter(f=>f.style==='natural-joias-do-gesto-a-assinatura');assert.equal(jewelry.length,4);for(const frame of jewelry){assert.equal(frame.edgeRule,'coherent_light_frame');assert(frame.insetPixels.every(n=>n>0),'warm paper must be handled on every side');}
 });
