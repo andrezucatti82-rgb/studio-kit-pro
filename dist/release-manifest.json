@@ -87,5 +87,22 @@
       "bytes": 156114,
       "sha256": "383f62b10b7c3d95e65856bf4c81bd844185e53d5b932da9aa28b680fa42025c"
     }
+  },
+  "installer": {
+    "version": 1,
+    "kitVersion": "2.12.0",
+    "sourceRevision": "a56bc2bb7363b16498444fe3beb28423b7dca515",
+    "sourceReady": true,
+    "download": "downloads/studio-kit-pro-installer.zip",
+    "bytes": 621563,
+    "sha256": "2368299a91cbc677c224dcdead9bc1825139cebe88a4078c4583a842ddb062b8",
+    "tutorial": "como-instalar.html",
+    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
+    "internetRequired": true,
+    "fullProjectDownloadMiB": 807,
+    "skills": 1,
+    "internalModules": 7,
+    "presenterStyles": 265,
+    "localFile": "studio-kit-pro-installer.zip"
   }
 }
