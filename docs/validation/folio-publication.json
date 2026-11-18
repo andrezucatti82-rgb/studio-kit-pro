@@ -1,0 +1,146 @@
+{
+  "status": "published_verified",
+  "url": "https://videos.gerenciadordeanuncios.com.br/",
+  "release": "atlas-20261118074133",
+  "publishedAt": "2026-11-18T04:48:34.102000-03:00",
+  "pullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/21",
+  "mergeCommit": "ed17ec9eebba376e71f7a89a60123aed0580619d",
+  "implementationHead": "9fee13d171898b09825c169c2eaf2ecb125e9f45",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "backup": {
+    "location": "outside_document_root",
+    "readbackVerified": true,
+    "previousEntrySha256": "bb382e87fef8b9c4c5d445bf4c6ef4373f182b14da111eb14b543d4600992a11",
+    "previousRelease": "atlas-20261117171430",
+    "previousReleasePreserved": true,
+    "copyApiByteProbeVerified": true
+  },
+  "deployment": {
+    "changedFilesUploaded": 9,
+    "publicFilesHashVerified": 47,
+    "entrySha256": "1647ac1354a3ae38170500eaa713d0db821174abb56cdf8f823a073585aa831c",
+    "originReadback": {
+      "originReadbackVerified": true,
+      "sha256": "1647ac1354a3ae38170500eaa713d0db821174abb56cdf8f823a073585aa831c"
+    },
+    "edgeReadback": {
+      "status": 200,
+      "release": "atlas-20261118074133",
+      "rawSha256": "e64bb47ccd2eb7a742bc65a4f71c1ed207061484b908f520a1807f00a656d87c",
+      "canonicalSha256": "1647ac1354a3ae38170500eaa713d0db821174abb56cdf8f823a073585aa831c",
+      "expectedSha256": "1647ac1354a3ae38170500eaa713d0db821174abb56cdf8f823a073585aa831c",
+      "matchesAfterRemovingOnlyManagedEdgeBeacon": true,
+      "managedEdgeAddition": "Cloudflare analytics beacon"
+    }
+  },
+  "stageBrowser": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "390px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "430px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.335139318885449
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "portraitRatio": 1.335151627218935
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "portraitRatio": 1.3351521164021165
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3351151315789473
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "stageDownloads": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/atlas-20261118074133/",
+    "release": "atlas-20261118074133",
+    "checks": [
+      "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+      "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+    ],
+    "errors": []
+  },
+  "liveBrowser": {
+    "surface": "live",
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.335139318885449
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3351151315789473
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "liveDownloads": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "release": "atlas-20261118074133",
+    "checks": [
+      "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+      "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+    ],
+    "errors": []
+  },
+  "sourceRegression": {
+    "javascript": 223,
+    "python": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed"
+  },
+  "installer": {
+    "sourceRevision": "653a8549dec51a99c2e8ced358b91c9ebcf36f30",
+    "sourceReady": true,
+    "sha256": "cc63e918b65062255ddc8f4bc6df3178c0df8c26e1f0eed5357f937d4b07c704",
+    "bytes": 620772
+  },
+  "paidApisUsed": false,
+  "audiovisualApproval": "not_implied_by_site_publication"
+}
