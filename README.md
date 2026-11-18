@@ -219,3 +219,7 @@ Leia [a regra universal](docs/VISUAL-APPROVAL.md). Comece por imagens aprovadas,
 Para aplicar a regra a outras skills locais de vídeo, use `scripts/apply-visual-policy.py` primeiro sem `--apply`, indicando `--root`, `--policy docs/VISUAL-APPROVAL.md` e uma pasta externa em `--backup`. Revise a seleção e então aplique. A ferramenta preserva backups e é idempotente; não altera serviços remotos.
 
 Escolha características de cada estilo e onde aplicá-las: [guia da edição 2.8](docs/STYLE-CONTRIBUTIONS-2.8.md).
+
+## Toolchain VFX gratuita · 2.14.0
+
+O instalador do site agora prepara também [15 ferramentas VFX locais](docs/FREE-VFX-TOOLCHAIN.md), com manifesto, perfis, modelos oficiais e testes por máquina. A entrada continua sendo `$video-multimarcas`, com sete módulos internos. Use `npm run tools:doctor`, `npm run tools:install -- --profile all-free --apply` e `npm run tools:smoke`; filtros/composição/máscaras podem executar por `npm run tools:run`. Programas/pesos são baixados no dispositivo, não transferidos por importar uma skill. [Guia portátil](.agents/skills/video-multimarcas/references/free-toolchain.md).

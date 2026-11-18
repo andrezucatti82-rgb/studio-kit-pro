@@ -48,3 +48,7 @@ Preço atual, quantidade/escopo/tentativas e autorização específica antecedem
 Preserve originais, identidade, voz, rótulos, arquitetura, dados e cobertura real. A fala fica a 1× e os tempos seguem a locução medida. Entregue MP4 acessível, legenda, projeto/fontes e revisão do hash exato. Técnica, playback, escuta, aprovação criativa, instalação e publicação são estados distintos; sem revisão integral, `review_pending`. Não publicar ou executar merge por inferência.
 
 [Encontrar estilos por conteúdo](references/style-discovery.md) · [Instalação e versão](references/version-and-update.md) · [execução de estilos](references/style-execution.md) · [guia detalhado](references/production-guide.md).
+
+## Ferramentas VFX gratuitas e instalação local
+
+Leia [toolchain gratuita](references/free-toolchain.md). No runtime, use `npm run tools:doctor` antes de escolher executores e `npm run tools:smoke` para provas técnicas; planeje/instale pelo manifesto canônico. O bootstrap do site inclui essa preparação, mas a instalação só existe após rodar no computador de destino. Mantenha uma única entrada pública e os sete módulos internos. O perfil gratuito não usa APIs pagas nem depende do renderer Remotion; preserve os gates criativos e diferencie presença, startup, inferência/render e revisão audiovisual.

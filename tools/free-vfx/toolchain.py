@@ -1,6 +1,6 @@
 """Free local VFX tools. No provider API, cloud inference or shell-evaluated commands."""
 from pathlib import Path
-import argparse, hashlib, importlib.util, json, os, platform, shutil, subprocess, sys, tempfile, time
+import re, argparse, hashlib, importlib.util, json, os, platform, shutil, subprocess, sys, tempfile, time
 MANIFEST=Path(__file__).with_name('manifest.json')
 PROFILES=('base','automation','ai','all-free')
 FILTERS={'grayscale':'hue=s=0','blur':'gblur=sigma=2','glow':'split[a][b];[b]gblur=sigma=4[c];[a][c]blend=all_mode=screen:all_opacity=0.35','lens':'lenscorrection=k1=-0.05:k2=0','chroma':'chromakey=0x00FF00:0.12:0.08'}
@@ -22,10 +22,12 @@ class Toolchain:
         env=os.environ.copy();env['QT_QPA_PLATFORM']=env.get('QT_QPA_PLATFORM','offscreen');env['OMP_NUM_THREADS']='2'
         bins=[self.native/'usr/bin',self.native/'bin']
         env['PATH']=os.pathsep.join(str(x) for x in bins)+os.pathsep+env.get('PATH','')
-        libs=[self.native/'usr/lib/x86_64-linux-gnu',self.native/'usr/lib',self.native/'lib/x86_64-linux-gnu']
-        env['LD_LIBRARY_PATH']=os.pathsep.join(str(x) for x in libs)+os.pathsep+env.get('LD_LIBRARY_PATH','')
+        libs=[self.native/'usr/lib/shotcut',self.native/'usr/lib/x86_64-linux-gnu',self.native/'usr/lib',self.native/'lib/x86_64-linux-gnu']
+        env['LD_LIBRARY_PATH']=os.pathsep.join([*(str(x) for x in libs),*([env['LD_LIBRARY_PATH']] if env.get('LD_LIBRARY_PATH') else [])])
         if (self.native/'usr/lib/x86_64-linux-gnu/qt6/plugins').exists():env['QT_PLUGIN_PATH']=str(self.native/'usr/lib/x86_64-linux-gnu/qt6/plugins')
-        env['FREI0R_PATH']=str(self.native/'usr/lib/frei0r-1')
+        if (self.native/'usr/lib/frei0r-1').exists():env['FREI0R_PATH']=str(self.native/'usr/lib/frei0r-1')
+        if (self.home/'lavapipe.json').exists():
+            env['VK_ICD_FILENAMES']=str(self.home/'lavapipe.json');env['VK_DRIVER_FILES']=str(self.home/'lavapipe.json')
         return env
     def select(self,profile='all-free',tool=None):
         alltools=registry()['tools']
@@ -55,7 +57,7 @@ class Toolchain:
         if kind=='repo':return str(self.repos/id) if (self.repos/id/'SOURCE.json').exists() else None
         paths=[self.native/'usr/lib/frei0r-1',Path('/usr/lib/frei0r-1'),Path('/usr/lib/x86_64-linux-gnu/frei0r-1')] if id=='frei0r' else [self.home/'natron']
         for p in paths:
-            if p.exists() and any(p.rglob('*.so')):return str(p)
+            if p.exists() and (any(p.glob('*.so')) if id=='frei0r' else any(p.rglob('Misc.ofx'))):return str(p)
         return None
     def plan(self,tools,target):
         out=[]
@@ -69,8 +71,11 @@ class Toolchain:
         for t in tools:
             location=self.installed(t);r={'id':t['id'],'status':'installed' if location else 'missing','location':location,'license':t['license']}
             if location and t['kind'] in ('native','release'):
-                try:r['version']=run([location,'-version' if t['id']=='ffmpeg' else '--version'],env=self.environment(),timeout=15)[-600:]
-                except Exception as e:r.update(status='unverified',reason=str(e))
+                try:r['version']=run([location,{'ffmpeg':'-version','gmic':'version','natron':'--help'}.get(t['id'],'--version')],env=self.environment(),timeout=15)[-600:]
+                except Exception as e:
+                    text=str(e)
+                    if t['id']=='natron' and re.search(r'Natron (?:Version|version)\s+\d',text):r.update(version=text[-600:],versionInformationExit=1)
+                    else:r.update(status='unverified',reason=text)
             results.append(r)
         return {'schemaVersion':1,'freeOnly':True,'platform':sys.platform,'results':results,'creativeApproval':False,'scope':'Presence and startup only; not inference, playback or audiovisual review.'}
     def write(self,name,value):
@@ -93,17 +98,24 @@ class Toolchain:
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('command',choices=['plan','doctor','install','smoke','run'])
-    parser.add_argument('--root',default=str(Path(__file__).resolve().parents[2]));parser.add_argument('--profile',choices=PROFILES,default='all-free');parser.add_argument('--tool');parser.add_argument('--platform',default=sys.platform);parser.add_argument('--operation',choices=['filter','matte','segment','interpolate','upscale']);parser.add_argument('--effect',choices=FILTERS,default='grayscale');parser.add_argument('--input');parser.add_argument('--output');parser.add_argument('--apply',action='store_true');parser.add_argument('--report')
+    parser.add_argument('--root',default=str(Path(__file__).resolve().parents[2]));parser.add_argument('--profile',choices=PROFILES,default='all-free');parser.add_argument('--tool');parser.add_argument('--platform',default=sys.platform);parser.add_argument('--operation',choices=['filter','matte','segment','interpolate','upscale','composite']);parser.add_argument('--effect',choices=FILTERS,default='grayscale');parser.add_argument('--input');parser.add_argument('--output');parser.add_argument('--fps',type=int,default=30);parser.add_argument('--foreground');parser.add_argument('--mask');parser.add_argument('--point-x',type=int);parser.add_argument('--point-y',type=int);parser.add_argument('--apply',action='store_true');parser.add_argument('--report')
     args=parser.parse_args();tc=Toolchain(args.root)
     try:
         tools=tc.select(args.profile,args.tool)
         if args.command=='plan':result=tc.plan(tools,args.platform)
         elif args.command=='doctor':result=tc.doctor(tools)
         elif args.command=='run':
-            if args.operation!='filter':raise ValueError('Operation not installed or not supported yet')
             if not args.input or not args.output:raise ValueError('Input/output required')
-            result=tc.execute_filter(args.input,args.output,args.effect)
-        else:raise ValueError('Installer/smoke not available yet')
+            if args.operation=='filter':result=tc.execute_filter(args.input,args.output,args.effect)
+            else:
+                from media_ops import execute
+                result=execute(tc,args)
+        elif args.command=='install':
+            from install_tools import install
+            result=install(tc,tools,args.platform,args.apply)
+        elif args.command=='smoke':
+            from smoke_tools import smoke
+            result=smoke(tc,tools)
         if args.report:
             p=Path(args.report);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
         print(json.dumps(result,ensure_ascii=False,indent=2))

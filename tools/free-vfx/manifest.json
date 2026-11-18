@@ -209,7 +209,7 @@
       },
       "free": true,
       "repository": "Comfy-Org/ComfyUI",
-      "revision": "v0.3.26"
+      "revision": "637221995f7424a561bd825de3e61ea117dfe1e3"
     },
     {
       "id": "rife",
@@ -243,5 +243,27 @@
       },
       "free": true
     }
-  ]
+  ],
+  "artifacts": {
+    "Natron-2.5.0-Linux-x86_64.tar.xz": {
+      "source": "https://github.com/NatronGitHub/Natron/releases/download/v2.5.0/Natron-2.5.0-Linux-x86_64-no-installer.tar.xz",
+      "sha256": "1b423f983e89f6e3811fdabcf08caced3367ca24568dfdfe48a3a86c1ae95fa1"
+    },
+    "sam2.1_hiera_tiny.pt": {
+      "source": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_tiny.pt",
+      "sha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69"
+    },
+    "Video2X-6.4.0.AppImage": {
+      "source": "https://github.com/k4yt3x/video2x/releases/download/6.4.0/Video2X-x86_64.AppImage",
+      "sha256": "8238fc38325107f0a08a140d069baee3db80c5ac7470b0a516cc683183f5f92d"
+    },
+    "rvm_mobilenetv3.pth": {
+      "source": "https://github.com/PeterL1n/RobustVideoMatting/releases/download/v1.0.0/rvm_mobilenetv3.pth",
+      "sha256": "3c7c1d92033f7c38d6577c481d13a195d7d80a159b960f4f3119ac7b534cf4f8"
+    },
+    "rife-official-HD.zip": {
+      "source": "https://drive.google.com/uc?id=1APIzVeI-4ZZCEuIRE1m6WYfSCaOsi_7_",
+      "sha256": "4d4970b0953ca679ce5d5c972d47a041be10d12fa29fe86f1408b4497b2558e8"
+    }
+  }
 }

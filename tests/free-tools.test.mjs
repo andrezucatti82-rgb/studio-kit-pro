@@ -43,3 +43,54 @@ test('unsupported install platform returns concrete per-tool blocker',async()=>{
  assert.equal(r.tools[0].install.status,'blocked_platform');assert.equal(r.freeOnly,true);
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
+test('install without apply is only a plan and cannot download or create a tool store',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-preview-'));try{
+ const r=JSON.parse(invoke(['install','--root',root,'--tool','opencv']).stdout);assert.equal(r.status,'plan_only');assert.equal(r.freeOnly,true);assert.deepEqual(await fs.readdir(root),[]);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('native installer rejects unsupported host before creating stores',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-host-'));try{
+ const r=JSON.parse(invoke(['install','--root',root,'--tool','shotcut','--platform','unsupported','--apply']).stdout);assert.equal(r.results[0].status,'blocked_platform');assert.deepEqual(await fs.readdir(root),[]);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('technical smoke produces a separate reproducible report without creative approval',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-smoke-'));try{
+ const r=JSON.parse(invoke(['smoke','--root',root,'--tool','ffmpeg']).stdout);assert.equal(r.results[0].status,'smoke_passed');assert.equal(r.creativeApproval,false);assert.match(r.results[0].sha256,/^[a-f0-9]{64}$/);
+ assert.equal(JSON.parse(await fs.readFile(path.join(root,'.studio-tools/free-vfx/records/smoke.json'),'utf8')).results[0].status,'smoke_passed');
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('bootstrap free-tools selection defaults to all-free and rejects paid profiles before installation',async()=>{
+ const {parseInstallArgs}=await import('../packaging/installer/setup-studio.mjs');
+ assert.equal(parseInstallArgs([]).freeTools,'all-free');assert.equal(parseInstallArgs(['--free-tools','base']).freeTools,'base');assert.equal(parseInstallArgs(['--free-tools','none']).freeTools,'none');assert.throws(()=>parseInstallArgs(['--free-tools','paid']));
+});
+test('runtime bootstrap exposes missing Python as a toolchain blocker, not a provider credential request',async()=>{
+ const {freeToolchainReport}=await import('../packaging/installer/setup-studio.mjs');
+ const r=await freeToolchainReport('/tmp','all-free',{python:null});assert.equal(r.status,'blocked_python');assert.equal(r.freeOnly,true);assert.equal(r.accountsRequired,false);
+});
+test('private native libraries are scoped explicitly without adding the working directory to loader paths',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-env-'));try{
+ const lib=path.join(root,'.studio-tools/free-vfx/native/usr/lib/shotcut');await fs.mkdir(lib,{recursive:true});await fs.writeFile(path.join(lib,'libCuteLogger.so'),'fixture');
+ const code="import sys,json;sys.path.insert(0,'tools/free-vfx');from toolchain import Toolchain;print(json.dumps(Toolchain(sys.argv[1]).environment()))";
+ const r=JSON.parse(execFileSync('python3',['-c',code,root],{encoding:'utf8'}));assert(r.LD_LIBRARY_PATH.split(path.delimiter).includes(lib));assert(!r.LD_LIBRARY_PATH.split(path.delimiter).includes(''));
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('free interpolation produces a decodable new video without invoking a model or paid renderer',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-retime-'));try{
+ const input=path.join(root,'source.mp4'),output=path.join(root,'slow.mp4');execFileSync('ffmpeg',['-v','error','-f','lavfi','-i','testsrc2=size=64x64:rate=8:duration=1','-c:v','libx264',input]);
+ const r=JSON.parse(invoke(['run','--root',root,'--operation','interpolate','--fps','16','--input',input,'--output',output]).stdout);assert.equal(r.status,'technical_passed');assert.equal(r.engine,'ffmpeg');execFileSync('ffmpeg',['-v','error','-i',output,'-f','null','-']);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('cached official artifacts with a wrong SHA256 are rejected before extraction or execution',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-hash-'));try{
+ const cache=path.join(root,'.studio-tools/free-vfx/downloads');await fs.mkdir(cache,{recursive:true});await fs.writeFile(path.join(cache,'Natron-2.5.0-Linux-x86_64.tar.xz'),'tampered');
+ const code="import sys;sys.path.insert(0,'tools/free-vfx');from toolchain import Toolchain;from install_tools import download;download(Toolchain(sys.argv[1]),'https://github.com/NatronGitHub/Natron/releases/download/v2.5.0/Natron-2.5.0-Linux-x86_64-no-installer.tar.xz','Natron-2.5.0-Linux-x86_64.tar.xz')";
+ const r=spawnSync('python3',['-c',code,root],{encoding:'utf8'});assert.notEqual(r.status,0);assert.match(r.stderr,/SHA256|integrity/i);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('Natron informational version exit is recognized only with its explicit version banner',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-natron-info-'));try{
+ const folder=path.join(root,'.studio-tools/free-vfx/natron');await fs.mkdir(folder,{recursive:true});const exe=path.join(folder,'Natron');await fs.writeFile(exe,'#!/usr/bin/env python3\nimport sys\nprint("Natron Version 2.5")\nsys.exit(1)\n',{mode:0o755});
+ let r=JSON.parse(invoke(['doctor','--root',root,'--tool','natron']).stdout);assert.equal(r.results[0].status,'installed');assert.equal(r.results[0].versionInformationExit,1);
+ await fs.writeFile(exe,'#!/usr/bin/env python3\nimport sys\nprint("Startup failed")\nsys.exit(1)\n',{mode:0o755});r=JSON.parse(invoke(['doctor','--root',root,'--tool','natron']).stdout);assert.equal(r.results[0].status,'unverified');
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});

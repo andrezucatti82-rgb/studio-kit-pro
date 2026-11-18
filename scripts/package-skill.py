@@ -87,7 +87,7 @@ with zipfile.ZipFile(root/'dist/video-multimarcas-claude-plugin.zip','w',zipfile
 runtime_files=set()
 for runtime_name in ['AGENTS.md','CLAUDE.md','README.md','THIRD_PARTY.md','LICENSE','package.json','package-lock.json','tsconfig.json','studio.sh','STUDIO.cmd']:
     runtime_files.add(root/runtime_name)
-for folder in ['server','src','scripts','templates','docs','packaging','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
+for folder in ['server','src','scripts','tools','templates','docs','packaging','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
     for source in (root/folder).rglob('*'):
         if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff','.sh','.cmd','.ps1'] or source.name.startswith('LICENSE')):
             runtime_files.add(source)

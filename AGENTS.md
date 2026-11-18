@@ -15,3 +15,7 @@ Use explicit per-shot frame durations, media and transitions (schemaVersion 2). 
 ## Universal visual approval
 
 Before any AI video generation (including free tests, avatar previews and paid samples), present concrete visual frames and obtain explicit user approval. Budget, voice or avatar selection never approves unseen visuals. Read docs/VISUAL-APPROVAL.md and run scripts/workflow-gate.mjs before production. Preserve scoped evidence; never infer approval or call technical validation full audiovisual review.
+
+## Free local VFX toolchain
+
+For VFX, read the coordinator reference `references/free-toolchain.md`. Use `npm run tools:doctor`, `tools:install -- --apply`, and `tools:smoke`; runtime sources are under `tools/free-vfx/`. Never treat the maintainer installation as the visitor environment. The new free execution path uses FFmpeg/Blender/Python, not a paid API or a universally free Remotion license. Preserve source media and distinguish installed/startup/inference from audiovisual approval.

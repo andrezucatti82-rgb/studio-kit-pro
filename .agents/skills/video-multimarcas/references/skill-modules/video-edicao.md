@@ -22,3 +22,7 @@ O tratamento técnico é responsabilidade da `video-tratamento` (referência inc
 Entregue plano/EDL, MP4 candidato acessível, legenda, projeto/fontes e relatório técnico para `video-tratamento` e depois `video-revisao`. Leia o status real de geração antes de repetir uma operação; não recrie job pago de resultado incerto. Falta de renderer ou de recurso prometido exige causa comprovada, etapa afetada, entregas existentes e alternativa explícita. Um esquema válido, quadro renderizado ou fonte de avatar isolada não é filme editado concluído.
 
 Composição técnica por plano pertence a `video-vfx`: criação/correção de tracking, roto, key, cleanup, telas e CG/FX. Edição consome tracks/mattes/comps verificados, mantém motion gráfico editável, timing e áudio. Respeite manifesto de frames/cor/alpha e devolva falhas ao módulo; não prometer extração automática.
+
+## Execução com ferramentas gratuitas
+
+Consulte [toolchain gratuita](../free-toolchain.md), diagnostique esta máquina e reutilize a rota compatível com o plano. A biblioteca instalada inclui aplicativos, plugins, bibliotecas Python e modelos locais; não assumir que todos funcionam por constarem do manifesto. Use os comandos integrados para obter mídia/máscaras novas e evidências, mantendo os originais e o estado de revisão. Falha de hardware, modelo ou plataforma permanece explícita.

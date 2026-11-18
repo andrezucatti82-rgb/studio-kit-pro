@@ -34,3 +34,7 @@ Sem mídia, conexão, técnica, licença ou aceites, explique a entrega afetada 
 O runtime mantém a fila e artefatos em `projects/`, fora do Git. Skill/plugin distribui instruções; runtime distribui o motor; instalação em outro computador e conexão às contas desse computador precisam de verificação própria. Não afirme que instalar um pacote na conta atual atualiza Claude Code ou outro dispositivo.
 
 Em contextos válidos importados antes do roteamento modular, a retomada preserva o contexto/hash e os artefatos. O comando context fornece effectiveSkillRouting fora do contexto imutável; leia esses módulos. Uma alteração real de fonte, catálogo, estilo ou escopo continua exigindo a revisão correspondente.
+
+## Toolchain gratuita
+
+Antes de executar VFX/tratamento, leia `references/free-toolchain.md` e consulte o diagnóstico local. `npm run tools:run` executa filtros, máscaras, composição e retiming sem exigir outra API/modelo pago. Use os mesmos shot IDs e preserve contribuições; devolver um clipe compatível ao plano não autoriza mudar a direção. O render Remotion existente tem licença própria e não é pré-requisito do caminho gratuito FFmpeg/Blender/Python.
