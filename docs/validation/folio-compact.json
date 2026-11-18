@@ -122,7 +122,10 @@
   "originalArtworkModified": false,
   "paidApisUsed": false,
   "accessibilityCertification": false,
-  "productionPublication": "pending",
+  "productionPublication": {
+    "status": "published_verified",
+    "evidence": "folio-compact-publication.json"
+  },
   "sourceRegression": {
     "javascript": 223,
     "python": 9,
