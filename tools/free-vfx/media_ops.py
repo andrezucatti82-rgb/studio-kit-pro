@@ -1,7 +1,7 @@
 """Validated free media operations; immutable inputs and fresh output paths."""
 from pathlib import Path
 import hashlib,json
-from toolchain import run
+from toolchain import run,fresh_output
 
 def execute(tc,args):
     source=Path(args.input).resolve();output=Path(args.output).resolve()
@@ -10,9 +10,12 @@ def execute(tc,args):
     if not args.operation:raise ValueError('Operation required')
     ff=tc.binary(tc.select(tool='ffmpeg')[0]);engine='ffmpeg'
     if not ff:raise ValueError('FFmpeg missing')
-    output.parent.mkdir(parents=True,exist_ok=True)
-    try:
-        if args.operation=='interpolate':
+    requested=output
+    with fresh_output(requested) as output:
+        if args.operation=='interpolate' and args.engine=='rife':
+            engine='rife'
+            run([tc.python(),Path(__file__).with_name('rife_video.py'),tc.home,source,output,args.fps,ff],env=tc.environment(),timeout=1800)
+        elif args.operation=='interpolate':
             if not 1<=args.fps<=120:raise ValueError('FPS must be between 1 and 120')
             run([ff,'-v','error','-nostdin','-n','-i',source,'-vf',f'minterpolate=fps={args.fps}:mi_mode=mci','-c:v','libx264','-pix_fmt','yuv420p','-c:a','aac',output],env=tc.environment(),timeout=600)
         elif args.operation=='composite':
@@ -37,7 +40,5 @@ def execute(tc,args):
             run([exe,'-i',source,'-o',output,'-p','realesrgan','-s','2','--no-progress'],cwd=resource if resource.exists() else None,env=tc.environment(),timeout=1800)
         else:raise ValueError('Unsupported free operation')
         run([ff,'-v','error','-i',output,'-f','null','-'],env=tc.environment(),timeout=120)
-    except Exception:
-        if output.exists():output.unlink()
-        raise
+    output=requested
     return {'status':'technical_passed','engine':engine,'operation':args.operation,'output':str(output),'sha256':hashlib.sha256(output.read_bytes()).hexdigest(),'creativeApproval':False,'note':'Matte/segment MP4 is a grayscale mask, not a transparent MP4.' if args.operation in ('matte','segment') else ''}

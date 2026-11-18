@@ -25,6 +25,7 @@ def download(tc,url,name):
     return target
 
 def python_env(tc):
+    if not (3,10)<=sys.version_info[:2]<(3,13):raise RuntimeError('Python 3.10–3.12 with venv/ensurepip required for pinned AI wheels')
     if not tc.python().exists():run([sys.executable,'-m','venv',tc.env],timeout=120)
     return tc.python()
 def python_base(tc):
@@ -93,7 +94,8 @@ def install_one(tc,t,target):
             if not shutil.which('winget'):return {'id':id,'status':'blocked_manager','reason':'WinGet unavailable; use official download'}
             run(['winget','install','--id',package,'--exact','--accept-source-agreements','--accept-package-agreements'],timeout=1200)
     elif kind=='natron-plugins':
-        install_one(tc,tc.select(tool='natron')[0],target)
+        host=install_one(tc,tc.select(tool='natron')[0],target)
+        if host['status']!='installed':return {'id':id,'status':host['status'],'reason':'Natron dependency: '+host.get('reason',host['status']),'source':t['source']}
     elif kind=='release':
         if target!='linux' or platform.machine()!='x86_64':
             pkg=t['install'].get(target)

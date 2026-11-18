@@ -1,12 +1,12 @@
 """Technical proofs; none constitute audiovisual/creative approval."""
 from pathlib import Path
-import hashlib,json,os,subprocess,sys,time
+import hashlib,json,os,subprocess,sys,time,tempfile
 from toolchain import run
 
 def smoke_one(tc,t):
     id=t['id'];location=tc.installed(t)
     if not location:return {'id':id,'status':'missing','reason':'Not installed'}
-    work=tc.home/'smoke'/id;work.mkdir(parents=True,exist_ok=True);env=tc.environment();artifact=None
+    base=tc.home/'smoke'/id;base.mkdir(parents=True,exist_ok=True);work=Path(tempfile.mkdtemp(prefix='proof-',dir=base));env=tc.environment();artifact=None
     if id=='ffmpeg':
         src=work/'source.mp4';out=work/'grayscale.mp4'
         if not src.exists():run([location,'-v','error','-f','lavfi','-i','testsrc2=size=64x64:rate=4:duration=1','-c:v','libx264',src],env=env)
@@ -17,13 +17,18 @@ def smoke_one(tc,t):
         evidence=run([location,'-b','-t','2','--factory-startup','--python-expr',expr],env=env,timeout=120)[-500:]
     elif id=='gmic':
         artifact=work/'gmic.png';evidence=run([location,'-input','64,64,1,3','-fill','255','-blur','1','-output',artifact],env=env,timeout=30)[-500:]
-    elif id in ('opencv','moviepy','sam2','rvm','rife','comfyui'):
+    elif id=='rife':
+        source=work/'source.mp4';artifact=work/'rife.mp4';ff=tc.binary(tc.select(tool='ffmpeg')[0])
+        run([ff,'-v','error','-f','lavfi','-i','testsrc2=size=64x64:rate=4:duration=1','-f','lavfi','-i','sine=frequency=440:duration=1','-c:v','libx264','-c:a','aac','-shortest',source],env=env)
+        evidence=run([tc.python(),Path(__file__).with_name('rife_video.py'),tc.home,source,artifact,8,ff],env=env,timeout=240)
+        run([ff,'-v','error','-i',artifact,'-f','null','-'],env=env)
+    elif id in ('opencv','moviepy','sam2','rvm','comfyui'):
         evidence=run([tc.python(),Path(__file__).with_name('python_smoke.py'),id,str(tc.home),str(work)],env=env,timeout=240)
         data=json.loads(evidence.splitlines()[-1]);
         if data.get('status')!='smoke_passed':return {'id':id,**data}
         if data.get('artifact'):artifact=Path(data['artifact'])
     elif id=='frei0r':
-        candidates=[p for base in [tc.native/'usr/lib/frei0r-1',Path('/usr/lib/frei0r-1'),Path('/usr/lib/x86_64-linux-gnu/frei0r-1')] if base.exists() for p in base.glob('*.so')]
+        candidates=[p for base in tc.plugin_paths() if base.exists() for p in base.iterdir() if p.suffix in ('.so','.dylib','.dll')]
         if not candidates:raise RuntimeError('No installed frei0r plugins found')
         # Exercise the actual plugin through FFmpeg, with plugin directory explicitly scoped.
         plugin=next((p for p in candidates if p.stem=='invert0r'),None)

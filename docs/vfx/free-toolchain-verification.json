@@ -17,7 +17,7 @@
       "id": "blender",
       "status": "smoke_passed",
       "artifact": "cpu.png",
-      "sha256": "48512749afaefcb2fce7eb182825b4f64e55dacb78a729bcac7b48b4e908e10c"
+      "sha256": "3dbb95440c1649938d0d0912f633e70f55ff717ceb682e6387062cf84b82508f"
     },
     {
       "id": "kdenlive",
@@ -86,8 +86,8 @@
     {
       "id": "rife",
       "status": "smoke_passed",
-      "artifact": "interpolated.png",
-      "sha256": "659e12cf2e6397f8123814cedee86c998526d7c152a230eafdaf881e75c5b4ef"
+      "artifact": "rife.mp4",
+      "sha256": "d6614553a199d486cee0b780b9a310681bbf940eb2c43103f462b6a7492ad471"
     },
     {
       "id": "video2x",
@@ -122,13 +122,21 @@
     "Do not reuse these capabilities as evidence on another machine"
   ],
   "testedToolSources": {
-    "tools/free-vfx/install_tools.py": "023c18003448627ee5f0948f982d556487db9ab73f79b9c4482f1e4a0419c925",
-    "tools/free-vfx/manifest.json": "22e1632288280e9f1155dac2a2808992aad8014ddc50809cf0163bf38cf6b07b",
-    "tools/free-vfx/media_ops.py": "d9e93209f9cc55f9a790ad21f9dde362fa7e1102d1a613133a74aaa651b103c8",
+    "tools/free-vfx/install_tools.py": "43d56fbdde4d920515b8a74b2e7f095cc272d53e4aae3c47230050fd26d0ded5",
+    "tools/free-vfx/manifest.json": "64c8beb5790b037000999e81bfe5c277a436f94dce8365a03b557446141415a1",
+    "tools/free-vfx/media_ops.py": "ee3baeade64317322c871e692671198b183d3c460eae3c25a34ba49a689a071c",
     "tools/free-vfx/python_smoke.py": "dd856fa12b574e1b451db1559d67245bbc3f43ae980f2a66e63cbc7d23c5547f",
     "tools/free-vfx/requirements.txt": "9292c0af55f20b42ba9c1c591106507bbfb1db55b0dbd290b9cd4a81cf83faee",
-    "tools/free-vfx/smoke_tools.py": "44864b6cef2017e420b1478f85e94c531ec5c4b4e1d740896d54e54fde5c9c75",
-    "tools/free-vfx/toolchain.py": "b5f2fe0dbd0b4e81ea9d438fe6b8b9777a1fe4923ef2596665e06b4d91332025",
+    "tools/free-vfx/rife_video.py": "1fe913197f0039df0408fc24fdeb236e9de0da127c2d94c1eb66fd077e677a3b",
+    "tools/free-vfx/smoke_tools.py": "8a7fa0038379af3b2df03302fd48062abdb43dfe788ab104f66d465531892196",
+    "tools/free-vfx/toolchain.py": "a23718d0e8acc033e978b0a77ea87951447dfc6a118c3e631c085ad00acf477c",
     "tools/free-vfx/video_mask.py": "0f38ff595c0d7f2cec056f26c8234fbb56ef1b925ba991f71d46814e8d81cf4c"
+  },
+  "rifeVideoProof": {
+    "frames": 8,
+    "fps": 8,
+    "audioStreamIncluded": true,
+    "adapter": "tools/free-vfx/rife_video.py",
+    "note": "Synthetic input; no audiovisual review"
   }
 }

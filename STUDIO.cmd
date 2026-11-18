@@ -6,6 +6,6 @@ if "%~1"=="codex" (codex & exit /b)
 if "%~1"=="claude" (claude & exit /b)
 if "%~1"=="atlas" (node scripts\serve-atlas.mjs & exit /b)
 if "%~1"=="doctor" (node scripts\doctor.mjs & exit /b)
-if "%~1"=="tools" (node scripts\free-tools.mjs %2 %3 %4 %5 %6 %7 %8 %9 & exit /b)
+if "%~1"=="tools" (node scripts\free-tools.mjs %* & exit /b)
 echo Use: STUDIO.cmd codex ^| claude ^| atlas ^| doctor ^| tools doctor
 echo Tutorial: docs\COMECE-AQUI.html

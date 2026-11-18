@@ -1,5 +1,6 @@
 // Local, account-independent bootstrap. Downloads only the pinned public repository.
 import fs from 'node:fs/promises';
+import {pythonProbe,pythonCandidates} from './free-python.mjs';
 import {createReadStream,createWriteStream} from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
@@ -95,24 +96,35 @@ export function parseInstallArgs(args){
  return options;
 }
 async function findPython(){
- for(const candidate of (process.platform==='win32'?['python','python3']:['python3','python']))try{await run(candidate,['-c','import sys;sys.exit(sys.version_info<(3,10))'],{capture:true});return candidate;}catch{}
+ for(const candidate of pythonCandidates())try{await run(candidate,['-c',pythonProbe],{capture:true});return candidate;}catch{}
  return null;
 }
-async function preparePython(){
+async function preparePython(cwd){
  let python=await findPython();if(python)return python;
- if(process.platform==='darwin')await run('brew',['install','python']);
+ if(process.platform==='darwin')await run('brew',['install','python@3.12']);
  else if(process.platform==='win32')await run('winget',['install','--id','Python.Python.3.12','--exact','--accept-source-agreements','--accept-package-agreements']);
  else if(process.platform==='linux'){
   const command=process.getuid?.()===0?'apt-get':'sudo',prefix=command==='sudo'?['apt-get']:[];
   await run(command,[...prefix,'update']);await run(command,[...prefix,'install','-y','python3','python3-venv']);
  }
- return findPython();
+ python=await findPython();if(python)return python;
+ // Debian's default can be newer than the pinned scientific wheels. Use a private,
+ // free uv bootstrap to fetch a compatible CPython without replacing system Python.
+ if(process.platform==='linux'){
+  const bootstrap=path.join(cwd,'.studio-tools/python-bootstrap'),managed=path.join(cwd,'.studio-tools/python-managed');
+  await run('python3',['-m','venv',bootstrap]);const boot=path.join(bootstrap,'bin/python');
+  await run(boot,['-m','pip','install','--disable-pip-version-check','uv==0.9.9']);
+  await run(path.join(bootstrap,'bin/uv'),['python','install','3.12','--install-dir',managed]);
+  const names=await fs.readdir(managed);
+  for(const name of names.filter(n=>n.startsWith('cpython-3.12.'))){const candidate=path.join(managed,name,'bin/python3.12');try{await run(candidate,['-c',pythonProbe],{capture:true});process.env.STUDIO_PYTHON=candidate;return candidate;}catch{}}
+ }
+ return null;
 }
 export async function freeToolchainReport(cwd,profile='all-free',options={}){
  if(!['base','automation','ai','all-free','none'].includes(profile))throw Error('Perfil gratuito inválido');
  if(profile==='none')return {status:'skipped_by_choice',freeOnly:true,accountsRequired:false};
  const python=Object.hasOwn(options,'python')?options.python:await findPython();
- if(!python)return {status:'blocked_python',freeOnly:true,accountsRequired:false,reason:'Instale Python 3.10+ gratuito com venv e retome a toolchain. Nenhuma chave/API é necessária.'};
+ if(!python)return {status:'blocked_python',freeOnly:true,accountsRequired:false,reason:'Instale Python 3.10–3.12 gratuito com venv/ensurepip (ou defina STUDIO_PYTHON) e retome a toolchain. Nenhuma chave/API é necessária.'};
  const script=path.join(cwd,'tools/free-vfx/toolchain.py');
  const installed=JSON.parse((await run(python,[script,'install','--root',cwd,'--profile',profile,'--apply'],{cwd,capture:true})).stdout);
  const smoke=JSON.parse((await run(python,[script,'smoke','--root',cwd,'--profile',profile],{cwd,capture:true})).stdout);
@@ -156,13 +168,15 @@ export async function installStudio(options){
   for(const module of system.modules)await fs.access(path.join(target,'.agents/skills/video-multimarcas',module.instructions));
   for(const id of ids){await fs.access(path.join(target,'.agents/skills',id,'SKILL.md'));await fs.access(path.join(target,'.claude/skills',id,'SKILL.md'));}
   report.steps.skills={status:'passed',count:ids.length,internalModules:system.modules.length,discovery:agent};await save();
-  step='runtime_check';await run(process.execPath,['scripts/setup-check.mjs'],{cwd:target});report.steps.runtime='passed';await save();
+  step='runtime_check';
+  try{await run(process.execPath,['scripts/setup-check.mjs'],{cwd:target});report.steps.runtime={status:'passed'};}catch(error){report.steps.runtime={status:'optional_renderer_blocked',reason:error.message};}
+  await save();
   // Keep a portable Node installation with this project so deleting the downloaded ZIP
   // directory does not remove its runtime. No global PATH/profile changes.
   if(process.execPath.includes(path.join(here,'.studio-tools'))){const nodeRoot=process.platform==='win32'?path.dirname(process.execPath):path.resolve(path.dirname(process.execPath),'..');await fs.cp(nodeRoot,path.join(target,'.studio-tools/node'),{recursive:true});report.portableNode=true;}
   step='free_toolchain';
   const freeProfile=options.freeTools||'all-free';
-  try{if(options.systemDeps&&!await findPython())await preparePython();report.steps.freeToolchain=await freeToolchainReport(target,freeProfile);}catch(error){report.steps.freeToolchain={status:'blocked',freeOnly:true,reason:error.message,accountsRequired:false};}
+  try{if(freeProfile!=='none'&&options.systemDeps&&!await findPython())await preparePython(target);report.steps.freeToolchain=await freeToolchainReport(target,freeProfile);}catch(error){report.steps.freeToolchain={status:'blocked',freeOnly:true,reason:error.message,accountsRequired:false};}
   const toolchainReady=['technical_passed','skipped_by_choice'].includes(report.steps.freeToolchain.status);
   report.status=toolchainReady?'ready':'ready_with_toolchain_blockers';report.next='Abra esta pasta no Codex ou Claude Code; leia o tutorial e envie projeto-video.json com os originais.';await save();
   console.log('\nInstalação do projeto: '+report.status+' — '+target+'\nTutorial: '+path.join(target,'docs/COMECE-AQUI.html')+'\nContas e login do agente são conferidos separadamente.');

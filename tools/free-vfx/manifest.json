@@ -198,7 +198,7 @@
     {
       "id": "comfyui",
       "profile": "ai",
-      "license": "GPL-3.0; no paid nodes or third-party models bundled",
+      "license": "GPL-3.0; upstream includes API-node code, disabled by the kit launcher; no generative checkpoints bundled",
       "source": "https://github.com/Comfy-Org/ComfyUI",
       "kind": "repo",
       "commands": [],

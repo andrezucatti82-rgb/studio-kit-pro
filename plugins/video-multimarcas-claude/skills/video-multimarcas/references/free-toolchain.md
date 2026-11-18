@@ -12,7 +12,7 @@ Estados diferentes: `missing`, `installed`, `unverified`, `startup_passed`, `smo
 
 O download **Instalar ferramenta** do site fornece o bootstrap do projeto; ele obtém fontes fixadas e instala a toolchain gratuita por padrão (`all-free`). Precisa de internet e vários GB livres. Aplicativos, dependências e modelos são obtidos de fontes oficiais e ficam localmente, preservando licenças; não estão todos dentro do ZIP. Importar uma skill no ChatGPT não instala aplicativos no computador do usuário.
 
-Com o projeto completo e Python 3.10+:
+Com o projeto completo e Python 3.10–3.12 com venv/ensurepip (recomendado 3.12; `STUDIO_PYTHON` pode indicar o executável):
 
 ```bash
 npm run tools:plan -- --profile all-free
@@ -32,7 +32,7 @@ Sem `--apply`, install apenas apresenta o plano. Perfis menores: `base`, `automa
 | Transformações/composição em lote | FFmpeg; OpenCV/MoviePy para operações em código |
 | Recorte temporal de pessoas | Robust Video Matting com peso oficial local e revisão do alpha |
 | Máscara de objeto | SAM 2 com ponto explícito e propagação em vídeo; refinar bordas/cabelo/blur |
-| Nós locais de IA | ComfyUI local com `--cpu --disable-api-nodes` quando pertinente; nenhum modelo generativo é incluído automaticamente |
+| Nós locais de IA | ComfyUI pelo comando `node scripts/free-tools.mjs serve --tool comfyui`: força CPU, `--disable-api-nodes`, `--disable-all-custom-nodes` e acesso em localhost. O código upstream contém nós de APIs pagas, desativados nesse lançador. Nenhum modelo generativo é incluído automaticamente |
 | Interpolação / upscale | RIFE / Video2X, selecionando modelo apropriado e conferindo artefatos |
 
 Somente software/modelos realmente gratuitos no manifesto. Excluir APIs pagas, assinaturas, trials e pesos restritos a uso não comercial. O histórico de pesquisa pode citar ferramentas comerciais; isso não as habilita no perfil gratuito. Não usar ProPainter em anúncios/clientes sem permissão comercial; ele está fora do instalador. Resolve/Fusion, Mocha e Sapphire não são dependências desta toolchain.
@@ -47,7 +47,7 @@ npm run tools:run -- --operation filter --effect glow --input original.mp4 --out
 npm run tools:run -- --operation matte --input apresentador.mp4 --output mascara-pessoa.mp4
 npm run tools:run -- --operation segment --point-x 120 --point-y 200 --input original.mp4 --output mascara-objeto.mp4
 npm run tools:run -- --operation composite --input fundo.mp4 --foreground pessoa.mp4 --mask mascara-pessoa.mp4 --output composicao.mp4
-npm run tools:run -- --operation interpolate --fps 48 --input original.mp4 --output interpolado.mp4
+npm run tools:run -- --operation interpolate --engine ffmpeg --fps 48 --input original.mp4 --output interpolado.mp4
 npm run tools:run -- --operation upscale --input original.mp4 --output ampliado.mp4
 ```
 
@@ -58,3 +58,7 @@ O upscale integrado usa o modelo padrão de demonstração Real-ESRGAN do Video2
 ## Interoperabilidade e aprovações
 
 Reusar IDs, arquivos, planos e aceites da coordenadora. Exportar comp/máscaras/passes e ligar aos planos originais; cor, alpha, fps e frame range precisam concordar. CLI entrega saída técnica e SHA, nunca concede aceites. Geração de vídeo IA criativo continua exigindo visuais concretos aprovados; paid APIs não participam do perfil gratuito. Problemas bloqueiam o recurso afetado, sem transformar código, uma conexão ou uma máscara num vídeo final aprovado.
+
+Para RIFE real: `npm run tools:run -- --operation interpolate --engine rife --fps 48 --input original-24fps.mp4 --output rife-48fps.mp4`. Aceita multiplicadores 2, 4 e 8; preserva áudio quando presente. O adaptador do kit evita as APIs antigas de NumPy/MoviePy do script upstream. Relatórios precisam usar arquivos novos distintos dos vídeos.
+
+O renderizador de navegador é opcional: se sua inicialização falhar, o instalador registra o bloqueio e segue com a toolchain gratuita. Em sistemas sem Python compatível, informa o bloqueio em vez de alegar que os modelos funcionam. Rotas automáticas sem suporte no sistema ficam marcadas para instalação oficial manual.

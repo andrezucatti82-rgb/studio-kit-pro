@@ -1,5 +1,6 @@
 """Free local VFX tools. No provider API, cloud inference or shell-evaluated commands."""
 from pathlib import Path
+from contextlib import contextmanager
 import re, argparse, hashlib, importlib.util, json, os, platform, shutil, subprocess, sys, tempfile, time
 MANIFEST=Path(__file__).with_name('manifest.json')
 PROFILES=('base','automation','ai','all-free')
@@ -8,6 +9,18 @@ def run(args,**kw):
     p=subprocess.run([str(a) for a in args],capture_output=True,text=True,timeout=kw.pop('timeout',120),**kw)
     if p.returncode:raise RuntimeError(f'{Path(str(args[0])).name} exited {p.returncode}: '+(p.stderr or p.stdout)[-1600:])
     return p.stdout.strip() or p.stderr.strip()
+@contextmanager
+def fresh_output(output):
+    """Render privately, then publish using an atomic no-replace hard link."""
+    output=Path(output).resolve()
+    if output.exists():raise FileExistsError('Output already exists; choose a new path')
+    output.parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.vfx-render-',dir=output.parent) as directory:
+        temp=Path(directory)/output.name
+        yield temp
+        if not temp.is_file() or temp.stat().st_size==0:raise RuntimeError('Fresh render missing')
+        os.link(temp,output) # Never replaces an output published by another process.
+
 def registry():
     m=json.loads(MANIFEST.read_text())
     if m.get('freeOnly') is not True:raise ValueError('Only the free registry is allowed')
@@ -55,10 +68,18 @@ class Toolchain:
             try:run([py,'-c',f'import {module};print({module}.__version__)'],timeout=30);return str(py)
             except Exception:return None
         if kind=='repo':return str(self.repos/id) if (self.repos/id/'SOURCE.json').exists() else None
-        paths=[self.native/'usr/lib/frei0r-1',Path('/usr/lib/frei0r-1'),Path('/usr/lib/x86_64-linux-gnu/frei0r-1')] if id=='frei0r' else [self.home/'natron']
-        for p in paths:
-            if p.exists() and (any(p.glob('*.so')) if id=='frei0r' else any(p.rglob('Misc.ofx'))):return str(p)
+        if id=='frei0r':
+            for p in self.plugin_paths():
+                if any(p.glob('*.so')) or any(p.glob('*.dylib')) or any(p.glob('*.dll')):return str(p)
+        else:
+            roots=[self.home/'natron',Path('/Library/OFX/Plugins'),Path(os.environ.get('CommonProgramFiles','C:/Program Files/Common Files'))/'OFX/Plugins',Path('/usr/OFX/Plugins')]
+            natron=self.binary(self.select(tool='natron')[0])
+            if natron:roots.extend([Path(natron).parent,Path(natron).parent.parent])
+            for p in roots:
+                if p.exists() and (any(p.rglob('Misc.ofx')) or any(p.rglob('Misc.ofx.bundle'))):return str(p)
         return None
+    def plugin_paths(self):
+        return [self.native/'usr/lib/frei0r-1',Path('/usr/lib/frei0r-1'),Path('/usr/lib/x86_64-linux-gnu/frei0r-1'),Path('/usr/local/lib/frei0r-1'),Path('/opt/homebrew/lib/frei0r-1'),Path.home()/'.frei0r-1']
     def plan(self,tools,target):
         out=[]
         for t in tools:
@@ -87,23 +108,29 @@ class Toolchain:
         if effect not in FILTERS:raise ValueError('Unknown filter')
         ffmpeg=self.binary(self.select(tool='ffmpeg')[0])
         if not ffmpeg:raise RuntimeError('FFmpeg is missing')
-        out.parent.mkdir(parents=True,exist_ok=True)
-        try:
-            run([ffmpeg,'-hide_banner','-loglevel','error','-nostdin','-n','-i',src,'-vf',FILTERS[effect],'-c:v','libx264','-pix_fmt','yuv420p','-c:a','aac',out],env=self.environment())
-            run([ffmpeg,'-v','error','-i',out,'-f','null','-'],env=self.environment())
-        except Exception:
-            if out.exists():out.unlink()
-            raise
+        with fresh_output(out) as temp:
+            run([ffmpeg,'-hide_banner','-loglevel','error','-nostdin','-n','-i',src,'-vf',FILTERS[effect],'-c:v','libx264','-pix_fmt','yuv420p','-c:a','aac',temp],env=self.environment())
+            run([ffmpeg,'-v','error','-i',temp,'-f','null','-'],env=self.environment())
         return {'status':'technical_passed','engine':'ffmpeg','effect':effect,'output':str(out),'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'creativeApproval':False}
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('command',choices=['plan','doctor','install','smoke','run'])
-    parser.add_argument('--root',default=str(Path(__file__).resolve().parents[2]));parser.add_argument('--profile',choices=PROFILES,default='all-free');parser.add_argument('--tool');parser.add_argument('--platform',default=sys.platform);parser.add_argument('--operation',choices=['filter','matte','segment','interpolate','upscale','composite']);parser.add_argument('--effect',choices=FILTERS,default='grayscale');parser.add_argument('--input');parser.add_argument('--output');parser.add_argument('--fps',type=int,default=30);parser.add_argument('--foreground');parser.add_argument('--mask');parser.add_argument('--point-x',type=int);parser.add_argument('--point-y',type=int);parser.add_argument('--apply',action='store_true');parser.add_argument('--report')
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('command',choices=['plan','doctor','install','smoke','run','serve'])
+    parser.add_argument('--root',default=str(Path(__file__).resolve().parents[2]));parser.add_argument('--profile',choices=PROFILES,default='all-free');parser.add_argument('--tool');parser.add_argument('--platform',default=sys.platform);parser.add_argument('--operation',choices=['filter','matte','segment','interpolate','upscale','composite']);parser.add_argument('--engine',choices=['ffmpeg','rife'],default='ffmpeg');parser.add_argument('--effect',choices=FILTERS,default='grayscale');parser.add_argument('--input');parser.add_argument('--output');parser.add_argument('--fps',type=int,default=30);parser.add_argument('--foreground');parser.add_argument('--mask');parser.add_argument('--point-x',type=int);parser.add_argument('--point-y',type=int);parser.add_argument('--apply',action='store_true');parser.add_argument('--report')
     args=parser.parse_args();tc=Toolchain(args.root)
     try:
+        if args.report:
+            report=Path(args.report).resolve()
+            protected=[Path(p).resolve() for p in [args.input,args.output,args.foreground,args.mask] if p]
+            if report in protected or report.exists():raise ValueError('Report must use a new path distinct from all media')
         tools=tc.select(args.profile,args.tool)
         if args.command=='plan':result=tc.plan(tools,args.platform)
         elif args.command=='doctor':result=tc.doctor(tools)
+        elif args.command=='serve':
+            if args.tool!='comfyui':raise ValueError('Only the free ComfyUI launcher is supported')
+            repo=tc.repos/'comfyui'
+            if not tc.installed(tools[0]):raise ValueError('ComfyUI not installed')
+            subprocess.run([str(tc.python()),str(repo/'main.py'),'--cpu','--disable-api-nodes','--disable-all-custom-nodes','--listen','127.0.0.1'],cwd=repo,env=tc.environment(),check=True)
+            result={'status':'stopped','freeOnly':True,'paidApiNodesEnabled':False}
         elif args.command=='run':
             if not args.input or not args.output:raise ValueError('Input/output required')
             if args.operation=='filter':result=tc.execute_filter(args.input,args.output,args.effect)
@@ -117,7 +144,8 @@ def main():
             from smoke_tools import smoke
             result=smoke(tc,tools)
         if args.report:
-            p=Path(args.report);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+            p=Path(args.report);p.parent.mkdir(parents=True,exist_ok=True);
+            with p.open('x') as stream:stream.write(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
         print(json.dumps(result,ensure_ascii=False,indent=2))
     except Exception as e:print(json.dumps({'status':'error','error':str(e),'creativeApproval':False},ensure_ascii=False));return 1
     return 0

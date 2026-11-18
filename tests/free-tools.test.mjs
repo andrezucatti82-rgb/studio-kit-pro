@@ -94,3 +94,27 @@ test('Natron informational version exit is recognized only with its explicit ver
  await fs.writeFile(exe,'#!/usr/bin/env python3\nimport sys\nprint("Startup failed")\nsys.exit(1)\n',{mode:0o755});r=JSON.parse(invoke(['doctor','--root',root,'--tool','natron']).stdout);assert.equal(r.results[0].status,'unverified');
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
+test('report destinations cannot replace an original, result or existing file',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-report-'));try{
+ const input=path.join(root,'source.mp4'),output=path.join(root,'result.mp4');execFileSync('ffmpeg',['-v','error','-f','lavfi','-i','testsrc2=size=64x64:rate=4:duration=1','-c:v','libx264',input]);const before=await fs.readFile(input);
+ for(const report of [input,output]){invoke(['run','--operation','filter','--input',input,'--output',output,'--report',report],false);assert.deepEqual(await fs.readFile(input),before);await assert.rejects(fs.access(output));}
+ const report=path.join(root,'report.json');await fs.writeFile(report,'keep');invoke(['plan','--report',report],false);assert.equal(await fs.readFile(report,'utf8'),'keep');
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+test('publication of media never replaces or deletes a concurrent winner',()=>{
+ const code="import sys,tempfile;from pathlib import Path;sys.path.insert(0,'tools/free-vfx');from toolchain import fresh_output\nwith tempfile.TemporaryDirectory() as d:\n p=Path(d)/'winner.mp4'\n try:\n  with fresh_output(p) as temp:\n   temp.write_bytes(b'loser');p.write_bytes(b'winner')\n except FileExistsError:pass\n assert p.read_bytes()==b'winner'";
+ execFileSync('python3',['-c',code]);
+});
+test('Python selector accepts the supported AI wheel range and requires venv support',async()=>{
+ const {pythonProbe,pythonCandidates}=await import('../scripts/free-python.mjs');
+ for(const version of ['3.9','3.13'])assert.notEqual(spawnSync('python3',['-c',pythonProbe.replace('sys.version_info',`(${version.split('.').join(',')},0)`)]).status,0);
+ assert(pythonProbe.includes('ensurepip'));assert(pythonCandidates('darwin').includes('/opt/homebrew/opt/python@3.12/bin/python3.12'));
+});
+test('ComfyUI kit launcher always disables paid API and custom nodes on localhost',()=>{
+ const code="import sys,tempfile,json;from pathlib import Path;sys.path.insert(0,'tools/free-vfx');import toolchain\nwith tempfile.TemporaryDirectory() as root:\n repo=Path(root)/'.studio-tools/free-vfx/repos/comfyui';repo.mkdir(parents=True);(repo/'SOURCE.json').write_text('{}')\n captured=[]\n toolchain.subprocess.run=lambda args,**kw:captured.extend(args)\n sys.argv=['toolchain','serve','--tool','comfyui','--root',root]\n assert toolchain.main()==0\n assert '--disable-api-nodes' in captured and '--disable-all-custom-nodes' in captured\n assert captured[-1]=='127.0.0.1' and '--cpu' in captured";
+ execFileSync('python3',['-c',code]);
+});
+test('OpenFX propagates a blocked Natron dependency instead of claiming installation',()=>{
+ const code="import sys,tempfile;sys.path.insert(0,'tools/free-vfx');from toolchain import Toolchain;import install_tools\nwith tempfile.TemporaryDirectory() as root:\n tc=Toolchain(root);tc.installed=lambda t:None;install_tools.platform.machine=lambda:'aarch64'\n result=install_tools.install_one(tc,tc.select(tool='openfx-misc')[0],sys.platform)\n assert result['status']=='manual_install_required' and 'Natron dependency' in result['reason']";
+ execFileSync('python3',['-c',code]);
+});
