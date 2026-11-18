@@ -303,7 +303,7 @@ body[data-folio=true]{font-family:'Folio UI',Arial,Helvetica,sans-serif}body[dat
 .folio-category-bar::-webkit-scrollbar{display:none}
 body:not([data-folio=true]) .folio-category-bar,body:not([data-view=library]) .folio-category-bar{display:none}
 .folio-category-bar>button{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;padding:10px 14px;min-height:44px;border:0;border-radius:999px;background:transparent;color:#b5b5b5;font-size:13px;font-weight:500;white-space:nowrap}
-.folio-category-bar>button:hover,.folio-category-bar>button[aria-expanded=true]{background:#242424;color:#fff}
+.folio-category-bar>button:hover{color:#fff}
 .folio-category-bar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 
@@ -320,7 +320,7 @@ body:not([data-folio=true]) .folio-category-bar,body:not([data-view=library]) .f
  body[data-folio=true] .folio-header{flex-wrap:wrap}
  .folio-header .folio-category-bar{order:3;flex:1 0 100%;padding:10px 0 0;margin:0}
 }
-.folio-category-bar>button[aria-current=true]{background:#242424;color:#fff}
+
 
 
 
@@ -363,7 +363,7 @@ html:has(body[data-folio=true]){scroll-behavior:auto}
 body[data-folio=true] #folioMenu{position:static;width:calc(100% - 80px);max-width:1520px;margin:0 auto 8px;padding:0 0 8px;border:0;border-bottom:1px solid var(--line);background:transparent;box-shadow:none}
 body[data-folio=true] #folioMenu[hidden]{display:none!important}
 #folioMenu button{min-height:40px;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--muted);font:400 14px/1.5 'Folio UI',Arial,sans-serif;text-align:left;cursor:pointer}
-#folioMenu button:hover,#folioMenu button:focus-visible{color:var(--ink);text-decoration:underline;text-underline-offset:5px}
+#folioMenu button:hover,#folioMenu button:focus-visible{color:var(--ink);text-decoration:none}
 #folioMenu .folio-text-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px 28px;align-items:start}
 #folioMenu .folio-text-links button{width:100%;overflow-wrap:anywhere}
 @media(max-width:900px){#folioMenu .folio-text-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 20px}}
@@ -382,24 +382,58 @@ body[data-folio-browse=category] .folio-catalogue-controls .extra-filters summar
 body[data-folio-browse=category] #grid{padding-top:8px}
 body[data-view=library][data-folio-browse=category] .resultbar{display:none!important}
 /* Color marks real state and the next action, while the canvas stays neutral. */
-body[data-folio=true]{--folio-active-green:#34c76a;--folio-action-blue:#245bdb}
-body[data-folio=true] :is(#folioChoiceContinue,#prepare,#downloadStudioKit,#copyPrompt,#guidedNext,#selectionTray [data-app-view=brief]):not(:disabled):not([aria-disabled=true]){background:var(--folio-action-blue);border-color:#457cf0;color:#fff}
-body[data-folio=true] .folio-goals button[aria-pressed=true],body[data-folio=true] .folio-category-bar>button:is([aria-expanded=true],[aria-current=true]),body[data-folio=true] .brief-steps [aria-current=step]{background:#17284a;color:#c0d5ff}
-body[data-folio=true] :is(#videoFilter,#favoriteFilter){display:inline-flex;align-items:center;gap:8px}
-body[data-folio=true] :is(#videoFilter,#favoriteFilter)::after{content:'';display:block;flex:none;width:24px;height:14px;border-radius:999px;background:radial-gradient(circle at 7px 7px,#c8c8c8 0 4px,transparent 4.5px),#444}
-body[data-folio=true] :is(#videoFilter,#favoriteFilter)[aria-pressed=true]{background:#142b1e;border-color:#28683e;color:#9de8b7}
-body[data-folio=true] :is(#videoFilter,#favoriteFilter)[aria-pressed=true]::after{background:radial-gradient(circle at 17px 7px,#fff 0 4px,transparent 4.5px),var(--folio-active-green)}
+body[data-folio=true]{--folio-active-green:#34c76a}
+body[data-folio=true] :is(#folioContinue,#folioChoiceContinue,#prepare,#downloadStudioKit,#copyPrompt,#guidedNext,#selectionTray [data-app-view=brief]):not(:disabled):not([aria-disabled=true]){background:var(--folio-active-green);border-color:#4ddd7e;color:#071c0f}
+body[data-folio=true] .folio-goals button[aria-pressed=true],body[data-folio=true] .brief-steps [aria-current=step]{background:#142b1e;color:#9de8b7}
+body[data-folio=true] #favoriteFilter{display:inline-flex;align-items:center;gap:8px}
+body[data-folio=true] #favoriteFilter::after{content:'';display:block;flex:none;width:24px;height:14px;border-radius:999px;background:radial-gradient(circle at 7px 7px,#c8c8c8 0 4px,transparent 4.5px),#444}
+body[data-folio=true] #favoriteFilter[aria-pressed=true]{background:#142b1e;border-color:#28683e;color:#9de8b7}
+body[data-folio=true] #favoriteFilter[aria-pressed=true]::after{background:radial-gradient(circle at 17px 7px,#fff 0 4px,transparent 4.5px),var(--folio-active-green)}
 body[data-folio=true] .folio-save[aria-pressed=true]{color:#64df91}
 body[data-folio=true] .folio-add[aria-pressed=true]{background:#142b1e;border-color:#28683e;color:#9de8b7}
 body[data-folio=true] input[type=checkbox]{accent-color:var(--folio-active-green)}
-body[data-folio=true] :is(button,a,input,select,textarea):focus-visible{outline-color:#7ba7ff}
+body[data-folio=true] :is(button,a,input,select,textarea):focus-visible{outline-color:#64df91}
 
 
 
-#folioCategoryFilters{margin:0 0 4px}
-#folioCategoryFilters[hidden]{display:none!important}
-#folioCategoryFilters>summary{min-height:32px;width:max-content;padding:4px 0;font-size:12px;color:var(--muted);cursor:pointer}
-#folioCategoryFilters[open]>summary{color:#c0d5ff}
-body[data-folio-browse=category] #folioCategoryFilters .folio-catalogue-controls{margin:4px 0 8px}
-@media(max-width:700px){body[data-folio-browse=category] #folioCategoryFilters button{min-height:40px}}
-@media(max-width:700px){#folioCategoryFilters>summary{min-height:44px;padding:8px 0}}
+/* A media well never supplies a light rim behind the actual reference. */
+body[data-folio=true] :is(.frame-expand,.reference-panel,.guided-reference,.detail-image,.brief-style-image){background:#151515}
+
+#folioMenu button>span{display:inline-block;max-width:100%;transform-origin:left center;transition:transform .16s ease}
+@media(hover:hover) and (pointer:fine){#folioMenu button:hover>span{transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){#folioMenu button>span{transition:none}}
+
+/* One fixed navigation area. Reference pages and categories remain in flow. */
+body[data-folio=true] .folio-header{position:sticky;top:0;z-index:50;background:#101010}
+body[data-folio=true] :is(#selectionTray,.mobile-app-nav,.folio-to-top,#startGuided){display:none!important}
+body[data-folio=true] #folioHeader [data-folio-choice]{display:none!important}
+.folio-header-progress{display:flex;align-items:center;gap:10px;order:1;flex:none}
+.folio-header>nav:not(.folio-category-bar){order:2}
+.folio-header-progress button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 16px;font-size:13px;white-space:nowrap}
+.folio-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#071c0f20;font-size:11px}
+body[data-folio=true] #folioHeader #compareBar{position:static;inset:auto;order:4;flex:1 0 100%;display:flex;justify-content:flex-end;gap:12px;margin:0;padding:4px 0 0;border:0;border-radius:0;box-shadow:none;background:transparent;width:auto;max-width:none}
+body[data-folio=true] #folioHeader #compareBar[hidden]{display:none!important}
+body[data-folio=true] .folio-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5}
+.folio-category-bar>button>span{display:inline-block;transform-origin:center;transition:transform .16s ease}
+@media(hover:hover) and (pointer:fine){.folio-category-bar>button:hover>span{transform:scale(1.04)}}
+body[data-folio=true] .app-main main,body[data-folio=true] #folioPanelHost,body[data-folio=true] #briefDialog.brief-workspace{padding-bottom:48px}
+body[data-folio=true] :is(#prepare,#copyPrompt,#guidedNext){display:none!important}
+html:has(body[data-folio=true]){scroll-padding-top:calc(var(--folio-header-height,140px) + 8px)}
+@media(max-width:700px){body[data-folio=true] .folio-header{flex-wrap:wrap;gap:8px 10px;padding-bottom:10px}.folio-header-progress{order:3;flex:1 0 100%;justify-content:flex-end}.folio-header-progress button{min-width:132px}.folio-header>nav:not(.folio-category-bar){margin-left:auto}.folio-header .folio-help{display:inline-flex}body[data-folio=true] #folioHeader #compareBar{justify-content:space-between;flex-wrap:wrap;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.folio-category-bar>button>span{transition:none}}
+
+body[data-folio=true] .folio-header{flex-wrap:wrap}
+
+/* Filters are ordinary words in the catalogue, never a disclosure or overlay. */
+body[data-folio=true] .folio-catalogue-controls{align-items:center;gap:4px 22px;flex-wrap:wrap}
+body[data-folio=true] .folio-catalogue-controls :is(.category-menu,#presenterSectorWrap,.inline-type-filter,.select-wrap,.filter-chips){flex:0 1 auto;width:auto;max-width:100%;margin:0}
+body[data-folio=true] .folio-catalogue-controls :is(button,select){min-height:44px;padding:8px 4px;border:0;border-radius:0;background:transparent;color:#b5b5b5;font:400 13px/1.5 'Folio UI',Arial,sans-serif;box-shadow:none;width:auto;max-width:100%}
+body[data-folio=true] .folio-catalogue-controls select{padding-right:24px;cursor:pointer}
+body[data-folio=true] .folio-catalogue-controls select option{background:#222;color:#f5f5f5}
+body[data-folio=true] .folio-catalogue-controls #allFilter{display:none}
+body[data-folio=true] .folio-catalogue-controls #favoriteFilter[aria-pressed=true]{background:transparent;border:0;color:#9de8b7}
+body[data-folio=true] .folio-catalogue-controls :is(button,select):hover{color:#f5f5f5}
+@media(max-width:700px){body[data-folio=true] .folio-catalogue-controls{gap:0 16px}body[data-folio=true] .folio-catalogue-controls :is(button,select){font-size:12px}body[data-folio=true] .folio-catalogue-controls #kind{max-width:170px}}
+
+body[data-folio-mode=collection] .folio-catalogue-controls{display:flex;margin:8px 0}
+body[data-folio=true] :is([data-frame],[data-board],[data-sequence-download],#styleCombinationSummary,#addMoreStyles){display:none!important}

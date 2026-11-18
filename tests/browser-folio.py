@@ -46,17 +46,16 @@ with sync_playwright() as p:
   # Repeated renders keep the horizontal collection position.
   page.locator('#grid').evaluate('(e)=>e.scrollLeft=100');left=page.locator('#grid').evaluate('(e)=>e.scrollLeft')
   page.evaluate('AtlasApp.refresh()');assert abs(page.locator('#grid').evaluate('(e)=>e.scrollLeft')-left)<2
-  page.locator('#selectionTray [data-folio-choice]').click();expect(page.locator('#folioChoice')).to_be_visible()
-  assert page.locator('#folioChoiceItems [data-remove]').count()==1
+  page.locator('#folioContinue').click();expect(page.locator('#briefDialog')).to_be_visible()
+  assert page.locator('#selectionList [data-similar]').count()==1
   page.screenshot(path=str(out/f'choice-{width}.png'),full_page=False,animations='disabled')
-  page.locator('#folioChoiceContinue').click();expect(page.locator('#briefDialog')).to_be_visible()
   assert not page.locator('#folioChoice').is_visible()
   expect(page.locator('#briefTitle')).to_be_focused()
   page.locator('#topic').fill('Explicar como o serviço funciona, com exemplos visuais')
-  page.locator('#prepare').click();expect(page.locator('#handoff')).to_be_visible()
+  page.locator('#folioContinue').click();expect(page.locator('#handoff')).to_be_visible()
   page.screenshot(path=str(out/f'brief-{width}.png'),full_page=False,animations='disabled')
   assert style_id in page.locator('#promptOutput').input_value()
-  page.locator('#copyPrompt').click();assert style_id in page.evaluate('navigator.clipboard.readText()')
+  page.locator('#folioContinue').click();assert style_id in page.evaluate('navigator.clipboard.readText()')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
   with page.expect_download() as download:page.locator('[data-starter-file="projeto-video.json"]').click()
   file=out/f'project-{width}.json';download.value.save_as(str(file));project=json.loads(file.read_text())
@@ -86,7 +85,7 @@ with sync_playwright() as p:
   # Persisted favorites and selection survive reload in the real site adapter.
   page.reload();page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')==style_id
-  page.locator('#folioBrowseAll').click();page.locator('#folioCategoryFilters>summary').click();page.locator('#favoriteFilter').click()
+  page.locator('#folioBrowseAll').click();page.locator('#favoriteFilter').click()
   assert page.locator('#grid [data-style-id]').count()==1
   assert page.locator('#grid [data-style-id]').first.get_attribute('data-style-id')==style_id
   page.locator('#folioHeader [data-app-view="help"]').click();expect(page.locator('#instalar')).to_be_visible()

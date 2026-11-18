@@ -200,7 +200,7 @@ Para abrir localmente: `npm ci`, `npm run atlas` e acesse `http://127.0.0.1:8770
 
 ## Interface de aplicativo e sequências · 4.2
 
-A biblioteca mantém o site estático, público e sem login. A navegação agora separa Estilos, Meu vídeo e Como usar. O briefing termina em um resumo legível; o comando completo fica em uma seção recolhida. Combine até dez estilos, escolha formato e duração, baixe o quadro principal e a sequência, copie o pedido e anexe as imagens na conversa de produção. O site não envia arquivos nem inicia gerações no ChatGPT.
+A biblioteca mantém o site estático, público e sem login. A navegação agora separa Estilos, Meu vídeo e Como usar. O briefing termina em um resumo legível; o comando completo fica em uma seção recolhida. Escolha um estilo por vídeo, informe formato e duração e copie o pedido pelo cabeçalho. “Procurar estilos parecidos” ajuda a encontrar alternativas. O pedido inclui descrição visual e links; não é necessário baixar imagens do catálogo. Envie os materiais reais do seu negócio quando a produção solicitar. O site não envia arquivos nem inicia gerações no ChatGPT.
 
 Cada direção recebe quatro estados conceituais e um plano de execução com aparência, ações, câmera, profundidade, transição, texto editável, áudio, recursos e critérios de revisão. São referências visuais fictícias, não 720 vídeos executados. Os seis vídeos históricos continuam disponíveis com aviso de aprovação pendente e de que antecedem estas imagens. A validação de movimento depende de uma nova amostra.
 

@@ -1,0 +1,158 @@
+{
+  "version": "2.13.0",
+  "scope": "single-style public UI, visible filters, neutral sticky navigation and presentation-only framing",
+  "checks": {
+    "typecheck": "passed",
+    "javascriptTests": 235,
+    "pythonTests": 9,
+    "sameChoiceAndLegacyMigrationFocusedTest": "passed",
+    "projectValidator": "passed",
+    "review": "no important remaining findings"
+  },
+  "browser": {
+    "navigation": {
+      "viewports": [
+        {
+          "width": 375,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        },
+        {
+          "width": 1440,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        }
+      ],
+      "errors": []
+    },
+    "darkUI": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAccent": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAccent": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "discovery": {
+      "checks": [
+        "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+        "390px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+        "430px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+        "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+      ],
+      "errors": [],
+      "viewports": [
+        {
+          "width": 375,
+          "height": 812,
+          "portraitRatio": 1.3333010835913313
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "portraitRatio": 1.3333025147928994
+        },
+        {
+          "width": 430,
+          "height": 932,
+          "portraitRatio": 1.3333333333333333
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "portraitRatio": 1.3333090697335857
+        }
+      ],
+      "catalogueGeometry": [
+        {
+          "width": 375,
+          "count": 1425,
+          "bad": []
+        },
+        {
+          "width": 1440,
+          "count": 1425,
+          "bad": []
+        }
+      ]
+    },
+    "singleStyle": {
+      "viewports": [
+        {
+          "width": 390,
+          "singleStyle": true,
+          "similarPreservesProject": true,
+          "draftResumed": true,
+          "descriptivePrompt": true,
+          "visibleFilters": true,
+          "stickyHeader": true
+        },
+        {
+          "width": 1440,
+          "singleStyle": true,
+          "similarPreservesProject": true,
+          "draftResumed": true,
+          "descriptivePrompt": true,
+          "visibleFilters": true,
+          "stickyHeader": true
+        }
+      ],
+      "errors": []
+    },
+    "embeddedPage": {
+      "checks": [
+        "embedded Fólio below 256 KiB",
+        "real catalogue and reference assets",
+        "collection and selection written to widget state",
+        "complete generated brief",
+        "localStorage access rejected by browser fixture",
+        "no viewport overflow"
+      ],
+      "errors": [],
+      "embeddedBytes": 257731
+    }
+  },
+  "framing": {
+    "styleCount": 1425,
+    "frameCount": 5700,
+    "sourceCount": 4905,
+    "adjustedFrames": 806,
+    "adjustedStyles": 239,
+    "imageFilesModified": false
+  },
+  "paidApisUsed": false
+}
