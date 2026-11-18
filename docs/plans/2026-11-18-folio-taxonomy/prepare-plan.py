@@ -76,6 +76,6 @@ result={'version':1,'status':'proposal_not_live','catalogVersion':c['version'],'
 result['audit']['duplicateProposedNames']=[name for name,count in collections.Counter(r['proposedName'].casefold() for r in rows).items() if count>1]
 (out/'matrix.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 with (out/'matrix.csv').open('w',newline='',encoding='utf-8-sig') as f:
- w=csv.writer(f,delimiter=';');w.writerow(['ID','Nome atual','Nome proposto','Recomendação de nome','Grupo atual','Objetivo principal proposto','Demais objetivos propostos','Subcategorias propostas','Segmento registrado','Revisão necessária','Uso registrado','Assinatura registrada'])
+ w=csv.writer(f,delimiter=';',lineterminator='\n');w.writerow(['ID','Nome atual','Nome proposto','Recomendação de nome','Grupo atual','Objetivo principal proposto','Demais objetivos propostos','Subcategorias propostas','Segmento registrado','Revisão necessária','Uso registrado','Assinatura registrada'])
  for r in rows:w.writerow([r['id'],r['currentName'],r['proposedName'],r['nameAction'],r['legacyFamilyName'],r['primaryObjective'],', '.join(v['objective'] for v in r['memberships'][1:]),', '.join(v['subcategory'] for v in r['memberships']),r['segment'],r['editorialReviewRequired'],r['uses'],r['signature']])
 print(json.dumps({'audit':result['audit'],'categories':result['categories']},ensure_ascii=False))
