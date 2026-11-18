@@ -49,6 +49,8 @@ Esta edição está consolidada na branch `main`. [Instalar a edição revisada]
 
 ## Biblioteca visual e publicidade
 
+A interface **Fólio por GDA** organiza a descoberta em Explicar, Apresentar e Vender, com coleções horizontais, filtro de nicho e uma revisão de escolhas no celular. [Como navegar e executar localmente](docs/FOLIO.md). A interface não altera o conteúdo dos estilos nem as aprovações de produção.
+
 **440 anúncios por segmento:** 11 subcategorias com 40 propostas cada, reunindo os 60 anúncios anteriores e 380 novos. Moda; alimentação e bebidas; casa e decoração; joias; serviços jurídicos; pets; automotivo; turismo; beleza; serviços residenciais; infantil e maternidade. Direções naturais/UGC e campanhas elaboradas, com DBO/AIDA, narração, legendas editáveis e CTA. [Pesquisa, uso e limites](docs/SEGMENT-ADS-4.4.md).
 
 [Revisão e limites da versão 2.5.1](docs/AUDIT-2.5.1.md).

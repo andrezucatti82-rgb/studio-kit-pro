@@ -3,7 +3,7 @@
  const $=id=>document.getElementById(id);let selected=[],stage='briefing',ready=false,viewerStyle=null,viewerIndex=0,returnFocus=null;
  const base=()=>window.ATLAS_ASSET_BASE||'';
  function view(name){
-  document.body.dataset.view=name;if(name==='library')document.querySelector('.library-actions').prepend($('startGuided'));else if(name==='project')document.querySelector('.project-heading').append($('startGuided'));
+  document.body.dataset.view=name;window.AtlasFolio?.onView(name);if(name==='library')document.querySelector('.library-actions').prepend($('startGuided'));else if(name==='project')document.querySelector('.project-heading').append($('startGuided'));
   document.querySelectorAll('[data-app-view]').forEach(b=>{const active=b.dataset.appView===name;b.setAttribute('aria-current',active?'page':'false')});
   if(name!=='brief'&&$('briefDialog').open)$('briefDialog').close();
   if(name==='project'){$('myProject').hidden=false;$('projectTitle').focus({preventScroll:true})}
@@ -17,7 +17,7 @@
  }
  function openBrief(){
   if(!selected.length){view('library');$('libraryTitle').focus({preventScroll:true});return}
-  document.body.dataset.view='brief';document.querySelector('.brief-heading').append($('startGuided'));
+  document.body.dataset.view='brief';window.AtlasFolio?.onView('brief');document.querySelector('.brief-heading').append($('startGuided'));
   if(!$('briefDialog').open)$('briefDialog').show();
   const prepared=window.AtlasCurrentChoice?.().requestPrepared;
   setStage(prepared?'review':'briefing');
