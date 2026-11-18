@@ -1,0 +1,209 @@
+{
+  "status": "published_verified",
+  "url": "https://videos.gerenciadordeanuncios.com.br/",
+  "release": "atlas-20261118205816",
+  "publishedAt": "2026-11-18T18:05:52.086000-03:00",
+  "verifiedAt": "2026-11-18T18:08:25.563000-03:00",
+  "pullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/28",
+  "mergeCommit": "5485a4e9ee5bc9f4734a50df4391d747bbf8ab22",
+  "implementationHead": "1580eb76b8661d076fe12680e6f999221da8eaa3",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "navigation": {
+    "menuGapBoundPx": 8,
+    "firstCategoryStyleGapBoundPx": 105,
+    "extraNavigationRows": false,
+    "filters": "collapsed native disclosure for category and all-style browsing",
+    "inDocumentFlow": true
+  },
+  "accents": {
+    "green": "actual active filter/selection state",
+    "blue": "primary actions, active context and keyboard focus",
+    "blueButtonText": "white"
+  },
+  "backup": {
+    "outsideDocumentRoot": true,
+    "readbackVerified": true,
+    "copyApiByteProbeVerified": true,
+    "priorIndexDigest": "b5b81bbdb1b667593ce1da1f90eaa95f12aa618472e23b8961d041660310185e",
+    "previousRelease": "atlas-20261118203329",
+    "previousReleasePreserved": true
+  },
+  "deployment": {
+    "changedFiles": [
+      "como-instalar.html",
+      "downloads/studio-kit-pro-installer.zip",
+      "folio-ui.js",
+      "folio.css",
+      "installation.json"
+    ],
+    "publicHashesVerified": 43,
+    "entryDigest": "8e7754803500f15732e9555fe64bd1dd768c86c1e55010e6bd271114b06cb234",
+    "originReadbackVerified": true,
+    "publicReadbackVerified": true
+  },
+  "installer": {
+    "sourceRevision": "0b16ffa9d283946d9b2d956b068b1751b4088c97",
+    "sourceReady": true,
+    "bytes": 668277,
+    "sha256": "7236e5b6f71ba08ac9eabbd4790caff2e9785e3ca727ccfc4cf80cebd57beb9b",
+    "skills": 7,
+    "presenterStyles": 265
+  },
+  "downloadedPanelSample": {
+    "matchesPriorPublication": true,
+    "sha256": "b80272007537336d6f5affeb2722b7bfdeee44fec86cc07f26276e3146ae342d",
+    "checkedAtWidths": [
+      375,
+      1440
+    ]
+  },
+  "regression": {
+    "javascript": 223,
+    "python": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed",
+    "finalDistributionChecks": 7,
+    "finalNavigationUnitChecks": 6
+  },
+  "independentReview": "no blocking issue; spacing, focus, disclosure, state colors and white CTA text verified; additional widths320–1920 inspected",
+  "browserEvidence": {
+    "stage-menu": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAndBlue": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAndBlue": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "stage-smoke": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/atlas-20261118205816/",
+      "release": "atlas-20261118205816",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "stage-inline": {
+      "viewports": [
+        {
+          "width": 375,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        },
+        {
+          "width": 1440,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        }
+      ],
+      "errors": []
+    },
+    "live-menu": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAndBlue": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAndBlue": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "live-smoke": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/",
+      "release": "atlas-20261118205816",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "live-inline": {
+      "viewports": [
+        {
+          "width": 375,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        },
+        {
+          "width": 1440,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  "changedGitHistorySecretScan": "Gitleaks: zero findings",
+  "nativeAllDeviceTesting": false,
+  "accessibilityCertification": false,
+  "paidApisUsed": false
+}
