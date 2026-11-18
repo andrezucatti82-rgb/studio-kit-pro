@@ -3,9 +3,52 @@
  const $=id=>document.getElementById(id),model=globalThis.FolioCollections;
  if(!model||!$('folioCollections'))return;
  const esc=value=>AtlasViews.esc(value),base=()=>window.ATLAS_ASSET_BASE||'';
+ // Keep the existing feature APIs, but render each workspace in document flow.
+ // Nested inspection (style -> frame) replaces the current page and returns to
+ // it, rather than stacking modal layers or blocking the rest of the interface.
+ const panelHost=document.createElement('div');panelHost.id='folioPanelHost';panelHost.hidden=true;
+ document.body.insertBefore(panelHost,document.querySelector('.app-main'));
+ document.body.insertBefore($('folioMenu'),panelHost);
+ const panelStack=[];let panelView=document.body.dataset.view,resettingPanels=false;
+ function syncPanels(){
+  const current=panelStack.at(-1)?.panel;panelHost.hidden=!current;
+  if(current)document.body.dataset.folioPanel=current.id;else delete document.body.dataset.folioPanel;
+  panelHost.querySelectorAll('dialog').forEach(p=>p.classList.toggle('is-current',p===current));
+ }
+ function registerPanel(panel){
+  if(panel.dataset.inlinePage)return;
+  panel.dataset.inlinePage='true';panel.classList.add('folio-page-panel');panel.tabIndex=-1;
+  const show=panel.show.bind(panel),close=panel.close.bind(panel);
+  panelHost.append(panel);
+  const back=panel.querySelector('[data-close], [data-folio-close], #pickerClose');
+  if(back){back.textContent='← Voltar';back.classList.add('folio-panel-back');}
+  panel.showModal=()=>{
+   const trigger=document.activeElement;
+   closeMenu();
+   if(panel.open)return;
+   panelStack.push({panel,trigger,scroll:window.scrollY,view:document.body.dataset.view});
+   show();syncPanels();panel.focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
+  };
+  panel.close=value=>{
+   if(!panel.open)return;
+   const index=panelStack.findIndex(p=>p.panel===panel),entry=panelStack[index],wasCurrent=index===panelStack.length-1;
+   close(value);if(index>=0)panelStack.splice(index,1);syncPanels();
+   if(!resettingPanels&&entry&&wasCurrent&&entry.view===document.body.dataset.view){
+    window.scrollTo({top:entry.scroll,behavior:'auto'});
+    if(entry.trigger?.isConnected&&entry.trigger.getClientRects().length)entry.trigger.focus({preventScroll:true});
+   }
+  };
+ }
+ window.AtlasInlinePanels={register:registerPanel,reset(){resettingPanels=true;for(const {panel} of [...panelStack].reverse())panel.close();resettingPanels=false;},onView(view){if(view!==panelView){panelView=view;this.reset();}}};
+ document.querySelectorAll('dialog:not(#briefDialog):not(#categoryDrawer)').forEach(registerPanel);
+ document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape'||e.defaultPrevented||!panelStack.length)return;
+  e.preventDefault();const panel=panelStack.at(-1).panel;
+  if(panel.dispatchEvent(new Event('cancel',{cancelable:true})))panel.close();
+ });
  const icons={heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1C0 9 6 15 12 21c6-6 12-12 8-16Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>'};
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
- let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuDestination,choiceTrigger,gridScroll=0,homeScroll=0;
+ let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,gridScroll=0,homeScroll=0;
  const state={goal:'explain',mode:'home',collection:'',niche:''};
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
  function picture(s,small=true){
@@ -87,8 +130,9 @@
   if(!lightFrame)lightFrame=requestAnimationFrame(()=>{lightFrame=0;if(litCover){litCover.style.setProperty('--light-x',`${lightX}px`);litCover.style.setProperty('--light-y',`${lightY}px`);}});
  },{passive:true});
  document.addEventListener('pointerout',e=>{if(!e.relatedTarget){litCover?.classList.remove('is-lit');litCover=null;}});
- function catalogue(){state.niche='';state.mode='catalogue';state.collection='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
+ function catalogue(){window.AtlasInlinePanels.reset();state.niche='';state.mode='catalogue';state.collection='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
+  window.AtlasInlinePanels.reset();
   state.mode='home';state.collection='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   requestAnimationFrame(()=>{window.scrollTo({top:restore?homeScroll:0,behavior:'auto'});if(!restore)$('folioDiscoveryTitle').focus({preventScroll:true});});
  }
@@ -100,7 +144,8 @@
  function syncNavigation(view){
   const skip=document.querySelector('.skip-link');let content=view==='help'?$('installTitle'):view==='brief'?$('briefTitle'):view==='library'?(state.mode==='home'?$('folioDiscoveryTitle'):$('folioCollectionTitle')):$('projectTitle');
   if(skip&&content){if(!content.id)content.id='folioContentTitle';content.tabIndex=-1;skip.href='#'+content.id;skip.textContent='Pular para o conteúdo';}
-  if(view!=='library'){closeMenu();if($('folioChoice').open){choiceTrigger=view==='brief'?$('briefTitle'):choiceTrigger;$('folioChoice').close();}}
+  window.AtlasInlinePanels.onView(view);
+  if(view!=='library'){closeMenu();if($('folioChoice').open){$('folioChoice').close();}}
   document.querySelectorAll('[data-folio-home]').forEach(b=>b.setAttribute('aria-current',view==='library'?'page':'false'));
   document.querySelectorAll('[data-folio-choice]').forEach(b=>b.setAttribute('aria-current',['brief','project'].includes(view)?'page':'false'));
  }
@@ -108,7 +153,7 @@
  const categoryBar=document.createElement('nav');categoryBar.className='folio-category-bar';categoryBar.setAttribute('aria-label','Categorias de estilos');$('folioHeader').insertBefore(categoryBar,$('folioHeader').lastElementChild);
  const shortNames={commercial:'Publicidade','natural-ads':'Por segmento',business:'Serviços',technology:'Tecnologia',presenters:'Apresentador',movement:'Motion',visual:'Estéticas'};
  function renderCategoryBar(){
-  categoryBar.innerHTML=window.AtlasNavigation.groups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-label="${esc(g.name)}" ${g.directFamily?'':`aria-haspopup="dialog" aria-controls="folioMenu" aria-expanded="false"`}><span>${esc(shortNames[g.id]||g.name)}</span>${g.directFamily?'':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>'}</button>`).join('');
+  categoryBar.innerHTML=window.AtlasNavigation.groups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-label="${esc(g.name)}" ${g.directFamily?'':`aria-controls="folioMenu" aria-expanded="false"`}><span>${esc(shortNames[g.id]||g.name)}</span>${g.directFamily?'':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>'}</button>`).join('');
  }
  function menuRows(){
   const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),q=norm($('folioMenuSearch').value);
@@ -129,13 +174,18 @@
   $('folioMenuGroups').innerHTML=`<div class="folio-group-list" aria-label="Grupos de categorias">${(q?matches:entries).map(groupButton).join('')}</div>${detail}`;
   $('folioMenuEmpty').hidden=!q||matches.length+segments.length>0;
  }
- function closeMenu(destination){if(destination)menuDestination=destination;if($('folioMenu').open){menuDestination=menuDestination||menuTrigger;$('folioMenu').close();}}
+ function closeMenu(destination){
+  if($('folioMenu').hidden)return;
+  $('folioMenu').hidden=true;$('folioOpenMenu').setAttribute('aria-expanded','false');categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  const target=destination||menuTrigger;(target?.isConnected&&target.getClientRects().length?target:$('folioOpenMenu')).focus({preventScroll:true});
+ }
  function showMenu(trigger,group=''){
-  menuTrigger=trigger;menuDestination=null;menuGroup=group||(!wideMenu.matches?'':menuGroup);$('folioMenuSearch').value='';menuRows();$('folioMenu').style.setProperty('--folio-menu-top',`${Math.min(160,Math.max(20,trigger.getBoundingClientRect().bottom+12))}px`);$('folioMenu').showModal();$('folioOpenMenu').setAttribute('aria-expanded','true');
-  categoryBar.querySelectorAll('[data-folio-open-group][aria-haspopup]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));$('folioMenuSearch').focus();
+  if(!$('folioMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
+  window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group||(!wideMenu.matches?'':menuGroup);$('folioMenuSearch').value='';menuRows();$('folioMenu').hidden=false;$('folioOpenMenu').setAttribute('aria-expanded','true');
+  categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));$('folioMenuSearch').focus({preventScroll:true});
  }
  wideMenu.addEventListener('change',()=>{
-  if(!$('folioMenu').open)return;
+  if($('folioMenu').hidden)return;
   const focused=document.activeElement,inside=$('folioMenu').contains(focused),focusedId=focused.id;
   menuRows();
   if(!inside||!focused.isConnected||!focused.getClientRects().length){
@@ -144,6 +194,7 @@
   }
  });
  function selectCategory({family='',group=''}={}){
+  window.AtlasInlinePanels.reset();
   state.mode='catalogue';state.collection='';state.niche='';gridScroll=0;closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   if(group)window.AtlasApp.setCategoryGroup(group);
@@ -155,7 +206,7 @@
   $('folioChoiceItems').innerHTML=ids.map((id,i)=>{const s=window.AtlasApp.getStyle(id);return `<article class="folio-chosen"><button type="button" data-detail="${esc(id)}" aria-label="Examinar ${esc(s.name)}">${picture(s)}</button><div><small>${i===0?'Estilo principal':'Referência complementar'}</small><h3>${esc(s.name)}</h3><button type="button" class="text-button" data-contributions="${esc(id)}">Escolher características →</button></div><button type="button" data-remove="${esc(id)}" class="folio-icon-button" aria-label="Remover ${esc(s.name)} da minha escolha">×</button></article>`;}).join('');
   $('folioChoiceContinue').disabled=!ids.length;
  }
- function showChoice(trigger){choiceTrigger=trigger;renderChoice();$('folioChoice').showModal();}
+ function showChoice(trigger){window.AtlasInlinePanels.reset();renderChoice();$('folioChoice').showModal();}
  window.AtlasFolio={filter,beforeRender,update,onView:syncNavigation,getState:()=>({...state})};
  // Listeners are installed before app.js: a free-text search starts across all styles.
  $('search').addEventListener('input',()=>{state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.niche='';gridScroll=0;});
@@ -165,10 +216,8 @@
  $('folioNiche').addEventListener('change',()=>{state.niche=$('folioNiche').value;gridScroll=0;refresh();});
  $('folioOpenMenu').addEventListener('click',e=>showMenu(e.currentTarget));
  $('folioMenuSearch').addEventListener('input',menuRows);
- $('folioMenu').addEventListener('close',()=>{$('folioOpenMenu').setAttribute('aria-expanded','false');categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));const target=menuDestination||menuTrigger;(target?.isConnected&&target.getClientRects().length?target:$('folioOpenMenu')).focus({preventScroll:true});menuDestination=null;});
- $('folioChoice').addEventListener('close',()=>choiceTrigger?.focus({preventScroll:true}));
- for(const id of ['folioMenu','folioChoice'])$(id).addEventListener('click',e=>{if(e.target===$(id)){const r=$(id).getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$(id).close();}});
- $('folioChoiceContinue').addEventListener('click',()=>{choiceTrigger=$('briefTitle');$('folioChoice').close();window.AtlasShell.openBrief();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!$('folioMenu').hidden){e.preventDefault();closeMenu();}});
+ $('folioChoiceContinue').addEventListener('click',()=>{$('folioChoice').close();window.AtlasShell.openBrief();});
  $('folioBack').addEventListener('click',()=>home({restore:true}));$('folioChangeGoal').addEventListener('click',()=>home());
  $('folioBrowseAll').addEventListener('click',catalogue);
  document.addEventListener('click',e=>{
@@ -179,7 +228,7 @@
   if(t.closest('[data-folio-back]'))home({restore:true});
   if(t.closest('[data-folio-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-folio-choice]');if(choice)showChoice(choice);
-  const closer=t.closest('[data-folio-close]');if(closer)closer.closest('dialog')?.close();
+  const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
   if(t.closest('#folioMenu [data-install-open]'))closeMenu($('installTitle'));
   const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else showMenu(openGroup,g.id);}
   if(t.closest('[data-folio-menu-back]')){menuGroup='';menuRows();$('folioMenuGroups').querySelector('[data-folio-group]')?.focus();}

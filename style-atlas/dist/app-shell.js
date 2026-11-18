@@ -77,7 +77,7 @@
  $('briefDialog').addEventListener('close',()=>{if(document.body.dataset.view==='brief')view('library')});
  $('sequencePrev').onclick=()=>{if(viewerIndex>0){viewerIndex--;updateFrame()}};$('sequenceNext').onclick=()=>{if(viewerIndex<3){viewerIndex++;updateFrame()}};
  $('sequenceDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')$('sequencePrev').click();if(e.key==='ArrowRight')$('sequenceNext').click()});
- $('sequenceDialog').addEventListener('close',()=>returnFocus?.focus());
+ $('sequenceDialog').addEventListener('close',()=>{if(!window.AtlasInlinePanels)returnFocus?.focus();});
  window.AtlasShell={openBrief,selectionChanged,prepared(){setStage('review');$('handoffTitle').focus({preventScroll:true})},edit(){setStage('briefing')},view,afterRender(){window.AtlasNavigation?.sync();document.querySelectorAll('#grid [data-style-id]').forEach(card=>card.classList.toggle('is-selected',selected.some(s=>s.id===card.dataset.styleId)))}};
  function routeBriefHash(){if(window.location.hash!=='#briefSection')return;if(selected.length)openBrief();else{view('library');$('startGuided').click();}}
  window.addEventListener('hashchange',()=>{if(ready)routeBriefHash()});
