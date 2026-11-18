@@ -1,8 +1,3 @@
----
-name: video-explicador-interativo
-description: Use when recorded presenters or explicitly selected avatars explain concepts through speech-synchronized diagrams, hand/object interaction, masks, tracking, depth, contextual environments, or commercial presenter-led recipes.
----
-
 # Explicador interativo · 2.12.0
 
 Planeje pessoa e explicação como uma atuação conjunta. Os vinte mecanismos são técnicas; as 265 receitas são aplicações em cinquenta e três segmentos. Uma receita não certifica extração automática ou qualidade em qualquer bruto.

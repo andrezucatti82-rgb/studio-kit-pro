@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-18",
+  "scope": "local candidate; no site publication or account installation",
+  "publicSkills": [
+    "video-multimarcas"
+  ],
+  "internalModules": [
+    "video-planejamento",
+    "video-explicador-interativo",
+    "video-publicidade",
+    "video-edicao",
+    "video-vfx",
+    "video-tratamento",
+    "video-revisao"
+  ],
+  "checks": {
+    "javascript": {
+      "passed": 232,
+      "failed": 0
+    },
+    "python": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "projectValidation": "passed",
+    "catalogPrompts": 1425,
+    "partialContributionChecks": 25650,
+    "archiveSingleSkillEntry": "passed",
+    "archiveMarkdownLinks": "passed",
+    "legacyMigrationBothAgents": "passed",
+    "customAndExternalPreservation": "passed",
+    "rollbackAfterLegacyRetirement": "passed",
+    "missingModuleFailsBeforeStaging": "passed",
+    "conditionalRuntimeModuleLoading": "passed"
+  },
+  "browser": {
+    "checks": [
+      "375px: both destinations clipboard, real TXT/JSON downloads, VFX route, palette-only exclusion, persisted scope and effects adjustment",
+      "1440px: both destinations clipboard, real TXT/JSON downloads, VFX route, palette-only exclusion, persisted scope and effects adjustment"
+    ],
+    "errors": [],
+    "audiovisualValidation": "not_run"
+  },
+  "siteHandoffBrowser": {
+    "checks": [
+      "375px: briefSection without selection opens guided start",
+      "375px: style intent, actual clipboard for both destinations, complete JSON download and restored selection",
+      "1440px: briefSection without selection opens guided start",
+      "1440px: style intent, actual clipboard for both destinations, complete JSON download and restored selection"
+    ],
+    "errors": [],
+    "publicSite": {
+      "status": 200,
+      "title": "Fólio por GDA · Encontre o visual da sua ideia",
+      "interactionTested": false
+    }
+  },
+  "embeddedPage": {
+    "orderedPageSaves": true,
+    "claudeLinkInPageMode": true,
+    "pageLimitWarningWithoutLocalStorage": true,
+    "overLimitProjectDownload": true,
+    "pageErrors": []
+  },
+  "audiovisualValidation": "not_run"
+}

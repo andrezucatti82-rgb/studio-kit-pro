@@ -1,8 +1,3 @@
----
-name: video-revisao
-description: Use when a rendered video, revised edit, representative sample, captions, identity, audio, delivery package, or claimed approval needs verification before delivery or publication.
----
-
 # Revisão e entrega · 2.12.0
 
 Avalie o arquivo exato contra o briefing e seus escopos. Receba MP4 candidato, hash, plano, originais, referências inspecionadas, legenda e registros de decisão. Leia [produção e qualidade](../production-and-qa.md), [identidade](../identity-preservation.md), [execução fiel](../execution-fidelity.md) e [aprovações](../universal-visual-approval.md).

@@ -1,47 +1,57 @@
 {
-  "version": 3,
+  "version": 4,
   "kitVersion": "2.12.0",
   "orchestrator": "video-multimarcas",
+  "entryPoint": "video-multimarcas",
   "skills": [
     {
       "id": "video-multimarcas",
-      "name": "Orquestração",
+      "name": "Studio Kit Pro",
       "role": "coordinator"
-    },
+    }
+  ],
+  "modules": [
     {
       "id": "video-planejamento",
       "name": "Planejamento e direção",
-      "role": "planning"
+      "role": "planning",
+      "instructions": "references/skill-modules/video-planejamento.md"
     },
     {
       "id": "video-explicador-interativo",
       "name": "Apresentador e explicação",
-      "role": "presenter"
+      "role": "presenter",
+      "instructions": "references/skill-modules/video-explicador-interativo.md"
     },
     {
       "id": "video-publicidade",
       "name": "Publicidade e ofertas",
-      "role": "advertising"
+      "role": "advertising",
+      "instructions": "references/skill-modules/video-publicidade.md"
     },
     {
       "id": "video-edicao",
       "name": "Edição, motion e áudio",
-      "role": "editing"
+      "role": "editing",
+      "instructions": "references/skill-modules/video-edicao.md"
     },
     {
       "id": "video-vfx",
       "name": "VFX e composição por plano",
-      "role": "vfx"
+      "role": "vfx",
+      "instructions": "references/skill-modules/video-vfx.md"
     },
     {
       "id": "video-tratamento",
       "name": "Tratamento e finalização técnica",
-      "role": "finishing"
+      "role": "finishing",
+      "instructions": "references/skill-modules/video-tratamento.md"
     },
     {
       "id": "video-revisao",
       "name": "Revisão e entrega",
-      "role": "review"
+      "role": "review",
+      "instructions": "references/skill-modules/video-revisao.md"
     }
   ]
 }

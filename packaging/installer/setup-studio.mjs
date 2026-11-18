@@ -116,9 +116,10 @@ export async function installStudio(options){
   step='skills';
   // Canonical discovery files already belong to the extracted repository. Avoid replacing
   // Claude bridge files: that would change verified source bytes and break safe resume.
-  const ids=JSON.parse(await fs.readFile(path.join(target,'.agents/skills/video-multimarcas/references/skill-system.json'),'utf8')).skills.map(s=>s.id);
+  const system=JSON.parse(await fs.readFile(path.join(target,'.agents/skills/video-multimarcas/references/skill-system.json'),'utf8')),ids=system.skills.map(s=>s.id);
+  for(const module of system.modules)await fs.access(path.join(target,'.agents/skills/video-multimarcas',module.instructions));
   for(const id of ids){await fs.access(path.join(target,'.agents/skills',id,'SKILL.md'));await fs.access(path.join(target,'.claude/skills',id,'SKILL.md'));}
-  report.steps.skills={status:'passed',count:ids.length,discovery:agent};await save();
+  report.steps.skills={status:'passed',count:ids.length,internalModules:system.modules.length,discovery:agent};await save();
   step='runtime_check';await run(process.execPath,['scripts/setup-check.mjs'],{cwd:target});report.steps.runtime='passed';await save();
   // Keep a portable Node installation with this project so deleting the downloaded ZIP
   // directory does not remove its runtime. No global PATH/profile changes.

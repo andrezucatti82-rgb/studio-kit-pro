@@ -1,7 +1,7 @@
 # Studio Kit Pro · Vídeo Multimarcas
 
 
-Um pacote completo, oito skills: **video-multimarcas** coordena **video-planejamento**, **video-explicador-interativo**, **video-publicidade**, **video-edicao**, **video-vfx**, **video-tratamento** e **video-revisao**. O site exporta a aplicação de cada estilo e o roteamento correspondente. Codex/Claude Code executam com runtime verificado; chat sem execução conclui etapas disponíveis e informa dependências. [Instalador e tutorial](docs/COMECE-AQUI.html) · [Cobertura de tratamento](docs/VIDEO-TREATMENT-AUDIT.md) · [Instalação](docs/INSTALL-SKILL.md) · [Arquitetura e limites](docs/SKILL-SYSTEM-2.12.md) · [Auditoria VFX e prompts](docs/VFX-ORCHESTRATION-AUDIT.md).
+Uma única skill pública, **video-multimarcas**, seleciona sete módulos internos: **video-planejamento**, **video-explicador-interativo**, **video-publicidade**, **video-edicao**, **video-vfx**, **video-tratamento** e **video-revisao**. O site exporta a aplicação de cada estilo e o roteamento correspondente. Codex/Claude Code executam com runtime verificado; chat sem execução conclui etapas disponíveis e informa dependências. [Instalador e tutorial](docs/COMECE-AQUI.html) · [Cobertura de tratamento](docs/VIDEO-TREATMENT-AUDIT.md) · [Instalação](docs/INSTALL-SKILL.md) · [Arquitetura e limites](docs/SKILL-SYSTEM-2.12.md) · [Auditoria VFX e prompts](docs/VFX-ORCHESTRATION-AUDIT.md) · [Entrada única e migração](docs/SINGLE-ENTRY.md).
 
 A busca da versão 2.12.0 usa tags internas nos 1.425 estilos, sinônimos, acentos e combinação de termos. [Busca por conteúdo e manutenção das tags](docs/SEARCH.md).
 

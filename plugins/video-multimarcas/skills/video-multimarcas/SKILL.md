@@ -25,7 +25,7 @@ Resuma o vídeo entendido, os materiais realmente recebidos e a próxima entrega
 | Cor, textura, restauração, diagnóstico e especificação técnica | [video-tratamento](references/skill-modules/video-tratamento.md) |
 | Evidência audiovisual e entrega | [video-revisao](references/skill-modules/video-revisao.md) |
 
-No pacote completo, esses módulos também são skills registradas com os mesmos nomes. As referências incorporadas são geradas das mesmas fontes para hosts que importam uma única skill. Leia apenas os módulos pertinentes; responsabilidades não significam agentes paralelos executados. A orquestradora mantém decisões/arquivos e recebe de cada módulo resultado, pendências, evidência e próxima ação.
+Existe uma única skill pública e instalável: `video-multimarcas`. As sete especialidades são módulos internos canônicos em `references/skill-modules/`, com referências e templates próprios. A orquestradora resolve `skillRouting` e lê apenas os módulos pertinentes; nunca peça ao usuário que escolha ou instale especialistas. IDs como `primarySkill` são responsabilidades internas, preservados para compatibilidade com projetos anteriores; responsabilidades não significam agentes paralelos executados. A orquestradora mantém decisões/arquivos e recebe de cada módulo resultado, pendências, evidência e próxima ação.
 
 Só a cor/tipografia de uma receita não exige sua pessoa, oferta, cenário ou ação. Pedidos mistos preservam todos os papéis e escopos. O principal e os originais continuam a orientar a coerência. A atuação de explicador é planejada junto do motion; selecionar avatar e voz exige recursos e escolha reais.
 

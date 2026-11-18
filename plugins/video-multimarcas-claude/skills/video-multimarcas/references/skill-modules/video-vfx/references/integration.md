@@ -16,9 +16,9 @@ O mesmo executor pode cumprir funções diferentes; não alegar revisão indepen
 
 ## Acionar a skill
 
-Pedido combinado: “Use $video-multimarcas com $video-vfx. Quero substituir a tela do celular no shot-03, mantendo mão, reflexos e interface fiel.”
+Pedido combinado: “Use $video-multimarcas. Quero substituir a tela do celular no shot-03, mantendo mão, reflexos e interface fiel.”
 
-Pedido isolado: “Use $video-vfx. Remova o boom deste clipe e preserve a textura do teto.”
+Pedido isolado: “Use $video-multimarcas para VFX. Remova o boom deste clipe e preserve a textura do teto.”
 
 O contrato compartilhado `style-atlas/dist/workflow.js` calcula a rota v3 pelas contribuições/escopos e campos positivos da receita. `masks`/`effects` exigem diagnóstico VFX; direção/movimento/profundidade trazem somente as técnicas pertinentes. Paleta, tipografia e som isolados não importam composição ou pessoa. `productionContract.vfxInput` lista as contribuições que motivaram a rota. A detecção orienta o breakdown; não comprova executor e não cobre todo pedido futuro. Um ajuste explícito na conversa também pode exigir VFX: a coordenadora registra a alteração de escopo/dependências sem modificar bytes/hash do contexto importado. Motion gráfico simples fica em edição. Para outro orquestrador, forneça IDs, assets, decisões, evidências e próxima dependência; não presuma skill instalada na conta destino.
 
@@ -52,4 +52,4 @@ Amostra integrada deve demonstrar o efeito mais difícil no contexto com passage
 
 ## Instalação
 
-O kit completo registra `video-vfx` para Codex/Claude Code; o pacote mínimo da orquestradora incorpora instruções, referências e templates. A integração não instala compositor/DCC/plugins, conecta contas ou atualiza automaticamente ChatGPT/Claude e o site público. Em chat sem execução, conclua planejamento/diagnóstico possível e identifique a capacidade necessária para produzir o arquivo.
+O kit registra somente `video-multimarcas` para Codex/Claude Code. `video-vfx` é um módulo interno em `references/skill-modules/`, com instruções, referências e templates. A integração não instala compositor/DCC/plugins, conecta contas ou atualiza automaticamente ChatGPT/Claude e o site público. Em chat sem execução, conclua planejamento/diagnóstico possível e identifique a capacidade necessária para produzir o arquivo.

@@ -1,8 +1,3 @@
----
-name: video-planejamento
-description: Use when a video request needs material inspection, brand research, script, art direction, moodboard, storyboard, or a scoped revision of preproduction.
----
-
 # Planejamento de vídeo · 2.12.0
 
 Transforme a intenção escolhida num plano executável. A entrada é o pedido completo, `styleContributions`, referências, arquivos acessíveis e histórico. A saída é roteiro, mapa de contribuições, plano por fala/ação e painéis visuais com estado de aprovação real.

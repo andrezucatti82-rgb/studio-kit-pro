@@ -3,8 +3,9 @@
   "sourceSkill": "vfx-effects",
   "sourceVersion": "1.0.0",
   "retrievedAt": "2026-11-18",
-  "kitSkill": "video-vfx",
   "externalSkillModified": false,
   "researchReferencesReverified": false,
-  "softwareInstalledBySkill": false
+  "softwareInstalledBySkill": false,
+  "kitModule": "video-vfx",
+  "publicSkill": "video-multimarcas"
 }

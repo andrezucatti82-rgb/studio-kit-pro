@@ -1,8 +1,3 @@
----
-name: video-edicao
-description: Use when a video needs footage assembly, B-roll, editable motion graphics, captions, masks, verified tracks, transitions, audio mixing, or a scoped edit to existing media.
----
-
 # Edição, motion e áudio · 2.12.0
 
 Execute o plano com mídia real e entregue arquivos editáveis e um MP4 candidato. A entrada inclui escolhas/escopos, plano atual, fontes registradas, relógio da fala e aprovações pertinentes. Leia [execução pelo runtime](../orchestrator-execution.md), [fidelidade de execução](../execution-fidelity.md), [acabamento natural](../natural-finish.md) e, quando aplicável, [operadores de apresentador](../presenter-interaction.md).

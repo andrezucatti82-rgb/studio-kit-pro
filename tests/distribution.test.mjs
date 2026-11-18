@@ -10,11 +10,12 @@ test('Codex, Claude and runtime archives match canonical files, versions and int
 from pathlib import Path
 import json,hashlib,zipfile
 r=Path.cwd();version=json.loads((r/'package.json').read_text())['version'];release=json.loads((r/'dist/release-manifest.json').read_text());assert release['kitVersion']==version and release['pluginVersion']==version
-ids=[s['id'] for s in release['skillSystem']['skills']];assert len(ids)==8
+ids=[s['id'] for s in release['skillSystem']['skills']];assert ids==['video-multimarcas'];assert len(release['skillSystem']['modules'])==7
 for name,record in release['packages'].items():assert hashlib.sha256((r/'dist'/name).read_bytes()).hexdigest()==record['sha256']
 for archive_name,manifest_name in [('video-multimarcas-plugin.zip','.codex-plugin/plugin.json'),('video-multimarcas-claude-plugin.zip','.claude-plugin/plugin.json')]:
  with zipfile.ZipFile(r/'dist'/archive_name) as z:
   assert z.testzip() is None;assert json.loads(z.read(manifest_name))['version']==version
+  assert [n for n in z.namelist() if n.endswith('/SKILL.md')]==['skills/video-multimarcas/SKILL.md']
   import re,posixpath
   for target in re.findall(r'\]\(([^)]+)\)',z.read('INSTALL.md').decode()):
    if ':' not in target and not target.startswith('#'):assert target in z.namelist(),target
@@ -33,8 +34,8 @@ with zipfile.ZipFile(r/'dist/video-multimarcas.skill') as z:
  for target in re.findall(r'\]\(([^)]+)\)',z.read('video-multimarcas/INSTALL.md').decode()):
   if ':' not in target and not target.startswith('#'):assert 'video-multimarcas/'+target in z.namelist(),target
  assert z.read('video-multimarcas/COMECE-AQUI.html')==(r/'docs/COMECE-AQUI.html').read_bytes()
- for sid in ids[1:]:
-  entry='video-multimarcas/references/skill-modules/'+sid+'.md';body=z.read(entry).decode()
+ for module in release['skillSystem']['modules']:
+  entry='video-multimarcas/'+module['instructions'];body=z.read(entry).decode()
   for target in re.findall(r'\]\(([^)]+)\)',body):
    if ':' not in target and not target.startswith('#'):assert posixpath.normpath(posixpath.join(posixpath.dirname(entry),target.split('#')[0])) in z.namelist(),(entry,target)
 with zipfile.ZipFile(r/'dist/video-multimarcas-runtime.zip') as z:

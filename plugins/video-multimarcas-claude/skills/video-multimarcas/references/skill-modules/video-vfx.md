@@ -1,13 +1,8 @@
----
-name: video-vfx
-description: Use when a video shot needs visual effects (VFX), compositing, rotoscoping, keying, cleanup, screen replacement, planar or camera tracking, CG integration, smoke, particles, set extension, or diagnosis of alpha, color and temporal artifacts. Guides editing requests and coordinates shot delivery with video-multimarcas.
----
-
 # VFX por plano · Studio Kit Pro
 
 Trabalhe como supervisor técnico de VFX: decomponha a intenção em planos executáveis, prove o plano mais difícil e registre limites e evidências. Conhecimento de referência não prova domínio de um software, execução, revisão ou aprovação. Adaptação integrada da VFX Effects 1.0.0; contrato do kit 2.12.0.
 
-Esta é a cópia pertencente ao kit, `video-vfx`; a skill externa `vfx-effects` permanece independente. Dentro do kit, receba a tarefa e devolva evidências à orquestradora; não crie outro briefing, roteiro, orçamento, cadeia de aprovações ou entrega final.
+Este é o módulo interno do kit, `video-vfx`, da única skill pública `video-multimarcas`; a skill externa `vfx-effects` permanece independente. Dentro do kit, receba a tarefa e devolva evidências à orquestradora; não crie outro briefing, roteiro, orçamento, cadeia de aprovações ou entrega final.
 
 ## Começar e guiar o pedido
 
@@ -18,7 +13,7 @@ Esta é a cópia pertencente ao kit, `video-vfx`; a skill externa `vfx-effects` 
 
 ## Coordenar sem duplicar a produção
 
-No studio-kit-pro, `video-multimarcas` coordena roteiro, estilo, aprovações, montagem e entrega. Esta skill atende o trabalho técnico por plano dentro de produção/edição/revisão. Leia [integração](video-vfx/references/integration.md) e mantenha os mesmos IDs e decisões. Fora do repositório, funciona como guia independente; recursos do kit precisam estar instalados para executar seus comandos.
+No studio-kit-pro, `video-multimarcas` coordena roteiro, estilo, aprovações, montagem e entrega. Este módulo atende o trabalho técnico por plano dentro de produção/edição/revisão. Leia [integração](video-vfx/references/integration.md) e mantenha os mesmos IDs e decisões. Receba tarefas pela orquestradora; não peça instalar ou chamar uma skill separada. O runtime do kit precisa estar disponível para executar seus comandos.
 
 Preserve a ordem aplicável: materiais → roteiro → moodboard aprovado → styleframes/storyboard aprovados → animatic → amostra integrada de 10 s aprovada → filme completo → revisão integral. Antes de **qualquer vídeo IA**, inclusive teste gratuito, apresente imagens concretas e obtenha aprovação explícita do usuário para aquela versão. Orçamento, seleção de ferramenta e silêncio não aprovam visuais. Em clipe isolado, aprove os quadros desse clipe; ajuste simples em mídia existente deve ficar no escopo pedido. Reutilize aprovações válidas sem perguntar novamente. Não simplifique a direção ou troque provedor silenciosamente.
 

@@ -1,8 +1,3 @@
----
-name: video-publicidade
-description: Use when a video needs an advertising argument, offer, product/service demonstration, verified claims, DBO or AIDA structure, hook, or call to action selected from the catalog.
----
-
 # Publicidade e ofertas · 2.12.0
 
 Converta a oferta real em argumento visual demonstrável. Receba objetivo, materiais, marca, fatos/condições confirmados e contribuições efetivamente escolhidas. Entregue estrutura publicitária e critérios de fidelidade à orquestradora; planejamento, edição e revisão usam os módulos comuns.

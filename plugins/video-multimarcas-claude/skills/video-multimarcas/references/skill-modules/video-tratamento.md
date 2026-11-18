@@ -1,8 +1,3 @@
----
-name: video-tratamento
-description: Use when footage or a rendered edit needs technical inspection, color correction, natural texture, restoration, audio finishing, source normalization, export specifications, or an honest assessment of HDR and mastering capabilities.
----
-
 # Tratamento e finalização técnica · 2.12.0
 
 Receba originais, montagem atual, referências aprovadas, escopo do ajuste e destino. Separe montagem (`video-edicao`), tratamento (esta skill) e conferência independente (`video-revisao`). Um pedido somente de som ou cor preserva os demais aceites e altera somente dependências afetadas. Leia a [matriz completa de cobertura](video-tratamento/references/coverage.md) antes de prometer um processador. Ela distingue funções integradas, parâmetros fixos, implementação parcial e recursos não integrados. A instalação da skill não instala uma suíte de pós-produção.

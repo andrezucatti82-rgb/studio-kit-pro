@@ -12,7 +12,7 @@
 | video-tratamento | Diagnóstico, acabamento de cor/textura/áudio e especificação da entrega | Candidato, inspeção técnica e lacunas explícitas de capacidade |
 | video-revisao | Amostra/arquivo/revisão/entrega | Evidências técnicas, visuais e sonoras do hash exato |
 
-O pacote completo registra os oito IDs no Codex/Claude. Uma instalação da orquestradora como única skill inclui as instruções dos sete módulos em `references/skill-modules/`; leia somente os pertinentes. Esses arquivos são cópias geradas das fontes especializadas do mesmo release. Não anunciar processos paralelos: o agente atual pode cumprir vários papéis.
+A única skill registrada é `video-multimarcas`. Os sete módulos pertencem a `references/skill-modules/` e são fontes canônicas, não cópias de skills independentes. `skillSystem.skills` registra a entrada pública; `skillSystem.modules` resolve IDs internos para arquivos de instruções. `skillRouting.modules` e `primarySkill` preservam seus IDs para compatibilidade; não são nomes de skills a instalar ou pedir ao usuário. A orquestradora lê os módulos necessários e mantém uma única conversa, registro de decisões e entrega.
 
 ## Escolhas condicionais
 
@@ -21,7 +21,7 @@ O pacote completo registra os oito IDs no Codex/Claude. Uma instalação da orqu
 - Pedidos mistos mantêm as duas especialidades e o ID do estilo principal original. A rota não reordena escolhas nem amplia escopos.
 - Uma revisão local usa somente os papéis e dependências pertinentes. Recuperar roteiro aprovado e ajustar áudio não significa refazer a pré-produção.
 
-`scope:selected_style_capabilities` lista responsabilidades disponíveis para a seleção, não uma agenda de reexecução. A política `run_only_pending_or_affected_stages` usa etapa atual, ajustes e artefatos/aceites verificados; uma alteração sonora pode executar somente edição, tratamento e revisão. O módulo começa com pedido/arquivos/decisões disponíveis e termina com resultado, evidências, pendências e próxima ação. Falta de especialista instalado é resolvida pela referência incorporada ou pacote completo; não inventar ferramenta. Falta de runtime/conector é uma dependência diferente e precisa ser diagnosticada.
+`scope:selected_style_capabilities` lista responsabilidades disponíveis para a seleção, não uma agenda de reexecução. A política `run_only_pending_or_affected_stages` usa etapa atual, ajustes e artefatos/aceites verificados; uma alteração sonora pode executar somente edição, tratamento e revisão. O módulo começa com pedido/arquivos/decisões disponíveis e termina com resultado, evidências, pendências e próxima ação. Módulo ausente é falha da instalação da única skill; confira o pacote e o arquivo indicado em skillSystem.modules, sem pedir instalação de especialista separado. Falta de runtime/conector é uma dependência diferente e precisa ser diagnosticada.
 
 ## Site, chat e execução
 

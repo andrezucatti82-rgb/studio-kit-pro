@@ -36,7 +36,7 @@ export function prepareProduction(presetFile,output){
   if(contract.vfxInput.required)for(const name of ['vfx-plan.json','vfx-review.json']){
    const target=path.join(dest,name);
    if(!fs.existsSync(target)){
-    const record=JSON.parse(fs.readFileSync(path.join(root,'.agents/skills/video-vfx/templates',name),'utf8'));
+    const record=JSON.parse(fs.readFileSync(path.join(root,'.agents/skills/video-multimarcas/references/skill-modules/video-vfx/templates',name),'utf8'));
     if(name==='vfx-plan.json')record.contributionBindings=contract.vfxInput.contributions;
     fs.writeFileSync(target,JSON.stringify(record,null,2)+'\n',{flag:'wx'});
    }

@@ -2,6 +2,8 @@
 
 Auditoria e implementação: 18/11/2026. Árvore candidata do kit 2.12.0, catálogo 4.8, rota v3. Preparar esta integração não publica o site, não instala skills em contas externas e não valida criativamente vídeos.
 
+> Registro da etapa VFX anterior à consolidação. A arquitetura atual registra uma skill pública com sete módulos internos; veja [entrada única](SINGLE-ENTRY.md). As referências a oito skills e cópias geradas abaixo descrevem o estado auditado naquela etapa.
+
 ## Resultado
 
 Havia cobertura parcial de VFX: o runtime consome máscaras fornecidas, trajetórias medidas e camadas; edição organiza motion e composição; tratamento diagnostica cor/acabamento; revisão compara a saída. Faltava um responsável pelo breakdown, criação/correção de tracking, roto, key, cleanup, telas, CG/FX, passes e QA técnico por plano.

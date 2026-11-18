@@ -9,6 +9,7 @@ export function diagnose(){
  file('Node.js >= 22',Number(process.versions.node.split('.')[0])>=22);file('Dependências locais (npm ci)',existsSync('node_modules/remotion/package.json'));
  for(const [item,cmd,args] of [['FFmpeg','ffmpeg',['-version']],['FFprobe','ffprobe',['-version']],['Chromium',process.env.CHROME_PATH||cachedBrowser||'chromium',['--version']],['Blender (opcional)','blender',['--version']]])checks.push({item,...commandStatus(spawnSync(cmd,args,{encoding:'utf8',timeout:10000}))});
  for(const s of AtlasWorkflow.skillSystem.skills)file('Skill '+s.id,existsSync('.agents/skills/'+s.id+'/SKILL.md'));
+ for(const m of AtlasWorkflow.skillSystem.modules)file('Internal module '+m.id,existsSync('.agents/skills/video-multimarcas/'+m.instructions));
  file('Módulos portáteis e registro',existsSync('.agents/skills/video-multimarcas/references/skill-system.json'));file('Atlas local',existsSync('style-atlas/dist/catalog.json'));
  checks.push({item:'HeyGen API direta',status:'unverified',reason:process.env.HEYGEN_API_KEY?'credential_present_authentication_not_tested':'credential_not_configured'});
  return {skillSystem:AtlasWorkflow.skillSystem,checks,scope:'Comandos e arquivos locais. Não comprova conexão, saldo, compatibilidade de cena, playback, escuta ou qualidade. Permissão negada é não verificado, não ferramenta ausente.'};

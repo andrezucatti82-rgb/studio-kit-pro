@@ -6,7 +6,7 @@ A publicação inicial 2.12.0 foi integrada à `main` pela PR #20. A integraçã
 
 No [site público](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar), use **Instalar ferramenta → Baixar instalador completo**. Extraia o ZIP e abra `LEIA-PRIMEIRO.html`. Execute `INSTALAR.cmd` no Windows ou `sh install.sh` no macOS/Linux. O instalador compacto fixa uma revisão do GitHub e confere os hashes antes de executar. Precisa de internet: baixa o projeto completo, inclusive referências visuais, e dependências; reserve 3 GB livres.
 
-Aproveita Node.js 22+ ou prepara Node.js 24 portátil, instala dependências com `npm ci`, verifica as oito skills locais para Codex/Claude Code e testa FFmpeg/FFprobe e abertura do navegador de renderização. Pode instalar Git/FFmpeg via winget, Homebrew ou apt quando o gerenciador estiver disponível e pode pedir confirmação local. Não altera políticas de execução, contas, outras skills globais ou projetos existentes. Requisitos não atendidos deixam status de falha/pendência e instrução de retomada; não anunciam instalação pronta.
+Aproveita Node.js 22+ ou prepara Node.js 24 portátil, instala dependências com `npm ci`, verifica a única skill pública e seus sete módulos internos para Codex/Claude Code e testa FFmpeg/FFprobe e abertura do navegador de renderização. Pode instalar Git/FFmpeg via winget, Homebrew ou apt quando o gerenciador estiver disponível e pode pedir confirmação local. Não altera políticas de execução, contas, outras skills globais ou projetos existentes. Requisitos não atendidos deixam status de falha/pendência e instrução de retomada; não anunciam instalação pronta.
 
 Ao concluir, abre o [tutorial completo](COMECE-AQUI.html). Abra a pasta instalada no Codex ou Claude Code e inicie nova sessão. Os aplicativos dos agentes e seus logins são requisitos separados; este pacote instala o projeto, não uma conta. Para CLI e Node portátil, use `studio.sh`/`STUDIO.cmd`; o modo `atlas` abre o catálogo local. As configurações de descoberta já pertencem ao repositório; não é necessário instalar plugins globais duplicados.
 
@@ -14,11 +14,11 @@ Uma retomada da mesma revisão confere os arquivos e preserva `projects/`. Outra
 
 O ZIP está em `style-atlas/dist/downloads/studio-kit-pro-installer.zip`; `installation.json` registra revisão, hash e disponibilidade. Só é liberado no site quando os arquivos protegidos correspondem ao commit fixado. O ZIP atualmente oferecido no site corresponde à publicação autorizada; preparar futuros pacotes não os publica automaticamente. Git clone, plugins e pacotes menores continuam opções avançadas abaixo.
 
-## Um pacote, oito skills
+## Uma skill pública, sete módulos internos
 
-O plugin existente `video-multimarcas` continua com o mesmo identificador e instala o conjunto:
+O plugin existente `video-multimarcas` continua com o mesmo identificador e registra somente essa skill. As demais linhas abaixo são responsabilidades internas, escolhidas automaticamente:
 
-| Entrada | Responsabilidade |
+| Entrada pública / módulo interno | Responsabilidade |
 |---|---|
 | `video-multimarcas` | Orquestração e continuidade |
 | `video-planejamento` | Pesquisa, materiais, roteiro e direção |
@@ -42,22 +42,22 @@ npm ci
 npm run doctor
 ```
 
-`AGENTS.md` e `CLAUDE.md` orientam a produção; `.agents/skills/` contém as fontes canônicas e `.claude/skills/` tem os oito arquivos de descoberta. Abra uma nova sessão do agente e confirme quais instruções foram carregadas. O diagnóstico verifica arquivos/comandos locais; conexão, saldo, modelo, playback e escuta precisam de verificações próprias.
+`AGENTS.md` e `CLAUDE.md` orientam a produção; `.agents/skills/video-multimarcas/` contém a fonte canônica e os módulos em `references/skill-modules/`; `.claude/skills/video-multimarcas/` é a única ponte de descoberta. Abra uma nova sessão do agente e confirme quais instruções foram carregadas. O diagnóstico verifica arquivos/comandos locais; conexão, saldo, modelo, playback e escuta precisam de verificações próprias.
 
 Diga: “Use $video-multimarcas e execute o pedido anexado.” Envie `projeto-video.json` e seus originais. O agente importa o pedido no runtime 2.12.0 e usa o modelo da própria conversa para planejar; outra API OpenAI/Anthropic não é obrigatória para interpretar a ficha. O usuário não precisa escrever o plano técnico.
 
-Para instalar todas as oito skills em **outro projeto** já existente:
+Para instalar a skill completa em **outro projeto** já existente:
 
 ```bash
 node scripts/install-agent.mjs --agent codex --project-root /caminho/do/projeto
 node scripts/install-agent.mjs --agent claude --project-root /caminho/do/projeto
 ```
 
-Escolha o comando do seu agente. O instalador verifica as oito fontes, prepara a atualização, faz backup das versões anteriores e atualiza somente os oito IDs do kit. Outras skills e configurações permanecem preservadas. O resultado informa caminhos e backups. Ele instala instruções; não copia runtime, mídia ou conexões para o projeto de destino. O agente deve localizar o checkout/runtime compatível ao executar. Reabra a sessão e confira a versão.
+Escolha o comando do seu agente. O instalador verifica a entrada pública e prepara sua atualização com todos os módulos. Especialistas de versões antigas são retirados com backup apenas quando a árvore de arquivos corresponde exatamente a uma cópia conhecida do kit; pastas personalizadas ou desconhecidas são preservadas e listadas em `preservedLegacy`. Uma falha restaura a skill e os especialistas retirados. Outras skills e configurações permanecem preservadas. O resultado informa caminhos e backups. Ele instala instruções; não copia runtime, mídia ou conexões para o projeto de destino. O agente deve localizar o checkout/runtime compatível ao executar. Reabra a sessão e confira a versão.
 
 ## Plugins completos
 
-`dist/video-multimarcas-plugin.zip` é o plugin Codex com oito skills; `dist/video-multimarcas-claude-plugin.zip` é o plugin Claude Code com as mesmas fontes. Use o fluxo de instalação disponível na sua versão do agente.
+`dist/video-multimarcas-plugin.zip` é o plugin Codex com uma skill e sete módulos internos; `dist/video-multimarcas-claude-plugin.zip` é o plugin Claude Code com as mesmas fontes. Use o fluxo de instalação disponível na sua versão do agente.
 
 Quando o Codex CLI oferecer marketplace/plugin:
 
@@ -85,9 +85,9 @@ Uma instalação pessoal `video-b-roll` é separada deste kit. Não removê-la, 
 
 ## Pacote mínimo, runtime e chat
 
-`dist/video-multimarcas.skill` e `.zip` contêm a orquestradora e todas as instruções dos módulos incorporadas em `references/skill-modules/`. Isso permite ler os módulos em interfaces que importam uma única skill, embora não registre sete entradas extras nesses hosts. Os plugins completos registram os oito nomes. Compatibilidade de importação depende da interface; não existe um botão universal garantido.
+`dist/video-multimarcas.skill` e `.zip` contêm a orquestradora e todas as instruções dos módulos incorporadas em `references/skill-modules/`. Todos os formatos registram somente `video-multimarcas`; a orquestradora lê os módulos necessários sem pedir ao usuário que escolha especialistas. Compatibilidade de importação depende da interface; não existe um botão universal garantido.
 
-`dist/video-multimarcas-runtime.zip` inclui código executável, fontes das oito skills, catálogo textual e manifesto de integridade. Extraia numa pasta nova, rode `npm ci`, `npm run check` e `npm run doctor`. Não inclui imagens de referência do catálogo, mídia de clientes, contas, credenciais ou fixtures completas da regressão. Referências são obtidas do site/repositório ou anexadas pelo usuário.
+`dist/video-multimarcas-runtime.zip` inclui código executável, a skill com seus sete módulos, catálogo textual e manifesto de integridade. Extraia numa pasta nova, rode `npm ci`, `npm run check` e `npm run doctor`. Não inclui imagens de referência do catálogo, mídia de clientes, contas, credenciais ou fixtures completas da regressão. Referências são obtidas do site/repositório ou anexadas pelo usuário.
 
 No ChatGPT/Claude sem execução verificada, a conversa pode fazer as etapas disponíveis e informar a dependência para a produção. Abrir o chat pelo site não envia mensagens, transfere os originais, instala ferramentas ou inicia geração. Cole o pedido e anexe JSON/arquivos; na Page, o estado disponível também deve ser conferido. A ficha mantém continuidade para uma sessão com execução quando necessário.
 
@@ -95,7 +95,7 @@ No ChatGPT/Claude sem execução verificada, a conversa pode fazer as etapas dis
 
 Distribuição: plugin **2.12.0**, runtime **2.12.0**, catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores em 53 segmentos**. Verifique hashes e arquivos em `dist/release-manifest.json`; pacote preparado, pacote baixado, instruções carregadas, instalação na conta e domínio publicado são estados separados.
 
-Fontes editáveis: `.agents/skills/<id>/`. As referências comuns pertencem à orquestradora; as cópias incorporadas e os diretórios `plugins/` são gerados por:
+Fontes editáveis: `.agents/skills/video-multimarcas/SKILL.md` e `references/skill-modules/` dentro dessa skill. Os módulos são fontes canônicas e não devem ser regenerados a partir de antigas skills separadas. Os diretórios `plugins/` e arquivos de distribuição são gerados por:
 
 ```bash
 npm run package
