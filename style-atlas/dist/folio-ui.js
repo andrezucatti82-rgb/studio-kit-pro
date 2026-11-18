@@ -15,9 +15,9 @@
   return `<span class="folio-missing">O estudo completo está na ficha do estilo</span>`;
  }
  function preview(s){
-  // A second, decorative copy fills the compact frame. Only the sharp foreground
-  // is the reference: it is fitted in full, including panels cropped from sheets.
-  return `<span class="folio-portrait" style="--folio-source-ratio:${model.previewRatio(s)}"><span class="folio-image-fill" aria-hidden="true">${picture(s)}</span><span class="folio-artwork">${picture(s)}</span><span class="folio-cover-hint" aria-hidden="true">Explorar ${icon('arrow')}</span></span>`;
+  // Fill the preview with the actual logical panel, never a blurred duplicate.
+  // The untouched source remains available in the detail viewer and downloads.
+  return `<span class="folio-portrait" style="--folio-source-ratio:${model.previewRatio(s)};--folio-focus-y:${s.presenterEditing?'100%':'35%'}"><span class="folio-artwork">${picture(s)}</span><span class="folio-cover-hint" aria-hidden="true">Explorar ${icon('arrow')}</span></span>`;
  }
  function card(s,large=false){
   return `<article class="folio-card${large?' folio-card-expanded':''}${selected(s.id)?' is-selected':''}" data-style-id="${esc(s.id)}"><button type="button" class="folio-cover" data-detail="${esc(s.id)}" aria-label="Ver ${esc(s.name)}">${preview(s)}</button><div class="folio-card-footer"><span class="folio-reference">Referência visual</span><div class="folio-card-title"><h3><button type="button" data-detail="${esc(s.id)}">${esc(s.name)}</button></h3><button type="button" class="folio-save" data-fav="${esc(s.id)}" aria-pressed="${!!favorite(s.id)}" aria-label="${favorite(s.id)?'Remover dos':'Adicionar aos'} favoritos: ${esc(s.name)}">${icon(large?'bookmark':'heart')}</button></div>${large?`<div class="folio-card-actions"><span>${s.sequence?'4 quadros':'Estudo visual'}</span><button type="button" data-choose="${esc(s.id)}" class="folio-add" aria-pressed="${!!selected(s.id)}" aria-label="${selected(s.id)?'Remover':'Adicionar'} ${esc(s.name)} ${selected(s.id)?'da':'à'} minha escolha">${selected(s.id)?'Adicionado ✓':'Adicionar +'}</button></div>`:''}</div>${!large&&state.mode==='catalogue'?`<label class="folio-compare"><input type="checkbox" data-compare="${esc(s.id)}" ${latest?.compared.includes(s.id)?'checked':''}>Comparar</label>`:''}${large?`<button type="button" class="folio-story-link" data-detail="${esc(s.id)}">Ver os momentos ${icon('arrow')}</button>`:''}</article>`;
