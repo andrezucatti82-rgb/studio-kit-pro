@@ -1,7 +1,7 @@
 {
   "plugin": "video-multimarcas",
-  "pluginVersion": "2.12.0",
-  "kitVersion": "2.12.0",
+  "pluginVersion": "2.13.0",
+  "kitVersion": "2.13.0",
   "catalogVersion": "4.8",
   "styleCount": 1425,
   "categoryCount": 30,
@@ -9,83 +9,99 @@
   "presenterStyleCount": 265,
   "presenterSectorCount": 53,
   "skillSystem": {
-    "version": 2,
-    "kitVersion": "2.12.0",
+    "version": 4,
+    "kitVersion": "2.13.0",
     "orchestrator": "video-multimarcas",
+    "entryPoint": "video-multimarcas",
     "skills": [
       {
         "id": "video-multimarcas",
-        "name": "Orquestração",
+        "name": "Studio Kit Pro",
         "role": "coordinator"
-      },
+      }
+    ],
+    "modules": [
       {
         "id": "video-planejamento",
         "name": "Planejamento e direção",
-        "role": "planning"
+        "role": "planning",
+        "instructions": "references/skill-modules/video-planejamento.md"
       },
       {
         "id": "video-explicador-interativo",
         "name": "Apresentador e explicação",
-        "role": "presenter"
+        "role": "presenter",
+        "instructions": "references/skill-modules/video-explicador-interativo.md"
       },
       {
         "id": "video-publicidade",
         "name": "Publicidade e ofertas",
-        "role": "advertising"
+        "role": "advertising",
+        "instructions": "references/skill-modules/video-publicidade.md"
       },
       {
         "id": "video-edicao",
         "name": "Edição, motion e áudio",
-        "role": "editing"
+        "role": "editing",
+        "instructions": "references/skill-modules/video-edicao.md"
+      },
+      {
+        "id": "video-vfx",
+        "name": "VFX e composição por plano",
+        "role": "vfx",
+        "instructions": "references/skill-modules/video-vfx.md"
       },
       {
         "id": "video-tratamento",
         "name": "Tratamento e finalização técnica",
-        "role": "finishing"
+        "role": "finishing",
+        "instructions": "references/skill-modules/video-tratamento.md"
       },
       {
         "id": "video-revisao",
         "name": "Revisão e entrega",
-        "role": "review"
+        "role": "review",
+        "instructions": "references/skill-modules/video-revisao.md"
       }
     ]
   },
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 200841,
-      "sha256": "f9e995f8f279e481767a08a30c830e3992503da63a38a9a77af95f4b8ed8f1d2"
+      "bytes": 203157,
+      "sha256": "f893c4f41e16dd28aa2bbe87b54c322b936ae12f988a76913ed736433d07240b"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 201296,
-      "sha256": "fca5389ae84839cfc525a91d76cbf11f84df87cab33a9e4c6ff538f2381099da"
+      "bytes": 203618,
+      "sha256": "64ef7015d394d3edcb2d567873f901588bc3f05140bc01962ce8bafba5b8a64e"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4290486,
-      "sha256": "a2c2f3132cdfc9d3f070bed0eb93095ba1438d64e248f7a897a3ce902f19350f"
+      "bytes": 4394325,
+      "sha256": "59711abfa6b673b47a7aa2b15e463cc49c9aaaa7969bd44e88004bb4d4833049"
     },
     "video-multimarcas.skill": {
-      "bytes": 174948,
-      "sha256": "cde7626f44f14015099e866e3d61b1e3abf87f8359850b38415deb94ba30679a"
+      "bytes": 202191,
+      "sha256": "f747a25ea2f314ed496b5358e10a3251ec5645862488e660f7ca3c89339efcdd"
     },
     "video-multimarcas.zip": {
-      "bytes": 174948,
-      "sha256": "cde7626f44f14015099e866e3d61b1e3abf87f8359850b38415deb94ba30679a"
+      "bytes": 202191,
+      "sha256": "f747a25ea2f314ed496b5358e10a3251ec5645862488e660f7ca3c89339efcdd"
     }
   },
   "installer": {
     "version": 1,
-    "kitVersion": "2.12.0",
-    "sourceRevision": "0b16ffa9d283946d9b2d956b068b1751b4088c97",
-    "sourceReady": true,
+    "kitVersion": "2.13.0",
+    "sourceRevision": "7fabf94fbb1ee44fd21d63df1cdf3abd6e12e0e2",
+    "sourceReady": false,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 668277,
-    "sha256": "7236e5b6f71ba08ac9eabbd4790caff2e9785e3ca727ccfc4cf80cebd57beb9b",
+    "bytes": 669053,
+    "sha256": "7ab9178a70794db7ad4c79a5da4abc0d228dfd71bab11347d4dffe79f91a6868",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
-    "fullProjectDownloadMiB": 805,
-    "skills": 7,
+    "fullProjectDownloadMiB": 807,
+    "skills": 1,
+    "internalModules": 7,
     "presenterStyles": 265,
     "localFile": "studio-kit-pro-installer.zip"
   }

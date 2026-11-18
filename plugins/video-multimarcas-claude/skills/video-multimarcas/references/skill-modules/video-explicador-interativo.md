@@ -1,8 +1,3 @@
----
-name: video-explicador-interativo
-description: Use when recorded presenters or explicitly selected avatars explain concepts through speech-synchronized diagrams, hand/object interaction, masks, tracking, depth, contextual environments, or commercial presenter-led recipes.
----
-
 # Explicador interativo · 2.12.0
 
 Planeje pessoa e explicação como uma atuação conjunta. Os vinte mecanismos são técnicas; as 265 receitas são aplicações em cinquenta e três segmentos. Uma receita não certifica extração automática ou qualidade em qualquer bruto.
@@ -44,3 +39,5 @@ Quando houver pedido de boca discreta: solicitar expressão contida, abertura co
 ## Saída e amostra
 
 Forneça à orquestradora o plano de interação, fontes/tempos/âncoras necessários, instrução de atuação, limites comprovados e amostra representativa. Reutilize roteiro e visual selecionados; aprovações visuais aplicáveis antecedem vídeo IA e custo exige autorização própria. A amostra integra pessoa, gesto, gráfico, voz, legenda e passagem mais difíceis. Uma imagem estática, avatar isolado ou render válido não aprova interação.
+
+Quando a interação exigir criar/corrigir track, matte, roto, key, cleanup ou integração CG, acione `video-vfx` pela orquestradora. Este módulo conserva fala/gesto/intenção; VFX entrega insumos e QA por plano; edição integra. Não executar duas vezes a mesma composição.

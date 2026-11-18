@@ -1,8 +1,3 @@
----
-name: video-edicao
-description: Use when a video needs footage assembly, B-roll, editable motion graphics, captions, masks, verified tracks, transitions, audio mixing, or a scoped edit to existing media.
----
-
 # Edição, motion e áudio · 2.12.0
 
 Execute o plano com mídia real e entregue arquivos editáveis e um MP4 candidato. A entrada inclui escolhas/escopos, plano atual, fontes registradas, relógio da fala e aprovações pertinentes. Leia [execução pelo runtime](../orchestrator-execution.md), [fidelidade de execução](../execution-fidelity.md), [acabamento natural](../natural-finish.md) e, quando aplicável, [operadores de apresentador](../presenter-interaction.md).
@@ -25,3 +20,5 @@ Em um pedido somente de som, abra o projeto e os assets existentes. Preserve ví
 O tratamento técnico é responsabilidade da `video-tratamento` (referência incorporada na orquestradora): diagnóstico de fonte/saída, limites de cor/restauração, acabamento e perfil de exportação. Recursos descritos no catálogo não são processadores instalados.
 
 Entregue plano/EDL, MP4 candidato acessível, legenda, projeto/fontes e relatório técnico para `video-tratamento` e depois `video-revisao`. Leia o status real de geração antes de repetir uma operação; não recrie job pago de resultado incerto. Falta de renderer ou de recurso prometido exige causa comprovada, etapa afetada, entregas existentes e alternativa explícita. Um esquema válido, quadro renderizado ou fonte de avatar isolada não é filme editado concluído.
+
+Composição técnica por plano pertence a `video-vfx`: criação/correção de tracking, roto, key, cleanup, telas e CG/FX. Edição consome tracks/mattes/comps verificados, mantém motion gráfico editável, timing e áudio. Respeite manifesto de frames/cor/alpha e devolva falhas ao módulo; não prometer extração automática.

@@ -1,8 +1,3 @@
----
-name: video-publicidade
-description: Use when a video needs an advertising argument, offer, product/service demonstration, verified claims, DBO or AIDA structure, hook, or call to action selected from the catalog.
----
-
 # Publicidade e ofertas · 2.12.0
 
 Converta a oferta real em argumento visual demonstrável. Receba objetivo, materiais, marca, fatos/condições confirmados e contribuições efetivamente escolhidas. Entregue estrutura publicitária e critérios de fidelidade à orquestradora; planejamento, edição e revisão usam os módulos comuns.
@@ -26,3 +21,5 @@ Quando publicidade e explicador estiverem selecionados, registre ambos os papéi
 ## Saída
 
 Entregue roteiro/estrutura proposta, evidências das afirmações, direção por contribuição/escopo, lista condicional de materiais, dúvidas bloqueadoras e prova da amostra. Preserve aceites válidos; uma alteração sonora local não reinicia pesquisa e roteiro. Aprovações visuais antecedem vídeo IA, e geração cobrada depende de preço atual e autorização específica. Uma ficha do catálogo não é anúncio produzido nem resultado comercial comprovado.
+
+Efeitos de demonstração, partículas, cleanup ou integração CG são executados por `video-vfx` quando pertinentes. Preserve aqui argumento, alegações e invariantes; reutilize o mesmo roteiro e orçamento da coordenadora.

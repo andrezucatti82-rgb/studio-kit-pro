@@ -1,8 +1,3 @@
----
-name: video-planejamento
-description: Use when a video request needs material inspection, brand research, script, art direction, moodboard, storyboard, or a scoped revision of preproduction.
----
-
 # Planejamento de vídeo · 2.12.0
 
 Transforme a intenção escolhida num plano executável. A entrada é o pedido completo, `styleContributions`, referências, arquivos acessíveis e histórico. A saída é roteiro, mapa de contribuições, plano por fala/ação e painéis visuais com estado de aprovação real.
@@ -28,3 +23,5 @@ Informe arquivos/versões, fatos e fontes, dependências resolvidas/pendentes, c
 Concluído neste módulo significa pré-produção entregue e seu estado registrado. Vídeo produzido e revisão audiovisual são etapas posteriores.
 
 Para explicadores, leia creativeDirection e planeje bloqueio/enquadramento por beat: a informação se constrói em resposta à fala/ação. Não padronizar pessoa à esquerda e cartão à direita. Varie mecanismo, escala, câmera e material conforme a função e o nicho. Referências públicas devem ter aparência realista do resultado pretendido; o storyboard técnico em silhuetas é apoio interno, não capa de entrega.
+
+Quando houver VFX, incorpore o breakdown de `video-vfx` aos mesmos planos e painéis. A direção define intenção/invariantes; o módulo prova viabilidade técnica. Não abrir roteiro ou cadeia de aprovações separados.

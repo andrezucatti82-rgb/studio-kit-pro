@@ -7,7 +7,11 @@ import {repoRoot} from './skills.mjs';
 export function canonical(value){return Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(k=>[k,canonical(value[k])])):value;}
 export const fingerprint=value=>createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
 export const contextFingerprint=context=>{const {contextSha256,...content}=context;return fingerprint(content);};
-const currentRoute=route=>route?.version===1?{...route,version:2,modules:route.modules?.flatMap(id=>id==='video-revisao'?['video-tratamento',id]:[id])}:route;
+const currentRoute=(route,expected)=>{
+ if(![1,2].includes(route?.version))return route;
+ const modules=route.version===1?route.modules?.flatMap(id=>id==='video-revisao'?['video-tratamento',id]:[id]):route.modules;
+ return {...route,version:3,modules:modules?.flatMap(id=>id==='video-tratamento'&&expected.modules.includes('video-vfx')?['video-vfx',id]:[id])};
+};
 export async function importSiteRequest(file,output){
  const bytes=await fs.readFile(file);if(bytes.length>2*1024*1024)throw Error('Site project exceeds 2 MiB');
  const source=JSON.parse(bytes.toString()),result=prepareProduction(file,output),root=path.resolve(output);
@@ -18,8 +22,8 @@ export async function importSiteRequest(file,output){
  const routingChoice={selectedStyles:execution.selectedStyles,styleContributions:execution.styleCombination.explicit?Object.fromEntries(execution.styleCombination.entries.map(e=>[e.styleId,e.contributions])):undefined};
  const skillRouting=AtlasWorkflow.skillRouting(routingChoice);
  const incomingRoute=source.orchestrator?.skillRouting;
- // Version 1 predates the dedicated finishing module; preserve the original request.
- const comparableRoute=currentRoute(incomingRoute);
+ // Upgrade only registered additions for the validated selection; preserve request bytes.
+ const comparableRoute=currentRoute(incomingRoute,skillRouting);
  if(incomingRoute&&fingerprint(comparableRoute)!==fingerprint(skillRouting))throw Error('Skill routing differs from validated selections');
  const content={version:1,runtimeVersion:'2.12.0',skillRouting,intentSummary:AtlasWorkflow.intentSummary({...routingChoice,topic:brief.topic,brand:brief.brand,format:brief.format,targetDurationSeconds:brief.targetDurationSeconds}),sourceSha256:fingerprint(source),topic:brief.topic,brand:brief.brand??'',typography:brief.typography??'auto',typographySelection,availableFontPairs:['Geist:400','Geist:700',...Object.keys(fontManifest.files)],format:brief.format,targetDurationSeconds:brief.targetDurationSeconds??30,selectedStyleIds:execution.selectedStyles.map(s=>s.id),styles:execution.selectedStyles,combination:execution.styleCombination,referenceManifest:execution.referenceManifest,catalogSnapshot:execution.catalogSnapshot,contract,continuity,sourceBrief:source,
   execution:{planner:'current Codex or Claude Code conversation; no additional model API is required',renderer:'validated Remotion scene graph or explicitly implemented custom asset route',nativeOperators:['video/image layers with preserved view','editable kinetic text','licensed local fonts','shape layers','SVG trim paths','cubic-bezier keyframes','rectangular mattes','cuts/dissolves/wipes','timed narration/music/SFX','music ducking under narration','synchronized captions','measured presenter anchor tracks','provided grayscale masks and preserved alpha','word-level speech timing from verified input','explicit layer visibility','frosted-glass backdrop compositing','purposeful soft-light shapes','optional social color/tone finishing and monochrome grain'],externalResources:'Stock assets, original footage, AI images/video and HeyGen may be used when suitable. Verify connection, license, visual approvals and quoted cost before generating. A catalogue entry is not evidence that its technique is implemented.',neverSubstituteStyle:true,review:'technical validation is separate from continuous playback/listening and creative approval'}};
@@ -28,7 +32,7 @@ export async function importSiteRequest(file,output){
   const existing=JSON.parse(await fs.readFile(target,'utf8'));
   if(existing.contextSha256!==context.contextSha256){
    const withoutRouting=value=>{const {contextSha256,skillRouting,intentSummary,...core}=value;return core;};
-   const legacyRouting=!Object.hasOwn(existing,'skillRouting')||existing.skillRouting?.version===1&&fingerprint(currentRoute(existing.skillRouting))===fingerprint(skillRouting);
+   const legacyRouting=!Object.hasOwn(existing,'skillRouting')||[1,2].includes(existing.skillRouting?.version)&&fingerprint(currentRoute(existing.skillRouting,skillRouting))===fingerprint(skillRouting);
    if(legacyRouting&&existing.contextSha256===contextFingerprint(existing)&&fingerprint(withoutRouting(existing))===fingerprint(withoutRouting(context)))context=existing;
    else throw Error('Existing imported context differs; preserve the project and create a new revision');
   }

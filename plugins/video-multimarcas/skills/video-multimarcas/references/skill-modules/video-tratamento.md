@@ -1,8 +1,3 @@
----
-name: video-tratamento
-description: Use when footage or a rendered edit needs technical inspection, color correction, natural texture, restoration, audio finishing, source normalization, export specifications, or an honest assessment of HDR and mastering capabilities.
----
-
 # Tratamento e finalização técnica · 2.12.0
 
 Receba originais, montagem atual, referências aprovadas, escopo do ajuste e destino. Separe montagem (`video-edicao`), tratamento (esta skill) e conferência independente (`video-revisao`). Um pedido somente de som ou cor preserva os demais aceites e altera somente dependências afetadas. Leia a [matriz completa de cobertura](video-tratamento/references/coverage.md) antes de prometer um processador. Ela distingue funções integradas, parâmetros fixos, implementação parcial e recursos não integrados. A instalação da skill não instala uma suíte de pós-produção.
@@ -26,3 +21,5 @@ Se a matriz indicar ausência, descubra a ferramenta local/conexão real e teste
 ## Saída para revisão
 
 Entregue candidato acessível e hash, relatório antes/depois, receita/valores aplicados, rota/versão, perfil de destino, intermediários pertinentes e limitações. Não sobreponha o original. Só reencodifique quando necessário e mantenha uma fonte de qualidade para revisões. `video-revisao` confere arquivo, movimento, som e entrega. Relatório técnico não comprova playback, escuta, aprovação criativa, conformidade HDR/Dolby/broadcast/DCP nem autorização para publicar.
+
+`video-vfx` responde por cor/alpha/passes dentro da composição e sua ida/volta; este módulo conserva tratamento global e destino final. Use o manifesto VFX para evitar transformação duplicada e preserve identidade/cor factual. Cleanup localizado/roto/integração de efeitos não são restauração global.

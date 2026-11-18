@@ -1,11 +1,11 @@
 ---
 name: video-multimarcas
-description: Use when a Studio Kit Pro or visual-gallery request combines video styles, needs a production workflow, or must resume an existing video project across Codex, Claude Code, ChatGPT, or Claude.
+description: Use when creating, editing, directing, diagnosing, or reviewing a video in Studio Kit Pro, including scripts, presenters, advertising, motion, VFX, compositing, color, audio, delivery, visual-gallery styles, and project continuation across Codex, Claude Code, ChatGPT, or Claude. This is the only public entry point; select internal modules automatically.
 ---
 
 # Vídeo Multimarcas — orquestradora do Studio Kit Pro
 
-Versão **2.12.0**; catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores/53 segmentos**. Esta skill coordena um único projeto e seis especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
+Versão **2.13.0**; catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores/53 segmentos**. Esta skill coordena um único projeto e sete especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
 
 ## Primeiro, resolver o pedido real
 
@@ -21,16 +21,21 @@ Resuma o vídeo entendido, os materiais realmente recebidos e a próxima entrega
 | Pessoa gravada/avatar e explicação interativa | [video-explicador-interativo](references/skill-modules/video-explicador-interativo.md) |
 | Argumento, demonstração, oferta e CTA | [video-publicidade](references/skill-modules/video-publicidade.md) |
 | B-roll, montagem, motion e mix de faixas | [video-edicao](references/skill-modules/video-edicao.md) |
+| VFX por plano: tracking, roto, key, cleanup e CG/FX | [video-vfx](references/skill-modules/video-vfx.md) |
 | Cor, textura, restauração, diagnóstico e especificação técnica | [video-tratamento](references/skill-modules/video-tratamento.md) |
 | Evidência audiovisual e entrega | [video-revisao](references/skill-modules/video-revisao.md) |
 
-No pacote completo, esses módulos também são skills registradas com os mesmos nomes. As referências incorporadas são geradas das mesmas fontes para hosts que importam uma única skill. Leia apenas os módulos pertinentes; responsabilidades não significam agentes paralelos executados. A orquestradora mantém decisões/arquivos e recebe de cada módulo resultado, pendências, evidência e próxima ação.
+Existe uma única skill pública e instalável: `video-multimarcas`. As sete especialidades são módulos internos canônicos em `references/skill-modules/`, com referências e templates próprios. A orquestradora resolve `skillRouting` e lê apenas os módulos pertinentes; nunca peça ao usuário que escolha ou instale especialistas. IDs como `primarySkill` são responsabilidades internas, preservados para compatibilidade com projetos anteriores; responsabilidades não significam agentes paralelos executados. A orquestradora mantém decisões/arquivos e recebe de cada módulo resultado, pendências, evidência e próxima ação.
 
 Só a cor/tipografia de uma receita não exige sua pessoa, oferta, cenário ou ação. Pedidos mistos preservam todos os papéis e escopos. O principal e os originais continuam a orientar a coerência. A atuação de explicador é planejada junto do motion; selecionar avatar e voz exige recursos e escolha reais.
 
+## Pedidos isolados e ajustes locais
+
+Um pedido somente de VFX, edição, cor, áudio, roteiro ou auditoria também entra por esta skill, mesmo sem seleção da galeria. Escolha os módulos pertinentes pela tarefa real e pela tabela de responsabilidades; não exija estilo de catálogo nem crie um filme novo para corrigir um clipe. Use a mídia, IDs e decisões existentes. O padrão de duração de um projeto novo não altera uma mídia recebida. Preserve aceites não afetados e execute somente o trabalho autorizado, com diagnóstico, custo e aprovações aplicáveis.
+
 ## Executar e acompanhar
 
-No Codex/Claude Code, siga [execução no runtime](references/orchestrator-execution.md): importe a ficha completa, registre mídia, use o modelo da conversa para escrever/validar o plano e execute até arquivos reais. O runtime 2.12.0 é compartilhado; a prova `production:poc` não substitui a seleção. Não exigir outra API de modelo para interpretar o pedido. Descubra ferramentas existentes antes de pedir configuração.
+No Codex/Claude Code, siga [execução no runtime](references/orchestrator-execution.md): importe a ficha completa, registre mídia, use o modelo da conversa para escrever/validar o plano e execute até arquivos reais. O runtime 2.13.0 é compartilhado; a prova `production:poc` não substitui a seleção. Não exigir outra API de modelo para interpretar o pedido. Descubra ferramentas existentes antes de pedir configuração.
 
 Em chat sem execução verificada, faça as etapas disponíveis e informe qual recurso falta à etapa seguinte. Um roteiro, JSON ou ID pendente não é MP4 produzido. [Diagnóstico](references/intake-and-diagnostics.md) distingue ferramenta anunciada, acesso, compatibilidade, insumos e resultado testado. Catálogo e skill não instalam ASR, matting, rastreamento de mãos ou 3D universal.
 

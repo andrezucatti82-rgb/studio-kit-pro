@@ -9,7 +9,7 @@ import '../style-atlas/dist/workflow.js';
 const W=globalThis.AtlasWorkflow,inspectorFile=new URL('../scripts/inspect-media.mjs',import.meta.url);
 async function inspector(){assert(await fs.access(inspectorFile).then(()=>true,()=>false),'Missing technical finishing inspector');return import(inspectorFile.href);}
 test('finishing has a dedicated registered module before final review',()=>{
- assert(W.skillSystem.skills.some(s=>s.id==='video-tratamento'),'Missing dedicated treatment skill');const r=W.skillRouting({selectedStyles:[]});assert(r.modules.indexOf('video-tratamento')>r.modules.indexOf('video-edicao'));assert(r.modules.indexOf('video-tratamento')<r.modules.indexOf('video-revisao'));
+ assert(W.skillSystem.modules.some(s=>s.id==='video-tratamento'),'Missing dedicated treatment skill');const r=W.skillRouting({selectedStyles:[]});assert(r.modules.indexOf('video-tratamento')>r.modules.indexOf('video-edicao'));assert(r.modules.indexOf('video-tratamento')<r.modules.indexOf('video-revisao'));
 });
 test('coverage distinguishes integrated processors, fixed output and unintegrated capabilities',async()=>{
  execFileSync('node',['scripts/build-treatment-docs.mjs','--check'],{stdio:'pipe'});

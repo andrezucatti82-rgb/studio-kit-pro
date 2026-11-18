@@ -33,6 +33,14 @@ export function prepareProduction(presetFile,output){
   const contractFile=path.join(dest,'production-contract.json');if(!fs.existsSync(contractFile))fs.writeFileSync(contractFile,JSON.stringify(contract,null,2)+'\n');
   const continuityFile=path.join(dest,'continuity.json');if(!fs.existsSync(continuityFile))fs.writeFileSync(continuityFile,JSON.stringify(AtlasWorkflow.continuityContext(preset),null,2)+'\n');
   const workflowFile=path.join(dest,'workflow.json');if(!fs.existsSync(workflowFile))fs.copyFileSync(path.join(root,'templates/workflow.json'),workflowFile);
+  if(contract.vfxInput.required)for(const name of ['vfx-plan.json','vfx-review.json']){
+   const target=path.join(dest,name);
+   if(!fs.existsSync(target)){
+    const record=JSON.parse(fs.readFileSync(path.join(root,'.agents/skills/video-multimarcas/references/skill-modules/video-vfx/templates',name),'utf8'));
+    if(name==='vfx-plan.json')record.contributionBindings=contract.vfxInput.contributions;
+    fs.writeFileSync(target,JSON.stringify(record,null,2)+'\n',{flag:'wx'});
+   }
+  }
   const coordinatorFile=path.join(dest,'coordinator-plan.json');if(!fs.existsSync(coordinatorFile)){const coordinator=JSON.parse(fs.readFileSync(path.join(root,'.agents/skills/video-multimarcas/templates/coordinator-plan.json')));coordinator.recipe=preset.guidedBrief?AtlasGuided.recipe(preset.guidedBrief):null;coordinator.materialAdaptation=preset.guidedBrief?AtlasGuided.materialPlan(preset.guidedBrief):null;coordinator.requestedAdjustments=preset.adjustments||[];const records=preset.projectState?.continuity||AtlasWorkflow.emptyContinuity();coordinator.sharedDecisions=records.decisions;coordinator.materialChecks=records.materials;coordinator.capabilityChecks=records.capabilities;coordinator.projectRecords.continuity='continuity.json';coordinator.projectRecords.productionContract='production-contract.json';fs.writeFileSync(coordinatorFile,JSON.stringify(coordinator,null,2)+'\n');}
   const fidelityFile=path.join(dest,'fidelity-plan.json');if(!fs.existsSync(fidelityFile)){const f=JSON.parse(fs.readFileSync(path.join(root,'.agents/skills/video-multimarcas/templates/fidelity-plan.json')));if(styleCombination.explicit){f.styleCombination=styleCombination;f.contributionBindings=[];}f.expectedReferences=styles.flatMap(s=>s.sequence.frames.map((frame,i)=>({id:s.id+':frame:'+String(i+1),styleId:s.id,path:frame.src,crop:frame.crop||null})));fs.writeFileSync(fidelityFile,JSON.stringify(f,null,2)+'\n');}
   // Never overwrite an existing direction, evidence or approval on resume.

@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {probe,run} from '../server/process.mjs';
 
-export const treatmentCapabilities=JSON.parse(await fs.readFile(new URL('../.agents/skills/video-tratamento/references/capabilities.json',import.meta.url),'utf8'));
+export const treatmentCapabilities=JSON.parse(await fs.readFile(new URL('../.agents/skills/video-multimarcas/references/skill-modules/video-tratamento/references/capabilities.json',import.meta.url),'utf8'));
 const number=value=>value!==undefined&&value!==null&&value!==''&&Number.isFinite(Number(value))?Number(value):null;
 const known=value=>value&&value!=='unknown'&&value!=='unspecified'?value:null;
 const positive=value=>{const n=number(value);return n>0?n:null;};

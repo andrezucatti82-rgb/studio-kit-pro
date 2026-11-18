@@ -36,7 +36,7 @@ export class Orchestrator {
  async prepare(raw,{signal=AbortSignal.timeout(120000)}={}){
   const request=parseProductionRequest(raw),assets=await Promise.all([...new Set([...request.assetIds,...(request.musicAssetId?[request.musicAssetId]:[])])].map(id=>this.store.verify(id)));
   if(request.requestVersion===2)assertHandoffContext(this.context,request);
-  const skill=await loadSkill(request.styleId,{allowAgent:request.requestVersion===2,selectedStyleIds:request.selectedStyleIds}),plan=validatePlan(await this.planner.plan(request,assets,skill,{signal}),assets,request,this.context);
+  const skill=await loadSkill(request.styleId,{allowAgent:request.requestVersion===2,selectedStyleIds:request.selectedStyleIds,context:this.context}),plan=validatePlan(await this.planner.plan(request,assets,skill,{signal}),assets,request,this.context);
   return {request,plan,productionRequestSha256:digest(Buffer.from(JSON.stringify(request))),productionPlanSha256:digest(Buffer.from(JSON.stringify(plan))),limitations:skill.limitations};
  }
  submit(raw,options={}){const pending=this.submissions.then(()=>this.submitOnce(raw,options));this.submissions=pending.catch(()=>{});return pending;}
@@ -83,7 +83,7 @@ export class Orchestrator {
    await atomicJson(path.join(directory,'media-analysis.json'),assets);
    const context=job.request.requestVersion===2?JSON.parse(await fs.readFile(path.join(directory,'input-context.json'),'utf8')):undefined;
    if(context)assertHandoffContext(context,job.request);
-   const skill=await loadSkill(job.request.styleId,{allowAgent:job.request.requestVersion===2,selectedStyleIds:job.request.selectedStyleIds});await atomicJson(path.join(directory,'skill-snapshot.json'),skill);
+   const skill=await loadSkill(job.request.styleId,{allowAgent:job.request.requestVersion===2,selectedStyleIds:job.request.selectedStyleIds,context:this.context});await atomicJson(path.join(directory,'skill-snapshot.json'),skill);
    if(context?.catalogSnapshot?.sha256!==undefined&&context.catalogSnapshot.sha256!==skill.catalogSha256)throw Error('Catalogue changed after site import; review references before rendering');
    await stage('planning',12,job.authorization.mode==='production'?'Loading approved executable plan':`Planning provider: ${this.planner.name}`);
    const candidate=job.authorization.mode==='production'?JSON.parse(await fs.readFile(path.join(directory,'approved-plan.json'),'utf8')):await this.planner.plan(job.request,assets,skill,{signal});

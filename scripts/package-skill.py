@@ -18,21 +18,12 @@ install_text=re.sub(r'\]\(([^)]+)\)',install_link,install_text)
 # The shared browser/Node contract owns the registered kit IDs.
 system=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import './style-atlas/dist/workflow.js'; process.stdout.write(JSON.stringify(AtlasWorkflow.skillSystem))"],cwd=root,text=True))
 skill_ids=[s['id'] for s in system['skills']]
-assert skill_ids[0]=='video-multimarcas' and len(skill_ids)==7 and len(set(skill_ids))==7
-for skill_id in skill_ids:
-    assert (root/'.agents/skills'/skill_id/'SKILL.md').is_file(),skill_id
-# Portable one-skill hosts can read complete embedded specialist instructions.
-embedded=skill/'references/skill-modules';embedded.mkdir(exist_ok=True)
-for skill_id in skill_ids[1:]:
-    body=(root/'.agents/skills'/skill_id/'SKILL.md').read_text()
-    body=body.replace('../video-multimarcas/references/','../')
-    owned=root/'.agents/skills'/skill_id/'references'
-    if owned.exists():
-        target=embedded/skill_id/'references'
-        if target.exists():shutil.rmtree(target)
-        shutil.copytree(owned,target)
-        body=body.replace('](references/',']('+skill_id+'/references/')
-    (embedded/(skill_id+'.md')).write_text(body)
+assert skill_ids==['video-multimarcas']
+assert len(system['modules'])==7
+for module in system['modules']:
+    assert (skill/module['instructions']).is_file(),module['id']
+    assert not (root/'.agents/skills'/module['id']).exists()
+    assert not (root/'.claude/skills'/module['id']).exists()
 (skill/'references/skill-system.json').write_text(json.dumps(system,ensure_ascii=False,indent=2)+'\n')
 
 (root/'dist').mkdir(exist_ok=True)
@@ -62,10 +53,6 @@ if plugin_skill.exists():
         raise ValueError('Plugin destination escapes repository')
     shutil.rmtree(plugin_skill)
 shutil.copytree(skill,plugin_skill)
-for skill_id in skill_ids[1:]:
-    target=plugin/'skills'/skill_id
-    if target.exists():shutil.rmtree(target)
-    shutil.copytree(root/'.agents/skills'/skill_id,target)
 (plugin/'.codex-plugin').mkdir(parents=True,exist_ok=True)
 (plugin/'.codex-plugin/plugin.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (plugin/'INSTALL.md').write_text(install_text)
@@ -86,10 +73,6 @@ claude=root/'plugins/video-multimarcas-claude'
 claude_skill=claude/'skills'/name
 if claude_skill.exists():shutil.rmtree(claude_skill)
 shutil.copytree(skill,claude_skill)
-for skill_id in skill_ids[1:]:
-    target=claude/'skills'/skill_id
-    if target.exists():shutil.rmtree(target)
-    shutil.copytree(root/'.agents/skills'/skill_id,target)
 (claude/'.claude-plugin').mkdir(parents=True,exist_ok=True)
 shutil.copy2(root/'packaging/video-multimarcas.claude-plugin.json',claude/'.claude-plugin/plugin.json')
 (claude/'INSTALL.md').write_text(install_text)
@@ -104,7 +87,7 @@ with zipfile.ZipFile(root/'dist/video-multimarcas-claude-plugin.zip','w',zipfile
 runtime_files=set()
 for runtime_name in ['AGENTS.md','CLAUDE.md','README.md','THIRD_PARTY.md','LICENSE','package.json','package-lock.json','tsconfig.json','studio.sh','STUDIO.cmd']:
     runtime_files.add(root/runtime_name)
-for folder in [*[f'.agents/skills/{sid}' for sid in skill_ids[1:]],*[f'.claude/skills/{sid}' for sid in skill_ids[1:]],'server','src','scripts','templates','docs','packaging','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
+for folder in ['server','src','scripts','templates','docs','packaging','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
     for source in (root/folder).rglob('*'):
         if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff','.sh','.cmd','.ps1'] or source.name.startswith('LICENSE')):
             runtime_files.add(source)

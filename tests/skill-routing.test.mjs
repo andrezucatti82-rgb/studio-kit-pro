@@ -10,9 +10,9 @@ const W=globalThis.AtlasWorkflow;
 const catalog=JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url),'utf8'));
 const presenter=catalog.styles.find(s=>s.presenterEditing),ad=catalog.styles.find(s=>s.advertising);
 function choice(styles,contributions){return {selectedStyles:styles.map(s=>({...s,referenceFrame:W.referenceFrame(s),visualSequence:s.sequence})),styleContributions:contributions,catalogVersion:catalog.version,targetDurationSeconds:30,format:'9:16',topic:'Explicar um processo com materiais reais',brand:'',typography:'auto',projectState:{history:[],approvals:W.emptyApprovals(),preProductionApprovals:W.emptyPreProductionApprovals()}};}
-test('kit exposes a coordinator and six discoverable specialists',()=>{
+test('kit exposes only a coordinator and resolves seven internal modules',()=>{
  assert.equal(typeof W.skillRouting,'function','Missing structured skill routing');
- assert.equal(W.skillSystem.orchestrator,'video-multimarcas');assert.equal(W.skillSystem.skills.length,7);
+ assert.equal(W.skillSystem.orchestrator,'video-multimarcas');assert.equal(W.skillSystem.skills.length,1);assert.equal(W.skillSystem.modules.length,7);
 });
 test('all 265 presenter directions route interaction work to the presenter specialist',()=>{
  assert.equal(typeof W.skillRouting,'function');
@@ -43,14 +43,14 @@ test('downloaded routing is checked against actual selections, while old request
   delete bundle.orchestrator.skillRouting;await fs.writeFile(file,JSON.stringify(bundle));await importSiteRequest(file,path.join(root,'legacy'));assert.equal((await readContext(path.join(root,'legacy'))).skillRouting.primarySkill,'video-explicador-interativo');
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
-test('fresh project install includes all seven kit skills and leaves another skill intact',async()=>{
- const root=await fs.mkdtemp(path.join(os.tmpdir(),'kit-install-'));try{await fs.mkdir(path.join(root,'.claude/skills/personal'),{recursive:true});await fs.writeFile(path.join(root,'.claude/skills/personal/SKILL.md'),'personal');const result=JSON.parse(execFileSync('node',['scripts/install-agent.mjs','--agent','claude','--project-root',root],{encoding:'utf8'}));assert.equal(result.skills?.length,7,'Complete kit was not installed');assert.equal(await fs.readFile(path.join(root,'.claude/skills/personal/SKILL.md'),'utf8'),'personal');for(const s of result.skills)assert((await fs.readFile(path.join(s.path,'SKILL.md'),'utf8')).includes('name: '+s.id));
+test('fresh project install includes only the public skill and all internal modules, preserving other skills',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'kit-install-'));try{await fs.mkdir(path.join(root,'.claude/skills/personal'),{recursive:true});await fs.writeFile(path.join(root,'.claude/skills/personal/SKILL.md'),'personal');const result=JSON.parse(execFileSync('node',['scripts/install-agent.mjs','--agent','claude','--project-root',root],{encoding:'utf8'}));assert.equal(result.skills?.length,1,'Complete kit was not installed');assert.equal(result.modules.length,7);for(const module of result.modules)await fs.access(module.instructions);assert.deepEqual((await fs.readdir(path.join(root,'.claude/skills'))).sort(),['personal','video-multimarcas']);assert.equal(await fs.readFile(path.join(root,'.claude/skills/personal/SKILL.md'),'utf8'),'personal');for(const s of result.skills)assert((await fs.readFile(path.join(s.path,'SKILL.md'),'utf8')).includes('name: '+s.id));
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
 test('failed kit update rolls back earlier skills and removes staging files',async()=>{
- const root=await fs.mkdtemp(path.join(os.tmpdir(),'kit-rollback-'));try{const skills=path.join(root,'.claude/skills');await fs.mkdir(path.join(skills,'video-planejamento'),{recursive:true});await fs.writeFile(path.join(skills,'video-planejamento/old.txt'),'keep old planning');await fs.writeFile(path.join(root,'.cache'),'blocks backup directory');
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'kit-rollback-'));try{const skills=path.join(root,'.claude/skills');await fs.mkdir(path.join(skills,'video-planejamento'),{recursive:true});await fs.writeFile(path.join(skills,'video-planejamento/old.txt'),'keep old planning');await fs.mkdir(path.join(skills,'video-multimarcas'));await fs.writeFile(path.join(skills,'video-multimarcas/old.txt'),'original coordinator');await fs.writeFile(path.join(root,'.cache'),'blocks backup directory');
   assert.throws(()=>execFileSync('node',['scripts/install-agent.mjs','--agent','claude','--project-root',root],{encoding:'utf8',stdio:'pipe'}));
-  assert.equal((await fs.readdir(skills)).includes('video-multimarcas'),false,'Partial coordinator install must roll back');assert(!(await fs.readdir(skills)).some(s=>s.includes('.updating-')));assert.equal(await fs.readFile(path.join(skills,'video-planejamento/old.txt'),'utf8'),'keep old planning');
+  assert.equal(await fs.readFile(path.join(skills,'video-multimarcas/old.txt'),'utf8'),'original coordinator');assert(!(await fs.readdir(skills)).some(s=>s.includes('.updating-')));assert.equal(await fs.readFile(path.join(skills,'video-planejamento/old.txt'),'utf8'),'keep old planning');
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
 test('reimporting a valid pre-routing context preserves its fingerprint and artifacts',async()=>{
@@ -66,7 +66,7 @@ test('a copy failure cleans the staged skill before installation starts',async()
 test('version-one site routes resume with finishing without replacing approved context bytes',async()=>{
  const root=await fs.mkdtemp(path.join(os.tmpdir(),'kit-route-v1-'));try{
   const c=choice([presenter],{[presenter.id]:[{aspect:'style_direction',scope:'film'}]}),bundle=JSON.parse(W.starterFiles(c).find(f=>f.name==='projeto-video.json').text);
-  const oldRoute={...W.skillRouting(c),version:1,modules:W.skillRouting(c).modules.filter(id=>id!=='video-tratamento')};bundle.orchestrator.skillRouting=oldRoute;
+  const oldRoute={...W.skillRouting(c),version:1,modules:W.skillRouting(c).modules.filter(id=>!['video-tratamento','video-vfx'].includes(id))};bundle.orchestrator.skillRouting=oldRoute;
   const file=path.join(root,'request.json'),project=path.join(root,'project');await fs.writeFile(file,JSON.stringify(bundle));await importSiteRequest(file,project);
   const oldContext=await readContext(project);oldContext.skillRouting=oldRoute;oldContext.intentSummary.skillRouting=oldRoute;oldContext.contextSha256=contextFingerprint(oldContext);const bytes=JSON.stringify(oldContext);await fs.writeFile(path.join(project,'agent-context.json'),bytes);
   const resumed=await importSiteRequest(file,project);assert.equal(resumed.contextSha256,oldContext.contextSha256);assert.equal(await fs.readFile(path.join(project,'agent-context.json'),'utf8'),bytes);

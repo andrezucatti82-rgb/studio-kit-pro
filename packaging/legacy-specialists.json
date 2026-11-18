@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "description": "Exact known kit trees eligible for backup and retirement; custom folders are preserved.",
+  "modules": [
+    {
+      "id": "video-planejamento",
+      "trees": [
+        {
+          "SKILL.md": "64c71745888c3a104d58bc62ae4dfeca4c1d34f383a3ad74bd3551949ea508c6"
+        },
+        {
+          "SKILL.md": "b4c768bab2c1d548b8f942ed66466b712b82c56dd41f5df76345ff1bac509ac2"
+        },
+        {
+          "SKILL.md": "6ec8206af0ec5b351c6f5abd326db5b999449f9fee22f95b53f71ebfa6aa9612"
+        }
+      ]
+    },
+    {
+      "id": "video-explicador-interativo",
+      "trees": [
+        {
+          "SKILL.md": "566623acf1d3ca778186b21b249d3815eedbf67ded1212b88101b364e59cdc63"
+        },
+        {
+          "SKILL.md": "03821e6050fd9b00e1e44521d3f9549f86c3d7a9b92be96492ba43501efcf9f0"
+        },
+        {
+          "SKILL.md": "b244dc3abc403dccb3c4043f70161eaaa8954168c4968fcc5ddb9da29eef9115"
+        }
+      ]
+    },
+    {
+      "id": "video-publicidade",
+      "trees": [
+        {
+          "SKILL.md": "ff44522340ff73387ad6f3770bac2f7be915fe6357ab1636dc89408e4326bab1"
+        },
+        {
+          "SKILL.md": "df579b62fc2cbb2117c110818e673a1725574bfe3596cef7d01597c0f7decd17"
+        },
+        {
+          "SKILL.md": "982e0f33079d44715ec2d594cbd5b83f7cdedb0a7e59855d26e9778ece09eff3"
+        }
+      ]
+    },
+    {
+      "id": "video-edicao",
+      "trees": [
+        {
+          "SKILL.md": "5443182de7199c9bf93055c40fe8e986b7f6a23cf50d221ddfdc59397ea67811"
+        },
+        {
+          "SKILL.md": "b33de9e740fa6bfe663bfb4bb8fdfd710b4607ff8a3cf88d74b5822ece6dc89f"
+        },
+        {
+          "SKILL.md": "67d8d31794721344938d6469cf2b5b573943a36378557e3d9455175214530829"
+        }
+      ]
+    },
+    {
+      "id": "video-vfx",
+      "trees": [
+        {
+          "SKILL.md": "fb15785c7b3782261d8c9d123e538436d05420865c20090190fdd8a21c9bd50d",
+          "references/compositing-and-color.md": "7829553ebee5ad4f57812b316a85faf3bb51f6c43769c7259ccafe6c6b26d849",
+          "references/integration.md": "195076f64a55831749234c036a1ba7a95c780ca5bf0b55de9fa9b5893b4744a1",
+          "references/provenance.json": "f69e2a75e9b595201723288291ab912d626ddabafffb0b57dbf290e5b9849207",
+          "references/quality-and-delivery.md": "e0ddde91d3f752ead9da63e7eee1f734342ec404936483ef2cfa5ae3afc90036",
+          "references/shot-recipes.md": "101a60d9b0a2fd237dba88000f6cb01de8f64eb2e014f17b6d6d59f5277fc81d",
+          "references/sources-and-learning.md": "c6267f572584b56461babcb8037c44c01b396e72f7aab26de490bd713ffb9670",
+          "references/tools-and-capabilities.md": "bc25673b245fae536cdc42bc511a02d511fe447a463d63775b3b2b08a30af6e0",
+          "templates/vfx-plan.json": "33c1d65d01f1f230945df2aa4962e9f8920d36dc1b0e460697b5f566758da67d",
+          "templates/vfx-review.json": "f58b272b213273bda1b6c23aa283253a88467f2a145dde8810c52c0ccde6e680"
+        },
+        {
+          "SKILL.md": "71b82c51e92944f4cfff397314a9f08a3c5c966b7eb430d8f49ddfb7f8cc96ee"
+        }
+      ]
+    },
+    {
+      "id": "video-tratamento",
+      "trees": [
+        {
+          "SKILL.md": "1196fa85c8129e6c0c2f6808a6666ba37cf8cce9e0f56afb3bde173f316e1104",
+          "references/capabilities.json": "16ea86eea5c4b770037edbc8b0a926e1f48e707f451378b2bb6ad200bdb00062",
+          "references/coverage.md": "5135ab221b5e5abb94f67f80928874ea4f32ec0f1a8567b515b6b661d3addb13"
+        },
+        {
+          "SKILL.md": "f96d2b448c82c59546563cee3954bd21b5daa703568a405697f49e8ef7cb1df8"
+        },
+        {
+          "SKILL.md": "6a077c083a8812bd4c6f5491a9d6afff43df9a570fff02214626d753e17abac7",
+          "references/capabilities.json": "16ea86eea5c4b770037edbc8b0a926e1f48e707f451378b2bb6ad200bdb00062",
+          "references/coverage.md": "5135ab221b5e5abb94f67f80928874ea4f32ec0f1a8567b515b6b661d3addb13"
+        }
+      ]
+    },
+    {
+      "id": "video-revisao",
+      "trees": [
+        {
+          "SKILL.md": "aaf721e17c593933433eaf5992a8bc54b59fac62a94e4dd72c2419f03b8f5f64"
+        },
+        {
+          "SKILL.md": "8765d144aca4cb9f2df880b131a69c4f97c457f722112d73811c2bb2c5e4d2d3"
+        },
+        {
+          "SKILL.md": "79bf49d6aa37c24e447d6ce15b7210037271d2da937458d395ee0e6df2871aae"
+        }
+      ]
+    }
+  ]
+}
