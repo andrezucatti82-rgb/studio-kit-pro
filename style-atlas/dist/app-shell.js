@@ -13,9 +13,10 @@
   stage=value;const review=stage==='review';$('briefDialog').dataset.stage=stage;
   $('briefForm').hidden=review;$('handoff').hidden=!review;
   document.querySelectorAll('[data-brief-stage]').forEach(b=>b.setAttribute('aria-current',b.dataset.briefStage===stage?'step':'false'));
-  if(review)renderSummary();
+  if(review)renderSummary();window.AtlasFolio?.syncHeader();
  }
  function openBrief(){
+  if(window.AtlasGuidedFlow?.hasDraft()){window.AtlasGuidedFlow.open();return;}
   if(!selected.length){view('library');$('libraryTitle').focus({preventScroll:true});return}
   document.body.dataset.view='brief';window.AtlasFolio?.onView('brief');document.querySelector('.brief-heading').append($('startGuided'));
   if(!$('briefDialog').open)$('briefDialog').show();
@@ -27,11 +28,11 @@
  function selectionChanged(styles){
   selected=styles;$('selectionTray').hidden=!styles.length;
   $('trayCount').textContent=styles.length+' '+(styles.length===1?'estilo escolhido':'estilos escolhidos');
-  $('selectionSummary').textContent=`Estilos escolhidos · ${styles.length}/10`;
+  $('selectionSummary').textContent='Estilo do vídeo';
   document.querySelectorAll('[data-selection-count]').forEach(x=>x.textContent=styles.length);
   const esc=AtlasViews.esc;
   $('trayImages').innerHTML=styles.slice(0,3).map(s=>s.sequence?'<span class="tray-reference">'+AtlasViews.picture(s,s.sequence?.heroIndex??1,base(),'',true)+'</span>':'').join('');
-  const s=styles[0];$('briefVisual').innerHTML=s?`<p class="eyebrow">Estilo principal</p><h3>${esc(s.name)}</h3><button type="button" class="frame-expand" data-detail="${esc(s.id)}" aria-label="Examinar ${esc(s.name)}">${s.sequence?AtlasViews.picture(s,s.sequence?.heroIndex??1,base()):`<img src="${esc(base()+s.image.atlas)}" alt="${esc(s.name)}">`}</button>${AtlasViews.strip(s,base())}${s.sequence?`<button type="button" class="text-button" data-board="${esc(s.id)}">↓ Baixar sequência dos 4 quadros</button>`:''}<p class="concept-note">Quadros conceituais · a execução será validada na amostra.</p>`:'<p>Escolha um estilo na biblioteca.</p>';
+  const s=styles[0];$('briefVisual').innerHTML=s?`<p class="eyebrow">Estilo principal</p><h3>${esc(s.name)}</h3><button type="button" class="frame-expand" data-detail="${esc(s.id)}" aria-label="Examinar ${esc(s.name)}">${s.sequence?AtlasViews.picture(s,s.sequence?.heroIndex??1,base()):`<img src="${esc(base()+s.image.atlas)}" alt="${esc(s.name)}">`}</button>${AtlasViews.strip(s,base())}<p class="concept-note">Quadros conceituais · a execução será validada na amostra.</p>`:'<p>Escolha um estilo na biblioteca.</p>';
   if(ready)renderSummary();
  }
  function renderSummary(){
@@ -46,7 +47,7 @@
   $('summaryMaterials').replaceChildren(...plan.now.map(text=>{const row=document.createElement('li');const title=document.createElement('strong');title.textContent=text;row.append(title);const need=plan.dependencies.find(x=>x.label===text);if(need&&need.action==='verify_access'){const note=document.createElement('span');note.textContent='Já registrado'+(need.file?' · '+need.file:'')+'; conferir acesso na conversa';row.append(note)}else if(need&&need.action==='request_replacement'){const note=document.createElement('span');note.textContent='Original registrado como inadequado; '+need.alternative;row.append(note)}return row}));
   if(c.productionContract.presenterInput?.required){const li=document.createElement('li'),label=document.createElement('strong'),note=document.createElement('span');label.textContent='Filmagem original ou avatar escolhido';note.textContent=c.productionContract.presenterInput.instruction;li.append(label,note);$('summaryMaterials').prepend(li);}
   $('handoffMaterialNotes').replaceChildren();for(const [label,items] of [['Opcional',plan.optional],['Somente se o roteiro precisar',plan.later]]){const p=document.createElement('p');p.textContent=label+': '+items.join(' ');$('handoffMaterialNotes').append(p)}
-  $('referenceFiles').innerHTML='<h3>Referências para anexar</h3>'+c.selectedStyles.map(s=>`<div class="reference-file"><strong>${esc(s.name)}</strong><div><button type="button" class="text-button" data-frame="${esc(s.id)}">Baixar quadro · PNG</button><button type="button" class="text-button" data-board="${esc(s.id)}">Baixar sequência · PNG</button></div></div>`).join('')+'<p class="small">Arquivos identificados pelo ID do estilo. Eles mostram a direção; os originais do seu assunto continuam sendo a referência principal.</p>';
+  $('referenceFiles').innerHTML='<h3>Direção visual incluída no pedido</h3><p>A descrição do estilo, seus momentos, movimento e referências seguem no texto. Você só precisa enviar os materiais do seu negócio que a produção solicitar.</p>';
   updatePlatform();
  }
 
@@ -61,7 +62,7 @@
   viewerStyle=s;viewerIndex=Number.isInteger(index)&&index>=0&&index<4?index:0;returnFocus=trigger;updateFrame();$('sequenceDialog').showModal();
  }
  function updateFrame(){
-  const f=viewerStyle.sequence.frames[viewerIndex];$('sequenceImage').src=(window.ATLAS_IMAGE_ASSET_BASE||base())+f.src;$('sequenceImage').alt=f.alt||f.caption||viewerStyle.name;const image=$('sequenceImage'),viewport=$('sequenceViewport');if(f.crop){const [x,y,w,h]=f.crop;viewport.style.aspectRatio=f.width+'/'+f.height;image.style.cssText=`position:absolute;width:${100/w}%;height:${100/h}%;max-width:none;max-height:none;left:${-100*x/w}%;top:${-100*y/h}%;object-fit:fill`;}else{viewport.style.aspectRatio='';image.style.cssText='position:static;width:100%;height:auto;';}
+  const f=AtlasViews.frameView(viewerStyle,viewerIndex);$('sequenceImage').src=(window.ATLAS_IMAGE_ASSET_BASE||base())+f.src;$('sequenceImage').alt=f.alt||f.caption||viewerStyle.name;const image=$('sequenceImage'),viewport=$('sequenceViewport');if(f.crop){const [x,y,w,h]=f.crop;viewport.style.aspectRatio=f.width+'/'+f.height;image.style.cssText=`position:absolute;width:${100/w}%;height:${100/h}%;max-width:none;max-height:none;left:${-100*x/w}%;top:${-100*y/h}%;object-fit:fill`;}else{viewport.style.aspectRatio='';image.style.cssText='position:static;width:100%;height:auto;';}
   $('sequenceTitle').textContent=viewerStyle.name;$('sequenceCaption').textContent=f.label+' · '+(f.caption||f.action||'');$('sequencePosition').textContent=`${viewerIndex+1} / 4`;
   $('sequencePrev').disabled=viewerIndex===0;$('sequenceNext').disabled=viewerIndex===3;
   $('sequenceDownload').dataset.sequenceDownload=viewerStyle.id;$('sequenceDownload').dataset.frameIndex=viewerIndex;

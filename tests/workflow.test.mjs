@@ -36,3 +36,9 @@ test('visual preproduction has separate decisions, legacy migration and strict v
  const prompt=W.buildPrompt(choice);for(const phrase of ['Moodboard: gerar e mostrar','Aprovação do moodboard não aprova automaticamente o storyboard','não iniciar a amostra','quadro inicial individual validado'])assert.ok(prompt.includes(phrase));
  for(const s of c.styles){assert.ok(s.preset.firstDelivery.some(v=>v.includes('moodboard')));assert.ok(s.preset.approvalGate.includes('duas aprovações explícitas'));}
 });
+
+test('every style has an honest descriptive visual brief and does not require catalogue PNG downloads',()=>{
+ for(const s of c.styles){const d=W.describeStyle(s);assert.equal(d.styleId,s.id);assert.ok(d.appearance&&d.colorAndLighting&&d.typography.direction);assert.equal(d.moments.length,4);assert.ok(d.moments.every(f=>f.description));assert.match(d.typography.exactFont,/Confirmar/);}
+ const s=c.styles[0],prompt=W.buildPrompt({selectedStyles:[{...s,referenceFrame:W.referenceFrame(s),visualSequence:s.sequence}],targetDurationSeconds:30,format:'9:16'});assert.match(prompt,/visualDescription/);assert.match(prompt,/usuário não precisa baixar/);assert.doesNotMatch(prompt,/Anexe o PNG do quadro principal/);
+ assert.doesNotMatch(W.starterFiles({selectedStyles:[s],targetDurationSeconds:30,format:'9:16'}).find(f=>f.name==='LEIA-ME.txt').text,/baixe quadro|PNGs das referências/);
+});

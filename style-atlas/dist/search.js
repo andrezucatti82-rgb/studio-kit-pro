@@ -65,5 +65,13 @@
   }
   return {search,tagsForId:id=>entries.find(e=>e.style.id===id)?.tags||[]};
  }
- root.AtlasSearch={normalize,concepts,fields,tagsFor,createIndex};
+ function similar(styles,source,limit=24){
+  if(!source)return [];
+  const common=new Set(['realista','avatar','apresentador','explicador','explicação interativa','produto','serviço','luz','legenda','narração','efeito sonoro','música']);
+  const tags=s=>new Set(tagsFor(s).map(normalize).filter(t=>!common.has(t))),origin=tags(source),sector=source.presenterEditing?.sector;
+  return styles.filter(s=>s.id!==source.id).map((style,order)=>{const terms=tags(style),shared=[...origin].filter(t=>terms.has(t)).length;
+   const score=(style.family===source.family?4:0)+(style.kind===source.kind?2:0)+(sector&&style.presenterEditing?.sector===sector?8:0)+12*shared/Math.max(1,new Set([...origin,...terms]).size);
+   return {style,score,order};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.order-b.order).slice(0,limit).map(x=>x.style);
+ }
+ root.AtlasSearch={normalize,concepts,fields,tagsFor,createIndex,similar};
 })(globalThis);

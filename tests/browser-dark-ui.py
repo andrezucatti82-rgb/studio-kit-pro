@@ -25,10 +25,13 @@ with sync_playwright() as p:
    if group.get('directFamily'):
     expect(page.locator('#folioMenu')).not_to_be_visible();assert page.evaluate('AtlasApp.categorySelection().family')==group['directFamily'];seen.add(group['directFamily'])
    else:
+    assert page.evaluate('AtlasApp.categorySelection().group')==group['id']
+    assert page.locator('#folioCollectionTitle').inner_text()==group['name']
+    assert page.evaluate('(ids)=>[...document.querySelectorAll("#grid [data-style-id]")].every(e=>ids.includes(AtlasApp.getStyle(e.dataset.styleId).family))',group['families'])
     expect(page.locator('#folioMenu')).to_be_visible();ids=page.locator('#folioMenu [data-folio-family]').evaluate_all('es=>es.map(e=>e.dataset.folioFamily)');assert set(ids)==set(group['families']);seen.update(ids)
     assert page.locator('#folioMenu').bounding_box()['height']<420
     assert page.locator('#folioMenu [data-folio-family]').first.evaluate('e=>getComputedStyle(e).backgroundColor')=='rgba(0, 0, 0, 0)'
-    page.locator('[data-folio-menu-back]').click();assert page.locator('#folioMenuGroups [data-folio-group]').count()==7
+    assert page.locator('[data-folio-menu-back]').count()==0
     page.keyboard.press('Escape');expect(trigger).to_be_focused()
    assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   assert len(seen)==page.evaluate('AtlasApp.getCatalog().families.length')
@@ -39,12 +42,13 @@ with sync_playwright() as p:
   first=page.locator('#folioMenu button').first.bounding_box();header=page.locator('#folioHeader').bounding_box();assert 0<=first['y']-header['y']-header['height']<=8
   page.screenshot(path=str(out/f'menu-{width}.png'),animations='disabled')
   page.locator('[data-folio-family="ads-pets"]').click();expect(page.locator('#grid .folio-cover').first).to_be_visible()
-  header=page.locator('#folioHeader').bounding_box();cover=page.locator('#grid .folio-cover').first.bounding_box();assert 0<=cover['y']-header['y']-header['height']<=105
+  header=page.locator('#folioHeader').bounding_box();cover=page.locator('#grid .folio-cover').first.bounding_box();assert 0<=cover['y']-header['y']-header['height']<=190
   assert not page.locator('#folioSearch').is_visible()
-  page.locator('#folioCategoryFilters>summary').click()
+  assert page.locator('#folioCategoryFilters').count()==0
+  expect(page.locator('#kind')).to_be_visible();assert page.locator('#videoFilter').count()==0
   page.locator('#favoriteFilter').click();expect(page.locator('#favoriteFilter')).to_have_attribute('aria-pressed','true');assert page.locator('#favoriteFilter').evaluate('e=>getComputedStyle(e,"::after").backgroundColor')=='rgb(52, 199, 106)'
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
-  page.locator('#favoriteFilter').click();page.locator('#folioCategoryFilters>summary').click();page.screenshot(path=str(out/f'category-{width}.png'),animations='disabled')
+  page.locator('#favoriteFilter').click();page.screenshot(path=str(out/f'category-{width}.png'),animations='disabled')
   page.locator('#folioHeader .folio-brand').click();expect(page.locator('#folioSearch')).to_be_visible()
   page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
   assert page.locator('#folioMenu input, #folioMenu small, #folioMenu svg, #folioMenu footer, #folioMenu h2, #folioMenu h3').count()==0
@@ -52,15 +56,15 @@ with sync_playwright() as p:
   expect(family).to_be_focused();page.set_viewport_size({'width':375,'height':812});expect(family).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
   page.locator('#folioOpenMenu').click();page.locator('[data-folio-group="technology"]').click();page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenu [data-folio-family]').first).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
   page.set_viewport_size({'width':width,'height':height})
-  page.locator('#folioHeader [data-folio-choice]').first.click() if width>700 else page.locator('.mobile-app-nav [data-folio-choice]').click()
-  assert page.locator('#folioChoiceContinue').evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(36, 91, 219)'
-  assert page.locator('#folioChoiceContinue').evaluate('e=>getComputedStyle(e).color')=='rgb(255, 255, 255)'
-  page.locator('#folioChoiceContinue').click();expect(page.locator('#topic')).to_be_visible()
+  page.locator('#folioContinue').click()
+  assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(52, 199, 106)'
+  assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).color')=='rgb(7, 28, 15)'
+  expect(page.locator('#topic')).to_be_visible()
   if width<=700:
    rect=page.locator('#topic').bounding_box();assert rect['y']>=0 and rect['y']+rect['height']<=height
    assert float(page.locator('#topic').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)'))>=16
   page.locator('#topic').fill('Explicar como um CRM organiza contatos e integra site, formulários e anúncios.');page.screenshot(path=str(out/f'form-{width}.png'),animations='disabled')
-  page.locator('#prepare').click();assert 'Explicar como um CRM' in page.locator('#promptOutput').input_value()
+  page.locator('#folioContinue').click();assert 'Explicar como um CRM' in page.locator('#promptOutput').input_value()
   assert 'Folio UI' in page.locator('#handoffTitle').evaluate('e=>getComputedStyle(e).fontFamily')
   page.locator('#folioHeader .folio-brand').click();page.locator('#folioHeader [data-app-view="help"]').click();expect(page.locator('#instalar')).to_be_visible()
   assert page.locator('.skip-link').get_attribute('href')=='#installTitle'
@@ -74,7 +78,7 @@ with sync_playwright() as p:
   page.locator('#appHelp .workflow').scroll_into_view_if_needed();page.screenshot(path=str(out/f'help-workflow-{width}.png'),animations='disabled')
   page.screenshot(path=str(out/f'help-{width}.png'),animations='disabled')
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  report['viewports'].append({'width':width,'allCategoriesReachable':len(groups),'allFamiliesReachable':len(seen),'darkFields':True,'localFonts':4,'allHelpCardsContrast':True,'resizeFocusPreserved':True,'simpleTextMenu':True,'directCategoryLayout':True,'stateDrivenGreenAndBlue':True,'projectPreserved':True})
+  report['viewports'].append({'width':width,'allCategoriesReachable':len(groups),'allFamiliesReachable':len(seen),'darkFields':True,'localFonts':4,'allHelpCardsContrast':True,'resizeFocusPreserved':True,'simpleTextMenu':True,'directCategoryLayout':True,'stateDrivenGreenAccent':True,'projectPreserved':True})
   page.close()
  b.close()
 assert not report['errors'],report
