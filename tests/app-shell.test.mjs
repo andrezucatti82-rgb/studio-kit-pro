@@ -59,12 +59,12 @@ test('restoring a 4:5 brief preserves its format in the next generated request',
  const app=await boot();app.click('#grid [data-choose]');app.change('format','4:5');await new Promise(r=>setTimeout(r,20));const saved=JSON.parse(app.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().format,'4:5');assert.match(resumed.ctx.AtlasApp.prompt(),/4:5/);
 });
 
-test('app: choose ten, prepare 90 seconds, keep technical prompt collapsed, persist and resume',async()=>{
+test('app: selecting another style replaces the first, prepares 90 seconds and resumes',async()=>{
  const app=await boot();const {document:d,ctx,click,change}=app;
  const ids=[...d.querySelectorAll('#grid [data-choose]')].slice(0,11).map(x=>x.dataset.choose);
  for(const id of ids)click(`#grid [data-choose="${id}"]`);
- assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,10);
- assert.throws(()=>ctx.AtlasApp.prompt(),/Escolha/);
+ assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,1);
+ assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,ids.at(-1));
  for(const style of ctx.AtlasCurrentChoice().selectedStyles.slice(1))ctx.AtlasApp.setStyleContributions(style.id,[{aspect:'lighting',scope:'propose'}]);
  click('#openBrief');assert.equal(d.body.dataset.view,'brief');
  change('topic','<script>alert(1)</script> Um agente de IA');change('duration','custom');change('customDuration','90');
@@ -77,7 +77,7 @@ test('app: choose ten, prepare 90 seconds, keep technical prompt collapsed, pers
  click('#copyPrompt');await new Promise(r=>setTimeout(r,10));assert.match(ctx.copied,/SEQUÊNCIA VISUAL/);
  const saved=JSON.parse(app.store.get('video-multimarcas-atlas-v1'));
  const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().targetDurationSeconds,90);
- assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,10);
+ assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,1);
  resumed.click('#openBrief');assert.equal(resumed.document.getElementById('briefDialog').dataset.stage,'review');
  assert.deepEqual(app.errors,[]);
 });
@@ -86,7 +86,7 @@ test('Page mode never reads localStorage; 30 second choice saved using widget st
  app.document.getElementById('briefForm').dispatchEvent(new app.ctx.Event('submit',{bubbles:true,cancelable:true}));
  await new Promise(r=>setTimeout(r,20));assert.equal(app.getStorageReads(),0);assert.equal(app.getState().modelContent.targetDurationSeconds,30);
  assert.equal(app.getState().modelContent.selectedStyles.length,1);
- app.click('#videoFilter');assert.equal(app.document.querySelectorAll('#grid .card').length,6);
+ assert.equal(app.document.getElementById('videoFilter'),null);assert.ok(app.document.getElementById('kind'));
 });
 
 test('narrated ads: eleven segments, 45 second handoff and local restore retain the ad contract',async()=>{
@@ -257,9 +257,10 @@ test('granular choices reach prompt and Page state; changes invalidate approvals
  await a.ctx.AtlasApp.save();assert.equal(a.getStorageReads(),0);assert.equal(a.getState().modelContent.styleContributions[id][0].aspect,'lighting');assert.equal(a.getState().modelContent.styleContributions[id][0].scope,'opening');assert.match(a.ctx.AtlasApp.prompt(),/"aspect":"lighting","scope":"opening"/);
  const resumed=await boot({page:true,saved:a.getState()});assert.equal(resumed.ctx.AtlasCurrentChoice().styleContributions[id][0].scope,'opening');
 });
-test('popup cancellation retains original selection and conflicting scope blocks a prepared request',async()=>{
- const a=await boot();a.click('#grid [data-choose]');const first=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;a.ctx.AtlasContributions.open(first);a.click('#pickerClear');a.click('#pickerClose');assert.equal(a.ctx.AtlasApp.getStyleContributions(first)[0].aspect,'style_direction');
- const button=[...a.document.querySelectorAll('#grid [data-choose]')].find(b=>b.dataset.choose!==first);a.click('#grid [data-choose="'+button.dataset.choose+'"]');assert.throws(()=>a.ctx.AtlasApp.prompt(),/Escolha/);a.ctx.AtlasApp.setStyleContributions(first,[{aspect:'palette',scope:'film'}]);a.ctx.AtlasApp.setStyleContributions(button.dataset.choose,[{aspect:'palette',scope:'film'}]);assert.throws(()=>a.ctx.AtlasApp.prompt(),/concorrentes/);assert.ok(a.document.querySelector('.combination-conflicts'));a.ctx.AtlasApp.setStyleContributions(button.dataset.choose,[{aspect:'palette',scope:'opening'}]);assert.doesNotThrow(()=>a.ctx.AtlasApp.prompt());
+test('selecting a replacement has a complete direction and no conflicting complementary choice',async()=>{
+ const a=await boot();a.click('#grid [data-choose]');const first=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;
+ const button=[...a.document.querySelectorAll('#grid [data-choose]')].find(b=>b.dataset.choose!==first);a.change('topic','Tema preservado');a.click('#grid [data-choose="'+button.dataset.choose+'"]');
+ assert.equal(a.ctx.AtlasCurrentChoice().selectedStyles.length,1);assert.equal(a.ctx.AtlasCurrentChoice().selectedStyles[0].id,button.dataset.choose);assert.equal(a.ctx.AtlasCurrentChoice().topic,'Tema preservado');assert.doesNotThrow(()=>a.ctx.AtlasApp.prompt());assert.equal(a.document.querySelectorAll('#selectionList [data-contributions]').length,0);
 });
 test('invalid contribution sheet is refused before replacing the current project',async()=>{
  const a=await boot();a.click('#grid [data-choose]');const id=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;a.ctx.AtlasApp.setStyleContributions(id,[{aspect:'texture',scope:'details'}]);const bundle=a.ctx.AtlasApp.exportBundle(),input=a.document.getElementById('importProject');bundle.project.styleContributions[id][0].scope='unknown';Object.defineProperty(input,'files',{configurable:true,value:[{size:1000,text:async()=>JSON.stringify(bundle)}]});await input.onchange({target:input});assert.equal(a.ctx.AtlasCurrentChoice().styleContributions[id][0].scope,'details');assert.match(a.document.getElementById('projectMessage').textContent,/recusada/);
@@ -274,9 +275,7 @@ test('choosing a characteristic replaces whole-style selection without requiring
 test('wizard keeps a gallery principal outside recommendations and preserves contributions at handoff',async()=>{
  const a=await boot(),{ctx,document:d,click,change}=a;
  const main='natural-barras-a-pausa-cabe-na-bolsa';assert.ok(ctx.AtlasApp.getStyle(main));ctx.AtlasApp.chooseStyle(main);
- click('#grid [data-choose="publicidade-cinematografica"]');
  ctx.AtlasApp.setStyleContributions(main,[{aspect:'palette',scope:'film'}]);
- ctx.AtlasApp.setStyleContributions('publicidade-cinematografica',[{aspect:'lighting',scope:'closing'}]);
  change('topic','Um anúncio com sugestão de uso do produto, estilo UGC');const before=JSON.stringify(ctx.AtlasCurrentChoice().styleContributions);
  click('#startGuided');click('#guidedNext');
  assert.ok(d.querySelector('#guidedCurrentStyle [data-detail="'+main+'"]'),'current principal stays visible');
@@ -285,20 +284,19 @@ test('wizard keeps a gallery principal outside recommendations and preserves con
  assert.ok(d.querySelector('#guidedCurrentStyle [data-detail="'+main+'"]'));
  click('#guidedNext');click('#guidedNext');click('#guidedNext');await new Promise(r=>setTimeout(r,20));
  assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,main);
- assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,2);
+ assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,1);
  assert.equal(JSON.stringify(ctx.AtlasCurrentChoice().styleContributions),before);
  assert.match(d.getElementById('promptOutput').value,/A pausa cabe na bolsa/);
 });
-test('explicit wizard replacement immediately updates briefing, storage and keeps complementary choices',async()=>{
+test('explicit wizard replacement updates briefing and storage as a single complete style',async()=>{
  const a=await boot(),{ctx,document:d,click,change}=a;
  ctx.AtlasApp.chooseStyle('natural-barras-a-pausa-cabe-na-bolsa');click('#grid [data-choose="publicidade-cinematografica"]');
  ctx.AtlasApp.setStyleContributions('publicidade-cinematografica',[{aspect:'lighting',scope:'closing'}]);change('topic','Anúncio de barras proteicas');
  click('#startGuided');click('#guidedNext');const target=[...d.querySelectorAll('[data-guided-pick]')].find(b=>!['natural-barras-a-pausa-cabe-na-bolsa','publicidade-cinematografica'].includes(b.dataset.guidedPick)).dataset.guidedPick;
  click('[data-guided-pick="'+target+'"]');
  assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,target);
- assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,2);
- assert.equal(ctx.AtlasCurrentChoice().selectedStyles[1].id,'publicidade-cinematografica');
- assert.equal(ctx.AtlasApp.getStyleContributions('publicidade-cinematografica')[0].scope,'closing');
+ assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,1);
+ assert.equal(ctx.AtlasApp.getStyleContributions(target)[0].aspect,'style_direction');
  assert.ok(d.getElementById('briefVisual').textContent.includes(ctx.AtlasApp.getStyle(target).name));
  assert.equal(JSON.parse(a.store.get('video-multimarcas-atlas-v1')).modelContent.selectedStyles[0].id,target);
  d.getElementById('guidedDialog').close();const resumed=await boot({saved:JSON.parse(a.store.get('video-multimarcas-atlas-v1'))});
@@ -324,12 +322,12 @@ test('Page incoming choices refresh the principal displayed in an open wizard',a
  const event=new ctx.Event('openai:set_globals');event.detail={globals:{widgetState:incoming}};ctx.dispatchEvent(event);
  assert.ok(d.querySelector('#guidedCurrentStyle [data-detail="publicidade-cinematografica"]'));assert.equal(a.getStorageReads(),0);
 });
-test('principal replacement respects the ten-style limit and unchanged or invalid choices preserve the project',async()=>{
+test('principal replacement keeps one style and invalid choices preserve the project',async()=>{
  const {ctx,document:d,click}=await boot();for(const b of [...d.querySelectorAll('#grid [data-choose]')].slice(0,10))click('#grid [data-choose="'+b.dataset.choose+'"]');
  const before=JSON.stringify(ctx.AtlasCurrentChoice());assert.throws(()=>ctx.AtlasApp.setPrincipalStyle('missing'));assert.equal(JSON.stringify(ctx.AtlasCurrentChoice()),before);
- ctx.AtlasApp.setPrincipalStyle('publicidade-cinematografica');assert.equal(JSON.stringify(ctx.AtlasCurrentChoice()),before);
- ctx.AtlasApp.setPrincipalStyle('natural-barras-a-pausa-cabe-na-bolsa');assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,10);
- assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,'natural-barras-a-pausa-cabe-na-bolsa');assert.equal(new Set(ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id)).size,10);
+ ctx.AtlasApp.setPrincipalStyle(ctx.AtlasCurrentChoice().selectedStyles[0].id);assert.equal(JSON.stringify(ctx.AtlasCurrentChoice()),before);
+ ctx.AtlasApp.setPrincipalStyle('natural-barras-a-pausa-cabe-na-bolsa');assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,1);
+ assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,'natural-barras-a-pausa-cabe-na-bolsa');assert.equal(new Set(ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id)).size,1);
 });
 
 test('Page 4.3 favorites retain append-only positions after segment regrouping',async()=>{
@@ -445,4 +443,12 @@ test('Fólio Page discovery keeps portable selections in widget state without re
  click('[data-folio-home]');click('[data-folio-goal="present"]');await ctx.AtlasApp.save();
  assert.equal(a.getStorageReads(),0);assert.equal(a.getState().modelContent.selectedStyles[0].id,id);
  assert.equal(ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'pending');
+});
+
+test('same style choice preserves an accepted project and older multiple choices keep the principal scope',async()=>{
+ const a=await boot();a.click('#grid [data-choose]');const id=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;
+ a.ctx.AtlasApp.setStyleContributions(id,[{aspect:'typographic_language',scope:'opening'}]);const c=a.ctx.AtlasCurrentChoice();c.projectState.preProductionApprovals.moodboard.status='approved';const before=JSON.stringify(a.ctx.AtlasApp.exportBundle().project);
+ a.click('#grid [data-choose="'+id+'"]');assert.equal(JSON.stringify(a.ctx.AtlasApp.exportBundle().project),before);
+ const bundle=a.ctx.AtlasApp.exportBundle(),second=a.ctx.AtlasApp.getCatalog().styles.find(s=>s.id!==id);bundle.brief.selectedStyles.push(second);bundle.brief.styleContributions[second.id]=[{aspect:'lighting',scope:'closing'}];bundle.brief.requestPrepared=true;bundle.project.styles.push(second.id);bundle.project.styleContributions[second.id]=[{aspect:'lighting',scope:'closing'}];
+ const saved={modelContent:{...bundle.brief,projectState:c.projectState}};const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,1);assert.equal(resumed.ctx.AtlasCurrentChoice().styleContributions[id][0].scope,'opening');assert.equal(resumed.ctx.AtlasCurrentChoice().requestPrepared,false);assert.equal(resumed.ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'pending');
 });

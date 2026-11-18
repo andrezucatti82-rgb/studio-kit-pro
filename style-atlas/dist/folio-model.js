@@ -33,7 +33,7 @@
  }
  function matchesCollection(style,definition){return !!definition?.families.includes(style.family);}
  function previewRatio(style){
-  const frame=style.sequence?.frames?.[style.sequence.heroIndex??1]||style.image;
+  const index=style.sequence?.heroIndex??1,frame=globalThis.AtlasViews?.frameView?.(style,index)||style.sequence?.frames?.[index]||style.image;
   const width=Number(frame?.width),height=Number(frame?.height);
   return Number.isFinite(width)&&width>0&&Number.isFinite(height)&&height>0?`${width}/${height}`:'3/4';
  }

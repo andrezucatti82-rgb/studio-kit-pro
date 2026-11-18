@@ -30,6 +30,8 @@ for logo in soup.select('img[src="assets/folio-mark.svg"]'):
  logo['src']='data:image/svg+xml;base64,'+base64.b64encode((r/'dist/assets/folio-mark.svg').read_bytes()).decode()
 for link in soup.select('link[href^="assets/"]'):
  link['href']=origin+link['href']
+# Presentation-only crop data stays external, like the catalogue payload.
+soup.find('script',src='frame-presentation.js')['src']=origin+'frame-presentation.js'
 css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/folio.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
 for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  face=TTFont(r/'dist/assets'/font)

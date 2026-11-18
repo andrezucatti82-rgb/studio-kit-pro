@@ -27,7 +27,7 @@ with sync_playwright() as p:
   assert page.locator('.app-main').evaluate('e=>e.getBoundingClientRect().top')>=page.locator('#folioMenu').evaluate('e=>e.getBoundingClientRect().bottom')
   no_layer(page);page.screenshot(path=str(out/f'menu-{width}.png'),animations='disabled')
   # The surrounding page stays usable; clicking it does not dismiss a popup.
-  page.locator('#folioDiscoveryTitle').click();expect(page.locator('#folioMenu')).to_be_visible()
+  page.locator('#folioCollectionTitle' if width>900 else '#folioDiscoveryTitle').click();expect(page.locator('#folioMenu')).to_be_visible()
   if width<=900:page.locator('[data-folio-group="natural-ads"]').click()
   assert page.locator('#folioMenu [data-folio-family]').count()==11
   page.locator('#folioMenu [data-folio-family="ads-pets"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
@@ -40,13 +40,12 @@ with sync_playwright() as p:
   page.locator('#detailDialog [data-sequence]').first.click();current(page,'sequenceDialog');expect(page.locator('#detailDialog')).not_to_be_visible()
   page.keyboard.press('Escape');current(page,'detailDialog');page.locator('#detailDialog [data-close]').click();expect(page.locator('#biblioteca')).to_be_visible()
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==saved
-  page.locator('#selectionTray [data-folio-choice]').click();current(page,'folioChoice')
-  page.locator('#folioChoice [data-contributions]').click();current(page,'stylePicker');expect(page.locator('#folioChoice')).not_to_be_visible()
-  page.keyboard.press('Escape');current(page,'folioChoice');assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==saved
-  page.locator('#folioChoiceContinue').click();expect(page.locator('#briefDialog')).to_be_visible();assert page.locator('body').get_attribute('data-folio-panel') is None;no_layer(page)
+  page.locator('#folioContinue').click();expect(page.locator('#briefDialog')).to_be_visible()
+  assert page.locator('#selectionList [data-contributions]').count()==0
+  assert page.locator('body').get_attribute('data-folio-panel') is None;no_layer(page)
   page.locator('#topic').fill('Como o CRM conecta site, formulários e anúncios.')
   page.locator('#openFonts').click();current(page,'fontDialog');page.locator('#fontDialog [data-close]').click();expect(page.locator('#briefDialog')).to_be_visible();assert page.locator('#topic').input_value().startswith('Como o CRM')
-  page.locator('#prepare').click();assert 'Como o CRM' in page.locator('#promptOutput').input_value();no_layer(page)
+  page.locator('#folioContinue').click();assert 'Como o CRM' in page.locator('#promptOutput').input_value();no_layer(page)
   # Header navigation must exit a nested workspace, with no hidden active panel.
   page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-detail]').first.click();current(page,'detailDialog')
   page.locator('#folioHeader .folio-brand').click();expect(page.locator('#folioDiscovery')).to_be_visible();assert page.locator('#folioPanelHost').is_hidden()
@@ -58,7 +57,7 @@ with sync_playwright() as p:
   context.close()
   # The public brief anchor opens the beginner workflow as an inline page too.
   context=browser.new_context(viewport={'width':width,'height':height});page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
-  page.goto(args.base+'#briefSection');page.wait_for_function('window.ATLAS_READY && document.body.dataset.folio');current(page,'guidedDialog');page.locator('#guidedSubject').fill('Como organizar clientes no CRM');page.locator('#guidedNext').click();page.locator('[data-guided-pick]').first.click();page.locator('#guidedNext').click();page.locator('#guidedNext').click();expect(page.locator('#guidedStep3')).to_be_visible();assert page.locator('#guidedTitle').bounding_box()['y']>=0;page.keyboard.press('Escape');expect(page.locator('#biblioteca')).to_be_visible();no_layer(page)
+  page.goto(args.base+'#briefSection');page.wait_for_function('window.ATLAS_READY && document.body.dataset.folio');current(page,'guidedDialog');page.locator('#guidedSubject').fill('Como organizar clientes no CRM');page.locator('#folioContinue').click();page.locator('[data-guided-pick]').first.click();page.locator('#folioContinue').click();page.locator('#folioContinue').click();expect(page.locator('#guidedStep3')).to_be_visible();assert page.locator('#guidedTitle').bounding_box()['y']>=0;page.keyboard.press('Escape');expect(page.locator('#biblioteca')).to_be_visible();no_layer(page)
   report['viewports'].append({'width':width,'menuPushesContent':True,'backgroundUsable':True,'noModalLayers':True,'nestedPagesReturn':True,'briefAndScopesPreserved':True,'headerNavigationExitsPanels':True,'guidedPage':True});context.close()
  browser.close()
 assert not report['errors'],report['errors']

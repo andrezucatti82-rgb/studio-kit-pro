@@ -1,7 +1,7 @@
 /* Fine-grained style choices. The same contract is consumed by prompt and planner. */
 (function(){
  function init(){
-  if(!window.AtlasApp||document.getElementById('stylePicker'))return;
+  if(!window.AtlasApp||document.getElementById('stylePicker')||window.AtlasFolio)return;
   const W=AtlasWorkflow,$=id=>document.getElementById(id),esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const dialog=document.createElement('dialog');dialog.id='stylePicker';dialog.setAttribute('aria-labelledby','stylePickerTitle');
   dialog.innerHTML='<header class="picker-head"><div><p class="eyebrow">COMBINAR ESTILOS</p><h2 id="stylePickerTitle">O que aproveitar deste estilo?</h2><p id="pickerSource"></p></div><button type="button" id="pickerClose" aria-label="Fechar sem aplicar">×</button></header><div class="picker-search"><label for="pickerSearch">Buscar característica</label><input id="pickerSearch" type="search" placeholder="Ex.: tipografia, luz, textura, cores…" autocomplete="off"></div><div class="picker-layout"><nav id="pickerGroups" aria-label="Tipos de característica"></nav><div id="pickerOptions"></div></div><section class="picker-chosen"><h3>Suas escolhas e onde aplicar</h3><div id="pickerChosen"></div><p class="small">Marcar partes específicas desmarca a direção completa. Os momentos serão definidos no roteiro; imagem não comprova movimento ou som.</p></section><p id="pickerError" role="alert"></p><footer class="picker-footer"><span id="pickerCount"></span><button type="button" class="outline" id="pickerClear">Limpar</button><button type="button" class="primary" id="pickerApply">Aplicar escolhas</button></footer>';
