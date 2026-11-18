@@ -53,34 +53,34 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 200736,
-      "sha256": "c9b11628ef84934773f5bcf2ffd1aecccedc819041146a536e4de0c1d0dbb7ca"
+      "bytes": 200730,
+      "sha256": "7c064dce69075233d6814dc8abd199e993f978600dc66bf14aa3e3475b74c92c"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 201191,
-      "sha256": "47fb0e96eb8cb47360eb7407c59cde9085cb6ecf6d6ace302c00bcdc624e9734"
+      "bytes": 201185,
+      "sha256": "17882da3830701e126aba5d5f92290e5b09e5b4105c1845ba8d87fa10ed36f55"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4283072,
-      "sha256": "782b841abe08a984a80f95b97fbfdd3e27b2161a8c0915403be721cf11ae0a33"
+      "bytes": 4286644,
+      "sha256": "b1ca62c450254d99aadcc46c0bf49d2fa794038ca4326affda55eb91116af7f1"
     },
     "video-multimarcas.skill": {
-      "bytes": 174843,
-      "sha256": "a622db70d1662ae3f2f3e9a3c0e5938e1d74b5118242342f321683556df6f718"
+      "bytes": 174837,
+      "sha256": "72c909ba0cc57e50ba450081fa07d28c16292e7de85c9ea4a93c174a8945df83"
     },
     "video-multimarcas.zip": {
-      "bytes": 174843,
-      "sha256": "a622db70d1662ae3f2f3e9a3c0e5938e1d74b5118242342f321683556df6f718"
+      "bytes": 174837,
+      "sha256": "72c909ba0cc57e50ba450081fa07d28c16292e7de85c9ea4a93c174a8945df83"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "f2109ca6e6f68519865227980e213fbd0bd67a6d",
+    "sourceRevision": "c6bb8479bb3738b0fa3ad364fb40aaade2e81766",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 667964,
-    "sha256": "b2fd31ab1ab3264ffe2c3fdf1bab5e8fb5907e1b7a31c1ef3e9e7600e1208322",
+    "bytes": 668060,
+    "sha256": "fe29cf7c8607c616fddcab9daf5aa0bc016364d4bf7758a812a09922c1986187",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
