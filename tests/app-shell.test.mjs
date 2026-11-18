@@ -9,6 +9,9 @@ const read=name=>readFile(new URL(name,root),'utf8');
 // DOM integration tests: no layout engine, playback, canvas export or browser QA implied.
 async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}={}){
  const {document,window:dom}=parseHTML(await read('index.html'));
+ // LinkeDOM has no layout; real visibility and responsive focus are covered by
+ // browser-dark-ui.py. Supply only the connected-element API for DOM flows.
+ dom.HTMLElement.prototype.getClientRects=function(){return this.isConnected?[{}]:[]};
  const errors=[],store=new Map(saved?[['video-multimarcas-atlas-v1',JSON.stringify(saved)]]:[]);
  let state=saved,storageReads=0;
  function patchSelect(el){

@@ -33,7 +33,7 @@ with sync_playwright() as p:
   page.goto(args.base);page.wait_for_function('window.ATLAS_READY && document.body.dataset.folioDensity')
   cover=page.locator('.folio-cover').first
   page.locator('.folio-shelf').first.locator('.folio-artwork img').evaluate_all('async es=>{await Promise.all(es.map(async e=>{e.loading="eager";await e.decode()}))}')
-  cover.hover();page.mouse.move(100,450)
+  cover.hover();bounds=cover.bounding_box();page.mouse.move(bounds['x']+bounds['width']*.4,bounds['y']+bounds['height']*.4)
   if reduced=='no-preference':
    expect(cover).to_have_class('folio-cover is-lit')
    assert cover.evaluate('e=>e.style.getPropertyValue("--light-x")')
