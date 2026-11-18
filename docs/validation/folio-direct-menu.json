@@ -9,7 +9,8 @@
     "categoryStyleGapBoundPx": 105,
     "categoryFilters": "native disclosure, collapsed when entering a category",
     "primarySearch": "retained on the main library",
-    "popupLayers": false
+    "popupLayers": false,
+    "allStylesDirect": true
   },
   "accents": {
     "activeGreen": "#34c76a",
@@ -127,7 +128,7 @@
       "no viewport overflow"
     ],
     "errors": [],
-    "embeddedBytes": 254225
+    "embeddedBytes": 254169
   },
   "sourceRegression": {
     "javascript": 223,

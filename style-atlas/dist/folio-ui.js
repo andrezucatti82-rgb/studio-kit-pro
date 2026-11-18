@@ -78,7 +78,7 @@
   // A URL category, legacy category control or filter is still a real catalogue.
   if(state.mode==='home'&&(data.family||data.group||data.query||data.onlyFav||data.onlyVideo||data.kind))state.mode='catalogue';
   document.body.dataset.folioMode=state.mode;
-  document.body.dataset.folioBrowse=state.mode==='catalogue'&&(data.family||data.group)?'category':'';
+  document.body.dataset.folioBrowse=state.mode==='catalogue'&&!data.query?'category':'';
   const categoryBrowse=document.body.dataset.folioBrowse==='category';categoryFilters.hidden=!categoryBrowse;
   if(categoryBrowse){if(browseControls.parentElement!==categoryFilters)categoryFilters.append(browseControls);}
   else if(browseControls.parentElement===categoryFilters)categoryFilters.after(browseControls);
