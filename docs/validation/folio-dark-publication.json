@@ -1,0 +1,214 @@
+{
+  "status": "published_verified",
+  "url": "https://videos.gerenciadordeanuncios.com.br/",
+  "release": "atlas-20261118191518",
+  "publishedAt": "2026-11-18T19:17:54.989Z",
+  "verifiedAt": "2026-11-18T19:18:21.570Z",
+  "pullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/24",
+  "mergeCommit": "a6d5b35623bab98172f1e537c01dcc6267fa02f1",
+  "implementationHead": "51e0b3df7a9d78154f625ca827d2cba5e725d589",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "theme": "dark; local Inter; original F monogram",
+  "navigation": {
+    "desktop": "header categories and two-pane category/collection menu",
+    "mobile": "two-step grids with final-selection dismissal",
+    "groups": 7,
+    "families": 30
+  },
+  "backup": {
+    "outsideDocumentRoot": true,
+    "readbackVerified": true,
+    "copyApiByteProbeVerified": true,
+    "priorIndexDigest": "ad8b771af249772abc22f8d9445cd8a89c818a9911c6b758709089113adc78ee",
+    "previousRelease": "atlas-20261118175255",
+    "previousReleasePreserved": true
+  },
+  "deployment": {
+    "changedFiles": [
+      "assets/apple-touch-icon.png",
+      "assets/favicon-16.png",
+      "assets/favicon-32.png",
+      "assets/favicon.ico",
+      "assets/folio-icon.svg",
+      "assets/folio-logo.svg",
+      "assets/folio-mark.svg",
+      "assets/fonts/inter-ui-400.woff2",
+      "assets/fonts/inter-ui-500.woff2",
+      "assets/fonts/inter-ui-600.woff2",
+      "assets/fonts/inter-ui-700.woff2",
+      "como-instalar.html",
+      "downloads/studio-kit-pro-installer.zip",
+      "folio-ui.js",
+      "folio.css",
+      "installation.json"
+    ],
+    "publicHashesVerified": 54,
+    "entryDigest": "6a3774f936a4dfd269be4136db4128fb0fcb9fa0eb42cdeb6a1c836e5ebb3e43",
+    "originReadbackVerified": true,
+    "publicReadbackVerified": true
+  },
+  "installer": {
+    "sourceRevision": "ccb0b2e438f44ca3f0920ae4f33cc7696bade416",
+    "sourceReady": true,
+    "bytes": 667697,
+    "sha256": "a4bbd076ac1f1ad8aa437e34ea690dd7d094b8c5240c6f46b70d4dbe37f17e48",
+    "skills": 7,
+    "presenterStyles": 265
+  },
+  "downloadedPanelSample": {
+    "matchesPriorPublication": true,
+    "sha256": "b80272007537336d6f5affeb2722b7bfdeee44fec86cc07f26276e3146ae342d",
+    "checkedAtWidths": [
+      375,
+      1440
+    ]
+  },
+  "regression": {
+    "javascript": 223,
+    "python": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed",
+    "finalDistributionChecks": 7
+  },
+  "browserEvidence": {
+    "stage-browser": {
+      "checks": [
+        "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+        "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+      ],
+      "errors": [],
+      "viewports": [
+        {
+          "width": 375,
+          "height": 812,
+          "portraitRatio": 1.3333010835913313
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "portraitRatio": 1.3333090697335857
+        }
+      ],
+      "catalogueGeometry": [
+        {
+          "width": 375,
+          "count": 1425,
+          "bad": []
+        },
+        {
+          "width": 1440,
+          "count": 1425,
+          "bad": []
+        }
+      ]
+    },
+    "stage-dark-ui": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "stage-smoke": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/atlas-20261118191518/",
+      "release": "atlas-20261118191518",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "live-browser": {
+      "checks": [
+        "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+        "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+      ],
+      "errors": [],
+      "viewports": [
+        {
+          "width": 375,
+          "height": 812,
+          "portraitRatio": 1.3333010835913313
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "portraitRatio": 1.3333090697335857
+        }
+      ],
+      "catalogueGeometry": [
+        {
+          "width": 375,
+          "count": 1425,
+          "bad": []
+        },
+        {
+          "width": 1440,
+          "count": 1425,
+          "bad": []
+        }
+      ]
+    },
+    "live-dark-ui": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "live-smoke": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/",
+      "release": "atlas-20261118191518",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    }
+  },
+  "limitations": [
+    "Native offline tutorial file launch was blocked by the execution browser policy; self-contained tutorial tested over HTTP without external requests.",
+    "Browser verification is not native certification for every device or a complete accessibility certification."
+  ],
+  "paidApisUsed": false
+}
