@@ -31,3 +31,7 @@ Publicação é um escopo próprio: revisão técnica ou aceite visual não auto
 Para a biblioteca de explicadores, compare composição e mecanismo entre direções: trocar somente rosto, cor ou texto de um cartão não cria diversidade. Confira também a adequação por beat da posição/escala da pessoa e se a informação nasce da explicação. Para uma produção específica, preserve o original; a biblioteca não obriga deslocamentos ou espelhamentos artificiais.
 
 Se houver VFX, receba `vfx-review.json`, comp e manifesto. Confira tracking, bordas/alpha, oclusões, contato, luz, grão e continuidade no candidato integrado. QA por plano alimenta esta revisão consolidada; não herdar aprovação criativa nem revisão do hash anterior.
+
+## Execução com ferramentas gratuitas
+
+Consulte [toolchain gratuita](../free-toolchain.md), diagnostique esta máquina e reutilize a rota compatível com o plano. A biblioteca instalada inclui aplicativos, plugins, bibliotecas Python e modelos locais; não assumir que todos funcionam por constarem do manifesto. Use os comandos integrados para obter mídia/máscaras novas e evidências, mantendo os originais e o estado de revisão. Falha de hardware, modelo ou plataforma permanece explícita.

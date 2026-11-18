@@ -105,3 +105,9 @@ npm run validate
 ```
 
 O empacotador produz os dois plugins completos, o pacote portátil e o runtime com a mesma versão, sem material pessoal. Atualizar somente `SKILL.md` pode deixar referências incompatíveis; atualize o conjunto completo e confira sua versão efetivamente carregada.
+
+## Ferramentas VFX gratuitas · 2.14
+
+O instalador compacto do site inclui a preparação da toolchain gratuita por sistema, perfil `all-free`. Obtém programas, bibliotecas e modelos oficiais no computador; reserve internet e vários GB livres. Não transfere software nativo, GPU ou contas para o ChatGPT ao importar uma skill. [Guia de ferramentas e comandos](https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/FREE-VFX-TOOLCHAIN.md).
+
+O bootstrap aceita `--free-tools base|automation|ai|all-free|none`. A instalação principal pode terminar em `ready_with_toolchain_blockers`: leia o relatório para saber quais recursos precisam de Python, pacote nativo, modelo ou hardware. Retome pelo CLI, sem descartar projetos. Linux foi o ambiente desta implementação; Windows/macOS exigem confirmação no dispositivo real, e algumas ferramentas podem ter somente a rota oficial manual.
