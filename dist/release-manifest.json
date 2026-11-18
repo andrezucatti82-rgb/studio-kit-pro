@@ -53,38 +53,38 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 154750,
-      "sha256": "fb7d5d05185034d5899db5b7cd94af6cdedb1878cbe402670319bfcc80369de6"
+      "bytes": 200676,
+      "sha256": "bc85f40ee50b6840c45f9be6d9fecfe979fae10d7b871339229a83a1b7bcd239"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 155205,
-      "sha256": "f8f60d836dc5b868d9e51202e94a6322e182f7a7a95c15ed6df9b146009cecf3"
+      "bytes": 201131,
+      "sha256": "856ad335f0ac08e96092029e7b0e0b18d63fc60bbdce05a8f32012d358d33d0a"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4134246,
-      "sha256": "7f860854582de007a23b0c6644d81b2cb090a4836c92d4a1f21e5978e74d59b8"
+      "bytes": 4278101,
+      "sha256": "28c8e6f4c28368d0bfb56a382b76a7b3af2128ada1ceb8577ac0e379d6b67e8c"
     },
     "video-multimarcas.skill": {
-      "bytes": 128857,
-      "sha256": "07c8e9a92f6caad2c81b7565b732a3bdd583764823fc3c9ea56a68684832a9f4"
+      "bytes": 174783,
+      "sha256": "3b54f23075fbdc6653266a4a7cd97ad69aa9d581d2ab9f6575a5e502000278b2"
     },
     "video-multimarcas.zip": {
-      "bytes": 128857,
-      "sha256": "3f4f6c76bb5e38f59d8c88329c522c4415f576af671cdadd0eccda0a3a63ef6d"
+      "bytes": 174783,
+      "sha256": "3b54f23075fbdc6653266a4a7cd97ad69aa9d581d2ab9f6575a5e502000278b2"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "f82f72bffb606e8134bd5742aad12c83def0b3a9",
+    "sourceRevision": "ccb0b2e438f44ca3f0920ae4f33cc7696bade416",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 621158,
-    "sha256": "a50609f3cf079ba31622b3e7ff668f55f9ab196b02def4e907244740f4809f90",
+    "bytes": 667697,
+    "sha256": "a4bbd076ac1f1ad8aa437e34ea690dd7d094b8c5240c6f46b70d4dbe37f17e48",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
-    "fullProjectDownloadMiB": 804,
+    "fullProjectDownloadMiB": 805,
     "skills": 7,
     "presenterStyles": 265,
     "localFile": "studio-kit-pro-installer.zip"
