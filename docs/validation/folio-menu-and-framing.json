@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "sourcePullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/33",
+  "sourceRevision": "8b7a23eb182685e29dbf4c0970463021cc563fbc",
+  "artifactsRevision": "e437776",
+  "accent": "#e2ff3b",
+  "navigation": {
+    "launcherRemoved": true,
+    "mobileCategoryWords": true,
+    "submenusAlignedToFirstCategory": true,
+    "stickyHeader": true,
+    "noOverlays": true
+  },
+  "images": {
+    "styles": 1425,
+    "frames": 5700,
+    "sources": 4905,
+    "adjustedFrames": 807,
+    "adjustedStyles": 239,
+    "originalFilesModified": false,
+    "productionContractsModified": false,
+    "whiteHoverRimRemoved": true
+  },
+  "verification": {
+    "javascriptTests": 258,
+    "pythonTests": 9,
+    "typecheck": true,
+    "projectValidation": true,
+    "distributionTests": 12,
+    "independentReview": "Two mobile-header findings fixed and rechecked; no outstanding findings.",
+    "secretScan": "gitleaks: no leaks in the change",
+    "geometryViewports": [
+      320,
+      375,
+      768,
+      1024,
+      1440,
+      1920
+    ],
+    "alignmentViewports": [
+      320,
+      375,
+      768,
+      1200,
+      1440,
+      1920
+    ],
+    "all1425CardsFillFrame": true,
+    "all5700PresentationCropsWithinOriginals": true,
+    "realJewelryDetailAndSequence": true
+  },
+  "primary": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "status": "pending_hosting_access",
+    "unchangedRelease": "atlas-20261118225817",
+    "hostingApi": "HTTP 403 with current environment credential",
+    "browser": "User indicated an open browser window; browser connection failed twice. No primary-site write attempted."
+  },
+  "mirror": {
+    "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site",
+    "version": 41,
+    "sourceRevision": "63d39a26f851b1b7660cc9da8aa44f98df7bc465",
+    "versionId": "appgprj_6aec09533b208191aaa63ba6e104d2ce~appgver_294bef18cd6c81919363e91377e8746e",
+    "deploymentId": "appgdep_6afe3996b6688191b797c2ad40bd7ef4",
+    "status": "succeeded",
+    "publicBrowserViewports": [
+      375,
+      768,
+      1440
+    ],
+    "installerBytesAndHashVerified": true
+  },
+  "page": {
+    "id": "page_05d0233621d081919b31df2863cab40b",
+    "url": "https://chatgpt.com/space/page_05d0233621d081919b31df2863cab40b",
+    "sequence": 84,
+    "fileReference": "fde1_bGliZmlsZV9RSkpLSDYyNllLS0hyR0NEQ01iNjln_FileDrive_bb2d275d5f00819191b05d59fafc6334",
+    "blockId": "ce5e7e47-e979-4879-9a10-bcba2791d02c",
+    "hash": "ef784275f0a2124bbe8789998eedfe3a0c3875bbd1f8f5ac7eec656a214418a7",
+    "readbackVerified": true,
+    "compiledBytes": 258179,
+    "compiledBrowserWithRealAssetsAndWidgetFixture": true,
+    "nativeViewerInspected": false,
+    "assetOrigin": "https://videos.gerenciadordeanuncios.com.br/atlas-20261118225817/",
+    "presentationOrigin": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/frame-presentation.js?v=8b7a23e"
+  },
+  "paidGenerationUsed": false
+}
