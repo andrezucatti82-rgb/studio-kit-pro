@@ -68,34 +68,34 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 208835,
-      "sha256": "6b254cb8610463ddbd8549d05ad432dae2b0634e262bd4745621c0cbdba841c3"
+      "bytes": 208847,
+      "sha256": "e09c76f183f1b7fcface5b8fdd4ba117610004a9c09ee58dd0f1bdb6a827ec1b"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 209349,
-      "sha256": "cec75616bf69aed46ccdda8cb98dfd6af4ee2ffb54a514a10fb27026333f91fd"
+      "bytes": 209361,
+      "sha256": "913bb9c73cc753c4d0dac33f31be05d94af485037d9f211e9d77ffe07bc5aa69"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4456458,
-      "sha256": "46166aa3d4cbb3d114248f8142ac3f9a53b141781c7f7e2367a3f79e9f6a6884"
+      "bytes": 4649853,
+      "sha256": "e8cc50988577522a3afe5bb9fe56080af7f88db86ac294d7a55b86dc3f187af3"
     },
     "video-multimarcas.skill": {
-      "bytes": 207855,
-      "sha256": "5c8e377be416736a844d63817e529eaf0d3f1468d357a7fa6d11162e884e86b2"
+      "bytes": 207867,
+      "sha256": "6517d2b92564525a306add586a6c78aa3903ec3aa9572d9f2609ca33dba2842d"
     },
     "video-multimarcas.zip": {
-      "bytes": 207855,
-      "sha256": "5c8e377be416736a844d63817e529eaf0d3f1468d357a7fa6d11162e884e86b2"
+      "bytes": 207867,
+      "sha256": "6517d2b92564525a306add586a6c78aa3903ec3aa9572d9f2609ca33dba2842d"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.14.0",
-    "sourceRevision": "660ae72a26561c2e7d243fc7ddd5d388e04c1035",
+    "sourceRevision": "8b7a23eb182685e29dbf4c0970463021cc563fbc",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 672985,
-    "sha256": "ebc4e7a151dac851da48321e569fec537c43021fc20157cee39503dffbc00877",
+    "bytes": 673508,
+    "sha256": "3d5b954deb3141375159c8fcbd063c055bc157c18171f42b9dd7ab1a646ca529",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
@@ -105,7 +105,7 @@
       "verification": "on each target machine",
       "binariesBundled": false
     },
-    "fullProjectDownloadMiB": 808,
+    "fullProjectDownloadMiB": 810,
     "skills": 1,
     "internalModules": 7,
     "presenterStyles": 265,
