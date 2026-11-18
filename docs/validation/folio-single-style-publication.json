@@ -1,0 +1,183 @@
+{
+  "domain": "videos.gerenciadordeanuncios.com.br",
+  "release": "atlas-20261118221225",
+  "previousRelease": "atlas-20261118210852",
+  "status": "published_verified",
+  "sourceCommit": "8243e2f93433f8a3f584996c320e2e8494c9a986",
+  "mergeCommit": "37ffdfded4660ee15e369f18ea9bf4bed022afa3",
+  "previousSha256": "397aab2b109280dd6419dc9c25fcd33733d0d75ca1fc900b9611e7addb9add03",
+  "entrySha256": "7bd32b850241affefde154a9d778e76efb415d9701c6d028f12102be2a381c8a",
+  "changed": [
+    "app-shell.js",
+    "app.js",
+    "assets/catalog-data-bc583fd883ad98f0.js",
+    "como-instalar.html",
+    "downloads/studio-kit-pro-installer.zip",
+    "folio-model.js",
+    "folio-ui.js",
+    "folio.css",
+    "frame-presentation.js",
+    "gallery-views.js",
+    "guided-ui.js",
+    "installation.json",
+    "presenter-prompt.txt",
+    "production-ui.js",
+    "search.js",
+    "style-picker.js",
+    "workflow.js"
+  ],
+  "verifiedPublicFiles": 53,
+  "backupVerified": true,
+  "copyApiVerified": true,
+  "stageBrowserVerified": true,
+  "originReadbackVerified": true,
+  "publicReadbackVerified": true,
+  "publishedAt": "2026-11-18T22:16:35.103Z",
+  "verifiedAt": "2026-11-18T22:23:33.566Z",
+  "publicAssetCorsHeadersSha256": "e2a411363ac0b9418071a9b17a1e14b1bf65a3ecbaef5dd67cec52205885072e",
+  "mirror": {
+    "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site",
+    "version": 35,
+    "sourceCommit": "198dd5e04d933380de0c12b56f51a756da3e9fca",
+    "deploymentStatus": "succeeded",
+    "storageProjection": "exact duplicate presenter recipes stored once; full object shape restored before application boot; equality asserted during build"
+  },
+  "page": {
+    "url": "https://chatgpt.com/space/page_05d0233621d081919b31df2863cab40b",
+    "sequence": 80,
+    "nativePromptUpdated": true,
+    "visualizationUpdated": true,
+    "readbackVerified": true,
+    "htmlBytes": 258339,
+    "nativeViewerInspected": false,
+    "compiledPageRealAssetsAndWidgetBridge": "passed including 4 local font weights and enabled installation download"
+  },
+  "installer": {
+    "version": 1,
+    "kitVersion": "2.13.0",
+    "sourceRevision": "7ff6d416bb6e46d10da04167a7f9e40ed9051ef6",
+    "sourceReady": true,
+    "download": "downloads/studio-kit-pro-installer.zip",
+    "bytes": 669523,
+    "sha256": "b48f719a473baf0fe111ebf3bf4bfcebd191f526fc26563219d7b5d3416e0ecd",
+    "tutorial": "como-instalar.html",
+    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
+    "internetRequired": true,
+    "fullProjectDownloadMiB": 807,
+    "skills": 1,
+    "internalModules": 7,
+    "presenterStyles": 265
+  },
+  "paidApisUsed": false,
+  "credentialScan": "Gitleaks: no leaks in implementation commits",
+  "github": {
+    "pullRequest": 29,
+    "merged": true,
+    "url": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/29"
+  },
+  "browser": {
+    "publicSite": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/",
+      "release": "atlas-20261118221225",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "publicFlow": {
+      "viewports": [
+        {
+          "width": 390,
+          "singleStyle": true,
+          "similarPreservesProject": true,
+          "draftResumed": true,
+          "descriptivePrompt": true,
+          "visibleFilters": true,
+          "stickyHeader": true
+        },
+        {
+          "width": 1440,
+          "singleStyle": true,
+          "similarPreservesProject": true,
+          "draftResumed": true,
+          "descriptivePrompt": true,
+          "visibleFilters": true,
+          "stickyHeader": true
+        }
+      ],
+      "errors": []
+    },
+    "mirrorFlow": {
+      "viewports": [
+        {
+          "width": 390,
+          "singleStyle": true,
+          "similarPreservesProject": true,
+          "draftResumed": true,
+          "descriptivePrompt": true,
+          "visibleFilters": true,
+          "stickyHeader": true
+        },
+        {
+          "width": 1440,
+          "singleStyle": true,
+          "similarPreservesProject": true,
+          "draftResumed": true,
+          "descriptivePrompt": true,
+          "visibleFilters": true,
+          "stickyHeader": true
+        }
+      ],
+      "errors": []
+    },
+    "mirrorMenu": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAccent": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "directCategoryLayout": true,
+          "stateDrivenGreenAccent": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "embeddedPage": {
+      "checks": [
+        "embedded Fólio below 256 KiB",
+        "real catalogue and reference assets",
+        "collection and selection written to widget state",
+        "complete generated brief",
+        "localStorage access rejected by browser fixture",
+        "no viewport overflow"
+      ],
+      "errors": [],
+      "embeddedBytes": 258339
+    }
+  },
+  "operationalHeaders": {
+    "scope": "this public immutable release only; read-only static JSON and fonts; no credentials",
+    "apacheConfig": "<IfModule mod_headers.c>\n<FilesMatch \"\\.(woff2|ttf|json)$\">\nHeader set Access-Control-Allow-Origin \"*\"\n</FilesMatch>\n</IfModule>\n"
+  }
+}

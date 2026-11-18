@@ -52,3 +52,8 @@ test('business specialisms find their new authored directions by the terms custo
  for(const q of ['gestor de tráfego','tráfego pago','mídia paga'])assert.deepEqual(ids(q).sort(),ids('tráfego pago').sort());
  for(const [q,id]of [['performance','explicador-agencias-do-anuncio-ao-caixa-com-evidencias'],['gestor de tráfego','explicador-trafego-pago-o-clique-tem-um-caminho'],['e-commerce','explicador-ecommerce-a-margem-se-abre-por-pedido'],['IA negócios','explicador-ia-negocios-a-resposta-mostra-de-onde-veio']])assert(ids(q).includes(id),q);
 });
+
+test('similar styles are deterministic, distinct and retain the source niche without editing catalogue',()=>{
+ const source=c.styles.find(s=>s.presenterEditing?.sector==='Dentistas')||c.styles.find(s=>/implante/.test(s.id)),before=JSON.stringify(c);
+ const result=S.similar(c.styles,source);assert.equal(result.length,24);assert.ok(!result.some(s=>s.id===source.id));assert.equal(new Set(result.map(s=>s.id)).size,24);assert.deepEqual(result.map(s=>s.id),S.similar(c.styles,source).map(s=>s.id));assert.equal(result[0].family,source.family);assert.equal(JSON.stringify(c),before);assert.deepEqual(S.similar(c.styles,null),[]);
+});

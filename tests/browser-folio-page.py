@@ -24,7 +24,7 @@ try:
   assert page.locator('.folio-shelf').count()==4
   page.locator('[data-folio-collection="explanations"]').first.click();style=page.locator('#grid [data-choose]').first.get_attribute('data-choose');page.locator('#grid [data-choose]').first.click()
   page.evaluate('AtlasApp.save()');assert page.evaluate('openai.widgetState.modelContent.selectedStyles[0].id')==style
-  page.locator('#selectionTray [data-folio-choice]').click();page.locator('#folioChoiceContinue').click();page.locator('#topic').fill('Explicar um serviço com o Fólio');page.locator('#prepare').click();expect(page.locator('#handoff')).to_be_visible()
+  page.locator('#folioContinue').click();page.locator('#topic').fill('Explicar um serviço com o Fólio');page.locator('#folioContinue').click();expect(page.locator('#handoff')).to_be_visible()
   assert style in page.locator('#promptOutput').input_value()
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
   report['checks']=['embedded Fólio below 256 KiB','real catalogue and reference assets','collection and selection written to widget state','complete generated brief','localStorage access rejected by browser fixture','no viewport overflow']
