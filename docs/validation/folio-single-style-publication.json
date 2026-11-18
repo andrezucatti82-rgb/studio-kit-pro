@@ -1,65 +1,51 @@
 {
   "domain": "videos.gerenciadordeanuncios.com.br",
-  "release": "atlas-20261118221225",
-  "previousRelease": "atlas-20261118210852",
+  "release": "atlas-20261118222902",
+  "previousRelease": "atlas-20261118221225",
   "status": "published_verified",
-  "sourceCommit": "8243e2f93433f8a3f584996c320e2e8494c9a986",
-  "mergeCommit": "37ffdfded4660ee15e369f18ea9bf4bed022afa3",
-  "previousSha256": "397aab2b109280dd6419dc9c25fcd33733d0d75ca1fc900b9611e7addb9add03",
-  "entrySha256": "7bd32b850241affefde154a9d778e76efb415d9701c6d028f12102be2a381c8a",
+  "sourceCommit": "947479e86363e29dcb00292013e98da9644cadb3",
+  "mergeCommit": "0cf2f0d3938db7dca47bfb7938e9ca045a86dd5f",
+  "previousSha256": "7bd32b850241affefde154a9d778e76efb415d9701c6d028f12102be2a381c8a",
+  "entrySha256": "fc2a46be6189b9c9581817b66ac70fe029a11373831d3223e4c049dac482e9ae",
   "changed": [
-    "app-shell.js",
-    "app.js",
-    "assets/catalog-data-bc583fd883ad98f0.js",
-    "como-instalar.html",
     "downloads/studio-kit-pro-installer.zip",
-    "folio-model.js",
-    "folio-ui.js",
-    "folio.css",
-    "frame-presentation.js",
-    "gallery-views.js",
-    "guided-ui.js",
     "installation.json",
-    "presenter-prompt.txt",
-    "production-ui.js",
-    "search.js",
-    "style-picker.js",
-    "workflow.js"
+    "folio.css"
   ],
-  "verifiedPublicFiles": 53,
+  "verifiedPublicFiles": 41,
   "backupVerified": true,
   "copyApiVerified": true,
   "stageBrowserVerified": true,
   "originReadbackVerified": true,
   "publicReadbackVerified": true,
-  "publishedAt": "2026-11-18T22:16:35.103Z",
-  "verifiedAt": "2026-11-18T22:23:33.566Z",
+  "publishedAt": "2026-11-18T22:31:38.482Z",
+  "verifiedAt": "2026-11-18T22:32:37.340Z",
   "publicAssetCorsHeadersSha256": "e2a411363ac0b9418071a9b17a1e14b1bf65a3ecbaef5dd67cec52205885072e",
   "mirror": {
     "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site",
-    "version": 35,
-    "sourceCommit": "198dd5e04d933380de0c12b56f51a756da3e9fca",
+    "version": 36,
+    "sourceCommit": "4c77be1dabd01889e938b4ddcc96dc57777beb45",
     "deploymentStatus": "succeeded",
     "storageProjection": "exact duplicate presenter recipes stored once; full object shape restored before application boot; equality asserted during build"
   },
   "page": {
     "url": "https://chatgpt.com/space/page_05d0233621d081919b31df2863cab40b",
-    "sequence": 80,
+    "sequence": 81,
     "nativePromptUpdated": true,
     "visualizationUpdated": true,
     "readbackVerified": true,
-    "htmlBytes": 258339,
+    "htmlBytes": 258210,
     "nativeViewerInspected": false,
     "compiledPageRealAssetsAndWidgetBridge": "passed including 4 local font weights and enabled installation download"
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.13.0",
-    "sourceRevision": "7ff6d416bb6e46d10da04167a7f9e40ed9051ef6",
+    "sourceRevision": "423b5e8b99eda17dd2546b0a3092f31b54eff070",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 669523,
-    "sha256": "b48f719a473baf0fe111ebf3bf4bfcebd191f526fc26563219d7b5d3416e0ecd",
+    "bytes": 669620,
+    "sha256": "1af53e388187c32c6c44004c7da97b5761f52ef8aebcf39da2d00ef5144b3ca1",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
@@ -174,10 +160,48 @@
       ],
       "errors": [],
       "embeddedBytes": 258339
+    },
+    "latestPublicHelpAndInstaller": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/",
+      "release": "atlas-20261118222902",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "latestMirrorHelpAndInstaller": {
+      "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/",
+      "release": "atlas-20261118222902",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "latestEmbeddedPage": {
+      "checks": [
+        "embedded Fólio below 256 KiB",
+        "real catalogue and reference assets",
+        "collection and selection written to widget state",
+        "complete generated brief",
+        "localStorage access rejected by browser fixture",
+        "no viewport overflow"
+      ],
+      "errors": [],
+      "embeddedBytes": 258210
     }
   },
   "operationalHeaders": {
     "scope": "this public immutable release only; read-only static JSON and fonts; no credentials",
     "apacheConfig": "<IfModule mod_headers.c>\n<FilesMatch \"\\.(woff2|ttf|json)$\">\nHeader set Access-Control-Allow-Origin \"*\"\n</FilesMatch>\n</IfModule>\n"
+  },
+  "initialImplementationRelease": "atlas-20261118221225",
+  "initialImplementationPullRequest": 29,
+  "helpFollowUp": {
+    "pullRequest": 30,
+    "merged": true,
+    "mergeCommit": "0cf2f0d3938db7dca47bfb7938e9ca045a86dd5f",
+    "distributionTests": 12
   }
 }
