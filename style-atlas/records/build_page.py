@@ -23,10 +23,14 @@ soup=BeautifulSoup((r/'dist/index.html').read_text(),'html.parser')
 for node in soup.find_all('footer'):
  if node.find_parent('dialog') is None:node.decompose()
 for link in soup.find_all('link',rel='stylesheet'):link.decompose()
-# Use the original brand asset in Pages without a relative-URL dependency.
+# Keep brand assets self-contained in embedded Pages.
 for logo in soup.select('img.app-brand-logo'):
  logo['src']='data:image/png;base64,'+base64.b64encode((r/'dist/assets/logo-gda.png').read_bytes()).decode()
-css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
+for logo in soup.select('img[src="assets/folio-mark.svg"]'):
+ logo['src']='data:image/svg+xml;base64,'+base64.b64encode((r/'dist/assets/folio-mark.svg').read_bytes()).decode()
+for link in soup.select('link[href^="assets/"]'):
+ link['href']=origin+link['href']
+css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/folio.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
 for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  face=TTFont(r/'dist/assets'/font)
  # Embed Latin/Portuguese and UI symbols; unsupported scripts use browser fallback.
@@ -35,7 +39,7 @@ for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  css=css.replace(origin+'assets/'+font,'data:font/woff2;base64,'+base64.b64encode(buf.getvalue()).decode())
 def pack(text):return base64.b64encode(gzip.compress(text.encode(),mtime=0)).decode()
 script=soup.find('script',src='app.js');script.decompose()
-for name in ['guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','guided-ui.js','style-picker.js','presenter-ui.js','installation-ui.js','search.js']:
+for name in ['guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','guided-ui.js','style-picker.js','presenter-ui.js','installation-ui.js','search.js','folio-model.js','folio-ui.js','production-ui.js']:
  node=soup.find('script',src=name)
  if node:node.decompose()
 counts=Counter()
@@ -59,7 +63,7 @@ payload='window.ATLAS_PACKED_CATALOG='+json.dumps(packed)+';\n'
 name='catalog-data-'+hashlib.sha256(payload.encode()).hexdigest()[:16]+'.js'
 (r/'dist/assets'/name).write_text(payload)
 boot=soup.new_tag('script');boot.string='window.ATLAS_PAGE_MODE=true;window.ATLAS_ASSET_BASE='+json.dumps(origin)+';window.ATLAS_CATALOG_PROMISE=(async()=>{await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src='+json.dumps(origin+'assets/'+name)+';s.onload=resolve;s.onerror=()=>reject(Error("Catálogo remoto indisponível"));document.head.append(s);});const bytes=Uint8Array.from(atob(window.ATLAS_PACKED_CATALOG),c=>c.charCodeAt(0));const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));const d=JSON.parse(await new Response(stream).text());function revive(v){if(Array.isArray(v))return v.map(revive);if(v&&typeof v==="object"){if(Object.keys(v).length===1&&"$s" in v)return d.pool[v.$s];return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,revive(x)]));}return v;}return revive(d.catalog);})();';boot.string='window.ATLAS_FONT_CATALOG='+json.dumps(json.loads((r/'dist/fonts.json').read_text()),ensure_ascii=False,separators=(',',':'))+';'+boot.string;soup.body.append(boot)
-app=soup.new_tag('script');app.string='(async()=>{async function inflate(s){return await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("gzip"))).text();}const css=await inflate('+json.dumps(pack(css))+');const style=document.createElement("style");style.textContent=css;document.head.append(style);const source=await inflate('+json.dumps(pack((r/'dist/guided.js').read_text()+'\n'+(r/'dist/workflow.js').read_text()+'\n'+(r/'dist/site-ui.js').read_text()+'\n'+(r/'dist/gallery-views.js').read_text()+'\n'+(r/'dist/app-shell.js').read_text()+'\n'+(r/'dist/presenter-ui.js').read_text()+'\n'+(r/'dist/installation-ui.js').read_text()+'\n'+(r/'dist/search.js').read_text()+'\n'+(r/'dist/app.js').read_text()+'\n'+(r/'dist/guided-ui.js').read_text()+'\n'+(r/'dist/style-picker.js').read_text()))+');const script=document.createElement("script");script.textContent=source;document.body.append(script);})().catch(()=>{document.getElementById("grid").textContent="Não foi possível abrir a biblioteca nesta superfície. Use o site público."});';soup.body.append(app)
+app=soup.new_tag('script');app.string='(async()=>{async function inflate(s){return await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("gzip"))).text();}const css=await inflate('+json.dumps(pack(css))+');const style=document.createElement("style");style.textContent=css;document.head.append(style);const source=await inflate('+json.dumps(pack((r/'dist/guided.js').read_text()+'\n'+(r/'dist/workflow.js').read_text()+'\n'+(r/'dist/site-ui.js').read_text()+'\n'+(r/'dist/gallery-views.js').read_text()+'\n'+(r/'dist/app-shell.js').read_text()+'\n'+(r/'dist/presenter-ui.js').read_text()+'\n'+(r/'dist/installation-ui.js').read_text()+'\n'+(r/'dist/search.js').read_text()+'\n'+(r/'dist/folio-model.js').read_text()+'\n'+(r/'dist/folio-ui.js').read_text()+'\n'+(r/'dist/app.js').read_text()+'\n'+(r/'dist/guided-ui.js').read_text()+'\n'+(r/'dist/style-picker.js').read_text()))+');const script=document.createElement("script");script.textContent=source;document.body.append(script);})().catch(()=>{document.getElementById("grid").textContent="Não foi possível abrir a biblioteca nesta superfície. Use o site público."});';soup.body.append(app)
 # Catalogue uses standard gzip decompression in modern browsers, without eval.
 html=str(soup);assert len(html.encode())<262144,len(html.encode())
 (Path(args.output) if args.output else r/'records/page-embed.html').write_text(html)

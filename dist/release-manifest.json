@@ -53,38 +53,38 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 154272,
-      "sha256": "a87468ec8d04afc295d27df862f41ded3f0135aa61cb73f36dbfe81a0a2cee95"
+      "bytes": 154649,
+      "sha256": "6c18ef7a2ba7750e815663d68d232f3277612060f773c7cefa4d28dd8210e748"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 154727,
-      "sha256": "5a31be25dc00dbf2863b269bf654e42a7b20dbbee3c1afd3ed6f0f4e782d9074"
+      "bytes": 155104,
+      "sha256": "09677870e37cc39cf90770cb331e1adcb3ddd29c8939e05d8afc433725f0d2c5"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4119381,
-      "sha256": "957d576bda5136e093a1852da74b76a4f21213811f488b1f052c235857fa0a40"
+      "bytes": 4124009,
+      "sha256": "18a5109838b2696c08675a8aaadb1a355fefb7c2fd4ef0441892bee676800a3f"
     },
     "video-multimarcas.skill": {
-      "bytes": 128379,
-      "sha256": "d6c4ba2479c2d703aa2147cba489469026a20285220a222ea460f3ce16aff4a3"
+      "bytes": 128756,
+      "sha256": "ebd2aa3466f4cfe8211906d5d1f8df247f5e03a5849c41f5e239285cde2ca7b8"
     },
     "video-multimarcas.zip": {
-      "bytes": 128379,
-      "sha256": "d6c4ba2479c2d703aa2147cba489469026a20285220a222ea460f3ce16aff4a3"
+      "bytes": 128756,
+      "sha256": "ebd2aa3466f4cfe8211906d5d1f8df247f5e03a5849c41f5e239285cde2ca7b8"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.12.0",
-    "sourceRevision": "f375f38f5009e8fb1596786df010e39f8206b96c",
-    "sourceReady": true,
+    "sourceRevision": "e2cd9f9a4f0f9c9527b4576b7b6c12b2b688f120",
+    "sourceReady": false,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 619907,
-    "sha256": "b09811cb04acdbf09f8f8a6c8d2aa7305b06a569821d071f6a4d5fac3abf50ed",
+    "bytes": 620772,
+    "sha256": "f6ec8d13ea1403d6cdc0a04f11fa28a240ec92cb138de873c17b0e95ad60768b",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
-    "fullProjectDownloadMiB": 803,
+    "fullProjectDownloadMiB": 805,
     "skills": 7,
     "presenterStyles": 265,
     "localFile": "studio-kit-pro-installer.zip"

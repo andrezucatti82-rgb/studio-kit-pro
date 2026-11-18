@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-18",
+  "status": "implementation verified locally; not published",
+  "catalogueStyles": 1425,
+  "goals": [
+    "Explicar",
+    "Apresentar",
+    "Vender"
+  ],
+  "catalogueCoverage": "Every family reachable in each goal and in the full catalogue; tested by folio.test.mjs",
+  "browser": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "390px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "430px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.7777670278637772
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "portraitRatio": 1.7777366863905326
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "portraitRatio": 1.7777777777777777
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.7777549342105263
+      }
+    ]
+  },
+  "embeddedPage": {
+    "checks": [
+      "embedded Fólio below 256 KiB",
+      "real catalogue and reference assets",
+      "collection and selection written to widget state",
+      "complete generated brief",
+      "localStorage access rejected by browser fixture",
+      "no viewport overflow"
+    ],
+    "errors": [],
+    "embeddedBytes": 247191
+  },
+  "domChecks": "4 Fólio-specific integration tests passed, including Page state without localStorage",
+  "evidence": [
+    "docs/assets/folio/home-mobile.png",
+    "docs/assets/folio/collection-mobile.png",
+    "docs/assets/folio/selection-mobile.png",
+    "docs/assets/folio/home-desktop.png"
+  ],
+  "limits": [
+    "Static references do not imply completed video or audiovisual approval",
+    "Discovery thumbnails fill portrait frames with preview-only cover cropping. Full reference panels remain available in the viewer and exports.",
+    "No paid provider API used",
+    "Public site and existing published Page were not changed"
+  ],
+  "mobilePresentation": "Two complete columns in the discovery shelves and opened collections",
+  "automatedChecks": {
+    "typecheck": "passed",
+    "javascriptTests": 222,
+    "pythonTests": 9,
+    "projectValidation": "passed",
+    "paidProviderApisUsed": false
+  }
+}

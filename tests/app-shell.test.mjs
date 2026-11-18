@@ -7,7 +7,7 @@ import {parseHTML} from 'linkedom';
 const root=new URL('../style-atlas/dist/',import.meta.url);
 const read=name=>readFile(new URL(name,root),'utf8');
 // DOM integration tests: no layout engine, playback, canvas export or browser QA implied.
-async function boot({page=false,saved=null,hash="",imageOrigin=null}={}){
+async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}={}){
  const {document,window:dom}=parseHTML(await read('index.html'));
  const errors=[],store=new Map(saved?[['video-multimarcas-atlas-v1',JSON.stringify(saved)]]:[]);
  let state=saved,storageReads=0;
@@ -32,7 +32,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null}={}){
  };
  document.fonts={add(){}};ctx.window=ctx;ctx.globalThis=ctx;
  vm.createContext(ctx);
- for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','search.js','app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
+ for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','search.js',...(folio?['folio-model.js','folio-ui.js']:[]),'app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
  for(let i=0;i<150&&!ctx.ATLAS_READY&&!errors.length;i++)await new Promise(r=>setTimeout(r,10));
  assert.equal(errors.map(e=>e.stack).join('\n'),'');assert.equal(ctx.ATLAS_READY,true,'app initialized');
  const click=selector=>{const el=document.querySelector(selector);assert.ok(el,selector);el.dispatchEvent(new dom.Event('click',{bubbles:true}));};
@@ -400,4 +400,46 @@ test('presenters are a main category with fifty-three sector choices; vehicle an
   click('[data-visual-sector="'+sector+'"]');assert.equal(d.getElementById('presenterSector').value,sector);assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+count+' estilos'));assert.equal(d.querySelectorAll('#grid .card').length,count);
  }
  assert.equal(JSON.stringify(ctx.AtlasApp.exportBundle()),before);
+});
+
+test('Fólio goals and niche browsing preserve selections, contribution scopes and visual approvals',async()=>{
+ const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
+ assert.equal(d.body.dataset.folioMode,'home');assert.equal(d.querySelectorAll('.folio-shelf').length,4);
+ const id=ctx.AtlasApp.getCatalog().styles.find(s=>s.presenterEditing?.sector==='dentistas').id;
+ ctx.AtlasApp.chooseStyle(id);ctx.AtlasApp.setStyleContributions(id,[{aspect:'lighting',scope:'opening'}]);
+ const c=ctx.AtlasCurrentChoice();c.projectState.preProductionApprovals.moodboard.status='approved';c.projectState.preProductionApprovals.visual_storyboard.status='approved';
+ const before=JSON.stringify({styles:c.selectedStyles.map(s=>s.id),contributions:c.styleContributions,state:c.projectState});
+ click('[data-folio-goal="sell"]');change('folioNiche','dentistas');click('[data-folio-collection="service-trust"]');
+ assert.equal(ctx.AtlasFolio.getState().collection,'service-trust');
+ assert.ok([...d.querySelectorAll('#grid [data-style-id]')].every(el=>ctx.FolioCollections.matchesNiche(ctx.AtlasApp.getStyle(el.dataset.styleId),'dentistas',ctx.FolioCollections.niches(ctx.AtlasApp.getCatalog().styles))));
+ const after=ctx.AtlasCurrentChoice();assert.equal(JSON.stringify({styles:after.selectedStyles.map(s=>s.id),contributions:after.styleContributions,state:after.projectState}),before);
+});
+
+test('Fólio expands menu parents, dismisses a final category and searches beyond a niche',async()=>{
+ const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
+ click('#folioOpenMenu');assert.equal(d.getElementById('folioMenu').open,true);
+ click('[data-folio-group="technology"]');assert.equal(d.getElementById('folioMenu').open,true);
+ click('[data-folio-family="software"]');assert.equal(d.getElementById('folioMenu').open,false);assert.equal(ctx.AtlasApp.categorySelection().family,'software');
+ click('[data-folio-home]');change('folioNiche','dentistas');
+ d.getElementById('search').value='cachorro';d.getElementById('search').dispatchEvent(new ctx.Event('input',{bubbles:true}));
+ assert.equal(ctx.AtlasFolio.getState().mode,'catalogue');assert.equal(ctx.AtlasFolio.getState().niche,'');assert.equal(ctx.AtlasApp.categorySelection().family,'');
+ assert.ok(d.querySelectorAll('#grid [data-style-id]').length>0);
+});
+
+test('Fólio collection additions are the real persisted choices carried into the existing brief',async()=>{
+ const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
+ click('[data-folio-collection="explanations"]');const id=d.querySelector('#grid [data-choose]').dataset.choose;click('#grid [data-choose]');
+ assert.equal(d.body.dataset.view,'library');assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,id);
+ click('[data-folio-choice]');assert.equal(d.getElementById('folioChoice').open,true);assert.ok(d.getElementById('folioChoiceItems').textContent.includes(ctx.AtlasApp.getStyle(id).name));
+ click('#folioChoiceContinue');assert.equal(d.getElementById('folioChoice').open,false);assert.equal(d.body.dataset.view,'brief');
+ change('topic','Explicar um serviço com clareza');assert.ok(ctx.AtlasApp.prompt().includes(id));
+ const saved=JSON.parse(a.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({folio:true,saved});assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles[0].id,id);
+});
+
+test('Fólio Page discovery keeps portable selections in widget state without reading localStorage',async()=>{
+ const a=await boot({page:true,folio:true}),{ctx,document:d,click}=a;
+ click('[data-folio-collection="explanations"]');const id=d.querySelector('#grid [data-choose]').dataset.choose;click('#grid [data-choose]');
+ click('[data-folio-home]');click('[data-folio-goal="present"]');await ctx.AtlasApp.save();
+ assert.equal(a.getStorageReads(),0);assert.equal(a.getState().modelContent.selectedStyles[0].id,id);
+ assert.equal(ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'pending');
 });
