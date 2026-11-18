@@ -1,7 +1,7 @@
 from pathlib import Path
 import json,argparse
 from playwright.sync_api import sync_playwright,expect
-parser=argparse.ArgumentParser();parser.add_argument('--base',default='http://127.0.0.1:8770/');parser.add_argument('--out',default='projects/folio-refresh/layout');args=parser.parse_args();out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
+parser=argparse.ArgumentParser();parser.add_argument('--base',default='http://127.0.0.1:8770/');parser.add_argument('--out',default='projects/folio-fullbleed/layout');args=parser.parse_args();out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
 report={'layouts':[],'motion':[],'errors':[]}
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'],headless=True)
@@ -20,13 +20,13 @@ with sync_playwright() as p:
   page.locator('#folioBrowseAll').click()
   assert len(page.locator('#grid').evaluate('e=>getComputedStyle(e).gridTemplateColumns').split())==columns
   stage=page.locator('#grid .folio-portrait').first
-  compact=stage.bounding_box();assert abs(compact['width']-compact['height'])<.6
-  # Every source fits, and decorative copies are hidden from AT.
+  compact=stage.bounding_box();assert abs(compact['width']*1.25-compact['height'])<.6
+  # Every source covers its frame at native aspect ratio; no decorative fill.
   page.route('**/*',lambda route:route.abort() if route.request.resource_type=='image' else route.continue_())
-  result=page.evaluate('''()=>{let items=AtlasApp.getCatalog().styles;AtlasFolio.update({items,shown:items,selected:[],favorites:[],compared:[],family:'',group:'',query:'',kind:'',onlyFav:false,onlyVideo:false});return {count:items.length,bad:[...document.querySelectorAll('#grid .folio-portrait')].filter(e=>{let a=e.getBoundingClientRect(),b=e.querySelector('.folio-artwork').firstElementChild.getBoundingClientRect(),[w,h]=e.style.getPropertyValue('--folio-source-ratio').split('/').map(Number);return b.left<a.left-.6||b.top<a.top-.6||b.right>a.right+.6||b.bottom>a.bottom+.6||Math.abs(b.width/b.height-w/h)>.002||e.querySelector('.folio-image-fill').getAttribute('aria-hidden')!=='true'}).length}}''')
+  result=page.evaluate('''()=>{let items=AtlasApp.getCatalog().styles;AtlasFolio.update({items,shown:items,selected:[],favorites:[],compared:[],family:'',group:'',query:'',kind:'',onlyFav:false,onlyVideo:false});return {count:items.length,bad:[...document.querySelectorAll('#grid .folio-portrait')].filter(e=>{let a=e.getBoundingClientRect(),b=e.querySelector('.folio-artwork').firstElementChild.getBoundingClientRect(),[w,h]=e.style.getPropertyValue('--folio-source-ratio').split('/').map(Number);return b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||!!e.querySelector('.folio-image-fill')}).length}}''')
   assert result=={'count':1425,'bad':0},result
   page.evaluate('scrollTo(0,800)');expect(page.locator('.folio-to-top')).to_be_visible();page.locator('.folio-to-top').click();expect(page.locator('#folioCollectionTitle')).to_be_focused()
-  report['layouts'].append({'width':width,'columns':columns,'all1425Complete':True,'uniformSquareHeight':True,'compactHeight':compact['height']})
+  report['layouts'].append({'width':width,'columns':columns,'all1425FillFrame':True,'uniformFourByFiveHeight':True,'compactHeight':compact['height']})
   page.close()
  for reduced in ['no-preference','reduce']:
   page=b.new_page(viewport={'width':1440,'height':1000},reduced_motion=reduced)

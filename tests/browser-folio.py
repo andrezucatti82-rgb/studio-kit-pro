@@ -16,17 +16,17 @@ with sync_playwright() as p:
   page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
   page.goto(args.base);page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   page.evaluate('document.fonts.ready');page.locator('.folio-shelf').first.wait_for()
-  page.wait_for_function('Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-photo img, .folio-shelf:first-child img.folio-photo")).slice(0,2).every(e=>e.complete && e.naturalWidth>0)')
+  page.wait_for_function('Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-artwork img")).slice(0,2).every(e=>e.complete && e.naturalWidth>0)')
   assert page.locator('.folio-shelf').count()==4
-  page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-photo img, .folio-shelf:first-child img.folio-photo")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
+  page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-artwork img")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
   assert not page.locator('.app-mobile-brand').is_visible()
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  # Every preview uses the same square frame while preserving the complete art.
-  stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']-stage['width'])<.6
+  # Every preview fills the same larger 4:5 frame without distorting its source.
+  stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']-stage['width']*1.25)<.6
   if width<=700:
    first=page.locator('.folio-shelf').first.locator('.folio-card').nth(0).bounding_box();second=page.locator('.folio-shelf').first.locator('.folio-card').nth(1).bounding_box()
    assert abs(first['y']-second['y'])<2 and second['x']+second['width']<=width-17
-  assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".folio-artwork").firstElementChild;const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return b.left>=a.left-.6 && b.top>=a.top-.6 && b.right<=a.right+.6 && b.bottom<=a.bottom+.6 && Math.abs(b.width/b.height-w/h)<.002 && !e.querySelector(".folio-reference");}')
+  assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".folio-artwork").firstElementChild;const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return b.left<=a.left+.6 && b.top<=a.top+.6 && b.right>=a.right-.6 && b.bottom>=a.bottom-.6 && Math.abs(b.width/b.height-w/h)<.002 && !e.querySelector(".folio-reference");}')
   page.screenshot(path=str(out/f'home-{width}.png'),full_page=False,animations='disabled')
   rail=page.locator('.folio-shelf-rail').first;rail.evaluate('(e)=>e.scrollLeft=220');assert rail.evaluate('(e)=>e.scrollLeft')>0
   page.locator('[data-folio-goal="present"]').click();expect(page.locator('#folio-shelf-people-and-business')).to_be_visible()
@@ -113,8 +113,7 @@ with sync_playwright() as p:
     const stage=card.querySelector('.folio-portrait'),panel=stage.querySelector('.folio-artwork').firstElementChild;
     const a=stage.getBoundingClientRect(),b=panel.getBoundingClientRect();
     const [w,h]=FolioCollections.previewRatio(AtlasApp.getStyle(card.dataset.styleId)).split('/').map(Number);
-    const fill=stage.querySelector('.folio-image-fill').firstElementChild.getBoundingClientRect();
-    if(b.left<a.left-.6||b.top<a.top-.6||b.right>a.right+.6||b.bottom>a.bottom+.6||Math.abs(b.width/b.height-w/h)>.002||Math.abs(a.width-a.height)>.6||fill.left>a.left+.6||fill.top>a.top+.6||fill.right<a.right-.6||fill.bottom<a.bottom-.6||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
+    if(b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||Math.abs(a.height-a.width*1.25)>.6||stage.querySelector('.folio-image-fill')||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
    }
    return {count:document.querySelectorAll('#grid .folio-card').length,bad};
   }''')
