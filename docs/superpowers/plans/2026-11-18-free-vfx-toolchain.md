@@ -31,32 +31,32 @@
 
 Files: tools/free-vfx/manifest.json, tools/free-vfx/toolchain.py, tests/free-tools.test.mjs, scripts/free-tools.mjs.
 Interfaces: Python CLI `plan|doctor|install|smoke|run`, `--root`, `--profile base|automation|ai|all-free`, `--tool ID`; JSON reports. `run --operation filter|matte|interpolate|upscale` uses validated args and explicit output.
-- [ ] Add failing behavioral tests: reject paid/unknown selections; plan only chooses requested free tools; missing binaries are missing; a real FFmpeg transform decodes and refuses existing output; JSON report cannot claim review approval.
-- [ ] Run tests, implement registry/runner, rerun to green.
-- [ ] Commit independently usable CLI.
+- [x] Add failing behavioral tests: reject paid/unknown selections; plan only chooses requested free tools; missing binaries are missing; a real FFmpeg transform decodes and refuses existing output; JSON report cannot claim review approval.
+- [x] Run tests, implement registry/runner, rerun to green.
+- [x] Commit independently usable CLI.
 
 ## Task 2: Installation and evidence
 
 Files: runner installation adapters, tools/free-vfx/requirements.txt, tests/free-tools.test.mjs, docs/vfx/free-toolchain-verification.json.
 Interfaces: install reports per-tool states; native managers or Linux user extraction, isolated venv and source commits, model files retained under .studio-tools.
-- [ ] Test dry plan leaves filesystem unchanged, invalid source/command cannot escape allowlist, unsupported platform yields blocker.
-- [ ] Implement install sources with license terms; preserve existing installations; install compatible missing tools in current Linux environment.
-- [ ] Run technical smoke and actual AI inference where supported; retain failed and passed evidence without disguising hardware/model limitations.
-- [ ] Commit installer and sanitized evidence, never binaries/models/secrets.
+- [x] Test dry plan leaves filesystem unchanged, invalid source/command cannot escape allowlist, unsupported platform yields blocker.
+- [x] Implement install sources with license terms; preserve existing installations; install compatible missing tools in current Linux environment.
+- [x] Run technical smoke and actual AI inference where supported; retain failed and passed evidence without disguising hardware/model limitations.
+- [x] Commit installer and sanitized evidence, never binaries/models/secrets.
 
 ## Task 3: Coordinator and package integration
 
 Files: packaging/installer/setup-studio.mjs, scripts/package-skill.py, scripts/package-installer.py, package.json, relevant coordinator/modules/docs/manifests.
 Interfaces: bootstrap `--free-tools base|all-free|none`; default all-free with honest partial-toolchain status; manifest and runner ship in runtime; one coordinator entry.
-- [ ] Add tests for option parsing/profile propagation, report separation, archive inclusion and canonical discovery invariants.
-- [ ] Implement bootstrap/doctor integration and free-only prompts, update portable references and existing package metadata.
-- [ ] Test targeted checks and complete npm test/check/validate suite; commit source.
+- [x] Add tests for option parsing/profile propagation, report separation, archive inclusion and canonical discovery invariants.
+- [x] Implement bootstrap/doctor integration and free-only prompts, update portable references and existing package metadata.
+- [x] Test targeted checks and complete npm test/check/validate suite; commit source.
 
 ## Task 4: Integration and release
 
 Files: distribution artifacts and installation metadata, docs/free-vfx delivery receipt; existing site hosting source after obtaining its current revision.
-- [ ] Read latest remote main; merge only necessary changes, preserve concurrent UI. Re-run affected tests if merge changes source.
-- [ ] Commit clean source, regenerate existing packages/installer with fixed source SHA, verify hashes and sourceReady, commit distributions.
-- [ ] Push feature branch and integrate authorized GitHub update without force; repin merged source if necessary.
-- [ ] Publish exact latest main artifacts to authorized destinations, preserving site source/audience. Update existing private plugin and local installs. Verify readbacks or record concrete blockers.
-- [ ] Obtain fresh branch review, resolve important issues with reproducing tests, report exact installed/new/blocked states and publication URLs.
+- [x] Read latest remote main; merge only necessary changes, preserve concurrent UI. Re-run affected tests if merge changes source.
+- [x] Commit clean source, regenerate existing packages/installer with fixed source SHA, verify hashes and sourceReady, commit distributions.
+- [x] Push feature branch and integrate authorized GitHub update without force; repin merged source if necessary.
+- [x] Publish exact latest main artifacts to authorized destinations, preserving site source/audience. Update existing private plugin and local installs. Verify readbacks or record concrete blockers.
+- [x] Obtain fresh branch review, resolve important issues with reproducing tests, report exact installed/new/blocked states and publication URLs.
