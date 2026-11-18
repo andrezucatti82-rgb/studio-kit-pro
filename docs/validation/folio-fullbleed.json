@@ -116,5 +116,8 @@
   "manualSamples": "home dentist, fitness, CRM, dashboards and avatar; one sample per family plus extreme source ratios",
   "allStylesEditoriallyReviewed": false,
   "paidApisUsed": false,
-  "publication": "pending"
+  "publication": {
+    "status": "published_verified",
+    "evidence": "folio-fullbleed-publication.json"
+  }
 }
