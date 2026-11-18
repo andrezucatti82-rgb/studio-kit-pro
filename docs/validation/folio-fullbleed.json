@@ -4,8 +4,8 @@
   "catalogVersion": "4.8",
   "styles": 1425,
   "previewPolicy": {
-    "aspectRatio": "4:5",
-    "heightIncreasePercent": 25,
+    "aspectRatio": "3:4",
+    "heightIncreasePercent": 33.33,
     "fullBleed": true,
     "blurredDuplicate": false,
     "sourceAspectRatioPreserved": true,
@@ -19,43 +19,43 @@
         "width": 320,
         "columns": 2,
         "all1425FillFrame": true,
-        "uniformFourByFiveHeight": true,
-        "compactHeight": 168.75
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 180
       },
       {
         "width": 375,
         "columns": 2,
         "all1425FillFrame": true,
-        "uniformFourByFiveHeight": true,
-        "compactHeight": 203.125
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 216.65625
       },
       {
         "width": 768,
         "columns": 3,
         "all1425FillFrame": true,
-        "uniformFourByFiveHeight": true,
-        "compactHeight": 273.3125
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 291.53125
       },
       {
         "width": 1024,
         "columns": 4,
         "all1425FillFrame": true,
-        "uniformFourByFiveHeight": true,
-        "compactHeight": 280
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 298.65625
       },
       {
         "width": 1440,
         "columns": 6,
         "all1425FillFrame": true,
-        "uniformFourByFiveHeight": true,
-        "compactHeight": 266.65625
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 284.4375
       },
       {
         "width": 1920,
         "columns": 6,
         "all1425FillFrame": true,
-        "uniformFourByFiveHeight": true,
-        "compactHeight": 300
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 320
       }
     ],
     "motion": [

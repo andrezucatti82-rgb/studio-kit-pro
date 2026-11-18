@@ -1,6 +1,6 @@
 # Galeria Fólio: navegação e enquadramento
 
-As prévias em 4:5 mantêm a mesma altura em todos os estilos. São 25% mais altas que as prévias quadradas anteriores, para mostrar as imagens maiores. A grade mostra seis colunas a partir de 1.200 px, quatro de 900 a 1.199 px, três de 701 a 899 px e duas no celular. As coleções usam a mesma grade do catálogo, com ações para adicionar e examinar os momentos.
+As prévias em 3:4 mantêm a mesma altura em todos os estilos. São 33% mais altas que as prévias quadradas anteriores, para mostrar as imagens maiores. A grade mostra seis colunas a partir de 1.200 px, quatro de 900 a 1.199 px, três de 701 a 899 px e duas no celular. As coleções usam a mesma grade do catálogo, com ações para adicionar e examinar os momentos.
 
 A própria imagem ocupa todo o quadro, sem barras laterais ou fundo desfocado. A prévia faz um reenquadramento proporcional da referência, sem esticá-la. Nos explicadores, o alinhamento inferior prioriza os objetos e diagramas; nas demais referências, um alinhamento mais alto favorece a pessoa. Esses alinhamentos são regras de apresentação, não detecção automática de rostos ou texto. A ficha ampliada e os downloads continuam mostrando o painel original completo. O reenquadramento da galeria não altera as imagens fonte, o briefing, os prompts, as contribuições ou as aprovações.
 

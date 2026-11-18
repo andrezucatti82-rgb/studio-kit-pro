@@ -21,8 +21,8 @@ with sync_playwright() as p:
   page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-artwork img")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
   assert not page.locator('.app-mobile-brand').is_visible()
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  # Every preview fills the same larger 4:5 frame without distorting its source.
-  stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']-stage['width']*1.25)<.6
+  # Every preview fills the same larger 3:4 frame without distorting its source.
+  stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']-stage['width']*4/3)<.6
   if width<=700:
    first=page.locator('.folio-shelf').first.locator('.folio-card').nth(0).bounding_box();second=page.locator('.folio-shelf').first.locator('.folio-card').nth(1).bounding_box()
    assert abs(first['y']-second['y'])<2 and second['x']+second['width']<=width-17
@@ -113,7 +113,7 @@ with sync_playwright() as p:
     const stage=card.querySelector('.folio-portrait'),panel=stage.querySelector('.folio-artwork').firstElementChild;
     const a=stage.getBoundingClientRect(),b=panel.getBoundingClientRect();
     const [w,h]=FolioCollections.previewRatio(AtlasApp.getStyle(card.dataset.styleId)).split('/').map(Number);
-    if(b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||Math.abs(a.height-a.width*1.25)>.6||stage.querySelector('.folio-image-fill')||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
+    if(b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||Math.abs(a.height-a.width*4/3)>.6||stage.querySelector('.folio-image-fill')||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
    }
    return {count:document.querySelectorAll('#grid .folio-card').length,bad};
   }''')

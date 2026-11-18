@@ -77,7 +77,7 @@ body[data-folio-mode=catalogue] .folio-collection-heading p{display:none}
 .folio-shelf-rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding:1px;scrollbar-width:thin;scrollbar-color:#c2b2a1 transparent;padding:6px 1px 14px;overscroll-behavior-x:contain}
 .folio-card{flex:0 0 calc((100% - 70px)/6);min-width:0;scroll-snap-align:start;background:transparent;position:relative;border-radius:9px}
 .folio-cover{display:block;padding:0;border:0;width:100%;background:transparent;border-radius:8px;overflow:hidden;line-height:0;cursor:pointer}
-.folio-portrait{display:block;position:relative;width:100%;aspect-ratio:4/5;container-type:size;background:#eae4d9;overflow:hidden;border-radius:8px;isolation:isolate}
+.folio-portrait{display:block;position:relative;width:100%;aspect-ratio:3/4;container-type:size;background:#eae4d9;overflow:hidden;border-radius:8px;isolation:isolate}
 .folio-artwork{position:absolute;inset:0;pointer-events:none}
 .folio-artwork{z-index:1}
 /* Cover with the real panel at its native aspect ratio. Never stretch it or
@@ -97,7 +97,7 @@ body[data-folio-mode=catalogue] .folio-collection-heading p{display:none}
 .folio-compare{display:flex;align-items:center;gap:7px;min-height:44px;font-size:11px;margin:0;color:var(--muted)}
 .folio-compare input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
 .folio-card.is-selected .folio-cover{box-shadow:0 0 0 2px var(--accent)}
-.folio-more-card{flex:0 0 calc((100% - 70px)/6);border:1px solid var(--line);background:transparent;align-self:flex-start;aspect-ratio:4/5;border-radius:8px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;color:var(--accent);scroll-snap-align:start}
+.folio-more-card{flex:0 0 calc((100% - 70px)/6);border:1px solid var(--line);background:transparent;align-self:flex-start;aspect-ratio:3/4;border-radius:8px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;color:var(--accent);scroll-snap-align:start}
 .folio-more-card>span{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
 .folio-more-card svg{width:23px;height:23px}.folio-more-card strong{font-size:14px;line-height:1.5}.folio-more-card small{font-size:11px;color:var(--muted)}
 body[data-folio=true] .folio-catalogue-controls,body[data-folio=true] .resultbar,body[data-folio=true] #searchScope{display:none}
