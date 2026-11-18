@@ -68,41 +68,24 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 156795,
-      "sha256": "6c560007f24b74afc2a565b0b0d276048ec8455b35cb2c67ab1af66b57c69b33"
+      "bytes": 157079,
+      "sha256": "fb4758f0889395c6f9f57e4d7f5632174ac3e909cb2da0028bb08686b555f734"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 157256,
-      "sha256": "ffe9059ab628aa7e039814a6c4b82b5ced0cec3b7fdc0102223c6567086a9b76"
+      "bytes": 157540,
+      "sha256": "3b1e93704dc2cdca69c414fe673ed30aca6ff395212ebc1842df971588c8b1cb"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4228691,
-      "sha256": "5ee7850fc7204bc586ab9cc32264f17a33c72958e7955b6a1561ce05b8ef6a92"
+      "bytes": 4229052,
+      "sha256": "cfb6df88f479aa104176bab8e85e3b4a265b01e7770a7b47909a5a432213b452"
     },
     "video-multimarcas.skill": {
-      "bytes": 155830,
-      "sha256": "19580bb71db5bbec09bbd37eaa0715fb047c07224cc5fcfe5dbc0bccaee5cfc7"
+      "bytes": 156114,
+      "sha256": "383f62b10b7c3d95e65856bf4c81bd844185e53d5b932da9aa28b680fa42025c"
     },
     "video-multimarcas.zip": {
-      "bytes": 155830,
-      "sha256": "19580bb71db5bbec09bbd37eaa0715fb047c07224cc5fcfe5dbc0bccaee5cfc7"
+      "bytes": 156114,
+      "sha256": "383f62b10b7c3d95e65856bf4c81bd844185e53d5b932da9aa28b680fa42025c"
     }
-  },
-  "installer": {
-    "version": 1,
-    "kitVersion": "2.12.0",
-    "sourceRevision": "522f024b651e70563a45a5f0fe8810f40bb1d217",
-    "sourceReady": true,
-    "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 621554,
-    "sha256": "936e822f3c5380e8dca5f76f5307f690c8bedb5fd7dfcd32e8333bb31903f623",
-    "tutorial": "como-instalar.html",
-    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
-    "internetRequired": true,
-    "fullProjectDownloadMiB": 807,
-    "skills": 1,
-    "internalModules": 7,
-    "presenterStyles": 265,
-    "localFile": "studio-kit-pro-installer.zip"
   }
 }
