@@ -19,26 +19,24 @@ with sync_playwright() as p:
   for group in groups:
    if width>900:trigger=page.locator('[data-folio-open-group="'+group['id']+'"]');trigger.click()
    else:
-    trigger=page.locator('#folioOpenMenu');trigger.click();assert page.locator('#folioMenuGroups .folio-group-option').count()==7
-    assert len(page.locator('.folio-group-list').evaluate('e=>getComputedStyle(e).gridTemplateColumns').split())==2
+    trigger=page.locator('#folioOpenMenu');trigger.click();assert page.locator('#folioMenuGroups [data-folio-group]').count()==7
+    assert len(page.locator('.folio-text-links').evaluate('e=>getComputedStyle(e).gridTemplateColumns').split())==2
     page.locator('[data-folio-group="'+group['id']+'"]').click()
    if group.get('directFamily'):
     expect(page.locator('#folioMenu')).not_to_be_visible();assert page.evaluate('AtlasApp.categorySelection().family')==group['directFamily'];seen.add(group['directFamily'])
    else:
     expect(page.locator('#folioMenu')).to_be_visible();ids=page.locator('#folioMenu [data-folio-family]').evaluate_all('es=>es.map(e=>e.dataset.folioFamily)');assert set(ids)==set(group['families']);seen.update(ids)
-    if width<=900:
-     assert not page.locator('.folio-group-list').is_visible()
-     page.locator('[data-folio-menu-back]').click();assert page.locator('#folioMenuGroups .folio-group-option').count()==7
-    else:assert page.locator('.folio-menu-detail').bounding_box()['x']>page.locator('.folio-group-list').bounding_box()['x']
+    assert page.locator('#folioMenu').bounding_box()['height']<420
+    assert page.locator('#folioMenu [data-folio-family]').first.evaluate('e=>getComputedStyle(e).backgroundColor')=='rgba(0, 0, 0, 0)'
+    page.locator('[data-folio-menu-back]').click();assert page.locator('#folioMenuGroups [data-folio-group]').count()==7
     page.keyboard.press('Escape');expect(trigger).to_be_focused()
    assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   assert len(seen)==page.evaluate('AtlasApp.getCatalog().families.length')
-  page.locator('#folioOpenMenu').click();page.locator('#folioMenuSearch').fill('dentistas');expect(page.locator('[data-folio-niche="dentistas"]')).to_be_visible();page.locator('[data-folio-niche="dentistas"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
   page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
-  # A breakpoint can replace focused menu content or hide the original trigger.
-  page.set_viewport_size({'width':1440,'height':1000})
-  page.locator('[data-folio-open-group="commercial"]').click();page.locator('[data-folio-group="technology"]').click();page.set_viewport_size({'width':375,'height':812});expect(page.locator('#folioMenuDetailTitle')).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
-  page.locator('#folioOpenMenu').click();page.locator('[data-folio-group="technology"]').click();page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenuDetailTitle')).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
+  assert page.locator('#folioMenu input, #folioMenu small, #folioMenu svg, #folioMenu footer, #folioMenu h2, #folioMenu h3').count()==0
+  page.set_viewport_size({'width':1440,'height':1000});page.locator('[data-folio-open-group="technology"]').click();family=page.locator('#folioMenu [data-folio-family]').first
+  expect(family).to_be_focused();page.set_viewport_size({'width':375,'height':812});expect(family).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
+  page.locator('#folioOpenMenu').click();page.locator('[data-folio-group="technology"]').click();page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenu [data-folio-family]').first).to_be_focused();page.keyboard.press('Escape');expect(page.locator('#folioOpenMenu')).to_be_focused()
   page.set_viewport_size({'width':width,'height':height})
   page.locator('#folioHeader [data-folio-choice]').first.click() if width>700 else page.locator('.mobile-app-nav [data-folio-choice]').click()
   page.locator('#folioChoiceContinue').click();expect(page.locator('#topic')).to_be_visible()
@@ -60,7 +58,7 @@ with sync_playwright() as p:
   page.locator('#appHelp .workflow').scroll_into_view_if_needed();page.screenshot(path=str(out/f'help-workflow-{width}.png'),animations='disabled')
   page.screenshot(path=str(out/f'help-{width}.png'),animations='disabled')
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  report['viewports'].append({'width':width,'allCategoriesReachable':len(groups),'allFamiliesReachable':len(seen),'darkFields':True,'localFonts':4,'allHelpCardsContrast':True,'resizeFocusPreserved':True,'projectPreserved':True})
+  report['viewports'].append({'width':width,'allCategoriesReachable':len(groups),'allFamiliesReachable':len(seen),'darkFields':True,'localFonts':4,'allHelpCardsContrast':True,'resizeFocusPreserved':True,'simpleTextMenu':True,'projectPreserved':True})
   page.close()
  b.close()
 assert not report['errors'],report

@@ -73,7 +73,6 @@ with sync_playwright() as p:
   assert page.evaluate('AtlasApp.categorySelection().family')=='software'
   expect(page.locator('#folioCollectionTitle')).to_be_focused()
   page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');assert page.evaluate('document.activeElement.id')=='folioOpenMenu'
-  page.locator('#folioOpenMenu').click();page.locator('#folioMenuSearch').fill('dentistas');page.locator('[data-folio-niche="dentistas"]').click();assert page.evaluate('AtlasFolio.getState().niche')=='dentistas';expect(page.locator('#folioMenu')).not_to_be_visible()
   page.locator('#folioHeader .folio-brand').click();page.locator('#folioNiche').select_option('dentistas')
   page.locator('#search').fill('cachorro');assert page.evaluate('AtlasFolio.getState().niche')==''
   assert page.locator('#grid .folio-card').count()>0
@@ -87,7 +86,7 @@ with sync_playwright() as p:
   # Persisted favorites and selection survive reload in the real site adapter.
   page.reload();page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')==style_id
-  page.locator('#folioOpenMenu').click();page.locator('[data-folio-favorites]').click()
+  page.locator('#folioBrowseAll').click();page.locator('#favoriteFilter').click()
   assert page.locator('#grid [data-style-id]').count()==1
   assert page.locator('#grid [data-style-id]').first.get_attribute('data-style-id')==style_id
   page.locator('#folioHeader [data-app-view="help"]').click();expect(page.locator('#instalar')).to_be_visible()
