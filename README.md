@@ -1,3 +1,5 @@
+> Atualização 2.13.0: uma skill pública, sete módulos internos e VFX condicional. [Estado da nova entrega](docs/RELEASE-2.13.md). Os registros 2.12 abaixo descrevem publicações anteriores.
+
 # Studio Kit Pro · Vídeo Multimarcas
 
 

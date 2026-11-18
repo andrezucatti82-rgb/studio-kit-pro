@@ -13,8 +13,8 @@ with sync_playwright() as p:
  for width in [375,1440]:
   context=browser.new_context(viewport={'width':width,'height':950},accept_downloads=True,permissions=['clipboard-read','clipboard-write'])
   page=context.new_page();page.on('pageerror',lambda e:result['errors'].append(str(e)))
-  page.goto(base+'#briefSection');page.wait_for_function('window.ATLAS_READY===true');assert page.evaluate('AtlasWorkflow.skillSystem.skills.length')==1;assert page.evaluate('AtlasWorkflow.skillSystem.modules.length')==7;page.wait_for_selector('#guidedDialog[open]');result['checks'].append(f'{width}px: briefSection without selection opens guided start')
-  page.goto(base+'?estilo=explicador-diagrama-ao-lado#briefSection');page.wait_for_function('window.ATLAS_READY===true');page.wait_for_selector('#briefDialog[open]');page.locator('#topic').fill('Explicar CRM com meu vídeo gravado');page.locator('#prepare').click();page.wait_for_selector('#handoff:not([hidden])')
+  page.goto(base+'#briefSection');page.wait_for_function('window.ATLAS_READY===true');assert page.evaluate('AtlasWorkflow.skillSystem.skills.length')==1;assert page.evaluate('AtlasWorkflow.skillSystem.modules.length')==7;page.wait_for_selector('#guidedDialog:visible');result['checks'].append(f'{width}px: briefSection without selection opens guided start')
+  page.goto(base+'?estilo=explicador-diagrama-ao-lado#briefSection');page.wait_for_function('window.ATLAS_READY===true');page.wait_for_selector('#briefDialog:visible');page.locator('#topic').fill('Explicar CRM com meu vídeo gravado');page.locator('#prepare').click();page.wait_for_selector('#handoff:not([hidden])')
   summary=page.locator('#styleIntentSummary').inner_text();assert 'Apresentador' in summary and 'Filme inteiro' in summary
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
   for platform in ['chatgpt','claude']:

@@ -5,7 +5,7 @@ description: Use when creating, editing, directing, diagnosing, or reviewing a v
 
 # Vídeo Multimarcas — orquestradora do Studio Kit Pro
 
-Versão **2.12.0**; catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores/53 segmentos**. Esta skill coordena um único projeto e sete especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
+Versão **2.13.0**; catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores/53 segmentos**. Esta skill coordena um único projeto e sete especialidades. O pacote e runtime não transferem contas, créditos, mídia ou consentimentos. O instalador compacto prepara uma pasta local própria; o tutorial está em `docs/COMECE-AQUI.html` no runtime. Confira `installation-report.json` quando existir: fonte verificada não equivale a runtime pronto nem a conta conectada.
 
 ## Primeiro, resolver o pedido real
 
@@ -35,7 +35,7 @@ Um pedido somente de VFX, edição, cor, áudio, roteiro ou auditoria também en
 
 ## Executar e acompanhar
 
-No Codex/Claude Code, siga [execução no runtime](references/orchestrator-execution.md): importe a ficha completa, registre mídia, use o modelo da conversa para escrever/validar o plano e execute até arquivos reais. O runtime 2.12.0 é compartilhado; a prova `production:poc` não substitui a seleção. Não exigir outra API de modelo para interpretar o pedido. Descubra ferramentas existentes antes de pedir configuração.
+No Codex/Claude Code, siga [execução no runtime](references/orchestrator-execution.md): importe a ficha completa, registre mídia, use o modelo da conversa para escrever/validar o plano e execute até arquivos reais. O runtime 2.13.0 é compartilhado; a prova `production:poc` não substitui a seleção. Não exigir outra API de modelo para interpretar o pedido. Descubra ferramentas existentes antes de pedir configuração.
 
 Em chat sem execução verificada, faça as etapas disponíveis e informe qual recurso falta à etapa seguinte. Um roteiro, JSON ou ID pendente não é MP4 produzido. [Diagnóstico](references/intake-and-diagnostics.md) distingue ferramenta anunciada, acesso, compatibilidade, insumos e resultado testado. Catálogo e skill não instalam ASR, matting, rastreamento de mãos ou 3D universal.
 

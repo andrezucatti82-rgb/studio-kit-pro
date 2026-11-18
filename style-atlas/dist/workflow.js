@@ -1,7 +1,7 @@
 /* Shared pure contract; browser and Node use the same implementation. */
 (function(g){
  const MAX_SELECTED_STYLES=10;
- const skillSystem={version:4,kitVersion:'2.12.0',orchestrator:'video-multimarcas',entryPoint:'video-multimarcas',skills:[{id:'video-multimarcas',name:'Studio Kit Pro',role:'coordinator'}],modules:[
+ const skillSystem={version:4,kitVersion:'2.13.0',orchestrator:'video-multimarcas',entryPoint:'video-multimarcas',skills:[{id:'video-multimarcas',name:'Studio Kit Pro',role:'coordinator'}],modules:[
   {id:'video-planejamento',name:'Planejamento e direção',role:'planning'},
   {id:'video-explicador-interativo',name:'Apresentador e explicação',role:'presenter'},
   {id:'video-publicidade',name:'Publicidade e ofertas',role:'advertising'},

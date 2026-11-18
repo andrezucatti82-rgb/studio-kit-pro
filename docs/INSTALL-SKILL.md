@@ -1,10 +1,10 @@
-# Instalar o Studio Kit Pro · 2.12.0
+# Instalar o Studio Kit Pro · 2.13.0
 
-A publicação inicial 2.12.0 foi integrada à `main` pela PR #20. A integração VFX/rota v3 desta árvore é candidata: preparar os pacotes não atualiza o site nem contas externas. [Estado da entrega e limites verificados](RELEASE-2.12.md). O instalador fixa uma revisão imutável, registrada em `installation.json`; novas instalações não atualizam automaticamente pastas anteriores.
+A versão 2.13.0 consolida uma skill pública e sete módulos internos, incluindo VFX. O histórico da publicação inicial 2.12 está na PR #20. A publicação da nova versão é registrada separadamente. [Estado da entrega e limites verificados](RELEASE-2.12.md). O instalador fixa uma revisão imutável, registrada em `installation.json`; novas instalações não atualizam automaticamente pastas anteriores.
 
 ## Instalação recomendada: um ZIP
 
-No [site público](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar), use **Instalar ferramenta → Baixar instalador completo**. Extraia o ZIP e abra `LEIA-PRIMEIRO.html`. Execute `INSTALAR.cmd` no Windows ou `sh install.sh` no macOS/Linux. O instalador compacto fixa uma revisão do GitHub e confere os hashes antes de executar. Precisa de internet: baixa o projeto completo, inclusive referências visuais, e dependências; reserve 3 GB livres.
+No [site público](https://videos.gerenciadordeanuncios.com.br/?v=2.13.0#instalar), use **Instalar ferramenta → Baixar instalador completo**. Extraia o ZIP e abra `LEIA-PRIMEIRO.html`. Execute `INSTALAR.cmd` no Windows ou `sh install.sh` no macOS/Linux. O instalador compacto fixa uma revisão do GitHub e confere os hashes antes de executar. Precisa de internet: baixa o projeto completo, inclusive referências visuais, e dependências; reserve 3 GB livres.
 
 Aproveita Node.js 22+ ou prepara Node.js 24 portátil, instala dependências com `npm ci`, verifica a única skill pública e seus sete módulos internos para Codex/Claude Code e testa FFmpeg/FFprobe e abertura do navegador de renderização. Pode instalar Git/FFmpeg via winget, Homebrew ou apt quando o gerenciador estiver disponível e pode pedir confirmação local. Não altera políticas de execução, contas, outras skills globais ou projetos existentes. Requisitos não atendidos deixam status de falha/pendência e instrução de retomada; não anunciam instalação pronta.
 
@@ -44,7 +44,7 @@ npm run doctor
 
 `AGENTS.md` e `CLAUDE.md` orientam a produção; `.agents/skills/video-multimarcas/` contém a fonte canônica e os módulos em `references/skill-modules/`; `.claude/skills/video-multimarcas/` é a única ponte de descoberta. Abra uma nova sessão do agente e confirme quais instruções foram carregadas. O diagnóstico verifica arquivos/comandos locais; conexão, saldo, modelo, playback e escuta precisam de verificações próprias.
 
-Diga: “Use $video-multimarcas e execute o pedido anexado.” Envie `projeto-video.json` e seus originais. O agente importa o pedido no runtime 2.12.0 e usa o modelo da própria conversa para planejar; outra API OpenAI/Anthropic não é obrigatória para interpretar a ficha. O usuário não precisa escrever o plano técnico.
+Diga: “Use $video-multimarcas e execute o pedido anexado.” Envie `projeto-video.json` e seus originais. O agente importa o pedido no runtime 2.13.0 e usa o modelo da própria conversa para planejar; outra API OpenAI/Anthropic não é obrigatória para interpretar a ficha. O usuário não precisa escrever o plano técnico.
 
 Para instalar a skill completa em **outro projeto** já existente:
 
@@ -93,7 +93,7 @@ No ChatGPT/Claude sem execução verificada, a conversa pode fazer as etapas dis
 
 ## Versão e manutenção
 
-Distribuição: plugin **2.12.0**, runtime **2.12.0**, catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores em 53 segmentos**. Verifique hashes e arquivos em `dist/release-manifest.json`; pacote preparado, pacote baixado, instruções carregadas, instalação na conta e domínio publicado são estados separados.
+Distribuição: plugin **2.13.0**, runtime **2.13.0**, catálogo **4.8**, **1.425 estilos em sete categorias**, incluindo **265 explicadores em 53 segmentos**. Verifique hashes e arquivos em `dist/release-manifest.json`; pacote preparado, pacote baixado, instruções carregadas, instalação na conta e domínio publicado são estados separados.
 
 Fontes editáveis: `.agents/skills/video-multimarcas/SKILL.md` e `references/skill-modules/` dentro dessa skill. Os módulos são fontes canônicas e não devem ser regenerados a partir de antigas skills separadas. Os diretórios `plugins/` e arquivos de distribuição são gerados por:
 
