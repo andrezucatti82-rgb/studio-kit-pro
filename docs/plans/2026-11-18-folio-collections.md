@@ -13,3 +13,7 @@ Validation: model coverage and diversity; browser checks at 375 / 390 / 430 / 14
 Use uniform 3:4 previews: 33% taller than the preceding square frames. Cover the frame with the actual logical reference panel at its native aspect ratio, without decorative duplicates, blurred fills or stretching. Preserve contact-sheet panel clipping, so neighbouring panels never bleed into the preview. Detail views, downloads, reference URLs, prompts and the saved production project retain the full originals. Presenter previews align toward the lower explanatory objects; other previews align higher. This is a presentation rule, not automated face/text detection or proof that every peripheral annotation survives a thumbnail crop.
 
 Keep six complete desktop columns and two complete mobile columns. Retain the discreet mouse-following border light, 3 px hover lift, reduced-motion/touch behavior and return-to-top control. Check full frame coverage, uniform heights and undistorted source ratios for all 1,425 styles at 320/375/768/1024/1440/1920 px. Inspect representative crops manually and retain full original downloads.
+
+## Current visual direction
+
+The dark app direction in `2026-11-18-folio-dark-app.md` supersedes the paper/terracotta styling. Keep the original discovery and project behavior, full-bleed 3:4 preview policy and complete originals. Follow the new compact category navigation and mobile form order.

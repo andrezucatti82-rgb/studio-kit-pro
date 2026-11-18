@@ -6,6 +6,14 @@ A própria imagem ocupa todo o quadro, sem barras laterais ou fundo desfocado. A
 
 No computador, a moldura recebe um brilho discreto conforme o mouse e sobe 3 px ao passar sobre ela; a arte não recebe zoom nem inclinação. No teclado, o foco continua visível. A preferência de movimento reduzido desativa o deslocamento e o brilho acompanhado pelo mouse. No toque, as ações continuam acessíveis sem depender de hover. Um botão permite voltar ao começo em páginas longas.
 
-Referências pesquisadas: [coleções do Are.na](https://help.are.na/docs/getting-started/channels), [organização do Cosmos](https://help.cosmos.so/en/articles/17508514-saving-and-organizing) e [descoberta e filtros do Adobe Stock](https://helpx.adobe.com/stock/web/help/using-adobe-stock-website.html). São referências de organização e descoberta; a identidade de papel, tinta e terracota do Fólio permanece própria.
+Referências de organização: [coleções do Are.na](https://help.are.na/docs/getting-started/channels), [organização do Cosmos](https://help.cosmos.so/en/articles/17508514-saving-and-organizing) e [descoberta e filtros do Adobe Stock](https://helpx.adobe.com/stock/web/help/using-adobe-stock-website.html). São referências de organização e descoberta; a identidade de papel, tinta e terracota do Fólio permanece própria.
 
 Validação: `tests/browser-folio.py` percorre descoberta, coleções, favoritos, escolha, briefing, prompt, exportação, categorias, busca, comparação e ajuda, além da geometria dos 1.425 estilos. As capturas e as verificações de layout/movimento da revisão ficam em `projects/folio-refresh/`, ignorado pelo Git. Essas verificações não equivalem a certificação completa de acessibilidade nem a revisão audiovisual dos vídeos.
+
+## Tema e categorias
+
+As capturas de Grok/xAI fornecidas pelo usuário orientam o tema escuro: fundo #101010, superfícies #242424, campos e ações arredondados, ícones discretos e Inter local em quatro pesos. O símbolo do Fólio usa um monograma F próprio, com logotipo sem serifa e ícones de navegador atualizados. A aparência das referências de vídeo continua com suas cores originais.
+
+No computador, sete atalhos no cabeçalho abrem um menu com os grupos à esquerda e as coleções em grade à direita. No celular, o menu começa com uma grade de sete categorias; ao escolher um grupo, mostra apenas suas coleções, com um botão para voltar. A busca também localiza segmentos. A seleção final fecha o painel e leva o foco ao resultado; Escape retorna ao controle que abriu o menu. A navegação e as escolhas de categoria não alteram o briefing salvo.
+
+No celular, os campos do briefing aparecem antes da prévia detalhada. Os campos de texto usam pelo menos 16 px para evitar o zoom automático comum em formulários móveis. O tutorial adota o mesmo tema e inclui suas fontes para leitura local.
