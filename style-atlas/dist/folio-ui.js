@@ -50,6 +50,8 @@
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
  let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,gridScroll=0,homeScroll=0;
  const state={goal:'explain',mode:'home',collection:'',niche:''};
+ const categoryFilters=document.createElement('details'),browseControls=document.querySelector('.folio-catalogue-controls');
+ categoryFilters.id='folioCategoryFilters';categoryFilters.hidden=true;categoryFilters.innerHTML='<summary>Filtros</summary>';browseControls.before(categoryFilters);
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
  function picture(s,small=true){
   if(s.sequence)return AtlasViews.picture(s,s.sequence.heroIndex??1,base(),'folio-photo',small);
@@ -76,6 +78,10 @@
   // A URL category, legacy category control or filter is still a real catalogue.
   if(state.mode==='home'&&(data.family||data.group||data.query||data.onlyFav||data.onlyVideo||data.kind))state.mode='catalogue';
   document.body.dataset.folioMode=state.mode;
+  document.body.dataset.folioBrowse=state.mode==='catalogue'&&!data.query?'category':'';
+  const categoryBrowse=document.body.dataset.folioBrowse==='category';categoryFilters.hidden=!categoryBrowse;
+  if(categoryBrowse){if(browseControls.parentElement!==categoryFilters)categoryFilters.append(browseControls);}
+  else if(browseControls.parentElement===categoryFilters)categoryFilters.after(browseControls);
   document.body.dataset.folioDensity='compact';
   categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>{const g=window.AtlasNavigation.groups.find(g=>g.id===b.dataset.folioOpenGroup);b.setAttribute('aria-current',String(data.group===g.id||g.families.includes(data.family)));});
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
@@ -158,21 +164,22 @@
   const groups=window.AtlasNavigation.groups,selected=groups.find(g=>g.id===menuGroup);
   const links=selected?selected.families.map(id=>{const f=catalog.families.find(f=>f.id===id);return `<button type="button" data-folio-family="${esc(f.id)}">${esc(f.name)}</button>`;}):groups.map(g=>`<button type="button" data-folio-group="${esc(g.id)}">${esc(g.name)}</button>`);
   $('folioMenu').setAttribute('aria-label',selected?selected.name:'Categorias de estilos');
-  $('folioMenuGroups').innerHTML=(selected?'<button type="button" class="folio-text-back" data-folio-menu-back>← Categorias</button>':'')+`<div class="folio-text-links">${links.join('')}</div>`;
+  $('folioMenuGroups').innerHTML=`<div class="folio-text-links">${selected?'<button type="button" data-folio-menu-back>← Categorias</button>':''}${links.join('')}${selected?'':'<button type="button" data-folio-all>Todos os estilos</button>'}</div>`;
  }
  function focusMenu(){($('folioMenuGroups').querySelector('[data-folio-family],[data-folio-group]')||$('folioMenuGroups').querySelector('button'))?.focus({preventScroll:true});}
  function closeMenu(destination){
   if($('folioMenu').hidden)return;
-  $('folioMenu').hidden=true;$('folioOpenMenu').setAttribute('aria-expanded','false');categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  $('folioMenu').hidden=true;$('folioOpenMenu').setAttribute('aria-expanded','false');$('folioOpenMenu').setAttribute('aria-label','Abrir categorias e filtros');categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
   const target=destination||menuTrigger;(target?.isConnected&&target.getClientRects().length?target:$('folioOpenMenu')).focus({preventScroll:true});
  }
  function showMenu(trigger,group=''){
-  if(!$('folioMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
-  window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;$('folioOpenMenu').setAttribute('aria-expanded','true');
+  if(!$('folioMenu').hidden&&(menuTrigger===trigger||trigger.id==='folioOpenMenu')){closeMenu();return;}
+  window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;$('folioOpenMenu').setAttribute('aria-expanded','true');$('folioOpenMenu').setAttribute('aria-label','Fechar categorias');
   categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));focusMenu();
  }
  function selectCategory({family='',group=''}={}){
   window.AtlasInlinePanels.reset();
+  categoryFilters.open=false;
   state.mode='catalogue';state.collection='';state.niche='';gridScroll=0;closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   if(group)window.AtlasApp.setCategoryGroup(group);
