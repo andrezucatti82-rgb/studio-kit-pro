@@ -1,0 +1,160 @@
+{
+  "catalogVersion": "4.8",
+  "uniqueStyles": 1425,
+  "currentTopGroups": 7,
+  "currentFamilies": 30,
+  "presenterSegments": 53,
+  "duplicateStyleNames": 0,
+  "families": [
+    {
+      "id": "cinema",
+      "name": "Cinema e fotografia",
+      "styles": 40
+    },
+    {
+      "id": "grafico",
+      "name": "Design gráfico e editorial",
+      "styles": 40
+    },
+    {
+      "id": "ilustracao",
+      "name": "Ilustração e desenho",
+      "styles": 40
+    },
+    {
+      "id": "materiais",
+      "name": "Papel, impressão e materiais",
+      "styles": 40
+    },
+    {
+      "id": "tecnologia",
+      "name": "Interfaces, dados e sistemas",
+      "styles": 40
+    },
+    {
+      "id": "motion",
+      "name": "Movimento e montagem",
+      "styles": 40
+    },
+    {
+      "id": "volume",
+      "name": "Volume e materiais digitais",
+      "styles": 40
+    },
+    {
+      "id": "hibridos",
+      "name": "Narrativas e combinações",
+      "styles": 40
+    },
+    {
+      "id": "anuncios",
+      "name": "Publicidade de produto",
+      "styles": 40
+    },
+    {
+      "id": "campanhas",
+      "name": "Campanhas e demonstrações",
+      "styles": 40
+    },
+    {
+      "id": "imoveis",
+      "name": "Imóveis e apresentação",
+      "styles": 40
+    },
+    {
+      "id": "software",
+      "name": "Softwares, telas e dashboards",
+      "styles": 40
+    },
+    {
+      "id": "apresentacoes",
+      "name": "Apresentações e tipografia",
+      "styles": 40
+    },
+    {
+      "id": "avatares",
+      "name": "Avatares e apresentadores",
+      "styles": 40
+    },
+    {
+      "id": "saude",
+      "name": "Saúde, estética e odontologia",
+      "styles": 40
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-commerce e marketplaces",
+      "styles": 40
+    },
+    {
+      "id": "infoprodutores",
+      "name": "Infoprodutores e educação",
+      "styles": 40
+    },
+    {
+      "id": "motion-campanha",
+      "name": "Motion Design de Campanha",
+      "styles": 40
+    },
+    {
+      "id": "ads-moda",
+      "name": "Moda e vestuário",
+      "styles": 40
+    },
+    {
+      "id": "ads-alimentacao",
+      "name": "Alimentação e bebidas",
+      "styles": 40
+    },
+    {
+      "id": "ads-casa",
+      "name": "Casa e decoração",
+      "styles": 40
+    },
+    {
+      "id": "ads-joias",
+      "name": "Joias e acessórios",
+      "styles": 40
+    },
+    {
+      "id": "ads-juridico",
+      "name": "Serviços jurídicos",
+      "styles": 40
+    },
+    {
+      "id": "ads-pets",
+      "name": "Pets e cuidados animais",
+      "styles": 40
+    },
+    {
+      "id": "ads-automotivo",
+      "name": "Automotivo e mobilidade",
+      "styles": 40
+    },
+    {
+      "id": "ads-turismo",
+      "name": "Turismo e hospedagem",
+      "styles": 40
+    },
+    {
+      "id": "ads-beleza",
+      "name": "Beleza e autocuidado",
+      "styles": 40
+    },
+    {
+      "id": "ads-servicos",
+      "name": "Serviços residenciais",
+      "styles": 40
+    },
+    {
+      "id": "ads-infantil",
+      "name": "Infantil e maternidade",
+      "styles": 40
+    },
+    {
+      "id": "explicadores",
+      "name": "Apresentador e explicação",
+      "styles": 265
+    }
+  ]
+}
