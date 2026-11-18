@@ -36,7 +36,7 @@ import json,zipfile,hashlib
 from pathlib import Path
 r=Path.cwd();m=json.loads((r/'style-atlas/dist/installation.json').read_text());p=r/'style-atlas/dist'/m['download'];assert m['bytes']==p.stat().st_size and m['sha256']==hashlib.sha256(p.read_bytes()).hexdigest()
 assert (r/'dist/studio-kit-pro-installer.zip').read_bytes()==p.read_bytes()
-release=json.loads((r/'dist/release-manifest.json').read_text());assert release['installer']['sha256']==m['sha256']
+release=json.loads((r/'dist/release-manifest.json').read_text());assert release['plugin']=='video-multimarcas';assert release['installer']['sha256']==m['sha256']
 with zipfile.ZipFile(p) as z:
  assert z.testzip() is None
  for f in ['install.sh','INSTALAR.cmd','install.ps1','setup-studio.mjs','install-manifest.json','LEIA-PRIMEIRO.html']:assert 'Studio-Kit-Pro/'+f in z.namelist()

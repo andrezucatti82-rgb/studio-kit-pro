@@ -35,9 +35,9 @@ A edição 4.0 acrescenta 12 imagens IA fictícias, dez estudos em Canvas e oito
 
 Os três clipes de `style-atlas/dist/previews/automation-pilot/` foram gerados pela API do HeyGen (`heygen-video-1`) a partir de cenas 3D originais, sem pessoas ou marcas reais. Tipografia Inter e Source Serif 4 usa os arquivos e licenças já registrados no atlas. UI construída localmente e identificada como demonstrativa. Áudio solicitado ao próprio gerador; não há clonagem de voz pessoal. Consulta de referências criativas não reutilizou seus ativos. Os arquivos são amostras com revisão pendente, não evidência de aprovação profissional; o uso dos resultados gerados continua sujeito aos termos do provedor.
 
-## Favicon GDA
+## Favicon GDA — versão anterior
 
-Os favicons em `style-atlas/dist/assets/` são uma adaptação visual do símbolo GDA fornecido pelo site do mantenedor, gerada para este site e convertida para tamanhos de navegador e ícone de toque. A licença do código não concede direito de uso da marca GDA em outros projetos.
+Os favicons da versão anterior eram uma adaptação visual do símbolo GDA fornecido pelo site do mantenedor, gerada para este site e convertida para tamanhos de navegador e ícone de toque. A licença do código não concede direito de uso da marca GDA em outros projetos.
 
 ## Expansão 4.1
 
@@ -80,6 +80,12 @@ As 205 novas referências em `assets/presenter-realistic/explicador-*.webp`, som
 
 As 60 pranchas PNG anteriores permanecem intactas para ampliação e download. As prévias em `assets/presenter-realistic/previews/` são recodificações WebP de mesmas dimensões e enquadramento, sem recorte, redimensionamento ou retoque da arte. Os registros guardam os hashes dessas cópias leves; isso reduz transferência nos cartões, setores e assistente.
 
-## Interface Fólio
+## Interface Fólio — versão clara anterior
 
-O símbolo vetorial em `style-atlas/dist/assets/folio-mark.svg` foi desenhado para esta interface a partir do conceito de papel dobrado aprovado pelo mantenedor. A interface usa os arquivos existentes de Geist e Source Serif 4, com licenças distribuídas junto das fontes. Fólio por GDA é a identidade da galeria do mantenedor; a licença do código não concede direitos sobre a marca GDA. Cópias próprias devem usar sua própria identificação. As prévias mantêm as fontes e as dimensões das referências existentes.
+O símbolo vetorial da versão clara foi desenhado para esta interface a partir do conceito de papel dobrado aprovado pelo mantenedor. A interface usa os arquivos existentes de Geist e Source Serif 4, com licenças distribuídas junto das fontes. Fólio por GDA é a identidade da galeria do mantenedor; a licença do código não concede direitos sobre a marca GDA. Cópias próprias devem usar sua própria identificação. As prévias mantêm as fontes e as dimensões das referências existentes.
+
+## Interface escura do Fólio
+
+A interface usa Inter 400, 500, 600 e 700 em arquivos WOFF2 locais (`assets/fonts/inter-ui-*.woff2`), compilados a partir das distribuições oficiais do Google Fonts sob SIL OFL. Fonte, peso, tamanho e SHA-256 ficam em `style-atlas/records/folio-dark/ui-fonts.json`; a licença está em `style-atlas/dist/assets/fonts/inter-OFL.txt`. A cópia do tutorial incorpora os pesos 400 e 600 para funcionar também como arquivo local. A seleção de fontes dos vídeos continua independente da tipografia da interface.
+
+O monograma F do Fólio é um desenho vetorial original do projeto, com versões SVG, favicon e ícone de tela inicial. As capturas fornecidas pelo usuário orientaram o tema e a organização. A marca Fólio por GDA permanece vinculada ao mantenedor; a licença do código não transfere o direito de usar essa marca como identidade de terceiros.

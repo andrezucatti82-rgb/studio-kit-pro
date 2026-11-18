@@ -1,0 +1,34 @@
+[
+  {
+    "weight": 400,
+    "file": "assets/fonts/inter-ui-400.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf",
+    "bytes": 21804,
+    "sha256": "5cad02c091009ed21bf6bcbfef72e8d3da4f82d80e2154a8f9e40eb893d006e4",
+    "license": "assets/fonts/inter-OFL.txt"
+  },
+  {
+    "weight": 500,
+    "file": "assets/fonts/inter-ui-500.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+    "bytes": 22300,
+    "sha256": "f32eff072dab420e4bd221f24fdbec2a521658f87f1b557bc8a75eabbfe83295",
+    "license": "assets/fonts/inter-OFL.txt"
+  },
+  {
+    "weight": 600,
+    "file": "assets/fonts/inter-ui-600.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf",
+    "bytes": 22448,
+    "sha256": "62b8a0cfdb2d34adaeee77a9990ec781b391f5eef4850054d292ea284d29c96e",
+    "license": "assets/fonts/inter-OFL.txt"
+  },
+  {
+    "weight": 700,
+    "file": "assets/fonts/inter-ui-700.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf",
+    "bytes": 22460,
+    "sha256": "6f36c01b014958a459c5ca31e5823fa8b205d220b2413eee35cd1170503359d7",
+    "license": "assets/fonts/inter-OFL.txt"
+  }
+]

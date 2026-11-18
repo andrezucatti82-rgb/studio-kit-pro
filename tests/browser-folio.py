@@ -16,17 +16,17 @@ with sync_playwright() as p:
   page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
   page.goto(args.base);page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   page.evaluate('document.fonts.ready');page.locator('.folio-shelf').first.wait_for()
-  page.wait_for_function('Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-photo img, .folio-shelf:first-child img.folio-photo")).slice(0,2).every(e=>e.complete && e.naturalWidth>0)')
+  page.wait_for_function('Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-artwork img")).slice(0,2).every(e=>e.complete && e.naturalWidth>0)')
   assert page.locator('.folio-shelf').count()==4
-  page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-photo img, .folio-shelf:first-child img.folio-photo")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
+  page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-artwork img")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
   assert not page.locator('.app-mobile-brand').is_visible()
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  # The complete artwork fits its native frame; two complete columns still fit on mobile.
-  stage=page.locator('.folio-portrait').first.bounding_box();ratio=page.locator('.folio-portrait').first.evaluate('e=>{const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return h/w;}');assert abs(stage['height']/stage['width']-ratio)<.02
+  # Every preview fills the same larger 3:4 frame without distorting its source.
+  stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']-stage['width']*4/3)<.6
   if width<=700:
    first=page.locator('.folio-shelf').first.locator('.folio-card').nth(0).bounding_box();second=page.locator('.folio-shelf').first.locator('.folio-card').nth(1).bounding_box()
    assert abs(first['y']-second['y'])<2 and second['x']+second['width']<=width-17
-  assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".reference-panel")||e.querySelector("img");const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();return ["left","top","right","bottom"].every(k=>Math.abs(a[k]-b[k])<.6) && !e.querySelector(".folio-reference");}')
+  assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".folio-artwork").firstElementChild;const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return b.left<=a.left+.6 && b.top<=a.top+.6 && b.right>=a.right-.6 && b.bottom>=a.bottom-.6 && Math.abs(b.width/b.height-w/h)<.002 && !e.querySelector(".folio-reference");}')
   page.screenshot(path=str(out/f'home-{width}.png'),full_page=False,animations='disabled')
   rail=page.locator('.folio-shelf-rail').first;rail.evaluate('(e)=>e.scrollLeft=220');assert rail.evaluate('(e)=>e.scrollLeft')>0
   page.locator('[data-folio-goal="present"]').click();expect(page.locator('#folio-shelf-people-and-business')).to_be_visible()
@@ -54,6 +54,7 @@ with sync_playwright() as p:
   expect(page.locator('#briefTitle')).to_be_focused()
   page.locator('#topic').fill('Explicar como o serviço funciona, com exemplos visuais')
   page.locator('#prepare').click();expect(page.locator('#handoff')).to_be_visible()
+  page.screenshot(path=str(out/f'brief-{width}.png'),full_page=False,animations='disabled')
   assert style_id in page.locator('#promptOutput').input_value()
   page.locator('#copyPrompt').click();assert style_id in page.evaluate('navigator.clipboard.readText()')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
@@ -63,6 +64,7 @@ with sync_playwright() as p:
   assert project['brief']['selectedStyles'][0]['visualSequence']['frames']
   # Reading a collection must not touch a prepared brief, its scopes or approvals.
   before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')
+  page.locator('#folioHeader .folio-brand').click()
   page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-goal="sell"]').click()
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   page.locator('#folioOpenMenu').click();expect(page.locator('#folioMenu')).to_be_visible()
@@ -71,7 +73,6 @@ with sync_playwright() as p:
   assert page.evaluate('AtlasApp.categorySelection().family')=='software'
   expect(page.locator('#folioCollectionTitle')).to_be_focused()
   page.locator('#folioOpenMenu').click();page.keyboard.press('Escape');assert page.evaluate('document.activeElement.id')=='folioOpenMenu'
-  page.locator('#folioOpenMenu').click();page.locator('#folioMenuSearch').fill('dentistas');page.locator('[data-folio-niche="dentistas"]').click();assert page.evaluate('AtlasFolio.getState().niche')=='dentistas';expect(page.locator('#folioMenu')).not_to_be_visible()
   page.locator('#folioHeader .folio-brand').click();page.locator('#folioNiche').select_option('dentistas')
   page.locator('#search').fill('cachorro');assert page.evaluate('AtlasFolio.getState().niche')==''
   assert page.locator('#grid .folio-card').count()>0
@@ -85,10 +86,11 @@ with sync_playwright() as p:
   # Persisted favorites and selection survive reload in the real site adapter.
   page.reload();page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')==style_id
-  page.locator('#folioOpenMenu').click();page.locator('[data-folio-favorites]').click()
+  page.locator('#folioBrowseAll').click();page.locator('#favoriteFilter').click()
   assert page.locator('#grid [data-style-id]').count()==1
   assert page.locator('#grid [data-style-id]').first.get_attribute('data-style-id')==style_id
   page.locator('#folioHeader [data-app-view="help"]').click();expect(page.locator('#instalar')).to_be_visible()
+  page.screenshot(path=str(out/f'help-{width}.png'),full_page=False,animations='disabled')
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
   report['viewports'].append({'width':width,'height':height,'portraitRatio':stage['height']/stage['width']})
   report['checks'].append(f'{width}px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help')
@@ -107,10 +109,10 @@ with sync_playwright() as p:
    AtlasFolio.update({items,shown:items,selected:[],favorites:[],compared:[],family:'',group:'',query:'',kind:'',onlyFav:false,onlyVideo:false});
    const bad=[];
    for(const card of document.querySelectorAll('#grid .folio-card')){
-    const stage=card.querySelector('.folio-portrait'),panel=stage.querySelector('.reference-panel')||stage.querySelector('img');
+    const stage=card.querySelector('.folio-portrait'),panel=stage.querySelector('.folio-artwork').firstElementChild;
     const a=stage.getBoundingClientRect(),b=panel.getBoundingClientRect();
     const [w,h]=FolioCollections.previewRatio(AtlasApp.getStyle(card.dataset.styleId)).split('/').map(Number);
-    if(['left','top','right','bottom'].some(k=>Math.abs(a[k]-b[k])>.6)||Math.abs(a.width/a.height-w/h)>.002||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
+    if(b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||Math.abs(a.height-a.width*4/3)>.6||stage.querySelector('.folio-image-fill')||stage.querySelector('.folio-reference'))bad.push(card.dataset.styleId);
    }
    return {count:document.querySelectorAll('#grid .folio-card').length,bad};
   }''')

@@ -9,6 +9,9 @@ const read=name=>readFile(new URL(name,root),'utf8');
 // DOM integration tests: no layout engine, playback, canvas export or browser QA implied.
 async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}={}){
  const {document,window:dom}=parseHTML(await read('index.html'));
+ // LinkeDOM has no layout; real visibility and responsive focus are covered by
+ // browser-dark-ui.py. Supply only the connected-element API for DOM flows.
+ dom.HTMLElement.prototype.getClientRects=function(){return this.isConnected?[{}]:[]};
  const errors=[],store=new Map(saved?[['video-multimarcas-atlas-v1',JSON.stringify(saved)]]:[]);
  let state=saved,storageReads=0;
  function patchSelect(el){
@@ -16,7 +19,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}
   Object.defineProperty(el,'options',{get(){return [...this.querySelectorAll('option')]}});
  }
  for(const el of document.querySelectorAll('select'))patchSelect(el);
- const create=document.createElement.bind(document);document.createElement=(tag,...args)=>{const el=create(tag,...args);if(tag==='select')patchSelect(el);if(tag==='dialog'){el.showModal=function(){this.open=true};el.close=function(){this.open=false}}el.focus=()=>{};return el};
+ const create=document.createElement.bind(document);document.createElement=(tag,...args)=>{const el=create(tag,...args);if(tag==='select')patchSelect(el);if(tag==='dialog'){el.show=function(){this.open=true};el.showModal=el.show;el.close=function(){this.open=false}}el.focus=()=>{};return el};
  for(const el of document.querySelectorAll('dialog')){el.show=function(){this.open=true};el.showModal=el.show;el.close=function(){const was=this.open;this.open=false;if(was)this.dispatchEvent(new dom.Event('close'))};}
  for(const el of document.querySelectorAll('*')){el.focus=()=>{};el.scrollIntoView=()=>{};el.reportValidity=()=>true;}
  document.getElementById('briefForm').requestSubmit=function(){this.dispatchEvent(new dom.Event('submit',{bubbles:true,cancelable:true}))};
@@ -417,9 +420,9 @@ test('Fólio goals and niche browsing preserve selections, contribution scopes a
 
 test('Fólio expands menu parents, dismisses a final category and searches beyond a niche',async()=>{
  const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
- click('#folioOpenMenu');assert.equal(d.getElementById('folioMenu').open,true);
- click('[data-folio-group="technology"]');assert.equal(d.getElementById('folioMenu').open,true);
- click('[data-folio-family="software"]');assert.equal(d.getElementById('folioMenu').open,false);assert.equal(ctx.AtlasApp.categorySelection().family,'software');
+ click('#folioOpenMenu');assert.equal(d.getElementById('folioMenu').hidden,false);
+ click('[data-folio-group="technology"]');assert.equal(d.getElementById('folioMenu').hidden,false);
+ click('[data-folio-family="software"]');assert.equal(d.getElementById('folioMenu').hidden,true);assert.equal(ctx.AtlasApp.categorySelection().family,'software');
  click('[data-folio-home]');change('folioNiche','dentistas');
  d.getElementById('search').value='cachorro';d.getElementById('search').dispatchEvent(new ctx.Event('input',{bubbles:true}));
  assert.equal(ctx.AtlasFolio.getState().mode,'catalogue');assert.equal(ctx.AtlasFolio.getState().niche,'');assert.equal(ctx.AtlasApp.categorySelection().family,'');

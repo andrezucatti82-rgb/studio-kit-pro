@@ -3,9 +3,52 @@
  const $=id=>document.getElementById(id),model=globalThis.FolioCollections;
  if(!model||!$('folioCollections'))return;
  const esc=value=>AtlasViews.esc(value),base=()=>window.ATLAS_ASSET_BASE||'';
+ // Keep the existing feature APIs, but render each workspace in document flow.
+ // Nested inspection (style -> frame) replaces the current page and returns to
+ // it, rather than stacking modal layers or blocking the rest of the interface.
+ const panelHost=document.createElement('div');panelHost.id='folioPanelHost';panelHost.hidden=true;
+ document.body.insertBefore(panelHost,document.querySelector('.app-main'));
+ document.body.insertBefore($('folioMenu'),panelHost);
+ const panelStack=[];let panelView=document.body.dataset.view,resettingPanels=false;
+ function syncPanels(){
+  const current=panelStack.at(-1)?.panel;panelHost.hidden=!current;
+  if(current)document.body.dataset.folioPanel=current.id;else delete document.body.dataset.folioPanel;
+  panelHost.querySelectorAll('dialog').forEach(p=>p.classList.toggle('is-current',p===current));
+ }
+ function registerPanel(panel){
+  if(panel.dataset.inlinePage)return;
+  panel.dataset.inlinePage='true';panel.classList.add('folio-page-panel');panel.tabIndex=-1;
+  const show=panel.show.bind(panel),close=panel.close.bind(panel);
+  panelHost.append(panel);
+  const back=panel.querySelector('[data-close], [data-folio-close], #pickerClose');
+  if(back){back.textContent='← Voltar';back.classList.add('folio-panel-back');}
+  panel.showModal=()=>{
+   const trigger=document.activeElement;
+   closeMenu();
+   if(panel.open)return;
+   panelStack.push({panel,trigger,scroll:window.scrollY,view:document.body.dataset.view});
+   show();syncPanels();panel.focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
+  };
+  panel.close=value=>{
+   if(!panel.open)return;
+   const index=panelStack.findIndex(p=>p.panel===panel),entry=panelStack[index],wasCurrent=index===panelStack.length-1;
+   close(value);if(index>=0)panelStack.splice(index,1);syncPanels();
+   if(!resettingPanels&&entry&&wasCurrent&&entry.view===document.body.dataset.view){
+    window.scrollTo({top:entry.scroll,behavior:'auto'});
+    if(entry.trigger?.isConnected&&entry.trigger.getClientRects().length)entry.trigger.focus({preventScroll:true});
+   }
+  };
+ }
+ window.AtlasInlinePanels={register:registerPanel,reset(){resettingPanels=true;for(const {panel} of [...panelStack].reverse())panel.close();resettingPanels=false;},onView(view){if(view!==panelView){panelView=view;this.reset();}}};
+ document.querySelectorAll('dialog:not(#briefDialog):not(#categoryDrawer)').forEach(registerPanel);
+ document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape'||e.defaultPrevented||!panelStack.length)return;
+  e.preventDefault();const panel=panelStack.at(-1).panel;
+  if(panel.dispatchEvent(new Event('cancel',{cancelable:true})))panel.close();
+ });
  const icons={heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1C0 9 6 15 12 21c6-6 12-12 8-16Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>'};
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
- let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuDestination,choiceTrigger,gridScroll=0,homeScroll=0;
+ let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,gridScroll=0,homeScroll=0;
  const state={goal:'explain',mode:'home',collection:'',niche:''};
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
  function picture(s,small=true){
@@ -14,8 +57,13 @@
   if(s.image.columns===1)return `<img class="folio-photo" src="${esc((window.ATLAS_IMAGE_ASSET_BASE||base())+s.image.atlas)}" alt="${esc(s.name)}" loading="lazy" decoding="async">`;
   return `<span class="folio-missing">O estudo completo está na ficha do estilo</span>`;
  }
+ function preview(s){
+  // Fill the preview with the actual logical panel, never a blurred duplicate.
+  // The untouched source remains available in the detail viewer and downloads.
+  return `<span class="folio-portrait" style="--folio-source-ratio:${model.previewRatio(s)};--folio-focus-y:${s.presenterEditing?'100%':'35%'}"><span class="folio-artwork">${picture(s)}</span><span class="folio-cover-hint" aria-hidden="true">Explorar ${icon('arrow')}</span></span>`;
+ }
  function card(s,large=false){
-  return `<article class="folio-card${large?' folio-card-expanded':''}${selected(s.id)?' is-selected':''}" data-style-id="${esc(s.id)}"><button type="button" class="folio-cover" data-detail="${esc(s.id)}" aria-label="Ver ${esc(s.name)}"><span class="folio-portrait" style="--folio-source-ratio:${model.previewRatio(s)}">${picture(s)}</span></button><div class="folio-card-footer"><span class="folio-reference">Referência visual</span><div class="folio-card-title"><h3><button type="button" data-detail="${esc(s.id)}">${esc(s.name)}</button></h3><button type="button" class="folio-save" data-fav="${esc(s.id)}" aria-pressed="${!!favorite(s.id)}" aria-label="${favorite(s.id)?'Remover dos':'Adicionar aos'} favoritos: ${esc(s.name)}">${icon(large?'bookmark':'heart')}</button></div>${large?`<div class="folio-card-actions"><span>${s.sequence?'4 quadros':'Estudo visual'}</span><button type="button" data-choose="${esc(s.id)}" class="folio-add" aria-pressed="${!!selected(s.id)}" aria-label="${selected(s.id)?'Remover':'Adicionar'} ${esc(s.name)} ${selected(s.id)?'da':'à'} minha escolha">${selected(s.id)?'Adicionado ✓':'Adicionar +'}</button></div>`:''}</div>${!large&&state.mode==='catalogue'?`<label class="folio-compare"><input type="checkbox" data-compare="${esc(s.id)}" ${latest?.compared.includes(s.id)?'checked':''}>Comparar</label>`:''}${large?`<button type="button" class="folio-story-link" data-detail="${esc(s.id)}">Ver os momentos ${icon('arrow')}</button>`:''}</article>`;
+  return `<article class="folio-card${large?' folio-card-expanded':''}${selected(s.id)?' is-selected':''}" data-style-id="${esc(s.id)}"><button type="button" class="folio-cover" data-detail="${esc(s.id)}" aria-label="Ver ${esc(s.name)}">${preview(s)}</button><div class="folio-card-footer"><span class="folio-reference">Referência visual</span><div class="folio-card-title"><h3><button type="button" data-detail="${esc(s.id)}">${esc(s.name)}</button></h3><button type="button" class="folio-save" data-fav="${esc(s.id)}" aria-pressed="${!!favorite(s.id)}" aria-label="${favorite(s.id)?'Remover dos':'Adicionar aos'} favoritos: ${esc(s.name)}">${icon(large?'bookmark':'heart')}</button></div>${large?`<div class="folio-card-actions"><span>${s.sequence?'4 quadros':'Estudo visual'}</span><button type="button" data-choose="${esc(s.id)}" class="folio-add" aria-pressed="${!!selected(s.id)}" aria-label="${selected(s.id)?'Remover':'Adicionar'} ${esc(s.name)} ${selected(s.id)?'da':'à'} minha escolha">${selected(s.id)?'Adicionado ✓':'Adicionar +'}</button></div>`:''}</div>${!large&&state.mode==='catalogue'?`<label class="folio-compare"><input type="checkbox" data-compare="${esc(s.id)}" ${latest?.compared.includes(s.id)?'checked':''}>Comparar</label>`:''}${large?`<button type="button" class="folio-story-link" data-detail="${esc(s.id)}">Ver os momentos ${icon('arrow')}</button>`:''}</article>`;
  }
  function filter(items){
   const c=model.collection(state.collection);
@@ -28,6 +76,8 @@
   // A URL category, legacy category control or filter is still a real catalogue.
   if(state.mode==='home'&&(data.family||data.group||data.query||data.onlyFav||data.onlyVideo||data.kind))state.mode='catalogue';
   document.body.dataset.folioMode=state.mode;
+  document.body.dataset.folioDensity='compact';
+  categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>{const g=window.AtlasNavigation.groups.find(g=>g.id===b.dataset.folioOpenGroup);b.setAttribute('aria-current',String(data.group===g.id||g.families.includes(data.family)));});
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
   $('folioChangeGoal').hidden=state.mode!=='collection';$('folioBrowseAll').hidden=state.mode!=='home';
   $('folioCollections').hidden=state.mode!=='home';$('grid').hidden=state.mode==='home';
@@ -62,8 +112,27 @@
   for(const c of $('folioCollections').querySelectorAll('[data-style-id]'))c.classList.toggle('is-selected',selected(c.dataset.styleId));
  }
  function refresh(){window.AtlasApp.refresh();}
- function catalogue(){state.niche='';state.mode='catalogue';state.collection='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
+ $('folioBrowseAll').textContent='Ver todos →';
+ const topButton=document.createElement('button');topButton.type='button';topButton.className='folio-to-top';topButton.hidden=true;topButton.setAttribute('aria-label','Voltar ao início da página');topButton.textContent='↑';document.body.append(topButton);
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ topButton.addEventListener('click',()=>{window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});const heading=state.mode==='home'?$('folioDiscoveryTitle'):$('folioCollectionTitle');heading.focus({preventScroll:true});});
+ window.addEventListener('scroll',()=>{topButton.hidden=window.scrollY<600;},{passive:true});
+ // One delegated handler; no listeners/animations per catalogue item. Only the
+ // border highlight follows the mouse: the reference itself never zooms or tilts.
+ const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
+ let litCover=null,lightFrame=0,lightX=0,lightY=0;
+ document.addEventListener('pointermove',e=>{
+  if(!finePointer.matches||reduced.matches||e.pointerType!=='mouse')return;
+  const cover=e.target.closest('.folio-cover');
+  if(litCover!==cover){litCover?.classList.remove('is-lit');litCover=cover;cover?.classList.add('is-lit');}
+  if(!cover)return;
+  const r=cover.getBoundingClientRect();lightX=e.clientX-r.left;lightY=e.clientY-r.top;
+  if(!lightFrame)lightFrame=requestAnimationFrame(()=>{lightFrame=0;if(litCover){litCover.style.setProperty('--light-x',`${lightX}px`);litCover.style.setProperty('--light-y',`${lightY}px`);}});
+ },{passive:true});
+ document.addEventListener('pointerout',e=>{if(!e.relatedTarget){litCover?.classList.remove('is-lit');litCover=null;}});
+ function catalogue(){window.AtlasInlinePanels.reset();state.niche='';state.mode='catalogue';state.collection='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
+  window.AtlasInlinePanels.reset();
   state.mode='home';state.collection='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   requestAnimationFrame(()=>{window.scrollTo({top:restore?homeScroll:0,behavior:'auto'});if(!restore)$('folioDiscoveryTitle').focus({preventScroll:true});});
  }
@@ -73,27 +142,37 @@
   window.scrollTo({top:0,behavior:'auto'});$('folioCollectionTitle').focus({preventScroll:true});
  }
  function syncNavigation(view){
-  if(view!=='library'){closeMenu();if($('folioChoice').open){choiceTrigger=view==='brief'?$('briefTitle'):choiceTrigger;$('folioChoice').close();}}
+  const skip=document.querySelector('.skip-link');let content=view==='help'?$('installTitle'):view==='brief'?$('briefTitle'):view==='library'?(state.mode==='home'?$('folioDiscoveryTitle'):$('folioCollectionTitle')):$('projectTitle');
+  if(skip&&content){if(!content.id)content.id='folioContentTitle';content.tabIndex=-1;skip.href='#'+content.id;skip.textContent='Pular para o conteúdo';}
+  window.AtlasInlinePanels.onView(view);
+  if(view!=='library'){closeMenu();if($('folioChoice').open){$('folioChoice').close();}}
   document.querySelectorAll('[data-folio-home]').forEach(b=>b.setAttribute('aria-current',view==='library'?'page':'false'));
   document.querySelectorAll('[data-folio-choice]').forEach(b=>b.setAttribute('aria-current',['brief','project'].includes(view)?'page':'false'));
  }
- function menuRows(){
-  const q=String($('folioMenuSearch').value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  const groups=window.AtlasNavigation.groups;let rows=0;
-  $('folioMenuGroups').innerHTML=groups.map(g=>{
-   const families=g.families.map(id=>catalog.families.find(f=>f.id===id));
-   const matched=families.filter(f=>!q||norm(f.name+' '+g.name).includes(q));
-   if(!matched.length)return '';rows++;
-   const direct=!!g.directFamily,expanded=!!q||menuGroup===g.id;
-   return `<section class="folio-menu-group"><button type="button" data-folio-group="${g.id}" ${direct?'':`aria-expanded="${expanded}" aria-controls="folio-menu-${g.id}"`}><span>${esc(g.name)}</span><small>${families.reduce((n,f)=>n+f.count,0)}</small><span aria-hidden="true">${direct?'→':expanded?'−':'+'}</span></button>${direct?'':`<div id="folio-menu-${g.id}" ${expanded?'':'hidden'}><button type="button" data-folio-category-group="${g.id}">Ver todos deste grupo ${icon('arrow')}</button>${matched.map(f=>`<button type="button" data-folio-family="${f.id}">${esc(f.name)} <small>${f.count}</small></button>`).join('')}</div>`}</section>`;
-  }).join('');
-  const segments=q?niches.filter(n=>norm(n.name).includes(q)):[];
-  if(segments.length){rows+=segments.length;$('folioMenuGroups').insertAdjacentHTML('beforeend',`<section class="folio-menu-segments"><h3>Segmentos</h3>${segments.map(n=>`<button type="button" data-folio-niche="${esc(n.id)}">${esc(n.name)} ${icon('arrow')}</button>`).join('')}</section>`);}
-  $('folioMenuEmpty').hidden=rows>0;
+ const categoryBar=document.createElement('nav');categoryBar.className='folio-category-bar';categoryBar.setAttribute('aria-label','Categorias de estilos');$('folioHeader').insertBefore(categoryBar,$('folioHeader').lastElementChild);
+ const shortNames={commercial:'Publicidade','natural-ads':'Por segmento',business:'Serviços',technology:'Tecnologia',presenters:'Apresentador',movement:'Motion',visual:'Estéticas'};
+ function renderCategoryBar(){
+  categoryBar.innerHTML=window.AtlasNavigation.groups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-label="${esc(g.name)}" ${g.directFamily?'':`aria-controls="folioMenu" aria-expanded="false"`}><span>${esc(shortNames[g.id]||g.name)}</span>${g.directFamily?'':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>'}</button>`).join('');
  }
- function closeMenu(destination){if(destination)menuDestination=destination;if($('folioMenu').open){menuDestination=menuDestination||menuTrigger;$('folioMenu').close();}}
- function showMenu(trigger){menuTrigger=trigger;menuDestination=null;menuRows();$('folioMenu').showModal();$('folioOpenMenu').setAttribute('aria-expanded','true');$('folioMenuSearch').focus();}
+ function menuRows(){
+  const groups=window.AtlasNavigation.groups,selected=groups.find(g=>g.id===menuGroup);
+  const links=selected?selected.families.map(id=>{const f=catalog.families.find(f=>f.id===id);return `<button type="button" data-folio-family="${esc(f.id)}">${esc(f.name)}</button>`;}):groups.map(g=>`<button type="button" data-folio-group="${esc(g.id)}">${esc(g.name)}</button>`);
+  $('folioMenu').setAttribute('aria-label',selected?selected.name:'Categorias de estilos');
+  $('folioMenuGroups').innerHTML=(selected?'<button type="button" class="folio-text-back" data-folio-menu-back>← Categorias</button>':'')+`<div class="folio-text-links">${links.join('')}</div>`;
+ }
+ function focusMenu(){($('folioMenuGroups').querySelector('[data-folio-family],[data-folio-group]')||$('folioMenuGroups').querySelector('button'))?.focus({preventScroll:true});}
+ function closeMenu(destination){
+  if($('folioMenu').hidden)return;
+  $('folioMenu').hidden=true;$('folioOpenMenu').setAttribute('aria-expanded','false');categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  const target=destination||menuTrigger;(target?.isConnected&&target.getClientRects().length?target:$('folioOpenMenu')).focus({preventScroll:true});
+ }
+ function showMenu(trigger,group=''){
+  if(!$('folioMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
+  window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;$('folioOpenMenu').setAttribute('aria-expanded','true');
+  categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));focusMenu();
+ }
  function selectCategory({family='',group=''}={}){
+  window.AtlasInlinePanels.reset();
   state.mode='catalogue';state.collection='';state.niche='';gridScroll=0;closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   if(group)window.AtlasApp.setCategoryGroup(group);
@@ -105,7 +184,7 @@
   $('folioChoiceItems').innerHTML=ids.map((id,i)=>{const s=window.AtlasApp.getStyle(id);return `<article class="folio-chosen"><button type="button" data-detail="${esc(id)}" aria-label="Examinar ${esc(s.name)}">${picture(s)}</button><div><small>${i===0?'Estilo principal':'Referência complementar'}</small><h3>${esc(s.name)}</h3><button type="button" class="text-button" data-contributions="${esc(id)}">Escolher características →</button></div><button type="button" data-remove="${esc(id)}" class="folio-icon-button" aria-label="Remover ${esc(s.name)} da minha escolha">×</button></article>`;}).join('');
   $('folioChoiceContinue').disabled=!ids.length;
  }
- function showChoice(trigger){choiceTrigger=trigger;renderChoice();$('folioChoice').showModal();}
+ function showChoice(trigger){window.AtlasInlinePanels.reset();renderChoice();$('folioChoice').showModal();}
  window.AtlasFolio={filter,beforeRender,update,onView:syncNavigation,getState:()=>({...state})};
  // Listeners are installed before app.js: a free-text search starts across all styles.
  $('search').addEventListener('input',()=>{state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.niche='';gridScroll=0;});
@@ -114,11 +193,8 @@
  $('familySelect').addEventListener('change',()=>{state.mode='catalogue';state.collection='';state.niche='';gridScroll=0;});
  $('folioNiche').addEventListener('change',()=>{state.niche=$('folioNiche').value;gridScroll=0;refresh();});
  $('folioOpenMenu').addEventListener('click',e=>showMenu(e.currentTarget));
- $('folioMenuSearch').addEventListener('input',menuRows);
- $('folioMenu').addEventListener('close',()=>{$('folioOpenMenu').setAttribute('aria-expanded','false');(menuDestination||menuTrigger)?.focus({preventScroll:true});menuDestination=null;});
- $('folioChoice').addEventListener('close',()=>choiceTrigger?.focus({preventScroll:true}));
- for(const id of ['folioMenu','folioChoice'])$(id).addEventListener('click',e=>{if(e.target===$(id)){const r=$(id).getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$(id).close();}});
- $('folioChoiceContinue').addEventListener('click',()=>{choiceTrigger=$('briefTitle');$('folioChoice').close();window.AtlasShell.openBrief();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!$('folioMenu').hidden){e.preventDefault();closeMenu();}});
+ $('folioChoiceContinue').addEventListener('click',()=>{$('folioChoice').close();window.AtlasShell.openBrief();});
  $('folioBack').addEventListener('click',()=>home({restore:true}));$('folioChangeGoal').addEventListener('click',()=>home());
  $('folioBrowseAll').addEventListener('click',catalogue);
  document.addEventListener('click',e=>{
@@ -129,19 +205,17 @@
   if(t.closest('[data-folio-back]'))home({restore:true});
   if(t.closest('[data-folio-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-folio-choice]');if(choice)showChoice(choice);
-  const closer=t.closest('[data-folio-close]');if(closer)closer.closest('dialog')?.close();
-  if(t.closest('#folioMenu [data-install-open]'))closeMenu($('installTitle'));
-  const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{menuGroup=menuGroup===g.id?'':g.id;menuRows();$('folioMenuGroups').querySelector(`[data-folio-group="${g.id}"]`).focus();}}
-  const niche=t.closest('[data-folio-niche]');if(niche){state.niche=niche.dataset.folioNiche;home();}
+  const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
+  const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else showMenu(openGroup,g.id);}
+  if(t.closest('[data-folio-menu-back]')){menuGroup='';menuRows();focusMenu();}
+  const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{menuGroup=g.id;menuRows();focusMenu();}}
   const family=t.closest('[data-folio-family]');if(family)selectCategory({family:family.dataset.folioFamily});
-  const allGroup=t.closest('[data-folio-category-group]');if(allGroup)selectCategory({group:allGroup.dataset.folioCategoryGroup});
   if(t.closest('[data-folio-all]')){state.niche='';catalogue();}
-  if(t.closest('[data-folio-favorites]')){state.niche='';catalogue();$('favoriteFilter').click();}
  });
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);
   $('folioNiche').innerHTML='<option value="">Todos os nichos</option>'+niches.map(n=>`<option value="${esc(n.id)}">${esc(n.name)}</option>`).join('');
-  ready=true;document.body.dataset.folio='true';refresh();
+  renderCategoryBar();ready=true;document.body.dataset.folio='true';refresh();
   if(!window.ATLAS_PAGE_MODE&&window.location.hash==='#briefSection')window.AtlasShell.openBrief();
  });
 })();
