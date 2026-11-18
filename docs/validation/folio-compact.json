@@ -68,49 +68,43 @@
         "width": 320,
         "columns": 2,
         "all1425Complete": true,
-        "bothDensities": true,
-        "compactHeight": 135,
-        "originalHeight": 239.609375
+        "uniformSquareHeight": true,
+        "compactHeight": 135
       },
       {
         "width": 375,
         "columns": 2,
         "all1425Complete": true,
-        "bothDensities": true,
-        "compactHeight": 162.5,
-        "originalHeight": 288.421875
+        "uniformSquareHeight": true,
+        "compactHeight": 162.5
       },
       {
         "width": 768,
         "columns": 3,
         "all1425Complete": true,
-        "bothDensities": true,
-        "compactHeight": 218.65625,
-        "originalHeight": 388.09375
+        "uniformSquareHeight": true,
+        "compactHeight": 218.65625
       },
       {
         "width": 1024,
         "columns": 4,
         "all1425Complete": true,
-        "bothDensities": true,
-        "compactHeight": 224,
-        "originalHeight": 397.578125
+        "uniformSquareHeight": true,
+        "compactHeight": 224
       },
       {
         "width": 1440,
         "columns": 6,
         "all1425Complete": true,
-        "bothDensities": true,
-        "compactHeight": 213.328125,
-        "originalHeight": 378.640625
+        "uniformSquareHeight": true,
+        "compactHeight": 213.328125
       },
       {
         "width": 1920,
         "columns": 6,
         "all1425Complete": true,
-        "bothDensities": true,
-        "compactHeight": 240,
-        "originalHeight": 425.984375
+        "uniformSquareHeight": true,
+        "compactHeight": 240
       }
     ],
     "motion": [
@@ -134,5 +128,6 @@
     "python": 9,
     "typecheck": "passed",
     "projectValidation": "passed"
-  }
+  },
+  "heightPolicy": "Uniform square previews for every style; original proportions in detail view only"
 }

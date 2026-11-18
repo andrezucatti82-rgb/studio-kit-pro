@@ -7,7 +7,6 @@
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
  let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuDestination,choiceTrigger,gridScroll=0,homeScroll=0;
  const state={goal:'explain',mode:'home',collection:'',niche:''};
- let density='compact';
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
  function picture(s,small=true){
   if(s.sequence)return AtlasViews.picture(s,s.sequence.heroIndex??1,base(),'folio-photo',small);
@@ -34,7 +33,7 @@
   // A URL category, legacy category control or filter is still a real catalogue.
   if(state.mode==='home'&&(data.family||data.group||data.query||data.onlyFav||data.onlyVideo||data.kind))state.mode='catalogue';
   document.body.dataset.folioMode=state.mode;
-  document.body.dataset.folioDensity=density;
+  document.body.dataset.folioDensity='compact';
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
   $('folioChangeGoal').hidden=state.mode!=='collection';$('folioBrowseAll').hidden=state.mode!=='home';
   $('folioCollections').hidden=state.mode!=='home';$('grid').hidden=state.mode==='home';
@@ -69,10 +68,6 @@
   for(const c of $('folioCollections').querySelectorAll('[data-style-id]'))c.classList.toggle('is-selected',selected(c.dataset.styleId));
  }
  function refresh(){window.AtlasApp.refresh();}
- // Discovery preferences stay separate from the saved video/project and approvals.
- const layout=document.createElement('div');layout.className='folio-layout';layout.setAttribute('role','group');layout.setAttribute('aria-label','Visualização dos estilos');
- layout.innerHTML='<button type="button" data-folio-density="compact" aria-pressed="true" title="Cartões compactos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Compacta</span></button><button type="button" data-folio-density="original" aria-pressed="false" title="Proporção original da arte"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="6" height="18" rx="1"/><rect x="14" y="3" width="6" height="18" rx="1"/></svg><span>Original</span></button>';
- document.querySelector('.folio-scope').append(layout);
  $('folioBrowseAll').textContent='Ver todos →';
  const topButton=document.createElement('button');topButton.type='button';topButton.className='folio-to-top';topButton.hidden=true;topButton.setAttribute('aria-label','Voltar ao início da página');topButton.textContent='↑';document.body.append(topButton);
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -154,7 +149,6 @@
  $('folioBrowseAll').addEventListener('click',catalogue);
  document.addEventListener('click',e=>{
   const t=e.target;
-  const densityButton=t.closest('button[data-folio-density]');if(densityButton){density=densityButton.dataset.folioDensity;document.body.dataset.folioDensity=density;layout.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===densityButton)));}
   const goal=t.closest('[data-folio-goal]');if(goal){state.goal=goal.dataset.folioGoal;state.mode='home';state.collection='';homeKey='';refresh();}
   const rail=t.closest('[data-folio-rail]');if(rail){const region=$('folio-shelf-'+rail.dataset.folioRail).closest('section').querySelector('.folio-shelf-rail');region.scrollBy({left:Number(rail.dataset.railDirection)*region.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
   const collection=t.closest('[data-folio-collection]');if(collection)openCollection(collection.dataset.folioCollection);

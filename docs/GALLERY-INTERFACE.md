@@ -1,8 +1,8 @@
 # Galeria Fólio: navegação e enquadramento
 
-O modo **Compacta** aproxima as referências do formato quadrado e reduz a rolagem. A grade mostra seis colunas a partir de 1.200 px, quatro de 900 a 1.199 px, três de 701 a 899 px e duas no celular. As coleções usam a mesma grade do catálogo, com ações para adicionar e examinar os momentos.
+As prévias quadradas mantêm a mesma altura em todos os estilos e reduzem a rolagem. A grade mostra seis colunas a partir de 1.200 px, quatro de 900 a 1.199 px, três de 701 a 899 px e duas no celular. As coleções usam a mesma grade do catálogo, com ações para adicionar e examinar os momentos.
 
-A imagem principal é apresentada inteira e sem deformação. Para preencher um cartão quadrado com uma fonte vertical ou horizontal, uma cópia decorativa desfocada da própria referência ocupa o fundo. Essa cópia não faz parte do vídeo nem aparece na leitura por tecnologias assistivas. **Original** recupera a proporção nativa. O visualizador, os downloads e os arquivos enviados ao agente continuam usando a arte original completa. As escolhas de visualização não modificam o briefing, os prompts, as contribuições ou as aprovações.
+A imagem principal é apresentada inteira e sem deformação. Para preencher um cartão quadrado com uma fonte vertical ou horizontal, uma cópia decorativa desfocada da própria referência ocupa o fundo. Essa cópia não faz parte do vídeo nem aparece na leitura por tecnologias assistivas. A proporção nativa fica disponível na ficha ampliada; todas as prévias da galeria mantêm a mesma altura. O visualizador, os downloads e os arquivos enviados ao agente continuam usando a arte original completa. O enquadramento da galeria não modifica o briefing, os prompts, as contribuições ou as aprovações.
 
 No computador, a moldura recebe um brilho discreto conforme o mouse e sobe 3 px ao passar sobre ela; a arte não recebe zoom nem inclinação. No teclado, o foco continua visível. A preferência de movimento reduzido desativa o deslocamento e o brilho acompanhado pelo mouse. No toque, as ações continuam acessíveis sem depender de hover. Um botão permite voltar ao começo em páginas longas.
 

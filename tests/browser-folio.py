@@ -21,12 +21,8 @@ with sync_playwright() as p:
   page.evaluate('''async()=>{await Promise.all(Array.from(document.querySelectorAll(".folio-shelf:first-child .folio-photo img, .folio-shelf:first-child img.folio-photo")).slice(0,2).map(e=>e.decode()));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));}''')
   assert not page.locator('.app-mobile-brand').is_visible()
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-  # Compact frames preserve every source pixel; original proportions are one click away.
+  # Every preview uses the same square frame while preserving the complete art.
   stage=page.locator('.folio-portrait').first.bounding_box();assert abs(stage['height']-stage['width'])<.6
-  page.locator('button[data-folio-density="original"]').click()
-  original=page.locator('.folio-portrait').first.bounding_box();ratio=page.locator('.folio-portrait').first.evaluate('e=>{const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return h/w;}');assert abs(original['height']/original['width']-ratio)<.02
-  expect(page.locator('button[data-folio-density="original"]')).to_have_attribute('aria-pressed','true')
-  page.locator('button[data-folio-density="compact"]').click()
   if width<=700:
    first=page.locator('.folio-shelf').first.locator('.folio-card').nth(0).bounding_box();second=page.locator('.folio-shelf').first.locator('.folio-card').nth(1).bounding_box()
    assert abs(first['y']-second['y'])<2 and second['x']+second['width']<=width-17
@@ -69,9 +65,6 @@ with sync_playwright() as p:
   # Reading a collection must not touch a prepared brief, its scopes or approvals.
   before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')
   page.locator('#folioHeader .folio-brand').click()
-  page.locator('button[data-folio-density="original"]').click()
-  page.locator('button[data-folio-density="compact"]').click()
-  assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-goal="sell"]').click()
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
   page.locator('#folioOpenMenu').click();expect(page.locator('#folioMenu')).to_be_visible()
