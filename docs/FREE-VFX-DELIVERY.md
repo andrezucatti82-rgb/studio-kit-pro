@@ -8,7 +8,7 @@ Já existiam FFmpeg/FFprobe, Blender, Kdenlive e MLT. Foram acrescentados Natron
 
 ## Provas e limites
 
-257 testes Node e 9 Python passaram; TypeScript e validação do projeto passaram. A revisão de código identificou e motivou correções com testes para sobrescrita por relatórios, disputa de saídas, Python incompatível, propagação do bloqueio Natron, lançador ComfyUI e recuperação dos downloads em falha de publicação. Saídas são renderizadas em arquivo privado e publicadas sem substituir destinos existentes.
+258 testes Node e 9 Python passaram; TypeScript e validação do projeto passaram. A revisão de código identificou e motivou correções com testes para sobrescrita por relatórios, disputa de saídas, Python incompatível, propagação do bloqueio Natron, lançador ComfyUI e recuperação dos downloads em falha de publicação. Saídas são renderizadas em arquivo privado e publicadas sem substituir destinos existentes.
 
 As 15 ferramentas foram verificadas no Linux: 13 passaram em processamento/render/inferência; Kdenlive e Shotcut passaram em inicialização/versão. SAM 2 e RVM produziram máscaras de vídeo. RIFE interpolou vídeo real de teste com áudio pelo adaptador do kit; o script upstream antigo não é a rota suportada. Video2X ampliou e decodificou um clipe usando Vulkan em CPU. ComfyUI executou um nó local, sem checkpoint generativo nem API. Evidências sanitizadas: [verificação](vfx/free-toolchain-verification.json).
 
@@ -31,3 +31,5 @@ A API do domínio principal em br154.hostgator.com.br:2083 retornou HTTP 403 nes
 - Processar lotes de cortes, glow, lentes, chroma e composição por CLI, preservando originais.
 
 As operações de máscaras, filtros, composição, interpolação e upscale têm comandos integrados; tracking, cleanup e simulação exigem projeto e execução específicos de cada plano. Consulte [guia da toolchain](FREE-VFX-TOOLCHAIN.md).
+
+A integração foi publicada na [PR 32](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/32). O [site espelho](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/) publicou o kit 2.14 e teve seis arquivos públicos conferidos byte a byte, incluindo o SHA do instalador; a conferência visual nativa não ficou disponível nesta sessão. O [prompt nativo da Page](https://chatgpt.com/space/page_05d0233621d081919b31df2863cab40b) recebeu as instruções gratuitas e a referência 2.14, preservando a galeria da outra sessão. O download antigo vinculado ao domínio principal depende da publicação pendente nessa hospedagem.

@@ -129,7 +129,7 @@
     "tools/free-vfx/requirements.txt": "9292c0af55f20b42ba9c1c591106507bbfb1db55b0dbd290b9cd4a81cf83faee",
     "tools/free-vfx/rife_video.py": "1fe913197f0039df0408fc24fdeb236e9de0da127c2d94c1eb66fd077e677a3b",
     "tools/free-vfx/smoke_tools.py": "8a7fa0038379af3b2df03302fd48062abdb43dfe788ab104f66d465531892196",
-    "tools/free-vfx/toolchain.py": "a23718d0e8acc033e978b0a77ea87951447dfc6a118c3e631c085ad00acf477c",
+    "tools/free-vfx/toolchain.py": "df52130050daefa6f8733e52d49a27aa3673884b835386c4aa879297cfdb23cc",
     "tools/free-vfx/video_mask.py": "0f38ff595c0d7f2cec056f26c8234fbb56ef1b925ba991f71d46814e8d81cf4c"
   },
   "rifeVideoProof": {
@@ -138,5 +138,10 @@
     "audioStreamIncluded": true,
     "adapter": "tools/free-vfx/rife_video.py",
     "note": "Synthetic input; no audiovisual review"
+  },
+  "natronDoctorProof": {
+    "status": "installed",
+    "versionInformationExit": 1,
+    "note": "Full Natron banner inspected before diagnostic truncation; actual installed binary tested"
   }
 }
