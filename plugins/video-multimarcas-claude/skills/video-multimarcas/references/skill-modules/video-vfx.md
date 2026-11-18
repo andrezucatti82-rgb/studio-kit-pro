@@ -8,7 +8,7 @@ Este é o módulo interno do kit, `video-vfx`, da única skill pública `video-m
 
 1. Leia contexto, anexos e decisões existentes. Entenda **o que muda, o que permanece e em qual plano**. Se só houver ideia, produza breakdown e referências; se houver mídia, inspecione-a antes de escolher a técnica.
 2. Faça até três perguntas pertinentes por rodada, usando pop-up nativo para texto quando disponível, com alternativas simples. Priorize efeito desejado, trecho/material faltante e ferramenta preferida. Solicite arquivos pelo anexo normal do chat. Não faça o usuário escolher nós, APIs ou espaços de cor.
-3. Se não houver preferência, **avalie Blender e Fusion sem plugins pagos**, conferindo versão, edição e recursos realmente disponíveis. Não confunda software gratuito com licença irrestrita nem executável instalado com pipeline testado. Leia [ferramentas](video-vfx/references/tools-and-capabilities.md).
+3. Se não houver preferência, **avalie Blender e Natron, seguindo o manifesto gratuito**, conferindo versão, edição e recursos realmente disponíveis. Não confunda software gratuito com licença irrestrita nem executável instalado com pipeline testado. Leia [ferramentas](video-vfx/references/tools-and-capabilities.md).
 4. Entregue **Agora / Entrega / Preciso de você / Próximo passo**, com ação concreta e apenas dependências reais. Para execução bloqueada, conclua planejamento e instruções independentes; diga qual material, capacidade ou autorização falta.
 
 ## Coordenar sem duplicar a produção
@@ -64,3 +64,7 @@ Pedido: “Troque a tela do celular; a mão passa na frente. Quero no vídeo da 
 - [Integração com coordenadora e skills complementares](video-vfx/references/integration.md)
 - [Revisão, diagnóstico e entrega](video-vfx/references/quality-and-delivery.md)
 - [Fontes e trilha de estudo](video-vfx/references/sources-and-learning.md)
+
+## Execução com ferramentas gratuitas
+
+Consulte [toolchain gratuita](../free-toolchain.md), diagnostique esta máquina e reutilize a rota compatível com o plano. A biblioteca instalada inclui aplicativos, plugins, bibliotecas Python e modelos locais; não assumir que todos funcionam por constarem do manifesto. Use os comandos integrados para obter mídia/máscaras novas e evidências, mantendo os originais e o estado de revisão. Falha de hardware, modelo ou plataforma permanece explícita.

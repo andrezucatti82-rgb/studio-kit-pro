@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "freeOnly": true,
+  "profiles": [
+    "base",
+    "automation",
+    "ai",
+    "all-free"
+  ],
+  "scope": "Local free toolchain; availability must be checked on each target machine. Never grants audiovisual or creative approval.",
+  "tools": [
+    {
+      "id": "ffmpeg",
+      "profile": "base",
+      "license": "LGPL-2.1-or-later / build-dependent GPL",
+      "source": "https://ffmpeg.org/",
+      "kind": "native",
+      "commands": [
+        "ffmpeg"
+      ],
+      "install": {
+        "linux": "ffmpeg",
+        "darwin": "ffmpeg",
+        "win32": "Gyan.FFmpeg"
+      },
+      "free": true
+    },
+    {
+      "id": "blender",
+      "profile": "base",
+      "license": "GPL-3.0-or-later",
+      "source": "https://www.blender.org/",
+      "kind": "native",
+      "commands": [
+        "blender"
+      ],
+      "install": {
+        "linux": "blender",
+        "darwin": "blender",
+        "win32": "BlenderFoundation.Blender"
+      },
+      "free": true
+    },
+    {
+      "id": "kdenlive",
+      "profile": "base",
+      "license": "GPL-3.0-or-later",
+      "source": "https://invent.kde.org/multimedia/kdenlive",
+      "kind": "native",
+      "commands": [
+        "kdenlive"
+      ],
+      "install": {
+        "linux": "kdenlive",
+        "darwin": "kdenlive",
+        "win32": "KDE.Kdenlive"
+      },
+      "free": true
+    },
+    {
+      "id": "natron",
+      "profile": "base",
+      "license": "GPL-2.0-or-later",
+      "source": "https://github.com/NatronGitHub/Natron",
+      "kind": "release",
+      "commands": [
+        "Natron",
+        "natron"
+      ],
+      "install": {
+        "linux": "natron",
+        "darwin": null,
+        "win32": "Natron.Natron"
+      },
+      "free": true
+    },
+    {
+      "id": "shotcut",
+      "profile": "base",
+      "license": "GPL-3.0",
+      "source": "https://github.com/mltframework/shotcut",
+      "kind": "native",
+      "commands": [
+        "shotcut"
+      ],
+      "install": {
+        "linux": "shotcut",
+        "darwin": "shotcut",
+        "win32": "Meltytech.Shotcut"
+      },
+      "free": true
+    },
+    {
+      "id": "gmic",
+      "profile": "base",
+      "license": "CeCILL / CeCILL-C by component",
+      "source": "https://github.com/GreycLab/gmic",
+      "kind": "native",
+      "commands": [
+        "gmic"
+      ],
+      "install": {
+        "linux": "gmic",
+        "darwin": "gmic",
+        "win32": null
+      },
+      "free": true
+    },
+    {
+      "id": "frei0r",
+      "profile": "base",
+      "license": "GPL-2.0-or-later / component licenses",
+      "source": "https://github.com/dyne/frei0r",
+      "kind": "plugins",
+      "commands": [],
+      "install": {
+        "linux": "frei0r-plugins",
+        "darwin": "frei0r",
+        "win32": null
+      },
+      "free": true
+    },
+    {
+      "id": "openfx-misc",
+      "profile": "base",
+      "license": "GPL-2.0-or-later",
+      "source": "https://github.com/NatronGitHub/openfx-misc",
+      "kind": "natron-plugins",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true
+    },
+    {
+      "id": "opencv",
+      "profile": "automation",
+      "license": "Apache-2.0",
+      "source": "https://github.com/opencv/opencv",
+      "kind": "python",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true
+    },
+    {
+      "id": "moviepy",
+      "profile": "automation",
+      "license": "MIT",
+      "source": "https://github.com/Zulko/moviepy",
+      "kind": "python",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true
+    },
+    {
+      "id": "sam2",
+      "profile": "ai",
+      "license": "Apache-2.0 (code and official checkpoints)",
+      "source": "https://github.com/facebookresearch/sam2",
+      "kind": "repo",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true,
+      "repository": "facebookresearch/sam2",
+      "revision": "2b90b9f5ceec907a1c18123530e92e794ad901a4"
+    },
+    {
+      "id": "rvm",
+      "profile": "ai",
+      "license": "GPL-3.0; official model files",
+      "source": "https://github.com/PeterL1n/RobustVideoMatting",
+      "kind": "repo",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true,
+      "repository": "PeterL1n/RobustVideoMatting",
+      "revision": "53d74c6826735f01f4406b5ca9075eee27bec094"
+    },
+    {
+      "id": "comfyui",
+      "profile": "ai",
+      "license": "GPL-3.0; upstream includes API-node code, disabled by the kit launcher; no generative checkpoints bundled",
+      "source": "https://github.com/Comfy-Org/ComfyUI",
+      "kind": "repo",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true,
+      "repository": "Comfy-Org/ComfyUI",
+      "revision": "637221995f7424a561bd825de3e61ea117dfe1e3"
+    },
+    {
+      "id": "rife",
+      "profile": "ai",
+      "license": "MIT; use official selected model",
+      "source": "https://github.com/hzwer/ECCV2022-RIFE",
+      "kind": "repo",
+      "commands": [],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true,
+      "repository": "hzwer/ECCV2022-RIFE",
+      "revision": "5d8adbdd40e12c2c8f91930eff838aebe561c086"
+    },
+    {
+      "id": "video2x",
+      "profile": "ai",
+      "license": "AGPL-3.0; included models have separate notices",
+      "source": "https://github.com/k4yt3x/video2x",
+      "kind": "release",
+      "commands": [
+        "video2x"
+      ],
+      "install": {
+        "linux": null,
+        "darwin": null,
+        "win32": null
+      },
+      "free": true
+    }
+  ],
+  "artifacts": {
+    "Natron-2.5.0-Linux-x86_64.tar.xz": {
+      "source": "https://github.com/NatronGitHub/Natron/releases/download/v2.5.0/Natron-2.5.0-Linux-x86_64-no-installer.tar.xz",
+      "sha256": "1b423f983e89f6e3811fdabcf08caced3367ca24568dfdfe48a3a86c1ae95fa1"
+    },
+    "sam2.1_hiera_tiny.pt": {
+      "source": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_tiny.pt",
+      "sha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69"
+    },
+    "Video2X-6.4.0.AppImage": {
+      "source": "https://github.com/k4yt3x/video2x/releases/download/6.4.0/Video2X-x86_64.AppImage",
+      "sha256": "8238fc38325107f0a08a140d069baee3db80c5ac7470b0a516cc683183f5f92d"
+    },
+    "rvm_mobilenetv3.pth": {
+      "source": "https://github.com/PeterL1n/RobustVideoMatting/releases/download/v1.0.0/rvm_mobilenetv3.pth",
+      "sha256": "3c7c1d92033f7c38d6577c481d13a195d7d80a159b960f4f3119ac7b534cf4f8"
+    },
+    "rife-official-HD.zip": {
+      "source": "https://drive.google.com/uc?id=1APIzVeI-4ZZCEuIRE1m6WYfSCaOsi_7_",
+      "sha256": "4d4970b0953ca679ce5d5c972d47a041be10d12fa29fe86f1408b4497b2558e8"
+    }
+  }
+}

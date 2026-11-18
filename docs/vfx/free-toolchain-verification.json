@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-18",
+  "platform": "Linux x86_64 Debian 13",
+  "physicalGpuVerified": false,
+  "softwareVulkan": "Mesa lavapipe CPU; Video2X upscale proof passed",
+  "freeOnly": true,
+  "paidCalls": 0,
+  "creativeApproval": false,
+  "tools": [
+    {
+      "id": "ffmpeg",
+      "status": "smoke_passed",
+      "artifact": "grayscale.mp4",
+      "sha256": "f9cec9e21c899326c5ac3a9337ea3304b3d48e37f44773519df5668d4ec1a830"
+    },
+    {
+      "id": "blender",
+      "status": "smoke_passed",
+      "artifact": "cpu.png",
+      "sha256": "3dbb95440c1649938d0d0912f633e70f55ff717ceb682e6387062cf84b82508f"
+    },
+    {
+      "id": "kdenlive",
+      "status": "startup_passed",
+      "reason": "GUI version/startup verified; editor project/render not certified"
+    },
+    {
+      "id": "natron",
+      "status": "smoke_passed",
+      "artifact": "natron.png",
+      "sha256": "6642a2436fdce106f151b97d5eaaaf9e8fb33fee5c819cd275825dc5678b06a9"
+    },
+    {
+      "id": "shotcut",
+      "status": "startup_passed",
+      "reason": "GUI version/startup verified; editor project/render not certified"
+    },
+    {
+      "id": "gmic",
+      "status": "smoke_passed",
+      "artifact": "gmic.png",
+      "sha256": "2af1224f81c6660ee1756ef8bc2e4756da55ba9cefea617bf25abe2e69b99b4e"
+    },
+    {
+      "id": "frei0r",
+      "status": "smoke_passed",
+      "artifact": "plugin.png",
+      "sha256": "4f62e8052a409afab52f6bb397b8248e5c7008a95ba76f754835aa583e4d1df2"
+    },
+    {
+      "id": "openfx-misc",
+      "status": "smoke_passed",
+      "artifact": "natron.png",
+      "sha256": "6642a2436fdce106f151b97d5eaaaf9e8fb33fee5c819cd275825dc5678b06a9"
+    },
+    {
+      "id": "opencv",
+      "status": "smoke_passed",
+      "artifact": "mask.png",
+      "sha256": "2d9365f280010f1315794d756171dc77b50d7672608156f31ab1d8bc3529c943"
+    },
+    {
+      "id": "moviepy",
+      "status": "smoke_passed",
+      "artifact": "moviepy.mp4",
+      "sha256": "44f3082e25d1a7b398fd2f32c1fb8db4d4f3f47a799e39b550bc33598c5e7a8f"
+    },
+    {
+      "id": "sam2",
+      "status": "smoke_passed",
+      "artifact": "segmentation.png",
+      "sha256": "6e2223bc6d113c9aa0550cbc8ac73fdf0b3cfc48a6eb15f5cbdd96d1421be9cf"
+    },
+    {
+      "id": "rvm",
+      "status": "smoke_passed",
+      "artifact": "alpha.png",
+      "sha256": "7373d93c0cc4bf540ee0e6279ba16a8694eb8bffd10a83bcbaaaf02af9dc7716"
+    },
+    {
+      "id": "comfyui",
+      "status": "smoke_passed",
+      "artifact": "comfyui-node.png",
+      "sha256": "b8362f8987e192949d8121a4a2f27510005771af62b2fd2b184c38b9f112f6e9"
+    },
+    {
+      "id": "rife",
+      "status": "smoke_passed",
+      "artifact": "rife.mp4",
+      "sha256": "d6614553a199d486cee0b780b9a310681bbf940eb2c43103f462b6a7492ad471"
+    },
+    {
+      "id": "video2x",
+      "status": "smoke_passed",
+      "artifact": "upscale.mp4",
+      "sha256": "9af64424bb0e915980e1de2c4a17e6056c0182dbb3ff157fdd7f210baf8a58f9"
+    }
+  ],
+  "videoMaskProofs": [
+    {
+      "status": "technical_passed",
+      "engine": "rvm",
+      "operation": "matte",
+      "sha256": "5641f2be030fd85837ac57d75305926abfb4984102b6144cbcf654bea847cf91",
+      "creativeApproval": false,
+      "note": "Matte/segment MP4 is a grayscale mask, not a transparent MP4."
+    },
+    {
+      "status": "technical_passed",
+      "engine": "sam2",
+      "operation": "segment",
+      "sha256": "b8c253395c509b7cf7fbc867fa1c9e8733e48c80f23aa1ef52912218b1b43e2a",
+      "creativeApproval": false,
+      "note": "Matte/segment MP4 is a grayscale mask, not a transparent MP4."
+    }
+  ],
+  "limits": [
+    "Synthetic technical inputs, not a quality benchmark on real footage",
+    "Kdenlive and Shotcut startup/version only, not full GUI editing",
+    "ComfyUI CPU built-in node proof, no generative checkpoint or external API",
+    "Windows/macOS adapters not executed on native machines",
+    "Do not reuse these capabilities as evidence on another machine"
+  ],
+  "testedToolSources": {
+    "tools/free-vfx/install_tools.py": "43d56fbdde4d920515b8a74b2e7f095cc272d53e4aae3c47230050fd26d0ded5",
+    "tools/free-vfx/manifest.json": "64c8beb5790b037000999e81bfe5c277a436f94dce8365a03b557446141415a1",
+    "tools/free-vfx/media_ops.py": "ee3baeade64317322c871e692671198b183d3c460eae3c25a34ba49a689a071c",
+    "tools/free-vfx/python_smoke.py": "dd856fa12b574e1b451db1559d67245bbc3f43ae980f2a66e63cbc7d23c5547f",
+    "tools/free-vfx/requirements.txt": "9292c0af55f20b42ba9c1c591106507bbfb1db55b0dbd290b9cd4a81cf83faee",
+    "tools/free-vfx/rife_video.py": "1fe913197f0039df0408fc24fdeb236e9de0da127c2d94c1eb66fd077e677a3b",
+    "tools/free-vfx/smoke_tools.py": "8a7fa0038379af3b2df03302fd48062abdb43dfe788ab104f66d465531892196",
+    "tools/free-vfx/toolchain.py": "a23718d0e8acc033e978b0a77ea87951447dfc6a118c3e631c085ad00acf477c",
+    "tools/free-vfx/video_mask.py": "0f38ff595c0d7f2cec056f26c8234fbb56ef1b925ba991f71d46814e8d81cf4c"
+  },
+  "rifeVideoProof": {
+    "frames": 8,
+    "fps": 8,
+    "audioStreamIncluded": true,
+    "adapter": "tools/free-vfx/rife_video.py",
+    "note": "Synthetic input; no audiovisual review"
+  }
+}

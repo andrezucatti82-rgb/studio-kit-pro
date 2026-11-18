@@ -23,3 +23,7 @@ Se a matriz indicar ausência, descubra a ferramenta local/conexão real e teste
 Entregue candidato acessível e hash, relatório antes/depois, receita/valores aplicados, rota/versão, perfil de destino, intermediários pertinentes e limitações. Não sobreponha o original. Só reencodifique quando necessário e mantenha uma fonte de qualidade para revisões. `video-revisao` confere arquivo, movimento, som e entrega. Relatório técnico não comprova playback, escuta, aprovação criativa, conformidade HDR/Dolby/broadcast/DCP nem autorização para publicar.
 
 `video-vfx` responde por cor/alpha/passes dentro da composição e sua ida/volta; este módulo conserva tratamento global e destino final. Use o manifesto VFX para evitar transformação duplicada e preserve identidade/cor factual. Cleanup localizado/roto/integração de efeitos não são restauração global.
+
+## Execução com ferramentas gratuitas
+
+Consulte [toolchain gratuita](../free-toolchain.md), diagnostique esta máquina e reutilize a rota compatível com o plano. A biblioteca instalada inclui aplicativos, plugins, bibliotecas Python e modelos locais; não assumir que todos funcionam por constarem do manifesto. Use os comandos integrados para obter mídia/máscaras novas e evidências, mantendo os originais e o estado de revisão. Falha de hardware, modelo ou plataforma permanece explícita.
