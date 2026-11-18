@@ -301,7 +301,7 @@ body[data-folio=true]{font-family:'Folio UI',Arial,Helvetica,sans-serif}body[dat
 /* Categories: a desktop mega menu; a two-step compact grid on small screens. */
 .folio-category-bar{display:flex;align-items:center;gap:6px;max-width:1600px;margin:0 auto;padding:0 40px 18px;overflow-x:auto;scrollbar-width:none}
 .folio-category-bar::-webkit-scrollbar{display:none}
-body:not([data-folio=true]) .folio-category-bar,body:not([data-view=library]) .folio-category-bar{display:none}
+body:not([data-folio=true]) .folio-category-bar{display:none}
 .folio-category-bar>button{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;padding:10px 14px;min-height:44px;border:0;border-radius:999px;background:transparent;color:#b5b5b5;font-size:13px;font-weight:500;white-space:nowrap}
 .folio-category-bar>button:hover{color:#fff}
 .folio-category-bar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
