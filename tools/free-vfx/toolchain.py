@@ -92,11 +92,13 @@ class Toolchain:
         for t in tools:
             location=self.installed(t);r={'id':t['id'],'status':'installed' if location else 'missing','location':location,'license':t['license']}
             if location and t['kind'] in ('native','release'):
-                try:r['version']=run([location,{'ffmpeg':'-version','gmic':'version','natron':'--help'}.get(t['id'],'--version')],env=self.environment(),timeout=15)[-600:]
-                except Exception as e:
-                    text=str(e)
-                    if t['id']=='natron' and re.search(r'Natron (?:Version|version)\s+\d',text):r.update(version=text[-600:],versionInformationExit=1)
-                    else:r.update(status='unverified',reason=text)
+                try:
+                    probe=subprocess.run([location,{'ffmpeg':'-version','gmic':'version','natron':'--help'}.get(t['id'],'--version')],capture_output=True,text=True,env=self.environment(),timeout=15)
+                    text=(probe.stdout or '')+'\n'+(probe.stderr or '')
+                    if probe.returncode==0:r['version']=text[-600:]
+                    elif t['id']=='natron' and probe.returncode==1 and re.search(r'Natron (?:Version|version)\s+\d',text):r.update(version=text[:300],versionInformationExit=1)
+                    else:r.update(status='unverified',reason=f'Exit {probe.returncode}: '+text[-600:])
+                except Exception as e:r.update(status='unverified',reason=str(e))
             results.append(r)
         return {'schemaVersion':1,'freeOnly':True,'platform':sys.platform,'results':results,'creativeApproval':False,'scope':'Presence and startup only; not inference, playback or audiovisual review.'}
     def write(self,name,value):

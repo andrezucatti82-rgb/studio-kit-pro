@@ -118,3 +118,9 @@ test('OpenFX propagates a blocked Natron dependency instead of claiming installa
  const code="import sys,tempfile;sys.path.insert(0,'tools/free-vfx');from toolchain import Toolchain;import install_tools\nwith tempfile.TemporaryDirectory() as root:\n tc=Toolchain(root);tc.installed=lambda t:None;install_tools.platform.machine=lambda:'aarch64'\n result=install_tools.install_one(tc,tc.select(tool='openfx-misc')[0],sys.platform)\n assert result['status']=='manual_install_required' and 'Natron dependency' in result['reason']";
  execFileSync('python3',['-c',code]);
 });
+test('Natron informational banner survives long help output without hiding real failures',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'free-tools-natron-long-'));try{
+ const folder=path.join(root,'.studio-tools/free-vfx/natron');await fs.mkdir(folder,{recursive:true});await fs.writeFile(path.join(folder,'Natron'),'#!/usr/bin/env python3\nimport sys\nprint("Natron Version 2.5.0")\nprint("long help "*1000)\nsys.exit(1)\n',{mode:0o755});
+ const r=JSON.parse(invoke(['doctor','--root',root,'--tool','natron']).stdout);assert.equal(r.results[0].status,'installed');assert.equal(r.results[0].versionInformationExit,1);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
