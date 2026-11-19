@@ -1,13 +1,20 @@
 /* App-like navigation over the static, account-independent atlas. */
 (()=>{
- const $=id=>document.getElementById(id);let selected=[],stage='briefing',ready=false,viewerStyle=null,viewerIndex=0,returnFocus=null;
+ const $=id=>document.getElementById(id);let selected=[],stage='briefing',ready=false,viewerStyle=null,viewerIndex=0,returnFocus=null,libraryScroll=0,helpOrigin='library';
  const base=()=>window.ATLAS_ASSET_BASE||'';
- function view(name){
+ function view(name,{restore=false}={}){
+  const previous=document.body.dataset.view;
+  if(name!=='library'&&previous==='library')libraryScroll=window.scrollY;
+  if(name==='help'&&previous!=='help'){
+   helpOrigin=previous||'library';
+   $('helpBack').textContent=helpOrigin==='brief'?'← Voltar ao briefing':helpOrigin==='project'?'← Voltar ao projeto':'← Voltar à biblioteca';
+  }
   document.body.dataset.view=name;window.AtlasFolio?.onView(name);if(name==='library')document.querySelector('.library-actions').prepend($('startGuided'));else if(name==='project')document.querySelector('.project-heading').append($('startGuided'));
   document.querySelectorAll('[data-app-view]').forEach(b=>{const active=b.dataset.appView===name;b.setAttribute('aria-current',active?'page':'false')});
   if(name!=='brief'&&$('briefDialog').open)$('briefDialog').close();
   if(name==='project'){$('myProject').hidden=false;$('projectTitle').focus({preventScroll:true})}
-  window.scrollTo({top:0,behavior:'auto'});
+  if(name==='help')$('installTitle').focus({preventScroll:true});
+  window.scrollTo({top:name==='library'&&restore?libraryScroll:0,behavior:'auto'});
  }
  function setStage(value){
   stage=value;const review=stage==='review';$('briefDialog').dataset.stage=stage;
@@ -18,6 +25,7 @@
  function openBrief(){
   if(window.AtlasGuidedFlow?.hasDraft()){window.AtlasGuidedFlow.open();return;}
   if(!selected.length){view('library');$('libraryTitle').focus({preventScroll:true});return}
+  if(document.body.dataset.view==='library')libraryScroll=window.scrollY;
   document.body.dataset.view='brief';window.AtlasFolio?.onView('brief');document.querySelector('.brief-heading').append($('startGuided'));
   if(!$('briefDialog').open)$('briefDialog').show();
   const prepared=window.AtlasCurrentChoice?.().requestPrepared;
@@ -28,7 +36,7 @@
  function selectionChanged(styles){
   selected=styles;$('selectionTray').hidden=!styles.length;
   $('trayCount').textContent=styles.length+' '+(styles.length===1?'estilo escolhido':'estilos escolhidos');
-  $('selectionSummary').textContent='Estilo do vídeo';
+  $('selectionSummary').textContent=styles.length>1?'Estilos do vídeo':'Estilo do vídeo';
   document.querySelectorAll('[data-selection-count]').forEach(x=>x.textContent=styles.length);
   const esc=AtlasViews.esc;
   $('trayImages').innerHTML=styles.slice(0,3).map(s=>s.sequence?'<span class="tray-reference">'+AtlasViews.picture(s,s.sequence?.heroIndex??1,base(),'',true)+'</span>':'').join('');
@@ -38,7 +46,7 @@
  function renderSummary(){
   if(!window.AtlasCurrentChoice)return;
   const c=window.AtlasCurrentChoice(),esc=AtlasViews.esc;
-  $('requestSummary').innerHTML=[['Entrega','Vídeo final produzido com IA'],['Tema',c.topic||'Definir no briefing'],['Marca ou site',c.brand||'Identidade a definir'],['Formato e duração',`${c.format} · ${c.durationMode==='source'?'Duração do vídeo original':c.targetDurationSeconds+' segundos'}`],['Tipografia',c.typography==='auto'?'Seguir o estilo e a marca':c.typography]].map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd><button type="button" data-edit-brief aria-label="Editar ${esc(k)}">✎</button></div>`).join('');
+  $('requestSummary').innerHTML=[['Entrega','Vídeo final produzido com IA'],['Tema',c.topic||'Definir no briefing','topic'],['Marca ou site',c.brand||'Identidade a definir','brand'],['Formato e duração',`${c.format} · ${c.durationMode==='source'?'Duração do vídeo original':c.targetDurationSeconds+' segundos'}`,'format'],['Tipografia',c.typography==='auto'?'Seguir o estilo e a marca':c.typography,'openFonts']].map(([k,v,field])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd>${field?`<button type="button" data-edit-brief="${field}" aria-label="Editar ${esc(k)}">✎</button>`:''}</div>`).join('');
   const intent=AtlasWorkflow.intentSummary(c),route=intent.skillRouting,primary=AtlasWorkflow.skillSystem.modules.find(s=>s.id===route.primarySkill);
   $('styleIntentSummary').innerHTML='<h3>Como aplicar sua escolha</h3><p>'+esc(primary?.name||'Edição do vídeo')+'</p><ol>'+intent.styles.map(s=>'<li><strong>'+esc(s.name)+'</strong><span>'+esc(s.role==='principal'?' · Principal':' · Complementar')+'</span><p>'+s.contributions.map(v=>esc(v.label)+' · '+esc(v.scopeLabel)).join('<br>')+'</p></li>').join('')+'</ol><p class="small">O pedido leva as referências e estas aplicações para a conversa. O agente confere seus arquivos e pergunta somente o que faltar.</p>';
   const ids=new Set(['product','property','ui','data','clinical','course','coverage','presenter','legal','food','pets','automotive','travel','beauty','homeService','childcare','identity','voice','brand','facts']);
@@ -73,11 +81,17 @@
  document.addEventListener('click',e=>{
   const file=e.target.closest('[data-starter-file]');if(file){const item=AtlasWorkflow.starterFiles(AtlasCurrentChoice()).find(f=>f.name===file.dataset.starterFile);if(item){const url=URL.createObjectURL(new Blob([item.text],{type:item.type+';charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=item.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}}
   const nav=e.target.closest('[data-app-view]');if(nav){nav.dataset.appView==='brief'?openBrief():view(nav.dataset.appView)}
-  if(e.target.closest('[data-edit-brief]'))setStage('briefing');
-  const step=e.target.closest('[data-brief-stage]');if(step){if(step.dataset.briefStage==='styles')view('library');else if(step.dataset.briefStage==='review')$('briefForm').requestSubmit();else setStage('briefing')}
+  const edit=e.target.closest('[data-edit-brief]');
+  if(edit){
+   setStage('briefing');
+   const field=$(edit.dataset.editBrief||'topic');
+   (field?.matches('section')?field.querySelector('input'):field)?.focus();
+  }
+  const step=e.target.closest('[data-brief-stage]');if(step){if(step.dataset.briefStage==='styles')view('library',{restore:true});else if(step.dataset.briefStage==='review')$('briefForm').requestSubmit();else setStage('briefing')}
   const frame=e.target.closest('[data-sequence]');if(frame)showFrame(frame.dataset.sequence,Number(frame.dataset.frameIndex),frame);
  });
- $('briefDialog').addEventListener('close',()=>{if(document.body.dataset.view==='brief')view('library')});
+ $('helpBack').addEventListener('click',()=>{if(helpOrigin==='brief')openBrief();else view(helpOrigin,{restore:true});});
+ $('briefDialog').addEventListener('close',()=>{if(document.body.dataset.view==='brief')view('library',{restore:true})});
  $('sequencePrev').onclick=()=>{if(viewerIndex>0){viewerIndex--;updateFrame()}};$('sequenceNext').onclick=()=>{if(viewerIndex<3){viewerIndex++;updateFrame()}};
  $('sequenceDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')$('sequencePrev').click();if(e.key==='ArrowRight')$('sequenceNext').click()});
  $('sequenceDialog').addEventListener('close',()=>{if(!window.AtlasInlinePanels)returnFocus?.focus();});

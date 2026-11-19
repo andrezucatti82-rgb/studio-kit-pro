@@ -21,7 +21,8 @@
   const show=panel.show.bind(panel),close=panel.close.bind(panel);
   panelHost.append(panel);
   const back=panel.querySelector('[data-close], [data-folio-close], #pickerClose');
-  if(back){back.textContent='← Voltar';back.classList.add('folio-panel-back');}
+  const backLabels={detailDialog:'Voltar aos estilos',sequenceDialog:'Voltar ao estilo',fontDialog:'Voltar ao briefing',materialsDialog:'Voltar ao pedido',guidedDialog:'Fechar guia',stylePicker:'Voltar ao briefing'};
+  if(back){const label=backLabels[panel.id]||'Voltar';back.textContent='← '+label;back.setAttribute('aria-label',label);back.classList.add('folio-panel-back');}
   panel.showModal=()=>{
    const trigger=document.activeElement;
    closeMenu();
@@ -36,6 +37,7 @@
    if(!resettingPanels&&entry&&wasCurrent&&entry.view===document.body.dataset.view){
     window.scrollTo({top:entry.scroll,behavior:'auto'});
     if(entry.trigger?.isConnected&&entry.trigger.getClientRects().length)entry.trigger.focus({preventScroll:true});
+    else document.querySelector(panelStack.length?'#folioPanelHost .is-current':document.body.dataset.view==='brief'?'#briefTitle':state.mode==='home'?'#folioDiscoveryTitle':'#folioCollectionTitle')?.focus({preventScroll:true});
    }
   };
  }
@@ -97,11 +99,19 @@
    const topic=group?.topics.find(t=>t.id===state.browseTopic);
    const detail=topic?.children.find(t=>t.id===state.browseDetail);
    $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':detail?.label||topic?.label||group?.label||(data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos');
-   $('folioCollectionDescription').textContent=state.mode==='collection'?c.description:data.query?'Referências encontradas no catálogo completo.':'Explore as referências e encontre o ponto de partida do seu vídeo.';
+    $('folioCollectionDescription').textContent=state.mode==='collection'?c.description:'';
+   $('folioResultCount').textContent=data.items.length===1?'1 estilo':data.items.length+' estilos';
+   const emptyFavorites=data.onlyFav&&!data.items.length;
+   $('emptyTitle').textContent=emptyFavorites?'Nenhum favorito encontrado':'Nenhum resultado';
+   $('emptyHint').textContent=emptyFavorites?'Use o coração nas fichas para guardar seus estilos favoritos.':'Tente outro termo, como o nome do seu negócio, um produto ou o código do estilo.';
+   $('folioEditSearch').hidden=emptyFavorites;
    $('grid').innerHTML=data.shown.map(s=>card(s,state.mode==='collection')).join('');
    $('grid').scrollLeft=gridScroll;
   }
   $('folioEmpty').hidden=state.mode!=='home'||data.items.length>0;
+  $('folioHomeFavorites').hidden=state.mode!=='home';
+  $('folioSearchClear').hidden=!$('search').value;
+  $('folioCategoryToggle').classList.toggle('is-filtered',!!state.browseGroup);
   document.querySelectorAll('.folio-choice-icon small').forEach(el=>el.hidden=!data.selected.length);
   if($('folioChoice').open)renderChoice();
   syncNavigation(document.body.dataset.view);
@@ -128,7 +138,7 @@
  function catalogue(){window.AtlasInlinePanels.reset();clearBrowse();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
   window.AtlasInlinePanels.reset();
-  clearBrowse();state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
+  setCategoryBar(false);clearBrowse();state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   requestAnimationFrame(()=>{window.scrollTo({top:restore?homeScroll:0,behavior:'auto'});if(!restore)$('folioDiscoveryTitle').focus({preventScroll:true});});
  }
  function openCollection(id){
@@ -141,11 +151,11 @@
   const skip=document.querySelector('.skip-link');let content=view==='help'?$('installTitle'):view==='brief'?$('briefTitle'):view==='library'?(state.mode==='home'?$('folioDiscoveryTitle'):$('folioCollectionTitle')):$('projectTitle');
   if(skip&&content){if(!content.id)content.id='folioContentTitle';content.tabIndex=-1;skip.href='#'+content.id;skip.textContent='Pular para o conteúdo';}
   window.AtlasInlinePanels.onView(view);
-  if(view!=='library'){closeMenu();if($('folioChoice').open){$('folioChoice').close();}}
+  if(view!=='library'){setCategoryBar(false);closeMenu();if($('folioChoice').open){$('folioChoice').close();}}
   document.querySelectorAll('[data-folio-home]').forEach(b=>b.setAttribute('aria-current',view==='library'?'page':'false'));
   document.querySelectorAll('[data-folio-choice]').forEach(b=>b.setAttribute('aria-current',['brief','project'].includes(view)?'page':'false'));
  }
- const categoryBar=document.createElement('nav');categoryBar.className='folio-category-bar';categoryBar.setAttribute('aria-label','Categorias de estilos');$('folioHeader').insertBefore(categoryBar,$('folioHeader').lastElementChild);
+ const categoryBar=document.createElement('nav');categoryBar.id='folioCategoryBar';categoryBar.className='folio-category-bar';categoryBar.setAttribute('aria-label','Categorias de estilos');$('folioHeader').insertBefore(categoryBar,$('folioHeader').lastElementChild);
  const header=$('folioHeader'),headerProgress=document.createElement('div');headerProgress.className='folio-header-progress';
  const headerNext=document.createElement('button');headerNext.type='button';headerNext.id='folioContinue';headerNext.className='primary';headerProgress.append(headerNext);header.insertBefore(headerProgress,header.lastElementChild);
  header.querySelector('[data-folio-choice]').hidden=true;
@@ -165,6 +175,21 @@
   if(!latest?.selected.length||window.AtlasGuidedFlow?.hasDraft())$('startGuided').click();else window.AtlasShell.openBrief();
  });
  const stickySubcategories=matchMedia('(min-width: 1024px)');
+ const mobileNavigation=matchMedia('(max-width: 700px)');
+ const categoryToggle=$('folioCategoryToggle');
+ function setCategoryBar(open){
+  if(open){document.body.dataset.folioCategories='true';}
+  else delete document.body.dataset.folioCategories;
+  categoryToggle.setAttribute('aria-expanded',String(open));
+ }
+ categoryToggle.addEventListener('click',()=>{
+  const open=categoryToggle.getAttribute('aria-expanded')!=='true';
+  setCategoryBar(open);
+  if(open){window.scrollTo({top:0,behavior:'auto'});(categoryBar.querySelector('[aria-current=true]')||categoryBar.querySelector('button'))?.focus({preventScroll:true});}
+  else{closeMenu(categoryToggle);categoryToggle.focus({preventScroll:true});}
+  measureNavigation();
+ });
+ mobileNavigation.addEventListener?.('change',()=>{if(!mobileNavigation.matches)setCategoryBar(false);measureNavigation();});
  function measureNavigation(){
   const height=header.getBoundingClientRect().height;
   const total=height+(stickySubcategories.matches?$('folioMenu').getBoundingClientRect().height:0);
@@ -191,7 +216,12 @@
    if(!keyboard)return;
    const top=Math.max(viewport.offsetTop,header.getBoundingClientRect().bottom)+12,bottom=viewport.offsetTop+height-48,rect=field.getBoundingClientRect();
    const delta=rect.height>bottom-top?rect.top-top:rect.bottom>bottom?rect.bottom-bottom:rect.top<top?rect.top-top:0;
-   if(Math.abs(delta)>1)window.scrollTo({top:Math.max(0,window.scrollY+delta),behavior:'auto'});
+   const desired=Math.max(0,window.scrollY+delta);
+   if(field.id==='search'){
+    const fieldBottom=rect.bottom-(desired-window.scrollY);
+    document.documentElement.style.setProperty('--folio-suggestions-room',Math.max(44,bottom-fieldBottom-8)+'px');
+   }
+   if(Math.abs(delta)>1)window.scrollTo({top:desired,behavior:'auto'});
   }
   const scheduleEditor=()=>{if(!viewportFrame)viewportFrame=requestAnimationFrame(keepEditorVisible);};
   document.addEventListener('focusin',()=>{lastEdit=Date.now();if(!document.body.dataset.folioKeyboard)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,viewport.height*(viewport.scale||1));scheduleEditor();});
@@ -204,6 +234,7 @@
  function menuRows(){
   const group=model.browseGroup(menuGroup);
   $('folioMenu').setAttribute('aria-label',group.label);
+  $('folioMenuLabel').textContent=group.label;
   const topics=group.topics.map(topic=>{
    const active=state.browseTopic===topic.id;
    const disclosure=topic.children.length?` aria-controls="folioMenuDetail" aria-expanded="${active}"`:'';
@@ -241,7 +272,7 @@
 
   state.browseGroup=group;state.browseTopic=topic;state.browseDetail=detail;
   state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;
-  if(!keepMenu)closeMenu($('folioCollectionTitle'));
+  if(!keepMenu){closeMenu($('folioCollectionTitle'));if(mobileNavigation.matches)setCategoryBar(false);}
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   $('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
  }
@@ -254,14 +285,18 @@
  function similar(id){if(!window.AtlasApp.getStyle(id))return;window.AtlasInlinePanels.reset();clearBrowse();state.mode='catalogue';state.collection='';state.niche='';state.similar=id;gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();$('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
  window.AtlasFolio={filter,beforeRender,update,onView:syncNavigation,getState:()=>({...state}),syncHeader,similar};
  // Listeners are installed before app.js: a free-text search starts across all styles.
- $('search').addEventListener('input',()=>{clearBrowse();if(!$('folioMenu').hidden){closeMenu($('search'));}state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
- $('reset').addEventListener('click',()=>{clearBrowse();state.mode='home';state.collection='';state.similar='';state.niche='';});
+ $('search').addEventListener('input',()=>{clearBrowse();if(!$('folioMenu').hidden){closeMenu($('search'));}setCategoryBar(false);state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
+ $('reset').addEventListener('click',()=>{clearBrowse();state.mode='catalogue';state.collection='';state.similar='';state.niche='';requestAnimationFrame(()=>$('folioCollectionTitle').focus({preventScroll:true}));});
+ $('folioHomeFavorites').addEventListener('click',()=>{$('favoriteFilter').click();$('folioCollectionTitle').focus({preventScroll:true});});
+ $('folioEditSearch').addEventListener('click',()=>{$('search').focus();$('search').select();});
+ $('folioSearchClear').addEventListener('click',()=>{const input=$('search');input.value='';input.focus({preventScroll:true});input.dispatchEvent(new Event('input',{bubbles:true}));});
  $('searchEverywhere').addEventListener('click',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';});
  $('familySelect').addEventListener('change',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;});
  $('folioNiche').addEventListener('change',()=>{state.niche=$('folioNiche').value;gridScroll=0;refresh();});
  document.addEventListener('keydown',e=>{
   if(e.key!=='Escape'||e.defaultPrevented)return;
   if(!$('folioMenu').hidden){e.preventDefault();closeMenu();}
+  else if(categoryToggle.getAttribute('aria-expanded')==='true'){e.preventDefault();setCategoryBar(false);categoryToggle.focus({preventScroll:true});}
  });
  $('folioChoiceContinue').addEventListener('click',()=>{$('folioChoice').close();window.AtlasShell.openBrief();});
  $('folioBack').addEventListener('click',()=>home({restore:true}));$('folioChangeGoal').addEventListener('click',()=>home());
@@ -272,6 +307,7 @@
   const rail=t.closest('[data-folio-rail]');if(rail){const region=$('folio-shelf-'+rail.dataset.folioRail).closest('section').querySelector('.folio-shelf-rail');region.scrollBy({left:Number(rail.dataset.railDirection)*region.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
   const collection=t.closest('[data-folio-collection]');if(collection)openCollection(collection.dataset.folioCollection);
   if(t.closest('[data-folio-back]'))home({restore:true});
+  if(t.closest('[data-folio-close-categories]')){closeMenu(categoryToggle);setCategoryBar(false);categoryToggle.focus({preventScroll:true});}
   if(t.closest('[data-folio-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-folio-choice]');if(choice)showChoice(choice);
   const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
@@ -279,8 +315,10 @@
   if(openGroup){
    const group=openGroup.dataset.folioOpenGroup;
    const wasOpen=!$('folioMenu').hidden&&menuGroup===group;
+   if(wasOpen){closeMenu(openGroup);return;}
    selectCategory(group);
-   if(!wasOpen)showMenu(openGroup,group,e.detail===0);
+   if(mobileNavigation.matches)setCategoryBar(true);
+   showMenu(openGroup,group,e.detail===0);
   }
   const topic=t.closest('[data-folio-topic]');
   if(topic){
