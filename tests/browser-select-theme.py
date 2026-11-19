@@ -23,9 +23,11 @@ def theme(control):
         const picker=getComputedStyle(el,'::picker(select)');
         const active=getComputedStyle(el.selectedOptions[0]);
         const theme=getComputedStyle(document.body).getPropertyValue('--folio-accent').trim();
-        return {app:getComputedStyle(el).appearance,picker:picker.appearance,background:picker.backgroundColor,color:active.color,theme};
+        const field=getComputedStyle(el);
+        return {app:field.appearance,display:field.display,picker:picker.appearance,background:picker.backgroundColor,color:active.color,theme};
     }''')
     assert style['app'] == style['picker'] == 'base-select', style
+    assert style['display'] in ('flex', 'inline-flex'), style
     assert style['background'] == 'rgb(36, 36, 36)', style
     assert style['color'] == 'rgb(226, 255, 59)', style
 
