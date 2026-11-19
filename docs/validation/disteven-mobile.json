@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "sourcePullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/34",
+  "sourceRevision": "5dabacd49928559311dbb54284ea87fb63f36eb8",
+  "artifactsRevision": "dc675ac",
+  "navigation": {
+    "allSevenCategoriesVisibleOnMobile": true,
+    "twoRowsAt320To430": true,
+    "rootGapPixels": 6,
+    "submenuColumns": 2,
+    "touchTargetMinimumPixels": 44,
+    "touchFocusBoxRemoved": true,
+    "keyboardFocusRetained": true,
+    "visualPreferenceAlwaysVisible": true
+  },
+  "buttons": {
+    "filledActionColor": "#e2ff3b",
+    "actionTextPixels": 15,
+    "textCenteredInBothAxes": true,
+    "sequenceControlsIncluded": true
+  },
+  "editing": {
+    "visualViewportAware": true,
+    "keyboardAccessoryClearancePixels": 48,
+    "categoryRailTemporarilyCollapsed": true,
+    "typedTextPreserved": true,
+    "pinchZoom200PercentPreserved": true,
+    "verificationLimit": "Viewport simulations and real browser zoom; no physical iPhone or VoiceOver test."
+  },
+  "verification": {
+    "javascriptTests": 258,
+    "pythonTests": 9,
+    "distributionTests": 12,
+    "typecheck": true,
+    "projectValidator": true,
+    "independentReview": "All four findings fixed and rechecked; no outstanding findings.",
+    "gitleaks": "No leaks found in two source commits.",
+    "browser": {
+      "viewports": [
+        {
+          "width": 320,
+          "compactHeader": 148,
+          "twoColumnSubmenus": true,
+          "touchWithoutFocusBox": true,
+          "actionsLimeAnd15px": true,
+          "actionTextCentered": true,
+          "guidedFlowCompleted": true,
+          "briefPreserved": true,
+          "noOverflow": true
+        },
+        {
+          "width": 375,
+          "compactHeader": 148,
+          "twoColumnSubmenus": true,
+          "touchWithoutFocusBox": true,
+          "actionsLimeAnd15px": true,
+          "actionTextCentered": true,
+          "guidedFlowCompleted": true,
+          "briefPreserved": true,
+          "noOverflow": true
+        },
+        {
+          "width": 390,
+          "compactHeader": 148,
+          "twoColumnSubmenus": true,
+          "touchWithoutFocusBox": true,
+          "actionsLimeAnd15px": true,
+          "actionTextCentered": true,
+          "guidedFlowCompleted": true,
+          "briefPreserved": true,
+          "noOverflow": true
+        },
+        {
+          "width": 430,
+          "compactHeader": 148,
+          "twoColumnSubmenus": true,
+          "touchWithoutFocusBox": true,
+          "actionsLimeAnd15px": true,
+          "actionTextCentered": true,
+          "guidedFlowCompleted": true,
+          "briefPreserved": true,
+          "noOverflow": true
+        }
+      ],
+      "errors": []
+    },
+    "keyboard": {
+      "cases": [
+        {
+          "mode": "visual",
+          "focusedFieldAboveKeyboard": true,
+          "longTextCaretScrolls": true,
+          "compactHeaderWhileEditing": true,
+          "menuRestored": true,
+          "textPreserved": true,
+          "briefFieldsCovered": true
+        },
+        {
+          "mode": "layout",
+          "focusedFieldAboveKeyboard": true,
+          "longTextCaretScrolls": true,
+          "compactHeaderWhileEditing": true,
+          "menuRestored": true,
+          "textPreserved": true,
+          "briefFieldsCovered": true
+        }
+      ],
+      "errors": []
+    },
+    "gallery": {
+      "layouts": [
+        {
+          "width": 320,
+          "columns": 2,
+          "all1425FillFrame": true,
+          "uniformThreeByFourHeight": true,
+          "compactHeight": 185.328125
+        },
+        {
+          "width": 375,
+          "columns": 2,
+          "all1425FillFrame": true,
+          "uniformThreeByFourHeight": true,
+          "compactHeight": 222
+        },
+        {
+          "width": 768,
+          "columns": 3,
+          "all1425FillFrame": true,
+          "uniformThreeByFourHeight": true,
+          "compactHeight": 291.53125
+        },
+        {
+          "width": 1024,
+          "columns": 4,
+          "all1425FillFrame": true,
+          "uniformThreeByFourHeight": true,
+          "compactHeight": 298.65625
+        },
+        {
+          "width": 1440,
+          "columns": 6,
+          "all1425FillFrame": true,
+          "uniformThreeByFourHeight": true,
+          "compactHeight": 284.4375
+        },
+        {
+          "width": 1920,
+          "columns": 6,
+          "all1425FillFrame": true,
+          "uniformThreeByFourHeight": true,
+          "compactHeight": 320
+        }
+      ],
+      "motion": [
+        {
+          "reducedMotion": "no-preference",
+          "passed": true
+        },
+        {
+          "reducedMotion": "reduce",
+          "passed": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  "primary": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "status": "pending_hosting_access",
+    "credentialResponse": "HTTP 403",
+    "browserConnection": "Failed: the gaas-browser node_repl sandbox cannot be disabled",
+    "writesAttempted": false
+  },
+  "mirror": {
+    "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/",
+    "version": 42,
+    "sourceRevision": "d2ae75ba5d290da7a70f8de7e0b0531b0d7eccf7",
+    "versionId": "appgprj_6aec09533b208191aaa63ba6e104d2ce~appgver_64e597420e8481918cc5b4a915ceed44",
+    "deploymentId": "appgdep_6afe47ab12008191966b6c7133694c80",
+    "status": "succeeded",
+    "publicBytesVerified": [
+      "disteven-ui.js",
+      "disteven.css",
+      "installation.json"
+    ],
+    "publicBrowser": {
+      "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/",
+      "release": "Sites 42",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "publicKeyboard": {
+      "cases": [
+        {
+          "mode": "visual",
+          "focusedFieldAboveKeyboard": true,
+          "longTextCaretScrolls": true,
+          "compactHeaderWhileEditing": true,
+          "menuRestored": true,
+          "textPreserved": true,
+          "briefFieldsCovered": true
+        },
+        {
+          "mode": "layout",
+          "focusedFieldAboveKeyboard": true,
+          "longTextCaretScrolls": true,
+          "compactHeaderWhileEditing": true,
+          "menuRestored": true,
+          "textPreserved": true,
+          "briefFieldsCovered": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  "page": {
+    "id": "page_05d0233621d081919b31df2863cab40b",
+    "sequence": 85,
+    "blockId": "ce5e7e47-e979-4879-9a10-bcba2791d02c",
+    "hash": "5debc23f3e512be65e8ef81bd9e03b5d44d46ed864f207ad493a799877f6eed0",
+    "reference": "visualize:fde1_bGliZmlsZV9ib0Z2UHp6b3cyMkpKV0swaklqRXVn_FileDrive_bb2d275d5f00819191b05d59fafc6334",
+    "readbackVerified": true,
+    "compiledBrowser": {
+      "checks": [
+        "embedded DiSteven below 256 KiB",
+        "real catalogue and reference assets",
+        "collection and selection written to widget state",
+        "complete generated brief",
+        "localStorage access rejected by browser fixture",
+        "no viewport overflow"
+      ],
+      "errors": [],
+      "embeddedBytes": 260493
+    },
+    "nativeViewerInspected": false
+  },
+  "installer": {
+    "version": 1,
+    "kitVersion": "2.14.0",
+    "sourceRevision": "5dabacd49928559311dbb54284ea87fb63f36eb8",
+    "sourceReady": true,
+    "download": "downloads/studio-kit-pro-installer.zip",
+    "bytes": 673733,
+    "sha256": "db3f110c869339c7cb2f119da6fb3dad11eac0972068225cfff7f4813e4ecd62",
+    "tutorial": "como-instalar.html",
+    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
+    "internetRequired": true,
+    "freeToolchain": {
+      "profile": "all-free",
+      "toolCount": 15,
+      "verification": "on each target machine",
+      "binariesBundled": false
+    },
+    "fullProjectDownloadMiB": 810,
+    "skills": 1,
+    "internalModules": 7,
+    "presenterStyles": 265
+  },
+  "originalImagesModified": false,
+  "paidGenerationUsed": false
+}

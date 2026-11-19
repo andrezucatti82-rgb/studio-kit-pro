@@ -1,0 +1,56 @@
+/* Existing research and reference pages share DiSteven's UI without changing media. */
+body[data-disteven-support]{background:#101010;color:#f5f5f5;font-size:var(--disteven-type-body);overflow-wrap:break-word}
+body[data-disteven-support] main{width:100%;max-width:1120px;margin:0 auto;padding:28px 24px 64px}
+body[data-disteven-support] main>header{padding:20px 0 28px;margin:0 0 20px;max-width:900px}
+body[data-disteven-support] :is(h1,h2,h3){font-family:'DiSteven UI',Arial,sans-serif;font-weight:600;letter-spacing:-.025em;min-height:0}
+body[data-disteven-support] h1{font-size:var(--disteven-type-title);line-height:1.25;margin:24px 0 16px}
+body[data-disteven-support] h2{font-size:var(--disteven-type-section);line-height:1.4;margin:20px 0 12px}
+body[data-disteven-support] h3{font-size:var(--disteven-type-body);line-height:1.5}
+body[data-disteven-support] :is(p,li){font-size:var(--disteven-type-body);line-height:1.65;color:var(--ink)}
+body[data-disteven-support] :is(.eyebrow,.label,.note,.small,.state,.status,.progress,.footer,figcaption){font-size:var(--disteven-type-meta);line-height:1.5;color:var(--muted)}
+body[data-disteven-support] .intro p{color:var(--muted)}
+body[data-disteven-support] a{color:var(--disteven-accent);text-underline-offset:4px}
+body[data-disteven-support] button:not(.frame-button),body[data-disteven-support] a.button,body[data-disteven-support] a.download{
+ min-height:48px;padding:12px 20px;border:1px solid var(--disteven-accent);border-radius:999px;
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;max-width:100%;
+ background:var(--disteven-accent);color:#161b05;font-size:var(--disteven-type-body);font-weight:600;
+ line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;box-shadow:var(--disteven-control-depth);text-decoration:none;
+}
+body[data-disteven-support] button:disabled{opacity:.5}
+body[data-disteven-support] .frame-button{background:#151515;box-shadow:none}
+body[data-disteven-support] :is(button,a,select,textarea,input,summary):focus-visible{outline:2px solid var(--disteven-accent);outline-offset:4px}
+body[data-disteven-support] :is(select,textarea,input){max-width:100%;background:var(--surface-raised);color:var(--ink);font-size:var(--disteven-type-body)}
+body[data-disteven-support] :is(article,details,.toolbar,.notice,.review){border-color:var(--disteven-edge);border-radius:24px;background:var(--surface);box-shadow:var(--disteven-depth);color:var(--ink)}
+body[data-disteven-support] #gallery .error{background:var(--surface);color:var(--ink);border-color:var(--disteven-edge);border-radius:20px;box-shadow:var(--disteven-depth)}
+body[data-disteven-support] footer{color:var(--muted);font-size:var(--disteven-type-compact);line-height:1.5;border-color:var(--disteven-edge)}
+body[data-disteven-support] :is(.samples article,main>article,details){padding:24px;margin-bottom:20px;min-width:0}
+body[data-disteven-support] :is(.notice,.review){padding:18px 20px}
+body[data-disteven-support] .samples{gap:24px}
+body[data-disteven-support] .samples h2{min-height:0;font-size:var(--disteven-type-section)}
+body[data-disteven-support] .state{background:var(--surface-raised);border:1px solid var(--disteven-edge);padding:10px 14px;border-radius:16px}
+body[data-disteven-support] :is(img,video,canvas){max-width:100%}
+body[data-disteven-support] :is(video,#preview,figure){background:#151515;border-color:transparent;border-radius:18px;box-shadow:0 6px 18px #0003}
+body[data-disteven-support] figure{margin:16px 0;overflow:hidden}
+body[data-disteven-support] figcaption{padding:12px 16px}
+body[data-disteven-support] .boards img{border-color:transparent;background:#151515}
+body[data-disteven-support] :is(main>nav,.mast){display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+body[data-disteven-support] .mast{max-width:1120px;margin:auto;padding:20px 24px;background:#101010;border-bottom:1px solid var(--disteven-edge)}
+body[data-disteven-support] :is(.support-brand,.mast .brand){display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-size:28px;font-weight:600;line-height:1;letter-spacing:-1px}
+body[data-disteven-support] :is(.support-brand,.mast .brand) img{width:28px;height:32px;object-fit:contain;box-shadow:none}
+body[data-disteven-support] .mast .brand span{display:inline;font-size:28px;color:var(--ink);letter-spacing:-1px}
+body[data-disteven-support] :is(main>header a,main>nav a,.back,main>a:first-child){min-height:44px;display:inline-flex;align-items:center;padding:8px 0;font-size:var(--disteven-type-compact)}
+body[data-disteven-support] .support-brand{padding:0;font-size:28px}
+body[data-disteven-support] .toolbar{padding:16px;gap:12px}
+body[data-disteven-support] .toolbar>*{min-width:0}
+body[data-disteven-support] dialog{background:#101010;color:var(--ink);border:1px solid var(--disteven-edge);box-shadow:var(--disteven-depth);border-radius:24px}
+body[data-disteven-support] dialog::backdrop{background:#000b}
+@media(max-width:700px){
+ body[data-disteven-support] main{padding:20px 16px 48px}
+ body[data-disteven-support] :is(.samples article,main>article,details){padding:18px 16px}
+ body[data-disteven-support] .samples{grid-template-columns:1fr;gap:16px}
+ body[data-disteven-support] .mast{padding:16px}
+ body[data-disteven-support] .toolbar{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:14px}
+ body[data-disteven-support] .toolbar>*{max-width:100%}
+ body[data-disteven-support] .toolbar .progress{width:100%;white-space:normal}
+ body[data-disteven-support] main>nav{align-items:flex-start}
+}

@@ -1,4 +1,4 @@
-# Orquestrador local GDA Vídeos
+# Orquestrador local DiSteven
 
 Recebe mídia registrada e um pedido, prepara um plano validado, executa cortes com FFmpeg, anima com Remotion e entrega um MP4 candidato com relatório técnico, legendas e quadros. O atlas e o fluxo guiado são preservados. Esta implementação inicial executa um estilo editorial; não afirma automatizar todo o catálogo.
 
@@ -68,7 +68,7 @@ O formulário prepara e permite baixar o pedido/plano mesmo quando a produção 
 
 ```sh
 # Somente se chamadas pagas de planejamento estiverem autorizadas para o projeto:
-# Configure OPENAI_API_KEY e GDA_OPENAI_MODEL em seu ambiente, fora do Git.
+# Configure OPENAI_API_KEY e DISTEVEN_OPENAI_MODEL em seu ambiente, fora do Git.
 npm run production -- --prepare projects/exemplo/request.json --out projects/exemplo/prepared-ai --provider openai --allow-paid-planning
 ```
 
@@ -108,7 +108,7 @@ npm test
 npm run validate
 node --test tests/orchestrator.test.mjs
 # Com servidor local e POC concluída na mesma raiz:
-GDA_QA_ROOT=projects/orchestrator-poc python3 tests/browser-production.py
+DISTEVEN_QA_ROOT=projects/orchestrator-poc python3 tests/browser-production.py
 ```
 
 O teste integrado renderiza 900 frames através do orquestrador real, sem reutilizar MP4 de demonstração. Verifica existência, tamanho, duração, dimensões, FPS, codecs, frames, pixel format, áudio e decodificação integral. Aceita H.264 4:2:0 em faixa limitada (`yuv420p`) ou completa (`yuvj420p`) com metadados de cor explícitos.

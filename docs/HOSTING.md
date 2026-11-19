@@ -2,11 +2,11 @@
 
 Endereço de divulgação: https://videos.gerenciadordeanuncios.com.br/ . Espelho: https://video-multimarcas-estilos.andrezucatti82.chatgpt.site . A implantação só é confirmada por recibo e leitura da URL, não por este documento.
 
-A galeria é estática: publicar somente `style-atlas/dist/`. Não precisa de banco, chave de API, autenticação GDA ou backend de geração. O vídeo é produzido no ambiente do usuário, depois de enviar o pedido.
+A galeria é estática: publicar somente `style-atlas/dist/`. Não precisa de banco, chave de API, autenticação DiSteven ou backend de geração. O vídeo é produzido no ambiente do usuário, depois de enviar o pedido.
 
 ## Cópia própria
 
-Troque o logo, textos e cores no HTML/CSS. A identidade GDA é do mantenedor e não faz parte da identidade dos vídeos. Não se apresente como GDA ao redistribuir uma cópia. Preserve licenças das fontes e procedência das imagens. O atlas usa fontes Geist distribuídas com sua licença OFL; o seletor distribui arquivos de 24 combinações, com licenças OFL/Apache e procedência em `fonts.json`. Confira os pesos necessários em cada vídeo.
+Troque o logo, textos e cores no HTML/CSS. A identidade DiSteven é do mantenedor e não faz parte da identidade dos vídeos. Não se apresente como DiSteven ao redistribuir uma cópia. Preserve licenças das fontes e procedência das imagens. O atlas usa fontes Geist distribuídas com sua licença OFL; o seletor distribui arquivos de 24 combinações, com licenças OFL/Apache e procedência em `fonts.json`. Confira os pesos necessários em cada vídeo.
 
 Qualquer hospedagem estática que sirva HTML/CSS/JS/JSON e imagens pode funcionar. Teste HTTPS, caminhos relativos, carregamento de assets, busca, briefing e download de preset.
 

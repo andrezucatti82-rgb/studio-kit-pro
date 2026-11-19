@@ -1,0 +1,137 @@
+{
+  "status": "local_browser_verified",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "menu": {
+    "appearance": "plain text names in columns",
+    "desktopColumns": 4,
+    "mobileColumns": 2,
+    "searchField": false,
+    "counts": false,
+    "cards": false,
+    "promotionalHeading": false,
+    "footer": false,
+    "inDocumentFlow": true,
+    "closeControl": "Fechar",
+    "backControl": "Categorias"
+  },
+  "preserved": [
+    "seven categories and thirty families",
+    "library search and niche filter",
+    "projects and contribution scopes",
+    "brief and prompt generation",
+    "non-modal internal pages",
+    "original source media"
+  ],
+  "themeAndNavigation": {
+    "checks": [],
+    "viewports": [
+      {
+        "width": 375,
+        "allCategoriesReachable": 7,
+        "allFamiliesReachable": 30,
+        "darkFields": true,
+        "localFonts": 4,
+        "allHelpCardsContrast": true,
+        "resizeFocusPreserved": true,
+        "simpleTextMenu": true,
+        "projectPreserved": true
+      },
+      {
+        "width": 1440,
+        "allCategoriesReachable": 7,
+        "allFamiliesReachable": 30,
+        "darkFields": true,
+        "localFonts": 4,
+        "allHelpCardsContrast": true,
+        "resizeFocusPreserved": true,
+        "simpleTextMenu": true,
+        "projectPreserved": true
+      }
+    ],
+    "errors": []
+  },
+  "pageNavigation": {
+    "viewports": [
+      {
+        "width": 375,
+        "menuPushesContent": true,
+        "backgroundUsable": true,
+        "noModalLayers": true,
+        "nestedPagesReturn": true,
+        "briefAndScopesPreserved": true,
+        "headerNavigationExitsPanels": true,
+        "guidedPage": true
+      },
+      {
+        "width": 1440,
+        "menuPushesContent": true,
+        "backgroundUsable": true,
+        "noModalLayers": true,
+        "nestedPagesReturn": true,
+        "briefAndScopesPreserved": true,
+        "headerNavigationExitsPanels": true,
+        "guidedPage": true
+      }
+    ],
+    "errors": []
+  },
+  "existingFlows": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "390px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "430px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.3333010835913313
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "portraitRatio": 1.3333025147928994
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "portraitRatio": 1.3333333333333333
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3333090697335857
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "embeddedPage": {
+    "checks": [
+      "embedded DiSteven below 256 KiB",
+      "real catalogue and reference assets",
+      "collection and selection written to widget state",
+      "complete generated brief",
+      "localStorage access rejected by browser fixture",
+      "no viewport overflow"
+    ],
+    "errors": [],
+    "embeddedBytes": 253316
+  },
+  "paidApisUsed": false,
+  "publication": "pending"
+}

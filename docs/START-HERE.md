@@ -1,10 +1,10 @@
 # Comece aqui — sua conta, suas marcas
 
-[Galeria GDA Vídeos](https://videos.gerenciadordeanuncios.com.br/) · [Espelho do atlas](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site) · [Baixar skill](../dist/video-multimarcas.skill) · [ZIP](../dist/video-multimarcas.zip) · [Plugin](../dist/video-multimarcas-plugin.zip) · [Instalar ou atualizar](INSTALL-SKILL.md)
+[Galeria DiSteven](https://videos.gerenciadordeanuncios.com.br/) · [Espelho do atlas](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site) · [Baixar skill](../dist/video-multimarcas.skill) · [ZIP](../dist/video-multimarcas.zip) · [Plugin](../dist/video-multimarcas-plugin.zip) · [Instalar ou atualizar](INSTALL-SKILL.md)
 
 A versão 2.10 está disponível no **espelho** acima. O domínio principal ainda usa a edição anterior enquanto o acesso de hospedagem é recuperado. [Publicações confirmadas e bloqueio](GUIDED-DELIVERY-2.10.md).
 
-Este é um kit para um agente de IA produzir vídeos. A página ajuda a escolher direção e montar o pedido; não renderiza vídeos sozinha. Cada pessoa usa sua própria conta do ChatGPT ou Claude, seus materiais e suas conexões. Não há acesso à conta, voz, chaves ou créditos da GDA.
+Este é um kit para um agente de IA produzir vídeos. A página ajuda a escolher direção e montar o pedido; não renderiza vídeos sozinha. Cada pessoa usa sua própria conta do ChatGPT ou Claude, seus materiais e suas conexões. Não há acesso à conta, voz, chaves ou créditos da DiSteven.
 
 ## 1. Experimente sem instalar programas
 
@@ -111,7 +111,7 @@ A Page criada pelo mantenedor não é necessária e não concede acesso a outras
 
 Use `git pull` quando sua árvore de trabalho estiver preservada e resolva conflitos sem apagar projetos. Reimporte o pacote nas superfícies que não atualizam skills automaticamente. Seus projetos ficam em `projects/`, ignorado pelo Git por padrão.
 
-A GDA é a identidade da galeria hospedada. O vídeo é adaptado à marca do briefing; nenhum preset deve herdar GDA automaticamente. Para hospedar uma cópia com sua marca, troque logo/textos/variáveis CSS em `style-atlas/dist/`, confira as licenças e publique apenas essa pasta em uma hospedagem estática. Não publique backups, chaves ou projetos de clientes. Veja [HOSTING.md](HOSTING.md).
+A DiSteven é a identidade da galeria hospedada. O vídeo é adaptado à marca do briefing; nenhum preset deve herdar DiSteven automaticamente. Para hospedar uma cópia com sua marca, troque logo/textos/variáveis CSS em `style-atlas/dist/`, confira as licenças e publique apenas essa pasta em uma hospedagem estática. Não publique backups, chaves ou projetos de clientes. Veja [HOSTING.md](HOSTING.md).
 
 ## Problemas frequentes
 

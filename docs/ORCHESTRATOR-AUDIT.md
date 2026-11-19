@@ -1,6 +1,6 @@
-# Auditoria GDA Vídeos — base 8b100ff
+# Auditoria DiSteven — base 8b100ff
 
-Auditoria executada sobre `andrezucatti82-rgb/studio-kit-pro`, base igual à `main` remota verificada. Desenvolvimento em `feat/gda-production-orchestrator`. Nenhuma publicação, merge ou chamada paga foi feita.
+Auditoria executada sobre `andrezucatti82-rgb/studio-kit-pro`, base igual à `main` remota verificada. Desenvolvimento em `feat/disteven-production-orchestrator`. Nenhuma publicação, merge ou chamada paga foi feita.
 
 ## Estado encontrado
 

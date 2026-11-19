@@ -15,4 +15,4 @@ Gere o núcleo a partir da mesma implementação usada no pedido: `AtlasWorkflow
 
 O estado contém o briefing e pode ficar acessível a quem tiver acesso à Page. Não compartilhar dados de cliente sem autorização. O site externo continua oferecendo cópia manual do pedido para qualquer conta, sem depender desta integração.
 
-O contrato de produção também preserva as atribuições de materiais e acompanha a intenção de entregar o vídeo final com IA. A abertura com pacote criptografado pertence ao domínio público do Fólio. Na Page incorporada, use o botão nativo quando disponível e anexe os arquivos na conversa.
+O contrato de produção também preserva as atribuições de materiais e acompanha a intenção de entregar o vídeo final com IA. A abertura com pacote criptografado pertence ao domínio público do DiSteven. Na Page incorporada, use o botão nativo quando disponível e anexe os arquivos na conversa.

@@ -33,7 +33,7 @@ with tempfile.TemporaryDirectory() as directory, sync_playwright() as p:
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
         assert page.goto(args.base).ok
-        expect(page.locator('body')).to_have_attribute('data-folio', 'true', timeout=30000)
+        expect(page.locator('body')).to_have_attribute('data-disteven', 'true', timeout=30000)
         page.evaluate("AtlasApp.chooseStyle('publicidade-cinematografica'); AtlasShell.openBrief()")
         page.locator('#topic').fill('Filme de demonstração para teste')
         page.locator('#format').select_option('4:5')
@@ -56,7 +56,7 @@ with tempfile.TemporaryDirectory() as directory, sync_playwright() as p:
             page.locator('[data-picker-aspect=kinetic_type]').check()
             page.locator('[data-picker-scope=kinetic_type]').select_option('closing')
             page.locator('#pickerApply').click()
-        page.locator('#folioContinue').click()
+        page.locator('#distevenContinue').click()
         expect(page.locator('#handoff')).to_be_visible()
         page.locator('#handoffPlatform').select_option(platform)
         with page.expect_popup() as opened:
@@ -72,7 +72,7 @@ with tempfile.TemporaryDirectory() as directory, sync_playwright() as p:
             page.locator('#copyCloudPrompt').click()
             prompt = page.evaluate('navigator.clipboard.readText()')
         assert 'moodboard' in prompt and 'storyboard' in prompt
-        published = re.search(r"retrieve-folio-handoff.mjs '([^']+)'", prompt).group(1)
+        published = re.search(r"retrieve-disteven-handoff.mjs '([^']+)'", prompt).group(1)
         parts = urlsplit(published)
         with urlopen(urlunsplit(parts._replace(fragment='')), timeout=30) as response:
             assert response.headers['Content-Type'] == 'application/octet-stream'
@@ -81,12 +81,12 @@ with tempfile.TemporaryDirectory() as directory, sync_playwright() as p:
         assert b'projeto-video.json' not in encrypted and b'Filme de demonstra' not in encrypted
         blob = fixture / 'sealed.bin'
         blob.write_bytes(encrypted)
-        os.environ['FOLIO_TEST_FIXTURE_DATA'] = str(blob)
-        os.environ['FOLIO_TEST_FIXTURE_KEY'] = parts.fragment
+        os.environ['DISTEVEN_TEST_FIXTURE_DATA'] = str(blob)
+        os.environ['DISTEVEN_TEST_FIXTURE_KEY'] = parts.fragment
         decoded = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', """
             import {readFile} from 'node:fs/promises';
-            import {unpackHandoff} from './scripts/retrieve-folio-handoff.mjs';
-            const files=await unpackHandoff(await readFile(process.env.FOLIO_TEST_FIXTURE_DATA),Buffer.from(process.env.FOLIO_TEST_FIXTURE_KEY,'hex'));
+            import {unpackHandoff} from './scripts/retrieve-disteven-handoff.mjs';
+            const files=await unpackHandoff(await readFile(process.env.DISTEVEN_TEST_FIXTURE_DATA),Buffer.from(process.env.DISTEVEN_TEST_FIXTURE_KEY,'hex'));
             console.log(JSON.stringify({project:JSON.parse(files[0].data),media:files.slice(1).map(f=>({name:f.name,hex:f.data.toString('hex')}))}));
         """]))
         project = decoded['project']
@@ -100,7 +100,7 @@ with tempfile.TemporaryDirectory() as directory, sync_playwright() as p:
             assert project['project']['materialAssignments'][0]['rights']['image'] == 'authorized'
             assert project['project']['styleContributions']['tipografia-cinetica'] == [{'aspect': 'kinetic_type', 'scope': 'closing'}]
             page.reload()
-            expect(page.locator('body')).to_have_attribute('data-folio', 'true')
+            expect(page.locator('body')).to_have_attribute('data-disteven', 'true')
             assert page.evaluate('AtlasCurrentChoice().selectedStyles.length') == 2
             assert page.evaluate('AtlasCurrentChoice().materialAssignments[0].roles.length') == 2
             assert page.evaluate('AtlasMaterialFiles.current().length') == 0

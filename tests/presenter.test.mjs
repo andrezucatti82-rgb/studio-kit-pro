@@ -41,7 +41,7 @@ test('Remotion actually blurs glass and applies repeatable, subtle social finish
   const panel=(y,blurPixels)=>({id:'glass'+Math.round(y*100),type:'shape',shape:'rect',fill:'#FFFFFF',x:.1,y,width:.8,height:.25,material:{type:'glass',fillOpacity:.15,blurPixels,borderOpacity:0,shadowOpacity:0}});
   const p=validateGraphPlan(plan([...stripes,panel(.1,0),panel(.6,28)]),[]);
   const serveUrl=await bundle({entryPoint:path.resolve('src/production/index.tsx'),outDir:path.join(root,'bundle')}),browserExecutable=process.env.CHROME_PATH||'/usr/bin/chromium';
-  const render=async(p,name,frame=0)=>{const inputProps={plan:{...p,media:{},fontSources:[],renderAudio:[]}},composition=await selectComposition({serveUrl,id:'GdaGraph',inputProps,browserExecutable}),file=path.join(root,name+'.png');await renderStill({serveUrl,composition,inputProps,frame,output:file,imageFormat:'png',browserExecutable});return execFileSync('ffmpeg',['-v','error','-i',file,'-frames:v','1','-f','rawvideo','-pix_fmt','rgb24','pipe:1'],{maxBuffer:4000000});};
+  const render=async(p,name,frame=0)=>{const inputProps={plan:{...p,media:{},fontSources:[],renderAudio:[]}},composition=await selectComposition({serveUrl,id:'DiStevenGraph',inputProps,browserExecutable}),file=path.join(root,name+'.png');await renderStill({serveUrl,composition,inputProps,frame,output:file,imageFormat:'png',browserExecutable});return execFileSync('ffmpeg',['-v','error','-i',file,'-frames:v','1','-f','rawvideo','-pix_fmt','rgb24','pipe:1'],{maxBuffer:4000000});};
   const pixels=await render(p,'glass'),at=(buf,x,y)=>buf[(y*1280+x)*3];
   const sharp=Math.abs(at(pixels,580,150)-at(pixels,620,150)),blurred=Math.abs(at(pixels,580,500)-at(pixels,620,500));assert(sharp>200);assert(blurred<sharp*.6,`Backdrop blur must visibly reduce stripe contrast: sharp=${sharp}, blurred=${blurred}`);
   const flat=plan([{id:'flat',type:'shape',shape:'rect',fill:'#808080',x:0,y:0,width:1,height:1}]);
@@ -100,7 +100,7 @@ test('Remotion composites the actual transparent clip and moves the measured obj
   const words={id:'speech',type:'text',text:'FALA REAL',x:.6,y:.1,width:.35,height:.2,fontSize:50,color:'#FFFFFF',kinetic:'speech',speechWords:[{text:'FALA',fromFrame:0,toFrame:25},{text:'REAL',fromFrame:26,toFrame:60}],highlightColor:'#FFCC00'};
   const p=validateGraphPlan(plan([{...presenter,assetId:original.id,maskAssetId:matte.id},object,words]),[original,matte]);const edited=await editGraph(p,store,path.join(root,'work'));
   const serveUrl=await bundle({entryPoint:path.resolve('src/production/index.tsx'),publicDir:edited.publicDir,outDir:path.join(root,'bundle')}),inputProps={plan:edited.plan},browserExecutable=process.env.CHROME_PATH||'/usr/bin/chromium';
-  const composition=await selectComposition({serveUrl,id:'GdaGraph',inputProps,browserExecutable}),files=[];
+  const composition=await selectComposition({serveUrl,id:'DiStevenGraph',inputProps,browserExecutable}),files=[];
   for(const frame of [0,59]){const file=path.join(root,`frame-${frame}.png`);await renderStill({serveUrl,composition,inputProps,frame,output:file,imageFormat:'png',browserExecutable});files.push(file);}
   const pixel=(file,x,y)=>execFileSync('ffmpeg',['-v','error','-i',file,'-vf',`crop=2:2:${x}:${y},format=rgb24`,'-frames:v','1','-f','rawvideo','pipe:1']);
   const red=pixel(files[0],100,200),clear=pixel(files[0],1100,200);assert(red[0]>230&&red[1]<30);assert(Math.abs(clear[0]-18)<3&&Math.abs(clear[2]-86)<3);

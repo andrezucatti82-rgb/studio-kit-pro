@@ -13,7 +13,7 @@ A versão 2.12.0 inclui **265 direções com apresentador em 53 segmentos**, tot
 
 As referências com apresentador usam 265 painéis fotorrealistas fictícios, com quatro momentos completos por estilo. A categoria tem acesso principal próprio; roteiros, câmera, profundidade e informação variam pela finalidade comercial. [Direção e pesquisa](docs/PRESENTER-COMMERCIAL.md). São propostas estáticas, não vídeos produzidos.
 
-A versão **2.12.0 está publicada** em [GDA Vídeos](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar), após o merge da PR #20. O instalador único e o tutorial estão disponíveis no site. [Entrega, verificações e limites](docs/RELEASE-2.12.md). A publicação do catálogo não aprova automaticamente o movimento, o áudio ou a identidade de um vídeo produzido.
+A versão **2.12.0 está publicada** em [DiSteven](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar), após o merge da PR #20. O instalador único e o tutorial estão disponíveis no site. [Entrega, verificações e limites](docs/RELEASE-2.12.md). A publicação do catálogo não aprova automaticamente o movimento, o áudio ou a identidade de um vídeo produzido.
 
 ## Orquestrador local
 
@@ -33,7 +33,7 @@ A experiência 2.10 está publicada no [espelho autorizado](https://video-multim
 
 Informe o assunto. Opcionalmente, acrescente o nome da marca, logotipo ou site. O agente pesquisa, desenvolve roteiro e direção, prepara mídia, monta, revisa e entrega o vídeo. Sem avatar por padrão; câmera livre, imagens grandes e movimento com propósito.
 
-[**Instalação completa com sua própria conta**](docs/START-HERE.md) · [**Galeria GDA Vídeos**](https://videos.gerenciadordeanuncios.com.br/)
+[**Instalação completa com sua própria conta**](docs/START-HERE.md) · [**Galeria DiSteven**](https://videos.gerenciadordeanuncios.com.br/)
 
 [Baixar a skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Instruções da skill](.agents/skills/video-multimarcas/SKILL.md)
 
@@ -51,7 +51,7 @@ Esta edição está consolidada na branch `main`. [Instalar a edição revisada]
 
 ## Biblioteca visual e publicidade
 
-A interface **Fólio por GDA** organiza a descoberta em Explicar, Apresentar e Vender, com coleções horizontais, filtro de nicho e uma revisão de escolhas no celular. [Como navegar e executar localmente](docs/FOLIO.md). A interface não altera o conteúdo dos estilos nem as aprovações de produção.
+A interface **DiSteven** organiza a descoberta em Explicar, Apresentar e Vender, com coleções horizontais, filtro de nicho e uma revisão de escolhas no celular. [Como navegar e executar localmente](docs/DISTEVEN.md). A interface não altera o conteúdo dos estilos nem as aprovações de produção.
 
 **440 anúncios por segmento:** 11 subcategorias com 40 propostas cada, reunindo os 60 anúncios anteriores e 380 novos. Moda; alimentação e bebidas; casa e decoração; joias; serviços jurídicos; pets; automotivo; turismo; beleza; serviços residenciais; infantil e maternidade. Direções naturais/UGC e campanhas elaboradas, com DBO/AIDA, narração, legendas editáveis e CTA. [Pesquisa, uso e limites](docs/SEGMENT-ADS-4.4.md).
 

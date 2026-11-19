@@ -10,7 +10,7 @@ export async function renderProduction(edited,work,{signal,onProgress=()=>{},con
  const {cancel,cancelSignal}=makeCancelSignal();signal?.addEventListener('abort',cancel,{once:true});
  try{
   const inputProps={plan:edited.plan};
-  const composition=await selectComposition({serveUrl,id:edited.plan.schemaVersion===2?'GdaGraph':'GdaProduction',inputProps,browserExecutable});
+  const composition=await selectComposition({serveUrl,id:edited.plan.schemaVersion===2?'DiStevenGraph':'DiStevenProduction',inputProps,browserExecutable});
   signal?.throwIfAborted();
   const raw=path.join(work,'remotion.mp4'),output=path.join(work,'candidate.mp4');
   await renderMedia({serveUrl,composition,inputProps,outputLocation:raw,codec:'h264',audioCodec:'aac',enforceAudioTrack:true,pixelFormat:'yuv420p',crf:18,browserExecutable,concurrency,cancelSignal,onProgress:({progress})=>onProgress(progress)});

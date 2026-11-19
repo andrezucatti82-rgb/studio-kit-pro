@@ -45,7 +45,7 @@ test('all 144 separate portrait frames exist, are unique and match their provena
     assert.match(example.productionPrompt,/moodboard e storyboard/);
     assert.match(example.productionPrompt,/amostra de 10 s/);
     assert.match(example.productionPrompt,/aprovação do usuário/);
-    assert.doesNotMatch(example.productionPrompt,/GDA|gerenciadordeanuncios/i);
+    assert.doesNotMatch(example.productionPrompt,/DiSteven|gerenciadordeanuncios/i);
   }
   assert.equal(hashes.size,144);
 });

@@ -42,7 +42,7 @@ export function deterministicPlan(request,assets,skill) {
  return validatePlan({schemaVersion:1,styleId:request.styleId,objective:request.prompt,provider:'deterministic',output:{format:request.format,width,height,fps,durationFrames:total,codec:'h264'},direction:{paper:'#eeeadd',ink:'#152d37',accent:'#003dea',font:'Geist',movement:skill.interpretation,sound:'Trilha original a 100 BPM, acentos nos movimentos, final em fade.'},fidelity:skill.rules,resources:['Remotion','FFmpeg','Geist OFL','video-multimarcas'],audio:{musicAssetId:request.musicAssetId,proceduralScore:!request.musicAssetId,bpm:100,sourceVolume:.8,musicVolume:.28},scenes,captions},assets,request);
 }
 
-export function createPlanner({provider='deterministic',apiKey=process.env.OPENAI_API_KEY,model=process.env.GDA_OPENAI_MODEL,allowPaid=false,fetchImpl=fetch}={}) {
+export function createPlanner({provider='deterministic',apiKey=process.env.OPENAI_API_KEY,model=process.env.DISTEVEN_OPENAI_MODEL??process.env.GDA_OPENAI_MODEL,allowPaid=false,fetchImpl=fetch}={}) {
  if(provider==='deterministic')return {name:provider,plan:async(request,assets,skill)=>deterministicPlan(request,assets,skill)};
  if(provider!=='openai')throw Error('Unknown planning provider');
  if(!allowPaid || !apiKey || !model)throw Error('OpenAI planning requires explicit paid opt-in, own key and configured model');

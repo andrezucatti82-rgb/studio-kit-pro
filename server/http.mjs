@@ -25,15 +25,15 @@ export function createProductionServer(orchestrator,{workflowFile}={}){
    if(!allowedHosts.includes(req.headers.host))return json(403,{error:'Invalid local host'});
    const origin=`http://${req.headers.host}`,url=new URL(req.url,origin);
    if(req.headers['sec-fetch-site']==='cross-site'||(req.headers.origin&&req.headers.origin!==origin))return json(403,{error:'Cross-origin requests are not allowed'});
-   const authenticated=String(req.headers.cookie??'').split(';').some(v=>v.trim()===`gda_local=${token}`);
+   const authenticated=String(req.headers.cookie??'').split(';').some(v=>v.trim()===`disteven_local=${token}`);
    if(url.pathname==='/api/health')return json(200,{local:true,provider:orchestrator.planner.name,supportedStyleIds:[STYLE_ID],productionApprovalsRequired:true});
    if(url.pathname==='/production-config.js'){
     if(!authenticated)return json(403,{error:'Open the local atlas first'});
-    res.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store'});res.end(`window.GDAProduction={enabled:true,token:${JSON.stringify(token)}};`);return;
+    res.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store'});res.end(`window.DiStevenProduction={enabled:true,token:${JSON.stringify(token)}};`);return;
    }
    if(url.pathname.startsWith('/api/')){
     if(!authenticated)return json(401,{error:'Local session required'});
-    if(!['GET','HEAD'].includes(req.method)&&req.headers['x-gda-token']!==token)return json(403,{error:'Local request token required'});
+    if(!['GET','HEAD'].includes(req.method)&&req.headers['x-disteven-token']!==token)return json(403,{error:'Local request token required'});
     if(req.method==='POST'&&url.pathname==='/api/assets'){
      const bytes=await body(req,100*1024*1024);
      const asset=await orchestrator.store.import(bytes,{name:decodeURIComponent(String(req.headers['x-file-name']??'media')),rights:decodeURIComponent(String(req.headers['x-media-rights']??''))});return json(201,asset);
@@ -59,7 +59,7 @@ export function createProductionServer(orchestrator,{workflowFile}={}){
    if(!file.startsWith(atlas+path.sep))return json(404,{error:'Not found'});
    if(rel==='index.html'){
     let html=await fs.readFile(file,'utf8');html=html.replace('</head>','<script src="/production-config.js"></script></head>');
-    res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Set-Cookie':`gda_local=${token}; HttpOnly; SameSite=Strict; Path=/`});res.end(req.method==='HEAD'?undefined:html);return;
+    res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Set-Cookie':`disteven_local=${token}; HttpOnly; SameSite=Strict; Path=/`});res.end(req.method==='HEAD'?undefined:html);return;
    }
    return await sendFile(req,res,file);
   }catch(error){if(res.headersSent){res.destroy();return;}json(/not found|ENOENT/i.test(error.message)?404:400,{error:String(error.message).slice(0,2400)});}

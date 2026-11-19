@@ -9,7 +9,7 @@ with sync_playwright() as p:
  for width in [375,1440]:
   ctx=browser.new_context(viewport={'width':width,'height':950},accept_downloads=True,permissions=['clipboard-read','clipboard-write'])
   page=ctx.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)))
-  page.goto(os.environ.get('GDA_QA_URL','http://127.0.0.1:8770/')+'?estilo=rotoscopia#briefSection');page.wait_for_function('window.ATLAS_READY===true');assert page.evaluate('AtlasWorkflow.skillSystem.skills.length')==1;assert page.evaluate('AtlasWorkflow.skillSystem.modules.length')==7;page.wait_for_selector('#briefDialog:visible')
+  page.goto(os.environ.get('DISTEVEN_QA_URL','http://127.0.0.1:8770/')+'?estilo=rotoscopia#briefSection');page.wait_for_function('window.ATLAS_READY===true');assert page.evaluate('AtlasWorkflow.skillSystem.skills.length')==1;assert page.evaluate('AtlasWorkflow.skillSystem.modules.length')==7;page.wait_for_selector('#briefDialog:visible')
   page.locator('#topic').fill('Texto atrás da pessoa com oclusão fiel');page.locator('#prepare').click();page.wait_for_selector('#handoff:not([hidden])')
   for platform in ['chatgpt','claude']:
    page.locator('#handoffPlatform').select_option(platform);page.locator('#promptDetails').evaluate('(e)=>e.open=true');page.locator('#copyPrompt').click();prompt=page.evaluate('navigator.clipboard.readText()');assert 'VFX POR PLANO' in prompt and 'video-vfx' in prompt

@@ -25,4 +25,4 @@ A pessoa pode escolher qualquer mecanismo e adaptá-lo ao tema, preservando as c
 
 Os testes conferem os 60 originais e seus hashes, 240 endereços não sobrepostos, proporções, navegação dos quatro momentos e exportação PNG. A verificação em navegador usa larguras de celular e desktop. Isso comprova comportamento da galeria e integridade dos arquivos; playback, escuta e amostra integrada continuam necessários para um vídeo real. Windows e macOS só podem ser declarados testados após execução nativa.
 
-A versão 2.12.0 foi publicada no domínio GDA Vídeos após o merge autorizado da PR #20. [Entrega e verificações](RELEASE-2.12.md). Referências estáticas continuam propostas fictícias; a publicação do site não aprova vídeos individuais.
+A versão 2.12.0 foi publicada no domínio DiSteven após o merge autorizado da PR #20. [Entrega e verificações](RELEASE-2.12.md). Referências estáticas continuam propostas fictícias; a publicação do site não aprova vídeos individuais.

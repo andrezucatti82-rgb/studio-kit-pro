@@ -1,10 +1,10 @@
 /* Keep the browser's form control and provide the same picker theme where CSS cannot. */
 (()=>{
  if(CSS.supports('(appearance:base-select) and selector(::picker(select))'))return;
- document.documentElement.dataset.folioSelectFallback='';
- const selector='body[data-folio=true] select:not([multiple],[size],.sr,:disabled)';
+ document.documentElement.dataset.distevenSelectFallback='';
+ const selector='body[data-disteven=true] select:not([multiple],[size],.sr,:disabled)';
  const menu=document.createElement('div');
- menu.id='folio-select-menu';menu.className='folio-select-menu';menu.setAttribute('role','listbox');menu.setAttribute('aria-label','Opções');
+ menu.id='disteven-select-menu';menu.className='disteven-select-menu';menu.setAttribute('role','listbox');menu.setAttribute('aria-label','Opções');
  let select=null,entries=[],active=-1,typed='',lastTyped=0,touchStart=null,consumedTouch=null;
 
  function position(){

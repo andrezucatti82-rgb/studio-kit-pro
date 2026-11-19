@@ -17,7 +17,8 @@ test('every homepage script and stylesheet resolves inside the release, includin
  const files=[...source.matchAll(/\b(?:src|href)="([a-zA-Z0-9_.-]+\.(?:js|css))"/g)].map(m=>m[1]);
  assert.ok(files.includes('workflow.js'));assert.ok(files.includes('site-ui.js'));
  for(const file of files){assert.ok(html.includes(`="${release}/${file}"`));assert.ok(!html.includes(`="${file}"`));}
- assert.ok(html.includes(`src="${release}/assets/folio-mark.svg"`));
+ assert.ok(html.includes(`href="${release}/assets/disteven-icon.svg"`));
+ assert.match(html,/<span class="disteven-wordmark">DiSteven<\/span>/);
  assert.doesNotMatch(html,/id="researchLink"|class="app-footer"/);
  for(const file of ['favicon.ico','favicon-32.png','favicon-16.png','apple-touch-icon.png']){assert.ok(html.includes(`href="${release}/assets/${file}"`));assert.ok(fs.existsSync(new URL('../style-atlas/dist/assets/'+file,import.meta.url)));}
  assert.throws(()=>releaseEntryHtml(source,'../other'),/Invalid/);

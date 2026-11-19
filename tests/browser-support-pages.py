@@ -3,7 +3,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 import argparse,json,os
 from urllib.parse import urlparse
-p=argparse.ArgumentParser();p.add_argument('--base',default='http://127.0.0.1:8872/');p.add_argument('--out',default='projects/folio-polish/support');p.add_argument('--diagnostics-only',action='store_true');p.add_argument('--media-base');a=p.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('--base',default='http://127.0.0.1:8872/');p.add_argument('--out',default='projects/disteven-polish/support');p.add_argument('--diagnostics-only',action='store_true');p.add_argument('--media-base');a=p.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
 catalog=json.loads(Path('style-atlas/dist/catalog.json').read_text());style=catalog['styles'][0]['id'];report={'checks':[],'errors':[]}
 urls=['research.html','download.html?style='+style+'&frame=0','sequencias.html','motion-campaign.html','automation-pilot.html','como-instalar.html']
 v=urlparse(os.environ.get('HTTPS_PROXY',''));proxy={'server':f'{v.scheme}://{v.hostname}:{v.port}','bypass':'127.0.0.1,localhost'} if v.hostname else None
@@ -19,7 +19,7 @@ with sync_playwright() as p:
    if url=='como-instalar.html':page.locator('[role=tab]').last.click();assert page.locator('[role=tab][aria-selected=true]').count()==1
    assert not page.evaluate('document.documentElement.scrollWidth>innerWidth'),(width,url,'overflow')
    assert page.evaluate('getComputedStyle(document.body).backgroundColor')=='rgb(16, 16, 16)',(width,url,'canvas')
-   assert 'Folio UI' in page.evaluate('getComputedStyle(document.body).fontFamily')
+   assert 'DiSteven UI' in page.evaluate('getComputedStyle(document.body).fontFamily')
    if url=='sequencias.html':
     page.locator('.frame-button').first.wait_for(state='visible')
     if a.media_base:assert page.locator('.frame-button img').first.get_attribute('src').startswith(a.media_base)

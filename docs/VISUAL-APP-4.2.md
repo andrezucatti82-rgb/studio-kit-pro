@@ -1,6 +1,6 @@
 # Biblioteca visual 4.2
 
-O site continua público, estático e sem login. A identidade GDA existe apenas na interface. Os pedidos, presets e a skill Vídeo Multimarcas continuam neutros.
+O site continua público, estático e sem login. A identidade DiSteven existe apenas na interface. Os pedidos, presets e a skill Vídeo Multimarcas continuam neutros.
 
 ## Escolher e produzir
 

@@ -2,7 +2,7 @@
 from pathlib import Path
 import json,os
 from playwright.sync_api import sync_playwright
-base=os.environ.get('ATLAS_TEST_URL','http://127.0.0.1:8770/');w=Path('/tmp/gda-preproduction-browser');w.mkdir(exist_ok=True);errors=[]
+base=os.environ.get('ATLAS_TEST_URL','http://127.0.0.1:8770/');w=Path('/tmp/disteven-preproduction-browser');w.mkdir(exist_ok=True);errors=[]
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1000},accept_downloads=True,ignore_https_errors=True);page.on('pageerror',lambda e:errors.append(str(e)));page.goto(base,wait_until='networkidle');page.wait_for_function('window.ATLAS_READY')
  page.locator('#grid [data-choose]').first.click();page.locator('#topic').fill('Produto com direção visual');page.locator('#prepare').click();prompt=page.locator('#promptOutput').input_value();assert 'Moodboard: gerar e mostrar' in prompt and 'não iniciar a amostra' in prompt and 'quadro inicial individual validado' in prompt;page.locator('#briefDialog [data-close]').click()

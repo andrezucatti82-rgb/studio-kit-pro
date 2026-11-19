@@ -1,0 +1,207 @@
+{
+  "status": "published_verified",
+  "url": "https://videos.gerenciadordeanuncios.com.br/",
+  "release": "atlas-20261118175255",
+  "publishedAt": "2026-11-18T14:57:17.371000-03:00",
+  "pullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/23",
+  "mergeCommit": "bb44812b1b0f6369fe70fd332a504b7acb65fac7",
+  "implementationHead": "16ca9c62842ac4f601b29e68922240577e3ce0c8",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "previewPolicy": {
+    "aspectRatio": "3:4",
+    "heightIncreasePercent": 33.33,
+    "fullBleed": true,
+    "blurredDuplicate": false,
+    "sourceAspectRatioPreserved": true,
+    "previewReframing": true,
+    "originalPanelPngUnchanged": true,
+    "annotationAndFaceDetection": false
+  },
+  "backup": {
+    "outsideDocumentRoot": true,
+    "readbackVerified": true,
+    "copyApiByteProbeVerified": true,
+    "priorIndexDigest": "aad1f8eae2109703664e6585b5e46cd345f8b4354976f34cc06a20375ca2802b",
+    "previousRelease": "atlas-20261118172132",
+    "previousReleasePreserved": true
+  },
+  "deployment": {
+    "changedFiles": [
+      "downloads/studio-kit-pro-installer.zip",
+      "disteven-ui.js",
+      "disteven.css",
+      "installation.json"
+    ],
+    "publicHashesVerified": 42,
+    "entryDigest": "ad8b771af249772abc22f8d9445cd8a89c818a9911c6b758709089113adc78ee",
+    "originReadbackVerified": true,
+    "publicReadbackVerified": true
+  },
+  "layout": {
+    "layouts": [
+      {
+        "width": 320,
+        "columns": 2,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 180
+      },
+      {
+        "width": 375,
+        "columns": 2,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 216.65625
+      },
+      {
+        "width": 768,
+        "columns": 3,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 291.53125
+      },
+      {
+        "width": 1024,
+        "columns": 4,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 298.65625
+      },
+      {
+        "width": 1440,
+        "columns": 6,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 284.4375
+      },
+      {
+        "width": 1920,
+        "columns": 6,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 320
+      }
+    ],
+    "motion": [
+      {
+        "reducedMotion": "no-preference",
+        "passed": true
+      },
+      {
+        "reducedMotion": "reduce",
+        "passed": true
+      }
+    ],
+    "errors": []
+  },
+  "stageBrowser": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.3333010835913313
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3333090697335857
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "stageDownloads": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/atlas-20261118175255/",
+    "release": "atlas-20261118175255",
+    "checks": [
+      "375px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+      "1440px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+    ],
+    "errors": []
+  },
+  "liveBrowser": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.3333010835913313
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3333090697335857
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "liveDownloads": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "release": "atlas-20261118175255",
+    "checks": [
+      "375px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+      "1440px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+    ],
+    "errors": []
+  },
+  "sourceRegression": {
+    "javascript": 223,
+    "python": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed"
+  },
+  "embeddedPage": {
+    "checks": [
+      "embedded DiSteven below 256 KiB",
+      "real catalogue and reference assets",
+      "collection and selection written to widget state",
+      "complete generated brief",
+      "localStorage access rejected by browser fixture",
+      "no viewport overflow"
+    ],
+    "errors": [],
+    "embeddedBytes": 249235
+  },
+  "installer": {
+    "sourceRevision": "f82f72bffb606e8134bd5742aad12c83def0b3a9",
+    "sourceReady": true,
+    "sha256": "a50609f3cf079ba31622b3e7ff668f55f9ab196b02def4e907244740f4809f90",
+    "bytes": 621158
+  },
+  "newCommitSecretFindings": 0,
+  "paidApisUsed": false,
+  "allStylesEditoriallyReviewed": false,
+  "accessibilityCertification": false
+}

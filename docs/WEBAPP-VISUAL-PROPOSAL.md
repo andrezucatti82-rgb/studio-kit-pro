@@ -10,7 +10,7 @@ O usuário aprovou os 36 conceitos de sequência em 11/11/2026 e solicitou sua e
 
 ## Preservar
 
-- Identidade GDA creme/azul e Geist; cinco colunas quando a largura comportar; imagens completas sem distorção.
+- Identidade atual do DiSteven com tema escuro e Inter; colunas adaptadas ao espaço disponível; imagens completas sem distorção.
 - Catálogo público, sem login, backend, chaves, rastreamento novo ou geração embutida.
 - IDs, favoritos e ficha atual; modo Page sem localStorage.
 - Até dez estilos, duração alvo e amostra de dez segundos após moodboard e storyboard aprovados.
@@ -24,9 +24,9 @@ Ampliar as sequências aos 684 estilos restantes, mantendo linguagens distintas.
 
 Revisar os 40 estilos de Interfaces, dados e sistemas e os 40 de Motion Design de Campanha por esse mesmo critério. Não converter todo o catálogo em 3D nem prometer que um prompt ou uma imagem garante o movimento. A ferramenta, os originais e a amostra continuam determinando o que pode ser executado com fidelidade.
 
-As imagens desta proposta são mockups gerados, não screenshots de testes. A implementação passou por testes de código e DOM. A inspeção real em desktop e celular permanece pendente por indisponibilidade de navegador conectado; a autorização de publicação não transforma essa pendência em teste aprovado.
+As imagens abaixo registram a interface atual do DiSteven em Chromium com tamanhos de tela emulados.
 
-## Mockups
+## Capturas atuais
 
 - [Biblioteca desktop](assets/webapp-proposal/webapp-biblioteca-desktop.webp)
 - [Pedido desktop](assets/webapp-proposal/webapp-pedido-desktop.webp)

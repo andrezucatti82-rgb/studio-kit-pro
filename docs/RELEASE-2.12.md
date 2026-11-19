@@ -1,6 +1,6 @@
 # Studio Kit Pro 2.12.0 — entrega publicada
 
-A versão 2.12.0 está publicada em [GDA Vídeos](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar). A [PR #20](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/20) foi integrada por `054ebcc143ef2f6a99ac9dba6fcfc55132dc6597`, com autorização de publicação. O site oferece um instalador compacto único e o tutorial de uso.
+A versão 2.12.0 está publicada em [DiSteven](https://videos.gerenciadordeanuncios.com.br/?v=2.12.0#instalar). A [PR #20](https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/20) foi integrada por `054ebcc143ef2f6a99ac9dba6fcfc55132dc6597`, com autorização de publicação. O site oferece um instalador compacto único e o tutorial de uso.
 
 ## Ampliação comercial do catálogo 4.8
 

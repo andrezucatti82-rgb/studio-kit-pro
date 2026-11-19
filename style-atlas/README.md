@@ -20,7 +20,7 @@ As pessoas e os ambientes das referências são fictícios. A filmagem ou o avat
 
 Todos os estilos têm sequência de quatro quadros. As referências com apresentador são fotorrealistas; outras famílias preservam sua linguagem ilustrada, editorial, de interface ou motion. Cartões, setores, detalhes e assistente encaixam os quadros completos sem distorção. As prévias WebP dos 60 painéis PNG anteriores mantêm as dimensões e o enquadramento, com originais preservados para ampliação e download.
 
-Há 24 combinações tipográficas com arquivos e licenças registrados em `dist/fonts.json` e `dist/assets/fonts/`. A identidade da interface é GDA; a identidade dos vídeos segue a marca do usuário. Veja [direitos e procedência](../THIRD_PARTY.md).
+Há 24 combinações tipográficas com arquivos e licenças registrados em `dist/fonts.json` e `dist/assets/fonts/`. A identidade da interface é DiSteven; a identidade dos vídeos segue a marca do usuário. Veja [direitos e procedência](../THIRD_PARTY.md).
 
 ## Busca, briefing e privacidade
 

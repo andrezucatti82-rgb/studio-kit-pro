@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 import argparse,json,mimetypes,os
 from playwright.sync_api import sync_playwright,expect
-p=argparse.ArgumentParser();p.add_argument('--base',default='http://127.0.0.1:8770/');p.add_argument('--out',default='projects/folio-segmented/search');p.add_argument('--page');args=p.parse_args();out=Path(args.out);out.mkdir(parents=True,exist_ok=True);dist=Path(__file__).resolve().parents[1]/'style-atlas/dist'
+p=argparse.ArgumentParser();p.add_argument('--base',default='http://127.0.0.1:8770/');p.add_argument('--out',default='projects/disteven-segmented/search');p.add_argument('--page');args=p.parse_args();out=Path(args.out);out.mkdir(parents=True,exist_ok=True);dist=Path(__file__).resolve().parents[1]/'style-atlas/dist'
 v=urlparse(os.environ.get('HTTPS_PROXY',''));proxy={'server':f'{v.scheme}://{v.hostname}:{v.port}','bypass':'127.0.0.1,localhost'} if v.hostname else None
 if proxy and v.username:proxy.update(username=v.username,password=v.password or '')
 report={'checks':[],'errors':[]}
@@ -19,7 +19,7 @@ with sync_playwright() as p:
     def runtime(route):
      file=(dist/urlparse(route.request.url).path.lstrip('/')).resolve();assert file.is_relative_to(dist)
      route.fulfill(path=str(file),content_type=mimetypes.guess_type(file.name)[0] or 'application/octet-stream',headers={'Access-Control-Allow-Origin':'*'})
-    context.route('https://folio.runtime/**',runtime)
+    context.route('https://disteven.runtime/**',runtime)
    page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)));page.goto(args.base+('autocomplete-candidate' if embedded else ''));page.wait_for_function('window.ATLAS_READY')
    page.evaluate('AtlasApp.chooseStyle("vidro-e-refracao")');before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)');search=page.locator('#search');search.fill('dent')
    panel=page.locator('#searchSuggestions');expect(panel).to_be_visible();assert page.locator('#searchSuggestions [role=option]').count()<=6;assert panel.evaluate('e=>getComputedStyle(e).position')=='absolute'
@@ -32,8 +32,8 @@ with sync_playwright() as p:
    search.fill('<img src=x onerror=alert(1)>');expect(panel).not_to_be_visible();assert not page.locator('#searchSuggestions img').count()
    search.fill('implan');expect(panel).to_be_visible();assert page.locator('#searchSuggestions span').first.inner_text()=='implante'
    if width<700:
-    page.evaluate('testKeyboard(360)');page.wait_for_function('document.body.dataset.folioKeyboard==="true"');page.wait_for_function('document.querySelector("#searchSuggestions").getBoundingClientRect().bottom<=visualViewport.height-46');assert search.bounding_box()['y']>=page.locator('#folioHeader').bounding_box()['height']
-    page.evaluate('testKeyboard(812)');page.wait_for_function('!document.body.dataset.folioKeyboard')
+    page.evaluate('testKeyboard(360)');page.wait_for_function('document.body.dataset.distevenKeyboard==="true"');page.wait_for_function('document.querySelector("#searchSuggestions").getBoundingClientRect().bottom<=visualViewport.height-46');assert search.bounding_box()['y']>=page.locator('#distevenHeader').bounding_box()['height']
+    page.evaluate('testKeyboard(812)');page.wait_for_function('!document.body.dataset.distevenKeyboard')
    page.screenshot(path=str(out/f'suggestions-{width}-{embedded}.png'),animations='disabled')
    page.keyboard.press('Tab');expect(panel).not_to_be_visible();assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
    assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
