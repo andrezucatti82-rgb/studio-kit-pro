@@ -81,6 +81,9 @@
   document.body.dataset.folioBrowse=state.mode==='catalogue'&&!data.query?'category':'';
   document.body.dataset.folioDensity='compact';
   categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>{const g=window.AtlasNavigation.groups.find(g=>g.id===b.dataset.folioOpenGroup);b.setAttribute('aria-current',String(data.group===g.id||g.families.includes(data.family)));});
+  $('folioMenuGroups').querySelectorAll('[data-folio-family]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioFamily===data.family)));
+  syncKindFilter();
+  if(state.mode==='home')setKindOpen(false);
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
   $('folioChangeGoal').hidden=state.mode!=='collection';$('folioBrowseAll').hidden=state.mode!=='home';
   $('folioCollections').hidden=state.mode!=='home';$('grid').hidden=state.mode==='home';
@@ -132,7 +135,7 @@
   const skip=document.querySelector('.skip-link');let content=view==='help'?$('installTitle'):view==='brief'?$('briefTitle'):view==='library'?(state.mode==='home'?$('folioDiscoveryTitle'):$('folioCollectionTitle')):$('projectTitle');
   if(skip&&content){if(!content.id)content.id='folioContentTitle';content.tabIndex=-1;skip.href='#'+content.id;skip.textContent='Pular para o conteúdo';}
   window.AtlasInlinePanels.onView(view);
-  if(view!=='library'){closeMenu();if($('folioChoice').open){$('folioChoice').close();}}
+  if(view!=='library'){closeMenu();setKindOpen(false);if($('folioChoice').open){$('folioChoice').close();}}
   document.querySelectorAll('[data-folio-home]').forEach(b=>b.setAttribute('aria-current',view==='library'?'page':'false'));
   document.querySelectorAll('[data-folio-choice]').forEach(b=>b.setAttribute('aria-current',['brief','project'].includes(view)?'page':'false'));
  }
@@ -155,8 +158,16 @@
   }
   if(!latest?.selected.length||window.AtlasGuidedFlow?.hasDraft())$('startGuided').click();else window.AtlasShell.openBrief();
  });
- if(globalThis.ResizeObserver){const observer=new ResizeObserver(()=>{document.documentElement.style.setProperty('--folio-header-height',header.getBoundingClientRect().height+'px');alignMenu();});observer.observe(header);observer.observe(categoryBar);observer.observe($('folioMenu'));}
- window.addEventListener('resize',alignMenu);document.fonts?.ready?.then(alignMenu);
+ const stickySubcategories=matchMedia('(min-width: 1024px)');
+ function measureNavigation(){
+  const height=header.getBoundingClientRect().height;
+  const total=height+(stickySubcategories.matches?$('folioMenu').getBoundingClientRect().height:0);
+  document.documentElement.style.setProperty('--folio-header-height',height+'px');
+  document.documentElement.style.setProperty('--folio-navigation-height',total+'px');
+  alignMenu();
+ }
+ if(globalThis.ResizeObserver){const observer=new ResizeObserver(measureNavigation);observer.observe(header);observer.observe(categoryBar);observer.observe($('folioMenu'));}
+ window.addEventListener('resize',measureNavigation);document.fonts?.ready?.then(measureNavigation);
  // iOS keeps the layout viewport behind the keyboard. Follow the visual
  // viewport instead, leaving room for its input accessory bar as well.
  const viewport=window.visualViewport;
@@ -187,7 +198,7 @@
  }
  function menuRows(){
   const groups=window.AtlasNavigation.groups,selected=groups.find(g=>g.id===menuGroup);
-  const links=selected?selected.families.map(id=>{const f=catalog.families.find(f=>f.id===id);return `<button type="button" data-folio-family="${esc(f.id)}"><span>${esc(f.name)}</span></button>`;}):groups.map(g=>`<button type="button" data-folio-group="${esc(g.id)}"><span>${esc(g.name)}</span></button>`);
+  const links=selected?selected.families.map(id=>{const f=catalog.families.find(f=>f.id===id);return `<button type="button" data-folio-family="${esc(f.id)}" aria-current="${latest?.family===f.id}"><span>${esc(f.name)}</span></button>`;}):groups.map(g=>`<button type="button" data-folio-group="${esc(g.id)}"><span>${esc(g.name)}</span></button>`);
   $('folioMenu').setAttribute('aria-label',selected?selected.name:'Categorias de estilos');
   $('folioMenuGroups').innerHTML=`<div class="folio-text-links">${links.join('')}${selected?'':'<button type="button" data-folio-all><span>Todos os estilos</span></button>'}</div>`;
  }
@@ -195,13 +206,14 @@
   const menu=$('folioMenu'),first=categoryBar.querySelector('button');if(menu.hidden||!first||!first.getClientRects().length)return;
   const firstBox=first.getBoundingClientRect(),barBox=categoryBar.getBoundingClientRect(),menuBox=menu.getBoundingClientRect(),padding=parseFloat(getComputedStyle(first).paddingLeft)||0;
   const start=Math.max(0,Math.max(barBox.left,firstBox.left+categoryBar.scrollLeft+padding)-menuBox.left);
-  const available=Math.max(0,menuBox.width-start),columns=available>=800?4:available>=560?3:available>=310?2:1;
+  const available=Math.max(0,menuBox.width-start-(parseFloat(getComputedStyle(menu).paddingRight)||0));
+  const columns=available>=800?4:available>=560?3:available>=310?2:1;
   menu.style.setProperty('--folio-menu-start',start+'px');menu.style.setProperty('--folio-menu-columns',String(columns));
  }
  function focusMenu(){($('folioMenuGroups').querySelector('[data-folio-family],[data-folio-group]')||$('folioMenuGroups').querySelector('button'))?.focus({preventScroll:true});}
  function closeMenu(destination){
   if($('folioMenu').hidden)return;
-  $('folioMenu').hidden=true;if(!destination)window.scrollTo({top:menuScroll,behavior:'auto'});categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  $('folioMenu').hidden=true;measureNavigation();if(!destination&&!stickySubcategories.matches)window.scrollTo({top:menuScroll,behavior:'auto'});categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
   const target=destination||menuTrigger,focusTarget=target?.isConnected&&target.getClientRects().length?target:categoryBar.querySelector('button');
   if(focusTarget?.parentElement===categoryBar){const box=focusTarget.getBoundingClientRect(),bar=categoryBar.getBoundingClientRect();if(box.left<bar.left)categoryBar.scrollLeft-=bar.left-box.left;else if(box.right>bar.right)categoryBar.scrollLeft+=box.right-bar.right;}
   focusTarget?.focus({preventScroll:true});
@@ -209,16 +221,57 @@
  function showMenu(trigger,group='',keyboard=false){
   if(!$('folioMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
   if($('folioMenu').hidden)menuScroll=window.scrollY;window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;
-  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));alignMenu();if(keyboard)focusMenu();
+  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));measureNavigation();if(keyboard)focusMenu();
  }
- function selectCategory({family='',group=''}={}){
+ function selectCategory({family='',group='',keepMenu=false}={}){
   window.AtlasInlinePanels.reset();
 
-  state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;closeMenu($('folioCollectionTitle'));
+  state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;
+  setKindOpen(false);
+  if(!keepMenu)closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   if(group)window.AtlasApp.setCategoryGroup(group);
   else if(family){$('familySelect').value=family;$('familySelect').dispatchEvent(new Event('change',{bubbles:true}));}
   $('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
+ }
+ // Keep the native field as the catalogue's source of truth. The in-page
+ // choices avoid the operating system's colors and preserve the same filter.
+ const kindSelect=$('kind');
+ const kindTrigger=document.createElement('button');
+ kindTrigger.type='button';kindTrigger.className='folio-kind-trigger';
+ kindTrigger.setAttribute('aria-controls','folioKindOptions');
+ const kindOptions=document.createElement('div');
+ kindOptions.id='folioKindOptions';kindOptions.className='folio-kind-options';
+ kindOptions.setAttribute('role','group');kindOptions.setAttribute('aria-label','Tipos de estilo');
+ function setKindOpen(open,restoreFocus=false){
+  kindTrigger.setAttribute('aria-expanded',String(open));kindOptions.hidden=!open;
+  if(restoreFocus)kindTrigger.focus();
+ }
+ function syncKindFilter(){
+  const label=Array.from(kindSelect.options).find(option=>option.value===kindSelect.value)?.textContent||'Todos os tipos';
+  kindTrigger.textContent=label;kindTrigger.setAttribute('aria-label','Filtrar por tipo: '+label);
+  kindOptions.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.value===kindSelect.value)));
+ }
+ function initKindFilter(){
+  const nativeLabel=kindSelect.closest('label');
+  nativeLabel.before(kindTrigger);nativeLabel.hidden=true;
+  kindSelect.closest('.folio-catalogue-controls').append(kindOptions);
+  for(const option of kindSelect.options){
+   const choice=document.createElement('button');
+   choice.type='button';choice.value=option.value;choice.textContent=option.textContent;
+   kindOptions.append(choice);
+  }
+  setKindOpen(false);syncKindFilter();
+  kindTrigger.addEventListener('click',()=>{
+   const open=kindOptions.hidden;setKindOpen(open);
+   if(open)kindOptions.querySelector('[aria-pressed=true]')?.focus();
+  });
+  kindOptions.addEventListener('click',e=>{
+   const choice=e.target.closest('button');if(!choice)return;
+   kindSelect.value=choice.value;
+   kindSelect.dispatchEvent(new Event('change',{bubbles:true}));
+   setKindOpen(false,true);
+  });
  }
  function renderChoice(){
   const ids=latest.selected;$('folioChoiceHelp').textContent=ids.length?'Um estilo orienta seu vídeo. Você pode trocar a referência a qualquer momento.':'Explore uma coleção e escolha um estilo.';
@@ -234,7 +287,11 @@
  $('searchEverywhere').addEventListener('click',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';});
  $('familySelect').addEventListener('change',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;});
  $('folioNiche').addEventListener('change',()=>{state.niche=$('folioNiche').value;gridScroll=0;refresh();});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!$('folioMenu').hidden){e.preventDefault();closeMenu();}});
+ document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape'||e.defaultPrevented)return;
+  if(!kindOptions.hidden){e.preventDefault();setKindOpen(false,true);}
+  else if(!$('folioMenu').hidden){e.preventDefault();closeMenu();}
+ });
  $('folioChoiceContinue').addEventListener('click',()=>{$('folioChoice').close();window.AtlasShell.openBrief();});
  $('folioBack').addEventListener('click',()=>home({restore:true}));$('folioChangeGoal').addEventListener('click',()=>home());
  $('folioBrowseAll').addEventListener('click',catalogue);
@@ -249,13 +306,13 @@
   const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
   const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{const wasOpen=!$('folioMenu').hidden&&menuGroup===g.id;selectCategory({group:g.id});if(!wasOpen)showMenu(openGroup,g.id,e.detail===0);}}
   const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{selectCategory({group:g.id});showMenu(categoryBar.querySelector('[data-folio-open-group="'+g.id+'"]'),g.id,e.detail===0);}}
-  const family=t.closest('[data-folio-family]');if(family)selectCategory({family:family.dataset.folioFamily});
+  const family=t.closest('[data-folio-family]');if(family)selectCategory({family:family.dataset.folioFamily,keepMenu:stickySubcategories.matches});
   if(t.closest('[data-folio-all]')){state.niche='';catalogue();}
  });
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);
   $('folioNiche').innerHTML='<option value="">Todos os nichos</option>'+niches.map(n=>`<option value="${esc(n.id)}">${esc(n.name)}</option>`).join('');
-  renderCategoryBar();ready=true;document.body.dataset.folio='true';refresh();
+  renderCategoryBar();initKindFilter();ready=true;document.body.dataset.folio='true';refresh();
   if(!window.ATLAS_PAGE_MODE&&window.location.hash==='#briefSection')window.AtlasShell.openBrief();
  });
 })();

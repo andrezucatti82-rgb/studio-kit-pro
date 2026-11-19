@@ -42,19 +42,39 @@ body[data-folio=true] :is(.folio-save,.folio-rail-arrow,.folio-help,.folio-to-to
 body[data-folio=true] .folio-header .folio-help{min-width:48px;min-height:48px}
 
 /* Dark glass is limited to navigation; the content underneath stays readable. */
+body[data-folio=true]{--folio-page-gutter:max(40px,calc((100% - 1520px) / 2))}
 body[data-folio=true] .folio-header{
+ max-width:none;
  background:#161616;border-bottom:1px solid var(--folio-edge);
  box-shadow:0 10px 28px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.035);
+}
+@media(min-width:701px){
+ body[data-folio=true] .folio-header{padding-inline:var(--folio-page-gutter)}
 }
 @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
  body[data-folio=true] .folio-header{background:rgba(16,16,16,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
 }
-body[data-folio=true] :is(.folio-goals,.folio-header .folio-category-bar){
+body[data-folio=true] .folio-goals{
  background:rgba(255,255,255,.045);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 3px 10px rgba(0,0,0,.12);
 }
-body[data-folio=true] .folio-header nav.folio-category-bar{flex-wrap:wrap;overflow:visible}
-body[data-folio=true] .folio-header nav.folio-category-bar>button{padding:10px;line-height:1.4;font-weight:500}
+body[data-folio=true] .folio-header nav.folio-category-bar{background:transparent;flex-wrap:wrap;overflow:visible}
+body[data-folio=true] .folio-header nav.folio-category-bar>button{
+ justify-content:center;gap:6px;padding:10px 14px;text-align:center;line-height:1.4;font-weight:500;
+}
+body[data-folio=true] .folio-header nav.folio-category-bar>button:is(:hover,:focus-visible):not([aria-current=true]){background:transparent}
+@media(hover:hover) and (pointer:fine){
+ .folio-category-bar>button:hover>span{transform:scale(1.04)}
+}
 body[data-folio=true] :is(.folio-goals button[aria-pressed=true],.folio-category-bar>button[aria-current=true]){box-shadow:var(--folio-control-depth)}
+@media(min-width:1024px){
+ html:has(body[data-folio=true]){scroll-padding-top:calc(var(--folio-navigation-height,var(--folio-header-height,140px)) + 8px)}
+ body[data-folio=true] #folioMenu{
+  position:sticky;top:var(--folio-header-height,0px);z-index:49;
+  width:100%;max-width:none;padding-right:var(--folio-page-gutter);
+  background:#101010;
+ }
+}
+#folioMenu button[aria-current=true]{color:var(--folio-accent);font-weight:500}
 body[data-folio=true] .folio-goals button{padding:12px 18px;min-height:48px}
 body[data-folio=true] #folioNiche{padding:12px 38px 12px 20px;min-height:48px}
 
@@ -104,12 +124,29 @@ body[data-folio=true] .search-suggestions{padding:6px;border:1px solid var(--fol
 body[data-folio=true] .search-suggestions>button{padding:12px 16px;min-height:48px;border-radius:18px}
 body[data-folio=true] .toast{padding:14px 20px;border:1px solid var(--folio-edge);box-shadow:var(--folio-depth)}
 body[data-folio=true] .folio-catalogue-controls :is(button,select){border-radius:999px;padding:10px 12px;min-height:44px;font-size:var(--folio-type-compact);box-shadow:none;background:transparent}
+body[data-folio=true] .folio-catalogue-controls .folio-kind-trigger{
+ display:inline-flex;justify-content:space-between;align-items:center;gap:12px;
+ border:1px solid var(--folio-edge);text-align:left;
+}
+.folio-kind-trigger::after{
+ content:'';flex:none;width:6px;height:6px;border:solid currentColor;border-width:0 1px 1px 0;
+ transform:translateY(-2px) rotate(45deg);
+}
+.folio-kind-trigger[aria-expanded=true]::after{transform:translateY(2px) rotate(225deg)}
+.folio-kind-options{
+ flex:0 0 100%;display:flex;flex-wrap:wrap;gap:4px;padding:8px;
+ border:1px solid var(--folio-edge);border-radius:16px;background:#1c1c1c;
+}
+.folio-kind-options[hidden]{display:none}
+body[data-folio=true] .folio-catalogue-controls .folio-kind-options button{color:var(--ink);text-align:left}
+body[data-folio=true] .folio-catalogue-controls .folio-kind-options button:is(:hover,:focus-visible){background:#272727;color:var(--folio-accent)}
+body[data-folio=true] .folio-catalogue-controls .folio-kind-options button[aria-pressed=true]{background:var(--folio-accent);color:#161b05}
 body[data-folio=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44px;padding:10px 12px;border:0;background:transparent;box-shadow:none;justify-content:flex-start;font-size:var(--folio-type-compact);font-weight:400}
 
 @media(max-width:700px){
  body[data-folio=true] .folio-header{padding:8px 16px 6px;gap:4px 8px}
  body[data-folio=true] .folio-header nav.folio-category-bar{gap:0 2px;padding:4px 6px}
- body[data-folio=true] .folio-header nav.folio-category-bar>button{padding:10px 6px;font-size:var(--folio-type-compact)}
+ body[data-folio=true] .folio-header nav.folio-category-bar>button{padding:10px 12px;font-size:var(--folio-type-compact)}
  body[data-folio=true] .folio-header-progress #folioContinue{padding:12px 16px}
  body[data-folio=true] .folio-header .folio-help{width:48px;height:48px;padding:12px}
  body[data-folio=true] :is(.brief-editor,.brief-preview,#guidedDialog>section){padding:18px 16px;border-radius:22px}
@@ -135,7 +172,7 @@ body[data-folio=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44px;p
 /* At tablet widths, remove redundant cues before hiding a category word. */
 @media(min-width:701px) and (max-width:1199px){
  body[data-folio=true] .folio-header nav.folio-category-bar{gap:2px}
- body[data-folio=true] .folio-header nav.folio-category-bar>button{padding:10px 8px}
+ body[data-folio=true] .folio-header nav.folio-category-bar>button{padding:10px 12px}
  body[data-folio=true] .folio-header nav.folio-category-bar svg{display:none}
  body[data-folio=true] .folio-header .folio-desktop-nav[data-folio-home]{display:none}
 }
