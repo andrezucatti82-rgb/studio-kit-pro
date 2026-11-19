@@ -516,8 +516,7 @@ body[data-folio=true] .guided-preferences>h3 small{font-size:12px;font-weight:40
 /* Category navigation shares the goal selector's segmented surface. */
 body[data-folio=true] .folio-header .folio-category-bar{background:#1c1c1c;border-radius:28px;padding:4px;gap:4px}
 body[data-folio=true] .folio-header .folio-category-bar>button{min-height:44px;padding:8px;border-radius:999px;background:transparent;color:var(--muted)}
-body[data-folio=true] .folio-header .folio-category-bar>button[aria-current=true]{background:var(--folio-accent);color:#161b05;font-weight:500}
-body[data-folio=true] .folio-header .folio-category-bar>button:is(:hover,:focus-visible):not([aria-current=true]){background:#2a2a2a;color:var(--folio-accent)}
+body[data-folio=true] .folio-header .folio-category-bar>button:is([aria-current=true],:hover,:focus-visible){color:var(--folio-accent)}
 @media(max-width:700px){
  body[data-folio=true] .folio-header .folio-category-bar{width:calc(100% + 16px);margin:2px -8px 0;padding:4px 6px;gap:0 2px;flex-wrap:wrap;overflow:visible}
  body[data-folio=true] .folio-header .folio-category-bar>button{padding:8px 2px;font-size:14px}

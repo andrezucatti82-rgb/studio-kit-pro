@@ -61,11 +61,10 @@ body[data-folio=true] .folio-header nav.folio-category-bar{background:transparen
 body[data-folio=true] .folio-header nav.folio-category-bar>button{
  justify-content:center;gap:6px;padding:10px 14px;text-align:center;line-height:1.4;font-weight:500;
 }
-body[data-folio=true] .folio-header nav.folio-category-bar>button:is(:hover,:focus-visible):not([aria-current=true]){background:transparent}
 @media(hover:hover) and (pointer:fine){
  .folio-category-bar>button:hover>span{transform:scale(1.04)}
 }
-body[data-folio=true] :is(.folio-goals button[aria-pressed=true],.folio-category-bar>button[aria-current=true]){box-shadow:var(--folio-control-depth)}
+body[data-folio=true] .folio-goals button[aria-pressed=true]{box-shadow:var(--folio-control-depth)}
 @media(min-width:1024px){
  html:has(body[data-folio=true]){scroll-padding-top:calc(var(--folio-navigation-height,var(--folio-header-height,140px)) + 8px)}
  body[data-folio=true] #folioMenu{
@@ -111,9 +110,13 @@ body[data-folio=true] #briefVisual .reference-panel>img{max-height:none}
  body[data-folio=true] .brief-preview{
   position:static;align-self:stretch;display:flex;flex-direction:column;min-height:0;
  }
- body[data-folio=true] #briefVisual{display:flex;flex:1;flex-direction:column;min-height:0}
+ body[data-folio=true] #briefVisual{
+  --folio-brief-image-limit:min(420px,58vh);
+  display:flex;flex:1;flex-direction:column;min-height:0;
+ }
  body[data-folio=true] #briefVisual>.frame-expand{
-  display:grid;place-items:center;flex:1 1 0;min-height:0;container-type:size;
+  display:grid;place-items:start center;flex:1 1 0;min-height:0;
+  max-height:var(--folio-brief-image-limit);container-type:size;
   background:transparent;
  }
  body[data-folio=true] #briefVisual>.frame-expand>.reference-panel{
@@ -121,6 +124,14 @@ body[data-folio=true] #briefVisual .reference-panel>img{max-height:none}
  }
  body[data-folio=true] #briefVisual>.frame-expand>img{
   height:100%;max-height:100%;object-fit:contain;
+ }
+ body[data-folio=true] #briefDialog[data-stage=review] .brief-preview{align-self:start}
+ body[data-folio=true] #briefDialog[data-stage=review] #briefVisual>.frame-expand{flex:none;container-type:normal}
+ body[data-folio=true] #briefDialog[data-stage=review] #briefVisual>.frame-expand>.reference-panel{
+  width:min(100%,calc(var(--folio-brief-image-limit) * var(--frame-ratio,.75)));
+ }
+ body[data-folio=true] #briefDialog[data-stage=review] #briefVisual>.frame-expand>img{
+  height:auto;max-height:var(--folio-brief-image-limit);
  }
  body[data-folio=true] #briefVisual .sequence-strip{display:flex}
  body[data-folio=true] #briefVisual .sequence-strip button{width:40px}
