@@ -14,6 +14,7 @@ const APIS = {
   polyhaven: 'https://api.polyhaven.com/',
   ambientcg: 'https://ambientcg.com/api/v2/full_json',
   met: 'https://collectionapi.metmuseum.org/public/collection/v1/',
+  metSearch: 'https://collectionapi.metmuseum.org/public/collection/v1.1/search',
 };
 const headers = {'User-Agent': 'StudioKitPro-Curadoria/1.0 (https://github.com/andrezucatti82-rgb/studio-kit-pro)'};
 
@@ -116,7 +117,7 @@ export async function search({source, query, type, limit = 12, strict = false}) 
       ({source,id:item.assetId,title:item.displayName,page:'https://ambientcg.com/view?id='+item.assetId,license:'CC0',availableVia:'inspect'}));
   }
   if (source === 'met') {
-    const data = await getJson(url(new URL('search',APIS.met),{q:query,hasImages:'true'}));
+    const data = await getJson(url(APIS.metSearch,{q:query,hasImages:'true',limit}));
     return (data.objectIDs || []).slice(0,limit).map(id => ({source,id:String(id),page:'https://www.metmuseum.org/art/collection/search/'+id,availableVia:'inspect'}));
   }
   if (source === 'naturalearth') return /map|terra|earth|countr|país|pais|geogra/i.test(query) ? [preset] : [];
