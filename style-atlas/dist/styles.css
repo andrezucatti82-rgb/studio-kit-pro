@@ -16,11 +16,11 @@ h1,h2,h3,h4,button,input,textarea,select{font-family:Geist,Arial,sans-serif}.ui-
 .reveal-card{opacity:0;translate:0 12px;transition:opacity .48s ease var(--reveal-delay,0ms),translate .48s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms),box-shadow .24s ease,transform .24s ease,border-color .24s ease}
 .reveal-card.is-visible{opacity:1;translate:0 0}
 button,.button,.hero-actions a{transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.primary:hover{background:#0028c5;box-shadow:0 5px 16px #0032eb24}.outline:hover,.pill:hover{background:#eaf0f5;border-color:#a1b5c4}
-button:active,.button:active{transform:scale(.985)}.text-button .ui-icon,.hero-actions .ui-icon{transition:transform .25s ease}.hero-actions a:hover .ui-icon{transform:translateX(2px)}
+.primary:hover{background:#0028c5}.outline:hover,.pill:hover{background:#eaf0f5;border-color:#a1b5c4}
+
 dialog[open]{animation:dialog-enter .23s cubic-bezier(.2,.7,.2,1)}dialog[open]::backdrop{animation:backdrop-enter .2s ease}
-.font-card:hover{box-shadow:0 6px 20px #23455f12;transform:translateY(-2px)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hero-art{transform:none;will-change:auto}.reveal-card{opacity:1;translate:none}.card:hover,.font-card:hover,.hero-actions a:hover .ui-icon{transform:none}}
+.font-card:hover{border-color:var(--accent)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hero-art{transform:none;will-change:auto}.reveal-card{opacity:1;translate:none}.card:hover{transform:none}}
 
 .new-tag{display:inline-block;padding:3px 6px;border-radius:4px;background:#dce6fc;color:#1253bd;font-size:9px;letter-spacing:.08em}.novelty{background:#eee9dd;border-radius:16px;padding:22px;margin-top:24px}.research ul{padding-left:20px}.research li{margin:12px 0}.research a{color:var(--blue,#145ad6)}#newFilter[aria-pressed=true]{background:#145ad6;color:white;border-color:#145ad6}
 

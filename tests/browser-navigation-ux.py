@@ -24,11 +24,11 @@ with sync_playwright() as p:
    assert page.locator('#distevenHeader').bounding_box()['height']<90
    trigger.click()
    expect(trigger).to_have_attribute('aria-expanded','true')
-   expect(page.locator('#distevenCategoryBar [data-disteven-open-group]')).to_have_count(6)
+   expect(page.locator('#distevenMenu [data-disteven-mobile-group]')).to_have_count(6)
   else:
    expect(trigger).not_to_be_visible()
    expect(page.locator('#distevenCategoryBar')).to_be_visible()
-  page.locator('[data-disteven-open-group=business]').click()
+  page.locator('[data-disteven-mobile-group=business]' if width<=700 else '[data-disteven-open-group=business]').click()
   page.locator('[data-disteven-topic=casa]').click()
   page.locator('[data-disteven-detail=moveis]').click()
   expect(page.locator('#distevenCollectionTitle')).to_have_text('Móveis e decoração')

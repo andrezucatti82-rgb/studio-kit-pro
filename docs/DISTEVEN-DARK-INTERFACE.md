@@ -5,8 +5,9 @@ As referências visuais enviadas pelo usuário orientam a hierarquia e o acabame
 - Fundo `#101010`, superfícies `#242424`, superfícies elevadas `#303030`, texto `#f5f5f5` e secundário `#a8a8a8`.
 - Inter local nos pesos 400, 500, 600 e 700; arquivos, procedência e hashes em `style-atlas/records/disteven-dark/ui-fonts.json`. É uma aproximação visual às referências, sem afirmar que é a fonte oficial do Grok/xAI.
 - DiSteven em Inter Semibold branca no cabeçalho. O arquivo `assets/disteven-logo.svg` contém a palavra em curvas. O navegador e a tela inicial usam o D nos ícones SVG, PNG e ICO.
-- No desktop, os atalhos de categorias ficam no cabeçalho. O menu mostra somente os nomes das subcategorias em colunas de texto. O botão de quatro quadrados começa pelos sete nomes de categorias; escolher uma mostra suas subcategorias, sem linha de retorno. Não há cartões, contadores, títulos promocionais, busca ou rodapé no menu.
-- A busca da biblioteca e o filtro de segmento permanecem na página principal. Escape, foco após escolher um destino e projetos existentes são preservados. O menu é uma seção expansível no fluxo da página: desloca o conteúdo para baixo, mantém a rolagem e permite usar o restante da tela. Não tem sobreposição, fundo desfocado ou foco preso.
+- No desktop, cada categoria abre uma lista vertical abaixo do cabeçalho. Quando há mais opções, uma segunda lista abre ao lado da primeira. Os painéis têm fundo cinza opaco, cantos arredondados e borda fina.
+- No celular, o botão **Categorias** abre um nível por vez. **Voltar** sobe um nível e **Ver todos os estilos** abre os resultados da categoria exibida.
+- A categoria principal tem texto maior que o das opções internas. O ponteiro muda as cores dos botões e o foco do teclado tem destaque próprio.
 - No celular, o formulário aparece antes da prévia detalhada e usa campos com pelo menos 16 px. O tutorial também é escuro e contém suas fontes para abrir como arquivo local.
 - Os 1.425 estilos continuam com a prévia 3:4 de altura uniforme e imagem preenchendo todo o quadro. A apresentação da interface não recolore ou altera as imagens, os painéis originais nem as aprovações.
 

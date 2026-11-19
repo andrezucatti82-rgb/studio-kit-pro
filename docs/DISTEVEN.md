@@ -9,9 +9,9 @@ O DiSteven é a galeria do Studio Kit Pro. Comece pelo que seu vídeo precisa co
 5. Toque em **Adicionar +**. Em **Minha escolha**, confira as referências e decida quais características quer aproveitar de cada uma.
 6. Toque em **Continuar** e siga as perguntas para preparar seu vídeo.
 
-A busca encontra assuntos, nichos, objetos, efeitos e palavras-chave no catálogo. Ao começar uma busca, o DiSteven sai da coleção e do nicho para procurar em todas as categorias. Os filtros explícitos, como Favoritos, continuam identificados na tela. O botão de categorias, no topo, também permite acessar o catálogo completo, os favoritos e a instalação.
+A busca encontra assuntos, nichos, objetos, efeitos e palavras-chave no catálogo. Ao começar uma busca, o DiSteven sai da coleção e do nicho para procurar em todas as categorias. Os filtros explícitos, como Favoritos, continuam identificados na tela. Use **Ver todos** na biblioteca para acessar o catálogo completo.
 
-Abrir um grupo no menu mostra suas opções. Escolher uma categoria final fecha o menu e abre os estilos correspondentes. O botão **Voltar** retorna às coleções. **Ajuda** explica a instalação e o uso, inclusive para quem está começando.
+No computador, cada categoria abre uma lista vertical e suas opções mais específicas aparecem ao lado. No celular, **Categorias** mostra uma lista por vez. Use **Voltar** para subir um nível ou **Ver todos os estilos** para consultar todos os resultados da categoria aberta. Escolher um destino fecha o menu e abre a lista de estilos. **Ajuda** explica a instalação e o uso.
 
 ## Implementation notes
 
