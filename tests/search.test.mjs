@@ -6,8 +6,8 @@ import '../style-atlas/dist/search.js';
 const overrides=JSON.parse(await fs.readFile(new URL('../style-atlas/records/search/overrides.json',import.meta.url)));
 const S=globalThis.AtlasSearch,c=JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url))),index=S.createIndex(c.styles,c.search),ids=q=>index.search(q).map(r=>r.style.id);
 test('all styles have reproducible, nonempty hidden tags without changing visual styles',()=>{
- assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
- for(const s of c.styles){assert.deepEqual(c.search.styleTags[s.id],S.tagsFor(s,overrides[s.id]?.tags||[]));assert(c.search.styleTags[s.id].length>=3,s.id);assert.equal(new Set(c.search.styleTags[s.id]).size,c.search.styleTags[s.id].length);}
+ assert.equal(createHash('sha256').update(JSON.stringify(c.styles)).digest('hex'),'73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0','search enrichment must preserve all published style contracts');assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
+ for(const s of c.styles){assert.deepEqual(c.search.styleTags[s.id],S.tagsFor(s,overrides[s.id]?.tags||[],c.search.styleColors?.[s.id]||[]));assert(c.search.styleTags[s.id].length>=3,s.id);assert.equal(new Set(c.search.styleTags[s.id]).size,c.search.styleTags[s.id].length);}
 });
 test('dog synonyms find actual dog descriptions across the complete catalogue, never a substring in education',()=>{
  const expected=c.styles.filter(s=>overrides[s.id]?.tags.includes('cachorro')||S.fields(s).some(v=>/\b(cachorro|cachorros|cão|cães|canino|dog)\b/i.test(v))).map(s=>s.id).sort();assert(expected.includes('pet-em-uso-cotidiano'));assert(expected.includes('ads26-pets-a-compra-acompanha-o-porte'));
@@ -56,4 +56,34 @@ test('business specialisms find their new authored directions by the terms custo
 test('similar styles are deterministic, distinct and retain the source niche without editing catalogue',()=>{
  const source=c.styles.find(s=>s.presenterEditing?.sector==='Dentistas')||c.styles.find(s=>/implante/.test(s.id)),before=JSON.stringify(c);
  const result=S.similar(c.styles,source);assert.equal(result.length,24);assert.ok(!result.some(s=>s.id===source.id));assert.equal(new Set(result.map(s=>s.id)).size,24);assert.deepEqual(result.map(s=>s.id),S.similar(c.styles,source).map(s=>s.id));assert.equal(result[0].family,source.family);assert.equal(JSON.stringify(c),before);assert.deepEqual(S.similar(c.styles,null),[]);
+});
+
+test('reference colors cover every style and are discovery metadata with source evidence',async()=>{
+ const colors=JSON.parse(await fs.readFile(new URL('../style-atlas/records/search/colors.json',import.meta.url)));
+ assert.equal(colors.imageFilesModified,false);assert.equal(Object.keys(c.search.styleColors).length,1425);
+ assert.equal(c.search.referenceColorsSha256,createHash('sha256').update(JSON.stringify(colors.styles)).digest('hex'));
+ for(const s of c.styles){const record=colors.styles[s.id];assert.equal(record.source,s.sequence.frames[s.sequence.heroIndex??1].src);assert.match(record.sourceSha256,/^[a-f0-9]{64}$/);assert(record.colors.length>0);for(const color of c.search.styleColors[s.id])assert(c.search.styleTags[s.id].includes(color),s.id+': '+color);}
+});
+
+test('business uses, products, channels and palette combinations remain useful across families',()=>{
+ assert(ids('vender capacho').includes('ads26-casa-o-capacho-vira-ponto-de-encontro'));
+ assert(ids('floricultura reels').includes('explicador-floriculturas-um-arranjo-nasce-do-gesto'));
+ assert(ids('dentista azul').length>0);assert(ids('perfume').length>0);assert(ids('azul').length>100);
+ const generated=S.createIndex([{id:'coffee',name:'Café artesanal',resources:['vídeo IA'],uses:'Vender um café'},{id:'business',name:'IA para negócios',uses:'Explicar inteligência artificial'}]);
+ assert.deepEqual(generated.search('IA').map(r=>r.style.id),['business']);
+ const palette={id:'blue',name:'Modelo neutro',presenterEditing:{finishProfile:{palette:['#0033ff','#ffffff']}}};assert(S.tagsFor(palette).includes('azul'));assert(S.tagsFor(palette).includes('branco'));
+ assert(S.tagsFor({name:'Editorial',signature:'Tipografia sem serifa.'}).includes('sem serifa'));
+});
+
+test('autocomplete offers only nonempty searches, supports multiple terms and bounded typo corrections',()=>{
+ const suggestions=index.suggest('cachorr');assert(suggestions.some(s=>s.query==='cachorro'));assert(suggestions.length<=6);
+ for(const item of suggestions)assert(index.search(item.query).length>0,item.query);
+ assert(index.suggest('dentista az').some(s=>s.query==='dentista azul'));
+ assert(index.suggest('cachoro').some(s=>s.query==='cachorro'&&s.correction));
+ assert.deepEqual(index.suggest('zzqxnqzz'),[]);assert.deepEqual(index.suggest(''),[]);assert.deepEqual(index.suggest('c'),[]);
+ assert.deepEqual(index.suggest('dent',{filter:()=>false}),[]);
+ for(const item of index.suggest('cachorr',{filter:s=>s.family==='ads-pets'}))assert(index.search(item.query).some(r=>r.style.family==='ads-pets'));
+ assert(!index.suggest('dent').some(s=>s.label==='Imagem dentro da tipografia'));
+ const first=index.suggest('implan');assert.deepEqual(first,index.suggest('implan'));assert.equal(new Set(first.map(s=>S.normalize(s.query))).size,first.length);
+ assert.deepEqual(index.suggest('<script>alert(1)</script>'),[]);
 });

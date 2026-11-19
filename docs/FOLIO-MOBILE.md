@@ -1,8 +1,8 @@
 # Navegação mobile e digitação
 
-As sete categorias ficam visíveis em duas linhas a partir de 320 px, com intervalo de 6 px entre nomes. Os submenus mantêm duas colunas, alvos de pelo menos 44 px e nenhum contorno retangular ao toque. O teclado continua levando foco à primeira opção e mantém uma indicação visível com sublinhado; Escape devolve o foco à categoria.
+As sete categorias ficam visíveis em duas linhas a partir de 320 px, em uma superfície segmentada igual ao seletor de objetivo, com intervalos compactos. Os submenus mantêm duas colunas, alvos de pelo menos 44 px e nenhum contorno retangular ao toque. O teclado continua levando foco à primeira opção e mantém uma indicação visível com sublinhado; Escape devolve o foco à categoria.
 
-Botões de ação preenchidos usam amarelo-limão #e2ff3b com texto escuro de 15 px, alinhado nos dois eixos. Os campos continuam com pelo menos 16 px para evitar o zoom de foco no celular. A preferência visual permanece visível como seção do formulário, sem precisar expandir. Anterior e próximo do quadro ampliado seguem a mesma padronização. As animações são curtas e usam apenas opacidade, deslocamento e brilho; a preferência por movimento reduzido é respeitada.
+Botões de ação preenchidos usam amarelo-limão #e2ff3b com texto escuro de 16 px, alinhado nos dois eixos. Os campos continuam com pelo menos 16 px para evitar o zoom de foco no celular. A preferência visual permanece visível como seção do formulário, sem precisar expandir. Anterior e próximo do quadro ampliado seguem a mesma padronização. As animações são curtas e usam apenas opacidade, deslocamento e brilho; a preferência por movimento reduzido é respeitada.
 
 Ao editar, o sistema acompanha a área realmente visível da janela. Se o teclado reduzir essa área, a faixa de categorias é recolhida temporariamente, o cabeçalho principal permanece acessível e o campo sobe acima do teclado e da barra de edição. O conteúdo digitado não é reescrito. A detecção considera a escala de zoom, para não confundir ampliação da página com teclado. Ao fechar o teclado, as categorias reaparecem. Rolagem manual fora do momento de edição não é capturada continuamente.
 

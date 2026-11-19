@@ -69,7 +69,7 @@
  function filter(items){
   const c=model.collection(state.collection);
   const result=items.filter(s=>model.matchesNiche(s,state.niche,niches)&&(state.mode!=='collection'||model.matchesCollection(s,c)));
-  if(state.similar){const ranked=AtlasSearch.similar(catalog.styles,window.AtlasApp.getStyle(state.similar)),allowed=new Set(result.map(s=>s.id));return ranked.filter(s=>allowed.has(s.id));}
+  if(state.similar){const ranked=AtlasSearch.similar(catalog.styles,window.AtlasApp.getStyle(state.similar),24,catalog.search),allowed=new Set(result.map(s=>s.id));return ranked.filter(s=>allowed.has(s.id));}
   return state.mode==='collection'?model.diversify(result,c?.preferred):result;
  }
  function beforeRender(){gridScroll=$('grid').scrollLeft;}

@@ -1,27 +1,20 @@
-# Busca por conteúdo dos estilos
+# Busca e sugestões por conteúdo
 
-A busca usa o catálogo inteiro e tags internas por estilo. Não exige exibir chips ou palavras-chave nos cartões. No catálogo visual 4.8, os 1.425 estilos usam o mesmo módulo de busca. A manutenção de tags não altera imagens nem aprovações; os 205 novos IDs são acrescentados ao acervo anterior.
+Os 1.425 estilos têm palavras-chave internas por ID. A ampliação cobre finalidade, profissão/nicho, produtos e serviços, materiais, técnica, cores, linguagem e usos em canais. O campo oferece sugestões de palavras e títulos enquanto a pessoa digita, com contagens, navegação por setas e Enter, fechamento por Escape e opções ao toque. A lista permanece no fluxo da página. Uma correção de uma letra pode ser sugerida quando a consulta não encontra nada; ela só é aplicada se a pessoa escolher.
 
-Digite um assunto, objeto, material, profissão ou recurso. “Cachorro”, “cão”, “cães” e “dog” usam o mesmo conceito; “mãos” e “maos” são equivalentes. Termos diferentes são combinados: “cachorro vidro” pede um estilo com os dois, e “avatar diagrama” combina apresentação e explicação. Títulos exatos têm prioridade; o restante segue relevância e ordem estável. Fragmentos com pelo menos três letras também procuram o início de palavras. Não há serviço externo, embeddings ou API paga.
+A busca combina palavras: “dentista azul”, “vender capacho”, “avatar diagrama” e “floricultura reels”. Sinônimos explícitos aproximam cão/cachorro, imóveis/MCMV e profissões; acentos e maiúsculas não mudam os resultados. Cada sugestão leva a uma busca com resultados e respeita os filtros do catálogo. Nada é enviado a Google, a uma API paga ou a um serviço de IA. Consultas não são gravadas em histórico nem alteram o briefing.
 
-Começar uma busca a partir de uma categoria abre a biblioteca inteira. Escolher uma categoria depois restringe os resultados, e o botão “Buscar em todas as categorias” remove essa restrição. Filtros de vídeo, favoritos e tipo continuam explícitos. A busca esconde o painel exploratório de categorias para priorizar os resultados; apagar a consulta o restaura. Resultados completos continuam disponíveis em Mostrar mais. Alterar uma busca não modifica o vídeo escolhido, o briefing nem seus aceites.
+## Evidência e limites
 
-## Conteúdo e precisão
+`catalog.json.search.styleTags` contém as associações. `styleColors` cobre uma referência principal por estilo. O script de análise lê o quadro lógico, respeita os recortes de apresentação e mede proporções aproximadas de cores; não edita arquivos, identifica pessoas ou reconhece materiais. A paleta declarada das receitas também participa. A extração textual usa descrições positivas e campos de composição, câmera e tipografia; exclui políticas, trechos negativos e “vídeo IA” como insumo genérico. Assim, uma técnica gerada com IA não vira automaticamente um vídeo sobre IA.
 
-`catalog.json.search.styleTags` associa um conjunto de palavras-chave a cada ID. O índice inclui nome, assunto, usos, recursos, descrição da montagem, tema/ações das cenas e direção de composição. Textos de política, instruções de fidelidade e verificações não entram como descrição visual. A lista genérica de insumos repetida nos anúncios também é excluída: mencionar diagramas como possibilidade técnica não transforma todos os anúncios em estilos de diagrama. Trechos negativos são excluídos da extração: “sem neon” não torna todo estilo um resultado para neon.
-
-A ontologia em `style-atlas/dist/search.js` explicita sinônimos e plurais. Palavras são tratadas por tokens: “cão” não é uma parte válida de “educação”. Uma referência com cachorro pode ser encontrada por pet/animal; um pet genérico não é rotulado automaticamente como cachorro. Plantas baixas dependem de contexto espacial e não se confundem automaticamente com plantio.
-
-As 45 referências revisadas de pets, incluindo os explicadores e o manequim de peitoral, têm tags editoriais adicionais em `style-atlas/records/search/overrides.json`. Foram conferidos os quatro painéis de cada referência. A evidência registra os caminhos e crops vistos. Esses rótulos descrevem exemplos fictícios, não produtos, casos clínicos ou resultados reais. A curadoria reconhece cachorro também em títulos abstratos; mantém separados os gatos, o aquário e o atendimento sem animal visível.
+Finalidades e canais são usos recomendados das receitas, não afirmações de publicação ou de vídeo executado. A curadoria humana de pets continua em `style-atlas/records/search/overrides.json`. A análise adicional é automática e tem trilha por estilo em `enrichment.json`, com fontes como descrição, uso, receita e cor de referência. O conteúdo e os contratos dos estilos permanecem intactos; as tags nunca viram instruções de produção.
 
 ## Manutenção
 
-Para acrescentar uma palavra-chave que não está na descrição, edite o registro do ID em `overrides.json`, com `tags` e `evidence` que expliquem onde o conteúdo foi conferido. Não coloque palavras populares sem relação com a referência. Para um novo sinônimo, atualize o grupo específico em `search.js`; evite equivalências amplas que misturem assuntos distintos.
+1. Atualize descrições, ontologia ou tags editoriais com evidência.
+2. Se mudar imagens ou recortes, rode `python3 scripts/analyze-search-colors.py` no repositório completo com Pillow disponível.
+3. Rode `npm run search:index`; use `npm run search:index -- --verify-media` no repositório completo para conferir também os hashes das referências.
+4. Rode `node --test tests/search.test.mjs` e `python3 tests/browser-autocomplete.py`.
 
-Execute `npm run search:index`. `scripts/build-search-index.mjs` regenera os metadados deterministicamente a partir das fichas, da ontologia e da curadoria. A fonte visual das fichas não muda. `npm run package` também reconstrói o índice antes dos pacotes. Depois atualize o embed Page com `python3 style-atlas/records/build_page.py --asset-origin https://videos.gerenciadordeanuncios.com.br/`.
-
-O índice é construído uma vez no navegador. Site e Page usam o mesmo módulo, sem localStorage no modo Page. Tags servem para encontrar uma direção; não se tornam novas instruções de produção nem alteram o escopo que a pessoa selecionou. O instalador completo obtém os arquivos da revisão fixa publicada no GitHub. A publicação do site é uma etapa separada.
-
-## Verificação desta revisão
-
-206 testes JavaScript e 9 Python passaram, incluindo palavras dentro de expressões compostas, como banho/tosa/banho e tosa. Chromium verificou site e Page em 375/1440 px: sinônimos, precisão cachorro/gato/aquário, paginação, refinamento, foco, seleção e ausência de overflow. O registro inclui os tempos das consultas isoladas nesse ambiente de teste, sem contar renderização ou downloads; isso não representa medição de um celular físico. Evidência em `style-atlas/records/search/validation.json`. A biblioteca atual retorna 39 direções para cachorro/cão/cães, quatro para gato e uma para aquário. A versão 2.12.0 já está publicada; veja [estado da entrega](RELEASE-2.12.md). Futuras publicações continuam etapas separadas da preparação dos pacotes.
+O runtime compacto traz o registro de cores e os recortes, mas não as imagens. A reconstrução do índice funciona com esses registros; a análise de pixels e a verificação de mídia exigem o repositório completo. Regere os pacotes e o payload da Page após mudar o índice. A Page usa o mesmo módulo e os mesmos dados externos da versão publicada; fonte, execução e publicação são verificações distintas.
