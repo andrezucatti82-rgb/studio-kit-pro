@@ -532341,7 +532341,7 @@
     "version": 1,
     "language": "pt-BR",
     "sourceSha256": "928050697ccd9e9ac9004a6c6a61cc38d31bcb8b35bfb49aa7a98a7b8dcf8d9c",
-    "referenceColorsSha256": "13fd80f3a33115743cdcedebe68f1a9a08acd116203d023508a6da6716ad0f6f",
+    "referenceColorsSha256": "162245c9d73a4d7724efc8f6caa42e1953d55efadc1039786edca7b97618bea7",
     "styleColors": {
       "publicidade-cinematografica": [
         "marrom",
@@ -532608,7 +532608,8 @@
       ],
       "cartografia-animada": [
         "preto",
-        "marrom"
+        "marrom",
+        "turquesa"
       ],
       "terminal-ascii": [
         "preto"
@@ -533366,8 +533367,8 @@
         "preto"
       ],
       "pergunta-e-descoberta": [
-        "laranja",
         "marrom",
+        "laranja",
         "cinza",
         "preto"
       ],
@@ -533507,8 +533508,8 @@
       ],
       "percurso-de-acessibilidade": [
         "cinza",
-        "marrom",
-        "preto"
+        "preto",
+        "marrom"
       ],
       "dimensoes-de-ambiente-em-escala": [
         "laranja",
@@ -533672,8 +533673,8 @@
       ],
       "apresentadora-elegante-em-terraco": [
         "preto",
-        "cinza",
-        "marrom"
+        "marrom",
+        "cinza"
       ],
       "apresentador-casual-na-praia": [
         "marrom",
@@ -533682,8 +533683,8 @@
       ],
       "apresentadora-de-campo-em-jardim": [
         "amarelo",
-        "laranja",
-        "cinza"
+        "cinza",
+        "laranja"
       ],
       "apresentador-de-negocios-em-rua": [
         "cinza",
@@ -534070,8 +534071,7 @@
       "historia-contada-por-comprovantes": [
         "laranja",
         "bege",
-        "marrom",
-        "cinza"
+        "marrom"
       ],
       "produto-em-iris-mecanica-monumental": [
         "preto",
@@ -534639,8 +534639,7 @@
       "prazo-por-faixas-de-destino-confirmadas": [
         "azul",
         "preto",
-        "marrom",
-        "cinza"
+        "marrom"
       ],
       "pergunta-do-anuncio-em-recorte-de-evidencia": [
         "laranja",
@@ -534751,9 +534750,9 @@
       ],
       "certificado-em-janela-de-criterios-reais": [
         "preto",
-        "marrom",
+        "off-white",
         "bege",
-        "off-white"
+        "marrom"
       ],
       "oferta-de-curso-em-caixas-de-escopo": [
         "preto"
@@ -535695,8 +535694,8 @@
       "exp-uso-em-maos-de-tamanhos-diferentes": [
         "laranja",
         "cinza",
-        "preto",
-        "marrom"
+        "marrom",
+        "preto"
       ],
       "exp-pedido-personalizado-em-prova-digital": [
         "azul",
@@ -535744,8 +535743,8 @@
         "preto",
         "vinho",
         "marrom",
-        "laranja",
-        "vermelho"
+        "vermelho",
+        "laranja"
       ],
       "exp-devolutiva-em-tres-camadas-de-trabalho": [
         "cinza",
@@ -538218,8 +538217,8 @@
         "preto"
       ],
       "explicador-pet-detalhe": [
-        "preto",
         "marrom",
+        "preto",
         "cinza",
         "laranja"
       ],
@@ -540230,7 +540229,8 @@
         "preto",
         "rota",
         "Rota de um café da origem ao consumidor",
-        "turismo"
+        "turismo",
+        "turquesa"
       ],
       "terminal-ascii": [
         "animação",
@@ -545169,7 +545169,6 @@
       ],
       "historia-contada-por-comprovantes": [
         "bege",
-        "cinza",
         "documento",
         "educação",
         "finanças",
@@ -547340,7 +547339,6 @@
         "anúncio",
         "apresentar",
         "azul",
-        "cinza",
         "Comércio eletrônico",
         "E-commerce e marketplaces",
         "ecommerce",

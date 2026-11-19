@@ -32,8 +32,6 @@ for logo in soup.select('img[src="assets/folio-mark.svg"]'):
  logo['src']='data:image/svg+xml;base64,'+base64.b64encode((r/'dist/assets/folio-mark.svg').read_bytes()).decode()
 for link in soup.select('link[href^="assets/"]'):
  link['href']=origin+link['href']
-# Presentation-only crop data stays external, like the catalogue payload.
-soup.find('script',src='frame-presentation.js')['src']=runtime_origin+'frame-presentation.js'
 css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/folio.css').read_text()+'\n'+(r/'dist/folio-components.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
 for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  face=TTFont(r/'dist/assets'/font)
@@ -43,7 +41,7 @@ for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  css=css.replace(origin+'assets/'+font,'data:font/woff2;base64,'+base64.b64encode(buf.getvalue()).decode())
 def pack(text):return base64.b64encode(gzip.compress(text.encode(),mtime=0)).decode()
 script=soup.find('script',src='app.js');script.decompose()
-for name in ['guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','guided-ui.js','style-picker.js','presenter-ui.js','installation-ui.js','search.js','folio-model.js','folio-ui.js','material-ui.js','cloud-handoff.js','production-ui.js']:
+for name in ['frame-presentation.js','guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','guided-ui.js','style-picker.js','presenter-ui.js','installation-ui.js','search.js','folio-model.js','folio-ui.js','material-ui.js','cloud-handoff.js','production-ui.js']:
  node=soup.find('script',src=name)
  if node:node.decompose()
 counts=Counter()
@@ -66,8 +64,8 @@ packed=base64.b64encode(gzip.compress(json.dumps({'pool':pool,'catalog':encode(c
 payload='window.ATLAS_PACKED_CATALOG='+json.dumps(packed)+';\n'
 name='catalog-data-'+hashlib.sha256(payload.encode()).hexdigest()[:16]+'.js'
 (r/'dist/assets'/name).write_text(payload)
-boot=soup.new_tag('script');boot.string='window.ATLAS_PAGE_MODE=true;window.ATLAS_ASSET_BASE='+json.dumps(origin)+';window.ATLAS_CATALOG_PROMISE=(async()=>{await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src='+json.dumps(runtime_origin+'assets/'+name)+';s.onload=resolve;s.onerror=()=>reject(Error("Catálogo remoto indisponível"));document.head.append(s);});const bytes=Uint8Array.from(atob(window.ATLAS_PACKED_CATALOG),c=>c.charCodeAt(0));const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));const d=JSON.parse(await new Response(stream).text());function revive(v){if(Array.isArray(v))return v.map(revive);if(v&&typeof v==="object"){if(Object.keys(v).length===1&&"$s" in v)return d.pool[v.$s];return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,revive(x)]));}return v;}return revive(d.catalog);})();';boot.string='window.ATLAS_INSTALL_MANIFEST='+json.dumps(json.loads((r/'dist/installation.json').read_text()),ensure_ascii=False,separators=(',',':'))+';window.ATLAS_INSTALL_ASSET_BASE='+json.dumps(runtime_origin)+';'+boot.string;boot.string=('window.ATLAS_IMAGE_ASSET_BASE='+json.dumps(args.image_origin)+';' if args.image_origin else '')+'window.ATLAS_FONT_CATALOG='+json.dumps(json.loads((r/'dist/fonts.json').read_text()),ensure_ascii=False,separators=(',',':'))+';'+boot.string;soup.body.append(boot)
-modules=['guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','presenter-ui.js',
+boot=soup.new_tag('script');boot.string='window.ATLAS_PAGE_MODE=true;window.ATLAS_FRAME_DOWNLOAD_URL='+json.dumps(runtime_origin+'download.html')+';window.ATLAS_ASSET_BASE='+json.dumps(origin)+';window.ATLAS_CATALOG_PROMISE=(async()=>{await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src='+json.dumps(runtime_origin+'assets/'+name)+';s.onload=resolve;s.onerror=()=>reject(Error("Catálogo remoto indisponível"));document.head.append(s);});const bytes=Uint8Array.from(atob(window.ATLAS_PACKED_CATALOG),c=>c.charCodeAt(0));const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));const d=JSON.parse(await new Response(stream).text());function revive(v){if(Array.isArray(v))return v.map(revive);if(v&&typeof v==="object"){if(Object.keys(v).length===1&&"$s" in v)return d.pool[v.$s];return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,revive(x)]));}return v;}return revive(d.catalog);})();';boot.string='window.ATLAS_INSTALL_MANIFEST='+json.dumps(json.loads((r/'dist/installation.json').read_text()),ensure_ascii=False,separators=(',',':'))+';window.ATLAS_INSTALL_ASSET_BASE='+json.dumps(runtime_origin)+';'+boot.string;boot.string=('window.ATLAS_IMAGE_ASSET_BASE='+json.dumps(args.image_origin)+';' if args.image_origin else '')+'window.ATLAS_FONT_CATALOG='+json.dumps(json.loads((r/'dist/fonts.json').read_text()),ensure_ascii=False,separators=(',',':'))+';'+boot.string;soup.body.append(boot)
+modules=['frame-presentation.js','guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','presenter-ui.js',
          'installation-ui.js','search.js','folio-model.js','folio-ui.js','app.js','guided-ui.js','style-picker.js','material-ui.js']
 script_source='\n'.join((r/'dist'/module).read_text() for module in modules)
 runtime='''(async()=>{

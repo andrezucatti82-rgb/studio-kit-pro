@@ -1,7 +1,7 @@
 {
   "version": 2,
   "styleCount": 1425,
-  "tagAssociations": 32464,
+  "tagAssociations": 32463,
   "referenceFramesAnalyzed": 1425,
   "analysisBasis": "positive catalogue descriptions, intended commercial uses, declared palettes and measured reference colors; not a claim of visual or audiovisual review",
   "styleDataSha256": "73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0",
@@ -3718,7 +3718,8 @@
         "preto",
         "rota",
         "Rota de um café da origem ao consumidor",
-        "turismo"
+        "turismo",
+        "turquesa"
       ],
       "evidence": {
         "interface": [
@@ -3765,6 +3766,9 @@
           "reference_color_analysis"
         ],
         "marrom": [
+          "reference_color_analysis"
+        ],
+        "turquesa": [
           "reference_color_analysis"
         ]
       }
@@ -14663,10 +14667,10 @@
         "pergunta ilustrativa sobre reciclagem": [
           "topic"
         ],
-        "laranja": [
+        "marrom": [
           "reference_color_analysis"
         ],
-        "marrom": [
+        "laranja": [
           "reference_color_analysis"
         ],
         "cinza": [
@@ -16734,10 +16738,10 @@
         "cinza": [
           "reference_color_analysis"
         ],
-        "marrom": [
+        "preto": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "marrom": [
           "reference_color_analysis"
         ],
         "planta baixa": [
@@ -19255,10 +19259,10 @@
         "preto": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "marrom": [
           "reference_color_analysis"
         ],
-        "marrom": [
+        "cinza": [
           "reference_color_analysis"
         ]
       }
@@ -19448,10 +19452,10 @@
         "amarelo": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "cinza": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "laranja": [
           "reference_color_analysis"
         ]
       }
@@ -24315,7 +24319,6 @@
     "historia-contada-por-comprovantes": {
       "tags": [
         "bege",
-        "cinza",
         "documento",
         "educação",
         "finanças",
@@ -24373,9 +24376,6 @@
           "reference_color_analysis"
         ],
         "marrom": [
-          "reference_color_analysis"
-        ],
-        "cinza": [
           "reference_color_analysis"
         ]
       }
@@ -33486,7 +33486,6 @@
         "anúncio",
         "apresentar",
         "azul",
-        "cinza",
         "Comércio eletrônico",
         "E-commerce e marketplaces",
         "ecommerce",
@@ -33529,9 +33528,6 @@
           "reference_color_analysis"
         ],
         "marrom": [
-          "reference_color_analysis"
-        ],
-        "cinza": [
           "reference_color_analysis"
         ],
         "anuncio": [
@@ -35159,10 +35155,10 @@
         "modelo demonstrativo de certificado com criterios e limites em texto": [
           "topic"
         ],
-        "marrom": [
+        "bege": [
           "reference_color_analysis"
         ],
-        "bege": [
+        "marrom": [
           "reference_color_analysis"
         ],
         "branco": [
@@ -51081,10 +51077,10 @@
         "cinza": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "marrom": [
           "reference_color_analysis"
         ],
-        "marrom": [
+        "preto": [
           "reference_color_analysis"
         ],
         "anuncio": [
@@ -51727,10 +51723,10 @@
         "marrom": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "vermelho": [
           "reference_color_analysis"
         ],
-        "vermelho": [
+        "laranja": [
           "reference_color_analysis"
         ],
         "explicar": [
@@ -111746,10 +111742,10 @@
         "off white": [
           "declared_palette"
         ],
-        "preto": [
+        "marrom": [
           "reference_color_analysis"
         ],
-        "marrom": [
+        "preto": [
           "reference_color_analysis"
         ],
         "cinza": [

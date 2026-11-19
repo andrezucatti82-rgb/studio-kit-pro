@@ -234,7 +234,7 @@ test('sequence numbering matches frame indices including the principal frame',as
   const markup=app.ctx.AtlasViews.sequence(s);const {document:d}=parseHTML(markup);
   assert.match(d.querySelector('.film-hero figcaption').textContent,new RegExp(String(s.sequence.heroIndex+1).padStart(2,'0')));
   const steps=[...d.querySelectorAll('.film-steps figcaption strong')].map(e=>Number(e.textContent.slice(0,2)));
-  assert.deepEqual(steps,[1,2,3,4].filter(n=>n!==s.sequence.heroIndex+1));
+  assert.deepEqual(steps,[1,2,3,4]);
  }
 });
 

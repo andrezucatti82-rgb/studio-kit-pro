@@ -132,6 +132,23 @@
   const node=detail?selected.children.find(item=>item.id===detail):selected;
   return !!node&&matchesNode(style,node,colors);
  }
+ const businessTopics=browseGroup('business').topics;
+ const marketSectors=new Map(businessTopics.flatMap(topic=>[topic,...topic.children].flatMap(node=>node.sectors.map(id=>[id,topic]))));
+ function groupByNiche(styles,preferredSectors=[]){
+  const groups=new Map();
+  for(const style of styles){
+   const sector=style.presenterEditing?.sector;
+   const niche=marketSectors.get(sector)||businessTopics.find(topic=>matchesNode(style,topic,[]));
+   const id=niche?.id||'geral';
+   if(!groups.has(id))groups.set(id,{id,label:niche?.label||'Para vários tipos de negócio',prioritized:[],styles:[]});
+   const group=groups.get(id);
+   (preferredSectors.includes(sector)?group.prioritized:group.styles).push(style);
+  }
+  const order=[...businessTopics.map(topic=>topic.id),'geral'];
+  return [...groups.values()]
+   .sort((a,b)=>Number(b.prioritized.length>0)-Number(a.prioritized.length>0)||order.indexOf(a.id)-order.indexOf(b.id))
+   .map(({id,label,prioritized,styles})=>({id,label,styles:[...prioritized,...styles]}));
+ }
  const goals=[{id:'explain',label:'Explicar'},{id:'present',label:'Apresentar'},{id:'sell',label:'Vender'}];
  const definitions=[
   {id:'explanations',goal:'explain',title:'Explicações que ganham forma',description:'A pessoa apresenta. Os elementos ajudam a entender.',families:people,preferred:['explicador-dentistas-implante-pilar-e-coroa-em-conversa','explicador-fitness-alinhamento','explicador-agencias-do-anuncio-ao-caixa-com-evidencias']},
@@ -176,5 +193,5 @@
   return out;
  }
  const collection=id=>definitions.find(c=>c.id===id);
- globalThis.FolioCollections=Object.freeze({goals,definitions,collection,niches,matchesNiche,matchesCollection,previewRatio,diversify,browseGroups,browseGroup,matchesBrowse});
+ globalThis.FolioCollections=Object.freeze({goals,definitions,collection,niches,matchesNiche,matchesCollection,previewRatio,diversify,browseGroups,browseGroup,matchesBrowse,groupByNiche});
 })();
