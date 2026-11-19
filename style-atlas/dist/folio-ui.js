@@ -129,7 +129,8 @@
   const grid=$('grid');grid.dataset.grouped='true';$('loadMore').hidden=true;
   grid.innerHTML=groups.map(({id,label,styles})=>{
    const count=Math.max(gridColumns(),nicheVisible.get(id)||0);
-   return `<section class="folio-niche-section" aria-labelledby="niche-${id}"><header><h2 id="niche-${id}">${esc(label)}</h2></header>${styles.slice(0,count).map(s=>card(s)).join('')}${styles.length>count?`<button type="button" class="text-button folio-niche-more" data-niche-more="${id}" aria-label="Ver mais estilos em ${esc(label)}">Ver mais ${icon('arrow')}</button>`:''}</section>`;
+   const more=styles.length>count?`<button type="button" class="text-button folio-niche-more" data-niche-more="${id}" aria-label="Ver mais estilos em ${esc(label)}">Ver mais ${icon('arrow')}</button>`:'';
+   return `<section class="folio-niche-section" aria-labelledby="niche-${id}"><header><h2 id="niche-${id}">${esc(label)}</h2>${more}</header>${styles.slice(0,count).map(s=>card(s)).join('')}</section>`;
   }).join('');
   return true;
  }

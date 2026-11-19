@@ -100,9 +100,9 @@ body[data-folio=true] :is(.brief-editor,.brief-preview,#myProject,.project-card,
 }
 body[data-folio=true] .film-steps .frame-expand{background:transparent}
 .folio-niche-section{display:grid;grid-column:1/-1;grid-template-columns:subgrid;row-gap:10px}
-.folio-niche-section>header{grid-column:1/-1;border-top:1px solid var(--folio-edge);padding-top:12px}
+.folio-niche-section>header{grid-column:1/-1;display:flex;align-items:center;gap:12px;border-top:1px solid var(--folio-edge);padding-top:6px}
 .folio-niche-section h2{margin:0;font-size:var(--folio-type-section);font-weight:600;line-height:1.4}
-.folio-niche-section .folio-niche-more{grid-column:1/-1;justify-self:start;display:inline-flex;gap:8px;padding:4px 0}
+.folio-niche-section .folio-niche-more{display:inline-flex;flex:none;gap:8px;padding:4px 0;white-space:nowrap}
 .folio-niche-more svg{width:16px;height:16px}
 body[data-folio=true] #detailDialog :is(.presenter-story,.direction-use,.direction-disclosure){
  margin:16px 0;padding:clamp(16px,2vw,24px);
