@@ -273,3 +273,64 @@ body[data-folio=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44px;p
 .material-rights summary{margin-block:8px 4px;cursor:pointer}
 .cloud-handoff-progress{margin:12px 0;padding:8px 14px;border:1px solid var(--folio-edge,#444);border-radius:var(--folio-radius-field,14px);background:var(--surface,#242424)}
 #chatLink[aria-busy=true]{opacity:.7}
+
+/* Keep browsing tools near the catalogue and the next action near its content. */
+body[data-folio=true] .folio-mobile-browse{display:none}
+body[data-folio=true] #folioSearch{position:relative}
+body[data-folio=true] #folioSearch:has(.search-suggestions:not([hidden])){z-index:6}
+body[data-folio=true] #searchSuggestions{position:absolute;inset:100% 0 auto;margin-top:6px;max-height:min(280px,42vh);background:#202020}
+body[data-folio=true][data-folio-keyboard=true] #searchSuggestions{max-height:min(240px,var(--folio-suggestions-room,44px))}
+body[data-folio=true] #search::-webkit-search-cancel-button{appearance:none}
+body[data-folio=true] #folioSearch:has(.folio-search-clear:not([hidden])) input{padding-inline-end:48px}
+body[data-folio=true] .folio-search-clear{position:absolute;inset:0 4px 0 auto;margin-block:auto;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--ink);font-family:inherit;font-size:22px;font-weight:500;line-height:1}
+body[data-folio=true] .folio-search-clear:hover{color:var(--folio-accent)}
+body[data-folio=true] .folio-result-count{margin:2px 0 0;color:var(--muted);font-size:var(--folio-type-compact)}
+body[data-folio=true] #folioCollectionDescription:empty{display:none}
+body[data-folio=true] .resultbar{display:none}
+body[data-folio=true] #searchScope:not(:has(#searchEverywhere:not([hidden]))){display:none}
+body[data-folio=true] .folio-scope:has(#folioHomeFavorites:not([hidden])){justify-content:space-between}
+body[data-folio=true] #empty{margin:12px 0 24px;padding:clamp(16px,3vw,30px);min-height:0;text-align:left;background:var(--surface,#242424);border:1px solid var(--folio-edge);border-radius:var(--folio-radius)}
+body[data-folio=true] #empty h2{margin:0;font-size:var(--folio-type-section)}
+body[data-folio=true] #empty p{margin:6px 0 14px;color:var(--muted)}
+body[data-folio=true] #empty .actions{justify-content:flex-start}
+body[data-folio=true] #empty #reset{position:static;transform:none;margin:0;padding-inline:10px}
+body[data-folio=true] .folio-production-start{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 14px;align-items:end;padding:16px;margin:16px 0;background:#1a1a1a;border:1px solid var(--folio-edge);border-radius:var(--folio-radius-field)}
+body[data-folio=true] .folio-production-start :is(.handoff-platform,.actions){margin:0}
+body[data-folio=true] .folio-production-start #handoffPlatform{max-width:none}
+body[data-folio=true] .folio-production-start :is(#handoffHelp,#cloudHandoffProgress){grid-column:1/-1;margin:0}
+body[data-folio=true] #handoff :is(.folio-review-details,#promptDetails){padding-block:10px;border-bottom:1px solid var(--folio-edge)}
+body[data-folio=true] #handoff #copyPrompt{display:inline-flex!important;margin-top:8px}
+body[data-folio=true] #guidedDialog #guidedNext{display:inline-flex!important}
+body[data-folio=true] #sequenceDialog .sequence-navigation{margin:10px auto 14px}
+body[data-folio=true] #folioPanelHost .folio-panel-back{background:var(--surface,#242424);border-color:var(--folio-edge);color:var(--ink)}
+body[data-folio=true] #folioPanelHost .folio-panel-back:is(:hover,:focus-visible){color:var(--folio-accent)}
+@media(max-width:700px){
+ body[data-folio=true] .folio-header{padding-block:8px}
+ body[data-folio=true]:not([data-folio-categories=true]) .folio-header .folio-category-bar,
+ body[data-folio=true][data-folio-panel] .folio-header .folio-category-bar,
+ body[data-folio=true]:not([data-view=library]) .folio-header .folio-category-bar{display:none}
+ body[data-folio=true][data-folio-categories=true] .folio-header .folio-category-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;padding:4px 0;margin:0;gap:0 8px}
+ body[data-folio=true] .folio-header .folio-category-bar>button{justify-content:flex-start;text-align:left;padding:8px}
+ body[data-folio=true] .folio-header .folio-category-bar svg{display:block}
+ body[data-folio=true] .folio-mobile-browse{display:flex;align-items:center;margin:0 0 8px}
+ body[data-folio=true] #folioCategoryToggle{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:8px 14px;border:1px solid var(--folio-edge);border-radius:999px;background:#202020;color:var(--ink);font:500 var(--folio-type-compact)/1.4 'Folio UI',sans-serif}
+ body[data-folio=true] #folioCategoryToggle:is([aria-expanded=true],.is-filtered){color:var(--folio-accent)}
+ body[data-folio=true] #folioCategoryToggle[aria-expanded=true] span:last-child{transform:rotate(180deg)}
+ body[data-folio=true] .folio-production-start{grid-template-columns:1fr;gap:8px;padding:13px}
+ body[data-folio=true] .folio-production-start #chatLink{width:100%}
+ body[data-folio=true] #guidedDialog footer{justify-content:flex-end}
+ body[data-folio=true] #sequenceDialog .sequence-navigation{gap:6px}
+}
+body[data-folio=true] .folio-menu-heading{display:none}
+body[data-folio=true] .folio-help-back{margin-bottom:14px;text-align:left}
+@media(max-width:700px){
+ body[data-folio=true] .folio-menu-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:5px;border-bottom:1px solid var(--folio-edge);font-size:var(--folio-type-compact)}
+ body[data-folio=true] .folio-menu-heading button{color:var(--folio-accent);text-align:right}
+}
+body[data-folio=true] .folio-collection-heading .folio-result-count{display:block}
+body[data-folio=true] .folio-results-title{min-width:0}
+body[data-folio=true] .folio-scope:not(:has(.text-button:not([hidden]))){display:none}
+body[data-folio=true] #grid:empty{display:none}
+body[data-folio=true] #empty .actions{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:14px}
+body[data-folio=true] #empty :is(#folioEditSearch,#reset){margin:0}
+body[data-folio=true] #empty button[hidden]{display:none!important}

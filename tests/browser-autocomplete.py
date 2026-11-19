@@ -22,7 +22,7 @@ with sync_playwright() as p:
     context.route('https://folio.runtime/**',runtime)
    page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)));page.goto(args.base+('autocomplete-candidate' if embedded else ''));page.wait_for_function('window.ATLAS_READY')
    page.evaluate('AtlasApp.chooseStyle("vidro-e-refracao")');before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)');search=page.locator('#search');search.fill('dent')
-   panel=page.locator('#searchSuggestions');expect(panel).to_be_visible();assert page.locator('#searchSuggestions [role=option]').count()<=6;assert panel.evaluate('e=>getComputedStyle(e).position')=='relative'
+   panel=page.locator('#searchSuggestions');expect(panel).to_be_visible();assert page.locator('#searchSuggestions [role=option]').count()<=6;assert panel.evaluate('e=>getComputedStyle(e).position')=='absolute'
    assert not page.locator('#searchSuggestions img').count();assert not page.locator('.search-tags').count()
    page.keyboard.press('ArrowUp');last=page.locator('#searchSuggestions [role=option]').last;expect(last).to_have_attribute('aria-selected','true');page.keyboard.press('Escape');expect(panel).not_to_be_visible();expect(search).to_be_focused()
    search.fill('dent');page.keyboard.press('ArrowDown');page.keyboard.press('Enter');expect(search).to_have_value('dentista');expect(panel).not_to_be_visible();assert int(page.locator('#resultCount').inner_text().split()[0])>0
@@ -37,7 +37,7 @@ with sync_playwright() as p:
    page.screenshot(path=str(out/f'suggestions-{width}-{embedded}.png'),animations='disabled')
    page.keyboard.press('Tab');expect(panel).not_to_be_visible();assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
    assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-   report['checks'].append({'width':width,'embedded':embedded,'keyboardAndPointer':True,'typoSuggestion':True,'compoundQueries':True,'noOverlay':True,'projectPreserved':True,'localSearch':True})
+   report['checks'].append({'width':width,'embedded':embedded,'keyboardAndPointer':True,'typoSuggestion':True,'compoundQueries':True,'stableResultsLayout':True,'projectPreserved':True,'localSearch':True})
    context.close()
  b.close()
 assert not report['errors'],report
