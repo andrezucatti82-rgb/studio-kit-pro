@@ -46,6 +46,12 @@ with sync_playwright() as p:
             page.locator('#grid img').evaluate_all('async es=>await Promise.allSettled(es.filter(e=>e.getBoundingClientRect().top<innerHeight).map(e=>{e.loading="eager";return e.decode()}))')
             page.screenshot(path=out / f'{width}-niches.png')
         pages = page.locator('[data-niche-more]')
+        assert pages.evaluate_all('''buttons=>buttons.length>0&&buttons.every(button=>{
+            const title=button.previousElementSibling;
+            if(!title?.matches('h2'))return false;
+            const a=title.getBoundingClientRect(),b=button.getBoundingClientRect();
+            return Math.abs((a.top+a.bottom-b.top-b.bottom)/2)<1 && b.left>=a.right && b.right<=innerWidth;
+        })''')
         identifier = pages.first.get_attribute('data-niche-more')
         section = page.locator('section[aria-labelledby=niche-' + identifier + ']')
         section.locator('[data-niche-more]').click()
