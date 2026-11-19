@@ -86,4 +86,5 @@ test('autocomplete offers only nonempty searches, supports multiple terms and bo
  assert(!index.suggest('dent').some(s=>s.label==='Imagem dentro da tipografia'));
  const first=index.suggest('implan');assert.deepEqual(first,index.suggest('implan'));assert.equal(new Set(first.map(s=>S.normalize(s.query))).size,first.length);
  assert.deepEqual(index.suggest('<script>alert(1)</script>'),[]);
+ const brief=index.suggest('br');assert.equal(new Set(brief.map(s=>S.normalize(s.query))).size,brief.length,'keyword-only predictions must not duplicate the last rows');
 });

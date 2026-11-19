@@ -531,12 +531,14 @@ body[data-folio=true] #folioPanelHost .folio-panel-back{font-size:var(--folio-ty
 body[data-folio=true] :is(.folio-category-bar>button,#folioMenu button,.folio-card h3,.folio-scope .text-button,.folio-shelf-tools>button,.folio-story-link,.brief-steps button){font-size:var(--folio-type-compact)}
 body[data-folio=true] :is(.folio-reference,.folio-compare,.folio-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--folio-type-meta)}
 body[data-folio=true] :is(.guided-dialog label,.guided-preferences>h3,.brief-editor form label){font-size:var(--folio-type-compact)}
-body[data-folio=true] :is(.guided-dialog section>h3,.film-story>h3,.handoff h2){font-size:var(--folio-type-section)}
+body[data-folio=true] :is(.guided-dialog section>h3,.film-story>h3,#handoff h2){font-size:var(--folio-type-section)}
 body[data-folio=true] .folio-shelf h2{font-size:var(--folio-type-section)}
 body[data-folio=true] .request-summary dt{font-size:var(--folio-type-meta)}
 body[data-folio=true] .request-summary dd{font-size:var(--folio-type-body)}
+body[data-folio=true] :is(.folio-discovery h1,.folio-collection-heading h1,.direction-header h2,.brief-heading h1,#guidedTitle,.folio-sheet header h2){font-size:var(--folio-type-title)}
+body[data-folio=true] #briefDialog form label{font-size:var(--folio-type-compact)}
+body[data-folio=true] #briefDialog :is(input,select,textarea){font-size:var(--folio-type-body)}
 @media(max-width:700px){
- body[data-folio=true] :is(.folio-discovery h1,.folio-collection-heading h1,.direction-header h2,.brief-heading h1,#guidedTitle,.folio-sheet header h2){font-size:var(--folio-type-title)}
  body[data-folio=true] .folio-shelf h2{font-size:var(--folio-type-body)}
  body[data-folio=true] :is(.folio-catalogue-controls button,.folio-collection-heading p){font-size:var(--folio-type-compact)}
 }

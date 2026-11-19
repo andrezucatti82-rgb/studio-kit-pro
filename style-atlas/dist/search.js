@@ -210,7 +210,8 @@
     for(const concept of concepts){if(!concept.aliases.some(a=>oneEdit(tail,normalize(a))))continue;const value=prefix+concept.tag,key=normalize(value);if(seen.has(key))continue;seen.add(key);const count=search(value).filter(r=>filter(r.style)).length;if(count)words.push({query:value,label:value,kind:'keyword',count,correction:true});}
     words.sort((a,b)=>b.count-a.count||a.label.localeCompare(b.label,'pt-BR'));
    }
-   return [...words.slice(0,titles.length?3:limit),...titles,...words.slice(3)].slice(0,limit).map(({priority,...item})=>item);
+   const ordered=titles.length?[...words.slice(0,3),...titles,...words.slice(3)]:words;
+   return ordered.slice(0,limit).map(({priority,...item})=>item);
   }
   return {search,suggest,tagsForId:id=>entries.find(e=>e.style.id===id)?.tags||[]};
  }

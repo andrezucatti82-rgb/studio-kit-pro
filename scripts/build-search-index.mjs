@@ -15,4 +15,4 @@ c.search={version:1,language:'pt-BR',sourceSha256:createHash('sha256').update(JS
 await fs.writeFile(file,JSON.stringify(c,null,2)+'\n');
 const report={version:2,styleCount:c.styles.length,tagAssociations:Object.values(c.search.styleTags).reduce((n,t)=>n+t.length,0),referenceFramesAnalyzed:Object.keys(colors.styles).length,analysisBasis:'positive catalogue descriptions, intended commercial uses, declared palettes and measured reference colors; not a claim of visual or audiovisual review',styleDataSha256:createHash('sha256').update(JSON.stringify(c.styles)).digest('hex'),styles:analysis};
 await fs.writeFile(new URL('../style-atlas/records/search/enrichment.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
-console.log(`${c.styles.length} styles indexed; ${Object.values(c.search.styleTags).reduce((n,t)=>n+t.length,0)} editorial keyword associations.`);
+console.log(`${c.styles.length} styles indexed; ${Object.values(c.search.styleTags).reduce((n,t)=>n+t.length,0)} discovery keyword associations.`);
