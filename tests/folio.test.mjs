@@ -69,3 +69,15 @@ test('browse categories cover the catalogue and every subdivision has matching r
  assert.ok(!matches(portrait,'business','bem-estar','academias'));
  assert.equal(matches(portrait,'look','cores','azul'),colorsFor(portrait).includes('azul'));
 });
+
+test('niche groups partition a subcategory and prioritize its explicit sectors',()=>{
+ const topic=model.browseGroup('presentations').topics.find(topic=>topic.id==='profissional');
+ const styles=catalog.styles.filter(s=>model.matchesBrowse(s,'presentations',topic.id));
+ const groups=model.groupByNiche(styles,topic.sectors);
+ const grouped=Array.from(groups).flatMap(group=>Array.from(group.styles,s=>s.id));
+ assert.equal(grouped.length,styles.length);
+ assert.deepEqual(grouped.sort(),styles.map(s=>s.id).sort());
+ assert.equal(groups[0].id,'casa');
+ assert.ok(topic.sectors.includes(groups[0].styles[0].presenterEditing.sector));
+ assert.equal(groups.at(-1).id,'geral');
+});

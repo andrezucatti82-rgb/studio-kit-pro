@@ -19,6 +19,12 @@ def light_fringe(image,outer_box,inner_box):
  margin=max(1,len(outer)//24);step=max(1,len(outer)//256)
  differences=[(sum(a)-sum(b))/3 for a,b in zip(outer[margin:-margin:step],inner[margin:-margin:step])]
  return bool(differences) and median(differences)>=17 and sum(d>=12 for d in differences)/len(differences)>=.70
+def light_transition(image,strip,depth):
+ # A thin standalone line can fall just below the white threshold after export.
+ # Require a consistent drop over the edge to distinguish it from pale scenery.
+ pixels=list(image.crop(strip(depth)).getdata());margin=max(1,len(pixels)//24)
+ pixels=pixels[margin:-margin:max(1,len(pixels)//256)]
+ return bool(pixels) and sum(min(p)>=185 and max(p)-min(p)<=60 for p in pixels)/len(pixels)>=.75 and light_fringe(image,strip(depth),strip(depth+1))
 def scan(entry):
  src,frames=entry;raw=(root/src).read_bytes();out=[];partial=[]
  with Image.open(root/src) as opened:
@@ -42,18 +48,29 @@ def scan(entry):
     # only with measured light coverage and the same dark-content veto.
     for edge,d in enumerate(bounded):
      if warm_bounded[edge] and d<limit and white_line(panel,strips[edge](d),transition=True):bounded[edge]+=1
-    # A translucent last pixel can be dark on red or black artwork. Compare it
-    # with its neighbor only on edges already confirmed as part of the frame.
-    for edge,d in enumerate(bounded):
-     if d and d<limit and light_fringe(panel,strips[edge](d),strips[edge](d+1)):
-      bounded[edge]+=1;fringes.append(edge)
+   for edge,d in enumerate(bounded):
+    strip=strips[edge]
+    # The bright outer strip can have one or two translucent pixels underneath.
+    # Include them on confirmed borders even when only one side has a line.
+    if d==0 and depths[edge]==0 and warm_depths[edge]<=limit:
+     warm_depth=warm_bounded[edge]
+     if warm_depth and light_transition(panel,strip,warm_depth-1):d=warm_depth
+     elif light_transition(panel,strip,0):d=1
+    for _ in range(2):
+     if not 0<d<limit or not light_fringe(panel,strip(d),strip(d+1)):break
+     d+=1
+    if d>bounded[edge]:bounded[edge]=d;fringes.append(edge)
    if any(bounded):
+    # Resampling a scaled panel may blend neighboring source pixels. Give only
+    # confirmed borders a small safety inset so that the light line stays out.
+    bounded=[min(limit,d+2) if d else 0 for d in bounded]
     l,t,r,b=bounded;vw,vh=pw-l-r,ph-t-b
     if vw/pw<.92 or vh/ph<.92:continue
     vx=max(x,(box[0]+l)/W);vy=max(y,(box[1]+t)/H);vr=min(x+w,(box[2]-r)/W);vb=min(y+h,(box[3]-b)/H)
     vw,vh=round((vr-vx)*W,6),round((vb-vy)*H,6)
     crop=[round(vx,9),round(vy,9),round(vr-vx,9),round(vb-vy,9)]
-    record={'style':sid,'frame':i,'source':src,'sourceSha256':hashlib.sha256(raw).hexdigest(),'insetPixels':[l,t,r,b],'edgeRule':'coherent_light_frame' if warm_frame else 'neutral_strips','view':[crop,vw,vh]}
+    rule='coherent_light_frame' if warm_frame else 'neutral_strips' if any(depths) else 'light_transition'
+    record={'style':sid,'frame':i,'source':src,'sourceSha256':hashlib.sha256(raw).hexdigest(),'insetPixels':[l,t,r,b],'edgeRule':rule,'view':[crop,vw,vh]}
     if fringes:record['fringeEdges']=fringes
     out.append(record)
    elif sum(0<d<=limit for d in depths)>=2:partial.append({'style':sid,'frame':i,'source':src,'depths':depths,'limit':limit})
@@ -66,5 +83,5 @@ with ThreadPoolExecutor(max_workers=4) as pool:
 presentation={}
 for r in found:presentation.setdefault(r['style'],{})[str(r['frame'])]=r['view']
 (root/'frame-presentation.js').write_text('/* Thin neutral borders are omitted only in the UI; original media is unchanged. */\nwindow.AtlasFramePresentation='+json.dumps(presentation,separators=(',',':'))+';\n')
-report={'styleCount':len(catalog['styles']),'frameCount':sum(len(v) for v in sources.values()),'sourceCount':len(sources),'adjustedFrames':len(found),'adjustedStyles':len(presentation),'criterion':'Neutral light strips require 94% coverage/min224/tint30. Warm light frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. One measured transition pixel may follow at 75% light coverage. On edges already confirmed as part of a coherent warm frame, trim one further pixel if the median brightness falls by at least 17 and 70% of positions fall by at least 12 in the next row. Each side remains bounded to 3.5%/24px and each dimension retains at least 92%.','imageFilesModified':False,'frames':found,'partialCandidates':partial}
+report={'styleCount':len(catalog['styles']),'frameCount':sum(len(v) for v in sources.values()),'sourceCount':len(sources),'adjustedFrames':len(found),'adjustedStyles':len(presentation),'criterion':'Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.','imageFilesModified':False,'frames':found,'partialCandidates':partial}
 Path(__file__).with_name('report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:report[k] for k in ['styleCount','frameCount','sourceCount','adjustedFrames','adjustedStyles']}))

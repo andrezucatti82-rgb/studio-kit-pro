@@ -363,27 +363,27 @@
       "source": "assets/style-sequences/construtivismo-02.webp",
       "sourceSha256": "f4d74b52e111c944153afa9560fbeb661816d0c9d856876e9c939bd7e434e72e",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.2786
+          "share": 0.2763
         },
         {
           "tag": "preto",
-          "share": 0.2458
+          "share": 0.2484
         },
         {
           "tag": "laranja",
-          "share": 0.1929
+          "share": 0.1928
         },
         {
           "tag": "marrom",
-          "share": 0.177
+          "share": 0.1764
         }
       ]
     },
@@ -1059,27 +1059,27 @@
       "source": "assets/style-sequences/recortes-de-revista-02.webp",
       "sourceSha256": "011377b56f2b100ba2137413c16299b5f3dd566a42be3399733685fac2ba5ccc",
       "crop": [
+        0.008492569,
         0,
-        0,
-        1,
-        1
+        0.991507431,
+        0.995215311
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.286
+          "share": 0.2835
         },
         {
           "tag": "cinza",
-          "share": 0.2039
+          "share": 0.2041
         },
         {
           "tag": "marrom",
-          "share": 0.1261
+          "share": 0.1247
         },
         {
           "tag": "azul",
-          "share": 0.1225
+          "share": 0.1239
         }
       ]
     },
@@ -1088,19 +1088,19 @@
       "source": "assets/style-sequences/risografia-02.webp",
       "sourceSha256": "77a76b603afb80695abd490e28b0a10a86653c0f429b1a57c142a4b68df078f7",
       "crop": [
-        0.005859375,
-        0.00390625,
-        0.98828125,
-        0.993489583
+        0.009765625,
+        0.006510417,
+        0.98046875,
+        0.98828125
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.4756
+          "share": 0.4758
         },
         {
           "tag": "laranja",
-          "share": 0.2485
+          "share": 0.2491
         }
       ]
     },
@@ -1141,28 +1141,28 @@
         0,
         0,
         1,
-        1
+        0.990885417
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3468
+          "share": 0.3487
         },
         {
           "tag": "preto",
-          "share": 0.1965
+          "share": 0.2014
         },
         {
           "tag": "bege",
-          "share": 0.1743
+          "share": 0.1706
         },
         {
           "tag": "cinza",
-          "share": 0.1408
+          "share": 0.1376
         },
         {
           "tag": "marrom",
-          "share": 0.1309
+          "share": 0.1292
         }
       ]
     },
@@ -1174,16 +1174,16 @@
         0,
         0,
         1,
-        1
+        0.991712707
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.462
+          "share": 0.461
         },
         {
           "tag": "marrom",
-          "share": 0.3748
+          "share": 0.3785
         }
       ]
     },
@@ -1238,19 +1238,19 @@
       "source": "assets/film-sequences/tecnologia-1-02.webp",
       "sourceSha256": "3a896893b49b62ba4f85d992753bd6a1ad098697ec14b35c6f45efc66417eb98",
       "crop": [
+        0.008492569,
         0,
-        0,
-        1,
+        0.991507431,
         1
       ],
       "colors": [
         {
           "tag": "branco",
-          "share": 0.6477
+          "share": 0.6491
         },
         {
           "tag": "azul",
-          "share": 0.1406
+          "share": 0.1228
         }
       ]
     },
@@ -1305,19 +1305,19 @@
       "source": "assets/style-sequences/infografia-de-dados-04.webp",
       "sourceSha256": "b0e052ed3d20398ad9b15111d2b6ffe70a34c15f57a077d0c2925e5f631f257e",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4283
+          "share": 0.4244
         },
         {
           "tag": "azul",
-          "share": 0.3583
+          "share": 0.3603
         }
       ]
     },
@@ -1326,19 +1326,23 @@
       "source": "assets/style-sequences/cartografia-animada-04.webp",
       "sourceSha256": "67e5b59571e5564db9dbbaa8b203e58c97812415f881d738f2f8e4be07bcf179",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.348
+          "share": 0.3471
         },
         {
           "tag": "marrom",
-          "share": 0.2617
+          "share": 0.2629
+        },
+        {
+          "tag": "turquesa",
+          "share": 0.1209
         }
       ]
     },
@@ -1418,23 +1422,23 @@
       "source": "assets/style-sequences/hud-futurista-04.webp",
       "sourceSha256": "3d91e7b3583bb6c0161b27bfc9b08aa11ea7aae002c2f143b17ec78a8427012d",
       "crop": [
-        0,
-        0,
-        1,
-        1
+        0.0078125,
+        0.00390625,
+        0.9921875,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.2941
+          "share": 0.2917
         },
         {
           "tag": "verde",
-          "share": 0.2746
+          "share": 0.2786
         },
         {
           "tag": "azul",
-          "share": 0.2143
+          "share": 0.2113
         }
       ]
     },
@@ -1576,20 +1580,20 @@
         0,
         0,
         1,
-        0.997395833
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3294
+          "share": 0.3303
         },
         {
           "tag": "cinza",
-          "share": 0.2735
+          "share": 0.2741
         },
         {
           "tag": "laranja",
-          "share": 0.2074
+          "share": 0.21
         }
       ]
     },
@@ -1836,23 +1840,23 @@
       "source": "assets/style-sequences/papercraft-3d-02.webp",
       "sourceSha256": "72262a94fc5c35f4880d0adbf5e996f07402cb369f5ebdfe42e3b88311702be4",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3193
+          "share": 0.3228
         },
         {
           "tag": "verde",
-          "share": 0.2598
+          "share": 0.2602
         },
         {
           "tag": "marrom",
-          "share": 0.2451
+          "share": 0.2415
         }
       ]
     },
@@ -1889,16 +1893,16 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.558
+          "share": 0.5571
         },
         {
           "tag": "preto",
-          "share": 0.3911
+          "share": 0.3897
         }
       ]
     },
@@ -1910,20 +1914,20 @@
         0,
         0,
         1,
-        0.997395833
+        0.993489583
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2466
+          "share": 0.247
         },
         {
           "tag": "marrom",
-          "share": 0.2061
+          "share": 0.2025
         },
         {
           "tag": "vermelho",
-          "share": 0.1286
+          "share": 0.13
         }
       ]
     },
@@ -2094,20 +2098,20 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3665
+          "share": 0.3648
         },
         {
           "tag": "preto",
-          "share": 0.3564
+          "share": 0.3585
         },
         {
           "tag": "laranja",
-          "share": 0.154
+          "share": 0.1532
         }
       ]
     },
@@ -2116,27 +2120,27 @@
       "source": "assets/style-sequences/tutorial-de-interface-02.webp",
       "sourceSha256": "41cd0e71a2049a50868908a54034df5ea84aec36101b894de696a4a1a6b2ed80",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "off-white",
-          "share": 0.2108
+          "share": 0.2132
         },
         {
           "tag": "vinho",
-          "share": 0.1566
+          "share": 0.1559
         },
         {
           "tag": "laranja",
-          "share": 0.1431
+          "share": 0.1444
         },
         {
           "tag": "roxo",
-          "share": 0.1247
+          "share": 0.1244
         }
       ]
     },
@@ -2178,19 +2182,19 @@
       "source": "assets/style-sequences/antes-e-depois-02.webp",
       "sourceSha256": "2b5c9af66c9463731a292705b5dcdbd5618117248ebc4a8abcd258e987995161",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.99609375
+        0.9921875,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4066
+          "share": 0.4018
         },
         {
           "tag": "cinza",
-          "share": 0.1976
+          "share": 0.2015
         }
       ]
     },
@@ -2224,27 +2228,27 @@
       "source": "assets/style-sequences/caso-de-uso-02.webp",
       "sourceSha256": "9b23947860a3f3991e558a2c21f9a408319e09231e49812bef44cc9ea4728f5a",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
+        0.990234375,
         1
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2827
+          "share": 0.2838
         },
         {
           "tag": "marrom",
-          "share": 0.1721
+          "share": 0.171
         },
         {
           "tag": "laranja",
-          "share": 0.1615
+          "share": 0.1608
         },
         {
           "tag": "preto",
-          "share": 0.1399
+          "share": 0.1386
         }
       ]
     },
@@ -2508,23 +2512,23 @@
       "source": "assets/style-sequences/joia-em-detalhe-e-uso-02.webp",
       "sourceSha256": "597aa94fdfa46065bdb394b98c57f2b2a838b1bd822d16e88c076582ee3fc59e",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4131
+          "share": 0.4099
         },
         {
           "tag": "laranja",
-          "share": 0.3277
+          "share": 0.3286
         },
         {
           "tag": "preto",
-          "share": 0.2204
+          "share": 0.2262
         }
       ]
     },
@@ -2536,16 +2540,16 @@
         0,
         0,
         1,
-        1
+        0.995215311
       ],
       "colors": [
         {
           "tag": "rosa",
-          "share": 0.4702
+          "share": 0.4681
         },
         {
           "tag": "vinho",
-          "share": 0.2403
+          "share": 0.2401
         }
       ]
     },
@@ -2554,23 +2558,23 @@
       "source": "assets/style-sequences/decoracao-em-ambientes-02.webp",
       "sourceSha256": "f87454d2109a96b2a3e4f3c531706561f930c6e856d75aea537dac975371ae56",
       "crop": [
-        0.002123142,
+        0.008492569,
         0,
-        0.997876858,
-        1
+        0.991507431,
+        0.994019139
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4384
+          "share": 0.445
         },
         {
           "tag": "laranja",
-          "share": 0.2411
+          "share": 0.2352
         },
         {
           "tag": "vinho",
-          "share": 0.1593
+          "share": 0.1613
         }
       ]
     },
@@ -2675,27 +2679,27 @@
       "source": "assets/style-sequences/pet-em-uso-cotidiano-02.webp",
       "sourceSha256": "9b10a01ca66affcdb6a7615c08d773906fa756b5aee3a2ae46d6cffd9665b1ac",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.384
+          "share": 0.3832
         },
         {
           "tag": "marrom",
-          "share": 0.1901
+          "share": 0.1926
         },
         {
           "tag": "cinza",
-          "share": 0.1491
+          "share": 0.1473
         },
         {
           "tag": "azul",
-          "share": 0.1232
+          "share": 0.125
         }
       ]
     },
@@ -2725,23 +2729,23 @@
       "source": "assets/style-sequences/smartphone-camera-em-foco-02.webp",
       "sourceSha256": "9d1552fb9a32f83e9dd52d0099f14968939bb5e2c7039e541af0da0fcdf94a06",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3559
+          "share": 0.3548
         },
         {
           "tag": "preto",
-          "share": 0.2322
+          "share": 0.2374
         },
         {
           "tag": "roxo",
-          "share": 0.1239
+          "share": 0.126
         }
       ]
     },
@@ -2775,19 +2779,19 @@
       "source": "assets/style-sequences/unboxing-artesanal-02.webp",
       "sourceSha256": "9924bc96abb1ee5f6e9c4ca383be591151f6dd9d9f5d0bd77d8bb4f559271141",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        1
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.3738
+          "share": 0.3737
         },
         {
           "tag": "marrom",
-          "share": 0.3006
+          "share": 0.3021
         }
       ]
     },
@@ -2796,15 +2800,15 @@
       "source": "assets/style-sequences/portal-pelo-detalhe-02.webp",
       "sourceSha256": "62db0c11a91429e8af32c98677ebfa26cb7f0be2cb3b5f4826d25a87551ffe7a",
       "crop": [
-        0.001953125,
+        0.005859375,
         0,
-        0.998046875,
-        1
+        0.994140625,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.2375
+          "share": 0.2351
         },
         {
           "tag": "vinho",
@@ -2812,11 +2816,11 @@
         },
         {
           "tag": "preto",
-          "share": 0.1362
+          "share": 0.1357
         },
         {
           "tag": "marrom",
-          "share": 0.1232
+          "share": 0.126
         }
       ]
     },
@@ -2878,20 +2882,20 @@
         0,
         0,
         1,
-        0.997395833
+        0.993489583
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3572
+          "share": 0.3586
         },
         {
           "tag": "laranja",
-          "share": 0.2385
+          "share": 0.2366
         },
         {
           "tag": "marrom",
-          "share": 0.1249
+          "share": 0.1256
         }
       ]
     },
@@ -2900,27 +2904,27 @@
       "source": "assets/style-sequences/packshot-com-chamada-editorial-02.webp",
       "sourceSha256": "444d8339ce3ffc3a1c2c2b861bd0a9399638e3b3f6c77eca90927f456ae5f9d2",
       "crop": [
-        0.002123142,
+        0.010615711,
         0,
-        0.997876858,
-        0.997607656
+        0.989384289,
+        0.994019139
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3478
+          "share": 0.3377
         },
         {
           "tag": "preto",
-          "share": 0.2759
+          "share": 0.284
         },
         {
           "tag": "marrom",
-          "share": 0.1751
+          "share": 0.1735
         },
         {
           "tag": "laranja",
-          "share": 0.1224
+          "share": 0.1265
         }
       ]
     },
@@ -2979,23 +2983,23 @@
       "source": "assets/style-sequences/fachada-com-revelacao-02.webp",
       "sourceSha256": "57d52d60f6a482c713741020882e6c5f6eadd72033cf34137f6209ee6b3494cd",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4504
+          "share": 0.4481
         },
         {
           "tag": "laranja",
-          "share": 0.3534
+          "share": 0.3552
         },
         {
           "tag": "preto",
-          "share": 0.1647
+          "share": 0.165
         }
       ]
     },
@@ -3049,16 +3053,16 @@
         0,
         0,
         1,
-        0.997395833
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5001
+          "share": 0.5019
         },
         {
           "tag": "laranja",
-          "share": 0.359
+          "share": 0.3566
         }
       ]
     },
@@ -3163,23 +3167,23 @@
       "source": "assets/style-sequences/planta-que-orienta-a-visita-02.webp",
       "sourceSha256": "515ba3a0100202e6c7a3aa5f97fb3ab844b7b2f1a78ca0e1f597075b3ef444c9",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3231
+          "share": 0.3219
         },
         {
           "tag": "marrom",
-          "share": 0.254
+          "share": 0.2491
         },
         {
           "tag": "laranja",
-          "share": 0.2188
+          "share": 0.2198
         }
       ]
     },
@@ -3217,23 +3221,23 @@
       "source": "assets/style-sequences/campanhas-em-camadas-02.webp",
       "sourceSha256": "249820f884ec30de6601fb51af40556c5f4d632908d1ff37d2959232e89c3199",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
-        0.998618785
+        0.994475138,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3797
+          "share": 0.3874
         },
         {
           "tag": "preto",
-          "share": 0.3465
+          "share": 0.3453
         },
         {
           "tag": "roxo",
-          "share": 0.1267
+          "share": 0.1256
         }
       ]
     },
@@ -3263,19 +3267,19 @@
       "source": "assets/style-sequences/jornada-analitica-ga4-02.webp",
       "sourceSha256": "3a08b260bc58ab30492b8f194c9eb30fac3dba41b04424dbfe0fcb4c672439c1",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4656
+          "share": 0.4663
         },
         {
           "tag": "preto",
-          "share": 0.3151
+          "share": 0.3105
         }
       ]
     },
@@ -3309,23 +3313,23 @@
       "source": "assets/style-sequences/conversa-que-resolve-02.webp",
       "sourceSha256": "894da2d34f719c75483a288b00ea43bfd4bf9d98e87d5294935e95697d804f52",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        0.998697917
+        0.994140625,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "off-white",
-          "share": 0.3301
+          "share": 0.3297
         },
         {
           "tag": "azul",
-          "share": 0.2233
+          "share": 0.2272
         },
         {
           "tag": "preto",
-          "share": 0.1302
+          "share": 0.1345
         }
       ]
     },
@@ -3447,19 +3451,19 @@
       "source": "assets/style-sequences/zoom-de-precisao-na-interface-02.webp",
       "sourceSha256": "ba4fd45bad05214d198f8df9e519bffaf9c9d643dd534d1244238611fe1fead4",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        1
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4522
+          "share": 0.4592
         },
         {
           "tag": "azul",
-          "share": 0.308
+          "share": 0.3054
         }
       ]
     },
@@ -3771,20 +3775,20 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.4527
+          "share": 0.4538
         },
         {
           "tag": "cinza",
-          "share": 0.1443
+          "share": 0.1421
         },
         {
           "tag": "vermelho",
-          "share": 0.1265
+          "share": 0.1259
         }
       ]
     },
@@ -4327,23 +4331,23 @@
       "source": "assets/style-sequences/miniatura-ornamental-02.webp",
       "sourceSha256": "cff26377d5335fe15b3f70b7772d65b3256743550acf481c784359ca002d6c7e",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        1
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2608
+          "share": 0.2594
         },
         {
           "tag": "laranja",
-          "share": 0.2427
+          "share": 0.2411
         },
         {
           "tag": "amarelo",
-          "share": 0.1284
+          "share": 0.127
         }
       ]
     },
@@ -4604,18 +4608,18 @@
       "sourceSha256": "671345b0e480f553df2f57f2d921590837d5140deb3034a02b9988c3f6acdeb4",
       "crop": [
         0,
-        0,
+        0.00390625,
         1,
-        1
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.664
+          "share": 0.6621
         },
         {
           "tag": "azul",
-          "share": 0.2085
+          "share": 0.2073
         }
       ]
     },
@@ -4624,19 +4628,19 @@
       "source": "assets/style-sequences/espectrograma-visual-04.webp",
       "sourceSha256": "010a7222886bf6e8942e23108034e7beac43ca14afa5daceb9f5b6ee61d2d684",
       "crop": [
-        0.001841621,
-        0,
-        0.998158379,
-        1
+        0.007366483,
+        0.004143646,
+        0.992633517,
+        0.995856354
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4714
+          "share": 0.4775
         },
         {
           "tag": "azul",
-          "share": 0.3031
+          "share": 0.2962
         }
       ]
     },
@@ -4687,19 +4691,19 @@
       "source": "assets/style-sequences/matriz-de-decisao-04.webp",
       "sourceSha256": "64d120b2f005c2da4081d927ecb766f6d6e49ab6cb36ddf00504dba4b8f7c0dd",
       "crop": [
-        0.001841621,
-        0,
-        0.998158379,
-        1
+        0.007366483,
+        0.004143646,
+        0.992633517,
+        0.995856354
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.5602
+          "share": 0.5662
         },
         {
           "tag": "preto",
-          "share": 0.2298
+          "share": 0.228
         }
       ]
     },
@@ -4875,27 +4879,27 @@
       "source": "assets/style-sequences/painel-de-pinos-animados-02.webp",
       "sourceSha256": "b4cffadeb62f89479dfbddc0987add85c7bde48f8944891324f5df97e6bc9866",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3862
+          "share": 0.3888
         },
         {
           "tag": "preto",
-          "share": 0.2041
+          "share": 0.2045
         },
         {
           "tag": "roxo",
-          "share": 0.1472
+          "share": 0.1511
         },
         {
           "tag": "vinho",
-          "share": 0.1229
+          "share": 0.1256
         }
       ]
     },
@@ -5104,27 +5108,27 @@
       "source": "assets/style-sequences/corte-seccional-espacial-02.webp",
       "sourceSha256": "e0d0de819b79e9d8c20e4a219f041bf6d0e45b68c66976396f4c91bc7be9916d",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        0.998697917
+        0.994140625,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2426
+          "share": 0.245
         },
         {
           "tag": "cinza",
-          "share": 0.23
+          "share": 0.225
         },
         {
           "tag": "laranja",
-          "share": 0.1273
+          "share": 0.1288
         },
         {
           "tag": "azul",
-          "share": 0.121
+          "share": 0.1204
         }
       ]
     },
@@ -5133,27 +5137,27 @@
       "source": "assets/style-sequences/entrevista-com-evidencias-02.webp",
       "sourceSha256": "5dcf31dd1f994cd144532bdcccda7587cb834633b5bfcd222eb846aa2141fd5d",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        1
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.306
+          "share": 0.307
         },
         {
           "tag": "bege",
-          "share": 0.1841
+          "share": 0.1859
         },
         {
           "tag": "laranja",
-          "share": 0.1718
+          "share": 0.1675
         },
         {
           "tag": "preto",
-          "share": 0.1567
+          "share": 0.1594
         }
       ]
     },
@@ -5162,27 +5166,27 @@
       "source": "assets/style-sequences/pergunta-e-descoberta-02.webp",
       "sourceSha256": "9cd3ebaf68c70934d6dd638ba3ff62823e4d04ce480b8ef6372100954e328462",
       "crop": [
+        0.009765625,
         0,
-        0,
-        1,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
-          "tag": "laranja",
-          "share": 0.271
+          "tag": "marrom",
+          "share": 0.273
         },
         {
-          "tag": "marrom",
-          "share": 0.2682
+          "tag": "laranja",
+          "share": 0.2717
         },
         {
           "tag": "cinza",
-          "share": 0.1954
+          "share": 0.1913
         },
         {
           "tag": "preto",
-          "share": 0.1229
+          "share": 0.124
         }
       ]
     },
@@ -5219,20 +5223,20 @@
         0,
         0,
         1,
-        1
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4568
+          "share": 0.4562
         },
         {
           "tag": "preto",
-          "share": 0.239
+          "share": 0.2395
         },
         {
           "tag": "laranja",
-          "share": 0.2097
+          "share": 0.2093
         }
       ]
     },
@@ -5402,20 +5406,20 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5598
+          "share": 0.5641
         },
         {
           "tag": "laranja",
-          "share": 0.2709
+          "share": 0.2683
         },
         {
           "tag": "preto",
-          "share": 0.152
+          "share": 0.1509
         }
       ]
     },
@@ -5495,31 +5499,31 @@
       "source": "assets/style-sequences/inventario-funcional-visto-de-cima-02.webp",
       "sourceSha256": "3924b206cefe6e33ca832692197ba569d6d3e9f42274bc908bb165c58e483c50",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2451
+          "share": 0.244
         },
         {
           "tag": "preto",
-          "share": 0.2152
+          "share": 0.2142
         },
         {
           "tag": "laranja",
-          "share": 0.1937
+          "share": 0.193
         },
         {
           "tag": "amarelo",
-          "share": 0.1659
+          "share": 0.1723
         },
         {
           "tag": "verde",
-          "share": 0.1222
+          "share": 0.1209
         }
       ]
     },
@@ -5574,23 +5578,23 @@
       "source": "assets/style-sequences/um-dia-com-o-produto-02.webp",
       "sourceSha256": "341feeb41deb2a1f781e881b2e931cfffe7b98a7a834832053a029a33fc75d30",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        0.99609375
+        0.994140625,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3643
+          "share": 0.365
         },
         {
           "tag": "laranja",
-          "share": 0.2802
+          "share": 0.2786
         },
         {
           "tag": "marrom",
-          "share": 0.1355
+          "share": 0.1356
         }
       ]
     },
@@ -5602,24 +5606,24 @@
         0,
         0,
         1,
-        0.997607656
+        0.994019139
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3287
+          "share": 0.3275
         },
         {
           "tag": "cinza",
-          "share": 0.2461
+          "share": 0.2448
         },
         {
           "tag": "preto",
-          "share": 0.1883
+          "share": 0.1905
         },
         {
           "tag": "laranja",
-          "share": 0.1285
+          "share": 0.1282
         }
       ]
     },
@@ -5628,27 +5632,27 @@
       "source": "assets/style-sequences/escolha-guiada-por-necessidade-02.webp",
       "sourceSha256": "f7c528365a1d520cf60c7081a51f8a83fc737c02bc0a04f2171a58fca8475d86",
       "crop": [
+        0.007366483,
         0,
-        0,
-        1,
-        0.997237569
+        0.992633517,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "off-white",
-          "share": 0.2785
+          "share": 0.2819
         },
         {
           "tag": "laranja",
-          "share": 0.1593
+          "share": 0.1564
         },
         {
           "tag": "marrom",
-          "share": 0.133
+          "share": 0.1305
         },
         {
           "tag": "cinza",
-          "share": 0.127
+          "share": 0.1286
         }
       ]
     },
@@ -5657,27 +5661,27 @@
       "source": "assets/style-sequences/desafio-cronometrado-verificavel-02.webp",
       "sourceSha256": "5c120184f83c25d7abaa422529ee14c42ca588c44794d56db1b2b86f9d4bac4a",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.99609375
+        0.9921875,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2727
+          "share": 0.2718
         },
         {
           "tag": "marrom",
-          "share": 0.2363
+          "share": 0.2414
         },
         {
           "tag": "laranja",
-          "share": 0.2311
+          "share": 0.2256
         },
         {
           "tag": "preto",
-          "share": 0.1448
+          "share": 0.1473
         }
       ]
     },
@@ -5686,27 +5690,27 @@
       "source": "assets/style-sequences/resposta-visual-a-objecoes-02.webp",
       "sourceSha256": "702944e1eb52bf1f09474d4379c6937115ad1501807c3057347667f67ba98c48",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2392
+          "share": 0.2389
         },
         {
           "tag": "cinza",
-          "share": 0.2383
+          "share": 0.2357
         },
         {
           "tag": "preto",
-          "share": 0.2275
+          "share": 0.2331
         },
         {
           "tag": "laranja",
-          "share": 0.1921
+          "share": 0.1913
         }
       ]
     },
@@ -5736,27 +5740,27 @@
       "source": "assets/style-sequences/produto-e-criador-em-dialogo-02.webp",
       "sourceSha256": "5a6ac87aac24a0d66472df71621a7679de1a3f00d9aea79d65a657b054ece837",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.994791667
+        0.990234375,
+        0.990885417
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.284
+          "share": 0.2812
         },
         {
           "tag": "laranja",
-          "share": 0.1865
+          "share": 0.186
         },
         {
           "tag": "preto",
-          "share": 0.1765
+          "share": 0.1805
         },
         {
           "tag": "vermelho",
-          "share": 0.1443
+          "share": 0.1445
         }
       ]
     },
@@ -5768,24 +5772,24 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2525
+          "share": 0.2477
         },
         {
           "tag": "amarelo",
-          "share": 0.2227
+          "share": 0.2245
         },
         {
           "tag": "azul",
-          "share": 0.2209
+          "share": 0.2242
         },
         {
           "tag": "preto",
-          "share": 0.1744
+          "share": 0.1736
         }
       ]
     },
@@ -5826,24 +5830,24 @@
         0,
         0,
         1,
-        1
+        0.99609375
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4787
+          "share": 0.4772
         },
         {
           "tag": "cinza",
-          "share": 0.2003
+          "share": 0.1999
         },
         {
           "tag": "preto",
-          "share": 0.1305
+          "share": 0.1326
         },
         {
           "tag": "laranja",
-          "share": 0.1283
+          "share": 0.1253
         }
       ]
     },
@@ -5852,23 +5856,23 @@
       "source": "assets/style-sequences/percurso-de-acessibilidade-02.webp",
       "sourceSha256": "a7317c8b4b62432354991e88ea7e97b3189be1e04dd26c7d6e2d42d70c96cd5e",
       "crop": [
-        0.001953125,
+        0.009765625,
         0,
-        0.998046875,
-        0.99609375
+        0.990234375,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.352
-        },
-        {
-          "tag": "marrom",
-          "share": 0.2036
+          "share": 0.3532
         },
         {
           "tag": "preto",
-          "share": 0.1952
+          "share": 0.1991
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1987
         }
       ]
     },
@@ -5877,19 +5881,19 @@
       "source": "assets/style-sequences/dimensoes-de-ambiente-em-escala-02.webp",
       "sourceSha256": "91fb6fe28b51647fac40721e7485c306df1d3721a7e7f02db789f41d5d6b2c23",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.4597
+          "share": 0.4602
         },
         {
           "tag": "marrom",
-          "share": 0.3975
+          "share": 0.4006
         }
       ]
     },
@@ -6014,19 +6018,19 @@
       "source": "assets/style-sequences/permissoes-por-papel-02.webp",
       "sourceSha256": "927c71da7f147a8a03d4008b5bcf45754771f39ca368231959787f32166f92d7",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.5269
+          "share": 0.5266
         },
         {
           "tag": "preto",
-          "share": 0.2381
+          "share": 0.2437
         }
       ]
     },
@@ -6110,19 +6114,19 @@
       "source": "assets/style-sequences/importacao-com-validacao-02.webp",
       "sourceSha256": "36b7a3d81527b51a8a86ce5c73e04fd55dfe94716ef52106aeb3820acfbf7f5d",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4699
+          "share": 0.4746
         },
         {
           "tag": "preto",
-          "share": 0.1689
+          "share": 0.1709
         }
       ]
     },
@@ -6131,19 +6135,19 @@
       "source": "assets/style-sequences/busca-que-refina-resultados-02.webp",
       "sourceSha256": "5674d9b39643a90ccfd8d55f99e9919e8cbda7fcf0c1f884c6d5f933b29a59b9",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.998697917
+        0.990234375,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "off-white",
-          "share": 0.2921
+          "share": 0.2943
         },
         {
           "tag": "cinza",
-          "share": 0.1608
+          "share": 0.1593
         }
       ]
     },
@@ -6190,31 +6194,31 @@
       "source": "assets/style-sequences/canvas-de-raciocinio-causal-02.webp",
       "sourceSha256": "ab1c46bc08d71e35cd38a818ad78d58ca4a86216fca55da16efdf6c9080ae8aa",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2502
+          "share": 0.2473
         },
         {
           "tag": "cinza",
-          "share": 0.1742
+          "share": 0.1731
         },
         {
           "tag": "laranja",
-          "share": 0.1502
+          "share": 0.1506
         },
         {
           "tag": "bege",
-          "share": 0.1332
+          "share": 0.1349
         },
         {
           "tag": "roxo",
-          "share": 0.13
+          "share": 0.1317
         }
       ]
     },
@@ -6323,19 +6327,19 @@
       "source": "assets/style-sequences/livro-digital-de-capitulos-02.webp",
       "sourceSha256": "266036c556905731c722eb173f782d75c75c30846886463e51fd73feadaee762",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3358
+          "share": 0.3411
         },
         {
           "tag": "marrom",
-          "share": 0.1879
+          "share": 0.1868
         }
       ]
     },
@@ -6344,19 +6348,19 @@
       "source": "assets/style-sequences/sinalizacao-de-conferencia-02.webp",
       "sourceSha256": "4da40e442d77f189b751168dce035a929877763cf8bb58e8595e71ffa32acd5c",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3963
+          "share": 0.3983
         },
         {
           "tag": "preto",
-          "share": 0.2423
+          "share": 0.2427
         },
         {
           "tag": "roxo",
@@ -6415,27 +6419,27 @@
       "source": "assets/style-sequences/apresentadora-criativa-em-atelie-02.webp",
       "sourceSha256": "4a1e9c0b3086154d1c4cf8aa9ce575697d513a6f80d26d37263099b3677c75ff",
       "crop": [
+        0.008492569,
         0,
-        0,
-        1,
+        0.991507431,
         1
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3066
+          "share": 0.3079
         },
         {
           "tag": "marrom",
-          "share": 0.2463
+          "share": 0.2467
         },
         {
           "tag": "cinza",
-          "share": 0.1332
+          "share": 0.1287
         },
         {
           "tag": "vermelho",
-          "share": 0.1243
+          "share": 0.1257
         }
       ]
     },
@@ -6444,27 +6448,27 @@
       "source": "assets/style-sequences/apresentador-de-terno-em-escritorio-02.webp",
       "sourceSha256": "60839cc48212ff353023b98a8a46f33d04a6bf5fecfb46d75324e2ec083f588c",
       "crop": [
-        0.0078125,
+        0.013671875,
         0,
-        0.9921875,
-        0.994791667
+        0.986328125,
+        0.990885417
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3578
+          "share": 0.3568
         },
         {
           "tag": "preto",
-          "share": 0.2591
+          "share": 0.2616
         },
         {
           "tag": "azul",
-          "share": 0.1437
+          "share": 0.1459
         },
         {
           "tag": "marrom",
-          "share": 0.1406
+          "share": 0.1404
         }
       ]
     },
@@ -6594,27 +6598,27 @@
       "source": "assets/style-sequences/apresentador-acessivel-em-coworking-02.webp",
       "sourceSha256": "3ee3c2d3d103084925a686e867dc4e7885cba909b7ad6a2122a8d9f192ea025c",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3059
+          "share": 0.3085
         },
         {
           "tag": "preto",
-          "share": 0.2062
+          "share": 0.2078
         },
         {
           "tag": "cinza",
-          "share": 0.1512
+          "share": 0.148
         },
         {
           "tag": "laranja",
-          "share": 0.1436
+          "share": 0.1432
         }
       ]
     },
@@ -6677,23 +6681,23 @@
       "source": "assets/style-sequences/apresentadora-elegante-em-terraco-02.webp",
       "sourceSha256": "4adf8480ba82eeea7e2cf8dbf6f3ccfe56c78842df73a667ac4e8f34d4d7851d",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.3091
-        },
-        {
-          "tag": "cinza",
-          "share": 0.178
+          "share": 0.3133
         },
         {
           "tag": "marrom",
-          "share": 0.1738
+          "share": 0.1742
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1722
         }
       ]
     },
@@ -6702,23 +6706,23 @@
       "source": "assets/style-sequences/apresentador-casual-na-praia-02.webp",
       "sourceSha256": "db63ed0b84710e9aeafdeb05d248ea2163a084fa8582d6af951a7edf05f49815",
       "crop": [
-        0.003683241,
+        0.007366483,
         0,
-        0.996316759,
-        0.997237569
+        0.992633517,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2647
+          "share": 0.2655
         },
         {
           "tag": "laranja",
-          "share": 0.2567
+          "share": 0.2576
         },
         {
           "tag": "azul",
-          "share": 0.1296
+          "share": 0.1308
         }
       ]
     },
@@ -6727,23 +6731,23 @@
       "source": "assets/style-sequences/apresentadora-de-campo-em-jardim-02.webp",
       "sourceSha256": "865c5d06cbf5c258898454d31b6b395b344eb02c447138de0d9138741c137d33",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "amarelo",
-          "share": 0.4371
-        },
-        {
-          "tag": "laranja",
-          "share": 0.129
+          "share": 0.4351
         },
         {
           "tag": "cinza",
-          "share": 0.1272
+          "share": 0.1282
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1278
         }
       ]
     },
@@ -6777,23 +6781,23 @@
       "source": "assets/style-sequences/apresentadora-despojada-em-cafe-externo-02.webp",
       "sourceSha256": "1040e4bea34ab09051373829598a56697943d2b92f9ad1c48749aabe747c9042",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.99609375
+        0.9921875,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3145
+          "share": 0.3126
         },
         {
           "tag": "preto",
-          "share": 0.1643
+          "share": 0.1688
         },
         {
           "tag": "cinza",
-          "share": 0.1573
+          "share": 0.1547
         }
       ]
     },
@@ -7364,12 +7368,12 @@
         0,
         0,
         1,
-        1
+        0.994791667
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.8312
+          "share": 0.8368
         }
       ]
     },
@@ -7483,23 +7487,23 @@
       "source": "assets/style-sequences/cubismo-de-acoes-simultaneas-02.webp",
       "sourceSha256": "d1b9cffd426a417902894e22fabbe214ef34d4ed9305deb46714350aeae392fe",
       "crop": [
-        0.00390625,
+        0.01171875,
         0,
-        0.99609375,
-        0.99609375
+        0.98828125,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3937
+          "share": 0.395
         },
         {
           "tag": "laranja",
-          "share": 0.3307
+          "share": 0.331
         },
         {
           "tag": "cinza",
-          "share": 0.1378
+          "share": 0.1313
         }
       ]
     },
@@ -7608,23 +7612,23 @@
       "source": "assets/style-sequences/quilling-de-espirais-arquitetadas-02.webp",
       "sourceSha256": "63910ef00ec6c2f4adfac2a830c563858503cfd1199fea9c047bea8167c20a7e",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.39
+          "share": 0.3905
         },
         {
           "tag": "turquesa",
-          "share": 0.2089
+          "share": 0.2083
         },
         {
           "tag": "marrom",
-          "share": 0.1701
+          "share": 0.1733
         }
       ]
     },
@@ -7923,19 +7927,19 @@
       "source": "assets/style-sequences/mapa-de-arvore-por-proporcao-04.webp",
       "sourceSha256": "d15fd2ef071d9e313afe66ac9315d110836e6d1e3dfd5bfd3749b4508d8a6cff",
       "crop": [
-        0.001953125,
-        0,
-        0.998046875,
-        1
+        0.005859375,
+        0.00390625,
+        0.994140625,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4768
+          "share": 0.4743
         },
         {
           "tag": "preto",
-          "share": 0.395
+          "share": 0.3944
         }
       ]
     },
@@ -7990,19 +7994,19 @@
       "source": "assets/style-sequences/rio-de-composicao-temporal-04.webp",
       "sourceSha256": "119cfc8f9ddf43133d14508fdab0d290e5babfab5807c605fd94faf10992d459",
       "crop": [
-        0.001953125,
-        0,
-        0.998046875,
-        1
+        0.0078125,
+        0.00390625,
+        0.9921875,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.6401
+          "share": 0.6411
         },
         {
           "tag": "preto",
-          "share": 0.2268
+          "share": 0.2195
         }
       ]
     },
@@ -8325,23 +8329,23 @@
       "source": "assets/style-sequences/malha-auxetica-que-se-expande-02.webp",
       "sourceSha256": "6787a8379fb0d08dd7e5a7a48a3638eec6b681e76964b50f444b565f058eec00",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5248
+          "share": 0.5233
         },
         {
           "tag": "off-white",
-          "share": 0.2953
+          "share": 0.295
         },
         {
           "tag": "verde",
-          "share": 0.1604
+          "share": 0.161
         }
       ]
     },
@@ -8563,23 +8567,23 @@
       "source": "assets/style-sequences/dialogo-visual-entre-geracoes-02.webp",
       "sourceSha256": "74a072adb4b9a1ee09ee19f1a1e975226056252602e726b008382d3e8df35df7",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.99609375
+        0.990234375,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4676
+          "share": 0.4713
         },
         {
           "tag": "laranja",
-          "share": 0.2788
+          "share": 0.2749
         },
         {
           "tag": "preto",
-          "share": 0.2318
+          "share": 0.2316
         }
       ]
     },
@@ -8700,27 +8704,23 @@
       "source": "assets/style-sequences/historia-contada-por-comprovantes-02.webp",
       "sourceSha256": "da828859a462398ddb6a87581f4dea85407bd23ef41cd271356428efd9a51c54",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        1
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2676
+          "share": 0.2667
         },
         {
           "tag": "bege",
-          "share": 0.1483
+          "share": 0.1529
         },
         {
           "tag": "marrom",
-          "share": 0.1308
-        },
-        {
-          "tag": "cinza",
-          "share": 0.1294
+          "share": 0.1322
         }
       ]
     },
@@ -8893,19 +8893,19 @@
       "source": "assets/style-sequences/gabinete-de-especimes-de-produto-02.webp",
       "sourceSha256": "dfc836cd2751f231bd865568dd55283b478ac89a4b31a6f5003db565bf055e99",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.5639
+          "share": 0.5624
         },
         {
           "tag": "marrom",
-          "share": 0.3244
+          "share": 0.3248
         }
       ]
     },
@@ -9010,23 +9010,23 @@
       "source": "assets/style-sequences/revelacao-tardia-por-consequencias-02.webp",
       "sourceSha256": "c5582476505b9d305cfc2611569301893a5e480bcc79ad30295aa00b6a621196",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
+        0.994475138,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3761
+          "share": 0.3737
         },
         {
           "tag": "cinza",
-          "share": 0.2906
+          "share": 0.2948
         },
         {
           "tag": "laranja",
-          "share": 0.1847
+          "share": 0.1827
         }
       ]
     },
@@ -9060,27 +9060,27 @@
       "source": "assets/style-sequences/coreografia-de-compatibilidade-02.webp",
       "sourceSha256": "4bcd47ead53d38eb7e23964a6bd093f356341859986ec64f3c9dba8129d8577b",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3563
+          "share": 0.3523
         },
         {
           "tag": "preto",
-          "share": 0.2253
+          "share": 0.2272
         },
         {
           "tag": "azul",
-          "share": 0.1298
+          "share": 0.133
         },
         {
           "tag": "marrom",
-          "share": 0.1289
+          "share": 0.1278
         }
       ]
     },
@@ -9089,27 +9089,27 @@
       "source": "assets/style-sequences/prova-cega-com-criterios-visiveis-02.webp",
       "sourceSha256": "263b43dffd4fb75031920a0f72763350a5b6cbdb3876296cf276a70b9a933f9f",
       "crop": [
-        0.001841621,
+        0.007366483,
         0,
-        0.998158379,
+        0.992633517,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3262
+          "share": 0.3285
         },
         {
           "tag": "laranja",
-          "share": 0.1598
+          "share": 0.16
         },
         {
           "tag": "cinza",
-          "share": 0.1523
+          "share": 0.1483
         },
         {
           "tag": "preto",
-          "share": 0.1213
+          "share": 0.1238
         }
       ]
     },
@@ -9118,27 +9118,27 @@
       "source": "assets/style-sequences/galeria-de-microproblemas-cotidianos-02.webp",
       "sourceSha256": "98f5b231f91ee437731c68df5f5a9d4d7c55ce411a764b54c9c58e7eeeeb56cd",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        0.997395833
+        0.994140625,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2929
+          "share": 0.2967
         },
         {
           "tag": "cinza",
-          "share": 0.2442
+          "share": 0.2409
         },
         {
           "tag": "preto",
-          "share": 0.2202
+          "share": 0.2208
         },
         {
           "tag": "laranja",
-          "share": 0.1631
+          "share": 0.1619
         }
       ]
     },
@@ -9150,20 +9150,20 @@
         0,
         0,
         1,
-        1
+        0.995215311
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3051
+          "share": 0.3074
         },
         {
           "tag": "laranja",
-          "share": 0.2564
+          "share": 0.2528
         },
         {
           "tag": "cinza",
-          "share": 0.1594
+          "share": 0.1591
         }
       ]
     },
@@ -9218,23 +9218,23 @@
       "source": "assets/style-sequences/atlas-de-soleiras-e-passagens-02.webp",
       "sourceSha256": "f6a188f4b1bf9029990cc699be640271c5fbb1d073fa500efd4b52d75dc1b750",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5801
+          "share": 0.5871
         },
         {
           "tag": "laranja",
-          "share": 0.1357
+          "share": 0.1358
         },
         {
           "tag": "preto",
-          "share": 0.1335
+          "share": 0.1287
         }
       ]
     },
@@ -9243,19 +9243,19 @@
       "source": "assets/style-sequences/secao-habitada-com-fotos-encaixadas-02.webp",
       "sourceSha256": "70592ad2ea5069cce1dc2d6de01c5bdbabf3b6e2efbc02840496bb2b2621c94f",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
+        0.994475138,
         1
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2195
+          "share": 0.2197
         },
         {
           "tag": "cinza",
-          "share": 0.2091
+          "share": 0.2092
         },
         {
           "tag": "marrom",
@@ -9289,23 +9289,23 @@
       "source": "assets/style-sequences/paisagem-sonora-de-ambientes-reais-02.webp",
       "sourceSha256": "15eac0e7ce474cd788206fda7078b3e2ae07001d89152eb0b45855d92c3a9caf",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4146
+          "share": 0.4147
         },
         {
           "tag": "laranja",
-          "share": 0.2324
+          "share": 0.2341
         },
         {
           "tag": "amarelo",
-          "share": 0.1211
+          "share": 0.1204
         }
       ]
     },
@@ -9314,23 +9314,23 @@
       "source": "assets/style-sequences/mapa-de-materiais-por-ambiente-02.webp",
       "sourceSha256": "7a6cfa2bae53dff89554bb5451f00a06e437589a3bece72dc9a502c1f61624a5",
       "crop": [
-        0.005524862,
+        0.011049724,
         0,
-        0.994475138,
-        0.997237569
+        0.988950276,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2889
+          "share": 0.2901
         },
         {
           "tag": "marrom",
-          "share": 0.2839
+          "share": 0.2854
         },
         {
           "tag": "laranja",
-          "share": 0.2111
+          "share": 0.2085
         }
       ]
     },
@@ -9339,23 +9339,23 @@
       "source": "assets/style-sequences/ventilacao-como-diagrama-verificado-02.webp",
       "sourceSha256": "68ce15f82e85e5635086e49d196a7ac2f2a5ec33c80c1775092736a0abbe98b9",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        1
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2084
+          "share": 0.2075
         },
         {
           "tag": "laranja",
-          "share": 0.186
+          "share": 0.18
         },
         {
           "tag": "marrom",
-          "share": 0.1759
+          "share": 0.1695
         }
       ]
     },
@@ -9367,20 +9367,20 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4149
+          "share": 0.4145
         },
         {
           "tag": "cinza",
-          "share": 0.2093
+          "share": 0.2106
         },
         {
           "tag": "laranja",
-          "share": 0.1897
+          "share": 0.1931
         }
       ]
     },
@@ -9456,19 +9456,19 @@
       "source": "assets/style-sequences/linhagem-de-um-campo-de-dados-02.webp",
       "sourceSha256": "2859701c865f8377c539f0eaa2cc4b1df10c72be6298e1eb56f684bdbdc5665e",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        1
+        0.990234375,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4065
+          "share": 0.4116
         },
         {
           "tag": "azul",
-          "share": 0.3307
+          "share": 0.3308
         }
       ]
     },
@@ -9586,19 +9586,19 @@
       "source": "assets/style-sequences/configuracao-por-dependencias-visiveis-02.webp",
       "sourceSha256": "de808c7fb4dafdc7f6a94a008ad2a69e264152de573e45f728b1a94a459fd32d",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
-        0.997237569
+        0.994475138,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.3976
+          "share": 0.4018
         },
         {
           "tag": "azul",
-          "share": 0.3946
+          "share": 0.3979
         }
       ]
     },
@@ -9607,23 +9607,23 @@
       "source": "assets/style-sequences/notificacao-do-gatilho-a-leitura-02.webp",
       "sourceSha256": "e49f3280b8e40603cf64092869f4e72caf344c1524ba5d44ec2f13f9234341ff",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
-        0.998618785
+        0.994475138,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3226
+          "share": 0.3189
         },
         {
           "tag": "cinza",
-          "share": 0.1752
+          "share": 0.1733
         },
         {
           "tag": "preto",
-          "share": 0.1611
+          "share": 0.1657
         }
       ]
     },
@@ -10240,31 +10240,31 @@
       "source": "assets/style-sequences/janelas-de-retomada-da-rotina-02.webp",
       "sourceSha256": "116dc46c18260e99b6accec87b11d63301af2503e71cb3644ad1567d91ec5cec",
       "crop": [
+        0.007366483,
         0,
-        0,
-        1,
-        1
+        0.992633517,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.1983
+          "share": 0.1951
         },
         {
           "tag": "marrom",
-          "share": 0.1815
+          "share": 0.1825
         },
         {
           "tag": "laranja",
-          "share": 0.1749
+          "share": 0.1691
         },
         {
           "tag": "preto",
-          "share": 0.1505
+          "share": 0.1536
         },
         {
           "tag": "vermelho",
-          "share": 0.1436
+          "share": 0.1465
         }
       ]
     },
@@ -10319,23 +10319,23 @@
       "source": "assets/style-sequences/tecnologia-estetica-em-feixes-explicados-02.webp",
       "sourceSha256": "d188a6bc1db3d8a9625712353b4cf344872b8ccdf0212fee5558898889aff1ec",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4401
+          "share": 0.4437
         },
         {
           "tag": "cinza",
-          "share": 0.1978
+          "share": 0.1867
         },
         {
           "tag": "laranja",
-          "share": 0.1262
+          "share": 0.1275
         }
       ]
     },
@@ -10376,16 +10376,16 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.7212
+          "share": 0.7202
         },
         {
           "tag": "marrom",
-          "share": 0.1332
+          "share": 0.1333
         }
       ]
     },
@@ -10394,23 +10394,23 @@
       "source": "assets/style-sequences/consulta-estetica-sem-transformacao-simulada-02.webp",
       "sourceSha256": "4a874baddd267004e9a2b02c942eca5fa8ae62aa7f307276405768a9152bec36",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
-        0.998618785
+        0.994475138,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3804
+          "share": 0.3827
         },
         {
           "tag": "marrom",
-          "share": 0.2061
+          "share": 0.2053
         },
         {
           "tag": "bege",
-          "share": 0.1449
+          "share": 0.1451
         }
       ]
     },
@@ -10419,23 +10419,23 @@
       "source": "assets/style-sequences/cadeira-odontologica-em-ensaio-sensorial-02.webp",
       "sourceSha256": "ee6ead1a43842264561aee4e666cb641254c22d1bfc71cc5ac6bd64d8fb03411",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4068
+          "share": 0.4043
         },
         {
           "tag": "marrom",
-          "share": 0.2468
+          "share": 0.2482
         },
         {
           "tag": "laranja",
-          "share": 0.1656
+          "share": 0.1657
         }
       ]
     },
@@ -10469,23 +10469,23 @@
       "source": "assets/style-sequences/trajeto-do-fio-em-escala-de-bancada-02.webp",
       "sourceSha256": "c77d0cd4c4a40d1f18ebfdd6a5e6868ff72f1cd18747233366b5a25a6e010a55",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2678
+          "share": 0.2662
         },
         {
           "tag": "vermelho",
-          "share": 0.2309
+          "share": 0.2331
         },
         {
           "tag": "laranja",
-          "share": 0.1619
+          "share": 0.1647
         }
       ]
     },
@@ -10523,23 +10523,23 @@
       "source": "assets/style-sequences/alinhador-sob-contorno-de-conferencia-02.webp",
       "sourceSha256": "edc52f3faac1cc2fe56d19f99f72990bca934478924eaa4a4561ce5a410369f4",
       "crop": [
-        0.001841621,
+        0.007366483,
         0,
-        0.998158379,
-        0.997237569
+        0.992633517,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.4146
+          "share": 0.4108
         },
         {
           "tag": "marrom",
-          "share": 0.2209
+          "share": 0.2218
         },
         {
           "tag": "cinza",
-          "share": 0.1768
+          "share": 0.1803
         }
       ]
     },
@@ -10648,23 +10648,23 @@
       "source": "assets/style-sequences/manutencao-protetica-em-estacao-de-cuidado-02.webp",
       "sourceSha256": "8b86254dd1a31c7944f8f4ac844044b45915838a1c05d044bfc8dd0a17bdbdfc",
       "crop": [
-        0.005859375,
+        0.009765625,
         0,
-        0.994140625,
-        0.994791667
+        0.990234375,
+        0.990885417
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2384
+          "share": 0.2338
         },
         {
           "tag": "laranja",
-          "share": 0.186
+          "share": 0.1856
         },
         {
           "tag": "marrom",
-          "share": 0.1801
+          "share": 0.1824
         }
       ]
     },
@@ -10747,16 +10747,16 @@
         0,
         0,
         1,
-        1
+        0.995856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2996
+          "share": 0.3012
         },
         {
           "tag": "laranja",
-          "share": 0.2994
+          "share": 0.2977
         }
       ]
     },
@@ -10765,23 +10765,23 @@
       "source": "assets/style-sequences/teleconsulta-em-enquadramento-de-prontidao-02.webp",
       "sourceSha256": "02a39122621080064c90966942b50e2363113be69f8c85ea6958626d471942a8",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.99609375
+        0.990234375,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3707
+          "share": 0.3767
         },
         {
           "tag": "preto",
-          "share": 0.1965
+          "share": 0.1988
         },
         {
           "tag": "cinza",
-          "share": 0.1547
+          "share": 0.1471
         }
       ]
     },
@@ -10790,19 +10790,19 @@
       "source": "assets/style-sequences/preparo-de-exame-em-lacres-de-confirmacao-02.webp",
       "sourceSha256": "ccddba213b1052a54750c59148e08ec142dd932e21edbc13006b3fcdfabfcdb9",
       "crop": [
-        0.002123142,
+        0.010615711,
         0,
-        0.997876858,
+        0.989384289,
         1
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2947
+          "share": 0.2942
         },
         {
           "tag": "marrom",
-          "share": 0.1254
+          "share": 0.1233
         }
       ]
     },
@@ -10840,27 +10840,27 @@
       "source": "assets/style-sequences/orientacao-clinica-em-dupla-via-acessivel-02.webp",
       "sourceSha256": "b2cae583b80e7f0bd04da2d00d5e66ddfa4e07ba7c7a548becae0b8e51829809",
       "crop": [
-        0.007366483,
+        0.012891344,
         0,
-        0.992633517,
-        0.995856354
+        0.987108656,
+        0.991712707
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2235
+          "share": 0.223
         },
         {
           "tag": "bege",
-          "share": 0.207
+          "share": 0.211
         },
         {
           "tag": "cinza",
-          "share": 0.1737
+          "share": 0.1711
         },
         {
           "tag": "marrom",
-          "share": 0.1532
+          "share": 0.1513
         }
       ]
     },
@@ -10894,10 +10894,10 @@
       "source": "assets/style-sequences/retorno-assistido-por-portas-de-contato-02.webp",
       "sourceSha256": "695ecc705810ae220db6e11c155fb16548e72b9b1f270e3cc65eea6e9bbf7ca4",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.99609375
+        0.9921875,
+        0.9921875
       ],
       "colors": [
         {
@@ -10906,11 +10906,11 @@
         },
         {
           "tag": "off-white",
-          "share": 0.129
+          "share": 0.1366
         },
         {
           "tag": "azul",
-          "share": 0.1289
+          "share": 0.1305
         }
       ]
     },
@@ -10965,23 +10965,23 @@
       "source": "assets/style-sequences/cor-sob-tres-iluminacoes-declaradas-02.webp",
       "sourceSha256": "6acb8295b5c5eb2ba881bbe37a88cd6a92b8b32e8c6e8f30014e62caa4a8b5bc",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "vinho",
-          "share": 0.3105
+          "share": 0.3158
         },
         {
           "tag": "marrom",
-          "share": 0.2494
+          "share": 0.2499
         },
         {
           "tag": "laranja",
-          "share": 0.1505
+          "share": 0.1481
         }
       ]
     },
@@ -10990,23 +10990,23 @@
       "source": "assets/style-sequences/capacidade-em-volumes-de-referencia-02.webp",
       "sourceSha256": "d9622d199c40dff5ea3491c9bc4c55ee5b32ae193c8838dc7be4599777b5e639",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
+        0.990234375,
         1
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2473
+          "share": 0.2483
         },
         {
           "tag": "marrom",
-          "share": 0.237
+          "share": 0.2401
         },
         {
           "tag": "laranja",
-          "share": 0.1707
+          "share": 0.169
         }
       ]
     },
@@ -11098,27 +11098,27 @@
       "source": "assets/style-sequences/ruido-real-em-janela-de-escuta-02.webp",
       "sourceSha256": "38d28815073f815cd16ec4963ae71089028126d440be4cf6c62932e5da91928d",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.2726
+          "share": 0.2722
         },
         {
           "tag": "cinza",
-          "share": 0.2557
+          "share": 0.2583
         },
         {
           "tag": "marrom",
-          "share": 0.181
+          "share": 0.1881
         },
         {
           "tag": "laranja",
-          "share": 0.1495
+          "share": 0.144
         }
       ]
     },
@@ -11173,23 +11173,23 @@
       "source": "assets/style-sequences/entrega-volumosa-em-dobradicas-de-acesso-02.webp",
       "sourceSha256": "6ac7c9e8a3f4ed90a9957981f4781f82f77a659962fda4f93ad70288849bceda",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3743
+          "share": 0.3756
         },
         {
           "tag": "cinza",
-          "share": 0.3495
+          "share": 0.3485
         },
         {
           "tag": "laranja",
-          "share": 0.2244
+          "share": 0.2238
         }
       ]
     },
@@ -11198,23 +11198,23 @@
       "source": "assets/style-sequences/embalagem-de-envio-em-corte-de-protecao-02.webp",
       "sourceSha256": "9ef695f6bd69487ebb301c209fd50381a15d0eb3c4121bc6f7fae1080109e305",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2803
+          "share": 0.282
         },
         {
           "tag": "laranja",
-          "share": 0.2771
+          "share": 0.2722
         },
         {
           "tag": "cinza",
-          "share": 0.2147
+          "share": 0.2142
         }
       ]
     },
@@ -11248,23 +11248,23 @@
       "source": "assets/style-sequences/troca-em-caminho-de-etiquetas-reversiveis-02.webp",
       "sourceSha256": "68eda9de62e925ac4e9bccd30a3646d34106d09cfa335be7205b10cca2bbc764",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3205
+          "share": 0.3206
         },
         {
           "tag": "laranja",
-          "share": 0.1915
+          "share": 0.1928
         },
         {
           "tag": "vermelho",
-          "share": 0.1487
+          "share": 0.1474
         }
       ]
     },
@@ -11315,27 +11315,27 @@
       "source": "assets/style-sequences/modo-de-guardar-em-silhueta-de-volume-02.webp",
       "sourceSha256": "981bd54642fb51326b97c6c72b3a338e25f91d00b01c68fdba589bccd2764004",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2567
+          "share": 0.2554
         },
         {
           "tag": "preto",
-          "share": 0.2356
+          "share": 0.2328
         },
         {
           "tag": "cinza",
-          "share": 0.225
+          "share": 0.2278
         },
         {
           "tag": "laranja",
-          "share": 0.1693
+          "share": 0.171
         }
       ]
     },
@@ -11344,31 +11344,31 @@
       "source": "assets/style-sequences/produto-recondicionado-em-mapa-de-condicao-02.webp",
       "sourceSha256": "7e4c19bf49352b2e63e766477cabe20c4e9a61f7d1db890d31b1b536f6abc212",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2287
+          "share": 0.2267
         },
         {
           "tag": "azul",
-          "share": 0.214
+          "share": 0.2154
         },
         {
           "tag": "preto",
-          "share": 0.176
+          "share": 0.1785
         },
         {
           "tag": "laranja",
-          "share": 0.1557
+          "share": 0.1541
         },
         {
           "tag": "marrom",
-          "share": 0.1352
+          "share": 0.1348
         }
       ]
     },
@@ -11398,27 +11398,27 @@
       "source": "assets/style-sequences/consumo-em-janela-de-condicao-de-uso-02.webp",
       "sourceSha256": "9d8819c315f03405edc398d524474fab9906797a40596f92472ffaa5bdaded4d",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        1
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2776
+          "share": 0.2757
         },
         {
           "tag": "marrom",
-          "share": 0.18
+          "share": 0.1793
         },
         {
           "tag": "laranja",
-          "share": 0.1629
+          "share": 0.1666
         },
         {
           "tag": "preto",
-          "share": 0.139
+          "share": 0.1378
         }
       ]
     },
@@ -11427,23 +11427,23 @@
       "source": "assets/style-sequences/alimento-em-painel-de-leitura-do-rotulo-02.webp",
       "sourceSha256": "dfdfa046fe7227fc2f1cc40702b673081ff072c1adfa9c0eb971736e184cae7b",
       "crop": [
-        0.003683241,
+        0.009208103,
         0,
-        0.996316759,
-        0.997237569
+        0.990791897,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2863
+          "share": 0.2874
         },
         {
           "tag": "marrom",
-          "share": 0.2559
+          "share": 0.2586
         },
         {
           "tag": "vinho",
-          "share": 0.2135
+          "share": 0.2113
         }
       ]
     },
@@ -11477,23 +11477,23 @@
       "source": "assets/style-sequences/ajuste-para-pet-em-manequim-medido-02.webp",
       "sourceSha256": "20a6e32dabad21f8e8d25443be5dca2dbe946a131382188222a9fa779b13799e",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.4468
+          "share": 0.4452
         },
         {
           "tag": "bege",
-          "share": 0.1815
+          "share": 0.1846
         },
         {
           "tag": "marrom",
-          "share": 0.1245
+          "share": 0.1262
         }
       ]
     },
@@ -11556,27 +11556,23 @@
       "source": "assets/style-sequences/prazo-por-faixas-de-destino-confirmadas-02.webp",
       "sourceSha256": "1c4bd10014ab029058b5c2456a9621d53a9680e51cb6370262de88f7bed97081",
       "crop": [
-        0.005859375,
+        0.01171875,
         0,
-        0.994140625,
-        0.99609375
+        0.98828125,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2812
+          "share": 0.2844
         },
         {
           "tag": "preto",
-          "share": 0.2234
+          "share": 0.2252
         },
         {
           "tag": "marrom",
-          "share": 0.1269
-        },
-        {
-          "tag": "cinza",
-          "share": 0.1204
+          "share": 0.1266
         }
       ]
     },
@@ -11614,27 +11610,27 @@
       "source": "assets/style-sequences/pagina-sem-som-em-sequencia-de-gestos-claros-02.webp",
       "sourceSha256": "afbb34d22a7e9fec08ec424400b761e790656c0fecbac3fad19ec3ed9b8c4432",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
+        0.990234375,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2415
+          "share": 0.2396
         },
         {
           "tag": "cinza",
-          "share": 0.2017
+          "share": 0.2064
         },
         {
           "tag": "laranja",
-          "share": 0.1922
+          "share": 0.1929
         },
         {
           "tag": "vinho",
-          "share": 0.1214
+          "share": 0.1217
         }
       ]
     },
@@ -11781,27 +11777,27 @@
       "source": "assets/style-sequences/erro-comentado-em-laminas-de-raciocinio-02.webp",
       "sourceSha256": "b97b57f0e40f4d8ca12c5cf5d3dfffb8a4c89b819c043c6edd4039d8b4043607",
       "crop": [
-        0.00390625,
+        0.0078125,
         0,
-        0.99609375,
-        0.994791667
+        0.9921875,
+        0.990885417
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2648
+          "share": 0.2627
         },
         {
           "tag": "preto",
-          "share": 0.1733
+          "share": 0.1719
         },
         {
           "tag": "marrom",
-          "share": 0.1603
+          "share": 0.16
         },
         {
           "tag": "bege",
-          "share": 0.1284
+          "share": 0.1272
         }
       ]
     },
@@ -11864,23 +11860,23 @@
       "source": "assets/style-sequences/retomada-do-curso-em-marcador-de-continuidade-02.webp",
       "sourceSha256": "5fae8cd2e4427cc3cf702e961cd8091566ae427971ea9e581f6707333864bee7",
       "crop": [
-        0.001841621,
+        0.007366483,
         0,
-        0.998158379,
-        0.998618785
+        0.992633517,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.5112
+          "share": 0.5191
         },
         {
           "tag": "cinza",
-          "share": 0.152
+          "share": 0.1525
         },
         {
           "tag": "azul",
-          "share": 0.141
+          "share": 0.1339
         }
       ]
     },
@@ -12118,27 +12114,27 @@
       "source": "assets/style-sequences/certificado-em-janela-de-criterios-reais-02.webp",
       "sourceSha256": "dee17ed30827839cd636a24cdf7fef3d24788559e42d88ebdd4fbbbf7963ff77",
       "crop": [
-        0.001841621,
+        0.007366483,
         0,
-        0.998158379,
-        0.997237569
+        0.992633517,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4123
-        },
-        {
-          "tag": "marrom",
-          "share": 0.1385
-        },
-        {
-          "tag": "bege",
-          "share": 0.1382
+          "share": 0.4218
         },
         {
           "tag": "off-white",
-          "share": 0.1365
+          "share": 0.137
+        },
+        {
+          "tag": "bege",
+          "share": 0.1362
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1337
         }
       ]
     },
@@ -12164,19 +12160,19 @@
       "source": "assets/style-sequences/garantia-do-curso-em-porta-de-saida-clara-02.webp",
       "sourceSha256": "50475c5d8b4f66571a0a33d01a0a379cb70168c8893a3715fad09174bb225f47",
       "crop": [
-        0.005859375,
+        0.01171875,
         0,
-        0.994140625,
-        0.994791667
+        0.98828125,
+        0.990885417
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.3988
+          "share": 0.3949
         },
         {
           "tag": "off-white",
-          "share": 0.1227
+          "share": 0.124
         }
       ]
     },
@@ -12185,19 +12181,19 @@
       "source": "assets/style-sequences/webinar-em-pistas-de-participacao-02.webp",
       "sourceSha256": "1202aa41e667c7cceaecc669081973da960d54a2d473f4b8d5c99b2a1cab1815",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4294
+          "share": 0.4256
         },
         {
           "tag": "azul",
-          "share": 0.343
+          "share": 0.3432
         }
       ]
     },
@@ -12238,24 +12234,24 @@
         0,
         0,
         1,
-        1
+        0.995856354
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2658
+          "share": 0.2636
         },
         {
           "tag": "preto",
-          "share": 0.2392
+          "share": 0.2388
         },
         {
           "tag": "marrom",
-          "share": 0.2227
+          "share": 0.2233
         },
         {
           "tag": "cinza",
-          "share": 0.1351
+          "share": 0.1353
         }
       ]
     },
@@ -12489,15 +12485,15 @@
       "source": "assets/style-sequences/campanha-janela-optica-sobre-fotografia-02.webp",
       "sourceSha256": "400f97518bcfa2291f478801509a6ab2f1fc01c4736553758db9bc807bd105bb",
       "crop": [
+        0.007366483,
         0,
-        0,
-        1,
-        1
+        0.992633517,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5937
+          "share": 0.5926
         },
         {
           "tag": "laranja",
@@ -12815,15 +12811,15 @@
       "source": "assets/style-sequences/campanha-jornada-de-servico-em-trilho-editorial-02.webp",
       "sourceSha256": "0d747e5ef5f2f1ec7343402706e79f0cc26689eff127c18d554c81b1543d6d79",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        0.998697917
+        0.994140625,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.6199
+          "share": 0.6159
         }
       ]
     },
@@ -13602,19 +13598,19 @@
       "source": "assets/style-sequences/exp-lapis-de-cor-em-papel-negro-02.webp",
       "sourceSha256": "0014b0c6c60cb5bfb9e749e3dabcf032360e9fd4091df203098d1f6100e41097",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        0.998697917
+        0.994140625,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.636
+          "share": 0.6494
         },
         {
           "tag": "verde",
-          "share": 0.2006
+          "share": 0.2005
         }
       ]
     },
@@ -13991,19 +13987,19 @@
       "source": "assets/style-sequences/exp-pigmento-prensado-em-argila-seca-02.webp",
       "sourceSha256": "42b1ce7f5bf9545f23ebc39f28e8871ba82828638c1f4226126a9ecfa386b87a",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5021
+          "share": 0.4937
         },
         {
           "tag": "preto",
-          "share": 0.2538
+          "share": 0.258
         }
       ]
     },
@@ -14130,22 +14126,22 @@
       "sourceSha256": "2a5b339eab7ca4ae2772924ee487a43401bbc40d126f634e2ba48852b32c1edc",
       "crop": [
         0,
-        0,
+        0.004143646,
         1,
-        1
+        0.995856354
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.1681
+          "share": 0.1692
         },
         {
           "tag": "rosa",
-          "share": 0.1641
+          "share": 0.1659
         },
         {
           "tag": "off-white",
-          "share": 0.1602
+          "share": 0.1591
         }
       ]
     },
@@ -14422,23 +14418,23 @@
       "source": "assets/style-sequences/exp-percurso-por-trilhos-de-agulha-02.webp",
       "sourceSha256": "8510cbca55fcff49d21477a7ac8d82971976810b303b34ed77be7409f3ce91e0",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "off-white",
-          "share": 0.3415
+          "share": 0.345
         },
         {
           "tag": "cinza",
-          "share": 0.3063
+          "share": 0.3018
         },
         {
           "tag": "vermelho",
-          "share": 0.1219
+          "share": 0.12
         }
       ]
     },
@@ -14715,19 +14711,19 @@
       "source": "assets/style-sequences/exp-historia-por-aquilo-que-fica-fora-02.webp",
       "sourceSha256": "d1b366e974ffb1808d85892f0280e6dea1a2d58213863a7b8bb6635966997eac",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5224
+          "share": 0.5255
         },
         {
           "tag": "preto",
-          "share": 0.2756
+          "share": 0.282
         }
       ]
     },
@@ -14736,10 +14732,10 @@
       "source": "assets/style-sequences/exp-uma-pergunta-em-quatro-profissoes-02.webp",
       "sourceSha256": "f59ab3f83ccce56fb93d660938fe04083ae2cbc6d3675824004318c65fbead9c",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
@@ -14748,15 +14744,15 @@
         },
         {
           "tag": "laranja",
-          "share": 0.1651
+          "share": 0.1614
         },
         {
           "tag": "cinza",
-          "share": 0.1508
+          "share": 0.1509
         },
         {
           "tag": "preto",
-          "share": 0.1448
+          "share": 0.1465
         }
       ]
     },
@@ -14840,23 +14836,23 @@
       "source": "assets/style-sequences/exp-duas-versoes-de-uma-mesma-tarefa-02.webp",
       "sourceSha256": "187befa5593b4a577cba0e46c43272c2b6bc72b88fed5b95faf4cbbfa75cd3f9",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.2968
+          "share": 0.3005
         },
         {
           "tag": "cinza",
-          "share": 0.2536
+          "share": 0.2522
         },
         {
           "tag": "marrom",
-          "share": 0.2285
+          "share": 0.2279
         }
       ]
     },
@@ -14923,19 +14919,19 @@
       "source": "assets/style-sequences/exp-explicacao-pela-excecao-visivel-02.webp",
       "sourceSha256": "8e0bb70d3908ec0ee765044fb576420cf1c765bc3e4d77d0b602be1e210110ce",
       "crop": [
+        0.0078125,
         0,
-        0,
-        1,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4199
+          "share": 0.4263
         },
         {
           "tag": "laranja",
-          "share": 0.2602
+          "share": 0.257
         }
       ]
     },
@@ -15043,24 +15039,24 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "vinho",
-          "share": 0.2982
+          "share": 0.3001
         },
         {
           "tag": "marrom",
-          "share": 0.2355
+          "share": 0.2346
         },
         {
           "tag": "vermelho",
-          "share": 0.2264
+          "share": 0.2275
         },
         {
           "tag": "laranja",
-          "share": 0.2202
+          "share": 0.2186
         }
       ]
     },
@@ -15261,19 +15257,19 @@
       "source": "assets/style-sequences/exp-campanha-de-silencio-conquistado-02.webp",
       "sourceSha256": "79ae69b424214e7a7a051c382c54954d147d8bf13cf298ec130761e64423e1e5",
       "crop": [
+        0.008492569,
         0,
-        0,
-        1,
-        0.997607656
+        0.991507431,
+        0.994019139
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3977
+          "share": 0.403
         },
         {
           "tag": "laranja",
-          "share": 0.387
+          "share": 0.385
         }
       ]
     },
@@ -15332,27 +15328,27 @@
       "source": "assets/style-sequences/exp-cena-interrompida-por-pergunta-util-02.webp",
       "sourceSha256": "e8daaf53c02de9a31543d5461641b5ec2309736e495c0565f24f7189ba2416c5",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.99609375
+        0.990234375,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2916
+          "share": 0.292
         },
         {
           "tag": "laranja",
-          "share": 0.1537
+          "share": 0.1552
         },
         {
           "tag": "cinza",
-          "share": 0.1475
+          "share": 0.1486
         },
         {
           "tag": "marrom",
-          "share": 0.1228
+          "share": 0.1207
         }
       ]
     },
@@ -15364,24 +15360,24 @@
         0,
         0,
         1,
-        0.997395833
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2753
+          "share": 0.2773
         },
         {
           "tag": "preto",
-          "share": 0.1994
+          "share": 0.1998
         },
         {
           "tag": "marrom",
-          "share": 0.1735
+          "share": 0.1747
         },
         {
           "tag": "azul",
-          "share": 0.1235
+          "share": 0.1209
         }
       ]
     },
@@ -15390,27 +15386,27 @@
       "source": "assets/style-sequences/exp-campanha-em-ensaio-de-montagem-02.webp",
       "sourceSha256": "4a6601c626fc8b60be04ed5a881a0f11b18342d35b3cd9bf0cb972f5b5eed851",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3801
+          "share": 0.3809
         },
         {
           "tag": "preto",
-          "share": 0.2056
+          "share": 0.2037
         },
         {
           "tag": "laranja",
-          "share": 0.2022
+          "share": 0.2
         },
         {
           "tag": "marrom",
-          "share": 0.1694
+          "share": 0.1684
         }
       ]
     },
@@ -15440,27 +15436,27 @@
       "source": "assets/style-sequences/exp-uma-funcao-explicada-por-som-e-imagem-02.webp",
       "sourceSha256": "69052531d1b9595637b3d5de33dc2b67c6413aacdcbb691c51ba0906703c3cdd",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.993489583
+        0.990234375,
+        0.989583333
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.342
+          "share": 0.3417
         },
         {
           "tag": "laranja",
-          "share": 0.2381
+          "share": 0.2342
         },
         {
           "tag": "marrom",
-          "share": 0.1964
+          "share": 0.2008
         },
         {
           "tag": "preto",
-          "share": 0.1561
+          "share": 0.1567
         }
       ]
     },
@@ -15536,23 +15532,23 @@
       "source": "assets/style-sequences/exp-garagem-em-manobra-documentada-02.webp",
       "sourceSha256": "8909817e1765a35c387ab46da08997003702da27b98fae69ecb92a9848f2e195",
       "crop": [
-        0.003683241,
+        0.007366483,
         0,
-        0.996316759,
-        0.998618785
+        0.992633517,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4331
+          "share": 0.4328
         },
         {
           "tag": "cinza",
-          "share": 0.3554
+          "share": 0.3557
         },
         {
           "tag": "preto",
-          "share": 0.148
+          "share": 0.147
         }
       ]
     },
@@ -15561,19 +15557,19 @@
       "source": "assets/style-sequences/exp-documentos-da-compra-em-mesa-real-02.webp",
       "sourceSha256": "2cecaf45266ad05df27746ecd42b381fcdbfc0fa833da595e52ab3596d1d9847",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4707
+          "share": 0.471
         },
         {
           "tag": "laranja",
-          "share": 0.1337
+          "share": 0.133
         }
       ]
     },
@@ -15585,20 +15581,20 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3962
+          "share": 0.3942
         },
         {
           "tag": "cinza",
-          "share": 0.2652
+          "share": 0.2624
         },
         {
           "tag": "laranja",
-          "share": 0.2537
+          "share": 0.2557
         }
       ]
     },
@@ -15632,27 +15628,27 @@
       "source": "assets/style-sequences/exp-locacao-em-calendario-de-ocupacao-02.webp",
       "sourceSha256": "8de25d0a33e6f68502685e7980aaf957d9cf1e7b44f322d4feaef51f3a231091",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2447
+          "share": 0.2456
         },
         {
           "tag": "laranja",
-          "share": 0.2362
+          "share": 0.2363
         },
         {
           "tag": "cinza",
-          "share": 0.1757
+          "share": 0.1736
         },
         {
           "tag": "vermelho",
-          "share": 0.1448
+          "share": 0.1427
         }
       ]
     },
@@ -15682,27 +15678,27 @@
       "source": "assets/style-sequences/exp-visita-em-altura-de-quem-habita-02.webp",
       "sourceSha256": "6d912620dc108bfc5fc2183233bfe3450059eb53ddee1280767c77409fc72afd",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3699
+          "share": 0.3708
         },
         {
           "tag": "laranja",
-          "share": 0.2934
+          "share": 0.295
         },
         {
           "tag": "cinza",
-          "share": 0.1545
+          "share": 0.152
         },
         {
           "tag": "preto",
-          "share": 0.1343
+          "share": 0.1324
         }
       ]
     },
@@ -15819,23 +15815,23 @@
       "source": "assets/film-sequences/software-2-02.webp",
       "sourceSha256": "8cc75b4df4fc39127d9ca774c868f74e6b898c1219cb0871283745b9fe5bc79d",
       "crop": [
+        0.006369427,
         0,
-        0,
-        1,
-        0.998803828
+        0.993630573,
+        0.996411483
       ],
       "colors": [
         {
           "tag": "off-white",
-          "share": 0.2432
+          "share": 0.2523
         },
         {
           "tag": "cinza",
-          "share": 0.2186
+          "share": 0.2163
         },
         {
           "tag": "azul",
-          "share": 0.1811
+          "share": 0.1838
         }
       ]
     },
@@ -15911,19 +15907,19 @@
       "source": "assets/style-sequences/exp-configuracao-segura-em-ambiente-de-teste-02.webp",
       "sourceSha256": "03bbef2ba868646b491a0a7fa8a6b2867ea81974defab45a73792da2ed04954f",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.99609375
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4542
+          "share": 0.4602
         },
         {
           "tag": "preto",
-          "share": 0.3061
+          "share": 0.3014
         }
       ]
     },
@@ -15932,23 +15928,23 @@
       "source": "assets/style-sequences/exp-checkout-recuperado-com-motivo-claro-02.webp",
       "sourceSha256": "278e83c99bb62c1e9311bc922dc2e9e5e02a1a7ddff8365bce728abaea384d77",
       "crop": [
-        0.004246285,
+        0.012738854,
         0,
-        0.995753715,
-        0.996411483
+        0.987261146,
+        0.992822967
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3385
+          "share": 0.3405
         },
         {
           "tag": "preto",
-          "share": 0.2768
+          "share": 0.2848
         },
         {
           "tag": "cinza",
-          "share": 0.1396
+          "share": 0.1294
         }
       ]
     },
@@ -15982,19 +15978,19 @@
       "source": "assets/style-sequences/exp-apresentacao-em-fichario-de-evidencias-02.webp",
       "sourceSha256": "a475106974925e87959a65024d31867d29672bd1a3b0f49ebb72fb0b675f0428",
       "crop": [
-        0.003683241,
+        0.009208103,
         0,
-        0.996316759,
-        0.997237569
+        0.990791897,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "bege",
-          "share": 0.4796
+          "share": 0.4804
         },
         {
           "tag": "preto",
-          "share": 0.1498
+          "share": 0.1455
         }
       ]
     },
@@ -16195,27 +16191,27 @@
       "source": "assets/style-sequences/exp-anfitria-em-estacao-de-radio-comunitaria-02.webp",
       "sourceSha256": "de1a8308252fef71f13e1b9ca8f4572bfcd4fcd3e16f35e616dce6196171a00e",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
+        0.9921875,
         1
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2984
+          "share": 0.2956
         },
         {
           "tag": "laranja",
-          "share": 0.1767
+          "share": 0.1783
         },
         {
           "tag": "vinho",
-          "share": 0.1658
+          "share": 0.1632
         },
         {
           "tag": "preto",
-          "share": 0.1501
+          "share": 0.1502
         }
       ]
     },
@@ -16270,23 +16266,23 @@
       "source": "assets/style-sequences/exp-anfitriao-em-cozinha-de-escola-tecnica-02.webp",
       "sourceSha256": "741be78fec5dec8cba51aee8d85fcf52670a7e3c252474311d85ef0f2d5b9f4b",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3411
+          "share": 0.3469
         },
         {
           "tag": "marrom",
-          "share": 0.2313
+          "share": 0.23
         },
         {
           "tag": "cinza",
-          "share": 0.1712
+          "share": 0.1665
         }
       ]
     },
@@ -16295,23 +16291,23 @@
       "source": "assets/style-sequences/exp-mediadora-em-auditorio-vazio-02.webp",
       "sourceSha256": "1e668634209db1eac034649cd98bb8a00ab4da542630587d30cdd0819b104ff0",
       "crop": [
-        0.001841621,
+        0.005524862,
         0,
-        0.998158379,
-        0.998618785
+        0.994475138,
+        0.994475138
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.3135
+          "share": 0.3121
         },
         {
           "tag": "vinho",
-          "share": 0.2634
+          "share": 0.2603
         },
         {
           "tag": "roxo",
-          "share": 0.1847
+          "share": 0.1874
         }
       ]
     },
@@ -16503,19 +16499,19 @@
       "source": "assets/style-sequences/exp-medicamentos-organizados-para-consulta-02.webp",
       "sourceSha256": "f02d8e06d48c5420f91122b90918db798aa0a00007f5daee502150336d367f45",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3287
+          "share": 0.3261
         },
         {
           "tag": "cinza",
-          "share": 0.1211
+          "share": 0.1229
         }
       ]
     },
@@ -16527,16 +16523,16 @@
         0,
         0,
         1,
-        0.997395833
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.6385
+          "share": 0.6402
         },
         {
           "tag": "marrom",
-          "share": 0.1816
+          "share": 0.1791
         }
       ]
     },
@@ -16595,23 +16591,23 @@
       "source": "assets/style-sequences/exp-odontologia-preventiva-para-cuidadores-02.webp",
       "sourceSha256": "428ec614b98d72427f11b97bd37b1904d1a970ef0fb1ab12b24fa58f81e991ad",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.99609375
+        0.9921875,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.4251
+          "share": 0.426
         },
         {
           "tag": "cinza",
-          "share": 0.1668
+          "share": 0.1652
         },
         {
           "tag": "marrom",
-          "share": 0.1321
+          "share": 0.1332
         }
       ]
     },
@@ -16620,23 +16616,23 @@
       "source": "assets/style-sequences/exp-rotina-de-fotoprotecao-sem-milagre-02.webp",
       "sourceSha256": "dab8eedee434187b8859a472d781f8152d7eff981c01d4a26a65045c5b050803",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.997395833
+        0.9921875,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3009
+          "share": 0.2971
         },
         {
           "tag": "laranja",
-          "share": 0.2778
+          "share": 0.2799
         },
         {
           "tag": "preto",
-          "share": 0.1459
+          "share": 0.1493
         }
       ]
     },
@@ -16666,23 +16662,23 @@
       "source": "assets/style-sequences/exp-direito-de-perguntar-em-consulta-02.webp",
       "sourceSha256": "f7cbda3e816fd0a5e7d09b70e4f24aebaa43a7e4f9ea59a8a18e709c25ad4552",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2813
+          "share": 0.2831
         },
         {
           "tag": "cinza",
-          "share": 0.265
+          "share": 0.2611
         },
         {
           "tag": "laranja",
-          "share": 0.1704
+          "share": 0.1727
         }
       ]
     },
@@ -16715,24 +16711,24 @@
         0,
         0,
         1,
-        0.998618785
+        0.994475138
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.2569
+          "share": 0.2575
         },
         {
           "tag": "azul",
-          "share": 0.2542
+          "share": 0.2515
         },
         {
           "tag": "cinza",
-          "share": 0.1917
+          "share": 0.1929
         },
         {
           "tag": "marrom",
-          "share": 0.1447
+          "share": 0.1455
         }
       ]
     },
@@ -16795,19 +16791,19 @@
       "source": "assets/style-sequences/exp-leitura-de-manual-em-acao-real-02.webp",
       "sourceSha256": "8c18a0c4f65410a4c570b0a7ebbe2a33b9ab07c5e73f0a636f4ff8250aef03d7",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7127
+          "share": 0.7128
         },
         {
           "tag": "marrom",
-          "share": 0.1588
+          "share": 0.158
         }
       ]
     },
@@ -16870,23 +16866,23 @@
       "source": "assets/style-sequences/exp-validade-e-lote-em-leitura-ampliada-02.webp",
       "sourceSha256": "459a29c1c37d66352f701776525ec6f529fd668c30d25d93f74853cb90a363f6",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.997395833
+        0.990234375,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3875
+          "share": 0.3941
         },
         {
           "tag": "marrom",
-          "share": 0.1725
+          "share": 0.1699
         },
         {
           "tag": "preto",
-          "share": 0.1412
+          "share": 0.1479
         }
       ]
     },
@@ -16898,24 +16894,24 @@
         0,
         0,
         1,
-        0.998697917
+        0.994791667
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2933
+          "share": 0.2879
         },
         {
           "tag": "cinza",
-          "share": 0.2251
-        },
-        {
-          "tag": "preto",
-          "share": 0.204
+          "share": 0.2303
         },
         {
           "tag": "marrom",
-          "share": 0.1999
+          "share": 0.2013
+        },
+        {
+          "tag": "preto",
+          "share": 0.2007
         }
       ]
     },
@@ -16927,20 +16923,20 @@
         0,
         0,
         1,
-        1
+        0.994791667
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2223
+          "share": 0.2253
         },
         {
           "tag": "laranja",
-          "share": 0.1987
+          "share": 0.2002
         },
         {
           "tag": "marrom",
-          "share": 0.1897
+          "share": 0.1888
         }
       ]
     },
@@ -17053,23 +17049,23 @@
       "source": "assets/style-sequences/exp-dificuldade-assumida-em-bastidor-de-treino-02.webp",
       "sourceSha256": "1e74f40e3f7d22e6ba19fbd2c64ceeb9998f34e3f00d9b2fc40b47973a75c574",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.5733
+          "share": 0.576
         },
         {
           "tag": "marrom",
-          "share": 0.1715
+          "share": 0.1693
         },
         {
           "tag": "cinza",
-          "share": 0.1614
+          "share": 0.1584
         }
       ]
     },
@@ -17132,31 +17128,31 @@
       "source": "assets/style-sequences/exp-biblioteca-de-duvidas-em-objetos-de-cena-02.webp",
       "sourceSha256": "0abc949387a149d766ac250f07731d7d71e7ffd5740858e09b3019c401dac48a",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.994791667
+        0.990234375,
+        0.990885417
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.1847
+          "share": 0.1832
         },
         {
           "tag": "vinho",
-          "share": 0.151
+          "share": 0.1537
         },
         {
           "tag": "marrom",
-          "share": 0.1364
-        },
-        {
-          "tag": "laranja",
-          "share": 0.1212
+          "share": 0.1341
         },
         {
           "tag": "vermelho",
-          "share": 0.1206
+          "share": 0.1216
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1211
         }
       ]
     },
@@ -17194,23 +17190,23 @@
       "source": "assets/style-sequences/exp-certificacao-explicada-por-evidencias-02.webp",
       "sourceSha256": "3b624b95858062439c7da598dcb9d04b02ff8ea68b295fe3c491755540a28234",
       "crop": [
-        0.003683241,
+        0.009208103,
         0,
-        0.996316759,
-        0.995856354
+        0.990791897,
+        0.991712707
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2411
+          "share": 0.2452
         },
         {
           "tag": "preto",
-          "share": 0.1436
+          "share": 0.1438
         },
         {
           "tag": "laranja",
-          "share": 0.1261
+          "share": 0.1248
         }
       ]
     },
@@ -17269,23 +17265,23 @@
       "source": "assets/style-sequences/exp-campanha-de-pigmento-em-sedimentacao-04.webp",
       "sourceSha256": "458632068af4af6a0c509d89a4dfe9b78af065e4f2d80135c29baa201b66a32c",
       "crop": [
-        0,
-        0,
-        1,
-        1
+        0.005859375,
+        0.00390625,
+        0.994140625,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4811
+          "share": 0.4888
         },
         {
           "tag": "cinza",
-          "share": 0.1857
+          "share": 0.1736
         },
         {
           "tag": "marrom",
-          "share": 0.1415
+          "share": 0.1393
         }
       ]
     },
@@ -17398,23 +17394,23 @@
       "source": "assets/style-sequences/exp-campanha-de-arena-tipografica-02.webp",
       "sourceSha256": "2a99c4ff440ce12c1daa8b1e22c0306c0be93c98db6714e22f1e5a39fbdf9010",
       "crop": [
-        0.001953125,
+        0.0078125,
         0,
-        0.998046875,
-        0.998697917
+        0.9921875,
+        0.994791667
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4625
+          "share": 0.46
         },
         {
           "tag": "cinza",
-          "share": 0.2168
+          "share": 0.2189
         },
         {
           "tag": "marrom",
-          "share": 0.1653
+          "share": 0.1661
         }
       ]
     },
@@ -17465,23 +17461,23 @@
       "source": "assets/natural-ads-60/natural-joias-do-gesto-a-assinatura-02.webp",
       "sourceSha256": "5202596c8fff9ccfda0dea2e6041f54d362986389763eccf3fb9409d10ad5c02",
       "crop": [
-        0.019138756,
-        0.008501594,
-        0.966507177,
-        0.980871413
+        0.023923445,
+        0.010626993,
+        0.956937799,
+        0.976620616
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.356
+          "share": 0.357
         },
         {
           "tag": "preto",
-          "share": 0.2333
+          "share": 0.2328
         },
         {
           "tag": "laranja",
-          "share": 0.2095
+          "share": 0.2074
         }
       ]
     },
@@ -17607,23 +17603,23 @@
       "source": "assets/natural-ads-60/natural-capachos-a-casa-comeca-antes-da-porta-02.webp",
       "sourceSha256": "014cb91add8f812242565b506b6959529a21f4ec689f213bc84fb2949c8f7ff8",
       "crop": [
-        0.0215311,
-        0.012752391,
-        0.966507177,
-        0.974495218
+        0.026315789,
+        0.01487779,
+        0.956937799,
+        0.970244421
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3916
+          "share": 0.3919
         },
         {
           "tag": "laranja",
-          "share": 0.3563
+          "share": 0.3564
         },
         {
           "tag": "vinho",
-          "share": 0.2059
+          "share": 0.2063
         }
       ]
     },
@@ -17757,19 +17753,19 @@
       "source": "assets/natural-ads-60/natural-advocacia-antes-da-assinatura-uma-conversa-02.webp",
       "sourceSha256": "70f655ad258aa7c7e392e7ab55b5d2fc325771d741084e8ed2cff393337f944e",
       "crop": [
-        0.014354067,
-        0.007438895,
-        0.976076555,
-        0.984059511
+        0.019138756,
+        0.009564293,
+        0.966507177,
+        0.979808714
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4368
+          "share": 0.4372
         },
         {
           "tag": "cinza",
-          "share": 0.3076
+          "share": 0.3065
         }
       ]
     },
@@ -17961,31 +17957,31 @@
       "source": "assets/natural-ads-60/natural-moda-masculina-uma-mala-com-escolhas-claras-02.webp",
       "sourceSha256": "c55d593d7473cfd78c5dca60c9a1b0262c3f2a6b25799beec5a758c9daa95641",
       "crop": [
-        0.00390625,
+        0.009765625,
         0,
-        0.99609375,
-        0.99609375
+        0.990234375,
+        0.9921875
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3214
+          "share": 0.3237
         },
         {
           "tag": "cinza",
-          "share": 0.2112
+          "share": 0.2115
         },
         {
           "tag": "preto",
-          "share": 0.1606
+          "share": 0.1597
         },
         {
           "tag": "azul",
-          "share": 0.1501
+          "share": 0.1533
         },
         {
           "tag": "marrom",
-          "share": 0.1392
+          "share": 0.1366
         }
       ]
     },
@@ -18065,27 +18061,27 @@
       "source": "assets/natural-ads-60/natural-moda-feminina-uma-peca-o-seu-dia-02.webp",
       "sourceSha256": "ddfe612ea2c2906a8fdd03dacc25141cc1c9b7d7eddc96cac18a49e8a9a7dd1a",
       "crop": [
-        0.014354067,
-        0.006376196,
-        0.973684211,
-        0.98618491
+        0.019138756,
+        0.008501594,
+        0.964114833,
+        0.981934113
       ],
       "colors": [
         {
           "tag": "vinho",
-          "share": 0.1941
+          "share": 0.191
         },
         {
           "tag": "marrom",
-          "share": 0.1853
+          "share": 0.1848
         },
         {
           "tag": "vermelho",
-          "share": 0.1621
+          "share": 0.1666
         },
         {
           "tag": "laranja",
-          "share": 0.1409
+          "share": 0.142
         }
       ]
     },
@@ -18272,20 +18268,20 @@
         0,
         0,
         1,
-        0.998618785
+        0.994475138
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.303
+          "share": 0.3086
         },
         {
           "tag": "turquesa",
-          "share": 0.2349
+          "share": 0.2279
         },
         {
           "tag": "laranja",
-          "share": 0.2157
+          "share": 0.215
         }
       ]
     },
@@ -18294,23 +18290,23 @@
       "source": "assets/natural-ads-60/natural-biquinis-duas-pecas-uma-escolha-informada-02.webp",
       "sourceSha256": "71cd1f0ca4e97b4b6f51267701d94861ce913059f1cc667b3a2a2209aae60083",
       "crop": [
-        0.003683241,
+        0.009208103,
         0,
-        0.996316759,
-        0.997237569
+        0.990791897,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "bege",
-          "share": 0.2997
+          "share": 0.2962
         },
         {
           "tag": "laranja",
-          "share": 0.2638
+          "share": 0.2689
         },
         {
           "tag": "amarelo",
-          "share": 0.1956
+          "share": 0.1962
         }
       ]
     },
@@ -18319,23 +18315,23 @@
       "source": "assets/natural-ads-60/natural-biquinis-um-dia-sem-pose-de-catalogo-02.webp",
       "sourceSha256": "908ec5afa1c7ac11077c025ef6c8785f14ac15dc72d86bfd5092d8f6b3716b3e",
       "crop": [
-        0.003683241,
+        0.009208103,
         0,
-        0.996316759,
-        0.997237569
+        0.990791897,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3838
+          "share": 0.3839
         },
         {
           "tag": "laranja",
-          "share": 0.2497
+          "share": 0.2505
         },
         {
           "tag": "marrom",
-          "share": 0.1743
+          "share": 0.1723
         }
       ]
     },
@@ -18344,23 +18340,23 @@
       "source": "assets/natural-ads-60/natural-biquinis-o-acabamento-vira-protagonista-02.webp",
       "sourceSha256": "5ddd523c0d976c26cd8c3a0d49fbbdd96daee4cb0b12cdcd154489543a5af46a",
       "crop": [
-        0.003683241,
+        0.009208103,
         0,
-        0.996316759,
-        0.997237569
+        0.990791897,
+        0.993093923
       ],
       "colors": [
         {
           "tag": "vinho",
-          "share": 0.5722
+          "share": 0.575
         },
         {
           "tag": "preto",
-          "share": 0.152
+          "share": 0.1519
         },
         {
           "tag": "laranja",
-          "share": 0.1411
+          "share": 0.1413
         }
       ]
     },
@@ -18686,26 +18682,26 @@
       "sourceSha256": "c49792a04f9819b6331391295b98a65e34153814087246fa7dac6890064b45fe",
       "crop": [
         0,
-        0,
+        0.007438895,
         1,
-        0.993623804
+        0.982996812
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3503
+          "share": 0.3525
         },
         {
           "tag": "vinho",
-          "share": 0.1817
+          "share": 0.1855
         },
         {
           "tag": "laranja",
-          "share": 0.1771
+          "share": 0.1754
         },
         {
           "tag": "cinza",
-          "share": 0.139
+          "share": 0.1352
         }
       ]
     },
@@ -18831,23 +18827,23 @@
       "source": "assets/natural-ads-60/natural-cereal-o-som-que-muda-a-manha-02.webp",
       "sourceSha256": "21c280fb4a2773250e8a56c311a6086320e2bf6a386dfc3d65c0d13b6845613b",
       "crop": [
-        0.016746411,
-        0.008501594,
-        0.976076555,
-        0.982996812
+        0.0215311,
+        0.010626993,
+        0.966507177,
+        0.978746015
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3617
+          "share": 0.3644
         },
         {
           "tag": "marrom",
-          "share": 0.2341
+          "share": 0.2327
         },
         {
           "tag": "cinza",
-          "share": 0.1994
+          "share": 0.2002
         }
       ]
     },
@@ -28681,10 +28677,10 @@
       "source": "assets/presenter-realistic/explicador-diagrama-ao-lado.png",
       "sourceSha256": "2112138473aaf903671ee65362a7f822e40c7e56ccb5acbd2b69d56b8ffc7123",
       "crop": [
-        0.502762431,
-        0.002071823,
-        0.494475138,
-        0.495856354
+        0.504604052,
+        0.003453039,
+        0.490791897,
+        0.493093923
       ],
       "colors": [
         {
@@ -28693,15 +28689,15 @@
         },
         {
           "tag": "marrom",
-          "share": 0.1946
+          "share": 0.1969
         },
         {
           "tag": "laranja",
-          "share": 0.1488
+          "share": 0.147
         },
         {
           "tag": "azul",
-          "share": 0.1458
+          "share": 0.1457
         }
       ]
     },
@@ -28710,27 +28706,27 @@
       "source": "assets/presenter-realistic/explicador-texto-atras.png",
       "sourceSha256": "f7c860b8613b1315aef5aae72f8732e0b8e4d40002b09fa2fe8b49e1b655b154",
       "crop": [
-        0.504587156,
-        0.004573171,
-        0.489574646,
-        0.492378049
+        0.506255213,
+        0.006097561,
+        0.486238532,
+        0.489329268
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3352
+          "share": 0.3355
         },
         {
           "tag": "preto",
-          "share": 0.2383
+          "share": 0.2373
         },
         {
           "tag": "marrom",
-          "share": 0.1519
+          "share": 0.1465
         },
         {
           "tag": "amarelo",
-          "share": 0.1401
+          "share": 0.1424
         }
       ]
     },
@@ -28739,23 +28735,23 @@
       "source": "assets/presenter-realistic/explicador-objeto-na-mao.png",
       "sourceSha256": "77d9994fcbf685dd7a11ebcd3b6a2f9e57a4d283e14515045707478f36f0d428",
       "crop": [
-        0.504604052,
-        0.002762431,
-        0.490791897,
-        0.492403315
+        0.506445672,
+        0.004143646,
+        0.487108656,
+        0.489640884
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4727
+          "share": 0.4711
         },
         {
           "tag": "marrom",
-          "share": 0.2259
+          "share": 0.2249
         },
         {
           "tag": "laranja",
-          "share": 0.1785
+          "share": 0.1816
         }
       ]
     },
@@ -28764,23 +28760,23 @@
       "source": "assets/presenter-realistic/explicador-toque-e-resposta.png",
       "sourceSha256": "06c75b9f3a4a46c5f42fc62c926f4b4655100812131fa220328840f1533974bc",
       "crop": [
-        0.504604052,
-        0.003453039,
-        0.489871087,
-        0.49378453
+        0.506445672,
+        0.004834254,
+        0.486187845,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5305
+          "share": 0.53
         },
         {
           "tag": "marrom",
-          "share": 0.1658
+          "share": 0.1657
         },
         {
           "tag": "laranja",
-          "share": 0.1547
+          "share": 0.1538
         }
       ]
     },
@@ -28789,15 +28785,15 @@
       "source": "assets/presenter-realistic/explicador-orbita-frente-tras.png",
       "sourceSha256": "85428fcefb9305a905699d396b283920f07b15e0af51da677a8b928526f0a6dc",
       "crop": [
-        0.50092081,
-        0.001381215,
-        0.497237569,
-        0.497928177
+        0.502762431,
+        0.003453039,
+        0.492633517,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7038
+          "share": 0.7004
         }
       ]
     },
@@ -28806,19 +28802,19 @@
       "source": "assets/presenter-realistic/explicador-produto-em-camadas.png",
       "sourceSha256": "f2f2817dc8bb025aa93b8c7728d9451a4acdd9e07138e4b23f80c79fea81dd44",
       "crop": [
-        0.502762431,
-        0.002762431,
-        0.494475138,
-        0.494475138
+        0.504604052,
+        0.004143646,
+        0.490791897,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6386
+          "share": 0.6409
         },
         {
           "tag": "marrom",
-          "share": 0.1577
+          "share": 0.1576
         }
       ]
     },
@@ -28827,27 +28823,27 @@
       "source": "assets/presenter-realistic/explicador-corte-tecnico.png",
       "sourceSha256": "989411abc1c321dc77ba854c4cf789baaac39e28da6ee76182b4ef9966ed6ced",
       "crop": [
-        0.502762431,
-        0.004143646,
-        0.491712707,
-        0.49378453
+        0.504604052,
+        0.005524862,
+        0.488029466,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.2503
+          "share": 0.2507
         },
         {
           "tag": "marrom",
-          "share": 0.2401
+          "share": 0.2394
         },
         {
           "tag": "laranja",
-          "share": 0.2307
+          "share": 0.2284
         },
         {
           "tag": "vinho",
-          "share": 0.1378
+          "share": 0.1401
         },
         {
           "tag": "cinza",
@@ -28860,15 +28856,15 @@
       "source": "assets/presenter-realistic/explicador-lousa-desenhada.png",
       "sourceSha256": "1e50415be33efa3a961c9f0d4bdd59ee97cfe687e59f38c9e0f53b6d74163250",
       "crop": [
-        0.505524862,
-        0.004143646,
-        0.491712707,
-        0.493093923
+        0.507366483,
+        0.005524862,
+        0.488029466,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7855
+          "share": 0.7802
         }
       ]
     },
@@ -28877,15 +28873,15 @@
       "source": "assets/presenter-realistic/explicador-fluxograma-vivo.png",
       "sourceSha256": "f771fa26486c28996f94ffb85b21f60b5ea3f366abe01ed0793013152fdcf129",
       "crop": [
-        0.503683241,
-        0.002071823,
-        0.492633517,
-        0.495165746
+        0.505524862,
+        0.003453039,
+        0.488950276,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7818
+          "share": 0.781
         }
       ]
     },
@@ -28894,23 +28890,23 @@
       "source": "assets/presenter-realistic/explicador-dados-no-gesto.png",
       "sourceSha256": "3031c40428ae347ce8a4035589bfe5179d46bd26aa35a09b12132c27c3339336",
       "crop": [
-        0.503683241,
-        0.003453039,
-        0.490791897,
-        0.494475138
+        0.505524862,
+        0.004834254,
+        0.487108656,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3647
+          "share": 0.3674
         },
         {
           "tag": "marrom",
-          "share": 0.2655
+          "share": 0.2654
         },
         {
           "tag": "laranja",
-          "share": 0.1977
+          "share": 0.197
         }
       ]
     },
@@ -28919,23 +28915,23 @@
       "source": "assets/presenter-realistic/explicador-antes-depois.png",
       "sourceSha256": "99af614893b05faca83cf86a382281ec204b052f5498890326caee653ac11035",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.495395948,
-        0.496546961
+        0.503683241,
+        0.003453039,
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4109
+          "share": 0.4119
         },
         {
           "tag": "cinza",
-          "share": 0.3213
+          "share": 0.324
         },
         {
           "tag": "laranja",
-          "share": 0.1985
+          "share": 0.1948
         }
       ]
     },
@@ -28944,23 +28940,23 @@
       "source": "assets/presenter-realistic/explicador-mitos-e-fatos.png",
       "sourceSha256": "3ac2310ee170ca2ebf7c389760d9514a4b6da7411f180df3e95d46b6be0dc869",
       "crop": [
-        0.503753128,
-        0.006859756,
-        0.488740617,
-        0.489329268
+        0.505421184,
+        0.008384146,
+        0.485404504,
+        0.486280488
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5327
+          "share": 0.5319
         },
         {
           "tag": "marrom",
-          "share": 0.1603
+          "share": 0.1589
         },
         {
           "tag": "laranja",
-          "share": 0.1526
+          "share": 0.1531
         }
       ]
     },
@@ -28969,23 +28965,23 @@
       "source": "assets/presenter-realistic/explicador-cenario-contextual.png",
       "sourceSha256": "12940cb559869433d41726f517121ed171f1da95653ea7800947d7db8839b105",
       "crop": [
-        0.502762431,
-        0.002071823,
-        0.495395948,
-        0.495856354
+        0.504604052,
+        0.003453039,
+        0.491712707,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3142
+          "share": 0.3162
         },
         {
           "tag": "marrom",
-          "share": 0.306
+          "share": 0.3055
         },
         {
           "tag": "cinza",
-          "share": 0.2301
+          "share": 0.2264
         }
       ]
     },
@@ -28994,19 +28990,19 @@
       "source": "assets/presenter-realistic/explicador-apresentador-em-janela.png",
       "sourceSha256": "3b8d4fb4c1c50b9946464099c391dce24c68695ab9e902138bed5dc1eab40679",
       "crop": [
-        0.501841621,
-        0.000690608,
-        0.498158379,
-        0.497928177
+        0.504604052,
+        0.002762431,
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6336
+          "share": 0.6331
         },
         {
           "tag": "marrom",
-          "share": 0.1493
+          "share": 0.1485
         }
       ]
     },
@@ -29015,19 +29011,19 @@
       "source": "assets/presenter-realistic/explicador-zoom-para-interface.png",
       "sourceSha256": "635584a0aaa1f396294ccb0951857e65e642311c21b9e90b64d9406fd4c7de6d",
       "crop": [
-        0.504604052,
-        0.004143646,
-        0.490791897,
-        0.493093923
+        0.506445672,
+        0.005524862,
+        0.487108656,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.5573
+          "share": 0.558
         },
         {
           "tag": "laranja",
-          "share": 0.1759
+          "share": 0.1746
         }
       ]
     },
@@ -29036,23 +29032,23 @@
       "source": "assets/presenter-realistic/explicador-linha-do-tempo.png",
       "sourceSha256": "fc069a0690f56791406446b9694107e06fe41084ee9d08bbbfdadd3a6b5b7d8f",
       "crop": [
-        0.505050505,
-        0.003462604,
-        0.490358127,
-        0.495152355
+        0.507805326,
+        0.004847645,
+        0.485766758,
+        0.492382271
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5358
+          "share": 0.5394
         },
         {
           "tag": "laranja",
-          "share": 0.1535
+          "share": 0.1544
         },
         {
           "tag": "cinza",
-          "share": 0.1356
+          "share": 0.1296
         }
       ]
     },
@@ -29061,23 +29057,23 @@
       "source": "assets/presenter-realistic/explicador-clones-dialogando.png",
       "sourceSha256": "1aaf4712147884a785e512de1a824f5e53a5e37c608b6fa458d78bfd61a9bba6",
       "crop": [
-        0.503683241,
-        0.003453039,
-        0.491712707,
-        0.49378453
+        0.505524862,
+        0.004834254,
+        0.488029466,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3164
+          "share": 0.3201
         },
         {
           "tag": "preto",
-          "share": 0.3067
+          "share": 0.3091
         },
         {
           "tag": "cinza",
-          "share": 0.1981
+          "share": 0.1946
         }
       ]
     },
@@ -29086,15 +29082,15 @@
       "source": "assets/presenter-realistic/explicador-mapa-e-rota.png",
       "sourceSha256": "7403d98d181a4e8c536d80a8bf95db2b663b2f529276c7798c0ecd3a78f1020d",
       "crop": [
-        0.502762431,
-        0.002762431,
-        0.493554328,
-        0.497237569
+        0.504604052,
+        0.004143646,
+        0.489871087,
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.848
+          "share": 0.853
         }
       ]
     },
@@ -29103,15 +29099,15 @@
       "source": "assets/presenter-realistic/explicador-metafora-visual.png",
       "sourceSha256": "cb1dd8257ded5a08e8a129831f44dd11581ebd3d7a49a9469037ebbe629b88ed",
       "crop": [
-        0.504604052,
-        0.004143646,
-        0.489871087,
-        0.492403315
+        0.506445672,
+        0.005524862,
+        0.486187845,
+        0.489640884
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6979
+          "share": 0.6952
         }
       ]
     },
@@ -29120,23 +29116,23 @@
       "source": "assets/presenter-realistic/explicador-tres-passos.png",
       "sourceSha256": "58acf8d5ae2e74080349abbf11f4909f0248c7b2c93526be3b77bda5c61c353c",
       "crop": [
-        0.502762431,
-        0.004143646,
-        0.492633517,
-        0.49378453
+        0.504604052,
+        0.005524862,
+        0.488950276,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4654
+          "share": 0.4635
         },
         {
           "tag": "marrom",
-          "share": 0.2311
+          "share": 0.2305
         },
         {
           "tag": "preto",
-          "share": 0.1272
+          "share": 0.1268
         }
       ]
     },
@@ -29145,19 +29141,19 @@
       "source": "assets/presenter-realistic/explicador-estetica-ritual.png",
       "sourceSha256": "fdc9b369cc3fb9107fd34e1c1060d6ddffff0e8016918e06d1ada147bc1085b3",
       "crop": [
-        0.50092081,
-        0.001381215,
-        0.497237569,
-        0.497928177
+        0.503683241,
+        0.003453039,
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5924
+          "share": 0.5955
         },
         {
           "tag": "cinza",
-          "share": 0.1248
+          "share": 0.1213
         }
       ]
     },
@@ -29166,23 +29162,23 @@
       "source": "assets/presenter-realistic/explicador-estetica-textura.png",
       "sourceSha256": "1bcfaaf7b543dddc4ca859fd2259ad77206314486102014ebbbf0ff0d5b46a8b",
       "crop": [
-        0.503683241,
-        0.003453039,
-        0.491712707,
-        0.49378453
+        0.505524862,
+        0.004834254,
+        0.488029466,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.4058
+          "share": 0.4076
         },
         {
           "tag": "marrom",
-          "share": 0.2785
+          "share": 0.2743
         },
         {
           "tag": "vermelho",
-          "share": 0.1346
+          "share": 0.1371
         }
       ]
     },
@@ -29191,27 +29187,27 @@
       "source": "assets/presenter-realistic/explicador-estetica-atendimento.png",
       "sourceSha256": "5250a56c6959f8568693ddb95ef6b3e110460eaad1be7d3fde5cce471dbe5493",
       "crop": [
-        0.503683241,
-        0.003453039,
-        0.490791897,
-        0.493093923
+        0.505524862,
+        0.004834254,
+        0.487108656,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2825
+          "share": 0.2728
         },
         {
           "tag": "cinza",
-          "share": 0.2434
+          "share": 0.248
         },
         {
           "tag": "marrom",
-          "share": 0.2046
+          "share": 0.205
         },
         {
           "tag": "off-white",
-          "share": 0.1381
+          "share": 0.141
         }
       ]
     },
@@ -29220,23 +29216,23 @@
       "source": "assets/presenter-realistic/explicador-estetica-materiais.png",
       "sourceSha256": "fc6874348de6b2f28f38e8b2b1deaa30dfd658f20b00a12fd21f12e89ea26dcd",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.494475138,
-        0.495856354
+        0.503683241,
+        0.003453039,
+        0.490791897,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3541
+          "share": 0.3546
         },
         {
           "tag": "marrom",
-          "share": 0.2318
+          "share": 0.2308
         },
         {
           "tag": "laranja",
-          "share": 0.162
+          "share": 0.1625
         }
       ]
     },
@@ -29245,15 +29241,15 @@
       "source": "assets/presenter-realistic/explicador-fitness-alinhamento.png",
       "sourceSha256": "80e5ba43e16898965a573133175b529f60f3ef85943eae6fd144a08e703f16c3",
       "crop": [
-        0.502762431,
-        0.002071823,
-        0.492633517,
-        0.495165746
+        0.504604052,
+        0.003453039,
+        0.488950276,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7191
+          "share": 0.7196
         }
       ]
     },
@@ -29262,15 +29258,15 @@
       "source": "assets/presenter-realistic/explicador-fitness-progressao.png",
       "sourceSha256": "5bed2024803f198cf9f5c154d4fa04403c0c5fbabf7047a810812e25b5ea44a4",
       "crop": [
-        0.503683241,
-        0.004834254,
-        0.490791897,
-        0.491712707
+        0.505524862,
+        0.00621547,
+        0.487108656,
+        0.488950276
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7966
+          "share": 0.7931
         }
       ]
     },
@@ -29279,19 +29275,19 @@
       "source": "assets/presenter-realistic/explicador-fitness-ritmo.png",
       "sourceSha256": "4d319356cdb6a1e082cfea44e8c68bd3ae6815542cf7fea5d863cf247f1cfcdf",
       "crop": [
-        0.50092081,
-        0.001381215,
-        0.49907919,
-        0.497237569
+        0.503683241,
+        0.003453039,
+        0.496316759,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6138
+          "share": 0.6065
         },
         {
           "tag": "preto",
-          "share": 0.1702
+          "share": 0.1742
         }
       ]
     },
@@ -29300,19 +29296,19 @@
       "source": "assets/presenter-realistic/explicador-fitness-equipamento.png",
       "sourceSha256": "121b99453fbf56e94d1516790eb1897a9a4b8827af5338cbaffbe26fbbb2ba9a",
       "crop": [
-        0.503683241,
-        0,
-        0.496316759,
-        0.496546961
+        0.506445672,
+        0.002762431,
+        0.493554328,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5427
+          "share": 0.5351
         },
         {
           "tag": "preto",
-          "share": 0.1943
+          "share": 0.1969
         }
       ]
     },
@@ -29321,19 +29317,19 @@
       "source": "assets/presenter-realistic/explicador-procedimento-consulta.png",
       "sourceSha256": "c9a69cfdfb52be9c1aa1df2b5df82672b8844a56f78b46a44395e67071e152ce",
       "crop": [
-        0.50092081,
-        0.000690608,
-        0.49907919,
-        0.497928177
+        0.504604052,
+        0.002762431,
+        0.492633517,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4297
+          "share": 0.4281
         },
         {
           "tag": "marrom",
-          "share": 0.2904
+          "share": 0.2935
         }
       ]
     },
@@ -29342,27 +29338,27 @@
       "source": "assets/presenter-realistic/explicador-procedimento-camadas.png",
       "sourceSha256": "c44893b3a3021f66b4187ba1bd80d410917f98000a0a385f500923957f2f83db",
       "crop": [
-        0.504604052,
-        0.002762431,
-        0.490791897,
-        0.49378453
+        0.506445672,
+        0.004143646,
+        0.487108656,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2605
+          "share": 0.2621
         },
         {
           "tag": "vermelho",
-          "share": 0.26
+          "share": 0.2617
         },
         {
           "tag": "cinza",
-          "share": 0.2456
+          "share": 0.2448
         },
         {
           "tag": "laranja",
-          "share": 0.1271
+          "share": 0.1243
         }
       ]
     },
@@ -29371,15 +29367,15 @@
       "source": "assets/presenter-realistic/explicador-procedimento-jornada.png",
       "sourceSha256": "3c4c06f91a3a2810f9bdb2b9277ee923b04e6b69ff6e727e5074fbd52b1f4a19",
       "crop": [
-        0.501841621,
-        0.004143646,
-        0.492633517,
-        0.492403315
+        0.503683241,
+        0.005524862,
+        0.488950276,
+        0.489640884
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6257
+          "share": 0.623
         }
       ]
     },
@@ -29389,14 +29385,14 @@
       "sourceSha256": "fafd8514e1cb3d6dca433fcc62c6bc578871652bf87aa61d19599503903912e3",
       "crop": [
         0.5,
-        0.004834254,
-        0.494475138,
-        0.492403315
+        0.00621547,
+        0.492633517,
+        0.489640884
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5192
+          "share": 0.5162
         }
       ]
     },
@@ -29405,23 +29401,23 @@
       "source": "assets/presenter-realistic/explicador-gastro-transformacao.png",
       "sourceSha256": "0a565e83534d130761fcc5c6d8345729624dc03ebce178346a5f0ca1e472675e",
       "crop": [
-        0.504604052,
-        0.007596685,
-        0.485267035,
-        0.488950276
+        0.506445672,
+        0.008977901,
+        0.481583794,
+        0.486187845
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.363
+          "share": 0.3608
         },
         {
           "tag": "cinza",
-          "share": 0.3207
+          "share": 0.3229
         },
         {
           "tag": "laranja",
-          "share": 0.2212
+          "share": 0.2207
         }
       ]
     },
@@ -29430,23 +29426,23 @@
       "source": "assets/presenter-realistic/explicador-gastro-menu.png",
       "sourceSha256": "d3305de53e224cbbe8c392d87bcf4865946ef69a21bcdeb192aaf83c2f75654c",
       "crop": [
-        0.502762431,
-        0.002071823,
-        0.495395948,
-        0.495165746
+        0.504604052,
+        0.003453039,
+        0.491712707,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.328
+          "share": 0.3289
         },
         {
           "tag": "laranja",
-          "share": 0.1883
+          "share": 0.1873
         },
         {
           "tag": "cinza",
-          "share": 0.1776
+          "share": 0.1726
         }
       ]
     },
@@ -29455,23 +29451,23 @@
       "source": "assets/presenter-realistic/explicador-pet-rotina.png",
       "sourceSha256": "16f5ea037f2992178fa30ee521e797944764a2a51440e8b5863e92fb6896230d",
       "crop": [
-        0.502762431,
-        0.003453039,
-        0.491712707,
-        0.494475138
+        0.504604052,
+        0.004834254,
+        0.488029466,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3589
+          "share": 0.3588
         },
         {
           "tag": "marrom",
-          "share": 0.3009
+          "share": 0.3039
         },
         {
           "tag": "preto",
-          "share": 0.1553
+          "share": 0.1535
         }
       ]
     },
@@ -29480,27 +29476,27 @@
       "source": "assets/presenter-realistic/explicador-pet-detalhe.png",
       "sourceSha256": "297a907f539f8f1cf486569496b7508cf6bb100bd46af59770292cd45d3afdd2",
       "crop": [
-        0.504604052,
-        0.004834254,
-        0.488029466,
-        0.491712707
+        0.506445672,
+        0.00621547,
+        0.484346225,
+        0.488950276
       ],
       "colors": [
         {
-          "tag": "preto",
-          "share": 0.2691
+          "tag": "marrom",
+          "share": 0.2704
         },
         {
-          "tag": "marrom",
-          "share": 0.2678
+          "tag": "preto",
+          "share": 0.2671
         },
         {
           "tag": "cinza",
-          "share": 0.1655
+          "share": 0.1643
         },
         {
           "tag": "laranja",
-          "share": 0.1631
+          "share": 0.1635
         }
       ]
     },
@@ -29509,15 +29505,15 @@
       "source": "assets/presenter-realistic/explicador-pet-servico.png",
       "sourceSha256": "0b82714806461db8cc59797d55346ab1b705893f318d5bce96c060955b415938",
       "crop": [
-        0.503683241,
-        0.004834254,
-        0.489871087,
-        0.492403315
+        0.505524862,
+        0.00621547,
+        0.486187845,
+        0.489640884
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4906
+          "share": 0.4876
         }
       ]
     },
@@ -29526,15 +29522,15 @@
       "source": "assets/presenter-realistic/explicador-moda-caimento.png",
       "sourceSha256": "aee3e768f203c384e2f6cc2c058512bd732888e40cccd523dd00f23813988c4b",
       "crop": [
-        0.506445672,
-        0.004143646,
-        0.488029466,
-        0.491022099
+        0.508287293,
+        0.005524862,
+        0.484346225,
+        0.488259669
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.6604
+          "share": 0.6638
         }
       ]
     },
@@ -29543,19 +29539,19 @@
       "source": "assets/presenter-realistic/explicador-moda-atelier.png",
       "sourceSha256": "3c2b50716d9f6772238ea32c5c63eca2885bdff3899a00a89ae4416e22bd201a",
       "crop": [
-        0.504604052,
-        0.004143646,
-        0.491712707,
-        0.49378453
+        0.506445672,
+        0.005524862,
+        0.488029466,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.5369
+          "share": 0.537
         },
         {
           "tag": "vinho",
-          "share": 0.212
+          "share": 0.2146
         }
       ]
     },
@@ -29564,19 +29560,19 @@
       "source": "assets/presenter-realistic/explicador-moda-composicao.png",
       "sourceSha256": "8aad7811833bcf722b4ac4322580e31d2184cab307e7062ac54b336bafd90938",
       "crop": [
-        0.503683241,
-        0.005524862,
-        0.488950276,
-        0.491022099
+        0.505524862,
+        0.006906077,
+        0.485267035,
+        0.488259669
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4925
+          "share": 0.4903
         },
         {
           "tag": "laranja",
-          "share": 0.3789
+          "share": 0.3788
         }
       ]
     },
@@ -29585,23 +29581,23 @@
       "source": "assets/presenter-realistic/explicador-engenharia-exterior.png",
       "sourceSha256": "88577c9b8724eef8d4e661d13326f8bf487cfb30435616bb190256a69cb4182e",
       "crop": [
-        0.502762431,
-        0.002762431,
-        0.492633517,
-        0.495165746
+        0.504604052,
+        0.004143646,
+        0.488950276,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2708
+          "share": 0.2682
         },
         {
           "tag": "cinza",
-          "share": 0.2476
+          "share": 0.2468
         },
         {
           "tag": "marrom",
-          "share": 0.2013
+          "share": 0.2024
         }
       ]
     },
@@ -29610,15 +29606,15 @@
       "source": "assets/presenter-realistic/explicador-engenharia-etapas.png",
       "sourceSha256": "be00e7e3d5b30f16e82aee6a583df3283cbc6016d436ca4b009e280147a6aa85",
       "crop": [
-        0.503683241,
-        0.004143646,
-        0.489871087,
-        0.493093923
+        0.505524862,
+        0.005524862,
+        0.486187845,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6471
+          "share": 0.65
         }
       ]
     },
@@ -29627,19 +29623,19 @@
       "source": "assets/presenter-realistic/explicador-engenharia-mecanismo.png",
       "sourceSha256": "f7dc50b173c3bc4051b94363ccf6fcacc5031bf4d00ce7f7d9092d2901b528a6",
       "crop": [
-        0.504604052,
-        0.005524862,
-        0.487108656,
-        0.491022099
+        0.506445672,
+        0.006906077,
+        0.483425414,
+        0.488259669
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6368
+          "share": 0.6327
         },
         {
           "tag": "marrom",
-          "share": 0.1384
+          "share": 0.1394
         }
       ]
     },
@@ -29648,15 +29644,15 @@
       "source": "assets/presenter-realistic/explicador-engenharia-dados.png",
       "sourceSha256": "1666eb8fe0365c57dc68a0e524a49db5cf6c1cc84603e90060b592272aa79400",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.495395948,
-        0.495856354
+        0.503683241,
+        0.003453039,
+        0.491712707,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6374
+          "share": 0.6366
         }
       ]
     },
@@ -29665,23 +29661,23 @@
       "source": "assets/presenter-realistic/explicador-interiores-circulacao.png",
       "sourceSha256": "1a39dc3db704d6436c0732ba961f1002f81ab50681dceaeafe7fc9b1c8e1a82f",
       "crop": [
-        0.503683241,
-        0.004834254,
-        0.489871087,
-        0.493093923
+        0.505524862,
+        0.00621547,
+        0.486187845,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3949
+          "share": 0.3979
         },
         {
           "tag": "cinza",
-          "share": 0.2655
+          "share": 0.265
         },
         {
           "tag": "laranja",
-          "share": 0.2072
+          "share": 0.2053
         }
       ]
     },
@@ -29690,23 +29686,23 @@
       "source": "assets/presenter-realistic/explicador-interiores-luz.png",
       "sourceSha256": "8db04136f08ad3ca2868c5de74b252d723635ddcbe2fcb8774b1a726302d3039",
       "crop": [
-        0.503683241,
-        0.002762431,
-        0.491712707,
-        0.494475138
+        0.505524862,
+        0.004143646,
+        0.488029466,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.6535
+          "share": 0.651
         },
         {
           "tag": "laranja",
-          "share": 0.1591
+          "share": 0.1609
         },
         {
           "tag": "preto",
-          "share": 0.1327
+          "share": 0.1336
         }
       ]
     },
@@ -29715,19 +29711,19 @@
       "source": "assets/presenter-realistic/explicador-interiores-materiais.png",
       "sourceSha256": "b0b728566c3cd1c247927af73180ad657e5551308c9b185b75f49c304b4894c3",
       "crop": [
-        0.502762431,
-        0.004143646,
-        0.492633517,
-        0.49378453
+        0.504604052,
+        0.005524862,
+        0.488950276,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5454
+          "share": 0.5435
         },
         {
           "tag": "laranja",
-          "share": 0.3615
+          "share": 0.3625
         }
       ]
     },
@@ -29736,23 +29732,23 @@
       "source": "assets/presenter-realistic/explicador-evento-palco.png",
       "sourceSha256": "bb37f19c49e406ab65d08eb73b6f75aadb3a4c1894c8eb431f67164848c73437",
       "crop": [
-        0.504604052,
-        0.002071823,
-        0.492633517,
-        0.49378453
+        0.506445672,
+        0.003453039,
+        0.488950276,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4583
+          "share": 0.4549
         },
         {
           "tag": "azul",
-          "share": 0.2161
+          "share": 0.2179
         },
         {
           "tag": "preto",
-          "share": 0.1736
+          "share": 0.1755
         }
       ]
     },
@@ -29761,19 +29757,19 @@
       "source": "assets/presenter-realistic/explicador-evento-mapa.png",
       "sourceSha256": "4e5c06ba5939681db3e3219faadd5e3d805669384d9322e9a550ec4392400bcc",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.494475138,
-        0.495165746
+        0.503683241,
+        0.003453039,
+        0.490791897,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4399
+          "share": 0.4367
         },
         {
           "tag": "roxo",
-          "share": 0.1274
+          "share": 0.1303
         }
       ]
     },
@@ -29782,23 +29778,23 @@
       "source": "assets/presenter-realistic/explicador-evento-percurso.png",
       "sourceSha256": "2f577c65e874bae6e2eb035062baea5de8824fdf711dad44e4ec930ff6c4eba3",
       "crop": [
-        0.503683241,
-        0.004834254,
-        0.488950276,
-        0.491712707
+        0.505524862,
+        0.00621547,
+        0.485267035,
+        0.488950276
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3432
+          "share": 0.3429
         },
         {
           "tag": "cinza",
-          "share": 0.2482
+          "share": 0.2486
         },
         {
           "tag": "laranja",
-          "share": 0.124
+          "share": 0.1249
         }
       ]
     },
@@ -29807,19 +29803,19 @@
       "source": "assets/presenter-realistic/explicador-evento-luz.png",
       "sourceSha256": "55a0438d1c55d2b5ea528bd9917741e610fdcebc186b646361d801772a97c4a0",
       "crop": [
-        0.502762431,
-        0.002762431,
-        0.493554328,
-        0.495165746
+        0.504604052,
+        0.004143646,
+        0.489871087,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4041
+          "share": 0.4036
         },
         {
           "tag": "preto",
-          "share": 0.2633
+          "share": 0.2646
         }
       ]
     },
@@ -29828,19 +29824,19 @@
       "source": "assets/presenter-realistic/explicador-educacao-conceito.png",
       "sourceSha256": "6326e228f8b8528e0e0768ab93d27fe15f51a670674ab5a218104193cfc8bb64",
       "crop": [
-        0.502762431,
-        0.003453039,
-        0.493554328,
-        0.494475138
+        0.504604052,
+        0.004834254,
+        0.489871087,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6604
+          "share": 0.6624
         },
         {
           "tag": "azul",
-          "share": 0.2025
+          "share": 0.2027
         }
       ]
     },
@@ -29849,15 +29845,15 @@
       "source": "assets/presenter-realistic/explicador-educacao-simulacao.png",
       "sourceSha256": "df3707ed7f401bbc6d44847bca448d1327a7306e0d8ddcf506b038cfba62c363",
       "crop": [
-        0.505524862,
-        0.00621118,
-        0.486187845,
-        0.49068323
+        0.507366483,
+        0.007591442,
+        0.482504604,
+        0.487922705
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4619
+          "share": 0.462
         },
         {
           "tag": "laranja",
@@ -29870,19 +29866,19 @@
       "source": "assets/presenter-realistic/explicador-educacao-pratica.png",
       "sourceSha256": "4657c3e9bbb8cf9a4a94f6e3d9c47378aded816d843517c4a1664dfff0c3560e",
       "crop": [
-        0.503683241,
-        0.004143646,
-        0.491712707,
-        0.493093923
+        0.505524862,
+        0.005524862,
+        0.488029466,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4347
+          "share": 0.4346
         },
         {
           "tag": "marrom",
-          "share": 0.3327
+          "share": 0.3298
         }
       ]
     },
@@ -29891,19 +29887,19 @@
       "source": "assets/presenter-realistic/explicador-agro-ciclo.png",
       "sourceSha256": "1c97a2551f8202434894a26e3a09c7f45c96c77ca90fd9c9eeaeb0950dbe9174",
       "crop": [
-        0.502762431,
-        0.003453039,
-        0.490791897,
-        0.493093923
+        0.504604052,
+        0.004834254,
+        0.487108656,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5932
+          "share": 0.5966
         },
         {
           "tag": "verde",
-          "share": 0.1688
+          "share": 0.1659
         }
       ]
     },
@@ -29912,23 +29908,23 @@
       "source": "assets/presenter-realistic/explicador-agro-maquina.png",
       "sourceSha256": "8a813909acd8059bd290ad53077d436fc757f3229be5255b9d2de2c241a944a4",
       "crop": [
-        0.503683241,
-        0.003453039,
-        0.491712707,
-        0.49378453
+        0.505524862,
+        0.004834254,
+        0.488029466,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "verde",
-          "share": 0.3711
+          "share": 0.3715
         },
         {
           "tag": "cinza",
-          "share": 0.191
+          "share": 0.1922
         },
         {
           "tag": "preto",
-          "share": 0.1389
+          "share": 0.1366
         }
       ]
     },
@@ -29937,23 +29933,23 @@
       "source": "assets/presenter-realistic/explicador-agro-territorio.png",
       "sourceSha256": "726952dad5f5145ad0cc505a2a349eb11a250b3b30106bc59a3d579e0982f6bc",
       "crop": [
-        0.503683241,
-        0.002071823,
-        0.493554328,
-        0.495165746
+        0.505524862,
+        0.003453039,
+        0.489871087,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2978
+          "share": 0.2948
         },
         {
           "tag": "verde",
-          "share": 0.2086
+          "share": 0.2127
         },
         {
           "tag": "preto",
-          "share": 0.1252
+          "share": 0.1263
         }
       ]
     },
@@ -29962,27 +29958,27 @@
       "source": "assets/presenter-realistic/explicador-turismo-percurso.png",
       "sourceSha256": "ebbc50da651558cf1f1a0578b7ea6fe06fd9a36dfed4963ed5ad291bc72d4e00",
       "crop": [
-        0.502762431,
-        0.003453039,
-        0.491712707,
-        0.496546961
+        0.504604052,
+        0.004834254,
+        0.488029466,
+        0.495165746
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2877
+          "share": 0.2878
         },
         {
           "tag": "laranja",
-          "share": 0.2178
+          "share": 0.2213
         },
         {
           "tag": "bege",
-          "share": 0.2036
+          "share": 0.2046
         },
         {
           "tag": "amarelo",
-          "share": 0.1375
+          "share": 0.1385
         }
       ]
     },
@@ -29991,19 +29987,19 @@
       "source": "assets/presenter-realistic/explicador-turismo-hospedagem.png",
       "sourceSha256": "ea5db31eaffdb16d5aa0a39687ccf409763baf28e69db2c26c09f462cf4f569e",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.495395948,
-        0.495856354
+        0.503683241,
+        0.003453039,
+        0.491712707,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.403
+          "share": 0.4028
         },
         {
           "tag": "marrom",
-          "share": 0.2464
+          "share": 0.2491
         }
       ]
     },
@@ -30012,19 +30008,19 @@
       "source": "assets/presenter-realistic/explicador-turismo-contexto.png",
       "sourceSha256": "69a94f289f36e912461c6202f1cd091fd5b2d6af733d0f2adba0367b8d426d0a",
       "crop": [
-        0.501841621,
-        0.002762431,
-        0.494475138,
-        0.493093923
+        0.503683241,
+        0.004143646,
+        0.490791897,
+        0.490331492
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.336
+          "share": 0.335
         },
         {
           "tag": "cinza",
-          "share": 0.1829
+          "share": 0.182
         },
         {
           "tag": "verde",
@@ -30284,18 +30280,18 @@
       "sourceSha256": "62414b7cf643805fd6920ba265c95f5b7207ae68b5a764be6ea531a1cf708f11",
       "crop": [
         0,
-        0.5,
-        0.49907919,
-        0.5
+        0.502071823,
+        0.496316759,
+        0.497928177
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4804
+          "share": 0.4786
         },
         {
           "tag": "preto",
-          "share": 0.2231
+          "share": 0.2259
         }
       ]
     },
@@ -30583,15 +30579,15 @@
       "source": "assets/presenter-realistic/explicador-floriculturas-cuidado-que-prolonga.webp",
       "sourceSha256": "b62b8cdc5d3035ad65fb7960620b96775b4d499292908b0c31dd3040eb499f24",
       "crop": [
-        0.501841621,
+        0.504604052,
         0,
-        0.498158379,
-        0.498618785
+        0.495395948,
+        0.496546961
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2721
+          "share": 0.267
         },
         {
           "tag": "marrom",
@@ -30599,7 +30595,7 @@
         },
         {
           "tag": "amarelo",
-          "share": 0.1884
+          "share": 0.1905
         }
       ]
     },
@@ -30654,23 +30650,23 @@
       "source": "assets/presenter-realistic/explicador-cabelos-rotina-no-espelho.webp",
       "sourceSha256": "db0a2f26bfb41595826a065746e4eb33d0aa9caf9807e2fb8fa9739cebbdd236",
       "crop": [
-        0.5,
+        0.502762431,
         0,
-        0.5,
+        0.497237569,
         0.5
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3886
+          "share": 0.3914
         },
         {
           "tag": "marrom",
-          "share": 0.2201
+          "share": 0.2193
         },
         {
           "tag": "cinza",
-          "share": 0.2184
+          "share": 0.2166
         }
       ]
     },
@@ -30700,9 +30696,9 @@
       "source": "assets/presenter-realistic/explicador-cabelos-a-agenda-se-organiza.webp",
       "sourceSha256": "63a3978038f262e931a830df6b37c92bb076b01f14e06616eb39cebad4c89b64",
       "crop": [
-        0.504604052,
+        0.507366483,
         0,
-        0.495395948,
+        0.492633517,
         0.5
       ],
       "colors": [
@@ -30712,7 +30708,7 @@
         },
         {
           "tag": "marrom",
-          "share": 0.3445
+          "share": 0.3439
         }
       ]
     },
@@ -31157,18 +31153,18 @@
       "sourceSha256": "da012daa4c324974331b92d11c5149caf460d7cc8c2b31acc9976edd81c75b2f",
       "crop": [
         0,
-        0.502071823,
-        0.498158379,
-        0.497928177
+        0.504143646,
+        0.495395948,
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4154
+          "share": 0.4111
         },
         {
           "tag": "laranja",
-          "share": 0.1222
+          "share": 0.1219
         }
       ]
     },
@@ -31463,20 +31459,20 @@
         0.500417014,
         0,
         0.499582986,
-        0.499237805
+        0.49695122
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3178
+          "share": 0.3174
         },
         {
           "tag": "marrom",
-          "share": 0.1893
+          "share": 0.1924
         },
         {
           "tag": "laranja",
-          "share": 0.1746
+          "share": 0.1712
         }
       ]
     },
@@ -31512,29 +31508,29 @@
       "crop": [
         0,
         0,
-        0.5,
-        0.5
+        0.496316759,
+        0.497237569
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2348
+          "share": 0.2371
         },
         {
           "tag": "cinza",
-          "share": 0.2153
+          "share": 0.2096
         },
         {
           "tag": "marrom",
-          "share": 0.1672
+          "share": 0.1687
         },
         {
           "tag": "preto",
-          "share": 0.1424
+          "share": 0.1431
         },
         {
           "tag": "laranja",
-          "share": 0.1335
+          "share": 0.1313
         }
       ]
     },
@@ -31786,22 +31782,22 @@
       "sourceSha256": "8b87175988f00868381a549797cc9103448eab021b52755b26e52c68ccab325e",
       "crop": [
         0,
-        0.5,
-        0.49907919,
-        0.5
+        0.502762431,
+        0.496316759,
+        0.497237569
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2638
+          "share": 0.2639
         },
         {
           "tag": "cinza",
-          "share": 0.2465
+          "share": 0.2462
         },
         {
           "tag": "preto",
-          "share": 0.1352
+          "share": 0.1375
         }
       ]
     },
@@ -32090,22 +32086,22 @@
       "sourceSha256": "a649b88cb350df195912debd429ff1f9ad9543b11e36f6eafd9827588a4e8c26",
       "crop": [
         0,
-        0.501381215,
-        0.498158379,
-        0.498618785
+        0.503453039,
+        0.495395948,
+        0.496546961
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.297
+          "share": 0.2973
         },
         {
           "tag": "cinza",
-          "share": 0.2554
+          "share": 0.2496
         },
         {
           "tag": "laranja",
-          "share": 0.231
+          "share": 0.234
         }
       ]
     },
@@ -32240,26 +32236,26 @@
       "sourceSha256": "8bed134eacea2fb58be658679f9c6064adc97729fedb76b916d0930cb7c6fe89",
       "crop": [
         0,
-        0.5,
-        0.49907919,
-        0.5
+        0.502071823,
+        0.496316759,
+        0.497928177
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2334
+          "share": 0.2346
         },
         {
           "tag": "cinza",
-          "share": 0.2271
+          "share": 0.222
         },
         {
           "tag": "preto",
-          "share": 0.1818
+          "share": 0.1843
         },
         {
           "tag": "laranja",
-          "share": 0.1561
+          "share": 0.1564
         }
       ]
     },
@@ -32472,23 +32468,23 @@
       "source": "assets/presenter-realistic/explicador-automotivo-o-orcamento-abre-o-capo.webp",
       "sourceSha256": "4191c49d020379ae43e86c50a8b8e381e03ab5f3bd7c229e83a1123fcb7a0a5a",
       "crop": [
-        0.501841621,
+        0.504604052,
         0,
-        0.498158379,
-        0.497928177
+        0.495395948,
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2844
+          "share": 0.2835
         },
         {
           "tag": "marrom",
-          "share": 0.2751
+          "share": 0.2745
         },
         {
           "tag": "preto",
-          "share": 0.1941
+          "share": 0.196
         }
       ]
     },
@@ -32770,21 +32766,21 @@
       "crop": [
         0,
         0.5,
-        0.5,
+        0.496316759,
         0.5
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3236
+          "share": 0.324
         },
         {
           "tag": "marrom",
-          "share": 0.2777
+          "share": 0.2771
         },
         {
           "tag": "laranja",
-          "share": 0.1524
+          "share": 0.1512
         }
       ]
     },
@@ -33190,22 +33186,22 @@
       "sourceSha256": "028e9d020fe0c0b829af588c96a6acabf6c6b6ff9387ff139a11397e1c7647e7",
       "crop": [
         0,
-        0.500690608,
-        0.498158379,
-        0.499309392
+        0.502762431,
+        0.495395948,
+        0.497237569
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3302
+          "share": 0.3289
         },
         {
           "tag": "cinza",
-          "share": 0.2581
+          "share": 0.2545
         },
         {
           "tag": "laranja",
-          "share": 0.1649
+          "share": 0.167
         }
       ]
     },
@@ -33694,14 +33690,14 @@
       "sourceSha256": "837b42908a71c074572d2df9eb52d2937406830740b2bce9f282d2b021a4646e",
       "crop": [
         0,
-        0.5,
-        0.5,
-        0.5
+        0.502071823,
+        0.497237569,
+        0.497928177
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.627
+          "share": 0.6276
         }
       ]
     },
@@ -34010,19 +34006,19 @@
       "source": "assets/presenter-realistic/explicador-corretores-a-obra-tem-evidencias-no-tempo.webp",
       "sourceSha256": "66f56d261b9b497abe01dc229207d35c914d02a9a066256c7a7bb0e25eb619a1",
       "crop": [
-        0.501841621,
+        0.504604052,
         0,
-        0.498158379,
-        0.498618785
+        0.495395948,
+        0.496546961
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4528
+          "share": 0.4521
         },
         {
           "tag": "marrom",
-          "share": 0.2908
+          "share": 0.2884
         }
       ]
     },
@@ -34170,22 +34166,22 @@
       "sourceSha256": "e2b7c1f4ea57d2d923de22a37c2b67066f08adafef1610ca278dd01f99dec2c0",
       "crop": [
         0,
-        0.5,
-        0.5,
-        0.5
+        0.502071823,
+        0.497237569,
+        0.497928177
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2697
+          "share": 0.2665
         },
         {
           "tag": "cinza",
-          "share": 0.2426
+          "share": 0.2393
         },
         {
           "tag": "marrom",
-          "share": 0.2258
+          "share": 0.2306
         }
       ]
     },
@@ -34213,21 +34209,21 @@
       "crop": [
         0,
         0.5,
-        0.5,
+        0.497237569,
         0.5
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4207
+          "share": 0.4225
         },
         {
           "tag": "cinza",
-          "share": 0.2605
+          "share": 0.2607
         },
         {
           "tag": "laranja",
-          "share": 0.2375
+          "share": 0.2363
         }
       ]
     },
