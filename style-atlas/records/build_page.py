@@ -34,9 +34,6 @@ for link in soup.select('link[href^="assets/"]'):
  link['href']=origin+link['href']
 # Presentation-only crop data stays external, like the catalogue payload.
 soup.find('script',src='frame-presentation.js')['src']=runtime_origin+'frame-presentation.js'
-# Search vocabulary and catalogue data are shared external scripts, keeping the
-# embed within its size budget as the discovery vocabulary grows.
-soup.find('script',src='search.js')['src']=runtime_origin+'search.js?v='+hashlib.sha256((r/'dist/search.js').read_bytes()).hexdigest()[:16]
 css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/folio.css').read_text()+'\n'+(r/'dist/folio-components.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
 for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  face=TTFont(r/'dist/assets'/font)
@@ -70,7 +67,23 @@ payload='window.ATLAS_PACKED_CATALOG='+json.dumps(packed)+';\n'
 name='catalog-data-'+hashlib.sha256(payload.encode()).hexdigest()[:16]+'.js'
 (r/'dist/assets'/name).write_text(payload)
 boot=soup.new_tag('script');boot.string='window.ATLAS_PAGE_MODE=true;window.ATLAS_ASSET_BASE='+json.dumps(origin)+';window.ATLAS_CATALOG_PROMISE=(async()=>{await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src='+json.dumps(runtime_origin+'assets/'+name)+';s.onload=resolve;s.onerror=()=>reject(Error("Catálogo remoto indisponível"));document.head.append(s);});const bytes=Uint8Array.from(atob(window.ATLAS_PACKED_CATALOG),c=>c.charCodeAt(0));const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));const d=JSON.parse(await new Response(stream).text());function revive(v){if(Array.isArray(v))return v.map(revive);if(v&&typeof v==="object"){if(Object.keys(v).length===1&&"$s" in v)return d.pool[v.$s];return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,revive(x)]));}return v;}return revive(d.catalog);})();';boot.string='window.ATLAS_INSTALL_MANIFEST='+json.dumps(json.loads((r/'dist/installation.json').read_text()),ensure_ascii=False,separators=(',',':'))+';window.ATLAS_INSTALL_ASSET_BASE='+json.dumps(runtime_origin)+';'+boot.string;boot.string=('window.ATLAS_IMAGE_ASSET_BASE='+json.dumps(args.image_origin)+';' if args.image_origin else '')+'window.ATLAS_FONT_CATALOG='+json.dumps(json.loads((r/'dist/fonts.json').read_text()),ensure_ascii=False,separators=(',',':'))+';'+boot.string;soup.body.append(boot)
-app=soup.new_tag('script');app.string='(async()=>{async function inflate(s){return await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("gzip"))).text();}const css=await inflate('+json.dumps(pack(css))+');const style=document.createElement("style");style.textContent=css;document.head.append(style);const source=await inflate('+json.dumps(pack((r/'dist/guided.js').read_text()+'\n'+(r/'dist/workflow.js').read_text()+'\n'+(r/'dist/site-ui.js').read_text()+'\n'+(r/'dist/gallery-views.js').read_text()+'\n'+(r/'dist/app-shell.js').read_text()+'\n'+(r/'dist/presenter-ui.js').read_text()+'\n'+(r/'dist/installation-ui.js').read_text()+'\n'+(r/'dist/folio-model.js').read_text()+'\n'+(r/'dist/folio-ui.js').read_text()+'\n'+(r/'dist/app.js').read_text()+'\n'+(r/'dist/guided-ui.js').read_text()+'\n'+(r/'dist/style-picker.js').read_text()+'\n'+(r/'dist/material-ui.js').read_text()))+');const script=document.createElement("script");script.textContent=source;document.body.append(script);})().catch(()=>{document.getElementById("grid").textContent="Não foi possível abrir a biblioteca nesta superfície. Use o site público."});';soup.body.append(app)
+modules=['guided.js','workflow.js','site-ui.js','gallery-views.js','app-shell.js','presenter-ui.js',
+         'installation-ui.js','search.js','folio-model.js','folio-ui.js','app.js','guided-ui.js','style-picker.js','material-ui.js']
+script_source='\n'.join((r/'dist'/module).read_text() for module in modules)
+runtime='''(async()=>{
+ async function inflate(encoded){return new Response(new Blob([Uint8Array.from(atob(encoded),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("gzip"))).text();}
+ const style=document.createElement("style");
+ style.textContent=await inflate(THEME);
+ document.head.append(style);
+ const script=document.createElement("script");
+ script.textContent=await inflate(SOURCE);
+ document.body.append(script);
+})().catch(()=>{document.getElementById("grid").textContent="Não foi possível abrir a biblioteca nesta superfície. Use o site público."});
+'''.replace('THEME',json.dumps(pack(css))).replace('SOURCE',json.dumps(pack(script_source)))
+runtime_name='page-runtime-'+hashlib.sha256(runtime.encode()).hexdigest()[:16]+'.js'
+(r/'dist/assets'/runtime_name).write_text(runtime)
+app=soup.new_tag('script',src=runtime_origin+'assets/'+runtime_name)
+soup.body.append(app)
 # Catalogue uses standard gzip decompression in modern browsers, without eval.
 html=str(soup);assert len(html.encode())<262144,len(html.encode())
 (Path(args.output) if args.output else r/'records/page-embed.html').write_text(html)

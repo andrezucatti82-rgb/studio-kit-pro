@@ -69,52 +69,23 @@
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
       "bytes": 218291,
-      "sha256": "b2ceeefbc3d11b37d0c76386d0c00e70dab9a20f09933ce613fb4f65b1e8f681"
+      "sha256": "74ef44d3d0b3dcdd8edd226cecd3ea6eea073b8803edf4d1e73bb604cb7f6456"
     },
     "video-multimarcas-plugin.zip": {
       "bytes": 218805,
-      "sha256": "e0e9f22898d8e622dbf4fb80e303fece3b9591f56f4fe55400b72b357e86b047"
+      "sha256": "f55b5793cf85d902454820c86d4c1e5883fc873e5c725e527271353bf5705d7b"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4875981,
-      "sha256": "056460f4c07c37d522b853120b2d60eb6da37824ec124c577e878cbf80251b77"
+      "bytes": 4875992,
+      "sha256": "1dfe0cf9bf5a90c1309fe52516ae4d396193b848ffb90b8cad8b0296529d776f"
     },
     "video-multimarcas.skill": {
       "bytes": 217268,
-      "sha256": "95c7483350cf843d1511729807fd0f630c914f5e24739037a3daa06a1b4aa7fc"
+      "sha256": "fc4b1c206170e1a4a3689e1176f4bc8ab42c3867570c484b54040c72c50e4533"
     },
     "video-multimarcas.zip": {
       "bytes": 217268,
-      "sha256": "95c7483350cf843d1511729807fd0f630c914f5e24739037a3daa06a1b4aa7fc"
+      "sha256": "fc4b1c206170e1a4a3689e1176f4bc8ab42c3867570c484b54040c72c50e4533"
     }
-  },
-  "installer": {
-    "version": 1,
-    "kitVersion": "2.16.0",
-    "sourceRevision": "c832e7e1d2f433c39f0005311010cf9ff9ec9f18",
-    "sourceReady": true,
-    "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 678950,
-    "sha256": "b7a0efead18a4a1ffb15743670fd4efa93932fad945aa2b15b998fa450a62f51",
-    "tutorial": "como-instalar.html",
-    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
-    "internetRequired": true,
-    "freeToolchain": {
-      "profile": "all-free",
-      "toolCount": 15,
-      "verification": "on each target machine",
-      "binariesBundled": false
-    },
-    "fullProjectDownloadMiB": 817,
-    "skills": 1,
-    "internalModules": 7,
-    "presenterStyles": 265,
-    "curadoria": {
-      "enabled": true,
-      "documentation": "https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/CURADORIA-LIVRE.md",
-      "mcp": "studio_curadoria",
-      "accountsRequired": false
-    },
-    "localFile": "studio-kit-pro-installer.zip"
   }
 }
