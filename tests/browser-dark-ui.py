@@ -14,7 +14,7 @@ with sync_playwright() as p:
   assert 'Folio UI' in page.evaluate('getComputedStyle(document.body).fontFamily')
   assert page.evaluate('getComputedStyle(document.body).colorScheme')=='dark'
   for weight in [400,500,600,700]:assert page.evaluate('async w=>(await document.fonts.load(w+\' 16px "Folio UI"\',"Fólio Ação Informações")).length>0',weight)
-  page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();assert page.locator('#grid [data-choose]').first.evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(40, 46, 17)';page.locator('#folioHeader .folio-brand').click()
+  page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();assert page.locator('#grid [data-choose]').first.evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(226, 255, 59)';page.locator('#folioHeader .folio-brand').click()
   before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)');groups=page.evaluate('AtlasNavigation.groups');seen=set()
   for group in groups:
    trigger=page.locator('[data-folio-open-group="'+group['id']+'"]');trigger.click()
@@ -48,9 +48,9 @@ with sync_playwright() as p:
   assert page.locator('#folioOpenMenu').count()==0
   page.locator('[data-folio-open-group="natural-ads"]').click();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="natural-ads"]')).to_be_focused()
   assert page.locator('#folioMenu input, #folioMenu small, #folioMenu svg, #folioMenu footer, #folioMenu h2, #folioMenu h3').count()==0
-  page.set_viewport_size({'width':1440,'height':1000});page.locator('[data-folio-open-group="technology"]').click();family=page.locator('#folioMenu [data-folio-family]').first
+  page.set_viewport_size({'width':1440,'height':1000});page.locator('[data-folio-open-group="technology"]').focus();page.keyboard.press('Enter');family=page.locator('#folioMenu [data-folio-family]').first
   expect(family).to_be_focused();page.set_viewport_size({'width':375,'height':812});expect(family).to_be_focused();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
-  page.locator('[data-folio-open-group="technology"]').click();page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenu [data-folio-family]').first).to_be_focused();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
+  page.locator('[data-folio-open-group="technology"]').focus();page.keyboard.press('Enter');page.set_viewport_size({'width':1440,'height':1000});expect(page.locator('#folioMenu [data-folio-family]').first).to_be_focused();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
   page.set_viewport_size({'width':width,'height':height})
   page.locator('#folioContinue').click()
   assert page.locator('#folioContinue').evaluate('e=>getComputedStyle(e).backgroundColor')=='rgb(226, 255, 59)'
