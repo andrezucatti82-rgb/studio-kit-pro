@@ -1,0 +1,18 @@
+# Seleção de modelos da HeyGen por plano
+
+Use a API direta quando for a rota escolhida. Rode `npm run heygen:models` no runtime para consultar as páginas oficiais e verificar a autenticação, sem enviar mídia ou criar gerações. Leia o [índice oficial](https://developers.heygen.com/llms.txt), o [changelog](https://developers.heygen.com/changelog) e a documentação do endpoint escolhido. O relatório registra documentação acessada e faturamento autenticado. Confirme separadamente disponibilidade do modelo, limites, insumos, preço e autorização na conta efetiva. Se a documentação não puder ser lida, registre a lacuna em vez de afirmar que a lista está atualizada.
+
+| Plano | Primeiro candidato | O que conferir |
+| --- | --- | --- |
+| Apresentador recriado com áudio autorizado | [Avatar 6](https://developers.heygen.com/docs/models/avatar-6), `heygen-avatar-6` em `POST /v3/models/avatars`, inicialmente em 1080p | Use foto real ou quadro aprovado comparado ao original. Preserve idade aparente, geometria, pele, cabelo e voz. Teste `less` quando a cena pede expressões calmas. Verifique a compatibilidade da conta antes de usar um vídeo real como referência. |
+| Novo enquadramento com a mesma identidade | [HeyGen Image 1](https://developers.heygen.com/docs/models/heygen-image), `POST /v3/models/images` | Use os originais claros para identidade e o quadro de cena aprovado para pose, iluminação e ambiente. Compare o quadro produzido lado a lado com os originais antes da animação. |
+| Movimento de cena ou gesto a compor | [HeyGen Video 1](https://developers.heygen.com/docs/models/heygen-video), `POST /v3/models/videos` | Verifique se a rota aceita os quadros, duração, formato e movimento previstos. Para contato preciso, alinhe ponto e gesto na composição e confira oclusão e sincronismo em movimento. |
+| Sincronizar um clipe existente com áudio autorizado | [Lipsync Precision](https://developers.heygen.com/reference/create-lipsync), `POST /v3/lipsyncs` | Verifique a boca em movimento, preservação do rosto e integridade do áudio original. |
+
+Os IDs são referências iniciais. Quando a HeyGen publicar uma opção melhor para o plano, verifique o contrato, a conta, as exigências de insumo e o custo. Registre modelo, endpoint, resolução, parâmetros, documentos e data, comparação de qualidade e impacto no orçamento. Qualidade do resultado, fidelidade de identidade e aderência à ação têm prioridade sobre novidade ou resolução nominal. Reapresente e aprove alterações materiais no escopo afetado antes de executar. Disponibilidade no site da HeyGen não prova disponibilidade na API ou no conector.
+
+## Adaptador local
+
+`scripts/heygen-clips.py` aceita rotas do HeyGen Video 1 e a rota de foto com áudio do Avatar 6, usando o mesmo orçamento e a mesma verificação. Para Avatar 6, grave `mode: "avatar_from_audio"`, `model`, `resolution`, `motion_expressiveness`, `prompt`, `firstFrame`, `speechAudio` e `duration` no job. A duração é medida com FFprobe a partir do áudio. No plano de fidelidade, use a mesma rota, parâmetros em `generationSettings`, `generationPrompt` e artefatos `initialFrame` e `speechAudio` com hashes. O verificador compara os arquivos exatos antes de enviar. O resultado compartilha a mesma consulta de status e download dos clipes.
+
+HeyGen Image 1, Lipsync, referências de vídeo e futuros modelos exigem o contrato e o executor compatíveis verificados antes do envio. Sem suporte no adaptador atual, use uma rota direta documentada com os mesmos aceites e verificações de custo, ou apresente a limitação. As escolhas confirmadas por plano permanecem vinculadas às versões aprovadas. Use credenciais por variável de ambiente ou armazenamento seguro do host.

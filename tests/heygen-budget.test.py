@@ -31,6 +31,24 @@ class BudgetTests(unittest.TestCase):
    p=Path(d);(p/'one.png').write_bytes(b'fixture one');(p/'two.png').write_bytes(b'fixture two')
    q=m.payload_for({'model':'heygen-video-1','duration':10,'mode':'reference_to_video','referenceImages':['two.png','one.png']},p)
    self.assertEqual(q['prompt_enhancement'],'disabled');self.assertEqual(q['reference_images'][0]['data'],m.base64.b64encode(b'fixture two').decode())
+ def test_avatar_uses_original_audio_and_selects_dedicated_endpoint(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);(root/'portrait.png').write_bytes(b'approved picture');(root/'speech.wav').write_bytes(b'original speech')
+   job={'model':'heygen-avatar-6','mode':'avatar_from_audio','duration':4.25,'resolution':'1080p','motion_expressiveness':'less','prompt':'Use a calm expression.','speechAudio':'speech.wav','firstFrame':'portrait.png','reserveUSD':1}
+   job_path=root/'job.json';ledger=root/'ledger.json'
+   job_path.write_text(json.dumps(job));ledger.write_text(json.dumps(self.ledger()))
+   timing=json.dumps({'format':{'duration':'4.25'},'streams':[{'codec_type':'audio'}]})
+   with patch.object(m.subprocess,'check_output',return_value=timing),patch.object(m,'check_visual_approval'),patch.object(m,'verify_direction'),patch.object(m,'api',side_effect=[({'data':{'wallet':{'currency':'usd','remaining_balance':10}}},None),({'data':{'status':'pending','video_id':'example'}},'request')]) as api:
+    result=m.submit(job_path,ledger,True)
+    self.assertEqual(result['status'],'pending')
+    route,payload,_=api.call_args.args
+    self.assertEqual(route,'/v3/models/avatars')
+    self.assertEqual(m.base64.b64decode(payload['audio']['data']),b'original speech')
+    self.assertEqual(payload['motion_prompt'],job['prompt'])
+    self.assertNotIn('duration',payload)
+   timing=json.dumps({'format':{'duration':'12.25'},'streams':[{'codec_type':'audio'}]})
+   with patch.object(m.subprocess,'check_output',return_value=timing):
+    with self.assertRaisesRegex(ValueError,'duration must match'):m.payload_for(job,root)
  def test_missing_checkpoint_never_calls_paid_api(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d);job=p/'job.json';ledger=p/'ledger.json';job.write_text(json.dumps({'model':'heygen-video-1','duration':10,'mode':'text_to_video','reserveUSD':1}));ledger.write_text(json.dumps(self.ledger()))

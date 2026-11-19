@@ -26,6 +26,8 @@ test('every catalogue family and format shares the final-video contract across t
   assert.ok(bundle.request.startsWith(W.productionIntent.instruction));
   assert.doesNotMatch(bundle.request,/STATUS_PROJETO/);
   assert.equal(bundle.project.productionIntent.deliverable,'final_ai_video');
+  assert.deepEqual(bundle.brief.productionContract.heygenModelPolicy,W.heygenModelPolicy);
+  assert.match(bundle.request,/heygen:models/);
   const brief=fromPrompt(bundle.request);
   assert.deepEqual(brief,JSON.parse(JSON.stringify(bundle.brief.productionContract.productionBrief)));
   assert.deepEqual(brief.materials.assignments,[]);

@@ -59,7 +59,38 @@ def image_input(file):
     if image.stat().st_size>5*1024*1024:raise ValueError('Reference exceeds 5 MiB')
     return {'type':'base64','media_type':'image/png' if image.suffix.lower()=='.png' else 'image/jpeg','data':base64.b64encode(image.read_bytes()).decode()}
 
+def avatar_payload(job, directory):
+    model=job.get('model')
+    if model not in ('heygen-avatar-6','heygen-avatar-6-turbo'):
+        raise ValueError('Select a verified Avatar 6 model explicitly in the approved plan')
+    resolution=job.get('resolution')
+    if resolution not in ('1080p','2k'):
+        raise ValueError('Avatar 6 resolution must be 1080p or 2k')
+    motion=job.get('prompt')
+    if not isinstance(motion,str) or not motion.strip() or len(motion)>1200:
+        raise ValueError('Avatar 6 requires an approved motion prompt of up to 1200 characters')
+    expressiveness=job.get('motion_expressiveness')
+    if expressiveness not in ('default','less'):
+        raise ValueError('Record approved Avatar 6 expressiveness as default or less')
+    if job.get('referenceVideos') or job.get('referenceImages'):
+        raise ValueError('Use the approved firstFrame for the photo-and-audio route; additional references need a documented route')
+    audio=(directory/job['speechAudio']).resolve()
+    mime={'.wav':'audio/wav','.mp3':'audio/mpeg','.m4a':'audio/mp4'}.get(audio.suffix.lower())
+    if not mime:
+        raise ValueError('Speech input must be WAV, MP3 or M4A')
+    timing=json.loads(subprocess.check_output(
+        ['ffprobe','-v','error','-select_streams','a:0','-show_entries','format=duration:stream=codec_type','-of','json',str(audio)],
+        timeout=30,text=True))
+    duration=Decimal(str(job['duration']))
+    measured=Decimal(timing['format']['duration'])
+    if duration<=0 or not timing.get('streams') or abs(duration-measured)>Decimal('0.04'):
+        raise ValueError('Approved Avatar 6 duration must match the measured speech audio')
+    return {'model':model,'resolution':resolution,'motion_prompt':motion,'motion_expressiveness':expressiveness,
+            'reference_images':[image_input(directory/job['firstFrame'])],
+            'audio':{'type':'base64','media_type':mime,'data':base64.b64encode(audio.read_bytes()).decode()}}
+
 def payload_for(job, directory):
+    if job.get('mode')=='avatar_from_audio':return avatar_payload(job,directory)
     payload={k:job[k] for k in ['model','mode','prompt','duration','resolution','aspect_ratio','seed','prompt_enhancement'] if k in job}
     if payload.get('model')!='heygen-video-1':raise ValueError('This adapter supports heygen-video-1 only')
     if not isinstance(payload.get('duration'),int) or not 5<=payload['duration']<=15:raise ValueError('Pilot adapter accepts explicit durations from 5 to 15 seconds')
@@ -95,7 +126,8 @@ def submit(job_path, ledger_path, execute=False):
         ledger=read(ledger_path)
         if any(x['jobFile']==str(job_path) for x in ledger['jobs']):raise ValueError('Job already reserved/submitted; use status, do not submit again')
         check_budget(ledger,job['reserveUSD']);payload=payload_for(job,job_path.parent)
-        if not execute:return {'status':'planned','reserveUSD':job['reserveUSD'],'duration':job['duration'],'provider':'heygen_direct_api'}
+        route='/v3/models/avatars' if job['mode']=='avatar_from_audio' else '/v3/models/videos'
+        if not execute:return {'status':'planned','reserveUSD':job['reserveUSD'],'duration':job['duration'],'provider':'heygen_direct_api','model':payload['model'],'endpoint':route}
         verify_direction(job,job_path)
         account,_=api('/v3/users/me');wallet=account['data'].get('wallet') or {}
         if wallet.get('currency')!='usd' or wallet.get('remaining_balance') is None:raise ValueError('USD wallet could not be verified for this direct API account; subscription or MCP credits are not interchangeable. No generation submitted')
@@ -105,7 +137,7 @@ def submit(job_path, ledger_path, execute=False):
         entry={'jobFile':str(job_path),'reservedUSD':job['reserveUSD'],'chargedUSD':None,'status':'submitting','startedAt':int(time.time()),'idempotencyKey':str(uuid.uuid4())}
         ledger['jobs'].append(entry);write(ledger_path,ledger)
         try:
-            result,request_id=api('/v3/models/videos',payload,entry['idempotencyKey']);data=result['data']
+            result,request_id=api(route,payload,entry['idempotencyKey']);data=result['data']
             entry.update(status=data['status'],videoId=data['video_id'],requestId=request_id)
         except Exception:
             entry['status']='submission_unknown';write(ledger_path,ledger);raise

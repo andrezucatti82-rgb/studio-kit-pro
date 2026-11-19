@@ -1,3 +1,8 @@
+## 2.16.1
+
+- Seleção padrão de modelos HeyGen por plano nos briefings e no runtime, com consulta da documentação vigente, fidelidade de identidade e confirmação de custo.
+- Diagnóstico sem geração e rota de foto com áudio autorizado no Avatar 6, com verificação dos arquivos e parâmetros aprovados.
+
 ## 2.16.0
 
 - Briefing único no pedido e no JSON para produzir o vídeo final com IA, com papéis e autorizações por material, contribuições por trecho e preservação de escolhas e aprovações.

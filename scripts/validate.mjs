@@ -77,7 +77,11 @@ export function validateCatalog(c){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)validateCatalog(JSON.parse(fs.readFileSync(new URL('../style-atlas/dist/catalog.json',import.meta.url))));
 
 export function validatePreset(p){
- if(p.productionContract!==undefined&&JSON.stringify(p.productionContract)!==JSON.stringify(AtlasWorkflow.productionContract(p)))throw Error('Production contract differs from the current choices');
+ if(p.productionContract!==undefined){
+  const expected=AtlasWorkflow.productionContract(p);
+  if(!Object.hasOwn(p.productionContract,'heygenModelPolicy'))delete expected.heygenModelPolicy;
+  if(JSON.stringify(p.productionContract)!==JSON.stringify(expected))throw Error('Production contract differs from the current choices');
+ }
  if(p.projectState?.continuity!==undefined)AtlasWorkflow.validateContinuity(p.projectState.continuity);if(p.continuity!==undefined)AtlasWorkflow.validateContinuity(p.continuity);
  if(!p.fidelityContract||!['appearance','movement','text','identity'].every(k=>typeof p.fidelityContract[k]==='string'&&p.fidelityContract[k]))throw Error('Four fidelity locks required');
  const durationValid=p.durationMode==='source'?p.targetDurationSeconds===null&&p.scenePlan===null:

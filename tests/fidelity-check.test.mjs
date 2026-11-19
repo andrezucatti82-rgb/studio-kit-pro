@@ -31,3 +31,17 @@ test('sample coverage is recorded by characteristic and cannot approve unseen mo
  p.expectedReferences[0].styleId='style';p.styleCombination=W.combinationPlan({selectedStyles:[{id:'style'}],styleContributions:{style:[{aspect:'lighting',scope:'film'}]}});p.contributionBindings=[{styleId:'style',aspect:'lighting',scope:'film',shotIds:['shot'],referenceIds:['ref'],referenceBasis:'observed_image',decision:'Fixture planned illumination'}];p.approvals.storyboard.directionSha256=directionFingerprint(p);p.sample.userApproval.directionSha256=directionFingerprint(p);
  assert.equal(checkFidelity(p,{...o,phase:'final'}).ready,false);p.sample.shotIds=['shot'];p.sample.contributionChecks=[{styleId:'style',aspect:'lighting',shotIds:['shot'],status:'passed',evidence:'Synthetic fixture only, no real review claimed'}];assert.equal(checkFidelity(p,{...o,phase:'final'}).ready,true);p.sample.contributionChecks[0].shotIds=['unseen'];assert.equal(checkFidelity(p,{...o,phase:'final'}).ready,false);
 }));
+
+test('Avatar 6 fidelity binds exact audio, image, parameters and duration',()=>fixture((p,o,a)=>{
+ const audio='voice.wav',bytes='original audio fixture';
+ fs.writeFileSync(path.join(o.directory,audio),bytes);
+ const settings={model:'heygen-avatar-6',resolution:'1080p',motion_expressiveness:'less'};
+ Object.assign(p.shots[0],{route:'avatar_from_audio',durationSeconds:4.25,generationSettings:settings,speechAudio:{file:audio,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}});
+ p.capabilities[0].mode='avatar_from_audio';
+ p.approvals.storyboard.directionSha256=directionFingerprint(p);
+ const job={mode:'avatar_from_audio',firstFrame:a.file,speechAudio:audio,prompt:p.shots[0].generationPrompt,duration:4.25,...settings};
+ assert.equal(checkFidelity(p,{...o,shotId:'shot',job}).ready,true);
+ assert.equal(checkFidelity(p,{...o,shotId:'shot',job:{...job,model:'heygen-avatar-6-turbo'}}).ready,false);
+ fs.writeFileSync(path.join(o.directory,audio),'changed speech');
+ assert.equal(checkFidelity(p,{...o,shotId:'shot',job}).ready,false);
+}));

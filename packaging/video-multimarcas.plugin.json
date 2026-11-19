@@ -1,13 +1,13 @@
 {
   "name": "video-multimarcas",
-  "version": "2.16.0",
+  "version": "2.16.1",
   "description": "Uma skill pública com sete módulos internos para planejamento, explicação interativa, publicidade, edição, VFX, tratamento e revisão.",
   "skills": "./skills/",
   "interface": {
     "displayName": "Vídeo Multimarcas",
     "shortDescription": "Uma skill, sete módulos internos: do estilo ao vídeo revisado.",
     "defaultPrompt": [
-      "Use $video-multimarcas como orquestradora do Studio Kit Pro 2.16.0. Leia references/skill-routing.md e use skillRouting/intentSummary do pedido validado para selecionar as especialidades. Preserve estilos, características, escopos, mídia e decisões. Confirme ferramentas, capacidades e faltas reais; faça até três perguntas pertinentes, sem repetir escolhas. Planeje atuação e motion juntos quando houver apresentador; paleta isolada não exige avatar. Importe e execute o projeto no Codex/Claude Code com runtime verificado. Em chat sem execução, conclua etapas disponíveis e informe dependências. Visuais concretos, aceites próprios e custo autorizado antecedem geração. Entregue arquivos reais com estado honesto de revisão. Para VFX, consulte references/free-toolchain.md e verifique a instalação local gratuita antes de executar."
+      "Use $video-multimarcas como orquestradora do Studio Kit Pro 2.16.1. Leia references/skill-routing.md e use skillRouting/intentSummary do pedido validado para selecionar as especialidades. Preserve estilos, características, escopos, mídia e decisões. Confirme ferramentas, capacidades e faltas reais; faça até três perguntas pertinentes, sem repetir escolhas. Planeje atuação e motion juntos quando houver apresentador; paleta isolada não exige avatar. Importe e execute o projeto no Codex/Claude Code com runtime verificado. Em chat sem execução, conclua etapas disponíveis e informe dependências. Selecione o modelo HeyGen por plano com references/heygen-model-selection.md. Visuais concretos, aceites próprios e custo autorizado antecedem geração. Entregue arquivos reais com estado honesto de revisão. Para VFX, consulte references/free-toolchain.md e verifique a instalação local gratuita antes de executar."
     ]
   }
 }

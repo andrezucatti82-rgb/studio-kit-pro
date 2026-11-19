@@ -22,6 +22,8 @@ Esta referência orienta **Codex e Claude Code com execução de arquivos**. O p
 
 Use materiais originais e bancos licenciados quando servirem ao plano, registrando fonte e direitos. Pode gerar imagens IA e usar HeyGen para clipes, narração e avatares compatíveis. Descubra **as ferramentas reais da sessão**: conexão HeyGen por plugin/API pode existir mesmo sem `HEYGEN_API_KEY` no shell. Não peça novamente uma chave sem verificar essas conexões, nem copie segredos para ZIP, prompt, Git ou outra conta.
 
+Para escolher a rota e o modelo por plano, leia [seleção de modelos HeyGen](heygen-model-selection.md) e use o relatório de `npm run heygen:models` para verificar documentação e conta.
+
 Para chamadas HTTP diretas, preserve `scripts/heygen-clips.py`, seu orçamento e os gates de fidelidade/visuais. Para ferramenta conectada, aplique os mesmos controles antes da chamada. Uma conexão autenticada não prova saldo, preço nem compatibilidade com a ação. Quando houver duas contas plausíveis, confirme a conta antes de uma geração que possa cobrar.
 
 **Antes de gerar mídia cobrada**, apresente arquivos/quadros concretos quando exigidos, ferramenta/modelo, preço atual ou estimativa fundamentada, quantidade/duração e tentativas incluídas. Aguarde autorização específica. A autorização de usar HeyGen ou stock não é autorização de gasto irrestrito. Não faça geração paga de diagnóstico. Priorize a conta e o provedor escolhidos pelo usuário, sem trocar silenciosamente.
