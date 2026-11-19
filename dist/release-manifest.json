@@ -76,8 +76,8 @@
       "sha256": "6bcc2fefede6506b8825e1cb900b30268386bb26812372c169f80a8b0cbddd6d"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4869820,
-      "sha256": "9c6da5be825198b2f6d79b0e853f3eae915f2d986fef83a7f36d8dc97c1750f1"
+      "bytes": 4870251,
+      "sha256": "b6d2bb0baf78add515e418a86c2c6d829787bb2e14c04a51ab5bae019e9eb833"
     },
     "video-multimarcas.skill": {
       "bytes": 216241,
@@ -91,11 +91,11 @@
   "installer": {
     "version": 1,
     "kitVersion": "2.15.0",
-    "sourceRevision": "eabb7036b4cb612eea0d441ebeb98482e83aa228",
+    "sourceRevision": "7bd30c9d7271b0c9d35782fc727b4e56f49b7b5c",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 678613,
-    "sha256": "133c092b52a8daa4a95037c01953f85018cce2e5fd4f5cd28ad6d629b5bd6438",
+    "bytes": 678608,
+    "sha256": "ce641b4f48b1a03be05b731288a922e8966458510f23cb7f581d038c6989cb39",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,

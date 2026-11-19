@@ -5,6 +5,19 @@ import {createHash} from 'node:crypto';
 import '../style-atlas/dist/search.js';
 const overrides=JSON.parse(await fs.readFile(new URL('../style-atlas/records/search/overrides.json',import.meta.url)));
 const S=globalThis.AtlasSearch,c=JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url))),index=S.createIndex(c.styles,c.search),ids=q=>index.search(q).map(r=>r.style.id);
+test('public style codes are unique, stable and find one style by case-insensitive exact lookup',()=>{
+ const codes=c.styles.map(style=>S.styleCode(style.id));
+ assert.equal(new Set(codes).size,c.styles.length);
+ for(const [i,code] of codes.entries()){
+  assert.match(code,/^FOL-[0-9A-HJKMNP-TV-Z]{8}$/);
+  assert.deepEqual(ids(code),[c.styles[i].id]);
+ }
+ const id='explicador-agencias-o-dado-responde-a-pergunta',code='FOL-JERVPBEH';
+ assert.equal(S.styleCode(id),code);
+ assert.deepEqual(ids('fol jervpbeh'),[id]);
+ assert.deepEqual(index.suggest(code),[{query:code,label:'O dado responde à pergunta',kind:'style',id,count:1}]);
+ assert.deepEqual(ids('FOL-00000000'),[]);
+});
 test('all styles have reproducible, nonempty hidden tags without changing visual styles',()=>{
  assert.equal(createHash('sha256').update(JSON.stringify(c.styles)).digest('hex'),'73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0','search enrichment must preserve all published style contracts');assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
  for(const s of c.styles){assert.deepEqual(c.search.styleTags[s.id],S.tagsFor(s,overrides[s.id]?.tags||[],c.search.styleColors?.[s.id]||[]));assert(c.search.styleTags[s.id].length>=3,s.id);assert.equal(new Set(c.search.styleTags[s.id]).size,c.search.styleTags[s.id].length);}
