@@ -164,12 +164,12 @@
   let viewportFrame=0,editingHeight=0,lastEdit=0;
   const editable=()=>{const e=document.activeElement;return e?.matches('textarea,input:not([type=checkbox],[type=radio],[type=file],[type=button],[type=submit],[type=reset],[type=range],[type=color],[type=hidden])')&&!e.disabled&&!e.readOnly?e:null;};
   function keepEditorVisible(){
-   viewportFrame=0;const field=editable(),mobile=window.innerWidth<=700,height=viewport.height;
+   viewportFrame=0;const field=editable(),mobile=window.innerWidth<=700,height=viewport.height,normalHeight=height*(viewport.scale||1);
    if(!mobile||!field){delete document.body.dataset.folioKeyboard;editingHeight=0;return;}
-   if(!editingHeight)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,height);
-   const keyboard=editingHeight-height>100;
+   if(!editingHeight)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,normalHeight);
+   const keyboard=editingHeight-normalHeight>100;
    document.documentElement.style.setProperty('--folio-viewport-height',height+'px');
-   document.documentElement.style.setProperty('--folio-keyboard-inset',Math.max(0,editingHeight-height)+'px');
+   document.documentElement.style.setProperty('--folio-keyboard-inset',Math.max(0,editingHeight-normalHeight)+'px');
    if(keyboard)document.body.dataset.folioKeyboard='true';else delete document.body.dataset.folioKeyboard;
    if(!keyboard)return;
    const top=Math.max(viewport.offsetTop,header.getBoundingClientRect().bottom)+12,bottom=viewport.offsetTop+height-48,rect=field.getBoundingClientRect();
@@ -177,7 +177,7 @@
    if(Math.abs(delta)>1)window.scrollTo({top:Math.max(0,window.scrollY+delta),behavior:'auto'});
   }
   const scheduleEditor=()=>{if(!viewportFrame)viewportFrame=requestAnimationFrame(keepEditorVisible);};
-  document.addEventListener('focusin',()=>{lastEdit=Date.now();if(!document.body.dataset.folioKeyboard)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,viewport.height);scheduleEditor();});
+  document.addEventListener('focusin',()=>{lastEdit=Date.now();if(!document.body.dataset.folioKeyboard)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,viewport.height*(viewport.scale||1));scheduleEditor();});
   document.addEventListener('focusout',scheduleEditor);document.addEventListener('input',()=>{lastEdit=Date.now();scheduleEditor();});
   viewport.addEventListener('resize',scheduleEditor);viewport.addEventListener('scroll',()=>{if(Date.now()-lastEdit<700)scheduleEditor();});window.addEventListener('resize',scheduleEditor);
  }

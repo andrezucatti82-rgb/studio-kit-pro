@@ -15,7 +15,7 @@ with sync_playwright() as p:
    page.locator('img').evaluate_all('async es=>{await Promise.all(es.filter(e=>{const r=e.getBoundingClientRect();return r.width&&r.height&&r.top<innerHeight&&r.bottom>0}).map(e=>{e.loading="eager";return e.decode()}))}')
    page.screenshot(path=str(out/f'{width}-{name}.png'),animations='disabled')
   def actions():
-   bad=page.locator('.primary,.outline,.button,.folio-panel-back').evaluate_all('''es=>es.filter(e=>e.getClientRects().length&&!e.disabled&&!e.closest('.folio-catalogue-controls')&&getComputedStyle(e).visibility!=='hidden').flatMap(e=>{
+   bad=page.locator('.primary,.outline,.button,.folio-panel-back,#sequencePrev,#sequenceNext').evaluate_all('''es=>es.filter(e=>e.getClientRects().length&&!e.disabled&&!e.closest('.folio-catalogue-controls')&&getComputedStyle(e).visibility!=='hidden').flatMap(e=>{
     const s=getComputedStyle(e),r=e.getBoundingClientRect(),bad=[];if(s.backgroundColor!=='rgb(226, 255, 59)')bad.push('fill');if(e.innerText.trim()&&parseFloat(s.fontSize)<15)bad.push('font');if(s.color!=='rgb(22, 27, 5)')bad.push('ink');if(r.height<43.5)bad.push('target');
     const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const n=walker.currentNode;if(n.textContent.trim()&&n.parentElement.getClientRects().length){const range=document.createRange();range.selectNodeContents(n);for(const box of range.getClientRects())if(box.width&&box.height)rects.push(box)}}for(const svg of e.querySelectorAll('svg,small'))rects.push(svg.getBoundingClientRect());
     if(rects.length){const left=Math.min(...rects.map(x=>x.left)),right=Math.max(...rects.map(x=>x.right)),top=Math.min(...rects.map(x=>x.top)),bottom=Math.max(...rects.map(x=>x.bottom));if(Math.abs((left+right-r.left-r.right)/2)>3)bad.push('horizontal');if(Math.abs((top+bottom-r.top-r.bottom)/2)>3)bad.push('vertical')}
@@ -35,8 +35,8 @@ with sync_playwright() as p:
    parent.tap();expect(menu).not_to_be_visible()
   page.locator('[data-folio-open-group="natural-ads"]').tap();screen('02-menu');page.locator('[data-folio-family="ads-joias"]').tap();screen('03-category')
   page.locator('#grid [data-detail]').first.tap();screen('04-detail');actions()
-  page.locator('#detailDialog [data-sequence]').first.tap();screen('05-sequence');page.keyboard.press('Escape');page.locator('#detailDialog [data-close]').tap()
-  page.locator('#folioHeader .folio-brand').tap();page.locator('#folioContinue').tap();screen('06-guide');actions()
+  page.locator('#detailDialog [data-sequence]').first.tap();screen('05-sequence');actions();page.keyboard.press('Escape');page.locator('#detailDialog [data-close]').tap()
+  page.locator('#folioHeader .folio-brand').tap();page.locator('#folioContinue').tap();screen('06-guide');actions();expect(page.locator('#guidedComplexity')).to_be_visible();assert page.locator('.guided-preferences').evaluate('e=>e.tagName')=='SECTION'
   assert page.locator('#guidedTitle').evaluate('e=>getComputedStyle(e).outlineStyle')=='none'
   assert page.locator('#guidedDialog :is(input,select,textarea)').evaluate_all('es=>es.filter(e=>e.getClientRects().length).every(e=>parseFloat(getComputedStyle(e).fontSize)>=16)')
   page.locator('#guidedSubject').fill('Apresentar um consultório com naturalidade');page.locator('#folioContinue').tap();screen('07-style');page.locator('#guidedBrowse').tap()

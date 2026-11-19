@@ -13,6 +13,8 @@ with sync_playwright() as p:
   if mode=='visual':
    context.add_init_script('''const vv=Object.assign(new EventTarget(),{height:812,width:375,offsetTop:0,offsetLeft:0,scale:1});Object.defineProperty(window,'visualViewport',{value:vv});window.testViewport=(height,offsetTop=0)=>{vv.height=height;vv.offsetTop=offsetTop;vv.dispatchEvent(new Event('resize'));vv.dispatchEvent(new Event('scroll'));};''')
   page=context.new_page();page.on('pageerror',lambda e:report['errors'].append(str(e)));page.goto(args.base);page.wait_for_function('window.ATLAS_READY');page.locator('#folioContinue').tap();field=page.locator('#guidedSubject');field.focus()
+  if mode=='layout':
+   cdp=context.new_cdp_session(page);cdp.send('Emulation.setPageScaleFactor',{'pageScaleFactor':2});page.wait_for_function('visualViewport.scale>1.9');page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');assert not page.evaluate('!!document.body.dataset.folioKeyboard');expect(page.locator('.folio-category-bar')).to_be_visible();cdp.send('Emulation.setPageScaleFactor',{'pageScaleFactor':1})
   if mode=='visual':page.evaluate('testViewport(360)')
   else:page.set_viewport_size({'width':375,'height':360})
   page.wait_for_function('document.body.dataset.folioKeyboard==="true"')
