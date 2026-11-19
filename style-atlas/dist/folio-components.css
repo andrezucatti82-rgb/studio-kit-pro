@@ -97,6 +97,26 @@ body[data-folio=true] :is(.request-summary,.notice,.brief-font-choice,.delivery-
 body[data-folio=true] .request-summary{padding:18px}
 body[data-folio=true] .project-card{margin:24px 0}
 body[data-folio=true] .brief-workspace-grid{gap:24px}
+body[data-folio=true] #briefVisual .reference-panel>img{max-height:none}
+@media(min-width:701px){
+ body[data-folio=true] .brief-preview{
+  position:static;align-self:stretch;display:flex;flex-direction:column;min-height:0;
+ }
+ body[data-folio=true] #briefVisual{display:flex;flex:1;flex-direction:column;min-height:0}
+ body[data-folio=true] #briefVisual>.frame-expand{
+  display:grid;place-items:center;flex:1 1 0;min-height:0;container-type:size;
+  background:transparent;
+ }
+ body[data-folio=true] #briefVisual>.frame-expand>.reference-panel{
+  width:min(100%,calc(100cqh * var(--frame-ratio,.75)));margin:0 auto;border-radius:12px;
+ }
+ body[data-folio=true] #briefVisual>.frame-expand>img{
+  height:100%;max-height:100%;object-fit:contain;
+ }
+ body[data-folio=true] #briefVisual .sequence-strip{display:flex}
+ body[data-folio=true] #briefVisual .sequence-strip button{width:40px}
+ body[data-folio=true] #briefVisual .sequence-strip .reference-panel{display:block}
+}
 body[data-folio=true] #briefDialog .brief-font-choice{padding:12px 16px;gap:16px}
 body[data-folio=true] :is(input:not([type=checkbox],[type=radio]),select,textarea),
 body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),select,textarea){
