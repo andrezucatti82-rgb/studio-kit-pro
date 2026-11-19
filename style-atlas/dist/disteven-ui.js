@@ -3,12 +3,14 @@
  const $=id=>document.getElementById(id),model=globalThis.DiStevenCollections;
  if(!model||!$('distevenCollections'))return;
  const esc=value=>AtlasViews.esc(value),base=()=>window.ATLAS_ASSET_BASE||'';
+ const menu=$('distevenMenu'),menuGroups=$('distevenMenuGroups');
+ const chevron='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>';
  // Keep the existing feature APIs, but render each workspace in document flow.
  // Nested inspection (style -> frame) replaces the current page and returns to
  // it, rather than stacking modal layers or blocking the rest of the interface.
  const panelHost=document.createElement('div');panelHost.id='distevenPanelHost';panelHost.hidden=true;
  document.body.insertBefore(panelHost,document.querySelector('.app-main'));
- document.body.insertBefore($('distevenMenu'),panelHost);
+ document.body.insertBefore(menu,panelHost);
  const panelStack=[];let panelView=document.body.dataset.view,resettingPanels=false;
  function syncPanels(){
   const current=panelStack.at(-1)?.panel;panelHost.hidden=!current;
@@ -52,7 +54,7 @@
  });
  const icons={heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1C0 9 6 15 12 21c6-6 12-12 8-16Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>'};
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
- let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuScroll=0,gridScroll=0,homeScroll=0;
+ let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',expandedTopic='',menuTrigger,gridScroll=0,homeScroll=0;
  const state={goal:'mixed',mode:'home',collection:'',niche:'',similar:'',browseGroup:'',browseTopic:'',browseDetail:''};
  const featuredCollections=['inside-products','product-value','people-and-business','explanations'];
  const nicheVisible=new Map();
@@ -72,7 +74,7 @@
  function preview(s){
   // Fill the preview with the actual logical panel, never a blurred duplicate.
   // The untouched source remains available in the detail viewer and downloads.
-  return `<span class="disteven-portrait" style="--disteven-source-ratio:${model.previewRatio(s)};--disteven-focus-y:${s.presenterEditing?'100%':'35%'}"><span class="disteven-artwork">${picture(s)}</span><span class="disteven-cover-hint" aria-hidden="true">Explorar ${icon('arrow')}</span></span>`;
+  return `<span class="disteven-portrait" style="--disteven-source-ratio:${model.previewRatio(s)};--disteven-focus-y:${s.presenterEditing?'100%':'35%'}"><span class="disteven-artwork">${picture(s)}</span></span>`;
  }
  function card(s,large=false){
   return `<article class="disteven-card${large?' disteven-card-expanded':''}${selected(s.id)?' is-selected':''}" data-style-id="${esc(s.id)}"><button type="button" class="disteven-cover" data-detail="${esc(s.id)}" aria-label="Ver ${esc(s.name)}">${preview(s)}</button><div class="disteven-card-footer"><span class="disteven-reference">Referência visual</span><div class="disteven-card-title"><h3><button type="button" data-detail="${esc(s.id)}">${esc(s.name)}</button></h3><button type="button" class="disteven-save" data-fav="${esc(s.id)}" aria-pressed="${!!favorite(s.id)}" aria-label="${favorite(s.id)?'Remover dos':'Adicionar aos'} favoritos: ${esc(s.name)}">${icon(large?'bookmark':'heart')}</button></div>${large?`<div class="disteven-card-actions"><span>${s.sequence?'4 quadros':'Estudo visual'}</span><button type="button" data-choose="${esc(s.id)}" class="disteven-add" aria-pressed="${!!selected(s.id)}" aria-label="${selected(s.id)?'Selecionado:':'Escolher'} ${esc(s.name)}">${selected(s.id)?'Selecionado ✓':'Escolher estilo'}</button></div>`:''}</div>${large?`<button type="button" class="disteven-story-link" data-detail="${esc(s.id)}">Ver os momentos ${icon('arrow')}</button>`:''}</article>`;
@@ -158,7 +160,7 @@
  function catalogue({preserveFilter=false}={}){window.AtlasInlinePanels.reset();clearBrowse();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('distevenCollectionTitle'));window.AtlasShell.view('library');if(preserveFilter)refresh();else window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
   window.AtlasInlinePanels.reset();
-  setCategoryBar(false);clearBrowse();state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('distevenDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
+  clearBrowse();state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('distevenDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   requestAnimationFrame(()=>{window.scrollTo({top:restore?homeScroll:0,behavior:'auto'});if(!restore)$('distevenDiscoveryTitle').focus({preventScroll:true});});
  }
  function openCollection(id){
@@ -171,7 +173,7 @@
   const skip=document.querySelector('.skip-link');let content=view==='help'?$('installTitle'):view==='brief'?$('briefTitle'):view==='library'?(state.mode==='home'?$('distevenDiscoveryTitle'):$('distevenCollectionTitle')):$('projectTitle');
   if(skip&&content){if(!content.id)content.id='distevenContentTitle';content.tabIndex=-1;skip.href='#'+content.id;skip.textContent='Pular para o conteúdo';}
   window.AtlasInlinePanels.onView(view);
-  if(view!=='library'){setCategoryBar(false);closeMenu();if($('distevenChoice').open){$('distevenChoice').close();}}
+  if(view!=='library'){closeMenu();if($('distevenChoice').open){$('distevenChoice').close();}}
   document.querySelectorAll('[data-disteven-home]').forEach(b=>b.setAttribute('aria-current',view==='library'?'page':'false'));
   document.querySelectorAll('[data-disteven-choice]').forEach(b=>b.setAttribute('aria-current',['brief','project'].includes(view)?'page':'false'));
  }
@@ -194,30 +196,24 @@
   }
   if(!latest?.selected.length||window.AtlasGuidedFlow?.hasDraft())$('startGuided').click();else window.AtlasShell.openBrief();
  });
- const stickySubcategories=matchMedia('(min-width: 1024px)');
  const mobileNavigation=matchMedia('(max-width: 700px)');
  const categoryToggle=$('distevenCategoryToggle');
- function setCategoryBar(open){
-  if(open){document.body.dataset.distevenCategories='true';}
-  else delete document.body.dataset.distevenCategories;
-  categoryToggle.setAttribute('aria-expanded',String(open));
- }
- categoryToggle.addEventListener('click',()=>{
-  const open=categoryToggle.getAttribute('aria-expanded')!=='true';
-  setCategoryBar(open);
-  if(open){window.scrollTo({top:0,behavior:'auto'});(categoryBar.querySelector('[aria-current=true]')||categoryBar.querySelector('button'))?.focus({preventScroll:true});}
-  else{closeMenu(categoryToggle);categoryToggle.focus({preventScroll:true});}
-  measureNavigation();
+ categoryToggle.addEventListener('click',e=>{
+  if(!menu.hidden){closeMenu(categoryToggle);return;}
+  showMenu(categoryToggle,'',{focus:e.detail===0});
  });
- mobileNavigation.addEventListener?.('change',()=>{if(!mobileNavigation.matches)setCategoryBar(false);measureNavigation();});
+ mobileNavigation.addEventListener?.('change',()=>{
+  if(menu.hidden)return;
+  if(mobileNavigation.matches)showMenu(categoryToggle,menuGroup,{topic:expandedTopic});
+  else if(menuGroup)showMenu(desktopTrigger(menuGroup),menuGroup,{topic:expandedTopic});
+  else closeMenu(null,{restoreFocus:false});
+ });
  function measureNavigation(){
   const height=header.getBoundingClientRect().height;
-  const total=height+(stickySubcategories.matches?$('distevenMenu').getBoundingClientRect().height:0);
   document.documentElement.style.setProperty('--disteven-header-height',height+'px');
-  document.documentElement.style.setProperty('--disteven-navigation-height',total+'px');
   alignMenu();
  }
- if(globalThis.ResizeObserver){const observer=new ResizeObserver(measureNavigation);observer.observe(header);observer.observe(categoryBar);observer.observe($('distevenMenu'));}
+ if(globalThis.ResizeObserver){const observer=new ResizeObserver(measureNavigation);observer.observe(header);}
  window.addEventListener('resize',measureNavigation);document.fonts?.ready?.then(measureNavigation);
  // iOS keeps the layout viewport behind the keyboard. Follow the visual
  // viewport instead, leaving room for its input accessory bar as well.
@@ -249,43 +245,69 @@
   viewport.addEventListener('resize',scheduleEditor);viewport.addEventListener('scroll',()=>{if(Date.now()-lastEdit<700)scheduleEditor();});window.addEventListener('resize',scheduleEditor);
  }
  function renderCategoryBar(){
-  categoryBar.innerHTML=model.browseGroups.map(g=>`<button type="button" data-disteven-open-group="${esc(g.id)}" aria-controls="distevenMenu" aria-expanded="false"><span>${esc(g.label)}</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg></button>`).join('');
+  categoryBar.innerHTML=model.browseGroups.map(g=>`<button type="button" data-disteven-open-group="${esc(g.id)}" aria-controls="distevenMenu" aria-expanded="false"><span>${esc(g.label)}</span>${chevron}</button>`).join('');
  }
+ const desktopTrigger=id=>categoryBar.querySelector('[data-disteven-open-group="'+CSS.escape(id)+'"]');
+ const menuRow=(attribute,id,label,current,extra='',arrow=false)=>
+  `<li><button type="button" data-disteven-${attribute}="${esc(id)}" aria-current="${current}"${extra}><span>${esc(label)}</span>${arrow?chevron:''}</button></li>`;
  function menuRows(){
   const group=model.browseGroup(menuGroup);
-  $('distevenMenu').setAttribute('aria-label',group.label);
-  $('distevenMenuLabel').textContent=group.label;
-  const topics=group.topics.map(topic=>{
-   const active=state.browseTopic===topic.id;
-   const disclosure=topic.children.length?` aria-controls="distevenMenuDetail" aria-expanded="${active}"`:'';
-   return `<button type="button" data-disteven-topic="${esc(topic.id)}" aria-current="${active}"${disclosure}><span>${esc(topic.label)}</span></button>`;
-  }).join('');
-  const active=group.topics.find(topic=>topic.id===state.browseTopic);
-  const details=active?.children.map(detail=>
-   `<button type="button" data-disteven-detail="${esc(detail.id)}" aria-current="${state.browseDetail===detail.id}"><span>${esc(detail.label)}</span></button>`
-  ).join('')||'';
-  $('distevenMenuGroups').innerHTML=`<div class="disteven-text-links">${topics}</div><div id="distevenMenuDetail" class="disteven-menu-refinements"${details?'':' hidden'} role="group" aria-label="${esc(active?.label||'Mais opções')}"><div class="disteven-text-links">${details}</div></div>`;
+  const active=group?.topics.find(topic=>topic.id===expandedTopic);
+  const mobile=mobileNavigation.matches;
+  const label=mobile&&active?active.label:group?.label||'Categorias';
+  menu.setAttribute('aria-label',label);
+  $('distevenMenuLabel').textContent=label;
+  menu.querySelector('[data-disteven-menu-back]').hidden=!menuGroup;
+  const details=active?active.children.map(detail=>menuRow('detail',detail.id,detail.label,state.browseDetail===detail.id)).join(''):'';
+  const topics=group?.topics.map(topic=>{
+   const expanded=expandedTopic===topic.id;
+   const disclosure=topic.children.length?` aria-expanded="${expanded}"${expanded?' aria-controls="distevenMenuDetail"':''}`:'';
+   return menuRow('topic',topic.id,topic.label,state.browseTopic===topic.id,disclosure,!!topic.children.length);
+  }).join('')||'';
+  if(mobile){
+   const all=group?`<li><button type="button" data-disteven-menu-all>Ver todos os estilos</button></li>`:'';
+   const groups=group?'':model.browseGroups.map(item=>menuRow('mobile-group',item.id,item.label,state.browseGroup===item.id,'',true)).join('');
+   const rows=active?details:group?topics:groups;
+   menuGroups.innerHTML=`<ul${active?' id="distevenMenuDetail"':''} class="disteven-menu-list${group?'':' disteven-menu-root'}">${all+rows}</ul>`;
+   menuGroups.scrollTop=0;
+   return;
+  }
+  const previous=menuGroups.querySelector('.disteven-menu-topics')?.scrollTop;
+  menuGroups.innerHTML=`<ul class="disteven-menu-list disteven-menu-topics">${topics}</ul>${active?`<ul id="distevenMenuDetail" class="disteven-menu-list disteven-menu-details" aria-label="${esc(active.label)}">${details}</ul>`:''}`;
+  menuGroups.querySelector('.disteven-menu-topics').scrollTop=previous||0;
  }
  function alignMenu(){
-  const menu=$('distevenMenu'),first=categoryBar.querySelector('button');if(menu.hidden||!first||!first.getClientRects().length)return;
-  const firstBox=first.getBoundingClientRect(),barBox=categoryBar.getBoundingClientRect(),menuBox=menu.getBoundingClientRect(),padding=parseFloat(getComputedStyle(first).paddingLeft)||0;
-  const start=Math.max(0,Math.max(barBox.left,firstBox.left+categoryBar.scrollLeft+padding)-menuBox.left);
-  const available=Math.max(0,menuBox.width-start-(parseFloat(getComputedStyle(menu).paddingRight)||0));
-  const columns=available>=800?4:available>=560?3:available>=310?2:1;
-  menu.style.setProperty('--disteven-menu-start',start+'px');menu.style.setProperty('--disteven-menu-columns',String(columns));
+  if(menu.hidden||mobileNavigation.matches||!menuTrigger?.getClientRects().length)return;
+  const gutter=16,width=menu.offsetWidth,gap=8,viewportWidth=document.documentElement.clientWidth;
+  const anchor=menuTrigger.getBoundingClientRect().left;
+  const right=Math.max(gutter,Math.min(anchor,viewportWidth-gutter-width*2-gap));
+  const left=Math.max(gutter+width+gap,Math.min(anchor,viewportWidth-gutter-width));
+  const opensLeft=Math.abs(anchor-left)<Math.abs(anchor-right);
+  menu.dataset.flyoutSide=opensLeft?'left':'right';
+  menu.style.setProperty('--disteven-menu-x',(opensLeft?left:right)+'px');
  }
- function focusMenu(){$('distevenMenuGroups').querySelector('button')?.focus({preventScroll:true});}
- function closeMenu(destination){
-  if($('distevenMenu').hidden)return;
-  $('distevenMenu').hidden=true;measureNavigation();if(!destination&&!stickySubcategories.matches)window.scrollTo({top:menuScroll,behavior:'auto'});categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
-  const target=destination||menuTrigger,focusTarget=target?.isConnected&&target.getClientRects().length?target:categoryBar.querySelector('button');
-  if(focusTarget?.parentElement===categoryBar){const box=focusTarget.getBoundingClientRect(),bar=categoryBar.getBoundingClientRect();if(box.left<bar.left)categoryBar.scrollLeft-=bar.left-box.left;else if(box.right>bar.right)categoryBar.scrollLeft+=box.right-bar.right;}
-  focusTarget?.focus({preventScroll:true});
+ function focusMenu(){menuGroups.querySelector('button')?.focus({preventScroll:true});}
+ function closeMenu(destination,{restoreFocus=true}={}){
+  if(menu.hidden)return;
+  menu.hidden=true;
+  expandedTopic='';
+  menuTrigger?.setAttribute('aria-expanded','false');
+  categoryToggle.setAttribute('aria-expanded','false');
+  window.AtlasHistory?.changed();
+  if(restoreFocus)(destination||menuTrigger)?.focus({preventScroll:true});
  }
- function showMenu(trigger,group='',keyboard=false){
-  if(!$('distevenMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
-  if($('distevenMenu').hidden)menuScroll=window.scrollY;window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('distevenMenu').hidden=false;
-  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-disteven-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));measureNavigation();if(keyboard)focusMenu();
+ function showMenu(trigger,group,{focus=false,topic=''}={}){
+  if(menuTrigger!==trigger)menuGroups.replaceChildren();
+  menuTrigger?.setAttribute('aria-expanded','false');
+  menuTrigger=trigger;
+  menuGroup=group;
+  expandedTopic=model.browseGroup(group)?.topics.some(item=>item.id===topic&&item.children.length)?topic:'';
+  menuRows();
+  menu.hidden=false;
+  trigger.setAttribute('aria-expanded','true');
+  measureNavigation();
+  if(focus)focusMenu();
+  window.AtlasHistory?.changed();
  }
  function selectCategory(group,topic='',detail='',keepMenu=false){
   window.AtlasInlinePanels.reset();
@@ -293,9 +315,22 @@
 
   state.browseGroup=group;state.browseTopic=topic;state.browseDetail=detail;
   state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;
-  if(!keepMenu){closeMenu($('distevenCollectionTitle'));if(mobileNavigation.matches)setCategoryBar(false);}
+  if(!keepMenu)closeMenu($('distevenCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
-  $('distevenCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
+  if(!keepMenu)$('distevenCollectionTitle').focus({preventScroll:true});
+ }
+ function showTopic(button,{focusChild=false}={}){
+  const group=model.browseGroup(menuGroup);
+  const topic=group.topics.find(value=>value.id===button.dataset.distevenTopic);
+  if(!topic.children.length){selectCategory(group.id,topic.id);return;}
+  if(mobileNavigation.matches){showMenu(categoryToggle,group.id,{topic:topic.id,focus:focusChild});return;}
+  expandedTopic=expandedTopic===topic.id?'':topic.id;
+  if(expandedTopic)selectCategory(group.id,topic.id,'',true);
+  menuRows();
+  const trigger=menuGroups.querySelector('[data-disteven-topic="'+CSS.escape(topic.id)+'"]');
+  if(expandedTopic&&focusChild)$('distevenMenuDetail').querySelector('button').focus();
+  else trigger.focus({preventScroll:true});
+  window.AtlasHistory?.changed();
  }
  function renderChoice(){
   const ids=latest.selected;$('distevenChoiceHelp').textContent=ids.length?'Um estilo orienta seu vídeo. Você pode trocar a referência a qualquer momento.':'Explore uma coleção e escolha um estilo.';
@@ -305,14 +340,13 @@
  function showChoice(trigger){window.AtlasInlinePanels.reset();renderChoice();$('distevenChoice').showModal();}
  function similar(id){if(!window.AtlasApp.getStyle(id))return;window.AtlasInlinePanels.reset();clearBrowse();state.mode='catalogue';state.collection='';state.niche='';state.similar=id;gridScroll=0;closeMenu($('distevenCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();$('distevenCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
  window.AtlasDiSteven={filter,beforeRender,update,onView:syncNavigation,getState:()=>({...state}),syncHeader,similar,showChoice,showCatalogue:catalogue,
-  getNavigationState:()=>({...state,nicheVisible:[...nicheVisible],menuGroup:$('distevenMenu').hidden?'':menuGroup}),
-  restoreNavigation({nicheVisible:counts,menuGroup:group,...saved}){
+  getNavigationState:()=>({...state,nicheVisible:[...nicheVisible],menuGroup:menu.hidden?'':menuGroup,menuTopic:menu.hidden?'':expandedTopic,mobileMenu:mobileNavigation.matches&&!menu.hidden}),
+  restoreNavigation({nicheVisible:counts,menuGroup:group,menuTopic:topic,mobileMenu,...saved}){
    Object.assign(state,saved);nicheVisible.clear();counts.forEach(([id,count])=>nicheVisible.set(id,count));
-   gridScroll=0;setCategoryBar(false);closeMenu($('distevenCollectionTitle'));
-   if(group&&document.body.dataset.view==='library'&&stickySubcategories.matches){
-    const trigger=categoryBar.querySelector('[data-disteven-open-group="'+CSS.escape(group)+'"]');
-    if(trigger){menuGroup=group;menuTrigger=trigger;menuRows();$('distevenMenu').hidden=false;trigger.setAttribute('aria-expanded','true');measureNavigation();}
-   }
+   gridScroll=0;closeMenu($('distevenCollectionTitle'));
+   if(document.body.dataset.view!=='library')return;
+   const trigger=mobileNavigation.matches?(mobileMenu||group?categoryToggle:null):desktopTrigger(group);
+   if(trigger)showMenu(trigger,group,{topic:topic??saved.browseTopic});
   },
   openLinkedCollection([id,topic='',detail='']){
    if(model.browseGroup(id))selectCategory(id,topic,detail);
@@ -321,7 +355,7 @@
   },
  };
  // Listeners are installed before app.js: a free-text search starts across all styles.
- $('search').addEventListener('input',()=>{clearBrowse();if(!$('distevenMenu').hidden){closeMenu($('search'));}setCategoryBar(false);state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
+ $('search').addEventListener('input',()=>{clearBrowse();if(!$('distevenMenu').hidden){closeMenu($('search'));}state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
  $('reset').addEventListener('click',()=>{clearBrowse();state.mode='catalogue';state.collection='';state.similar='';state.niche='';requestAnimationFrame(()=>$('distevenCollectionTitle').focus({preventScroll:true}));});
  $('distevenHomeFavorites').addEventListener('click',()=>{$('favoriteFilter').click();$('distevenCollectionTitle').focus({preventScroll:true});});
  $('distevenEditSearch').addEventListener('click',()=>{$('search').focus();$('search').select();});
@@ -329,10 +363,35 @@
  $('searchEverywhere').addEventListener('click',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';});
  $('familySelect').addEventListener('change',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;});
  $('distevenNiche').addEventListener('change',()=>{state.niche=$('distevenNiche').value;gridScroll=0;refresh();});
+ function backMobileMenu(){
+  const previous=expandedTopic||menuGroup;
+  const attribute=expandedTopic?'topic':'mobile-group';
+  showMenu(categoryToggle,expandedTopic?menuGroup:'');
+  menuGroups.querySelector('[data-disteven-'+attribute+'="'+CSS.escape(previous)+'"]')?.focus();
+ }
  document.addEventListener('keydown',e=>{
-  if(e.key!=='Escape'||e.defaultPrevented)return;
-  if(!$('distevenMenu').hidden){e.preventDefault();closeMenu();}
-  else if(categoryToggle.getAttribute('aria-expanded')==='true'){e.preventDefault();setCategoryBar(false);categoryToggle.focus({preventScroll:true});}
+  if(e.defaultPrevented||menu.hidden)return;
+  const branch=e.target.closest('[data-disteven-topic][aria-expanded]');
+  if(branch&&e.key==='ArrowRight'){
+   e.preventDefault();
+   if(branch.getAttribute('aria-expanded')==='true')$('distevenMenuDetail').querySelector('button').focus();
+   else showTopic(branch,{focusChild:true});
+   return;
+  }
+  if(e.key==='Escape'||(e.key==='ArrowLeft'&&e.target.closest('#distevenMenuDetail'))){
+   e.preventDefault();
+   if(mobileNavigation.matches&&menuGroup){backMobileMenu();return;}
+   if(expandedTopic){
+    const topic=expandedTopic;
+    expandedTopic='';
+    menuRows();
+    menuGroups.querySelector('[data-disteven-topic="'+CSS.escape(topic)+'"]').focus();
+    window.AtlasHistory?.changed();
+   }else closeMenu();
+  }
+ });
+ document.addEventListener('click',e=>{
+  if(!menu.hidden&&!menu.contains(e.target)&&!categoryBar.contains(e.target)&&!categoryToggle.contains(e.target))closeMenu(null,{restoreFocus:false});
  });
  $('distevenChoiceContinue').addEventListener('click',()=>{$('distevenChoice').close();window.AtlasShell.openBrief();});
  $('distevenBack').addEventListener('click',()=>home({restore:true}));$('distevenChangeGoal').addEventListener('click',()=>home());
@@ -351,29 +410,25 @@
   const rail=t.closest('[data-disteven-rail]');if(rail){const region=$('disteven-shelf-'+rail.dataset.distevenRail).closest('section').querySelector('.disteven-shelf-rail');region.scrollBy({left:Number(rail.dataset.railDirection)*region.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
   const collection=t.closest('[data-disteven-collection]');if(collection)openCollection(collection.dataset.distevenCollection);
   if(t.closest('[data-disteven-back]'))home({restore:true});
-  if(t.closest('[data-disteven-close-categories]')){closeMenu(categoryToggle);setCategoryBar(false);categoryToggle.focus({preventScroll:true});}
+  if(t.closest('[data-disteven-close-categories]'))closeMenu(categoryToggle);
+  if(t.closest('[data-disteven-menu-back]'))backMobileMenu();
+  if(t.closest('[data-disteven-menu-all]'))selectCategory(menuGroup,expandedTopic);
+  const mobileGroup=t.closest('[data-disteven-mobile-group]');
+  if(mobileGroup)showMenu(categoryToggle,mobileGroup.dataset.distevenMobileGroup,{focus:e.detail===0});
   if(t.closest('[data-disteven-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-disteven-choice]');if(choice)showChoice(choice);
   const closer=t.closest('[data-disteven-close]');if(closer){if(closer.closest('#distevenMenu'))closeMenu();else closer.closest('dialog')?.close();}
   const openGroup=t.closest('[data-disteven-open-group]');
   if(openGroup){
    const group=openGroup.dataset.distevenOpenGroup;
-   const wasOpen=!$('distevenMenu').hidden&&menuGroup===group;
-   if(wasOpen){closeMenu(openGroup);return;}
-   selectCategory(group);
-   if(mobileNavigation.matches)setCategoryBar(true);
-   showMenu(openGroup,group,e.detail===0);
+   if(!menu.hidden&&menuGroup===group){closeMenu(openGroup);return;}
+   selectCategory(group,'','',true);
+   showMenu(openGroup,group,{focus:e.detail===0});
   }
   const topic=t.closest('[data-disteven-topic]');
-  if(topic){
-   const item=model.browseGroup(menuGroup).topics.find(value=>value.id===topic.dataset.distevenTopic);
-   const hasDetails=!!item.children.length;
-   selectCategory(menuGroup,item.id,'',hasDetails||stickySubcategories.matches);
-   if(!$('distevenMenu').hidden){menuRows();measureNavigation();}
-   if(hasDetails&&e.detail===0)$('distevenMenuDetail')?.querySelector('button')?.focus({preventScroll:true});
-  }
+  if(topic)showTopic(topic,{focusChild:e.detail===0});
   const detail=t.closest('[data-disteven-detail]');
-  if(detail)selectCategory(menuGroup,state.browseTopic,detail.dataset.distevenDetail,stickySubcategories.matches);
+  if(detail)selectCategory(menuGroup,expandedTopic,detail.dataset.distevenDetail);
  });
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);

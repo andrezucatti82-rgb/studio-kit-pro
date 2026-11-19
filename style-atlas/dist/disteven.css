@@ -15,14 +15,10 @@ body[data-disteven=true] .skip-link{left:20px}
 .disteven-to-top{position:fixed;right:22px;bottom:92px;z-index:26;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);box-shadow:0 4px 18px #00000060;font-size:21px}
 .disteven-to-top[hidden]{display:none}
 body:not([data-view=library]) .disteven-to-top{display:none}
-.disteven-cover{position:relative;transition:box-shadow .2s ease,transform .2s ease}
+.disteven-cover{position:relative;outline:2px solid transparent;outline-offset:-2px}
 .disteven-cover::after{content:none}
-@media(hover:hover) and (pointer:fine){
- .disteven-cover:hover{transform:translateY(-3px);box-shadow:0 10px 24px #00000070}
- .disteven-cover:hover .disteven-cover-hint{opacity:1}
-}
+@media(hover:hover) and (pointer:fine){.disteven-cover:hover{outline-color:var(--disteven-accent)}}
 .disteven-cover:focus-visible{outline-offset:-3px}
-.disteven-cover:focus-visible .disteven-cover-hint{opacity:1}
 .disteven-shelf-rail:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:16px}
 body[data-disteven=true] .disteven-legacy-heading{display:none}
 body[data-disteven=true] .primary,body[data-disteven=true] .disteven-add{background:var(--disteven-accent);border-color:var(--disteven-accent);box-shadow:none;color:#161b05}
@@ -82,8 +78,6 @@ body[data-disteven-mode=catalogue] .disteven-collection-heading p{display:none}
 /* Cover with the real panel at its native aspect ratio. Never stretch it or
    expose a neighbouring panel in a source contact sheet. */
 .disteven-artwork>.reference-panel,.disteven-artwork>img{position:absolute;display:block;left:50%;top:var(--disteven-focus-y,50%);transform:translate(-50%,calc(-1 * var(--disteven-focus-y,50%)));width:max(100cqw,calc(100cqh * (var(--disteven-source-ratio))));height:auto;aspect-ratio:var(--disteven-source-ratio);max-width:none;max-height:none;margin:0;overflow:hidden;border-radius:0}
-.disteven-cover-hint{position:absolute;z-index:2;bottom:10px;left:10px;display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #ffffff38;border-radius:20px;background:#242424ed;color:#fff;font:11px/1.2 'DiSteven UI',Arial,sans-serif;opacity:0;transition:opacity .18s ease;pointer-events:none}
-.disteven-cover-hint svg{width:14px;height:14px}
 .disteven-photo{display:block;width:100%;height:100%;object-fit:contain;max-width:none;max-height:none;margin:0}
 .disteven-reference{display:block;color:var(--muted);padding:7px 0 0;font:9px/1.2 'DiSteven UI',Arial,sans-serif}
 .disteven-card-title{display:flex;align-items:flex-start;gap:5px;padding:4px 0 0}
@@ -194,7 +188,7 @@ body[data-disteven=true] .mobile-app-nav svg{fill:none;stroke:currentColor;strok
  body[data-disteven=true] #briefDialog.brief-workspace{padding:10px 18px 115px;margin:0;width:100%}.brief-heading .guided-launch{display:none}body[data-disteven=true] #detailDialog{padding:18px 16px;border-radius:13px;max-height:94dvh}.direction-header h2{font-size:27px}.direction-header .actions{gap:8px}.direction-header .actions button{min-height:44px;font-size:11px}
  body[data-disteven=true] .app-footer{font-size:10px;padding:20px 20px 110px;flex-wrap:wrap}body[data-disteven=true] #appHelp>h1{font-size:29px}.disteven-collections:empty{min-height:150px}
 }
-@media(prefers-reduced-motion:reduce){.disteven-cover,.disteven-cover-hint{transition:none!important}.disteven-cover:hover{transform:none!important}.disteven-cover.is-lit::after{background:none!important}.disteven-shelf-rail,body[data-disteven-mode=collection] #grid{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.disteven-cover.is-lit::after{background:none!important}.disteven-shelf-rail,body[data-disteven-mode=collection] #grid{scroll-behavior:auto}}
 
 /* Shared app controls. Keep production/reference media in its original colors. */
 body[data-disteven=true] button,body[data-disteven=true] input,body[data-disteven=true] select,body[data-disteven=true] textarea{font-family:'DiSteven UI',Arial,Helvetica,sans-serif}
@@ -351,18 +345,51 @@ body[data-disteven=true][data-disteven-panel] .disteven-header .disteven-help{di
    (such as the return-to-top action) can still request smooth scrolling. */
 html:has(body[data-disteven=true]){scroll-behavior:auto}
 
-/* A compact word menu in document flow. The library keeps its own search. */
-body[data-disteven=true] #distevenMenu{position:static;width:calc(100% - 80px);max-width:1520px;margin:0 auto 8px;padding:0 0 8px;border:0;border-bottom:1px solid var(--line);background:transparent;box-shadow:none}
-body[data-disteven=true] #distevenMenu[hidden]{display:none!important}
-#distevenMenu button{min-height:40px;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--muted);font:400 14px/1.5 'DiSteven UI',Arial,sans-serif;text-align:left;cursor:pointer}
-#distevenMenu button:hover,#distevenMenu button:focus-visible{color:var(--disteven-accent);text-decoration:none}
-#distevenMenu .disteven-text-links{display:grid;grid-template-columns:repeat(var(--disteven-menu-columns,4),minmax(0,max-content));gap:0 24px;padding-left:var(--disteven-menu-start,0);align-items:start;justify-content:start}
-#distevenMenu .disteven-text-links button{width:100%;overflow-wrap:anywhere}
-@media(max-width:900px){#distevenMenu .disteven-text-links{grid-template-columns:repeat(var(--disteven-menu-columns,2),minmax(0,max-content));gap:2px 20px}}
-@media(max-width:700px){body[data-disteven=true] #distevenMenu{width:calc(100% - 40px);margin:0 auto 8px}#distevenMenu button{min-height:44px;font-size:14px}}
+/* Category disclosures stay anchored below the header while the catalogue scrolls. */
+body[data-disteven=true] #distevenMenu{
+ position:fixed;z-index:49;top:calc(var(--disteven-header-height,94px) + 8px);
+ left:var(--disteven-menu-x,16px);width:288px;margin:0;
+ --disteven-menu-room:calc(100dvh - var(--disteven-header-height,94px) - 24px);
+}
+#distevenMenu[hidden]{display:none!important}
+#distevenMenu .disteven-menu-list{list-style:none;margin:0;padding:6px}
+#distevenMenu .disteven-menu-list{
+ color:var(--ink);background:#242424;border:1px solid #3b3b3b;border-radius:14px;
+}
+#distevenMenu button{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:44px;
+ padding:9px 12px;border:0;border-radius:8px;background:transparent;color:var(--ink);
+ font:500 14px/1.35 'DiSteven UI',Arial,sans-serif;text-align:left;cursor:pointer;
+}
+#distevenMenu button>span{min-width:0;overflow-wrap:anywhere}
+#distevenMenu button[aria-current=true]{color:var(--disteven-accent)}
+#distevenMenu button:is(:hover,:focus-visible){background:#303030;color:var(--disteven-accent)}
+#distevenMenu button:focus-visible{outline-offset:-2px}
+#distevenMenu button>svg,.disteven-category-bar>button>svg{
+ flex:0 0 14px;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;
+ stroke-linecap:round;stroke-linejoin:round;
+}
+.disteven-category-bar>button[aria-expanded=true]>svg{transform:rotate(180deg)}
+@media(min-width:701px){
+ #distevenMenu .disteven-menu-list{max-height:var(--disteven-menu-room);overflow:auto;overscroll-behavior:contain}
+ #distevenMenu .disteven-menu-details{position:absolute;top:0;left:calc(100% + 8px);width:100%}
+ #distevenMenu button>svg{transform:rotate(-90deg)}
+ #distevenMenu[data-flyout-side=left] .disteven-menu-details{left:auto;right:calc(100% + 8px)}
+ #distevenMenu[data-flyout-side=left] button>svg{transform:rotate(90deg)}
+}
+@media(max-width:700px){
+ body[data-disteven=true] #distevenMenu{
+  display:flex;flex-direction:column;inset-inline:16px;width:auto;
+  max-height:var(--disteven-menu-room);overflow:hidden;
+  background:#242424;border:1px solid #3b3b3b;border-radius:14px;
+ }
+ #distevenMenuGroups{min-height:0;overflow:auto;overscroll-behavior:contain}
+ #distevenMenu .disteven-menu-list{border:0}
+ #distevenMenu .disteven-menu-root>li>button{font-size:var(--disteven-type-body)}
+ #distevenMenu [data-disteven-menu-all]{color:var(--disteven-accent)}
+ #distevenMenu button>svg{transform:rotate(-90deg)}
+}
 
-/* Opening a category reveals its words immediately below the header. */
-body[data-disteven=true]:has(#distevenMenu:not([hidden])) .disteven-header{padding-bottom:8px}
 body[data-view=library][data-disteven-browse=category] .app-main main{padding-top:0}
 body[data-disteven-browse=category] :is(.disteven-scope,.disteven-collection-heading>.disteven-back){display:none!important}
 body[data-disteven-browse=category] .disteven-collection-heading{margin:0 0 4px;gap:0}
@@ -391,10 +418,6 @@ body[data-disteven=true] :is(button,a,input,select,textarea):focus-visible{outli
 /* A media well never supplies a light rim behind the actual reference. */
 body[data-disteven=true] :is(.frame-expand,.reference-panel,.guided-reference,.detail-image,.brief-style-image){background:#151515}
 
-#distevenMenu button>span{display:inline-block;max-width:100%;transform-origin:left center;transition:transform .16s ease}
-@media(hover:hover) and (pointer:fine){#distevenMenu button:hover>span{transform:scale(1.08)}}
-@media(prefers-reduced-motion:reduce){#distevenMenu button>span{transition:none}}
-
 /* One fixed navigation area. Reference pages and categories remain in flow. */
 body[data-disteven=true] .disteven-header{position:sticky;top:0;z-index:50;background:#101010}
 body[data-disteven=true] :is(#selectionTray,.mobile-app-nav,.disteven-to-top,#startGuided){display:none!important}
@@ -405,13 +428,10 @@ body[data-disteven=true] #distevenHeader [data-disteven-choice]{display:none!imp
 .disteven-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#161b0520;font-size:11px}
 body[data-disteven=true] .disteven-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5;font-size:14px;font-weight:400}
 body[data-disteven=true] .disteven-category-bar>button:is(:hover,:focus-visible){color:var(--disteven-accent)}
-.disteven-category-bar>button>span{display:inline-block;transform-origin:center;transition:transform .16s ease}
-@media(hover:hover) and (pointer:fine){.disteven-category-bar>button:hover>span{transform:scale(1.08)}}
 body[data-disteven=true] .app-main main,body[data-disteven=true] #distevenPanelHost,body[data-disteven=true] #briefDialog.brief-workspace{padding-bottom:48px}
 body[data-disteven=true] :is(#prepare,#copyPrompt,#guidedNext){display:none!important}
 html:has(body[data-disteven=true]){scroll-padding-top:calc(var(--disteven-header-height,140px) + 8px)}
 @media(max-width:700px){body[data-disteven=true] .disteven-header{flex-wrap:wrap;gap:8px 10px;padding-bottom:10px}.disteven-header-progress{order:3;flex:1 0 100%;justify-content:flex-end}.disteven-header-progress button{min-width:132px}.disteven-header>nav:not(.disteven-category-bar){margin-left:auto}.disteven-header .disteven-help{display:inline-flex}}
-@media(prefers-reduced-motion:reduce){.disteven-category-bar>button>span{transition:none}}
 
 body[data-disteven=true] .disteven-header{flex-wrap:wrap}
 
@@ -443,7 +463,6 @@ body[data-disteven=true] :is([data-frame],[data-board],[data-sequence-download],
 /* Mobile navigation stays compact without reducing touch targets. */
 body[data-disteven=true] :is(button,a,summary){-webkit-tap-highlight-color:transparent}
 body[data-disteven=true] :is(h1,h2,h3)[tabindex="-1"]:focus{outline:none}
-body[data-disteven=true] #distevenMenu button:focus-visible{outline:none;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
 body[data-disteven=true] :is(.primary,.outline,.button,.disteven-add,.disteven-panel-back){display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:15px;line-height:1.3;font-weight:600}
 body[data-disteven=true] #distevenPanelHost .disteven-panel-back{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05;font-size:15px;line-height:1.3;display:inline-flex;align-items:center;justify-content:center}
 body[data-disteven=true] #distevenPanelHost .disteven-page-panel>.disteven-panel-back{margin-bottom:12px}
@@ -454,10 +473,6 @@ body[data-disteven=true] .brief-steps button{display:flex;align-items:center;jus
  .disteven-header .disteven-wordmark{font-size:30px}
  body[data-disteven=true] .app-main main{padding-left:16px;padding-right:16px}
  body[data-disteven=true] #distevenPanelHost{padding:8px 16px 40px}
- body[data-disteven=true] #distevenMenu{width:calc(100% - 32px);margin-bottom:4px;padding-bottom:0;border:0}
- #distevenMenu .disteven-text-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
- #distevenMenu .disteven-text-links button{min-height:44px;padding:6px 0;font-size:14px;line-height:1.3;display:flex;align-items:center}
- body[data-disteven=true]:has(#distevenMenu:not([hidden])) .disteven-header{padding-bottom:4px}
  body[data-disteven=true] #distevenPanelHost .disteven-page-panel>.disteven-panel-back{margin-bottom:8px}
  body[data-disteven=true] .guided-progress{gap:4px;margin-bottom:12px}
  body[data-disteven=true] .guided-progress li{padding:6px 4px;font-size:12px;line-height:1.3;text-align:center;display:flex;align-items:center;justify-content:center;min-height:36px}
@@ -479,17 +494,12 @@ body[data-disteven=true] .font-card[aria-pressed=true] :is(.font-label,.font-bod
 
 @media(max-width:700px){
  .disteven-header .disteven-category-bar{flex-wrap:wrap;overflow:visible;gap:0 6px}
- .disteven-header .disteven-category-bar svg{display:none}
 }
 @media(prefers-reduced-motion:no-preference){
- body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back){transition:filter .16s ease,transform .16s ease}
- body[data-disteven=true] #distevenMenu .disteven-text-links{animation:disteven-enter .16s ease-out both}
  body[data-disteven=true] #distevenPanelHost .disteven-page-panel.is-current,body[data-disteven=true] #handoff:not([hidden]){animation:disteven-enter .18s ease-out both}
- body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back):active:not(:disabled){transform:translateY(1px)}
- @media(hover:hover) and (pointer:fine){body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back):hover:not(:disabled){filter:brightness(1.04);transform:translateY(-1px)}}
 }
 @keyframes disteven-enter{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back,.disteven-page-panel,.disteven-text-links,#handoff){animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back,.disteven-page-panel,#handoff){animation:none!important;transition:none!important}}
 
 /* Preserve the editing area when an on-screen keyboard covers the layout viewport. */
 @media(max-width:700px){
@@ -517,7 +527,7 @@ body[data-disteven=true]{--disteven-type-meta:12px;--disteven-type-compact:14px;
 body[data-disteven=true] :is(.disteven-goals button,.disteven-niche select,.disteven-search input,.primary,.outline,.button,.disteven-add){font-size:var(--disteven-type-body)}
 body[data-disteven=true] :is(.disteven-header-progress button,#sequencePrev,#sequenceNext){font-size:var(--disteven-type-body)}
 body[data-disteven=true] #distevenPanelHost .disteven-panel-back{font-size:var(--disteven-type-body)}
-body[data-disteven=true] :is(.disteven-category-bar>button,#distevenMenu button,.disteven-card h3,.disteven-scope .text-button,.disteven-shelf-tools>button,.disteven-story-link,.brief-steps button){font-size:var(--disteven-type-compact)}
+body[data-disteven=true] :is(.disteven-card h3,.disteven-scope .text-button,.disteven-shelf-tools>button,.disteven-story-link,.brief-steps button){font-size:var(--disteven-type-compact)}
 body[data-disteven=true] :is(.disteven-reference,.disteven-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--disteven-type-meta)}
 body[data-disteven=true] :is(.guided-dialog label,.guided-preferences>h3,.brief-editor form label){font-size:var(--disteven-type-compact)}
 body[data-disteven=true] :is(.guided-dialog section>h3,.film-heading>h3,#handoff h2){font-size:var(--disteven-type-section)}

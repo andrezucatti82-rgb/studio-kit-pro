@@ -51,7 +51,7 @@ body[data-disteven=true] .brief-icon{width:36px;height:36px;flex:0 0 36px}
 body[data-disteven=true] :is(.brief-icon,.disteven-icon-button,.disteven-search-clear,[data-picker-remove])>svg{display:block;width:18px;height:18px}
 body[data-disteven=true] :is(.tray-reference,.category-tile-image,.art-direction img){background:#151515}
 
-/* Dark glass is limited to navigation; the content underneath stays readable. */
+/* Opaque header and menu surfaces keep navigation distinct from the gallery. */
 body[data-disteven=true]{--disteven-page-gutter:max(40px,calc((100% - 1520px) / 2))}
 body[data-disteven=true] .disteven-header{
  max-width:none;
@@ -61,35 +61,14 @@ body[data-disteven=true] .disteven-header{
 @media(min-width:701px){
  body[data-disteven=true] .disteven-header{padding-inline:var(--disteven-page-gutter)}
 }
-@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
- body[data-disteven=true] .disteven-header{background:rgba(16,16,16,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
-}
 body[data-disteven=true] .disteven-goals{
  background:rgba(255,255,255,.045);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 3px 10px rgba(0,0,0,.12);
 }
 body[data-disteven=true] .disteven-header nav.disteven-category-bar{background:transparent;flex-wrap:wrap;overflow:visible}
 body[data-disteven=true] .disteven-header nav.disteven-category-bar>button{
- justify-content:center;gap:6px;padding:10px 14px;text-align:center;line-height:1.4;font-weight:500;
-}
-@media(hover:hover) and (pointer:fine){
- .disteven-category-bar>button:hover>span{transform:scale(1.04)}
+ justify-content:center;gap:8px;padding:10px 12px;text-align:center;font-size:var(--disteven-type-body);line-height:1.4;font-weight:500;
 }
 body[data-disteven=true] .disteven-goals button[aria-pressed=true]{box-shadow:var(--disteven-control-depth)}
-@media(min-width:1024px){
- html:has(body[data-disteven=true]){scroll-padding-top:calc(var(--disteven-navigation-height,var(--disteven-header-height,140px)) + 8px)}
- body[data-disteven=true] #distevenMenu{
-  position:sticky;top:var(--disteven-header-height,0px);z-index:49;
-  width:100%;max-width:none;padding-right:var(--disteven-page-gutter);
-  background:#101010;
- }
-}
-#distevenMenu button[aria-current=true]{color:var(--disteven-accent);font-weight:500}
-#distevenMenu .disteven-menu-refinements{margin-top:5px}
-#distevenMenu [data-disteven-topic][aria-expanded]::after{
- content:'';display:inline-block;flex:none;width:5px;height:5px;margin-inline-start:8px;
- border:solid currentColor;border-width:0 1px 1px 0;transform:translateY(-2px) rotate(45deg);
-}
-#distevenMenu [data-disteven-topic][aria-expanded=true]::after{transform:translateY(1px) rotate(225deg)}
 body[data-disteven=true] .disteven-goals button{padding:12px 18px;min-height:48px}
 body[data-disteven=true] #distevenNiche{padding:12px 38px 12px 20px;min-height:48px}
 
@@ -210,7 +189,6 @@ body[data-disteven=true] :is(.guided-materials label:has(input:checked),.guided-
 /* Image wells get only an outside shadow: no light border or changed crop. */
 body[data-disteven=true] .disteven-cover{box-shadow:0 6px 18px rgba(0,0,0,.2)}
 body[data-disteven=true] .disteven-card.is-selected .disteven-cover{box-shadow:0 0 0 2px var(--disteven-accent),0 8px 20px rgba(0,0,0,.24)}
-body[data-disteven=true] .disteven-cover-hint{padding:10px 14px;border-color:rgba(255,255,255,.12);background:rgba(28,28,28,.85);font-size:var(--disteven-type-meta);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 body[data-disteven=true] .search-suggestions{padding:6px;border:1px solid var(--disteven-edge);border-radius:24px;box-shadow:var(--disteven-depth)}
 body[data-disteven=true] .search-suggestions>button{padding:12px 16px;min-height:48px;border-radius:18px}
 body[data-disteven=true] .toast{padding:14px 20px;border:1px solid var(--disteven-edge);box-shadow:var(--disteven-depth)}
@@ -238,7 +216,7 @@ body[data-disteven=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44p
 @media(max-width:700px){
  body[data-disteven=true] .disteven-header{padding:8px 16px 6px;gap:4px 8px}
  body[data-disteven=true] .disteven-header nav.disteven-category-bar{gap:0 2px;padding:4px 6px}
- body[data-disteven=true] .disteven-header nav.disteven-category-bar>button{padding:10px 12px;font-size:var(--disteven-type-compact)}
+ body[data-disteven=true] .disteven-header nav.disteven-category-bar>button{padding:10px 12px}
  body[data-disteven=true] .disteven-header-progress #distevenContinue{padding:12px 16px}
  body[data-disteven=true] .disteven-header .disteven-help{width:48px;height:48px;padding:12px}
  body[data-disteven=true] :is(.brief-editor,.brief-preview,#guidedDialog>section){padding:18px 16px;border-radius:22px}
@@ -261,24 +239,26 @@ body[data-disteven=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44p
  body[data-disteven=true] .disteven-header-progress #distevenContinue{padding-inline:14px}
 }
 @media(min-width:701px){body[data-disteven=true] .disteven-header .disteven-help{font-size:var(--disteven-type-compact)}}
-/* At tablet widths, remove redundant cues before hiding a category word. */
+/* Compact but evenly spaced controls when the header wraps on tablets. */
 @media(min-width:701px) and (max-width:1199px){
  body[data-disteven=true] .disteven-header nav.disteven-category-bar{gap:2px}
- body[data-disteven=true] .disteven-header nav.disteven-category-bar>button{padding:10px 12px}
- body[data-disteven=true] .disteven-header nav.disteven-category-bar svg{display:none}
+ body[data-disteven=true] .disteven-header nav.disteven-category-bar>button{padding:10px}
  body[data-disteven=true] .disteven-header .disteven-desktop-nav[data-disteven-home]{display:none}
 }
-@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
- body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back,.disteven-add){transition:box-shadow .18s ease,filter .18s ease,transform .18s ease}
- body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back,.disteven-add):hover:not(:disabled){box-shadow:0 6px 16px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.4);transform:translateY(-1px)}
- body[data-disteven=true] :is(.font-card,.guided-materials label){transition:border-color .18s ease,box-shadow .18s ease}
+@media(hover:hover) and (pointer:fine){
+ body[data-disteven=true] :is(.primary,.outline,.button,.disteven-add,#distevenContinue):hover:not(:disabled):not([aria-disabled=true]){
+  background-color:#efff7a;border-color:#efff7a;color:#161b05;
+ }
+ body[data-disteven=true] .disteven-header .disteven-help:hover{color:var(--disteven-accent)}
+}
+body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back,.disteven-add,.font-card){
+ transition:background-color .16s ease,border-color .16s ease,color .16s ease;
 }
 @media(prefers-reduced-motion:reduce){
  body[data-disteven=true] :is(button,a,.font-card,.guided-materials label){transition:none!important;animation:none!important;transform:none!important}
 }
 @media(prefers-reduced-transparency:reduce){
  body[data-disteven=true] .disteven-header{background:#161616;-webkit-backdrop-filter:none;backdrop-filter:none}
- body[data-disteven=true] .disteven-cover-hint{background:#242424;-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 @media(forced-colors:active){
  body[data-disteven=true] :is(.primary,.outline,.button,.disteven-category-bar>button,.guided-materials label){border:1px solid ButtonText;box-shadow:none}
@@ -336,12 +316,7 @@ body[data-disteven=true] #distevenPanelHost .disteven-panel-back{background:var(
 body[data-disteven=true] #distevenPanelHost .disteven-panel-back:is(:hover,:focus-visible){color:var(--disteven-accent)}
 @media(max-width:700px){
  body[data-disteven=true] .disteven-header{padding-block:8px}
- body[data-disteven=true]:not([data-disteven-categories=true]) .disteven-header .disteven-category-bar,
- body[data-disteven=true][data-disteven-panel] .disteven-header .disteven-category-bar,
- body[data-disteven=true]:not([data-view=library]) .disteven-header .disteven-category-bar{display:none}
- body[data-disteven=true][data-disteven-categories=true] .disteven-header .disteven-category-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;padding:4px 0;margin:0;gap:0 8px}
- body[data-disteven=true] .disteven-header .disteven-category-bar>button{justify-content:flex-start;text-align:left;padding:8px}
- body[data-disteven=true] .disteven-header .disteven-category-bar svg{display:block}
+ body[data-disteven=true] .disteven-header nav.disteven-category-bar{display:none}
  body[data-disteven=true] .disteven-mobile-browse{display:flex;align-items:center;margin:0 0 8px}
  body[data-disteven=true] #distevenCategoryToggle{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:8px 14px;border:1px solid var(--disteven-edge);border-radius:999px;background:#202020;color:var(--ink);font:500 var(--disteven-type-compact)/1.4 'DiSteven UI',sans-serif}
  body[data-disteven=true] #distevenCategoryToggle:is([aria-expanded=true],.is-filtered){color:var(--disteven-accent)}
@@ -354,9 +329,16 @@ body[data-disteven=true] #distevenPanelHost .disteven-panel-back:is(:hover,:focu
 body[data-disteven=true] .disteven-menu-heading{display:none}
 body[data-disteven=true] .disteven-help-back{margin-bottom:14px;text-align:left}
 @media(max-width:700px){
- body[data-disteven=true] .disteven-menu-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:5px;border-bottom:1px solid var(--disteven-edge);font-size:var(--disteven-type-compact)}
- body[data-disteven=true] .disteven-menu-heading button{color:var(--disteven-accent);text-align:right}
+ body[data-disteven=true] .disteven-menu-heading{
+  display:flex;align-items:center;gap:8px;padding:5px 6px 5px 12px;
+  border-bottom:1px solid #3b3b3b;
+ }
+ #distevenMenu .disteven-menu-heading strong{flex:1;min-width:0;line-height:1.35;overflow-wrap:anywhere}
+ #distevenMenu .disteven-menu-heading button{width:auto;color:var(--disteven-accent);white-space:nowrap}
+ #distevenMenu .disteven-menu-heading button[hidden]{display:none}
+ #distevenMenu [data-disteven-close-categories]{min-width:44px;justify-content:center;font-size:24px;padding:4px}
 }
+
 body[data-disteven=true] .disteven-collection-heading .disteven-result-count{display:block}
 body[data-disteven=true] .disteven-results-title{min-width:0}
 body[data-disteven=true] .disteven-scope:not(:has(.text-button:not([hidden]))){display:none}

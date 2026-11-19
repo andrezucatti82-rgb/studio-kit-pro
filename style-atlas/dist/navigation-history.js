@@ -38,6 +38,7 @@
       'library', discovery.mode, discovery.goal, discovery.collection, discovery.similar,
       discovery.browseGroup, discovery.browseTopic, discovery.browseDetail, discovery.niche,
       library.family, library.familyGroup, library.presenterSector, Boolean(library.query.trim()),
+      discovery.mobileMenu ? [discovery.menuGroup, discovery.menuTopic] : null,
     ];
   }
 

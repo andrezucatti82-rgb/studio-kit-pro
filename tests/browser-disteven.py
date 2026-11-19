@@ -64,14 +64,15 @@ with sync_playwright() as p:
   before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')
   page.locator('#distevenHeader .disteven-brand').click()
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
-  if width<1024:page.locator('#distevenCategoryToggle').click()
-  tutorials=page.locator('[data-disteven-open-group="tutorials"]')
+  if width<=700:page.locator('#distevenCategoryToggle').click()
+  tutorials=page.locator('[data-disteven-mobile-group="tutorials"]' if width<=700 else '[data-disteven-open-group="tutorials"]')
   tutorials.click();expect(page.locator('#distevenMenu')).to_be_visible()
   page.locator('[data-disteven-topic="tela"]').click()
-  expect(page.locator('#distevenMenu')).to_be_visible(visible=width>=1024)
+  expect(page.locator('#distevenMenu')).to_be_hidden()
   assert page.evaluate('AtlasDiSteven.getState().browseTopic')=='tela'
   expect(page.locator('#distevenCollectionTitle')).to_be_focused()
-  if width<1024:page.locator('#distevenCategoryToggle').click();tutorials.click()
+  if width<=700:page.locator('#distevenCategoryToggle').click()
+  tutorials.click()
   page.keyboard.press('Escape');expect(tutorials).to_be_focused()
   page.locator('#search').fill('cachorro');assert page.evaluate('AtlasDiSteven.getState().browseGroup')==''
   assert page.locator('#grid .disteven-card').count()>0
