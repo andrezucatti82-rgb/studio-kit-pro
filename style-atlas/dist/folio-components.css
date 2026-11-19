@@ -167,7 +167,7 @@ body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),s
 body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),select,textarea){background:var(--surface-raised)}
 @supports (appearance:base-select) and selector(::picker(select)){
  html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size]){
-  appearance:base-select;align-items:center;gap:10px;
+  appearance:base-select;display:inline-flex;align-items:center;gap:10px;
  }
  html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size])::picker-icon{flex:none;margin-inline-start:auto;color:var(--ink)}
  html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size])::picker(select){
