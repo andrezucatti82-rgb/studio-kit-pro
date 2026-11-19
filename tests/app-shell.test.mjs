@@ -7,7 +7,7 @@ import {parseHTML} from 'linkedom';
 const root=new URL('../style-atlas/dist/',import.meta.url);
 const read=name=>readFile(new URL(name,root),'utf8');
 // DOM integration tests: no layout engine, playback, canvas export or browser QA implied.
-async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}={}){
+async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false,desktop=true}={}){
  const {document,window:dom}=parseHTML(await read('index.html'));
  // LinkeDOM has no layout; real visibility and responsive focus are covered by
  // browser-dark-ui.py. Supply only the connected-element API for DOM flows.
@@ -25,7 +25,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false}
  document.getElementById('briefForm').requestSubmit=function(){this.dispatchEvent(new dom.Event('submit',{bubbles:true,cancelable:true}))};
  const events=new dom.EventTarget();
  const ctx={document,Event:dom.Event,URL,URLSearchParams,Blob,console:{error:e=>errors.push(e)},setTimeout,clearTimeout,
-  location:{search:'',hash,href:'https://example.org/release/index.html'},matchMedia:()=>({matches:true,addEventListener(){}}),requestAnimationFrame:()=>0,cancelAnimationFrame(){},
+  location:{search:'',hash,href:'https://example.org/release/index.html'},matchMedia:query=>({matches:query==='(min-width: 1024px)'?desktop:true,addEventListener(){}}),requestAnimationFrame:()=>0,cancelAnimationFrame(){},
   getComputedStyle:()=>({paddingLeft:"0px"}),scrollTo(){},confirm:()=>true,FontFace:class{load(){return Promise.resolve(this)}},
   fetch:async name=>({ok:true,json:async()=>JSON.parse(await read(String(name)))}),
   navigator:{clipboard:{writeText:async text=>{ctx.copied=text}}},
@@ -416,15 +416,26 @@ test('Fólio goals and niche browsing preserve selections, contribution scopes a
  const after=ctx.AtlasCurrentChoice();assert.equal(JSON.stringify({styles:after.selectedStyles.map(s=>s.id),contributions:after.styleContributions,state:after.projectState}),before);
 });
 
-test('Fólio expands menu parents, dismisses a final category and searches beyond a niche',async()=>{
+test('Fólio keeps business topics in the desktop menu and searches the whole catalogue',async()=>{
  const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
  assert.equal(d.getElementById('folioOpenMenu'),null);
- click('[data-folio-open-group="technology"]');assert.equal(d.getElementById('folioMenu').hidden,false);
- click('[data-folio-family="software"]');assert.equal(d.getElementById('folioMenu').hidden,true);assert.equal(ctx.AtlasApp.categorySelection().family,'software');
+ click('[data-folio-open-group="business"]');assert.equal(d.getElementById('folioMenu').hidden,false);
+ click('[data-folio-topic="casa"]');assert.equal(d.getElementById('folioMenu').hidden,false);assert.equal(ctx.AtlasFolio.getState().browseTopic,'casa');
+ assert.equal(d.querySelector('[data-folio-topic="casa"]').getAttribute('aria-current'),'true');
+ const cards=[...d.querySelectorAll('#grid [data-style-id]')];
+ assert.ok(cards.length&&cards.every(el=>ctx.FolioCollections.matchesBrowse(ctx.AtlasApp.getStyle(el.dataset.styleId),'business','casa')));
+ const mat=ctx.AtlasApp.getStyle('natural-capachos-a-casa-comeca-antes-da-porta');
+ assert.ok(ctx.FolioCollections.matchesBrowse(mat,'business','casa'));
+ assert.ok(ctx.FolioCollections.matchesBrowse(mat,'ads','servicos'));
  click('[data-folio-home]');change('folioNiche','dentistas');
  d.getElementById('search').value='cachorro';d.getElementById('search').dispatchEvent(new ctx.Event('input',{bubbles:true}));
  assert.equal(ctx.AtlasFolio.getState().mode,'catalogue');assert.equal(ctx.AtlasFolio.getState().niche,'');assert.equal(ctx.AtlasApp.categorySelection().family,'');
+ assert.equal(ctx.AtlasFolio.getState().browseGroup,'');
  assert.ok(d.querySelectorAll('#grid [data-style-id]').length>0);
+ const mobile=await boot({folio:true,desktop:false});
+ mobile.click('[data-folio-open-group="tutorials"]');mobile.click('[data-folio-topic="tela"]');
+ assert.equal(mobile.document.getElementById('folioMenu').hidden,true);
+ assert.equal(mobile.ctx.AtlasFolio.getState().browseTopic,'tela');
 });
 
 test('Fólio collection additions are the real persisted choices carried into the existing brief',async()=>{

@@ -1088,19 +1088,19 @@
       "source": "assets/style-sequences/risografia-02.webp",
       "sourceSha256": "77a76b603afb80695abd490e28b0a10a86653c0f429b1a57c142a4b68df078f7",
       "crop": [
+        0.005859375,
         0.00390625,
-        0.002604167,
-        0.9921875,
-        0.994791667
+        0.98828125,
+        0.993489583
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.4752
+          "share": 0.4756
         },
         {
           "tag": "laranja",
-          "share": 0.2501
+          "share": 0.2485
         }
       ]
     },
@@ -17465,23 +17465,23 @@
       "source": "assets/natural-ads-60/natural-joias-do-gesto-a-assinatura-02.webp",
       "sourceSha256": "5202596c8fff9ccfda0dea2e6041f54d362986389763eccf3fb9409d10ad5c02",
       "crop": [
-        0.016746411,
+        0.019138756,
         0.008501594,
-        0.971291866,
-        0.981934113
+        0.966507177,
+        0.980871413
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3553
+          "share": 0.356
         },
         {
           "tag": "preto",
-          "share": 0.2306
+          "share": 0.2333
         },
         {
           "tag": "laranja",
-          "share": 0.2108
+          "share": 0.2095
         }
       ]
     },
@@ -17607,23 +17607,23 @@
       "source": "assets/natural-ads-60/natural-capachos-a-casa-comeca-antes-da-porta-02.webp",
       "sourceSha256": "014cb91add8f812242565b506b6959529a21f4ec689f213bc84fb2949c8f7ff8",
       "crop": [
-        0.019138756,
-        0.011689692,
-        0.971291866,
-        0.976620616
+        0.0215311,
+        0.012752391,
+        0.966507177,
+        0.974495218
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3961
+          "share": 0.3916
         },
         {
           "tag": "laranja",
-          "share": 0.3525
+          "share": 0.3563
         },
         {
           "tag": "vinho",
-          "share": 0.2038
+          "share": 0.2059
         }
       ]
     },
@@ -17757,19 +17757,19 @@
       "source": "assets/natural-ads-60/natural-advocacia-antes-da-assinatura-uma-conversa-02.webp",
       "sourceSha256": "70f655ad258aa7c7e392e7ab55b5d2fc325771d741084e8ed2cff393337f944e",
       "crop": [
-        0.011961722,
-        0.006376196,
-        0.9784689,
-        0.98618491
+        0.014354067,
+        0.007438895,
+        0.976076555,
+        0.984059511
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4374
+          "share": 0.4368
         },
         {
           "tag": "cinza",
-          "share": 0.3079
+          "share": 0.3076
         }
       ]
     },
@@ -18065,27 +18065,27 @@
       "source": "assets/natural-ads-60/natural-moda-feminina-uma-peca-o-seu-dia-02.webp",
       "sourceSha256": "ddfe612ea2c2906a8fdd03dacc25141cc1c9b7d7eddc96cac18a49e8a9a7dd1a",
       "crop": [
-        0.011961722,
-        0.005313496,
-        0.9784689,
-        0.988310308
+        0.014354067,
+        0.006376196,
+        0.973684211,
+        0.98618491
       ],
       "colors": [
         {
           "tag": "vinho",
-          "share": 0.1904
+          "share": 0.1941
         },
         {
           "tag": "marrom",
-          "share": 0.185
+          "share": 0.1853
         },
         {
           "tag": "vermelho",
-          "share": 0.1639
+          "share": 0.1621
         },
         {
           "tag": "laranja",
-          "share": 0.1423
+          "share": 0.1409
         }
       ]
     },
@@ -18831,23 +18831,23 @@
       "source": "assets/natural-ads-60/natural-cereal-o-som-que-muda-a-manha-02.webp",
       "sourceSha256": "21c280fb4a2773250e8a56c311a6086320e2bf6a386dfc3d65c0d13b6845613b",
       "crop": [
-        0.014354067,
-        0.007438895,
-        0.980861244,
-        0.98512221
+        0.016746411,
+        0.008501594,
+        0.976076555,
+        0.982996812
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3616
+          "share": 0.3617
         },
         {
           "tag": "marrom",
-          "share": 0.2307
+          "share": 0.2341
         },
         {
           "tag": "cinza",
-          "share": 0.2023
+          "share": 0.1994
         }
       ]
     },
@@ -28681,27 +28681,27 @@
       "source": "assets/presenter-realistic/explicador-diagrama-ao-lado.png",
       "sourceSha256": "2112138473aaf903671ee65362a7f822e40c7e56ccb5acbd2b69d56b8ffc7123",
       "crop": [
-        0.501841621,
+        0.502762431,
         0.002071823,
-        0.496316759,
-        0.496546961
+        0.494475138,
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3983
+          "share": 0.3891
         },
         {
           "tag": "marrom",
-          "share": 0.1902
+          "share": 0.1946
         },
         {
           "tag": "laranja",
-          "share": 0.15
+          "share": 0.1488
         },
         {
           "tag": "azul",
-          "share": 0.1416
+          "share": 0.1458
         }
       ]
     },
@@ -28710,27 +28710,27 @@
       "source": "assets/presenter-realistic/explicador-texto-atras.png",
       "sourceSha256": "f7c860b8613b1315aef5aae72f8732e0b8e4d40002b09fa2fe8b49e1b655b154",
       "crop": [
-        0.503753128,
+        0.504587156,
         0.004573171,
-        0.491242702,
-        0.493140244
+        0.489574646,
+        0.492378049
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3408
+          "share": 0.3352
         },
         {
           "tag": "preto",
-          "share": 0.2367
+          "share": 0.2383
         },
         {
           "tag": "marrom",
-          "share": 0.1503
+          "share": 0.1519
         },
         {
           "tag": "amarelo",
-          "share": 0.1392
+          "share": 0.1401
         }
       ]
     },
@@ -28739,23 +28739,23 @@
       "source": "assets/presenter-realistic/explicador-objeto-na-mao.png",
       "sourceSha256": "77d9994fcbf685dd7a11ebcd3b6a2f9e57a4d283e14515045707478f36f0d428",
       "crop": [
-        0.503683241,
-        0.002071823,
-        0.492633517,
-        0.49378453
+        0.504604052,
+        0.002762431,
+        0.490791897,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4758
+          "share": 0.4727
         },
         {
           "tag": "marrom",
-          "share": 0.225
+          "share": 0.2259
         },
         {
           "tag": "laranja",
-          "share": 0.1761
+          "share": 0.1785
         }
       ]
     },
@@ -28766,21 +28766,21 @@
       "crop": [
         0.504604052,
         0.003453039,
-        0.490791897,
+        0.489871087,
         0.49378453
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5307
+          "share": 0.5305
         },
         {
           "tag": "marrom",
-          "share": 0.1661
+          "share": 0.1658
         },
         {
           "tag": "laranja",
-          "share": 0.1551
+          "share": 0.1547
         }
       ]
     },
@@ -28806,19 +28806,19 @@
       "source": "assets/presenter-realistic/explicador-produto-em-camadas.png",
       "sourceSha256": "f2f2817dc8bb025aa93b8c7728d9451a4acdd9e07138e4b23f80c79fea81dd44",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.495395948,
-        0.495165746
+        0.502762431,
+        0.002762431,
+        0.494475138,
+        0.494475138
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6417
+          "share": 0.6386
         },
         {
           "tag": "marrom",
-          "share": 0.1562
+          "share": 0.1577
         }
       ]
     },
@@ -28827,31 +28827,31 @@
       "source": "assets/presenter-realistic/explicador-corte-tecnico.png",
       "sourceSha256": "989411abc1c321dc77ba854c4cf789baaac39e28da6ee76182b4ef9966ed6ced",
       "crop": [
-        0.501841621,
-        0.003453039,
-        0.493554328,
-        0.494475138
+        0.502762431,
+        0.004143646,
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.2515
+          "share": 0.2503
         },
         {
           "tag": "marrom",
-          "share": 0.234
+          "share": 0.2401
         },
         {
           "tag": "laranja",
-          "share": 0.2289
-        },
-        {
-          "tag": "cinza",
-          "share": 0.1397
+          "share": 0.2307
         },
         {
           "tag": "vinho",
-          "share": 0.1361
+          "share": 0.1378
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1316
         }
       ]
     },
@@ -28877,15 +28877,15 @@
       "source": "assets/presenter-realistic/explicador-fluxograma-vivo.png",
       "sourceSha256": "f771fa26486c28996f94ffb85b21f60b5ea3f366abe01ed0793013152fdcf129",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.002071823,
-        0.494475138,
+        0.492633517,
         0.495165746
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7825
+          "share": 0.7818
         }
       ]
     },
@@ -28894,23 +28894,23 @@
       "source": "assets/presenter-realistic/explicador-dados-no-gesto.png",
       "sourceSha256": "3031c40428ae347ce8a4035589bfe5179d46bd26aa35a09b12132c27c3339336",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.003453039,
-        0.492633517,
+        0.490791897,
         0.494475138
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3618
+          "share": 0.3647
         },
         {
           "tag": "marrom",
-          "share": 0.2646
+          "share": 0.2655
         },
         {
           "tag": "laranja",
-          "share": 0.1986
+          "share": 0.1977
         }
       ]
     },
@@ -28921,21 +28921,21 @@
       "crop": [
         0.501841621,
         0.002071823,
-        0.496316759,
-        0.497237569
+        0.495395948,
+        0.496546961
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.4082
+          "share": 0.4109
         },
         {
           "tag": "cinza",
-          "share": 0.321
+          "share": 0.3213
         },
         {
           "tag": "laranja",
-          "share": 0.1999
+          "share": 0.1985
         }
       ]
     },
@@ -28944,23 +28944,23 @@
       "source": "assets/presenter-realistic/explicador-mitos-e-fatos.png",
       "sourceSha256": "3ac2310ee170ca2ebf7c389760d9514a4b6da7411f180df3e95d46b6be0dc869",
       "crop": [
-        0.502919099,
-        0.006097561,
-        0.490408674,
-        0.490853659
+        0.503753128,
+        0.006859756,
+        0.488740617,
+        0.489329268
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5357
+          "share": 0.5327
         },
         {
           "tag": "marrom",
-          "share": 0.1622
+          "share": 0.1603
         },
         {
           "tag": "laranja",
-          "share": 0.1532
+          "share": 0.1526
         }
       ]
     },
@@ -28970,22 +28970,22 @@
       "sourceSha256": "12940cb559869433d41726f517121ed171f1da95653ea7800947d7db8839b105",
       "crop": [
         0.502762431,
-        0.001381215,
+        0.002071823,
         0.495395948,
-        0.497237569
+        0.495856354
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3133
+          "share": 0.3142
         },
         {
           "tag": "marrom",
-          "share": 0.3035
+          "share": 0.306
         },
         {
           "tag": "cinza",
-          "share": 0.2305
+          "share": 0.2301
         }
       ]
     },
@@ -29015,19 +29015,19 @@
       "source": "assets/presenter-realistic/explicador-zoom-para-interface.png",
       "sourceSha256": "635584a0aaa1f396294ccb0951857e65e642311c21b9e90b64d9406fd4c7de6d",
       "crop": [
-        0.503683241,
-        0.003453039,
-        0.491712707,
-        0.49378453
+        0.504604052,
+        0.004143646,
+        0.490791897,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.5554
+          "share": 0.5573
         },
         {
           "tag": "laranja",
-          "share": 0.176
+          "share": 0.1759
         }
       ]
     },
@@ -29036,23 +29036,23 @@
       "source": "assets/presenter-realistic/explicador-linha-do-tempo.png",
       "sourceSha256": "fc069a0690f56791406446b9694107e06fe41084ee9d08bbbfdadd3a6b5b7d8f",
       "crop": [
-        0.504132231,
-        0.002770083,
-        0.4912764,
-        0.495844875
+        0.505050505,
+        0.003462604,
+        0.490358127,
+        0.495152355
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5343
+          "share": 0.5358
         },
         {
           "tag": "laranja",
-          "share": 0.153
+          "share": 0.1535
         },
         {
           "tag": "cinza",
-          "share": 0.1401
+          "share": 0.1356
         }
       ]
     },
@@ -29061,23 +29061,23 @@
       "source": "assets/presenter-realistic/explicador-clones-dialogando.png",
       "sourceSha256": "1aaf4712147884a785e512de1a824f5e53a5e37c608b6fa458d78bfd61a9bba6",
       "crop": [
-        0.502762431,
-        0.002762431,
-        0.492633517,
-        0.494475138
+        0.503683241,
+        0.003453039,
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3201
+          "share": 0.3164
         },
         {
           "tag": "preto",
-          "share": 0.3031
+          "share": 0.3067
         },
         {
           "tag": "cinza",
-          "share": 0.1986
+          "share": 0.1981
         }
       ]
     },
@@ -29086,15 +29086,15 @@
       "source": "assets/presenter-realistic/explicador-mapa-e-rota.png",
       "sourceSha256": "7403d98d181a4e8c536d80a8bf95db2b663b2f529276c7798c0ecd3a78f1020d",
       "crop": [
-        0.501841621,
+        0.502762431,
         0.002762431,
-        0.495395948,
+        0.493554328,
         0.497237569
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.8494
+          "share": 0.848
         }
       ]
     },
@@ -29103,15 +29103,15 @@
       "source": "assets/presenter-realistic/explicador-metafora-visual.png",
       "sourceSha256": "cb1dd8257ded5a08e8a129831f44dd11581ebd3d7a49a9469037ebbe629b88ed",
       "crop": [
-        0.503683241,
+        0.504604052,
         0.004143646,
-        0.491712707,
+        0.489871087,
         0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6972
+          "share": 0.6979
         }
       ]
     },
@@ -29121,22 +29121,22 @@
       "sourceSha256": "58acf8d5ae2e74080349abbf11f4909f0248c7b2c93526be3b77bda5c61c353c",
       "crop": [
         0.502762431,
-        0.003453039,
-        0.493554328,
-        0.494475138
+        0.004143646,
+        0.492633517,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4658
+          "share": 0.4654
         },
         {
           "tag": "marrom",
-          "share": 0.2337
+          "share": 0.2311
         },
         {
           "tag": "preto",
-          "share": 0.1242
+          "share": 0.1272
         }
       ]
     },
@@ -29166,23 +29166,23 @@
       "source": "assets/presenter-realistic/explicador-estetica-textura.png",
       "sourceSha256": "1bcfaaf7b543dddc4ca859fd2259ad77206314486102014ebbbf0ff0d5b46a8b",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.003453039,
-        0.492633517,
-        0.494475138
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.409
+          "share": 0.4058
         },
         {
           "tag": "marrom",
-          "share": 0.2762
+          "share": 0.2785
         },
         {
           "tag": "vermelho",
-          "share": 0.1341
+          "share": 0.1346
         }
       ]
     },
@@ -29191,27 +29191,27 @@
       "source": "assets/presenter-realistic/explicador-estetica-atendimento.png",
       "sourceSha256": "5250a56c6959f8568693ddb95ef6b3e110460eaad1be7d3fde5cce471dbe5493",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.003453039,
-        0.492633517,
+        0.490791897,
         0.493093923
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.2851
+          "share": 0.2825
         },
         {
           "tag": "cinza",
-          "share": 0.2418
+          "share": 0.2434
         },
         {
           "tag": "marrom",
-          "share": 0.2051
+          "share": 0.2046
         },
         {
           "tag": "off-white",
-          "share": 0.1372
+          "share": 0.1381
         }
       ]
     },
@@ -29221,22 +29221,22 @@
       "sourceSha256": "fc6874348de6b2f28f38e8b2b1deaa30dfd658f20b00a12fd21f12e89ea26dcd",
       "crop": [
         0.501841621,
-        0.001381215,
-        0.495395948,
-        0.496546961
+        0.002071823,
+        0.494475138,
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3548
+          "share": 0.3541
         },
         {
           "tag": "marrom",
-          "share": 0.2317
+          "share": 0.2318
         },
         {
           "tag": "laranja",
-          "share": 0.1625
+          "share": 0.162
         }
       ]
     },
@@ -29245,15 +29245,15 @@
       "source": "assets/presenter-realistic/explicador-fitness-alinhamento.png",
       "sourceSha256": "80e5ba43e16898965a573133175b529f60f3ef85943eae6fd144a08e703f16c3",
       "crop": [
-        0.501841621,
+        0.502762431,
         0.002071823,
-        0.494475138,
-        0.495856354
+        0.492633517,
+        0.495165746
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.7201
+          "share": 0.7191
         }
       ]
     },
@@ -29262,15 +29262,15 @@
       "source": "assets/presenter-realistic/explicador-fitness-progressao.png",
       "sourceSha256": "5bed2024803f198cf9f5c154d4fa04403c0c5fbabf7047a810812e25b5ea44a4",
       "crop": [
-        0.502762431,
-        0.004143646,
-        0.492633517,
-        0.493093923
+        0.503683241,
+        0.004834254,
+        0.490791897,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.8009
+          "share": 0.7966
         }
       ]
     },
@@ -29342,27 +29342,27 @@
       "source": "assets/presenter-realistic/explicador-procedimento-camadas.png",
       "sourceSha256": "c44893b3a3021f66b4187ba1bd80d410917f98000a0a385f500923957f2f83db",
       "crop": [
-        0.503683241,
+        0.504604052,
         0.002762431,
-        0.492633517,
-        0.494475138
+        0.490791897,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.2595
+          "share": 0.2605
         },
         {
           "tag": "vermelho",
-          "share": 0.2595
+          "share": 0.26
         },
         {
           "tag": "cinza",
-          "share": 0.2515
+          "share": 0.2456
         },
         {
           "tag": "laranja",
-          "share": 0.1242
+          "share": 0.1271
         }
       ]
     },
@@ -29372,14 +29372,14 @@
       "sourceSha256": "3c4c06f91a3a2810f9bdb2b9277ee923b04e6b69ff6e727e5074fbd52b1f4a19",
       "crop": [
         0.501841621,
-        0.003453039,
-        0.493554328,
-        0.49378453
+        0.004143646,
+        0.492633517,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6207
+          "share": 0.6257
         }
       ]
     },
@@ -29389,14 +29389,14 @@
       "sourceSha256": "fafd8514e1cb3d6dca433fcc62c6bc578871652bf87aa61d19599503903912e3",
       "crop": [
         0.5,
-        0.004143646,
-        0.495395948,
-        0.493093923
+        0.004834254,
+        0.494475138,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5201
+          "share": 0.5192
         }
       ]
     },
@@ -29405,23 +29405,23 @@
       "source": "assets/presenter-realistic/explicador-gastro-transformacao.png",
       "sourceSha256": "0a565e83534d130761fcc5c6d8345729624dc03ebce178346a5f0ca1e472675e",
       "crop": [
-        0.503683241,
-        0.006906077,
-        0.487108656,
-        0.490331492
+        0.504604052,
+        0.007596685,
+        0.485267035,
+        0.488950276
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3623
+          "share": 0.363
         },
         {
           "tag": "cinza",
-          "share": 0.3224
+          "share": 0.3207
         },
         {
           "tag": "laranja",
-          "share": 0.2215
+          "share": 0.2212
         }
       ]
     },
@@ -29431,14 +29431,14 @@
       "sourceSha256": "d3305de53e224cbbe8c392d87bcf4865946ef69a21bcdeb192aaf83c2f75654c",
       "crop": [
         0.502762431,
-        0.001381215,
+        0.002071823,
         0.495395948,
-        0.496546961
+        0.495165746
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3271
+          "share": 0.328
         },
         {
           "tag": "laranja",
@@ -29446,7 +29446,7 @@
         },
         {
           "tag": "cinza",
-          "share": 0.179
+          "share": 0.1776
         }
       ]
     },
@@ -29455,23 +29455,23 @@
       "source": "assets/presenter-realistic/explicador-pet-rotina.png",
       "sourceSha256": "16f5ea037f2992178fa30ee521e797944764a2a51440e8b5863e92fb6896230d",
       "crop": [
-        0.501841621,
+        0.502762431,
         0.003453039,
-        0.493554328,
-        0.495165746
+        0.491712707,
+        0.494475138
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3599
+          "share": 0.3589
         },
         {
           "tag": "marrom",
-          "share": 0.3001
+          "share": 0.3009
         },
         {
           "tag": "preto",
-          "share": 0.151
+          "share": 0.1553
         }
       ]
     },
@@ -29480,27 +29480,27 @@
       "source": "assets/presenter-realistic/explicador-pet-detalhe.png",
       "sourceSha256": "297a907f539f8f1cf486569496b7508cf6bb100bd46af59770292cd45d3afdd2",
       "crop": [
-        0.503683241,
-        0.004143646,
-        0.489871087,
-        0.493093923
+        0.504604052,
+        0.004834254,
+        0.488029466,
+        0.491712707
       ],
       "colors": [
         {
-          "tag": "marrom",
-          "share": 0.267
+          "tag": "preto",
+          "share": 0.2691
         },
         {
-          "tag": "preto",
-          "share": 0.2609
+          "tag": "marrom",
+          "share": 0.2678
         },
         {
           "tag": "cinza",
-          "share": 0.1729
+          "share": 0.1655
         },
         {
           "tag": "laranja",
-          "share": 0.165
+          "share": 0.1631
         }
       ]
     },
@@ -29509,15 +29509,15 @@
       "source": "assets/presenter-realistic/explicador-pet-servico.png",
       "sourceSha256": "0b82714806461db8cc59797d55346ab1b705893f318d5bce96c060955b415938",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.004834254,
-        0.490791897,
-        0.493093923
+        0.489871087,
+        0.492403315
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4901
+          "share": 0.4906
         }
       ]
     },
@@ -29526,15 +29526,15 @@
       "source": "assets/presenter-realistic/explicador-moda-caimento.png",
       "sourceSha256": "aee3e768f203c384e2f6cc2c058512bd732888e40cccd523dd00f23813988c4b",
       "crop": [
-        0.505524862,
-        0.003453039,
-        0.489871087,
-        0.492403315
+        0.506445672,
+        0.004143646,
+        0.488029466,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.6563
+          "share": 0.6604
         }
       ]
     },
@@ -29543,19 +29543,19 @@
       "source": "assets/presenter-realistic/explicador-moda-atelier.png",
       "sourceSha256": "3c2b50716d9f6772238ea32c5c63eca2885bdff3899a00a89ae4416e22bd201a",
       "crop": [
-        0.503683241,
+        0.504604052,
         0.004143646,
-        0.493554328,
-        0.494475138
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "vermelho",
-          "share": 0.5373
+          "share": 0.5369
         },
         {
           "tag": "vinho",
-          "share": 0.2097
+          "share": 0.212
         }
       ]
     },
@@ -29564,19 +29564,19 @@
       "source": "assets/presenter-realistic/explicador-moda-composicao.png",
       "sourceSha256": "8aad7811833bcf722b4ac4322580e31d2184cab307e7062ac54b336bafd90938",
       "crop": [
-        0.502762431,
-        0.004834254,
-        0.490791897,
-        0.491712707
+        0.503683241,
+        0.005524862,
+        0.488950276,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.484
+          "share": 0.4925
         },
         {
           "tag": "laranja",
-          "share": 0.3843
+          "share": 0.3789
         }
       ]
     },
@@ -29585,23 +29585,23 @@
       "source": "assets/presenter-realistic/explicador-engenharia-exterior.png",
       "sourceSha256": "88577c9b8724eef8d4e661d13326f8bf487cfb30435616bb190256a69cb4182e",
       "crop": [
-        0.501841621,
+        0.502762431,
         0.002762431,
-        0.494475138,
-        0.495856354
+        0.492633517,
+        0.495165746
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.27
+          "share": 0.2708
         },
         {
           "tag": "cinza",
-          "share": 0.2537
+          "share": 0.2476
         },
         {
           "tag": "marrom",
-          "share": 0.2003
+          "share": 0.2013
         }
       ]
     },
@@ -29610,15 +29610,15 @@
       "source": "assets/presenter-realistic/explicador-engenharia-etapas.png",
       "sourceSha256": "be00e7e3d5b30f16e82aee6a583df3283cbc6016d436ca4b009e280147a6aa85",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.004143646,
-        0.491712707,
-        0.49378453
+        0.489871087,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6477
+          "share": 0.6471
         }
       ]
     },
@@ -29627,19 +29627,19 @@
       "source": "assets/presenter-realistic/explicador-engenharia-mecanismo.png",
       "sourceSha256": "f7dc50b173c3bc4051b94363ccf6fcacc5031bf4d00ce7f7d9092d2901b528a6",
       "crop": [
-        0.503683241,
+        0.504604052,
         0.005524862,
-        0.488950276,
-        0.491712707
+        0.487108656,
+        0.491022099
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6405
+          "share": 0.6368
         },
         {
           "tag": "marrom",
-          "share": 0.1379
+          "share": 0.1384
         }
       ]
     },
@@ -29651,12 +29651,12 @@
         0.501841621,
         0.002071823,
         0.495395948,
-        0.496546961
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6376
+          "share": 0.6374
         }
       ]
     },
@@ -29665,23 +29665,23 @@
       "source": "assets/presenter-realistic/explicador-interiores-circulacao.png",
       "sourceSha256": "1a39dc3db704d6436c0732ba961f1002f81ab50681dceaeafe7fc9b1c8e1a82f",
       "crop": [
-        0.502762431,
-        0.004143646,
-        0.491712707,
-        0.49378453
+        0.503683241,
+        0.004834254,
+        0.489871087,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3919
+          "share": 0.3949
         },
         {
           "tag": "cinza",
-          "share": 0.2704
+          "share": 0.2655
         },
         {
           "tag": "laranja",
-          "share": 0.2059
+          "share": 0.2072
         }
       ]
     },
@@ -29690,23 +29690,23 @@
       "source": "assets/presenter-realistic/explicador-interiores-luz.png",
       "sourceSha256": "8db04136f08ad3ca2868c5de74b252d723635ddcbe2fcb8774b1a726302d3039",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.002762431,
-        0.493554328,
+        0.491712707,
         0.494475138
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.6512
+          "share": 0.6535
         },
         {
           "tag": "laranja",
-          "share": 0.162
+          "share": 0.1591
         },
         {
           "tag": "preto",
-          "share": 0.1322
+          "share": 0.1327
         }
       ]
     },
@@ -29715,19 +29715,19 @@
       "source": "assets/presenter-realistic/explicador-interiores-materiais.png",
       "sourceSha256": "b0b728566c3cd1c247927af73180ad657e5551308c9b185b75f49c304b4894c3",
       "crop": [
-        0.501841621,
-        0.003453039,
-        0.493554328,
-        0.495165746
+        0.502762431,
+        0.004143646,
+        0.492633517,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5439
+          "share": 0.5454
         },
         {
           "tag": "laranja",
-          "share": 0.3626
+          "share": 0.3615
         }
       ]
     },
@@ -29736,23 +29736,23 @@
       "source": "assets/presenter-realistic/explicador-evento-palco.png",
       "sourceSha256": "bb37f19c49e406ab65d08eb73b6f75aadb3a4c1894c8eb431f67164848c73437",
       "crop": [
-        0.503683241,
-        0.001381215,
-        0.493554328,
-        0.494475138
+        0.504604052,
+        0.002071823,
+        0.492633517,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4678
+          "share": 0.4583
         },
         {
           "tag": "azul",
-          "share": 0.214
+          "share": 0.2161
         },
         {
           "tag": "preto",
-          "share": 0.1682
+          "share": 0.1736
         }
       ]
     },
@@ -29763,17 +29763,17 @@
       "crop": [
         0.501841621,
         0.002071823,
-        0.495395948,
-        0.495856354
+        0.494475138,
+        0.495165746
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4403
+          "share": 0.4399
         },
         {
           "tag": "roxo",
-          "share": 0.1277
+          "share": 0.1274
         }
       ]
     },
@@ -29782,23 +29782,23 @@
       "source": "assets/presenter-realistic/explicador-evento-percurso.png",
       "sourceSha256": "2f577c65e874bae6e2eb035062baea5de8824fdf711dad44e4ec930ff6c4eba3",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.004834254,
-        0.490791897,
-        0.492403315
+        0.488950276,
+        0.491712707
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3406
+          "share": 0.3432
         },
         {
           "tag": "cinza",
-          "share": 0.2507
+          "share": 0.2482
         },
         {
           "tag": "laranja",
-          "share": 0.1252
+          "share": 0.124
         }
       ]
     },
@@ -29807,19 +29807,19 @@
       "source": "assets/presenter-realistic/explicador-evento-luz.png",
       "sourceSha256": "55a0438d1c55d2b5ea528bd9917741e610fdcebc186b646361d801772a97c4a0",
       "crop": [
-        0.501841621,
-        0.002071823,
-        0.495395948,
-        0.496546961
+        0.502762431,
+        0.002762431,
+        0.493554328,
+        0.495165746
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.4029
+          "share": 0.4041
         },
         {
           "tag": "preto",
-          "share": 0.2607
+          "share": 0.2633
         }
       ]
     },
@@ -29828,19 +29828,19 @@
       "source": "assets/presenter-realistic/explicador-educacao-conceito.png",
       "sourceSha256": "6326e228f8b8528e0e0768ab93d27fe15f51a670674ab5a218104193cfc8bb64",
       "crop": [
-        0.501841621,
-        0.002762431,
-        0.495395948,
-        0.495856354
+        0.502762431,
+        0.003453039,
+        0.493554328,
+        0.494475138
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6619
+          "share": 0.6604
         },
         {
           "tag": "azul",
-          "share": 0.2008
+          "share": 0.2025
         }
       ]
     },
@@ -29850,18 +29850,18 @@
       "sourceSha256": "df3707ed7f401bbc6d44847bca448d1327a7306e0d8ddcf506b038cfba62c363",
       "crop": [
         0.505524862,
-        0.005521049,
+        0.00621118,
         0.486187845,
-        0.492063492
+        0.49068323
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4624
+          "share": 0.4619
         },
         {
           "tag": "laranja",
-          "share": 0.3169
+          "share": 0.3136
         }
       ]
     },
@@ -29871,18 +29871,18 @@
       "sourceSha256": "4657c3e9bbb8cf9a4a94f6e3d9c47378aded816d843517c4a1664dfff0c3560e",
       "crop": [
         0.503683241,
-        0.003453039,
-        0.492633517,
-        0.49378453
+        0.004143646,
+        0.491712707,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4327
+          "share": 0.4347
         },
         {
           "tag": "marrom",
-          "share": 0.3314
+          "share": 0.3327
         }
       ]
     },
@@ -29891,19 +29891,19 @@
       "source": "assets/presenter-realistic/explicador-agro-ciclo.png",
       "sourceSha256": "1c97a2551f8202434894a26e3a09c7f45c96c77ca90fd9c9eeaeb0950dbe9174",
       "crop": [
-        0.501841621,
-        0.002762431,
-        0.491712707,
-        0.494475138
+        0.502762431,
+        0.003453039,
+        0.490791897,
+        0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.5907
+          "share": 0.5932
         },
         {
           "tag": "verde",
-          "share": 0.1705
+          "share": 0.1688
         }
       ]
     },
@@ -29912,23 +29912,23 @@
       "source": "assets/presenter-realistic/explicador-agro-maquina.png",
       "sourceSha256": "8a813909acd8059bd290ad53077d436fc757f3229be5255b9d2de2c241a944a4",
       "crop": [
-        0.502762431,
-        0.002762431,
-        0.493554328,
-        0.495165746
+        0.503683241,
+        0.003453039,
+        0.491712707,
+        0.49378453
       ],
       "colors": [
         {
           "tag": "verde",
-          "share": 0.3709
+          "share": 0.3711
         },
         {
           "tag": "cinza",
-          "share": 0.1928
+          "share": 0.191
         },
         {
           "tag": "preto",
-          "share": 0.1366
+          "share": 0.1389
         }
       ]
     },
@@ -29937,23 +29937,23 @@
       "source": "assets/presenter-realistic/explicador-agro-territorio.png",
       "sourceSha256": "726952dad5f5145ad0cc505a2a349eb11a250b3b30106bc59a3d579e0982f6bc",
       "crop": [
-        0.502762431,
+        0.503683241,
         0.002071823,
-        0.494475138,
-        0.495856354
+        0.493554328,
+        0.495165746
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.2983
+          "share": 0.2978
         },
         {
           "tag": "verde",
-          "share": 0.2093
+          "share": 0.2086
         },
         {
           "tag": "preto",
-          "share": 0.1243
+          "share": 0.1252
         }
       ]
     },
@@ -29962,15 +29962,15 @@
       "source": "assets/presenter-realistic/explicador-turismo-percurso.png",
       "sourceSha256": "ebbc50da651558cf1f1a0578b7ea6fe06fd9a36dfed4963ed5ad291bc72d4e00",
       "crop": [
-        0.501841621,
-        0.002762431,
-        0.492633517,
-        0.497237569
+        0.502762431,
+        0.003453039,
+        0.491712707,
+        0.496546961
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.29
+          "share": 0.2877
         },
         {
           "tag": "laranja",
@@ -29978,11 +29978,11 @@
         },
         {
           "tag": "bege",
-          "share": 0.203
+          "share": 0.2036
         },
         {
           "tag": "amarelo",
-          "share": 0.1379
+          "share": 0.1375
         }
       ]
     },
@@ -29991,19 +29991,19 @@
       "source": "assets/presenter-realistic/explicador-turismo-hospedagem.png",
       "sourceSha256": "ea5db31eaffdb16d5aa0a39687ccf409763baf28e69db2c26c09f462cf4f569e",
       "crop": [
-        0.50092081,
+        0.501841621,
         0.002071823,
-        0.496316759,
-        0.496546961
+        0.495395948,
+        0.495856354
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.4032
+          "share": 0.403
         },
         {
           "tag": "marrom",
-          "share": 0.2472
+          "share": 0.2464
         }
       ]
     },
@@ -30015,16 +30015,20 @@
         0.501841621,
         0.002762431,
         0.494475138,
-        0.49378453
+        0.493093923
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3352
+          "share": 0.336
         },
         {
           "tag": "cinza",
-          "share": 0.1844
+          "share": 0.1829
+        },
+        {
+          "tag": "verde",
+          "share": 0.1223
         }
       ]
     },

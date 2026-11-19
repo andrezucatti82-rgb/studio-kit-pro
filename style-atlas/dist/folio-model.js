@@ -4,6 +4,47 @@
  const space=['imoveis','ads-casa','ads-turismo','ads-servicos'];
  const people=['explicadores','avatares','saude','software','tecnologia','infoprodutores','ads-juridico'];
  const visual=['cinema','grafico','ilustracao','materiais','motion','motion-campanha','apresentacoes','hibridos'];
+ const audience=(id,label,families,sectors=[])=>({id,label,families,sectors});
+ const browseGroups=[
+  {id:'social',label:'Redes sociais',topics:[
+   audience('reels','Reels e stories',['cinema','grafico','motion','ilustracao','materiais','hibridos','ads-moda','ads-alimentacao','ads-beleza','ads-pets','ads-joias','ads-infantil']),
+   audience('bastidores','Bastidores e rotina',['cinema','hibridos','ads-moda','ads-alimentacao','ads-joias','ads-servicos','ads-turismo']),
+   audience('dicas','Dicas rápidas',['explicadores','avatares','saude','infoprodutores','motion'])
+  ]},
+  {id:'ads',label:'Anúncios',topics:[
+   audience('produtos','Vender produtos',[...product,'ads-casa']),
+   audience('servicos','Divulgar serviços',[...space,'ads-juridico','saude','software','infoprodutores','explicadores']),
+   audience('promocoes','Promoções e lançamentos',['campanhas','motion-campanha','ecommerce','apresentacoes','grafico','tecnologia'])
+  ]},
+  {id:'presentations',label:'Apresentações',topics:[
+   audience('empresa','Apresentar a empresa',['apresentacoes','avatares','explicadores','grafico','saude','tecnologia','infoprodutores','ads-juridico']),
+   audience('portfolio','Mostrar produtos e portfólios',['anuncios','ecommerce','volume','materiais','cinema','ads-moda','ads-joias','ads-casa']),
+   audience('espacos','Apresentar espaços',space)
+  ]},
+  {id:'tutorials',label:'Tutoriais',topics:[
+   audience('passos','Ensinar passo a passo',['explicadores','infoprodutores','motion','ilustracao','avatares','ads-casa','ads-servicos']),
+   audience('explicar','Explicar como funciona',['explicadores','saude','anuncios','volume','hibridos','imoveis']),
+   audience('tela','Mostrar uma tela',['software','tecnologia','apresentacoes'],['ia-negocios','ecommerce','trafego-pago','seguranca-digital','telecom'])
+  ]},
+  {id:'business',label:'Por negócio',topics:[
+   audience('lojas','Lojas e e-commerce',['ecommerce','anuncios','ads-moda','ads-joias','ads-infantil'],['lojas','ecommerce','moda','joalheria','oticas','perfumaria','floriculturas','livrarias']),
+   audience('comida','Alimentação e bebidas',['ads-alimentacao'],['gastronomia','bares','cafeterias','confeitarias','agro']),
+   audience('bem-estar','Saúde, beleza e bem-estar',['saude','ads-beleza'],['dentistas','clinicas','cabelos','farmacias','esteticas','fisioterapia','fitness','laboratorios','nutricao','procedimentos','psicologia']),
+   audience('casa','Casa, decoração e imóveis',['imoveis','ads-casa','ads-servicos'],['corretores','arquitetos','interiores','marcenaria','limpeza','engenharia','solar','seguranca-patrimonial']),
+   audience('profissionais','Serviços profissionais',['ads-juridico'],['advogados','consultoria','contabilidade','financas','seguros','rh','franquias','agencias','trafego-pago','logistica']),
+   audience('educacao','Educação e cursos',['infoprodutores'],['educacao']),
+   audience('tecnologia','Tecnologia e assistência',['tecnologia','software'],['ia-negocios','assistencia','seguranca-digital','telecom']),
+   audience('veiculos','Carros, motos e mobilidade',['ads-automotivo'],['automotivo','mobilidade-eletrica','revendas-veiculos']),
+   audience('turismo','Turismo e eventos',['ads-turismo'],['turismo','eventos']),
+   audience('pets','Pets e cuidados animais',['ads-pets'],['pets'])
+  ]}
+ ];
+ const browseGroup=id=>browseGroups.find(group=>group.id===id);
+ function matchesBrowse(style,group,topic=''){
+  const topics=browseGroup(group)?.topics;
+  return !topics||topics.some(item=>(!topic||item.id===topic)&&
+   (item.families.includes(style.family)||item.sectors.includes(style.presenterEditing?.sector)));
+ }
  const goals=[{id:'explain',label:'Explicar'},{id:'present',label:'Apresentar'},{id:'sell',label:'Vender'}];
  const definitions=[
   {id:'explanations',goal:'explain',title:'Explicações que ganham forma',description:'A pessoa apresenta. Os elementos ajudam a entender.',families:people,preferred:['explicador-dentistas-implante-pilar-e-coroa-em-conversa','explicador-fitness-alinhamento','explicador-agencias-do-anuncio-ao-caixa-com-evidencias']},
@@ -48,5 +89,5 @@
   return out;
  }
  const collection=id=>definitions.find(c=>c.id===id);
- globalThis.FolioCollections=Object.freeze({goals,definitions,collection,niches,matchesNiche,matchesCollection,previewRatio,diversify});
+ globalThis.FolioCollections=Object.freeze({goals,definitions,collection,niches,matchesNiche,matchesCollection,previewRatio,diversify,browseGroups,browseGroup,matchesBrowse});
 })();

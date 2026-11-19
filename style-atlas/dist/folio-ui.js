@@ -49,7 +49,8 @@
  const icons={heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1C0 9 6 15 12 21c6-6 12-12 8-16Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>'};
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
  let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuScroll=0,gridScroll=0,homeScroll=0;
- const state={goal:'explain',mode:'home',collection:'',niche:'',similar:''};
+ const state={goal:'mixed',mode:'home',collection:'',niche:'',similar:'',browseGroup:'',browseTopic:''};
+ const featuredCollections=['inside-products','product-value','people-and-business','explanations'];
 
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
  function picture(s,small=true){
@@ -68,9 +69,11 @@
  }
  function filter(items){
   const c=model.collection(state.collection);
-  const result=items.filter(s=>model.matchesNiche(s,state.niche,niches)&&(state.mode!=='collection'||model.matchesCollection(s,c)));
+  const result=items.filter(s=>model.matchesNiche(s,state.niche,niches)&&
+   model.matchesBrowse(s,state.browseGroup,state.browseTopic)&&
+   (state.mode!=='collection'||model.matchesCollection(s,c)));
   if(state.similar){const ranked=AtlasSearch.similar(catalog.styles,window.AtlasApp.getStyle(state.similar),24,catalog.search),allowed=new Set(result.map(s=>s.id));return ranked.filter(s=>allowed.has(s.id));}
-  return state.mode==='collection'?model.diversify(result,c?.preferred):result;
+  return state.mode==='collection'||state.browseGroup?model.diversify(result,c?.preferred):result;
  }
  function beforeRender(){gridScroll=$('grid').scrollLeft;}
  function update(data){
@@ -80,7 +83,8 @@
   document.body.dataset.folioMode=state.mode;
   document.body.dataset.folioBrowse=state.mode==='catalogue'&&!data.query?'category':'';
   document.body.dataset.folioDensity='compact';
-  categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>{const g=window.AtlasNavigation.groups.find(g=>g.id===b.dataset.folioOpenGroup);b.setAttribute('aria-current',String(data.group===g.id||g.families.includes(data.family)));});
+  categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioOpenGroup===state.browseGroup)));
+  $('folioMenuGroups').querySelectorAll('[data-folio-topic]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioTopic===state.browseTopic)));
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
   $('folioChangeGoal').hidden=state.mode!=='collection';$('folioBrowseAll').hidden=state.mode!=='home';
   $('folioCollections').hidden=state.mode!=='home';$('grid').hidden=state.mode==='home';
@@ -88,8 +92,9 @@
   document.querySelectorAll('[data-folio-goal]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.folioGoal===state.goal)));
   if(state.mode==='home')renderHome(data.items);
   else{
-   const c=model.collection(state.collection);
-   $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos';
+   const c=model.collection(state.collection),group=model.browseGroup(state.browseGroup);
+   const topic=group?.topics.find(t=>t.id===state.browseTopic);
+   $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':topic?.label||group?.label||(data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos');
    $('folioCollectionDescription').textContent=state.mode==='collection'?c.description:data.query?'Referências encontradas no catálogo completo.':'Explore as referências e encontre o ponto de partida do seu vídeo.';
    $('grid').innerHTML=data.shown.map(s=>card(s,state.mode==='collection')).join('');
    $('grid').scrollLeft=gridScroll;
@@ -103,7 +108,8 @@
   const key=state.goal+'|'+state.niche+'|'+items.map(s=>s.id).join(',');
   if(key!==homeKey){
    homeKey=key;
-   $('folioCollections').innerHTML=model.definitions.filter(c=>c.goal===state.goal).map(c=>{
+   const collections=state.goal==='mixed'?featuredCollections.map(model.collection):model.definitions.filter(c=>c.goal===state.goal);
+   $('folioCollections').innerHTML=collections.map(c=>{
     const styles=model.diversify(items.filter(s=>model.matchesCollection(s,c)),c.preferred);if(!styles.length)return '';
     return `<section class="folio-shelf" aria-labelledby="folio-shelf-${c.id}"><header><h2 id="folio-shelf-${c.id}">${esc(c.title)}</h2><div class="folio-shelf-tools"><button type="button" class="folio-rail-arrow" data-folio-rail="${c.id}" data-rail-direction="-1" aria-label="Estilos anteriores de ${esc(c.title)}">←</button><button type="button" class="folio-rail-arrow" data-folio-rail="${c.id}" data-rail-direction="1" aria-label="Mais estilos de ${esc(c.title)}">→</button><button type="button" data-folio-collection="${c.id}" aria-label="Ver coleção: ${esc(c.title)}">Ver coleção ${icon('arrow')}</button></div></header><div class="folio-shelf-rail" tabindex="0" role="region" aria-label="${esc(c.title)} — deslize para explorar">${styles.slice(0,8).map(s=>card(s)).join('')}<button type="button" class="folio-more-card" data-folio-collection="${c.id}"><span>${icon('arrow')}</span><strong>Explorar a coleção</strong><small>${styles.length} estilos</small></button></div></section>`;
    }).join('');
@@ -116,15 +122,16 @@
  }
  function refresh(){window.AtlasApp.refresh();}
  $('folioBrowseAll').textContent='Ver todos →';
- function catalogue(){window.AtlasInlinePanels.reset();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
+ function clearBrowse(){state.browseGroup='';state.browseTopic='';}
+ function catalogue(){window.AtlasInlinePanels.reset();clearBrowse();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
   window.AtlasInlinePanels.reset();
-  state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
+  clearBrowse();state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   requestAnimationFrame(()=>{window.scrollTo({top:restore?homeScroll:0,behavior:'auto'});if(!restore)$('folioDiscoveryTitle').focus({preventScroll:true});});
  }
  function openCollection(id){
   const c=model.collection(id);if(!c)return;
-  homeScroll=window.scrollY;state.mode='collection';state.collection=id;gridScroll=0;refresh();
+  clearBrowse();homeScroll=window.scrollY;state.mode='collection';state.collection=id;gridScroll=0;refresh();
   window.scrollTo({top:0,behavior:'auto'});$('folioCollectionTitle').focus({preventScroll:true});
  }
  function syncNavigation(view){
@@ -155,8 +162,16 @@
   }
   if(!latest?.selected.length||window.AtlasGuidedFlow?.hasDraft())$('startGuided').click();else window.AtlasShell.openBrief();
  });
- if(globalThis.ResizeObserver){const observer=new ResizeObserver(()=>{document.documentElement.style.setProperty('--folio-header-height',header.getBoundingClientRect().height+'px');alignMenu();});observer.observe(header);observer.observe(categoryBar);observer.observe($('folioMenu'));}
- window.addEventListener('resize',alignMenu);document.fonts?.ready?.then(alignMenu);
+ const stickySubcategories=matchMedia('(min-width: 1024px)');
+ function measureNavigation(){
+  const height=header.getBoundingClientRect().height;
+  const total=height+(stickySubcategories.matches?$('folioMenu').getBoundingClientRect().height:0);
+  document.documentElement.style.setProperty('--folio-header-height',height+'px');
+  document.documentElement.style.setProperty('--folio-navigation-height',total+'px');
+  alignMenu();
+ }
+ if(globalThis.ResizeObserver){const observer=new ResizeObserver(measureNavigation);observer.observe(header);observer.observe(categoryBar);observer.observe($('folioMenu'));}
+ window.addEventListener('resize',measureNavigation);document.fonts?.ready?.then(measureNavigation);
  // iOS keeps the layout viewport behind the keyboard. Follow the visual
  // viewport instead, leaving room for its input accessory bar as well.
  const viewport=window.visualViewport;
@@ -181,27 +196,28 @@
   document.addEventListener('focusout',scheduleEditor);document.addEventListener('input',()=>{lastEdit=Date.now();scheduleEditor();});
   viewport.addEventListener('resize',scheduleEditor);viewport.addEventListener('scroll',()=>{if(Date.now()-lastEdit<700)scheduleEditor();});window.addEventListener('resize',scheduleEditor);
  }
- const shortNames={commercial:'Publicidade','natural-ads':'Por segmento',business:'Serviços',technology:'Tecnologia',presenters:'Apresentador',movement:'Motion',visual:'Estéticas'};
  function renderCategoryBar(){
-  categoryBar.innerHTML=window.AtlasNavigation.groups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-label="${esc(g.name)}" ${g.directFamily?'':`aria-controls="folioMenu" aria-expanded="false"`}><span>${esc(shortNames[g.id]||g.name)}</span>${g.directFamily?'':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>'}</button>`).join('');
+  categoryBar.innerHTML=model.browseGroups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-controls="folioMenu" aria-expanded="false"><span>${esc(g.label)}</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg></button>`).join('');
  }
  function menuRows(){
-  const groups=window.AtlasNavigation.groups,selected=groups.find(g=>g.id===menuGroup);
-  const links=selected?selected.families.map(id=>{const f=catalog.families.find(f=>f.id===id);return `<button type="button" data-folio-family="${esc(f.id)}"><span>${esc(f.name)}</span></button>`;}):groups.map(g=>`<button type="button" data-folio-group="${esc(g.id)}"><span>${esc(g.name)}</span></button>`);
-  $('folioMenu').setAttribute('aria-label',selected?selected.name:'Categorias de estilos');
-  $('folioMenuGroups').innerHTML=`<div class="folio-text-links">${links.join('')}${selected?'':'<button type="button" data-folio-all><span>Todos os estilos</span></button>'}</div>`;
+  const group=model.browseGroup(menuGroup);
+  $('folioMenu').setAttribute('aria-label',group.label);
+  $('folioMenuGroups').innerHTML='<div class="folio-text-links">'+group.topics.map(topic=>
+   `<button type="button" data-folio-topic="${esc(topic.id)}" aria-current="${state.browseTopic===topic.id}"><span>${esc(topic.label)}</span></button>`
+  ).join('')+'</div>';
  }
  function alignMenu(){
   const menu=$('folioMenu'),first=categoryBar.querySelector('button');if(menu.hidden||!first||!first.getClientRects().length)return;
   const firstBox=first.getBoundingClientRect(),barBox=categoryBar.getBoundingClientRect(),menuBox=menu.getBoundingClientRect(),padding=parseFloat(getComputedStyle(first).paddingLeft)||0;
   const start=Math.max(0,Math.max(barBox.left,firstBox.left+categoryBar.scrollLeft+padding)-menuBox.left);
-  const available=Math.max(0,menuBox.width-start),columns=available>=800?4:available>=560?3:available>=310?2:1;
+  const available=Math.max(0,menuBox.width-start-(parseFloat(getComputedStyle(menu).paddingRight)||0));
+  const columns=available>=800?4:available>=560?3:available>=310?2:1;
   menu.style.setProperty('--folio-menu-start',start+'px');menu.style.setProperty('--folio-menu-columns',String(columns));
  }
- function focusMenu(){($('folioMenuGroups').querySelector('[data-folio-family],[data-folio-group]')||$('folioMenuGroups').querySelector('button'))?.focus({preventScroll:true});}
+ function focusMenu(){$('folioMenuGroups').querySelector('button')?.focus({preventScroll:true});}
  function closeMenu(destination){
   if($('folioMenu').hidden)return;
-  $('folioMenu').hidden=true;if(!destination)window.scrollTo({top:menuScroll,behavior:'auto'});categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  $('folioMenu').hidden=true;measureNavigation();if(!destination&&!stickySubcategories.matches)window.scrollTo({top:menuScroll,behavior:'auto'});categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
   const target=destination||menuTrigger,focusTarget=target?.isConnected&&target.getClientRects().length?target:categoryBar.querySelector('button');
   if(focusTarget?.parentElement===categoryBar){const box=focusTarget.getBoundingClientRect(),bar=categoryBar.getBoundingClientRect();if(box.left<bar.left)categoryBar.scrollLeft-=bar.left-box.left;else if(box.right>bar.right)categoryBar.scrollLeft+=box.right-bar.right;}
   focusTarget?.focus({preventScroll:true});
@@ -209,15 +225,15 @@
  function showMenu(trigger,group='',keyboard=false){
   if(!$('folioMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
   if($('folioMenu').hidden)menuScroll=window.scrollY;window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;
-  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));alignMenu();if(keyboard)focusMenu();
+  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));measureNavigation();if(keyboard)focusMenu();
  }
- function selectCategory({family='',group=''}={}){
+ function selectCategory(group,topic='',keepMenu=false){
   window.AtlasInlinePanels.reset();
 
-  state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;closeMenu($('folioCollectionTitle'));
+  state.browseGroup=group;state.browseTopic=topic;
+  state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;
+  if(!keepMenu)closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
-  if(group)window.AtlasApp.setCategoryGroup(group);
-  else if(family){$('familySelect').value=family;$('familySelect').dispatchEvent(new Event('change',{bubbles:true}));}
   $('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
  }
  function renderChoice(){
@@ -226,15 +242,18 @@
   $('folioChoiceContinue').disabled=!ids.length;
  }
  function showChoice(trigger){window.AtlasInlinePanels.reset();renderChoice();$('folioChoice').showModal();}
- function similar(id){if(!window.AtlasApp.getStyle(id))return;window.AtlasInlinePanels.reset();state.mode='catalogue';state.collection='';state.niche='';state.similar=id;gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();$('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
+ function similar(id){if(!window.AtlasApp.getStyle(id))return;window.AtlasInlinePanels.reset();clearBrowse();state.mode='catalogue';state.collection='';state.niche='';state.similar=id;gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();$('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
  window.AtlasFolio={filter,beforeRender,update,onView:syncNavigation,getState:()=>({...state}),syncHeader,similar};
  // Listeners are installed before app.js: a free-text search starts across all styles.
- $('search').addEventListener('input',()=>{state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
- $('reset').addEventListener('click',()=>{state.mode='home';state.collection='';state.similar='';state.niche='';});
+ $('search').addEventListener('input',()=>{clearBrowse();if(!$('folioMenu').hidden){closeMenu($('search'));}state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
+ $('reset').addEventListener('click',()=>{clearBrowse();state.mode='home';state.collection='';state.similar='';state.niche='';});
  $('searchEverywhere').addEventListener('click',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';});
  $('familySelect').addEventListener('change',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;});
  $('folioNiche').addEventListener('change',()=>{state.niche=$('folioNiche').value;gridScroll=0;refresh();});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!$('folioMenu').hidden){e.preventDefault();closeMenu();}});
+ document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape'||e.defaultPrevented)return;
+  if(!$('folioMenu').hidden){e.preventDefault();closeMenu();}
+ });
  $('folioChoiceContinue').addEventListener('click',()=>{$('folioChoice').close();window.AtlasShell.openBrief();});
  $('folioBack').addEventListener('click',()=>home({restore:true}));$('folioChangeGoal').addEventListener('click',()=>home());
  $('folioBrowseAll').addEventListener('click',catalogue);
@@ -247,10 +266,15 @@
   if(t.closest('[data-folio-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-folio-choice]');if(choice)showChoice(choice);
   const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
-  const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{const wasOpen=!$('folioMenu').hidden&&menuGroup===g.id;selectCategory({group:g.id});if(!wasOpen)showMenu(openGroup,g.id,e.detail===0);}}
-  const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{selectCategory({group:g.id});showMenu(categoryBar.querySelector('[data-folio-open-group="'+g.id+'"]'),g.id,e.detail===0);}}
-  const family=t.closest('[data-folio-family]');if(family)selectCategory({family:family.dataset.folioFamily});
-  if(t.closest('[data-folio-all]')){state.niche='';catalogue();}
+  const openGroup=t.closest('[data-folio-open-group]');
+  if(openGroup){
+   const group=openGroup.dataset.folioOpenGroup;
+   const wasOpen=!$('folioMenu').hidden&&menuGroup===group;
+   selectCategory(group);
+   if(!wasOpen)showMenu(openGroup,group,e.detail===0);
+  }
+  const topic=t.closest('[data-folio-topic]');
+  if(topic)selectCategory(menuGroup,topic.dataset.folioTopic,stickySubcategories.matches);
  });
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);
