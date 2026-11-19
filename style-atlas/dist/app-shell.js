@@ -22,7 +22,7 @@
   if(!$('briefDialog').open)$('briefDialog').show();
   const prepared=window.AtlasCurrentChoice?.().requestPrepared;
   setStage(prepared?'review':'briefing');
-  if(prepared){$('promptOutput').value=window.AtlasApp.prompt();$('handoffMessage').textContent='Confira o resumo, copie o pedido e envie na conversa de produção.'}
+  if(prepared){$('promptOutput').value=window.AtlasApp.prompt();$('handoffMessage').textContent='Confira o resumo e abra a produção no assistente que preferir.'}
   $('briefTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
  }
  function selectionChanged(styles){
@@ -38,13 +38,14 @@
  function renderSummary(){
   if(!window.AtlasCurrentChoice)return;
   const c=window.AtlasCurrentChoice(),esc=AtlasViews.esc;
-  $('requestSummary').innerHTML=[['Tema',c.topic||'Definir no briefing'],['Marca ou site',c.brand||'Identidade a definir'],['Formato e duração',`${c.format} · ${c.durationMode==='source'?'Duração do vídeo original':c.targetDurationSeconds+' segundos'}`],['Tipografia',c.typography==='auto'?'Seguir o estilo e a marca':c.typography]].map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd><button type="button" data-edit-brief aria-label="Editar ${esc(k)}">✎</button></div>`).join('');
+  $('requestSummary').innerHTML=[['Entrega','Vídeo final produzido com IA'],['Tema',c.topic||'Definir no briefing'],['Marca ou site',c.brand||'Identidade a definir'],['Formato e duração',`${c.format} · ${c.durationMode==='source'?'Duração do vídeo original':c.targetDurationSeconds+' segundos'}`],['Tipografia',c.typography==='auto'?'Seguir o estilo e a marca':c.typography]].map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd><button type="button" data-edit-brief aria-label="Editar ${esc(k)}">✎</button></div>`).join('');
   const intent=AtlasWorkflow.intentSummary(c),route=intent.skillRouting,primary=AtlasWorkflow.skillSystem.modules.find(s=>s.id===route.primarySkill);
   $('styleIntentSummary').innerHTML='<h3>Como aplicar sua escolha</h3><p>'+esc(primary?.name||'Edição do vídeo')+'</p><ol>'+intent.styles.map(s=>'<li><strong>'+esc(s.name)+'</strong><span>'+esc(s.role==='principal'?' · Principal':' · Complementar')+'</span><p>'+s.contributions.map(v=>esc(v.label)+' · '+esc(v.scopeLabel)).join('<br>')+'</p></li>').join('')+'</ol><p class="small">O pedido leva as referências e estas aplicações para a conversa. O agente confere seus arquivos e pergunta somente o que faltar.</p>';
   const ids=new Set(['product','property','ui','data','clinical','course','coverage','presenter','legal','food','pets','automotive','travel','beauty','homeService','childcare','identity','voice','brand','facts']);
   const materials=c.intake.items.filter(x=>ids.has(x.id)).sort((a,b)=>Number(['brand','facts','identity','voice'].includes(a.id))-Number(['brand','facts','identity','voice'].includes(b.id)));
   const plan=c.productionContract.materials;
   $('summaryMaterials').replaceChildren(...plan.now.map(text=>{const row=document.createElement('li');const title=document.createElement('strong');title.textContent=text;row.append(title);const need=plan.dependencies.find(x=>x.label===text);if(need&&need.action==='verify_access'){const note=document.createElement('span');note.textContent='Já registrado'+(need.file?' · '+need.file:'')+'; conferir acesso na conversa';row.append(note)}else if(need&&need.action==='request_replacement'){const note=document.createElement('span');note.textContent='Original registrado como inadequado; '+need.alternative;row.append(note)}return row}));
+  for(const material of c.materialAssignments){const li=document.createElement('li'),label=document.createElement('strong'),note=document.createElement('span');label.textContent=material.label;note.textContent=material.roles.length?material.roles.map(role=>AtlasWorkflow.materialRoles[role]).join(' · '):'Uso a confirmar';li.append(label,note);$('summaryMaterials').prepend(li);}
   if(c.productionContract.presenterInput?.required){const li=document.createElement('li'),label=document.createElement('strong'),note=document.createElement('span');label.textContent='Filmagem original ou avatar escolhido';note.textContent=c.productionContract.presenterInput.instruction;li.append(label,note);$('summaryMaterials').prepend(li);}
   $('handoffMaterialNotes').replaceChildren();for(const [label,items] of [['Opcional',plan.optional],['Somente se o roteiro precisar',plan.later]]){const p=document.createElement('p');p.textContent=label+': '+items.join(' ');$('handoffMaterialNotes').append(p)}
   $('referenceFiles').innerHTML='<h3>Direção visual incluída no pedido</h3><p>A descrição do estilo, seus momentos, movimento e referências seguem no texto. Você só precisa enviar os materiais do seu negócio que a produção solicitar.</p>';
@@ -52,9 +53,10 @@
  }
 
  function updatePlatform(){
-  const platform=$('handoffPlatform').value==='claude'?'claude':'chatgpt',name=platform==='claude'?'Claude':'ChatGPT';
-  $('chatLink').href=platform==='claude'?'https://claude.ai/new':'https://chatgpt.com/';$('chatLink').textContent='Abrir '+name+' ↗';$('chatLink').hidden=!!window.ATLAS_PAGE_MODE&&platform==='chatgpt';
-  $('handoffHelp').textContent=window.ATLAS_PAGE_MODE&&platform==='chatgpt'?'Se disponível, use a ação nativa de conversa da Page; você também pode copiar o pedido. Estado salvo não equivale a arquivos anexados.':'Cole o pedido no '+name+' e anexe os arquivos. Abrir não envia mensagens, transfere arquivos, instala ferramentas ou autoriza cobranças.';
+  const platform=$('handoffPlatform').value==='claude'?'claude':'chatgpt',claude=platform==='claude';
+  $('chatLink').href=claude?'https://claude.ai/code':'https://chatgpt.com/codex';
+  $('chatLink').textContent=claude?'Abrir no Claude Code ↗':'Abrir no Codex ↗';
+  $('handoffHelp').textContent=window.ATLAS_PAGE_MODE?'Nesta Page, envie a ficha e os materiais pelo anexo da conversa.':'O pedido, as referências e os arquivos selecionados vão em um pacote criptografado, disponível por até 2 horas. O assistente guia roteiro, moodboard, storyboard, amostra e entrega.';
  }
 
  function showFrame(id,index,trigger){

@@ -15,7 +15,7 @@ with sync_playwright() as p:
  assert page.locator('[data-guided-pick]:visible').count()==1
  first=page.locator('[data-guided-pick]:visible').get_attribute('data-guided-pick');page.locator('#guidedNextSuggestion').click();assert page.locator('[data-guided-pick]:visible').get_attribute('data-guided-pick')!=first
  page.screenshot(path=str(root/'mobile-appearance-final.png'),animations='disabled');page.locator('[data-guided-pick]:visible').click();page.locator('#guidedNext').click();assert page.locator('#guidedMaterials input[value="one_photo"]').is_checked();page.locator('#guidedNext').click();page.locator('#guidedNext').click();page.wait_for_selector('#handoff:not([hidden])');passed('375px: one-photo declaration, three alternatives, selection, materials and prepared request')
- page.locator('#handoffPlatform').select_option('claude');assert page.locator('#chatLink').get_attribute('href')=='https://claude.ai/new';page.locator('#copyPrompt').click();copied=page.evaluate('navigator.clipboard.readText()');assert 'PRIMEIRA RESPOSTA' in copied and 'Claude' in copied;passed('Claude destination and actual clipboard copy')
+ page.locator('#handoffPlatform').select_option('claude');assert page.locator('#chatLink').get_attribute('href')=='https://claude.ai/code';page.locator('#promptDetails').evaluate('(e)=>e.open=true');page.locator('#copyPrompt').click();copied=page.evaluate('navigator.clipboard.readText()');assert 'PRIMEIRA RESPOSTA' in copied and 'Claude' in copied;passed('Claude destination and actual clipboard copy')
  page.locator('#starterKit').evaluate('(e)=>e.open=true')
  files={}
  for name in ['pedido.txt','projeto-video.json','LEIA-ME.txt','referencias.json']:

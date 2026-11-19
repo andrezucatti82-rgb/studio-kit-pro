@@ -1,3 +1,8 @@
+## 2.16.0
+
+- Briefing único no pedido e no JSON para produzir o vídeo final com IA, com papéis e autorizações por material, contribuições por trecho e preservação de escolhas e aprovações.
+- Abertura em Codex ou Claude Code com pacote temporário criptografado e guia na conversa. Suporte a originais selecionados no Fólio e apresentação do moodboard e storyboard na conversa.
+
 # 2.12.0 — publicada
 
 ## 2.15.0

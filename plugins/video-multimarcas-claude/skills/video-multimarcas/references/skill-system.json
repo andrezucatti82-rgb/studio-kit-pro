@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "kitVersion": "2.15.0",
+  "kitVersion": "2.16.0",
   "orchestrator": "video-multimarcas",
   "entryPoint": "video-multimarcas",
   "skills": [

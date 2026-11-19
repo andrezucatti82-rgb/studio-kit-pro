@@ -260,7 +260,7 @@ test('granular choices reach prompt and Page state; changes invalidate approvals
 test('selecting a replacement has a complete direction and no conflicting complementary choice',async()=>{
  const a=await boot();a.click('#grid [data-choose]');const first=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;
  const button=[...a.document.querySelectorAll('#grid [data-choose]')].find(b=>b.dataset.choose!==first);a.change('topic','Tema preservado');a.click('#grid [data-choose="'+button.dataset.choose+'"]');
- assert.equal(a.ctx.AtlasCurrentChoice().selectedStyles.length,1);assert.equal(a.ctx.AtlasCurrentChoice().selectedStyles[0].id,button.dataset.choose);assert.equal(a.ctx.AtlasCurrentChoice().topic,'Tema preservado');assert.doesNotThrow(()=>a.ctx.AtlasApp.prompt());assert.equal(a.document.querySelectorAll('#selectionList [data-contributions]').length,0);
+ assert.equal(a.ctx.AtlasCurrentChoice().selectedStyles.length,1);assert.equal(a.ctx.AtlasCurrentChoice().selectedStyles[0].id,button.dataset.choose);assert.equal(a.ctx.AtlasCurrentChoice().topic,'Tema preservado');assert.doesNotThrow(()=>a.ctx.AtlasApp.prompt());assert.equal(a.document.querySelectorAll('#selectionList [data-contributions]').length,1);
 });
 test('invalid contribution sheet is refused before replacing the current project',async()=>{
  const a=await boot();a.click('#grid [data-choose]');const id=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;a.ctx.AtlasApp.setStyleContributions(id,[{aspect:'texture',scope:'details'}]);const bundle=a.ctx.AtlasApp.exportBundle(),input=a.document.getElementById('importProject');bundle.project.styleContributions[id][0].scope='unknown';Object.defineProperty(input,'files',{configurable:true,value:[{size:1000,text:async()=>JSON.stringify(bundle)}]});await input.onchange({target:input});assert.equal(a.ctx.AtlasCurrentChoice().styleContributions[id][0].scope,'details');assert.match(a.document.getElementById('projectMessage').textContent,/recusada/);
@@ -346,7 +346,7 @@ test('unchanged guided handoff and same contributions preserve valid decisions; 
 });
 test('Claude destination survives restore without invalidating creative decisions',async()=>{
  const a=await boot();a.click('#grid [data-choose]');const c=a.ctx.AtlasCurrentChoice();c.projectState.preProductionApprovals.moodboard.status='approved';a.change('handoffPlatform','claude');
- assert.equal(c.projectState.preProductionApprovals.moodboard.status,'approved');assert.equal(a.document.getElementById('chatLink').getAttribute('href'),'https://claude.ai/new');
+ assert.equal(c.projectState.preProductionApprovals.moodboard.status,'approved');assert.equal(a.document.getElementById('chatLink').getAttribute('href'),'https://claude.ai/code');
  const b=await boot({saved:JSON.parse(a.store.get('video-multimarcas-atlas-v1'))});assert.equal(b.ctx.AtlasCurrentChoice().conversationPlatform,'claude');
 });
 test('Page writes are ordered and saving failure remains visible without touching localStorage',async()=>{
@@ -456,10 +456,10 @@ test('Fólio Page discovery keeps portable selections in widget state without re
  assert.equal(ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'pending');
 });
 
-test('same style choice preserves an accepted project and older multiple choices keep the principal scope',async()=>{
+test('same style choice preserves an accepted project and restoring multiple styles keeps both scopes and approvals',async()=>{
  const a=await boot();a.click('#grid [data-choose]');const id=a.ctx.AtlasCurrentChoice().selectedStyles[0].id;
  a.ctx.AtlasApp.setStyleContributions(id,[{aspect:'typographic_language',scope:'opening'}]);const c=a.ctx.AtlasCurrentChoice();c.projectState.preProductionApprovals.moodboard.status='approved';const before=JSON.stringify(a.ctx.AtlasApp.exportBundle().project);
  a.click('#grid [data-choose="'+id+'"]');assert.equal(JSON.stringify(a.ctx.AtlasApp.exportBundle().project),before);
  const bundle=a.ctx.AtlasApp.exportBundle(),second=a.ctx.AtlasApp.getCatalog().styles.find(s=>s.id!==id);bundle.brief.selectedStyles.push(second);bundle.brief.styleContributions[second.id]=[{aspect:'lighting',scope:'closing'}];bundle.brief.requestPrepared=true;bundle.project.styles.push(second.id);bundle.project.styleContributions[second.id]=[{aspect:'lighting',scope:'closing'}];
- const saved={modelContent:{...bundle.brief,projectState:c.projectState}};const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,1);assert.equal(resumed.ctx.AtlasCurrentChoice().styleContributions[id][0].scope,'opening');assert.equal(resumed.ctx.AtlasCurrentChoice().requestPrepared,false);assert.equal(resumed.ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'pending');
+ const saved={modelContent:{...bundle.brief,projectState:c.projectState}};const resumed=await boot({saved});assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles.length,2);assert.equal(resumed.ctx.AtlasCurrentChoice().styleContributions[id][0].scope,'opening');assert.equal(resumed.ctx.AtlasCurrentChoice().styleContributions[second.id][0].scope,'closing');assert.equal(resumed.ctx.AtlasCurrentChoice().requestPrepared,true);assert.equal(resumed.ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'approved');
 });
