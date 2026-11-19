@@ -22,7 +22,7 @@ def theme(control):
     style = control.evaluate('''el=>{
         const picker=getComputedStyle(el,'::picker(select)');
         const active=getComputedStyle(el.selectedOptions[0]);
-        const theme=getComputedStyle(document.body).getPropertyValue('--folio-accent').trim();
+        const theme=getComputedStyle(document.body).getPropertyValue('--disteven-accent').trim();
         const field=getComputedStyle(el);
         return {app:field.appearance,display:field.display,picker:picker.appearance,background:picker.backgroundColor,color:active.color,theme};
     }''')

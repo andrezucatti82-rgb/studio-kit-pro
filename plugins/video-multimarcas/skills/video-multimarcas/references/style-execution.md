@@ -1,6 +1,6 @@
 # Do estilo escolhido à execução
 
-Use este protocolo quando receber um pedido, preset ou seleção do atlas. O catálogo 4.8 tem 1.425 estilos em sete grupos. Cada direção tem quatro quadros conceituais e um plano que liga os estados visuais à execução. Imagem aprovada não comprova movimento. O Fólio oferece uma direção por vídeo e alternativas em Procurar estilos parecidos; não oferece combinações nem downloads de imagens na interface.
+Use este protocolo quando receber um pedido, preset ou seleção do atlas. O catálogo 4.8 tem 1.425 estilos em sete grupos. Cada direção tem quatro quadros conceituais e um plano que liga os estados visuais à execução. Imagem aprovada não comprova movimento. O DiSteven oferece uma direção por vídeo e alternativas em Procurar estilos parecidos; não oferece combinações nem downloads de imagens na interface.
 
 ## Recuperar a direção completa
 

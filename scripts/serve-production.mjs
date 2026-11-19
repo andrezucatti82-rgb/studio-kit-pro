@@ -9,6 +9,6 @@ const planner=createPlanner({provider:arg('--provider','deterministic'),allowPai
 const orchestrator=await new Orchestrator({root:path.resolve(arg('--root','projects/production-local')),planner}).init();
 const server=createProductionServer(orchestrator,{workflowFile:arg('--workflow')});
 server.once('error',async error=>{console.error(`Local server failed: ${error.message}`);await orchestrator.close();process.exitCode=1;});
-server.listen(port,'127.0.0.1',()=>console.log(`GDA production local: http://127.0.0.1:${port} · no public deployment · provider ${planner.name}`));
+server.listen(port,'127.0.0.1',()=>console.log(`DiSteven production local: http://127.0.0.1:${port} · no public deployment · provider ${planner.name}`));
 async function stop(){server.close();await orchestrator.close();process.exit(0);}
 process.once('SIGINT',stop);process.once('SIGTERM',stop);

@@ -16,13 +16,13 @@ import {bezierProgress,motionAt,morphPoints,motionRegistry} from '../src/product
 
 let imageBytes,skill;
 before(async()=>{
- const root=await fs.mkdtemp(path.join(os.tmpdir(),'gda-input-'));
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'disteven-input-'));
  try{await run('ffmpeg',['-v','error','-y','-f','lavfi','-i','color=c=blue:s=64x64','-frames:v','1',path.join(root,'fixture.png')]);imageBytes=await fs.readFile(path.join(root,'fixture.png'));skill=await loadSkill();}finally{await fs.rm(root,{recursive:true,force:true});}
 });
 const raw=id=>({styleId:STYLE_ID,prompt:'Uma ideia ganha espaço. O movimento organiza o argumento e conecta a conclusão.',assetIds:[id],durationSeconds:30});
 const fakeRenderBytes=Buffer.from('unit-test-render-stub-not-a-video');
 async function harness(overrides={}){
- const root=await fs.mkdtemp(path.join(os.tmpdir(),'gda-job-'));
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'disteven-job-'));
  const renderer=async(edited,work)=>{const output=path.join(work,'unit-stub.bin');await fs.writeFile(output,fakeRenderBytes);return {output,reviewFrames:[]};};
  const validator=async()=>({status:'passed',sha256:digest(fakeRenderBytes),bytes:fakeRenderBytes.length,creativeReview:'review_pending'});
  const o=new Orchestrator({root,authorize:async()=>({mode:'unit-test-fixture'}),editor:async plan=>({plan,score:{origin:'unit stub'}}),renderer,validator,...overrides});
@@ -111,7 +111,7 @@ test('HTTP requires a local session, token and same origin; preview supports byt
   assert.equal((await fetch(base+'/api/jobs')).status,401);
   const home=await fetch(base),cookie=home.headers.get('set-cookie').split(';')[0];assert.match(await home.text(),/production-config.js/);
   const config=await(await fetch(base+'/production-config.js',{headers:{cookie}})).text(),token=JSON.parse(config.match(/token:("[^"]+")/)[1]);
-  const headers={cookie,'X-GDA-Token':token,'Content-Type':'application/json'};
+  const headers={cookie,'X-DiSteven-Token':token,'Content-Type':'application/json'};
   assert.equal((await fetch(base+'/api/jobs',{method:'POST',headers:{cookie},body:'{}'})).status,403);
   assert.equal((await fetch(base+'/api/jobs',{method:'POST',headers:{...headers,Origin:'https://evil.example'},body:'{}'})).status,403);
   assert.equal((await fetch(base+'/api/jobs',{method:'POST',headers,body:JSON.stringify({...raw(h.asset.id),command:'bad'})})).status,400);
@@ -121,7 +121,7 @@ test('HTTP requires a local session, token and same origin; preview supports byt
  }finally{await new Promise(resolve=>server.close(resolve));await h.cleanup();}
 });
 test('FFmpeg editor really trims and reorders media, and output validation rejects wrong duration',async()=>{
- const root=await fs.mkdtemp(path.join(os.tmpdir(),'gda-edit-'));
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'disteven-edit-'));
  try{
   const source=path.join(root,'source.mp4');await run('ffmpeg',['-v','error','-y','-f','lavfi','-i','color=c=blue:s=64x64:r=30:d=12','-f','lavfi','-i','sine=frequency=440:duration=12','-shortest','-c:v','libx264','-pix_fmt','yuv420p','-c:a','aac',source]);
   const store=new AssetStore(path.join(root,'assets'));await store.init();const asset=await store.import(await fs.readFile(source),{rights:'Original FFmpeg fixture, test only'});

@@ -8,7 +8,7 @@ from playwright.sync_api import expect, sync_playwright
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--base', default='http://127.0.0.1:8873/')
-parser.add_argument('--out', default='projects/folio-frame-consistency/browser')
+parser.add_argument('--out', default='projects/disteven-frame-consistency/browser')
 args = parser.parse_args()
 out = Path(args.out)
 out.mkdir(parents=True, exist_ok=True)
@@ -26,21 +26,21 @@ with sync_playwright() as p:
         page.on('pageerror', lambda error: errors.append(str(error)))
         assert page.goto(args.base, timeout=45000).ok
         page.wait_for_function('window.ATLAS_READY')
-        expect(page.locator('.folio-endorsement')).to_have_count(0)
-        expect(page.locator('.folio-collection-back')).not_to_be_visible()
+        expect(page.locator('.disteven-endorsement')).to_have_count(0)
+        expect(page.locator('.disteven-collection-back')).not_to_be_visible()
         if width >= 1200:
-            brand = page.locator('.folio-brand').bounding_box()
-            category = page.locator('.folio-category-bar>button').first.bounding_box()
+            brand = page.locator('.disteven-brand').bounding_box()
+            category = page.locator('.disteven-category-bar>button').first.bounding_box()
             assert 0 <= category['x'] - brand['x'] - brand['width'] <= 35
         if width <= 700:
-            page.locator('#folioCategoryToggle').click()
-        page.locator('[data-folio-open-group=presentations]').click()
-        page.locator('[data-folio-topic=profissional]').click()
-        grouped = page.locator('#grid .folio-niche-section')
+            page.locator('#distevenCategoryToggle').click()
+        page.locator('[data-disteven-open-group=presentations]').click()
+        page.locator('[data-disteven-topic=profissional]').click()
+        grouped = page.locator('#grid .disteven-niche-section')
         assert grouped.count() >= 3
         assert len(set(grouped.locator('h2').all_text_contents())) == grouped.count()
         initial = 2 if width <= 700 else 3 if width < 900 else 4 if width < 1200 else 6
-        counts = grouped.evaluate_all('es=>es.map(e=>e.querySelectorAll(".folio-card").length)')
+        counts = grouped.evaluate_all('es=>es.map(e=>e.querySelectorAll(".disteven-card").length)')
         assert all(0 < count <= initial for count in counts), counts
         if width in (375, 1680):
             page.locator('#grid img').evaluate_all('async es=>await Promise.allSettled(es.filter(e=>e.getBoundingClientRect().top<innerHeight).map(e=>{e.loading="eager";return e.decode()}))')
@@ -55,10 +55,10 @@ with sync_playwright() as p:
         identifier = pages.first.get_attribute('data-niche-more')
         section = page.locator('section[aria-labelledby=niche-' + identifier + ']')
         section.locator('[data-niche-more]').click()
-        assert section.locator('.folio-card').count() > initial
-        expect(section.locator('.folio-cover').nth(initial)).to_be_focused()
+        assert section.locator('.disteven-card').count() > initial
+        expect(section.locator('.disteven-cover').nth(initial)).to_be_focused()
         page.locator('#search').fill('dentista')
-        expect(page.locator('#grid .folio-niche-section')).to_have_count(0)
+        expect(page.locator('#grid .disteven-niche-section')).to_have_count(0)
 
         heights = []
         for style in styles:

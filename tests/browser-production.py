@@ -4,8 +4,8 @@ Requires a running production:serve with a completed engineering POC in its root
 import json, os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-base=os.environ.get('GDA_QA_URL','http://127.0.0.1:8780')
-root=Path(os.environ.get('GDA_QA_ROOT','projects/orchestrator-proof')).resolve()
+base=os.environ.get('DISTEVEN_QA_URL','http://127.0.0.1:8780')
+root=Path(os.environ.get('DISTEVEN_QA_ROOT','projects/orchestrator-proof')).resolve()
 out=root/'browser-qa';out.mkdir(exist_ok=True)
 jobs=[json.loads(p.read_text()) for p in (root/'jobs').glob('*/job.json')]
 job=next(j for j in sorted(jobs,key=lambda j:j['createdAt'],reverse=True) if j['state']=='completed')
@@ -28,7 +28,7 @@ with sync_playwright() as p:
  download.value.save_as(str(out/'draft-plan.json'))
  assert json.loads((out/'draft-plan.json').read_text())['styleId']=='campanha-frase-que-reorganiza-o-quadro'
  result['checks'].append('Real upload and deterministic planning through form; production blocked without scoped approvals; draft JSON downloads')
- page.evaluate('(id)=>localStorage.setItem("gda-local-production-job",id)',job['id']);page.reload();page.wait_for_function('window.ATLAS_READY===true');page.evaluate("AtlasShell.view('project')")
+ page.evaluate('(id)=>localStorage.setItem("disteven-local-production-job",id)',job['id']);page.reload();page.wait_for_function('window.ATLAS_READY===true');page.evaluate("AtlasShell.view('project')")
  page.wait_for_selector('#productionResult:not([hidden])');page.locator('#productionResult').scroll_into_view_if_needed()
  page.wait_for_function("document.getElementById('productionVideo').readyState>=1")
  assert page.locator('#productionVideo').evaluate('(v)=>v.duration')==30

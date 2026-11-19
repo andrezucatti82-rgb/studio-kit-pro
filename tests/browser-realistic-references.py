@@ -3,7 +3,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 from PIL import Image
 import json,os
-base=os.environ.get('GDA_QA_URL','http://127.0.0.1:8770/')
+base=os.environ.get('DISTEVEN_QA_URL','http://127.0.0.1:8770/')
 r=Path.cwd();out=r/'projects/realistic-reference-browser';out.mkdir(parents=True,exist_ok=True)
 catalog=json.loads((r/'style-atlas/dist/catalog.json').read_text())
 # The fixture permits early QA of atlas addressing before all generation jobs finish.

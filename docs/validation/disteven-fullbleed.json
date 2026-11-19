@@ -1,0 +1,123 @@
+{
+  "status": "local_browser_verified",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "previewPolicy": {
+    "aspectRatio": "3:4",
+    "heightIncreasePercent": 33.33,
+    "fullBleed": true,
+    "blurredDuplicate": false,
+    "sourceAspectRatioPreserved": true,
+    "originalFilesAndDownloadsChanged": false,
+    "previewReframing": true,
+    "annotationAndFaceDetection": false
+  },
+  "layout": {
+    "layouts": [
+      {
+        "width": 320,
+        "columns": 2,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 180
+      },
+      {
+        "width": 375,
+        "columns": 2,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 216.65625
+      },
+      {
+        "width": 768,
+        "columns": 3,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 291.53125
+      },
+      {
+        "width": 1024,
+        "columns": 4,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 298.65625
+      },
+      {
+        "width": 1440,
+        "columns": 6,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 284.4375
+      },
+      {
+        "width": 1920,
+        "columns": 6,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 320
+      }
+    ],
+    "motion": [
+      {
+        "reducedMotion": "no-preference",
+        "passed": true
+      },
+      {
+        "reducedMotion": "reduce",
+        "passed": true
+      }
+    ],
+    "errors": []
+  },
+  "flows": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "390px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "430px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.3333010835913313
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "portraitRatio": 1.3333025147928994
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "portraitRatio": 1.3333333333333333
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3333090697335857
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "manualSamples": "home dentist, fitness, CRM, dashboards and avatar; one sample per family plus extreme source ratios",
+  "allStylesEditoriallyReviewed": false,
+  "paidApisUsed": false,
+  "publication": {
+    "status": "published_verified",
+    "evidence": "disteven-fullbleed-publication.json"
+  }
+}

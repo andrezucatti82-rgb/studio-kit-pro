@@ -1,4 +1,4 @@
-# Galeria Fólio: navegação e enquadramento
+# Galeria DiSteven: navegação e enquadramento
 
 As prévias em 3:4 mantêm a mesma altura em todos os estilos. São 33% mais altas que as prévias quadradas anteriores, para mostrar as imagens maiores. A grade mostra seis colunas a partir de 1.200 px, quatro de 900 a 1.199 px, três de 701 a 899 px e duas no celular. As coleções usam a mesma grade do catálogo, com ações para adicionar e examinar os momentos.
 
@@ -6,13 +6,13 @@ A própria imagem ocupa todo o quadro, sem barras laterais ou fundo desfocado. A
 
 No computador, a moldura recebe um brilho discreto conforme o mouse e sobe 3 px ao passar sobre ela; a arte não recebe zoom nem inclinação. No teclado, o foco continua visível. A preferência de movimento reduzido desativa o deslocamento e o brilho acompanhado pelo mouse. No toque, as ações continuam acessíveis sem depender de hover. Um botão permite voltar ao começo em páginas longas.
 
-Referências de organização: [coleções do Are.na](https://help.are.na/docs/getting-started/channels), [organização do Cosmos](https://help.cosmos.so/en/articles/17508514-saving-and-organizing) e [descoberta e filtros do Adobe Stock](https://helpx.adobe.com/stock/web/help/using-adobe-stock-website.html). São referências de organização e descoberta; a identidade de papel, tinta e terracota do Fólio permanece própria.
+Referências de organização: [coleções do Are.na](https://help.are.na/docs/getting-started/channels), [organização do Cosmos](https://help.cosmos.so/en/articles/17508514-saving-and-organizing) e [descoberta e filtros do Adobe Stock](https://helpx.adobe.com/stock/web/help/using-adobe-stock-website.html). São referências de organização e descoberta; a identidade de papel, tinta e terracota do DiSteven permanece própria.
 
-Validação: `tests/browser-folio.py` percorre descoberta, coleções, favoritos, escolha, briefing, prompt, exportação, categorias, busca, comparação e ajuda, além da geometria dos 1.425 estilos. As capturas e as verificações de layout/movimento da revisão ficam em `projects/folio-refresh/`, ignorado pelo Git. Essas verificações não equivalem a certificação completa de acessibilidade nem a revisão audiovisual dos vídeos.
+Validação: `tests/browser-disteven.py` percorre descoberta, coleções, favoritos, escolha, briefing, prompt, exportação, categorias, busca, comparação e ajuda, além da geometria dos 1.425 estilos. As capturas e as verificações de layout/movimento da revisão ficam em `projects/disteven-refresh/`, ignorado pelo Git. Essas verificações não equivalem a certificação completa de acessibilidade nem a revisão audiovisual dos vídeos.
 
 ## Tema e categorias
 
-As capturas de Grok/xAI fornecidas pelo usuário orientam o tema escuro: fundo #101010, superfícies #242424, campos e ações arredondados, ícones discretos e Inter local em quatro pesos. O símbolo do Fólio usa um monograma F próprio, com logotipo sem serifa e ícones de navegador atualizados. A aparência das referências de vídeo continua com suas cores originais.
+As capturas de Grok/xAI fornecidas pelo usuário orientam o tema escuro: fundo #101010, superfícies #242424, campos e ações arredondados, ícones discretos e Inter local em quatro pesos. O cabeçalho exibe DiSteven em Inter Semibold branca. Os ícones independentes do navegador usam a primeira letra. A aparência das referências de vídeo continua com suas cores originais.
 
 No computador, os atalhos do cabeçalho abrem somente nomes de subcategorias em colunas de texto. O botão de quatro quadrados começa pelos sete nomes de categorias. No celular, as palavras ficam em duas colunas; escolher uma categoria mostra suas subcategorias, com retorno por Categorias. O menu não tem busca, contadores, cartões ou rodapé; a busca e os filtros da biblioteca continuam na página principal. O menu expande no fluxo normal, sem sobreposição ou bloqueio da rolagem. Escolher uma subcategoria recolhe o menu e leva o foco aos resultados; Escape e o botão de abertura recolhem as opções. Não há linhas de navegação acima dos nomes; as ações Categorias e Todos os estilos ficam junto às demais palavras. Ao escolher uma categoria, a grade de estilos aparece após um título pequeno e a opção Filtros recolhida, sem busca ou área de descoberta intermediária. Navegar não modifica o projeto ou as escolhas.
 

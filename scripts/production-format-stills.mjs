@@ -19,7 +19,7 @@ try{
  for(const [format,[width,height]]of Object.entries(dimensions)){
   const variant={...plan,output:{...plan.output,format,width,height}};validatePlan(variant,assets,{...job.request,format});
   const inputProps={plan:{...edited.plan,...variant}},browserExecutable=process.env.CHROME_PATH;
-  const composition=await selectComposition({serveUrl,id:'GdaProduction',inputProps,browserExecutable});
+  const composition=await selectComposition({serveUrl,id:'DiStevenProduction',inputProps,browserExecutable});
   for(const frame of [90,792]){const file=`${format.replace(':','x')}-${frame}.jpg`;await renderStill({serveUrl,composition,inputProps,output:path.join(out,file),frame,imageFormat:'jpeg',browserExecutable});records.push({format,width,height,frame,file});}
  }
  await fs.writeFile(path.join(out,'format-results.json'),JSON.stringify({status:'stills_rendered',records,continuousPlayback:'not_run',listening:'not_run'},null,2)+'\n');console.log(JSON.stringify(records));

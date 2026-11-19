@@ -1,6 +1,6 @@
 # Validação do orquestrador
 
-Verificação local em 15/11/2026 (America/Sao_Paulo), base `8b100ff`, branch `feat/gda-production-orchestrator`. Node 24.22.1, FFmpeg/FFprobe e Chromium locais. Sem chamadas pagas, merge ou publicação no domínio. Os caminhos abaixo são relativos à raiz do repositório; arquivos em `projects/` permanecem fora do Git.
+Verificação local em 15/11/2026 (America/Sao_Paulo), base `8b100ff`, branch `feat/disteven-production-orchestrator`. Node 24.22.1, FFmpeg/FFprobe e Chromium locais. Sem chamadas pagas, merge ou publicação no domínio. Os caminhos abaixo são relativos à raiz do repositório; arquivos em `projects/` permanecem fora do Git.
 
 ## Engenharia e regressão
 

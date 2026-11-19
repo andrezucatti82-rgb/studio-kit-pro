@@ -19,7 +19,7 @@ Os quatro alertas do scanner eram falsos positivos:
 
 | Arquivo | Conteúdo identificado | Avaliação |
 | --- | --- | --- |
-| `docs/validation/folio-publication.json` | SHA-256 do arquivo de entrada anterior | Hash de integridade, sem acesso a contas |
+| `docs/validation/disteven-publication.json` | SHA-256 do arquivo de entrada anterior | Hash de integridade, sem acesso a contas |
 | `dist/atlas-4.8-verification.json` | SHA-256 do arquivo de entrada anterior | Hash de integridade, sem acesso a contas |
 | `style-atlas/records/segments-440/visual-review.json` | Hash de arte no registro de revisão | Hash de integridade, sem acesso a contas |
 | `style-atlas/dist/sequencias.html` | Identificador público de `localStorage` | Chave de armazenamento no navegador, sem autenticação |

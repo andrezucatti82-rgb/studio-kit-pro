@@ -3,8 +3,8 @@ from playwright.sync_api import sync_playwright
 from pathlib import Path
 import json, os
 
-base=os.environ.get('GDA_QA_URL','http://127.0.0.1:8770/')
-out=Path(os.environ.get('GDA_QA_OUT','projects/presenter-browser-qa'));out.mkdir(parents=True,exist_ok=True)
+base=os.environ.get('DISTEVEN_QA_URL','http://127.0.0.1:8770/')
+out=Path(os.environ.get('DISTEVEN_QA_OUT','projects/presenter-browser-qa'));out.mkdir(parents=True,exist_ok=True)
 result={'checks':[],'errors':[]}
 def choose_family(page):
  if page.locator('#openCategories').is_visible():page.locator('#openCategories').click()

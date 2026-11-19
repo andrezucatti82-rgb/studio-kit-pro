@@ -7,7 +7,7 @@ import {parseHTML} from 'linkedom';
 const root=new URL('../style-atlas/dist/',import.meta.url);
 const read=name=>readFile(new URL(name,root),'utf8');
 // DOM integration tests: no layout engine, playback, canvas export or browser QA implied.
-async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false,desktop=true}={}){
+async function boot({page=false,saved=null,hash="",imageOrigin=null,disteven=false,desktop=true}={}){
  const {document,window:dom}=parseHTML(await read('index.html'));
  // LinkeDOM has no layout; real visibility and responsive focus are covered by
  // browser-dark-ui.py. Supply only the connected-element API for DOM flows.
@@ -35,7 +35,7 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null,folio=false,
  };
  document.fonts={add(){}};ctx.window=ctx;ctx.globalThis=ctx;
  vm.createContext(ctx);
- for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','search.js',...(folio?['folio-model.js','folio-ui.js']:[]),'app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
+ for(const name of ['guided.js','workflow.js','gallery-views.js','app-shell.js','presenter-ui.js','search.js',...(disteven?['disteven-model.js','disteven-ui.js']:[]),'app.js','guided-ui.js','style-picker.js'])vm.runInContext(await read(name),ctx,{filename:name});
  for(let i=0;i<150&&!ctx.ATLAS_READY&&!errors.length;i++)await new Promise(r=>setTimeout(r,10));
  assert.equal(errors.map(e=>e.stack).join('\n'),'');assert.equal(ctx.ATLAS_READY,true,'app initialized');
  const click=selector=>{const el=document.querySelector(selector);assert.ok(el,selector);el.dispatchEvent(new dom.Event('click',{bubbles:true}));};
@@ -403,55 +403,55 @@ test('presenters are a main category with fifty-three sector choices; vehicle an
  assert.equal(JSON.stringify(ctx.AtlasApp.exportBundle()),before);
 });
 
-test('Fólio goals and niche browsing preserve selections, contribution scopes and visual approvals',async()=>{
- const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
- assert.equal(d.body.dataset.folioMode,'home');assert.equal(d.querySelectorAll('.folio-shelf').length,4);
+test('DiSteven goals and niche browsing preserve selections, contribution scopes and visual approvals',async()=>{
+ const a=await boot({disteven:true}),{ctx,document:d,click,change}=a;
+ assert.equal(d.body.dataset.distevenMode,'home');assert.equal(d.querySelectorAll('.disteven-shelf').length,4);
  const id=ctx.AtlasApp.getCatalog().styles.find(s=>s.presenterEditing?.sector==='dentistas').id;
  ctx.AtlasApp.chooseStyle(id);ctx.AtlasApp.setStyleContributions(id,[{aspect:'lighting',scope:'opening'}]);
  const c=ctx.AtlasCurrentChoice();c.projectState.preProductionApprovals.moodboard.status='approved';c.projectState.preProductionApprovals.visual_storyboard.status='approved';
  const before=JSON.stringify({styles:c.selectedStyles.map(s=>s.id),contributions:c.styleContributions,state:c.projectState});
- click('[data-folio-goal="sell"]');change('folioNiche','dentistas');click('[data-folio-collection="service-trust"]');
- assert.equal(ctx.AtlasFolio.getState().collection,'service-trust');
- assert.ok([...d.querySelectorAll('#grid [data-style-id]')].every(el=>ctx.FolioCollections.matchesNiche(ctx.AtlasApp.getStyle(el.dataset.styleId),'dentistas',ctx.FolioCollections.niches(ctx.AtlasApp.getCatalog().styles))));
+ click('[data-disteven-goal="sell"]');change('distevenNiche','dentistas');click('[data-disteven-collection="service-trust"]');
+ assert.equal(ctx.AtlasDiSteven.getState().collection,'service-trust');
+ assert.ok([...d.querySelectorAll('#grid [data-style-id]')].every(el=>ctx.DiStevenCollections.matchesNiche(ctx.AtlasApp.getStyle(el.dataset.styleId),'dentistas',ctx.DiStevenCollections.niches(ctx.AtlasApp.getCatalog().styles))));
  const after=ctx.AtlasCurrentChoice();assert.equal(JSON.stringify({styles:after.selectedStyles.map(s=>s.id),contributions:after.styleContributions,state:after.projectState}),before);
 });
 
-test('Fólio keeps business topics in the desktop menu and searches the whole catalogue',async()=>{
- const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
- assert.equal(d.getElementById('folioOpenMenu'),null);
- click('[data-folio-open-group="business"]');assert.equal(d.getElementById('folioMenu').hidden,false);
- click('[data-folio-topic="casa"]');assert.equal(d.getElementById('folioMenu').hidden,false);assert.equal(ctx.AtlasFolio.getState().browseTopic,'casa');
- assert.equal(d.querySelector('[data-folio-topic="casa"]').getAttribute('aria-current'),'true');
+test('DiSteven keeps business topics in the desktop menu and searches the whole catalogue',async()=>{
+ const a=await boot({disteven:true}),{ctx,document:d,click,change}=a;
+ assert.equal(d.getElementById('distevenOpenMenu'),null);
+ click('[data-disteven-open-group="business"]');assert.equal(d.getElementById('distevenMenu').hidden,false);
+ click('[data-disteven-topic="casa"]');assert.equal(d.getElementById('distevenMenu').hidden,false);assert.equal(ctx.AtlasDiSteven.getState().browseTopic,'casa');
+ assert.equal(d.querySelector('[data-disteven-topic="casa"]').getAttribute('aria-current'),'true');
  const cards=[...d.querySelectorAll('#grid [data-style-id]')];
- assert.ok(cards.length&&cards.every(el=>ctx.FolioCollections.matchesBrowse(ctx.AtlasApp.getStyle(el.dataset.styleId),'business','casa')));
+ assert.ok(cards.length&&cards.every(el=>ctx.DiStevenCollections.matchesBrowse(ctx.AtlasApp.getStyle(el.dataset.styleId),'business','casa')));
  const mat=ctx.AtlasApp.getStyle('natural-capachos-a-casa-comeca-antes-da-porta');
- assert.ok(ctx.FolioCollections.matchesBrowse(mat,'business','casa'));
- assert.ok(ctx.FolioCollections.matchesBrowse(mat,'ads','servicos'));
- click('[data-folio-home]');change('folioNiche','dentistas');
+ assert.ok(ctx.DiStevenCollections.matchesBrowse(mat,'business','casa'));
+ assert.ok(ctx.DiStevenCollections.matchesBrowse(mat,'ads','servicos'));
+ click('[data-disteven-home]');change('distevenNiche','dentistas');
  d.getElementById('search').value='cachorro';d.getElementById('search').dispatchEvent(new ctx.Event('input',{bubbles:true}));
- assert.equal(ctx.AtlasFolio.getState().mode,'catalogue');assert.equal(ctx.AtlasFolio.getState().niche,'');assert.equal(ctx.AtlasApp.categorySelection().family,'');
- assert.equal(ctx.AtlasFolio.getState().browseGroup,'');
+ assert.equal(ctx.AtlasDiSteven.getState().mode,'catalogue');assert.equal(ctx.AtlasDiSteven.getState().niche,'');assert.equal(ctx.AtlasApp.categorySelection().family,'');
+ assert.equal(ctx.AtlasDiSteven.getState().browseGroup,'');
  assert.ok(d.querySelectorAll('#grid [data-style-id]').length>0);
- const mobile=await boot({folio:true,desktop:false});
- mobile.click('[data-folio-open-group="tutorials"]');mobile.click('[data-folio-topic="tela"]');
- assert.equal(mobile.document.getElementById('folioMenu').hidden,true);
- assert.equal(mobile.ctx.AtlasFolio.getState().browseTopic,'tela');
+ const mobile=await boot({disteven:true,desktop:false});
+ mobile.click('[data-disteven-open-group="tutorials"]');mobile.click('[data-disteven-topic="tela"]');
+ assert.equal(mobile.document.getElementById('distevenMenu').hidden,true);
+ assert.equal(mobile.ctx.AtlasDiSteven.getState().browseTopic,'tela');
 });
 
-test('Fólio collection additions are the real persisted choices carried into the existing brief',async()=>{
- const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
- click('[data-folio-collection="explanations"]');const id=d.querySelector('#grid [data-choose]').dataset.choose;click('#grid [data-choose]');
+test('DiSteven collection additions are the real persisted choices carried into the existing brief',async()=>{
+ const a=await boot({disteven:true}),{ctx,document:d,click,change}=a;
+ click('[data-disteven-collection="explanations"]');const id=d.querySelector('#grid [data-choose]').dataset.choose;click('#grid [data-choose]');
  assert.equal(d.body.dataset.view,'library');assert.equal(ctx.AtlasCurrentChoice().selectedStyles[0].id,id);
- click('[data-folio-choice]');assert.equal(d.getElementById('folioChoice').open,true);assert.ok(d.getElementById('folioChoiceItems').textContent.includes(ctx.AtlasApp.getStyle(id).name));
- click('#folioChoiceContinue');assert.equal(d.getElementById('folioChoice').open,false);assert.equal(d.body.dataset.view,'brief');
+ click('[data-disteven-choice]');assert.equal(d.getElementById('distevenChoice').open,true);assert.ok(d.getElementById('distevenChoiceItems').textContent.includes(ctx.AtlasApp.getStyle(id).name));
+ click('#distevenChoiceContinue');assert.equal(d.getElementById('distevenChoice').open,false);assert.equal(d.body.dataset.view,'brief');
  change('topic','Explicar um serviço com clareza');assert.ok(ctx.AtlasApp.prompt().includes(id));
- const saved=JSON.parse(a.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({folio:true,saved});assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles[0].id,id);
+ const saved=JSON.parse(a.store.get('video-multimarcas-atlas-v1'));const resumed=await boot({disteven:true,saved});assert.equal(resumed.ctx.AtlasCurrentChoice().selectedStyles[0].id,id);
 });
 
-test('Fólio Page discovery keeps portable selections in widget state without reading localStorage',async()=>{
- const a=await boot({page:true,folio:true}),{ctx,document:d,click}=a;
- click('[data-folio-collection="explanations"]');const id=d.querySelector('#grid [data-choose]').dataset.choose;click('#grid [data-choose]');
- click('[data-folio-home]');click('[data-folio-goal="present"]');await ctx.AtlasApp.save();
+test('DiSteven Page discovery keeps portable selections in widget state without reading localStorage',async()=>{
+ const a=await boot({page:true,disteven:true}),{ctx,document:d,click}=a;
+ click('[data-disteven-collection="explanations"]');const id=d.querySelector('#grid [data-choose]').dataset.choose;click('#grid [data-choose]');
+ click('[data-disteven-home]');click('[data-disteven-goal="present"]');await ctx.AtlasApp.save();
  assert.equal(a.getStorageReads(),0);assert.equal(a.getState().modelContent.selectedStyles[0].id,id);
  assert.equal(ctx.AtlasCurrentChoice().projectState.preProductionApprovals.moodboard.status,'pending');
 });

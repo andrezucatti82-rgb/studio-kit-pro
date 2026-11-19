@@ -1,9 +1,9 @@
 /* Enabled only by the local production server. The public static atlas keeps its guided flow. */
 (()=>{
- if(!window.GDAProduction?.enabled)return;
+ if(!window.DiStevenProduction?.enabled)return;
  let active,requestKey,prepared;
  const $=id=>document.getElementById(id);
- const headers=()=>({'X-GDA-Token':window.GDAProduction.token});
+ const headers=()=>({'X-DiSteven-Token':window.DiStevenProduction.token});
  async function api(url,options={}){const response=await fetch(url,{...options,headers:{...headers(),...options.headers}});const data=await response.json();if(!response.ok)throw Error(data.error||'Falha na produção');return data;}
  function mount(){
   const host=$('myProject');if(!host)return;
@@ -27,7 +27,7 @@
     const request={prompt:$('productionPrompt').value,styleId,assetIds:[asset.id],durationSeconds:Number($('productionDuration').value),format:$('productionFormat').value,fps:30,captions:[]};if(music)request.musicAssetId=music.id;
     prepared=await api('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request)});$('productionPreparation').hidden=false;
     active=await api('/api/jobs',{method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':requestKey},body:JSON.stringify(request)});
-    try{localStorage.setItem('gda-local-production-job',active.id);}catch{}await watch();
+    try{localStorage.setItem('disteven-local-production-job',active.id);}catch{}await watch();
    }catch(error){$('productionStatus').textContent=/approval|workflow|approved|bound/i.test(error.message)?'O plano está preparado. Conclua as aprovações visuais no fluxo guiado e vincule os arquivos ao serviço local antes de renderizar.':error.message;$('productionStart').disabled=false;}
   };
   function download(data,name){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
@@ -40,7 +40,7 @@
    if(active.state==='completed'){const base=`/api/jobs/${active.id}/`;$('productionVideo').src=base+'candidate.mp4';for(const [id,file]of [['productionDownload','candidate.mp4'],['productionPlan','edit-plan.json'],['productionCaptions','captions.srt'],['productionReport','technical-report.json']]){$(id).href=base+file+'?download=1';$(id).setAttribute('download',file);}$('productionResult').hidden=false;}
    if(!done)setTimeout(()=>watch().catch(error=>{$('productionStatus').textContent=error.message;$('productionStart').disabled=false;}),1200);
   }
-  try{const saved=localStorage.getItem('gda-local-production-job');if(saved){active={id:saved};watch().catch(()=>{});}}catch{}
+  try{const saved=localStorage.getItem('disteven-local-production-job')||localStorage.getItem('gda-local-production-job');if(saved){active={id:saved};watch().catch(()=>{});}}catch{}
  }
  window.addEventListener('atlas:ready',mount,{once:true});
 })();

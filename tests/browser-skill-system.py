@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import os,json
-base=os.environ.get('GDA_QA_URL','http://127.0.0.1:8770/')
+base=os.environ.get('DISTEVEN_QA_URL','http://127.0.0.1:8770/')
 out=Path('projects/skill-system-browser');out.mkdir(parents=True,exist_ok=True)
 result={'checks':[],'errors':[],'publicSite':{}}
 with sync_playwright() as p:

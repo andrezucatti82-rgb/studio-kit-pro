@@ -4,13 +4,13 @@ Branch: `feat/fidelity-project-workflow`. Trabalho local para revisão; não aut
 
 1. **Contrato:** PNG por estilo (atlas ou imagem individual), referência e quatro travas no preset/pedido, campos completos nos 540 IDs. Readiness preservada. Validação inicial do catálogo passou; downloads foram verificados na revisão integrada.
 2. **Duração:** 15/30/60 ou 61–3600 segundos; amostra sempre 10 s. Estimativa por limites do adaptador, sem distribuir uniformemente as cenas. Testes puros de estimativa, migração e pedido passaram.
-3. **Contato:** menu Produzir meu vídeo e escolha fazer sozinho/produção pela GDA. A versão final remove WhatsApp por decisão posterior do usuário; somente link institucional, sem briefing na URL. GA4 vazio: nenhum script de medição. Se configurado futuramente, carregamento somente após consentimento explícito da sessão; só três eventos permitidos e nenhum campo digitado nos eventos. Fluxo de medição com ID real não foi verificado.
+3. **Contato:** menu Produzir meu vídeo e escolha fazer sozinho/produção pela DiSteven. A versão final remove WhatsApp por decisão posterior do usuário; somente link institucional, sem briefing na URL. GA4 vazio: nenhum script de medição. Se configurado futuramente, carregamento somente após consentimento explícito da sessão; só três eventos permitidos e nenhum campo digitado nos eventos. Fluxo de medição com ID real não foi verificado.
 4. **Continuidade:** ficha versionada exportável/importável, histórico e parser limitado. Dados colados são renderizados como texto. Aprovação exige quatro decisões do usuário; status nunca as concede. Projetos CLI antigos preservam evidências e recebem a etapa final pendente. Testes de ficha e parser passaram.
 5. **Escolha:** seis recomendações determinísticas, selos conforme preview (seis existentes), estilos selecionados no briefing e avisos técnicos acessíveis. Integração inclui retirada do WhatsApp, validadores de travas e compilação Page compatível.
 
 ## Verificação executada
 
-- `npm ci --cache /tmp/gda-npm-cache` passou. As primeiras tentativas falharam por rede restrita e cache fora das pastas graváveis; não se alterou o lockfile para contornar a instalação.
+- `npm ci --cache /tmp/disteven-npm-cache` passou. As primeiras tentativas falharam por rede restrita e cache fora das pastas graváveis; não se alterou o lockfile para contornar a instalação.
 - `npm run check`, `npm test`, `npm run validate` passaram, incluindo 540 IDs preservados, maturidade inalterada.
 - `npm run atlas` executado e usado nos testes Playwright/Chromium.
 - PNG dos estilos `publicidade-cinematografica` (atlas) e `aula-amostra-em-bancada-de-raciocinio` (individual) baixados e dimensões conferidas contra a fonte. Não é uma avaliação artística de todos os quadros.
@@ -30,11 +30,11 @@ npm run validate
 npm run atlas
 ```
 
-Abra http://127.0.0.1:8770/. Para reproduzir os testes de navegador, instale Python/Playwright, disponibilize Chromium em `/usr/bin/chromium` e, com o atlas aberto, execute `python tests/browser-workflow.py`. O relatório temporário fica em `/tmp/gda-workflow-browser`. A compilação opcional da Page usa BeautifulSoup, FontTools e Brotli: `python style-atlas/records/build_page.py`.
+Abra http://127.0.0.1:8770/. Para reproduzir os testes de navegador, instale Python/Playwright, disponibilize Chromium em `/usr/bin/chromium` e, com o atlas aberto, execute `python tests/browser-workflow.py`. O relatório temporário fica em `/tmp/disteven-workflow-browser`. A compilação opcional da Page usa BeautifulSoup, FontTools e Brotli: `python style-atlas/records/build_page.py`.
 
 ## Decisões antes de publicar
 
-- Aprovar a chamada **Conhecer a produção da GDA** e o destino institucional; WhatsApp foi retirado.
+- Aprovar a chamada **Conhecer a produção da DiSteven** e o destino institucional; WhatsApp foi retirado.
 - Manter GA4 vazio ou fornecer ID e aprovar o consentimento e os três eventos. Não houve verificação jurídica nem teste de coleta real.
 - Autorizar publicação e eventual atualização das instalações separadamente.
 

@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import os,json,time
-r=Path.cwd();out=r/'projects/search-improvement/browser';out.mkdir(parents=True,exist_ok=True);base=os.environ.get('GDA_QA_URL','http://127.0.0.1:8770/');result={'checks':[],'errors':[],'queryMilliseconds':[]}
+r=Path.cwd();out=r/'projects/search-improvement/browser';out.mkdir(parents=True,exist_ok=True);base=os.environ.get('DISTEVEN_QA_URL','http://127.0.0.1:8770/');result={'checks':[],'errors':[],'queryMilliseconds':[]}
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
  for width,page_mode in [(375,False),(1440,False),(375,True),(1440,True)]:

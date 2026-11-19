@@ -9,11 +9,12 @@ test('public style codes are unique, stable and find one style by case-insensiti
  const codes=c.styles.map(style=>S.styleCode(style.id));
  assert.equal(new Set(codes).size,c.styles.length);
  for(const [i,code] of codes.entries()){
-  assert.match(code,/^FOL-[0-9A-HJKMNP-TV-Z]{8}$/);
+  assert.match(code,/^DIS-[0-9A-HJKMNP-TV-Z]{8}$/);
   assert.deepEqual(ids(code),[c.styles[i].id]);
  }
- const id='explicador-agencias-o-dado-responde-a-pergunta',code='FOL-JERVPBEH';
+ const id='explicador-agencias-o-dado-responde-a-pergunta',code='DIS-JERVPBEH';
  assert.equal(S.styleCode(id),code);
+ assert.deepEqual(ids('dis jervpbeh'),[id]);
  assert.deepEqual(ids('fol jervpbeh'),[id]);
  assert.deepEqual(index.suggest(code),[{query:code,label:'O dado responde à pergunta',kind:'style',id,count:1}]);
  assert.deepEqual(ids('FOL-00000000'),[]);

@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 // Receives and serves encrypted packages. Keys stay in the browser and the agent's prompt.
-const FOLIO_ORIGIN = 'https://videos.gerenciadordeanuncios.com.br';
-const FOLIO_LIMIT = 64 * 1024 * 1024;
-const FOLIO_TTL = 7200;
+const DISTEVEN_ORIGIN = 'https://videos.gerenciadordeanuncios.com.br';
+const DISTEVEN_LIMIT = 64 * 1024 * 1024;
+const DISTEVEN_TTL = 7200;
 
 ini_set('display_errors', '0');
 header('Cache-Control: private, no-store, max-age=0');
@@ -24,11 +24,11 @@ $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $host = $_SERVER['HTTP_HOST'] ?? '';
 $local = PHP_SAPI === 'cli-server' && preg_match('/^(localhost|127\.0\.0\.1):[0-9]+$/D', $host);
 if ($method !== 'GET' && $method !== 'PUT') result(405, ['error' => 'Método indisponível.']);
-if ($method === 'PUT' && $origin !== ($local ? 'http://' . $host : FOLIO_ORIGIN)) {
-    result(403, ['error' => 'Envie pelo próprio Fólio.']);
+if ($method === 'PUT' && $origin !== ($local ? 'http://' . $host : DISTEVEN_ORIGIN)) {
+    result(403, ['error' => 'Envie pelo próprio DiSteven.']);
 }
 
-$folder = sys_get_temp_dir() . '/folio-handoff-' . hash('sha256', __DIR__);
+$folder = sys_get_temp_dir() . '/disteven-handoff-' . hash('sha256', __DIR__);
 if (!is_dir($folder)) @mkdir($folder, 0700);
 if (!is_dir($folder) || is_link($folder) || !is_writable($folder)) result(503, ['error' => 'Envio temporariamente indisponível.']);
 $clock = time();
@@ -58,7 +58,7 @@ if ($method === 'GET') {
     flock($lock, LOCK_UN);
     if (!$stream) result(404, ['error' => 'Pacote indisponível ou expirado.']);
     header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="folio-producao.enc"');
+    header('Content-Disposition: attachment; filename="disteven-producao.enc"');
     header('Content-Length: ' . fstat($stream)['size']);
     fpassthru($stream);
     fclose($stream);
@@ -69,12 +69,12 @@ $length = filter_var($_SERVER['CONTENT_LENGTH'] ?? '', FILTER_VALIDATE_INT);
 if (strtolower($_SERVER['CONTENT_TYPE'] ?? '') !== 'application/octet-stream' || $length === false || $length < 33) {
     result(400, ['error' => 'Pacote inválido.']);
 }
-if ($length > FOLIO_LIMIT) result(413, ['error' => 'O pacote excede 64 MB.']);
+if ($length > DISTEVEN_LIMIT) result(413, ['error' => 'O pacote excede 64 MB.']);
 if ($active >= 24 || $perClient >= 5) result(429, ['error' => 'Limite de envios temporários atingido.']);
 
 $id = bin2hex(random_bytes(24));
 $name = $folder . '/' . $id;
-$meta = ['client' => $client, 'expiresAt' => $clock + FOLIO_TTL, 'ready' => false];
+$meta = ['client' => $client, 'expiresAt' => $clock + DISTEVEN_TTL, 'ready' => false];
 $metaFile = fopen($name . '.meta', 'x');
 if (!$metaFile) result(503, ['error' => 'Envio temporariamente indisponível.']);
 fwrite($metaFile, json_encode($meta, JSON_THROW_ON_ERROR));

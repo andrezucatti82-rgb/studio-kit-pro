@@ -1,0 +1,544 @@
+@font-face{font-family:'DiSteven UI';src:url('assets/fonts/inter-ui-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'DiSteven UI';src:url('assets/fonts/inter-ui-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'DiSteven UI';src:url('assets/fonts/inter-ui-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'DiSteven UI';src:url('assets/fonts/inter-ui-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+/* DiSteven: neutral dark app surfaces, inspired by the supplied mobile references. */
+:root{--bg:#101010;--card:#242424;--ink:#f5f5f5;--muted:#a8a8a8;--accent:#f5f5f5;--line:#363636;--sidebar:0px;--disteven-heading:'DiSteven UI',Arial,Helvetica,sans-serif;--surface:#242424;--surface-raised:#303030;--green:#303030;--blue:#f5f5f5;color-scheme:dark}
+body{background-color:var(--bg);background-image:none;color-scheme:dark;-webkit-font-smoothing:antialiased;color:var(--ink)}
+body[data-disteven=true] #sidebarHome,body[data-disteven=true] .app-mobile-brand,body[data-disteven=true] .category-topbar,body[data-disteven=true] #openCategories,body[data-disteven=true] #categoryExplorer,body[data-disteven=true] #categoryResultsTitle{display:none!important}
+body[data-disteven=true] .app-main{margin-left:0}
+body[data-disteven=true] .app-main main{max-width:1600px;margin:0 auto;padding:24px 40px 120px}
+body[data-disteven=true] .app-footer{max-width:1600px;margin:auto;padding:24px 40px}
+body[data-disteven=true] #storageStatus{max-width:1360px;margin:0 auto;padding:0 40px;font-size:11px}
+body[data-disteven=true] #storageStatus:not(.save-error){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);padding:0}
+body[data-disteven=true] .skip-link{left:20px}
+.disteven-to-top{position:fixed;right:22px;bottom:92px;z-index:26;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);box-shadow:0 4px 18px #00000060;font-size:21px}
+.disteven-to-top[hidden]{display:none}
+body:not([data-view=library]) .disteven-to-top{display:none}
+.disteven-cover{position:relative;transition:box-shadow .2s ease,transform .2s ease}
+.disteven-cover::after{content:none}
+@media(hover:hover) and (pointer:fine){
+ .disteven-cover:hover{transform:translateY(-3px);box-shadow:0 10px 24px #00000070}
+ .disteven-cover:hover .disteven-cover-hint{opacity:1}
+}
+.disteven-cover:focus-visible{outline-offset:-3px}
+.disteven-cover:focus-visible .disteven-cover-hint{opacity:1}
+.disteven-shelf-rail:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:16px}
+body[data-disteven=true] .disteven-legacy-heading{display:none}
+body[data-disteven=true] .primary,body[data-disteven=true] .disteven-add{background:var(--disteven-accent);border-color:var(--disteven-accent);box-shadow:none;color:#161b05}
+body[data-disteven=true] .outline,body[data-disteven=true] .button{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05;box-shadow:none;border-radius:16px}
+body[data-disteven=true] input,body[data-disteven=true] select,body[data-disteven=true] textarea{color:var(--ink)}
+body[data-disteven=true] .primary{color:#161b05;border-radius:16px}
+body[data-disteven=true] button:focus-visible,body[data-disteven=true] a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+body[data-disteven=true] a{color:var(--accent)}
+body[data-disteven=true] input:focus-visible,body[data-disteven=true] select:focus-visible,body[data-disteven=true] textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.disteven-header{display:none}
+body[data-disteven=true] .disteven-header{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1600px;margin:0 auto;padding:22px 40px 18px;border-bottom:1px solid var(--line)}
+.disteven-brand{display:inline-flex;align-items:center;text-decoration:none!important;white-space:nowrap;color:#fff!important;min-height:44px}
+.disteven-wordmark{font:600 37px/1 var(--disteven-heading);letter-spacing:-1.8px;padding-bottom:2px}
+.disteven-header nav{display:flex;align-items:center;gap:23px}
+.disteven-header nav button{background:transparent;border:0;min-height:44px;font-size:13px;padding:7px 0;display:inline-flex;align-items:center;gap:8px}
+.disteven-header nav button[aria-current=page]{text-decoration:underline;text-underline-offset:10px;text-decoration-thickness:1.5px}
+.disteven-header nav [data-selection-count]{font-size:10px;min-width:20px;padding:2px 5px;background:#333333;border-radius:12px}
+.disteven-header .disteven-icon-button{padding:10px}
+.disteven-header svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.disteven-search{max-width:760px;margin:0 0 24px}
+.disteven-search .search{display:block;position:relative;margin:0;border:0;background:transparent;padding:0;box-shadow:none}
+.disteven-search .search>span{position:absolute;top:50%;left:14px;transform:translateY(-50%);font-size:24px;line-height:1;pointer-events:none}
+.disteven-search input{width:100%;max-width:none;min-height:45px;padding:11px 40px;border:1px solid var(--line);border-radius:16px;background:#242424;color:var(--ink);font-size:14px;box-shadow:inset 0 1px 2px #00000000}
+.disteven-search input::placeholder{color:var(--muted);opacity:1}
+.disteven-discovery h1,.disteven-collection-heading h1{font:500 clamp(27px,3vw,36px)/1.17 var(--disteven-heading);letter-spacing:-1px;margin:0 0 20px;max-width:900px}
+.disteven-goals{display:flex;border-bottom:1px solid var(--line);max-width:760px}
+.disteven-goals button{position:relative;flex:1;min-height:48px;border:0;background:transparent;font-size:15px;padding:10px 20px;color:var(--ink)}
+.disteven-goals button+button:before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:1px;background:var(--line)}
+.disteven-goals [aria-pressed=true]{font-weight:700}
+.disteven-goals [aria-pressed=true]:after{content:'';position:absolute;bottom:-1px;left:12px;right:12px;height:2px;background:var(--accent)}
+.disteven-scope{display:flex;justify-content:space-between;align-items:center;gap:15px;max-width:none;margin-bottom:8px;border-bottom:1px solid var(--line);min-height:56px}
+.disteven-niche{position:relative;min-width:0;margin:0!important;max-width:75%;font-weight:400}
+.disteven-niche select{appearance:none;width:100%;max-width:100%;min-height:44px;border:0;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='m2 2 5 5 5-5' fill='none' stroke='%23dddddd' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 7px center;padding:10px 29px 10px 0;border-radius:0;font-family:inherit;font-size:13px;line-height:1.4;color:var(--ink);text-overflow:ellipsis;cursor:pointer}
+.disteven-scope .text-button{font-size:12px;min-height:44px;padding:8px 0;text-align:right;white-space:nowrap;color:var(--accent)}
+.disteven-collection-heading{margin-bottom:12px}
+body[data-disteven-mode=catalogue] .disteven-collection-heading{display:flex;align-items:center;gap:16px;margin:0 0 6px}
+body[data-disteven-mode=catalogue] .disteven-collection-heading h1{font-size:28px;line-height:1.15;margin:0}
+body[data-disteven-mode=catalogue] .disteven-collection-heading p{display:none}
+.disteven-collection-heading h1{margin:16px 0 8px}
+.disteven-collection-heading p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+.disteven-back{min-height:44px;display:inline-flex;align-items:center;gap:8px;background:transparent;border:0;padding:6px 0;font-size:16px}
+.disteven-back span{font-size:12px}
+.disteven-shelf{padding:22px 0 27px;border-bottom:1px solid var(--line)}
+.disteven-shelf:last-child{border-bottom:0}
+.disteven-shelf>header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px}
+.disteven-shelf h2{font-size:19px;line-height:1.3;letter-spacing:-.4px;margin:0;font-weight:600}
+.disteven-shelf-tools{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.disteven-shelf-tools>button{display:inline-flex;align-items:center;gap:8px;flex-shrink:0;min-height:44px;background:transparent;border:0;padding:6px 0 6px 8px;color:var(--accent);font-size:12px}
+.disteven-shelf-tools>.disteven-rail-arrow{display:grid;place-items:center;padding:8px;min-width:44px;border:1px solid var(--line);border-radius:50%;font-size:17px;line-height:1}
+.disteven-shelf>header svg{width:18px;height:18px}
+.disteven-shelf-rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding:1px;scrollbar-width:thin;scrollbar-color:#555555 transparent;padding:6px 1px 14px;overscroll-behavior-x:contain}
+.disteven-card{flex:0 0 calc((100% - 70px)/6);min-width:0;scroll-snap-align:start;background:transparent;position:relative;border-radius:16px}
+.disteven-cover{display:block;padding:0;border:0;width:100%;background:transparent;border-radius:16px;overflow:hidden;line-height:0;cursor:pointer}
+.disteven-portrait{display:block;position:relative;width:100%;aspect-ratio:3/4;container-type:size;background:#1b1b1b;overflow:hidden;border-radius:16px;isolation:isolate}
+.disteven-artwork{position:absolute;inset:0;pointer-events:none}
+.disteven-artwork{z-index:1}
+/* Cover with the real panel at its native aspect ratio. Never stretch it or
+   expose a neighbouring panel in a source contact sheet. */
+.disteven-artwork>.reference-panel,.disteven-artwork>img{position:absolute;display:block;left:50%;top:var(--disteven-focus-y,50%);transform:translate(-50%,calc(-1 * var(--disteven-focus-y,50%)));width:max(100cqw,calc(100cqh * (var(--disteven-source-ratio))));height:auto;aspect-ratio:var(--disteven-source-ratio);max-width:none;max-height:none;margin:0;overflow:hidden;border-radius:0}
+.disteven-cover-hint{position:absolute;z-index:2;bottom:10px;left:10px;display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #ffffff38;border-radius:20px;background:#242424ed;color:#fff;font:11px/1.2 'DiSteven UI',Arial,sans-serif;opacity:0;transition:opacity .18s ease;pointer-events:none}
+.disteven-cover-hint svg{width:14px;height:14px}
+.disteven-photo{display:block;width:100%;height:100%;object-fit:contain;max-width:none;max-height:none;margin:0}
+.disteven-reference{display:block;color:var(--muted);padding:7px 0 0;font:9px/1.2 'DiSteven UI',Arial,sans-serif}
+.disteven-card-title{display:flex;align-items:flex-start;gap:5px;padding:4px 0 0}
+.disteven-card h3{font:600 14px/1.35 'DiSteven UI',Arial,sans-serif;margin:0;flex:1;min-width:0;letter-spacing:-.15px}
+.disteven-card h3>button{font:inherit;background:transparent;border:0;padding:7px 0;min-height:40px;text-align:left;display:block;width:100%;color:var(--ink)}
+.disteven-save{background:transparent;border:0;display:grid;place-items:center;min-width:44px;min-height:44px;padding:11px;margin-right:-8px;flex-shrink:0;color:var(--ink)}
+.disteven-save svg{width:22px;height:22px}
+.disteven-save[aria-pressed=true]{color:var(--accent)}
+.disteven-save[aria-pressed=true] svg{fill:#ffffff1a}
+.disteven-card.is-selected .disteven-cover{box-shadow:0 0 0 2px var(--disteven-accent)}
+.disteven-more-card{flex:0 0 calc((100% - 70px)/6);border:1px solid var(--line);background:transparent;align-self:flex-start;aspect-ratio:3/4;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;color:var(--accent);scroll-snap-align:start}
+.disteven-more-card>span{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
+.disteven-more-card svg{width:23px;height:23px}.disteven-more-card strong{font-size:14px;line-height:1.5}.disteven-more-card small{font-size:11px;color:var(--muted)}
+body[data-disteven=true] .disteven-catalogue-controls,body[data-disteven=true] .resultbar,body[data-disteven=true] #searchScope{display:none}
+body[data-disteven-mode=catalogue] .disteven-catalogue-controls{display:flex;max-width:none;margin:16px 0 8px}
+body[data-disteven-mode=catalogue] .resultbar{display:flex}
+body[data-disteven-mode=catalogue] #searchScope:not([hidden]){display:flex}
+body[data-disteven=true] #grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:26px 16px;padding:16px 0}
+body[data-disteven=true] #grid[hidden]{display:none!important}
+body[data-disteven=true] #grid .disteven-card{width:auto;flex-basis:auto}
+body[data-disteven=true] #grid .disteven-cover{border-radius:16px}
+body[data-disteven-mode=collection] #grid{display:grid;gap:24px 16px;padding:14px 0 22px;align-items:stretch}
+body[data-disteven-mode=collection] #grid .disteven-card{display:flex;flex-direction:column;min-width:0;max-width:none;background:#242424;border:1px solid var(--line);padding:0;border-radius:20px;box-shadow:0 2px 5px #00000000}
+.disteven-card-expanded .disteven-card-footer{display:flex;flex:1;flex-direction:column;padding:2px 10px 10px}
+.disteven-card-expanded .disteven-card-title{padding-top:3px}
+.disteven-card-expanded .disteven-card-title h3{font-size:13px}
+.disteven-card-actions{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:auto;padding-top:6px;flex-wrap:wrap}
+.disteven-card-actions>span{font-size:11px;color:var(--muted)}
+.disteven-add{min-height:44px;border:1px solid var(--ink);border-radius:16px;padding:9px 10px;background:var(--ink);color:var(--card);font-size:13px}
+.disteven-story-link{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;min-height:48px;border:0;border-top:1px solid var(--line);background:transparent;color:var(--accent)!important;font-size:11px;line-height:1.5}
+.disteven-story-link svg{width:17px;height:17px;flex-shrink:0}
+.disteven-empty{padding:40px 12px;font-size:14px;line-height:1.7;color:var(--muted);border:1px solid var(--line);border-radius:16px;margin-top:22px}
+body[data-disteven=true] #loadMore{margin:20px auto;border:1px solid var(--line);border-radius:16px;color:var(--accent);background:transparent;min-height:44px}
+body[data-disteven-mode=home] #loadMore,body[data-disteven-mode=home] #empty,body[data-disteven-mode=home] #selectionTray{display:none!important}
+body[data-disteven=true] .selection-tray{left:max(24px,calc((100vw - 1360px)/2));right:max(24px,calc((100vw - 1360px)/2));bottom:16px;border:1px solid #4a4a4a;background:#191919f5;color:var(--ink);box-shadow:0 4px 18px #00000030;border-radius:10px;padding:10px 14px;max-width:none}
+body[data-disteven=true] .selection-tray>.text-button{display:inline-flex;align-items:center;color:var(--ink);margin-right:auto;padding:8px 4px}
+body[data-disteven=true] .selection-tray strong{font-size:12px;color:var(--muted);font-weight:400}
+body[data-disteven=true] #trayImages{display:none}
+body[data-disteven=true] .selection-tray>.primary{font-size:13px;padding:10px 20px}
+.disteven-icon-button{display:grid;place-items:center;min-width:44px;min-height:44px;background:transparent;border:0;padding:8px;font-size:27px;line-height:1;cursor:pointer}
+.disteven-header>.disteven-collection-back{display:none}
+.disteven-sheet{width:min(620px,calc(100% - 40px));max-width:100%;max-height:min(85dvh,850px);padding:24px 26px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);box-shadow:0 16px 80px #00000080;overflow:auto;overscroll-behavior:contain}
+.disteven-sheet::backdrop{background:#000000aa;backdrop-filter:blur(2px)}
+.disteven-sheet>header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:15px}
+.disteven-sheet h2{font:600 23px/1.15 var(--disteven-heading);letter-spacing:-.7px;margin:0}
+.disteven-sheet .eyebrow{margin:0 0 7px;font-size:9px;color:var(--muted)}
+.disteven-sheet>footer{position:sticky;bottom:-24px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);margin-top:18px;padding:15px 0 1px;border-top:1px solid var(--line);z-index:2}
+.disteven-sheet footer a,.disteven-sheet footer button{min-height:44px;display:inline-flex;align-items:center;font-size:12px;text-decoration:none}
+.disteven-sheet:modal{scrollbar-width:thin}
+.disteven-chosen{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.disteven-chosen>button:first-child{width:62px;height:86px;flex:0 0 62px;container-type:size;border:0;padding:0;position:relative;overflow:hidden;background:#242424;border-radius:6px;line-height:0}
+.disteven-chosen .reference-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * var(--frame-ratio)));height:auto;max-height:none}
+.disteven-chosen>div{flex:1;min-width:0}.disteven-chosen small{font-size:9px;color:var(--muted)}.disteven-chosen h3{font-size:14px;margin:5px 0;line-height:1.4;overflow-wrap:anywhere}.disteven-chosen .text-button{padding:5px 0;text-align:left;font-size:10px;color:var(--accent)}
+.disteven-chosen>button:last-child{align-self:flex-start;color:var(--muted);margin-right:-8px}
+/* Keep the rest of the existing production workspace in the same material language. */
+body[data-disteven=true] #briefDialog.brief-workspace{margin:0 auto;width:100%;max-width:1600px;padding:32px 40px 120px;background:transparent}
+body[data-disteven=true] .brief-heading h1,body[data-disteven=true] #appHelp>h1,body[data-disteven=true] .direction-header h2{font-family:var(--disteven-heading);font-weight:700}
+body[data-disteven=true] .brief-editor,body[data-disteven=true] .brief-preview,body[data-disteven=true] #myProject{border-radius:10px;box-shadow:none;background:var(--card)}
+body[data-disteven=true] .brief-steps [aria-current=step],body[data-disteven=true] .controls [aria-pressed=true],body[data-disteven=true] .picker-layout nav [aria-pressed=true]{background:#373737;border-color:#777777;color:var(--ink)}
+body[data-disteven=true] .brief-preview #addMoreStyles,body[data-disteven=true] .contribution-open{background:#292929;color:var(--accent);border-color:#4a4a4a}
+body[data-disteven=true] #detailDialog{background:var(--card);border-radius:13px;border-color:var(--line)}
+body[data-disteven=true] .picker-option:has(input:checked){background:#333333;border-color:var(--accent)}
+body[data-disteven=true] .install-kit{background:#242424;border-color:var(--line)}
+body[data-disteven=true] .guided-launch{box-shadow:none}
+body[data-disteven=true] .mobile-app-nav svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+@media(min-width:701px) and (max-width:1199px){body[data-disteven=true] #grid{grid-template-columns:repeat(4,minmax(0,1fr))}.disteven-card,.disteven-more-card{flex-basis:calc((100% - 42px)/4)}}
+@media(min-width:701px) and (max-width:899px){body[data-disteven=true] #grid{grid-template-columns:repeat(3,minmax(0,1fr))}.disteven-card,.disteven-more-card{flex-basis:calc((100% - 28px)/3)}}
+@media(max-width:700px){
+ body[data-disteven=true] .disteven-header{padding:17px 20px 12px;border-bottom:0;gap:10px}
+ .disteven-brand{gap:6px}.disteven-wordmark{font-size:32px;letter-spacing:-1.5px;padding-bottom:2px}
+ .disteven-header nav{gap:5px}.disteven-header nav .disteven-desktop-nav{display:none}.disteven-header nav button{font-size:11px}.disteven-header .disteven-help{gap:6px}.disteven-header .disteven-help svg{width:19px;height:19px}
+ body[data-disteven=true] .app-main main{padding:0 20px 118px;width:100%;max-width:none;overflow:visible}
+ .disteven-search{margin-bottom:19px}.disteven-search input{min-height:44px;font-size:12px;padding:10px 35px}.disteven-search .search>span{font-size:23px;left:12px}
+ .disteven-discovery h1{font-size:25px;letter-spacing:-.75px;line-height:1.15;margin-bottom:10px;max-width:360px}
+ .disteven-goals button{min-height:45px;font-size:13px;padding:10px 12px}.disteven-goals [aria-pressed=true]:after{left:0;right:0}
+ .disteven-scope{min-height:50px;margin-bottom:0;gap:6px}.disteven-scope .disteven-niche{flex:1;max-width:none;min-width:0}.disteven-niche select{font-size:12px}.disteven-scope .text-button{font-size:10px}
+ .disteven-shelf{padding:13px 0 20px}.disteven-shelf>header{margin-bottom:7px;gap:8px}.disteven-shelf h2{font-size:15px;line-height:1.3;letter-spacing:-.4px;max-width:72%}.disteven-shelf-tools{gap:0}.disteven-shelf-tools>button{font-size:10px;gap:4px;min-height:44px;padding:6px 0 6px 5px}.disteven-shelf-tools>.disteven-rail-arrow{display:none}.disteven-shelf>header svg{width:15px;height:15px}
+ .disteven-shelf-rail{gap:10px;scrollbar-width:none;margin-right:0;padding:2px 1px 3px;scroll-padding:1px}.disteven-shelf-rail::-webkit-scrollbar{display:none}
+ .disteven-card,.disteven-more-card{flex-basis:calc((100% - 10px)/2)}.disteven-reference{font-size:8px;padding:7px 0 0}.disteven-card h3{font-size:12px;letter-spacing:-.1px}.disteven-card h3>button{min-height:44px;padding:7px 0}.disteven-card-title{padding-top:1px;gap:1px}
+ .disteven-save{min-width:44px;min-height:44px;padding:12px}.disteven-save svg{width:20px;height:20px}.disteven-more-card{flex-basis:calc((100% - 10px)/2)}.disteven-more-card strong{font-size:12px}.disteven-more-card small{font-size:10px}
+ body[data-disteven-mode=catalogue] .disteven-collection-heading{gap:12px}body[data-disteven-mode=catalogue] .disteven-collection-heading h1{font-size:23px}
+ .disteven-collection-heading{margin-bottom:8px}.disteven-back{padding:0;min-height:36px}.disteven-collection-heading h1{font-size:27px;line-height:1.1;margin:7px 0 8px;letter-spacing:-.85px}.disteven-collection-heading p{font-size:12px;line-height:1.5}.disteven-back span{font-size:11px}
+ body[data-disteven-mode=collection] .disteven-search{display:none}
+ body[data-disteven-mode=collection] .disteven-header>.disteven-collection-back{display:none}
+ body[data-disteven-mode=collection] .disteven-header .disteven-brand{margin-right:auto}
+ body[data-disteven-mode=collection] .disteven-header .disteven-help{display:inline-flex}
+ body[data-disteven-mode=collection] .disteven-collection-heading>.disteven-back{display:inline-flex}
+ body[data-disteven-mode=collection] .disteven-scope{border:0}
+ body[data-disteven-mode=collection] .disteven-niche{max-width:72%;border:1px solid var(--line);border-radius:24px;padding-left:10px}
+ body[data-disteven-mode=collection] .disteven-niche select{padding-right:25px;min-height:36px;font-size:11px}
+ body[data-disteven-mode=collection] #grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 10px;margin:0;padding:8px 0 14px;overflow:visible;align-items:stretch}
+ body[data-disteven-mode=collection] #grid .disteven-card{width:auto;max-width:none;border-radius:16px;display:flex;flex-direction:column}
+ .disteven-card-expanded .disteven-card-title h3{font-size:12px}.disteven-card-expanded .disteven-card-footer{padding:1px 8px 10px;display:flex;flex:1;flex-direction:column}.disteven-card-actions{margin-top:auto;flex-wrap:wrap;gap:5px;padding-top:5px}.disteven-card-actions>span{font-size:9px}.disteven-add{font-size:11px;min-height:44px;padding:9px 7px;width:100%}.disteven-story-link{font-size:10px;min-height:48px;padding:10px 7px;gap:4px}
+ body[data-disteven-mode=catalogue] #grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px}.disteven-catalogue-controls .category-menu{flex-basis:100%;max-width:none}.disteven-catalogue-controls .filter-chips{flex:1}.disteven-catalogue-controls .category-menu select{font-size:12px}.disteven-catalogue-controls #presenterSectorWrap{flex-basis:100%;width:100%;max-width:none}.disteven-catalogue-controls button{font-size:11px;min-height:44px}.disteven-catalogue-controls .extra-filters{margin-left:0}
+ body[data-disteven=true] .mobile-app-nav{display:flex;position:fixed;bottom:0;left:0;right:0;width:100%;transform:none;border:0;border-top:1px solid var(--line);border-radius:0;background:#111111f5;backdrop-filter:blur(12px);box-shadow:none;padding:5px 14px max(8px,env(safe-area-inset-bottom));gap:0;justify-content:space-around;z-index:25}
+ body[data-disteven=true] .mobile-app-nav>button{position:relative;display:flex;flex:1;flex-direction:column;gap:4px;align-items:center;justify-content:center;min-height:53px;padding:5px 8px;background:transparent;border:0;border-radius:0;font-size:10px;color:var(--ink)}
+ body[data-disteven=true] .mobile-app-nav>button[aria-current=page]{background:transparent;color:var(--accent);font-weight:500}
+ body[data-disteven=true] .mobile-app-nav>button[aria-current=page]:after{content:'';position:absolute;bottom:1px;height:1.5px;left:25%;right:25%;background:var(--accent)}
+ body[data-disteven=true] .mobile-app-nav svg{width:23px;height:23px}.disteven-choice-icon{position:relative;line-height:0}.disteven-choice-icon small{position:absolute;right:-9px;top:-6px;min-width:16px;height:16px;padding:1px 4px;display:grid;place-items:center;font:9px/1 'DiSteven UI',Arial,sans-serif;background:var(--accent);color:white;border-radius:12px;border:1px solid var(--card)}
+ body[data-disteven=true]:has(#selectionTray:not([hidden])) .disteven-to-top{bottom:160px}
+ body[data-disteven=true] .selection-tray{left:14px;right:14px;bottom:83px;border-radius:10px;padding:8px 10px;gap:7px}.selection-tray strong{display:none}body[data-disteven=true] .selection-tray .text-button{font-size:12px;min-height:44px}body[data-disteven=true] .selection-tray>.primary{min-height:44px;padding:9px 16px;font-size:12px}
+ body[data-disteven-mode=collection]:has(#selectionTray:not([hidden])) .mobile-app-nav{display:none}
+ body[data-disteven-mode=collection] .mobile-app-nav{display:none}
+ body[data-disteven-mode=collection]:has(#selectionTray:not([hidden])) .selection-tray{bottom:max(12px,env(safe-area-inset-bottom));background:#1a1a1afa}
+ .disteven-sheet{position:fixed;inset:auto 0 0;margin:0;width:100%;max-width:100%;max-height:88dvh;border-radius:17px 17px 0 0;padding:20px 20px max(18px,env(safe-area-inset-bottom));box-shadow:0 -10px 60px #00000070}
+ .disteven-sheet>header{margin-bottom:10px}.disteven-sheet h2{font-size:25px}.disteven-sheet>footer{bottom:-20px;padding:13px 0 max(6px,env(safe-area-inset-bottom));font-size:11px;gap:8px}.disteven-sheet footer a,.disteven-sheet footer button{font-size:11px}
+ .disteven-chosen{gap:10px}.disteven-chosen h3{font-size:12px}.disteven-chosen .text-button{font-size:10px}.disteven-chosen>button:first-child{width:52px;height:76px;flex-basis:52px}
+ body[data-disteven=true] #briefDialog.brief-workspace{padding:10px 18px 115px;margin:0;width:100%}.brief-heading .guided-launch{display:none}body[data-disteven=true] #detailDialog{padding:18px 16px;border-radius:13px;max-height:94dvh}.direction-header h2{font-size:27px}.direction-header .actions{gap:8px}.direction-header .actions button{min-height:44px;font-size:11px}
+ body[data-disteven=true] .app-footer{font-size:10px;padding:20px 20px 110px;flex-wrap:wrap}body[data-disteven=true] #appHelp>h1{font-size:29px}.disteven-collections:empty{min-height:150px}
+}
+@media(prefers-reduced-motion:reduce){.disteven-cover,.disteven-cover-hint{transition:none!important}.disteven-cover:hover{transform:none!important}.disteven-cover.is-lit::after{background:none!important}.disteven-shelf-rail,body[data-disteven-mode=collection] #grid{scroll-behavior:auto}}
+
+/* Shared app controls. Keep production/reference media in its original colors. */
+body[data-disteven=true] button,body[data-disteven=true] input,body[data-disteven=true] select,body[data-disteven=true] textarea{font-family:'DiSteven UI',Arial,Helvetica,sans-serif}
+body[data-disteven=true] .primary,body[data-disteven=true] .disteven-add{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05;border-radius:999px;font-weight:600}
+body[data-disteven=true] .outline,body[data-disteven=true] .button{background:var(--disteven-accent);border-color:var(--disteven-accent);border-radius:999px;color:#161b05}
+body[data-disteven=true] input,body[data-disteven=true] select,body[data-disteven=true] textarea{background:var(--surface);border-color:transparent;color:var(--ink);caret-color:var(--ink);accent-color:var(--ink)}
+body[data-disteven=true] input::placeholder,body[data-disteven=true] textarea::placeholder{color:var(--muted);opacity:1}
+body[data-disteven=true] select option{background:var(--surface);color:var(--ink)}
+body[data-disteven=true] .disteven-header{border-bottom:0}
+.disteven-header nav{gap:12px}
+.disteven-header nav button{padding:9px 14px;border-radius:999px;color:#a8a8a8}
+.disteven-header nav button[aria-current=page]{background:var(--disteven-accent);color:#161b05;text-decoration:none}
+.disteven-header .disteven-icon-button{background:var(--disteven-accent);color:#161b05;border:1px solid var(--disteven-accent);padding:10px;border-radius:50%}
+.disteven-search input{min-height:54px;border:1px solid #303030;border-radius:999px;background:var(--surface);box-shadow:none;font-size:15px;padding-left:46px}
+.disteven-search .search>span{left:18px;color:#b8b8b8}
+.disteven-goals{border:0;background:#1c1c1c;border-radius:999px;padding:4px;gap:4px}
+.disteven-goals button{border-radius:999px;color:var(--muted);min-height:44px;font-size:14px}
+.disteven-goals button+button:before,.disteven-goals [aria-pressed=true]:after{display:none}
+.disteven-goals [aria-pressed=true]{background:#353535;color:#fff;font-weight:600}
+.disteven-scope{border-bottom:0;margin:8px 0}
+.disteven-niche{max-width:75%}
+.disteven-niche select{min-height:44px;border-radius:999px;background-color:var(--surface);padding-left:14px;padding-right:34px}
+.disteven-shelf{border-bottom:0;padding-bottom:24px}
+.disteven-shelf h2{font-weight:550;letter-spacing:-.3px}
+.disteven-shelf-tools>.disteven-rail-arrow{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05}
+.disteven-reference{color:#a0a0a0}
+.disteven-sheet{background:var(--bg);border:1px solid #303030;border-radius:30px;box-shadow:0 24px 100px #000a;padding:24px}
+.disteven-sheet>header{position:relative;min-height:48px;padding:0 52px;justify-content:center;margin-bottom:24px;text-align:center}
+.disteven-sheet>header>div{width:100%;text-align:center}
+.disteven-sheet>header h2{font-size:20px;font-weight:600;letter-spacing:-.3px}
+.disteven-sheet>header .disteven-icon-button{position:absolute;left:0;top:0;width:44px;height:44px;border:1px solid var(--disteven-accent);border-radius:50%;background:var(--disteven-accent);color:#161b05;font-size:30px;font-weight:300}
+.disteven-sheet>header .eyebrow{display:none}
+.disteven-sheet>footer{background:var(--bg);border-color:#303030;padding-top:20px}
+.disteven-chosen{background:var(--surface);padding:16px;border:0;border-radius:24px;margin:12px 0}
+body[data-disteven=true] .selection-tray{background:#242424f5;border-color:#444;border-radius:28px;box-shadow:0 10px 50px #0006}
+body[data-disteven=true] .selection-tray>.primary{border-radius:999px}
+body[data-disteven=true] dialog{background:var(--bg);border-color:#333;border-radius:28px;color:var(--ink);box-shadow:0 24px 90px #0009}
+body[data-disteven=true] dialog::backdrop{background:#000b;backdrop-filter:blur(6px)}
+body[data-disteven=true] #detailDialog{background:var(--bg);border-radius:28px}
+body[data-disteven=true] .close,body[data-disteven=true] #detailDialog .close{width:44px;height:44px;border:1px solid #383838;border-radius:50%;background:var(--disteven-accent);color:#161b05}
+body[data-disteven=true] :is(.brief-editor,.brief-preview,#myProject,.project-card,.guided-option,.guided-current-style,.guided-materials label,.guided-continue,.install-kit,.picker-option,.preproduction-grid article,.production-readiness,.style-requirements,.requirement-grid details,.novelty,.setup-box){background:var(--surface);border-color:transparent;border-radius:26px;box-shadow:none;color:var(--ink)}
+body[data-disteven=true] :is(.request-summary,.notice,.selected-chip,.contribution-chip,.brief-style,.brief-font-choice,.guided-progress li,#projectStages li,.review-surface,.readiness-notes){background:var(--surface-raised);border-color:var(--line);color:var(--ink)}
+body[data-disteven=true] #briefDialog :is(input,select,textarea),body[data-disteven=true] #briefDialog .brief-font-choice{background:var(--surface-raised);border-color:transparent;border-radius:24px;min-height:50px;font-size:14px;padding:14px 16px;color:var(--ink)}
+body[data-disteven=true] #briefDialog :is(input[type=checkbox],input[type=radio]){min-height:0;padding:0;border-radius:4px}
+body[data-disteven=true] #briefDialog #topic{min-height:144px;line-height:1.55;resize:vertical}
+body[data-disteven=true] #briefDialog form label{font-size:13px;font-weight:500;color:#b8b8b8}
+body[data-disteven=true] #briefDialog :is(.brief-icon,#openFonts){background:var(--disteven-accent);color:#161b05;border-color:var(--disteven-accent);border-radius:999px}
+body[data-disteven=true] #briefDialog .brief-delivery{color:#b8b8b8}
+body[data-disteven=true] .brief-steps button{background:transparent;border-color:transparent;color:var(--muted);border-radius:999px}
+body[data-disteven=true] .brief-steps [aria-current=step]{background:#3b3b3b;border-color:#505050;color:#fff}
+body[data-disteven=true] :is(.brief-extra,.request-summary>div,#briefDialog #handoff,.project-card>details,#approvalLocks>div){border-color:#414141}
+body[data-disteven=true] :is(.request-summary,.brief-style){border-radius:22px}
+body[data-disteven=true] :is(.contribution-open,.brief-preview #addMoreStyles,.add-direction){background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05;border-radius:999px}
+body[data-disteven=true] .contribution-open.missing{background:#332b1c;border-color:#675536;color:#f2d190}
+body[data-disteven=true] :is(.guided-progress [aria-current=step],.picker-layout nav [aria-pressed=true],.picker-option:has(input:checked),.guided-materials label:has(input:checked)){background:#383838;border-color:#686868;color:#fff}
+body[data-disteven=true] :is(.guided-option b,.font-label,.font-body,.font-state,.setup-box a,.research a){color:var(--ink)}
+body[data-disteven=true] :is(.guided-option>button:first-child img,.brief-preview .frame-expand,.guided-reference,.detail-image,.brief-style-image){background:#151515}
+body[data-disteven=true] :is(.guided-dialog footer,.picker-footer){background:var(--bg);border-color:#333}
+body[data-disteven=true] .picker-search input{background:var(--surface);border-radius:999px;border-color:#333;min-height:50px;padding:12px 18px}
+body[data-disteven=true] .picker-option{border:1px solid #383838;border-radius:20px}
+body[data-disteven=true] .picker-binding select{background:var(--surface-raised);border-color:#444;color:var(--ink);border-radius:14px}
+body[data-disteven=true] :is(.controls,.filter-chips) [aria-pressed=true]{background:#f5f5f5;border-color:#f5f5f5;color:#111}
+body[data-disteven=true] :is(.font-card[aria-pressed=true],#newFilter[aria-pressed=true]){background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05}
+body[data-disteven=true] .toast{background:#353535;border-color:#555;color:#fff;border-radius:999px}
+body[data-disteven=true] .new-tag{background:#353535;color:#ddd}
+body[data-disteven=true] .delivery-note{background:#242424;border-color:#444;color:#bdbdbd}
+body[data-disteven=true] .guided-launch{background:var(--disteven-accent);color:#161b05;border-color:var(--disteven-accent);border-radius:999px}
+body[data-disteven=true] .mobile-app-nav{background:#111111f5;border-color:#333}
+body[data-disteven=true] .mobile-app-nav>button{color:#999}
+body[data-disteven=true] .mobile-app-nav>button[aria-current=page]{color:#fff}
+body[data-disteven=true] .disteven-choice-icon small{background:#f5f5f5;color:#111;border-color:#111}
+@media(max-width:700px){
+ .disteven-header nav button{padding:8px 10px}
+ .disteven-header .disteven-help{font-size:0;gap:0;justify-content:center;width:44px;height:44px;background:var(--disteven-accent);color:#161b05;border-radius:50%}
+
+ .disteven-search input{min-height:50px;font-size:14px;padding-left:43px}
+ .disteven-discovery h1{font-size:27px;line-height:1.18;letter-spacing:-.8px;margin-bottom:18px}
+ .disteven-goals button{min-height:42px;font-size:12px}
+ .disteven-scope{margin:8px 0 4px}
+ .disteven-scope .text-button{font-size:11px}
+ .disteven-shelf h2{font-size:15px;letter-spacing:-.2px}
+ .disteven-reference{font-size:9px}
+ .disteven-card h3{font-size:12px;line-height:1.45}
+ .disteven-sheet{border-radius:30px 30px 0 0;max-height:92dvh;padding:20px 18px max(20px,env(safe-area-inset-bottom))}
+ .disteven-sheet>header{padding:0 48px;margin-bottom:24px}
+ .disteven-sheet>header h2{font-size:20px}
+ body[data-disteven=true] #detailDialog{padding:20px 16px;border-radius:28px}
+ body[data-disteven=true] .brief-editor,body[data-disteven=true] .brief-preview{padding:20px 16px}
+ body[data-disteven=true] #briefDialog .brief-settings{gap:16px 12px}
+ body[data-disteven=true] #briefDialog .brief-font-choice{padding:10px 12px}
+ body[data-disteven=true] .selection-tray{border-radius:24px}
+}
+
+body[data-disteven=true]{font-family:'DiSteven UI',Arial,Helvetica,sans-serif}body[data-disteven=true] .disteven-discovery h1,body[data-disteven=true] .disteven-collection-heading h1{font-weight:500}body[data-disteven=true] .direction-header h2{font-weight:500}
+
+/* Categories: a desktop mega menu; a two-step compact grid on small screens. */
+.disteven-category-bar{display:flex;align-items:center;gap:6px;max-width:1600px;margin:0 auto;padding:0 40px 18px;overflow-x:auto;scrollbar-width:none}
+.disteven-category-bar::-webkit-scrollbar{display:none}
+body:not([data-disteven=true]) .disteven-category-bar{display:none}
+.disteven-category-bar>button{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;padding:10px 14px;min-height:44px;border:0;border-radius:999px;background:transparent;color:#b5b5b5;font-size:14px;font-weight:400;white-space:nowrap}
+.disteven-category-bar>button:hover,.disteven-category-bar>button:focus-visible{color:var(--disteven-accent)}
+.disteven-category-bar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+
+
+@media(min-width:1200px){
+ body[data-disteven=true] .disteven-header{gap:12px}
+ .disteven-header .disteven-category-bar{flex:1;min-width:0;justify-content:flex-start;padding:0;margin:0;gap:0}
+ .disteven-header .disteven-category-bar>button{font-size:14px;padding:10px 9px;gap:4px}
+ .disteven-header .disteven-desktop-nav[data-disteven-home]{display:none}
+ .disteven-header>nav:not(.disteven-category-bar){gap:10px;flex:none}
+ .disteven-header .disteven-brand{flex:none}
+}
+@media(min-width:701px) and (max-width:1199px){
+ body[data-disteven=true] .disteven-header{flex-wrap:wrap}
+ .disteven-header .disteven-category-bar{order:3;flex:1 0 100%;padding:10px 0 0;margin:0}
+}
+
+
+
+
+body[data-disteven=true] #styleIntentSummary{border-color:#414141;background:#242424;border-radius:24px}
+body[data-disteven=true] .brief-heading h1,body[data-disteven=true] .brief-editor h2{font-weight:500}
+@media(max-width:700px){body[data-disteven=true] #briefDialog .brief-preview{order:1}body[data-disteven=true] #briefDialog .brief-heading h1{font-size:28px;letter-spacing:-.7px}}
+
+@media(max-width:700px){
+ body[data-disteven=true] input,body[data-disteven=true] select,body[data-disteven=true] textarea,body[data-disteven=true] #briefDialog :is(input,select,textarea){font-size:16px}
+ .disteven-search input{font-size:16px}
+}
+body[data-disteven=true] .presenter-step-buttons [aria-pressed=true]{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05}
+body[data-disteven=true] .sequence-strip button{background:#1b1b1b;border-color:#383838}
+body[data-disteven=true] .font-card:hover{border-color:#888}
+body[data-disteven=true] .font-label,body[data-disteven=true] .font-state{font-family:'DiSteven UI',Arial,sans-serif}
+
+/* Keep the old shell hidden while the catalogue is loading. Readiness remains
+   the separate ATLAS_READY signal; the static attribute only declares a theme. */
+body[data-theme=dark] #sidebarHome,body[data-theme=dark] .app-mobile-brand,body[data-theme=dark] .disteven-legacy-heading{display:none!important}
+@media(prefers-reduced-motion:reduce){body[data-disteven=true] .brief-editor{animation:none}}
+body[data-disteven=true] #appHelp .workflow{border-color:#363636;gap:16px}
+body[data-disteven=true] #appHelp .workflow>div{background:#242424;border-color:#363636;border-radius:26px;box-shadow:none;color:#a8a8a8}
+body[data-disteven=true] #appHelp .workflow strong{color:#f5f5f5}
+body[data-disteven=true] #appHelp .workflow b{background:#353535;color:#f5f5f5}
+body[data-disteven=true] :is(h1,h2,h3,h4,h5,h6){font-family:'DiSteven UI',Arial,sans-serif}
+body[data-disteven=true] #distevenPanelHost{max-width:1600px;margin:0 auto;padding:24px 40px 120px}
+body[data-disteven=true][data-disteven-panel] :is(.app-main,#briefDialog,#selectionTray,#distevenMenu,.disteven-to-top){display:none!important}
+body[data-disteven=true] #distevenPanelHost .disteven-page-panel{position:static;inset:auto;width:100%;max-width:none;max-height:none;height:auto;margin:0;padding:0;overflow:visible;overscroll-behavior:auto;box-shadow:none;border:0;border-radius:0;background:transparent;outline:none}
+body[data-disteven=true] #distevenPanelHost .disteven-page-panel:not([open]),body[data-disteven=true] #distevenPanelHost .disteven-page-panel:not(.is-current){display:none!important}
+body[data-disteven=true] #distevenPanelHost .disteven-page-panel>footer{position:static;bottom:auto}
+body[data-disteven=true] #distevenPanelHost .disteven-panel-back{position:static;inset:auto;min-width:88px;min-height:44px;width:auto;height:auto;padding:8px 14px;border:1px solid var(--line);border-radius:24px;font-size:13px;line-height:1.4}
+body[data-disteven=true] #distevenPanelHost .disteven-page-panel>.disteven-panel-back{display:flex;margin:0 0 24px auto}
+@media(max-width:700px){body[data-disteven=true] #distevenPanelHost{padding:10px 20px 115px}}
+body[data-disteven=true][data-disteven-panel] .disteven-header .disteven-help{display:inline-flex}
+/* Page changes place the focused heading immediately; explicit user motion
+   (such as the return-to-top action) can still request smooth scrolling. */
+html:has(body[data-disteven=true]){scroll-behavior:auto}
+
+/* A compact word menu in document flow. The library keeps its own search. */
+body[data-disteven=true] #distevenMenu{position:static;width:calc(100% - 80px);max-width:1520px;margin:0 auto 8px;padding:0 0 8px;border:0;border-bottom:1px solid var(--line);background:transparent;box-shadow:none}
+body[data-disteven=true] #distevenMenu[hidden]{display:none!important}
+#distevenMenu button{min-height:40px;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--muted);font:400 14px/1.5 'DiSteven UI',Arial,sans-serif;text-align:left;cursor:pointer}
+#distevenMenu button:hover,#distevenMenu button:focus-visible{color:var(--disteven-accent);text-decoration:none}
+#distevenMenu .disteven-text-links{display:grid;grid-template-columns:repeat(var(--disteven-menu-columns,4),minmax(0,max-content));gap:0 24px;padding-left:var(--disteven-menu-start,0);align-items:start;justify-content:start}
+#distevenMenu .disteven-text-links button{width:100%;overflow-wrap:anywhere}
+@media(max-width:900px){#distevenMenu .disteven-text-links{grid-template-columns:repeat(var(--disteven-menu-columns,2),minmax(0,max-content));gap:2px 20px}}
+@media(max-width:700px){body[data-disteven=true] #distevenMenu{width:calc(100% - 40px);margin:0 auto 8px}#distevenMenu button{min-height:44px;font-size:14px}}
+
+/* Opening a category reveals its words immediately below the header. */
+body[data-disteven=true]:has(#distevenMenu:not([hidden])) .disteven-header{padding-bottom:8px}
+body[data-view=library][data-disteven-browse=category] .app-main main{padding-top:0}
+body[data-disteven-browse=category] :is(.disteven-scope,.disteven-collection-heading>.disteven-back){display:none!important}
+body[data-disteven-browse=category] .disteven-collection-heading{margin:0 0 4px;gap:0}
+body[data-disteven-browse=category] .disteven-collection-heading h1{font-size:20px;line-height:1.3;letter-spacing:-.4px;margin:0}
+body[data-disteven-browse=category] .disteven-catalogue-controls{margin:0 0 4px;gap:6px}
+body[data-disteven-browse=category] .disteven-catalogue-controls button{min-height:32px;padding:6px 10px;font-size:12px}
+body[data-disteven-browse=category] .disteven-catalogue-controls .extra-filters{flex:0 0 auto;margin:0}
+body[data-disteven-browse=category] .disteven-catalogue-controls .extra-filters summary{min-height:32px;padding:6px 0}
+body[data-disteven-browse=category] #grid{padding-top:8px}
+body[data-view=library][data-disteven-browse=category] .resultbar{display:none!important}
+/* Color marks real state and the next action, while the canvas stays neutral. */
+body[data-disteven=true]{--disteven-accent:#e2ff3b;--accent:var(--disteven-accent)}
+body[data-disteven=true] :is(#distevenContinue,#distevenChoiceContinue,#prepare,#downloadStudioKit,#copyPrompt,#guidedNext,#selectionTray [data-app-view=brief]):not(:disabled):not([aria-disabled=true]){background:var(--disteven-accent);border-color:#d3ed38;color:#161b05}
+body[data-disteven=true] .disteven-goals button[aria-pressed=true],body[data-disteven=true] .brief-steps [aria-current=step]{background:var(--disteven-accent);color:#161b05}
+body[data-disteven=true] #favoriteFilter{display:inline-flex;align-items:center;gap:8px}
+body[data-disteven=true] #favoriteFilter::after{content:'';display:block;flex:none;width:24px;height:14px;border-radius:999px;background:radial-gradient(circle at 7px 7px,#c8c8c8 0 4px,transparent 4.5px),#444}
+body[data-disteven=true] #favoriteFilter[aria-pressed=true]{background:#282e11;border-color:#607021;color:#e2ff3b}
+body[data-disteven=true] #favoriteFilter[aria-pressed=true]::after{background:radial-gradient(circle at 17px 7px,#fff 0 4px,transparent 4.5px),var(--disteven-accent)}
+body[data-disteven=true] .disteven-save[aria-pressed=true]{color:#e2ff3b}
+body[data-disteven=true] .disteven-add[aria-pressed=true]{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05}
+body[data-disteven=true] input[type=checkbox]{accent-color:var(--disteven-accent)}
+body[data-disteven=true] :is(button,a,input,select,textarea):focus-visible{outline-color:#e2ff3b}
+
+
+
+/* A media well never supplies a light rim behind the actual reference. */
+body[data-disteven=true] :is(.frame-expand,.reference-panel,.guided-reference,.detail-image,.brief-style-image){background:#151515}
+
+#distevenMenu button>span{display:inline-block;max-width:100%;transform-origin:left center;transition:transform .16s ease}
+@media(hover:hover) and (pointer:fine){#distevenMenu button:hover>span{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){#distevenMenu button>span{transition:none}}
+
+/* One fixed navigation area. Reference pages and categories remain in flow. */
+body[data-disteven=true] .disteven-header{position:sticky;top:0;z-index:50;background:#101010}
+body[data-disteven=true] :is(#selectionTray,.mobile-app-nav,.disteven-to-top,#startGuided){display:none!important}
+body[data-disteven=true] #distevenHeader [data-disteven-choice]{display:none!important}
+.disteven-header-progress{display:flex;align-items:center;gap:10px;order:1;flex:none}
+.disteven-header>nav:not(.disteven-category-bar){order:2}
+.disteven-header-progress button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 16px;font-size:13px;white-space:nowrap}
+.disteven-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#161b0520;font-size:11px}
+body[data-disteven=true] .disteven-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5;font-size:14px;font-weight:400}
+body[data-disteven=true] .disteven-category-bar>button:is(:hover,:focus-visible){color:var(--disteven-accent)}
+.disteven-category-bar>button>span{display:inline-block;transform-origin:center;transition:transform .16s ease}
+@media(hover:hover) and (pointer:fine){.disteven-category-bar>button:hover>span{transform:scale(1.08)}}
+body[data-disteven=true] .app-main main,body[data-disteven=true] #distevenPanelHost,body[data-disteven=true] #briefDialog.brief-workspace{padding-bottom:48px}
+body[data-disteven=true] :is(#prepare,#copyPrompt,#guidedNext){display:none!important}
+html:has(body[data-disteven=true]){scroll-padding-top:calc(var(--disteven-header-height,140px) + 8px)}
+@media(max-width:700px){body[data-disteven=true] .disteven-header{flex-wrap:wrap;gap:8px 10px;padding-bottom:10px}.disteven-header-progress{order:3;flex:1 0 100%;justify-content:flex-end}.disteven-header-progress button{min-width:132px}.disteven-header>nav:not(.disteven-category-bar){margin-left:auto}.disteven-header .disteven-help{display:inline-flex}}
+@media(prefers-reduced-motion:reduce){.disteven-category-bar>button>span{transition:none}}
+
+body[data-disteven=true] .disteven-header{flex-wrap:wrap}
+
+/* Filters are ordinary words in the catalogue, never a disclosure or overlay. */
+body[data-disteven=true] .disteven-catalogue-controls{align-items:center;gap:4px 22px;flex-wrap:wrap}
+body[data-disteven=true] .disteven-catalogue-controls :is(.category-menu,#presenterSectorWrap,.inline-type-filter,.select-wrap,.filter-chips){flex:0 1 auto;width:auto;max-width:100%;margin:0}
+body[data-disteven=true] .disteven-catalogue-controls :is(button,select){min-height:44px;padding:8px 4px;border:0;border-radius:0;background:transparent;color:#b5b5b5;font:400 13px/1.5 'DiSteven UI',Arial,sans-serif;box-shadow:none;width:auto;max-width:100%}
+body[data-disteven=true] .disteven-catalogue-controls select{padding-right:24px;cursor:pointer}
+body[data-disteven=true] .disteven-catalogue-controls select option{background:#222;color:#f5f5f5}
+body[data-disteven=true] .disteven-catalogue-controls #allFilter{display:none}
+body[data-disteven=true] .disteven-catalogue-controls #favoriteFilter[aria-pressed=true]{background:transparent;border:0;color:#e2ff3b}
+body[data-disteven=true] .disteven-catalogue-controls :is(button,select):hover{color:#f5f5f5}
+@media(max-width:700px){body[data-disteven=true] .disteven-catalogue-controls{gap:0 16px}body[data-disteven=true] .disteven-catalogue-controls :is(button,select){font-size:12px}body[data-disteven=true] .disteven-catalogue-controls #kind{max-width:170px}}
+
+body[data-disteven-mode=collection] .disteven-catalogue-controls{display:flex;margin:8px 0}
+body[data-disteven=true] :is([data-frame],[data-board],[data-sequence-download],#styleCombinationSummary,#addMoreStyles){display:none!important}
+
+/* Category words are the navigation on every screen size. */
+@media(max-width:700px){
+ body[data-disteven=true] .disteven-header{display:grid;grid-template-columns:max-content minmax(0,1fr) auto;gap:2px 8px;padding:10px 16px 4px}
+ .disteven-header .disteven-brand{grid-column:1;grid-row:1;min-width:0}
+ .disteven-header-progress{grid-column:2;grid-row:1;order:initial;flex:none;min-width:0;justify-self:end}.disteven-header-progress button{min-width:0;width:auto;max-width:100%;padding:9px 10px;white-space:normal;line-height:1.25;font-size:15px;font-weight:600}
+ .disteven-header>nav:not(.disteven-category-bar){grid-column:3;grid-row:1;margin:0}
+ .disteven-header .disteven-category-bar{display:flex;grid-column:1/-1;grid-row:2;order:initial;min-width:0;width:100%;padding:0;margin:0;gap:16px;justify-content:flex-start}
+ .disteven-header .disteven-category-bar>button{padding:8px 0;font-size:14px;flex:none}
+}
+@media(hover:hover) and (pointer:fine){.disteven-card h3 button:hover,.disteven-shelf-tools button:hover,.disteven-save:hover{color:var(--disteven-accent)}}
+
+/* Mobile navigation stays compact without reducing touch targets. */
+body[data-disteven=true] :is(button,a,summary){-webkit-tap-highlight-color:transparent}
+body[data-disteven=true] :is(h1,h2,h3)[tabindex="-1"]:focus{outline:none}
+body[data-disteven=true] #distevenMenu button:focus-visible{outline:none;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+body[data-disteven=true] :is(.primary,.outline,.button,.disteven-add,.disteven-panel-back){display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:15px;line-height:1.3;font-weight:600}
+body[data-disteven=true] #distevenPanelHost .disteven-panel-back{background:var(--disteven-accent);border-color:var(--disteven-accent);color:#161b05;font-size:15px;line-height:1.3;display:inline-flex;align-items:center;justify-content:center}
+body[data-disteven=true] #distevenPanelHost .disteven-page-panel>.disteven-panel-back{margin-bottom:12px}
+body[data-disteven=true] #guidedDialog .guided-progress [aria-current=step]{background:var(--disteven-accent);color:#161b05}
+body[data-disteven=true] #guidedDialog .guided-progress li:not([aria-current=step]){background:transparent}
+body[data-disteven=true] .brief-steps button{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;line-height:1.3}
+@media(max-width:700px){
+ .disteven-header .disteven-wordmark{font-size:30px}
+ body[data-disteven=true] .app-main main{padding-left:16px;padding-right:16px}
+ body[data-disteven=true] #distevenPanelHost{padding:8px 16px 40px}
+ body[data-disteven=true] #distevenMenu{width:calc(100% - 32px);margin-bottom:4px;padding-bottom:0;border:0}
+ #distevenMenu .disteven-text-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
+ #distevenMenu .disteven-text-links button{min-height:44px;padding:6px 0;font-size:14px;line-height:1.3;display:flex;align-items:center}
+ body[data-disteven=true]:has(#distevenMenu:not([hidden])) .disteven-header{padding-bottom:4px}
+ body[data-disteven=true] #distevenPanelHost .disteven-page-panel>.disteven-panel-back{margin-bottom:8px}
+ body[data-disteven=true] .guided-progress{gap:4px;margin-bottom:12px}
+ body[data-disteven=true] .guided-progress li{padding:6px 4px;font-size:12px;line-height:1.3;text-align:center;display:flex;align-items:center;justify-content:center;min-height:36px}
+ body[data-disteven=true] .guided-dialog label{margin:10px 0;gap:6px}
+ body[data-disteven=true] .guided-dialog input:not([type=checkbox],[type=radio]),body[data-disteven=true] .guided-dialog select{min-height:48px}
+ body[data-disteven=true] .guided-dialog .guided-materials{gap:8px}
+ body[data-disteven=true] .guided-dialog .guided-materials label{margin:0;padding:12px 14px;min-height:52px}
+ body[data-disteven=true] .guided-dialog textarea{min-height:88px}
+ body[data-disteven=true] .guided-dialog footer{margin-top:12px;padding-top:12px}
+ body[data-disteven=true] .guided-dialog footer>#guidedBack:disabled{display:none}
+ body[data-disteven=true] .brief-steps{gap:6px}
+ body[data-disteven=true] .brief-steps button{padding:9px 6px;font-size:13px;min-height:44px}
+ body[data-disteven=true] .disteven-catalogue-controls :is(button,select){font-weight:400;text-align:left;justify-content:flex-start}
+ body[data-disteven=true] .disteven-catalogue-controls button{font-size:15px}
+ body[data-disteven=true] .disteven-catalogue-controls select{font-size:16px}
+}
+body[data-disteven=true] .font-card:not([aria-pressed=true]){background:transparent}
+body[data-disteven=true] .font-card[aria-pressed=true] :is(.font-label,.font-body,.font-state){color:#161b05}
+
+@media(max-width:700px){
+ .disteven-header .disteven-category-bar{flex-wrap:wrap;overflow:visible;gap:0 6px}
+ .disteven-header .disteven-category-bar svg{display:none}
+}
+@media(prefers-reduced-motion:no-preference){
+ body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back){transition:filter .16s ease,transform .16s ease}
+ body[data-disteven=true] #distevenMenu .disteven-text-links{animation:disteven-enter .16s ease-out both}
+ body[data-disteven=true] #distevenPanelHost .disteven-page-panel.is-current,body[data-disteven=true] #handoff:not([hidden]){animation:disteven-enter .18s ease-out both}
+ body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back):active:not(:disabled){transform:translateY(1px)}
+ @media(hover:hover) and (pointer:fine){body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back):hover:not(:disabled){filter:brightness(1.04);transform:translateY(-1px)}}
+}
+@keyframes disteven-enter{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){body[data-disteven=true] :is(.primary,.outline,.button,.disteven-panel-back,.disteven-page-panel,.disteven-text-links,#handoff){animation:none!important;transition:none!important}}
+
+/* Preserve the editing area when an on-screen keyboard covers the layout viewport. */
+@media(max-width:700px){
+ body[data-disteven-keyboard=true]{padding-bottom:calc(var(--disteven-keyboard-inset,0px) + env(safe-area-inset-bottom,0px))}
+ body[data-disteven-keyboard=true] .disteven-header .disteven-category-bar{display:none}
+ body[data-disteven-keyboard=true] textarea:focus{min-height:72px!important;max-height:max(72px,calc(var(--disteven-viewport-height) - var(--disteven-header-height,58px) - 72px))!important;resize:none}
+}
+@media(prefers-reduced-motion:reduce){body[data-disteven=true] :is(button,a):active{transform:none!important}}
+
+body[data-disteven=true] :is(#sequencePrev,#sequenceNext){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;background:var(--disteven-accent);border:1px solid var(--disteven-accent);border-radius:999px;color:#161b05;font-size:15px;line-height:1.3;font-weight:600;text-align:center}
+body[data-disteven=true] .guided-preferences>h3{font-size:15px;line-height:1.4;margin:12px 0 6px;font-weight:600;letter-spacing:0}
+body[data-disteven=true] .guided-preferences>h3 small{font-size:12px;font-weight:400;color:var(--muted);margin-left:6px}
+
+/* Category navigation shares the goal selector's segmented surface. */
+body[data-disteven=true] .disteven-header .disteven-category-bar{background:#1c1c1c;border-radius:28px;padding:4px;gap:4px}
+body[data-disteven=true] .disteven-header .disteven-category-bar>button{min-height:44px;padding:8px;border-radius:999px;background:transparent;color:var(--muted)}
+body[data-disteven=true] .disteven-header .disteven-category-bar>button:is([aria-current=true],:hover,:focus-visible){color:var(--disteven-accent)}
+@media(max-width:700px){
+ body[data-disteven=true] .disteven-header .disteven-category-bar{width:calc(100% + 16px);margin:2px -8px 0;padding:4px 6px;gap:0 2px;flex-wrap:wrap;overflow:visible}
+ body[data-disteven=true] .disteven-header .disteven-category-bar>button{padding:8px 2px;font-size:14px}
+}
+
+/* Shared type scale: captions, compact navigation, reading/controls and headings. */
+body[data-disteven=true]{--disteven-type-meta:12px;--disteven-type-compact:14px;--disteven-type-body:16px;--disteven-type-section:20px;--disteven-type-title:28px;font-size:var(--disteven-type-body)}
+body[data-disteven=true] :is(.disteven-goals button,.disteven-niche select,.disteven-search input,.primary,.outline,.button,.disteven-add){font-size:var(--disteven-type-body)}
+body[data-disteven=true] :is(.disteven-header-progress button,#sequencePrev,#sequenceNext){font-size:var(--disteven-type-body)}
+body[data-disteven=true] #distevenPanelHost .disteven-panel-back{font-size:var(--disteven-type-body)}
+body[data-disteven=true] :is(.disteven-category-bar>button,#distevenMenu button,.disteven-card h3,.disteven-scope .text-button,.disteven-shelf-tools>button,.disteven-story-link,.brief-steps button){font-size:var(--disteven-type-compact)}
+body[data-disteven=true] :is(.disteven-reference,.disteven-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--disteven-type-meta)}
+body[data-disteven=true] :is(.guided-dialog label,.guided-preferences>h3,.brief-editor form label){font-size:var(--disteven-type-compact)}
+body[data-disteven=true] :is(.guided-dialog section>h3,.film-heading>h3,#handoff h2){font-size:var(--disteven-type-section)}
+body[data-disteven=true] .disteven-shelf h2{font-size:var(--disteven-type-section)}
+body[data-disteven=true] .request-summary dt{font-size:var(--disteven-type-meta)}
+body[data-disteven=true] .request-summary dd{font-size:var(--disteven-type-body)}
+body[data-disteven=true] :is(.disteven-discovery h1,.disteven-collection-heading h1,.direction-header h2,.brief-heading h1,#guidedTitle,.disteven-sheet header h2){font-size:var(--disteven-type-title)}
+body[data-disteven=true] #briefDialog form label{font-size:var(--disteven-type-compact)}
+body[data-disteven=true] #briefDialog :is(input,select,textarea){font-size:var(--disteven-type-body)}
+@media(max-width:700px){
+ body[data-disteven=true] .disteven-shelf h2{font-size:var(--disteven-type-body)}
+ body[data-disteven=true] :is(.disteven-catalogue-controls button,.disteven-collection-heading p){font-size:var(--disteven-type-compact)}
+}
+body[data-disteven=true] .disteven-header-progress small{font-size:var(--disteven-type-meta)}
+
+/* Search predictions remain in document flow, with no menu overlay. */
+.search-suggestions{position:relative;max-height:280px;overflow-y:auto;margin-top:8px;padding:4px;background:#1c1c1c;border-radius:20px;overscroll-behavior:contain}
+.search-suggestions[hidden]{display:none}
+.search-suggestions>button{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;width:100%;padding:10px 12px;border:0;border-radius:16px;background:transparent;text-align:left;color:var(--ink);font-size:var(--disteven-type-compact,14px);line-height:1.4}
+.search-suggestions>button span{min-width:0;overflow-wrap:anywhere}
+.search-suggestions>button small{flex:none;color:var(--muted);font-size:var(--disteven-type-meta,12px)}
+.search-suggestions>button:is(:hover,[aria-selected=true]){background:var(--disteven-accent);color:#161b05}
+.search-suggestions>button:is(:hover,[aria-selected=true]) small{color:#161b05}
+body[data-disteven-keyboard=true] .search-suggestions{max-height:max(44px,min(280px,calc(var(--disteven-viewport-height) - var(--disteven-header-height) - 132px)))}

@@ -177,11 +177,11 @@
   for(const char of id)hash=BigInt.asUintN(64,(hash^BigInt(char.codePointAt(0)))*0x100000001b3n);
   let code='';
   for(let i=0;i<8;i++,hash>>=5n)code=codeAlphabet[Number(hash&31n)]+code;
-  return 'FOL-'+code;
+  return 'DIS-'+code;
  }
  function readCode(query){
-  const match=/^FOL[\s-]*([0-9A-HJKMNP-TV-Z]{8})$/i.exec(query.trim());
-  return match?'FOL-'+match[1].toUpperCase():'';
+  const match=/^(?:DIS|FOL)[\s-]*([0-9A-HJKMNP-TV-Z]{8})$/i.exec(query.trim());
+  return match?'DIS-'+match[1].toUpperCase():'';
  }
  function createIndex(styles,metadata={}){
   const entries=styles.map((style,order)=>{

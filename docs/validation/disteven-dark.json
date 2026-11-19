@@ -1,0 +1,221 @@
+{
+  "status": "local_browser_verified",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "visualReference": "Grok app and xAI screenshots supplied by the user",
+  "brand": {
+    "name": "DiSteven",
+    "symbol": "original F monogram",
+    "wordmark": "Inter",
+    "vectors": [
+      "assets/disteven-logo.svg",
+      "assets/disteven-icon.svg"
+    ]
+  },
+  "theme": {
+    "background": "#101010",
+    "surface": "#242424",
+    "raisedSurface": "#303030",
+    "ink": "#f5f5f5",
+    "muted": "#a8a8a8",
+    "typeface": "Inter",
+    "weights": [
+      400,
+      500,
+      600,
+      700
+    ],
+    "fontProvenance": "style-atlas/records/disteven-dark/ui-fonts.json"
+  },
+  "navigation": {
+    "desktop": "seven top-level shortcuts and a two-column category panel with tiled collections",
+    "mobile": "two-step category/collection grids",
+    "allFamiliesReachable": 30,
+    "projectPreserved": true
+  },
+  "sourceMediaModified": false,
+  "previewRatio": "3:4",
+  "flows": {
+    "checks": [
+      "375px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "390px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "430px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help",
+      "1440px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help"
+    ],
+    "errors": [],
+    "viewports": [
+      {
+        "width": 375,
+        "height": 812,
+        "portraitRatio": 1.3333010835913313
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "portraitRatio": 1.3333025147928994
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "portraitRatio": 1.3333333333333333
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "portraitRatio": 1.3333090697335857
+      }
+    ],
+    "catalogueGeometry": [
+      {
+        "width": 375,
+        "count": 1425,
+        "bad": []
+      },
+      {
+        "width": 1440,
+        "count": 1425,
+        "bad": []
+      }
+    ]
+  },
+  "layout": {
+    "layouts": [
+      {
+        "width": 320,
+        "columns": 2,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 180
+      },
+      {
+        "width": 375,
+        "columns": 2,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 216.65625
+      },
+      {
+        "width": 768,
+        "columns": 3,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 291.53125
+      },
+      {
+        "width": 1024,
+        "columns": 4,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 298.65625
+      },
+      {
+        "width": 1440,
+        "columns": 6,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 284.4375
+      },
+      {
+        "width": 1920,
+        "columns": 6,
+        "all1425FillFrame": true,
+        "uniformThreeByFourHeight": true,
+        "compactHeight": 320
+      }
+    ],
+    "motion": [
+      {
+        "reducedMotion": "no-preference",
+        "passed": true
+      },
+      {
+        "reducedMotion": "reduce",
+        "passed": true
+      }
+    ],
+    "errors": []
+  },
+  "themeAndNavigation": {
+    "checks": [],
+    "viewports": [
+      {
+        "width": 375,
+        "allCategoriesReachable": 7,
+        "allFamiliesReachable": 30,
+        "darkFields": true,
+        "localFonts": 4,
+        "allHelpCardsContrast": true,
+        "resizeFocusPreserved": true,
+        "projectPreserved": true
+      },
+      {
+        "width": 1440,
+        "allCategoriesReachable": 7,
+        "allFamiliesReachable": 30,
+        "darkFields": true,
+        "localFonts": 4,
+        "allHelpCardsContrast": true,
+        "resizeFocusPreserved": true,
+        "projectPreserved": true
+      }
+    ],
+    "errors": []
+  },
+  "tutorial": [
+    {
+      "width": 375,
+      "selfContainedFonts": true,
+      "externalRequests": 0,
+      "nativeFileModeTested": false,
+      "dark": true,
+      "tabs": 3
+    },
+    {
+      "width": 1440,
+      "selfContainedFonts": true,
+      "externalRequests": 0,
+      "nativeFileModeTested": false,
+      "dark": true,
+      "tabs": 3
+    }
+  ],
+  "tutorialNativeFileMode": "blocked by the execution browser policy; self-contained fonts and tabs verified over local HTTP without external requests",
+  "sourceRegression": {
+    "javascript": 223,
+    "python": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed"
+  },
+  "accessibilityCertification": false,
+  "nativeAllPlatformTesting": false,
+  "paidApisUsed": false,
+  "publication": "pending",
+  "embeddedPage": {
+    "checks": [
+      "embedded DiSteven below 256 KiB",
+      "real catalogue and reference assets",
+      "collection and selection written to widget state",
+      "complete generated brief",
+      "localStorage access rejected by browser fixture",
+      "no viewport overflow"
+    ],
+    "errors": [],
+    "embeddedBytes": 254605
+  },
+  "review": {
+    "findingsResolved": [
+      "lower help-card contrast",
+      "heading font consistency",
+      "category focus after responsive breakpoint and Escape"
+    ],
+    "targetedRecheck": "passed"
+  },
+  "security": {
+    "scope": "changed source files and rebuilt archives",
+    "scanner": "gitleaks; redaction 100%; nested archives depth 3",
+    "findings": 2,
+    "triage": "existing SHA-256 strings in prior publication evidence and runtime manifest; no credential values",
+    "credentialsAdded": false
+  }
+}

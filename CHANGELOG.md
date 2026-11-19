@@ -1,7 +1,7 @@
 ## 2.16.0
 
 - Briefing único no pedido e no JSON para produzir o vídeo final com IA, com papéis e autorizações por material, contribuições por trecho e preservação de escolhas e aprovações.
-- Abertura em Codex ou Claude Code com pacote temporário criptografado e guia na conversa. Suporte a originais selecionados no Fólio e apresentação do moodboard e storyboard na conversa.
+- Abertura em Codex ou Claude Code com pacote temporário criptografado e guia na conversa. Suporte a originais selecionados no DiSteven e apresentação do moodboard e storyboard na conversa.
 
 # 2.12.0 — publicada
 
@@ -15,7 +15,7 @@
 - 60 explicadores em 17 segmentos: 60 referências fotorrealistas fictícias, quatro momentos completos por estilo, enquadramento e interação específicos. Catálogo 4.7; os 1.160 estilos anteriores permanecem preservados.
 - Prompt e projeto transportam composição, construção da explicação, fontes, escopos e requisitos pertinentes ao tema; sem lado fixo do apresentador ou painel de vidro universal.
 - Um ZIP compacto baixa/verifica o projeto completo do GitHub, prepara dependências e sete skills locais, e oferece tutorial. Sem transferência de contas ou créditos.
-- Propostas estáticas não comprovam vídeo, sincronismo ou aprovação criativa. PR #20 integrada e versão 2.12.0 publicada no domínio GDA Vídeos; vídeos individuais continuam sujeitos a revisão e aprovação. Ver [referências](docs/REALISTIC-PRESENTER-4.7.md), [instalador](docs/INSTALLER-2.12.md) e [tratamento](docs/VIDEO-TREATMENT-AUDIT.md).
+- Propostas estáticas não comprovam vídeo, sincronismo ou aprovação criativa. PR #20 integrada e versão 2.12.0 publicada no domínio DiSteven; vídeos individuais continuam sujeitos a revisão e aprovação. Ver [referências](docs/REALISTIC-PRESENTER-4.7.md), [instalador](docs/INSTALLER-2.12.md) e [tratamento](docs/VIDEO-TREATMENT-AUDIT.md).
 
 # 2.8.1 — Escolher partes substitui direção completa
 
@@ -92,7 +92,7 @@ Retirada da demonstração comercial. Kit com rascunho técnico neutro.
 ## 2.1.0 — 2026-11-05
 
 - Atlas público com 280 presets, 14 famílias, amostras, comparação, 20 avatares fictícios e 24 combinações tipográficas com prévia real.
-- Galeria GDA clara em creme, tipografia Geist, ícones SVG e motion suave com movimento reduzido.
+- Galeria DiSteven clara em creme, tipografia Geist, ícones SVG e motion suave com movimento reduzido.
 - Guia de instalação por conta/superfície e deploy cPanel com backups verificados.
 - Primeira entrega: roteiro, storyboard e prévia de 10 segundos para aprovação.
 - Publicidade com narração, música, SFX e protocolos de fidelidade para produtos, imóveis e interfaces.

@@ -40,7 +40,7 @@ As regras de preservação de identidade, originais, texto editável, referênci
 
 Verificações locais executadas: npm ci, npm run check, npm test (13 arquivos Node e oito testes Python), npm run validate e build da Page. Chromium: três percursos guiados, sugestões com imagens, pacote exportado/reimportado, ajustes, restauração, 320/375/768/1440 px sem overflow e Page com bridge simulado, recursos remotos reais e localStorage proibido. A Page compilada preserva os botões do assistente; o visualizador nativo do ChatGPT não foi certificado. Os três presets de teste também prepararam registros locais de produção e coordenação, sem mídia gerada. Veja [os presets executáveis](../examples/guided/README.md). A publicação será registrada no recibo desta edição. A geração paga dos três casos continua dependendo da apresentação do teste e autorização de custo, seguida das aprovações visuais e da revisão audiovisual.
 
-A instalação é por superfície: atualizar repositório/pacotes não confirma a instalação de um plugin na conta do ChatGPT. A skill pessoal Video B-roll permanece separada. A identidade GDA pertence à interface; receitas, presets e instruções reutilizáveis são neutros.
+A instalação é por superfície: atualizar repositório/pacotes não confirma a instalação de um plugin na conta do ChatGPT. A skill pessoal Video B-roll permanece separada. A identidade DiSteven pertence à interface; receitas, presets e instruções reutilizáveis são neutros.
 
 ## Publicação e pendências desta entrega
 

@@ -1236,10 +1236,10 @@
   ],
   "notes": "Estudos ilustrativos originais. Não representam produtos de marcas reais, dados verificados ou screenshots autênticos.",
   "brand": {
-    "file": "dist/assets/logo-gda.png",
-    "source": "https://gerenciadordeanuncios.com.br/",
-    "use": "Identidade da galeria GDA autorizada pelo mantenedor; substituir em cópias de outra marca",
-    "sha256": "f561ce8d7c814a450db633dd0852486e3855d9c02755951f74b391a62b3fa9d4"
+    "file": "dist/assets/disteven-logo.svg",
+    "source": "Wordmark DiSteven aprovado para aplicação no site. Contornos Inter Semibold (SIL OFL).",
+    "use": "Identidade tipográfica da galeria e de seus materiais, em branco e sem símbolo adjacente.",
+    "sha256": "c03caec9eac398cdcc1713fba9968861ae0403e8d4a21a07b550af542e778b93"
   },
   "fonts": "dist/fonts.json e licenças em dist/assets/fonts/"
 }

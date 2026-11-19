@@ -54,7 +54,7 @@ async function main(){
  const meta=JSON.parse(await fs.readFile(path.join(source,'installation.json'),'utf8'));
  const zip=await fs.readFile(path.join(source,assets[0]));if(!meta.sourceReady||meta.download!==assets[0]||meta.sha256!==sha(zip)||meta.bytes!==zip.length)throw Error('Installer source/hash not ready');
  const payloads=await Promise.all(assets.map(p=>fs.readFile(path.join(source,p))));
- const backup=path.posix.join(home,'gda-toolchain-backups',new Date().toISOString().replace(/[^0-9]/g,''));
+ const backup=path.posix.join(home,'disteven-toolchain-backups',new Date().toISOString().replace(/[^0-9]/g,''));
  const receipt={domain,kitVersion:meta.kitVersion,sourceRevision:meta.sourceRevision,scope:'installer/tutorial/metadata only; interface untouched',mode:apply?'apply':'inspect',releases:[],files:[]};
  // If a concurrent UI deployment changes the active release, update the new download route too.
  for(let attempt=0;attempt<3;attempt++){

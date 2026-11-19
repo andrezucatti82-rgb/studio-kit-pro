@@ -7,8 +7,8 @@
  const endpoint=()=>new URL(globalThis.ATLAS_HANDOFF_ENDPOINT||'cloud-handoff.php',location.href);
  const bytesHex=bytes=>Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join('');
  function startText(link){
-  return `Produza o vídeo final com IA a partir do pacote privado gerado pelo Fólio. Trabalhe em projects/ sem publicar os dados ou a mídia. Use o Studio Kit Pro (${repository}). No checkout atualizado, recupere o projeto e os originais com:
-node scripts/retrieve-folio-handoff.mjs '${link}' projects/folio-recebido
+  return `Produza o vídeo final com IA a partir do pacote privado gerado pelo DiSteven. Trabalhe em projects/ sem publicar os dados ou a mídia. Use o Studio Kit Pro (${repository}). No checkout atualizado, recupere o projeto e os originais com:
+node scripts/retrieve-disteven-handoff.mjs '${link}' projects/disteven-recebido
 Abra projeto-video.json e arquivos-recebidos.json. Importe a ficha com npm run video -- import e siga pedido, materiais, escopos, referências e aprovações. O link expira em até 2 horas e deve permanecer nesta conversa. Se o ambiente bloquear o acesso ou o link expirar, peça a ficha e os originais pelo anexo do chat.
 ${AtlasWorkflow.wizardInstruction}`;
  }
@@ -50,7 +50,7 @@ ${AtlasWorkflow.wizardInstruction}`;
    const attachments=globalThis.AtlasMaterialFiles?.current()||[];
    const target=new URL(launchURL(platform));
    let popup=window.open('','_blank');
-   if(popup){popup.opener=null;popup.document.title='Preparando sua produção';popup.document.body.textContent='Preparando o pedido e os arquivos selecionados no Fólio…';}
+   if(popup){popup.opener=null;popup.document.title='Preparando sua produção';popup.document.body.textContent='Preparando o pedido e os arquivos selecionados no DiSteven…';}
    pending=true;
    progress.hidden=false;copy.hidden=true;destination.hidden=true;
    button.setAttribute('aria-busy','true');

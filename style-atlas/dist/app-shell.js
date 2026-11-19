@@ -9,26 +9,26 @@
    helpOrigin=previous||'library';
    $('helpBack').textContent=helpOrigin==='brief'?'← Voltar ao briefing':helpOrigin==='project'?'← Voltar ao projeto':'← Voltar à biblioteca';
   }
-  document.body.dataset.view=name;window.AtlasFolio?.onView(name);if(name==='library')document.querySelector('.library-actions').prepend($('startGuided'));else if(name==='project')document.querySelector('.project-heading').append($('startGuided'));
+  document.body.dataset.view=name;window.AtlasDiSteven?.onView(name);if(name==='library')document.querySelector('.library-actions').prepend($('startGuided'));else if(name==='project')document.querySelector('.project-heading').append($('startGuided'));
   document.querySelectorAll('[data-app-view]').forEach(b=>{const active=b.dataset.appView===name;b.setAttribute('aria-current',active?'page':'false')});
   if(name!=='brief'&&$('briefDialog').open)$('briefDialog').close();
   if(name==='project'){$('myProject').hidden=false;$('projectTitle').focus({preventScroll:true})}
   if(name==='help')$('installTitle').focus({preventScroll:true});
-  window.scrollTo({top:name==='library'&&restore?libraryScroll:0,behavior:'auto'});
+  window.scrollTo({top:name==='library'&&restore?libraryScroll:0,behavior:'auto'});window.AtlasHistory?.changed();
  }
  function setStage(value){
   stage=value;const review=stage==='review';$('briefDialog').dataset.stage=stage;
   $('briefForm').hidden=review;$('handoff').hidden=!review;
   document.querySelectorAll('[data-brief-stage]').forEach(b=>b.setAttribute('aria-current',b.dataset.briefStage===stage?'step':'false'));
-  if(review)renderSummary();window.AtlasFolio?.syncHeader();
+  if(review)renderSummary();window.AtlasDiSteven?.syncHeader();window.AtlasHistory?.changed();
  }
- function openBrief(){
-  if(window.AtlasGuidedFlow?.hasDraft()){window.AtlasGuidedFlow.open();return;}
+ function openBrief({stage:requestedStage}={}){
+  if(!requestedStage&&window.AtlasGuidedFlow?.hasDraft()){window.AtlasGuidedFlow.open();return;}
   if(!selected.length){view('library');$('libraryTitle').focus({preventScroll:true});return}
   if(document.body.dataset.view==='library')libraryScroll=window.scrollY;
-  document.body.dataset.view='brief';window.AtlasFolio?.onView('brief');document.querySelector('.brief-heading').append($('startGuided'));
+  document.body.dataset.view='brief';window.AtlasDiSteven?.onView('brief');document.querySelector('.brief-heading').append($('startGuided'));
   if(!$('briefDialog').open)$('briefDialog').show();
-  const prepared=window.AtlasCurrentChoice?.().requestPrepared;
+  const prepared=window.AtlasCurrentChoice?.().requestPrepared&&requestedStage!=='briefing';
   setStage(prepared?'review':'briefing');
   if(prepared){$('promptOutput').value=window.AtlasApp.prompt();$('handoffMessage').textContent='Confira o resumo e abra a produção no assistente que preferir.'}
   $('briefTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
@@ -76,6 +76,7 @@
   $('sequenceTitle').textContent=viewerStyle.name;$('sequenceCaption').textContent=f.label+' · '+(f.caption||f.action||'');$('sequencePosition').textContent=`${viewerIndex+1} / 4`;
   $('sequencePrev').disabled=viewerIndex===0;$('sequenceNext').disabled=viewerIndex===3;
   $('sequenceDownload').dataset.sequenceDownload=viewerStyle.id;$('sequenceDownload').dataset.frameIndex=viewerIndex;
+  $('sequenceDialog').dataset.styleId=viewerStyle.id;$('sequenceDialog').dataset.historyFrame=viewerIndex;window.AtlasHistory?.changed();
  }
  document.addEventListener('change',e=>{if(e.target.id==='handoffPlatform'){updatePlatform();if(window.AtlasCurrentChoice?.().requestPrepared)$('promptOutput').value=window.AtlasApp.prompt();window.AtlasApp?.save()}});
  document.addEventListener('click',e=>{
@@ -95,10 +96,22 @@
  $('sequencePrev').onclick=()=>{if(viewerIndex>0){viewerIndex--;updateFrame()}};$('sequenceNext').onclick=()=>{if(viewerIndex<3){viewerIndex++;updateFrame()}};
  $('sequenceDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')$('sequencePrev').click();if(e.key==='ArrowRight')$('sequenceNext').click()});
  $('sequenceDialog').addEventListener('close',()=>{if(!window.AtlasInlinePanels)returnFocus?.focus();});
- window.AtlasShell={openBrief,selectionChanged,prepared(){setStage('review');$('handoffTitle').focus({preventScroll:true})},edit(){setStage('briefing')},view,afterRender(){window.AtlasNavigation?.sync();document.querySelectorAll('#grid [data-style-id]').forEach(card=>card.classList.toggle('is-selected',selected.some(s=>s.id===card.dataset.styleId)))}};
+ window.AtlasShell={openBrief,showFrame,selectionChanged,
+  getNavigationState(){const name=document.body.dataset.view;return {view:name,stage:name==='brief'?stage:undefined,helpOrigin:name==='help'?helpOrigin:undefined};},
+  restoreNavigation(saved){
+   if(saved.view==='brief')openBrief({stage:saved.stage});
+   else{
+    view(saved.view);
+    if(saved.view==='help'){
+     helpOrigin=saved.helpOrigin||'library';
+     $('helpBack').textContent=helpOrigin==='brief'?'← Voltar ao briefing':helpOrigin==='project'?'← Voltar ao projeto':'← Voltar à biblioteca';
+    }
+   }
+  },
+ prepared(){setStage('review');$('handoffTitle').focus({preventScroll:true})},edit(){setStage('briefing')},view,afterRender(){window.AtlasNavigation?.sync();document.querySelectorAll('#grid [data-style-id]').forEach(card=>card.classList.toggle('is-selected',selected.some(s=>s.id===card.dataset.styleId)))}};
  function routeBriefHash(){if(window.location.hash!=='#briefSection')return;if(selected.length)openBrief();else{view('library');$('startGuided').click();}}
- window.addEventListener('hashchange',()=>{if(ready)routeBriefHash()});
- window.addEventListener('atlas:ready',()=>{ready=true;renderSummary();if(document.body.dataset.view!=='brief')view('library');setTimeout(routeBriefHash,0);});
+ window.addEventListener('hashchange',()=>{if(ready&&!window.AtlasHistory)routeBriefHash()});
+ window.addEventListener('atlas:ready',()=>{ready=true;renderSummary();if(document.body.dataset.view!=='brief')view('library');if(!window.AtlasHistory)setTimeout(routeBriefHash,0);});
 })();
 
 /* Hybrid category navigation. It filters the existing catalogue; it never changes a brief. */

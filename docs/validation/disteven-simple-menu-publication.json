@@ -1,0 +1,188 @@
+{
+  "status": "published_verified",
+  "url": "https://videos.gerenciadordeanuncios.com.br/",
+  "release": "atlas-20261118203329",
+  "publishedAt": "2026-11-18T17:36:02.979000-03:00",
+  "verifiedAt": "2026-11-18T17:36:57.783000-03:00",
+  "pullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/27",
+  "mergeCommit": "b03c9926610344754a600737366066a421900680",
+  "implementationHead": "fb0635baf833fdf9ba5012c23984dead64163499",
+  "kitVersion": "2.12.0",
+  "catalogVersion": "4.8",
+  "styles": 1425,
+  "menu": "plain text category/subcategory names; no search, counts, cards, promotional heading or footer; in document flow",
+  "backup": {
+    "outsideDocumentRoot": true,
+    "readbackVerified": true,
+    "copyApiByteProbeVerified": true,
+    "priorIndexDigest": "988c05a06cbbf9e7c003dc0719f64126f0e7f36d73dbc9583fe98b4b7c7f79b8",
+    "previousRelease": "atlas-20261118195618",
+    "previousReleasePreserved": true
+  },
+  "deployment": {
+    "changedFiles": [
+      "como-instalar.html",
+      "downloads/studio-kit-pro-installer.zip",
+      "disteven-ui.js",
+      "disteven.css",
+      "installation.json"
+    ],
+    "publicHashesVerified": 43,
+    "entryDigest": "b5b81bbdb1b667593ce1da1f90eaa95f12aa618472e23b8961d041660310185e",
+    "originReadbackVerified": true,
+    "publicReadbackVerified": true
+  },
+  "installer": {
+    "sourceRevision": "c6bb8479bb3738b0fa3ad364fb40aaade2e81766",
+    "sourceReady": true,
+    "bytes": 668060,
+    "sha256": "fe29cf7c8607c616fddcab9daf5aa0bc016364d4bf7758a812a09922c1986187",
+    "skills": 7,
+    "presenterStyles": 265
+  },
+  "downloadedPanelSample": {
+    "matchesPriorPublication": true,
+    "sha256": "b80272007537336d6f5affeb2722b7bfdeee44fec86cc07f26276e3146ae342d",
+    "checkedAtWidths": [
+      375,
+      1440
+    ]
+  },
+  "regression": {
+    "javascript": 223,
+    "python": 9,
+    "typecheck": "passed",
+    "projectValidation": "passed",
+    "finalDistributionChecks": 7
+  },
+  "browserEvidence": {
+    "stage-menu": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "stage-smoke": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/atlas-20261118203329/",
+      "release": "atlas-20261118203329",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "stage-inline": {
+      "viewports": [
+        {
+          "width": 375,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        },
+        {
+          "width": 1440,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        }
+      ],
+      "errors": []
+    },
+    "live-menu": {
+      "checks": [],
+      "viewports": [
+        {
+          "width": 375,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "projectPreserved": true
+        },
+        {
+          "width": 1440,
+          "allCategoriesReachable": 7,
+          "allFamiliesReachable": 30,
+          "darkFields": true,
+          "localFonts": 4,
+          "allHelpCardsContrast": true,
+          "resizeFocusPreserved": true,
+          "simpleTextMenu": true,
+          "projectPreserved": true
+        }
+      ],
+      "errors": []
+    },
+    "live-smoke": {
+      "url": "https://videos.gerenciadordeanuncios.com.br/",
+      "release": "atlas-20261118203329",
+      "checks": [
+        "375px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow",
+        "1440px: actual HTTP 200, expected release/1425 styles/DiSteven, loaded original images/fonts, full-panel PNG dimensions, actual installer ZIP/hash and updated tutorial, no overflow"
+      ],
+      "errors": []
+    },
+    "live-inline": {
+      "viewports": [
+        {
+          "width": 375,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        },
+        {
+          "width": 1440,
+          "menuPushesContent": true,
+          "backgroundUsable": true,
+          "noModalLayers": true,
+          "nestedPagesReturn": true,
+          "briefAndScopesPreserved": true,
+          "headerNavigationExitsPanels": true,
+          "guidedPage": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  "changedGitHistorySecretScan": "Gitleaks: zero findings",
+  "accessibilityCertification": false,
+  "nativeAllDeviceTesting": false,
+  "paidApisUsed": false
+}

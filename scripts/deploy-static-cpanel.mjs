@@ -49,7 +49,7 @@ let oldBytes;
 if(Number(oldEntry.size)>1024*1024){
  // cPanel refuses editor reads over 1 MiB. This target is an existing static HTML file.
  // Fetch its explicit public path without compression/cache, and require the server's exact byte size.
- const response=await fetch(`https://${domain}/index.html?backup=${Date.now()}`,{headers:{'User-Agent':'GDA-Static-Deploy/1.0','Accept-Encoding':'identity','Cache-Control':'no-cache'},signal:AbortSignal.timeout(45000),redirect:'error'});
+ const response=await fetch(`https://${domain}/index.html?backup=${Date.now()}`,{headers:{'User-Agent':'DiSteven-Static-Deploy/1.0','Accept-Encoding':'identity','Cache-Control':'no-cache'},signal:AbortSignal.timeout(45000),redirect:'error'});
  if(!response.ok||!response.headers.get('content-type')?.includes('text/html'))throw Error('Cannot read the existing static homepage for backup.');
  oldBytes=Buffer.from(await response.arrayBuffer());
 }else{
@@ -60,7 +60,7 @@ if(!oldBytes.toString('utf8').toLowerCase().includes('<html')||!Number.isFinite(
 const paths=await files(source);if(!paths.includes('index.html')||!paths.includes('catalog.json'))throw Error('Missing static entry/catalog.');
 const catalog=JSON.parse(await readFile(path.join(source,'catalog.json'),'utf8'));if(!Array.isArray(catalog.styles)||catalog.styles.length<1)throw Error('Invalid catalog.');
 const release='atlas-'+new Date().toISOString().replace(/[^0-9]/g,'').slice(0,14);
-const backupDir=path.posix.join(home,'gda-video-backups',release);if(backupDir.startsWith(root+'/'))throw Error('Backup must stay outside website.');
+const backupDir=path.posix.join(home,'disteven-video-backups',release);if(backupDir.startsWith(root+'/'))throw Error('Backup must stay outside website.');
 await mkdir('deployment-backup',{recursive:true});await writeFile('deployment-backup/index.html',oldBytes);
 const receipt={domain,root,release,backupDir,previousSha256:hash(oldBytes),files:paths.length,styles:catalog.styles.length,mode:apply?'apply':'inspect'};
 await writeFile('deployment-backup/receipt.json',JSON.stringify(receipt,null,2));
@@ -114,16 +114,16 @@ if(paths.includes('automation-pilot.html')){
  const gallery=Buffer.from(stableGalleryHtml(await readFile(path.join(source,name),'utf8'),release));
  try{
   await upload(root,name,gallery);
-  const response=await fetch(`https://${domain}/${name}?release=${release}`,{headers:{'User-Agent':'GDA-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});
+  const response=await fetch(`https://${domain}/${name}?release=${release}`,{headers:{'User-Agent':'DiSteven-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});
   if(!response.ok||hash(Buffer.from(await response.arrayBuffer()))!==hash(gallery))throw Error('Pilot gallery public verification failed.');
  }catch(error){if(previous)await upload(root,name,previous);throw error;}
 }
 let html=releaseEntryHtml(await readFile(path.join(source,'index.html'),'utf8'),release);
 html=html.replaceAll('src="assets/',`src="${release}/assets/`).replace('href="styles.css"',`href="${release}/styles.css"`).replace('src="app.js"',`src="${release}/app.js"`).replace('href="catalog.json"',`href="${release}/catalog.json"`);
-html=html.replace('</head>',`<meta name="gda-atlas-release" content="${release}"><script>window.ATLAS_ASSET_BASE=${JSON.stringify(release+'/')};window.ATLAS_CATALOG_URL=${JSON.stringify(release+'/catalog.json')};window.ATLAS_HANDOFF_ENDPOINT=${JSON.stringify('/'+release+'/cloud-handoff.php')};</script></head>`);
+html=html.replace('</head>',`<meta name="disteven-atlas-release" content="${release}"><script>window.ATLAS_ASSET_BASE=${JSON.stringify(release+'/')};window.ATLAS_CATALOG_URL=${JSON.stringify(release+'/catalog.json')};window.ATLAS_HANDOFF_ENDPOINT=${JSON.stringify('/'+release+'/cloud-handoff.php')};</script></head>`);
 try{
  await upload(root,'index.html',Buffer.from(html));
- const r=await fetch(`https://${domain}/?release=${release}`,{headers:{'User-Agent':'GDA-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});const text=await r.text();
+ const r=await fetch(`https://${domain}/?release=${release}`,{headers:{'User-Agent':'DiSteven-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});const text=await r.text();
  if(!r.ok||!text.includes(`content="${release}"`)||!text.includes(`${release}/app.js`))throw Error('Homepage readback failed.');
  receipt.status='published';receipt.url=`https://${domain}/`;receipt.newSha256=hash(Buffer.from(html));
 }catch(e){await upload(root,'index.html',oldBytes);receipt.status='rolled_back';await writeFile('deployment-backup/receipt.json',JSON.stringify(receipt,null,2));throw Error('Publication verification failed; original homepage restored.');}
@@ -143,7 +143,7 @@ for(const rel of ['',...previousDirs]){
  for(const entry of present){
   // Preserve previous bytes via the hosting copy API outside the public directory.
   let bytes;
-  if(Number(entry.size)>1024*1024){const response=await fetch(`https://${domain}/${rel?rel+'/':''}${entry.file}?backup=${release}`,{headers:{'Accept-Encoding':'identity','User-Agent':'GDA-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});if(!response.ok)throw Error('Retired asset read failed');bytes=Buffer.from(await response.arrayBuffer());}
+  if(Number(entry.size)>1024*1024){const response=await fetch(`https://${domain}/${rel?rel+'/':''}${entry.file}?backup=${release}`,{headers:{'Accept-Encoding':'identity','User-Agent':'DiSteven-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});if(!response.ok)throw Error('Retired asset read failed');bytes=Buffer.from(await response.arrayBuffer());}
   else{const old=await api('Fileman','get_file_content',{dir,file:entry.file,from_charset:'UTF-8',to_charset:'UTF-8',update_html_document_encoding:0});if(typeof old.content!=='string')throw Error('Retired asset read failed');bytes=Buffer.from(old.content);}
   if(bytes.length!==Number(entry.size))throw Error('Retired asset backup mismatch: '+entry.file);
   await upload(path.posix.join(backupDir,'retired',rel||'root'),entry.file,bytes);

@@ -16,7 +16,7 @@ Em novas produções: moodboard → styleframes → storyboard visual → aprova
 Não substituir recursos prometidos por uma solução visual mais simples sem apresentar a mudança. Testes técnicos e quadros extraídos não equivalem a assistir e ouvir o vídeo inteiro. Sem essa revisão, usar `review_pending` e nome de prévia/candidato; nunca chamar de final. Esta regra antecede receitas de geração e exemplos abaixo. Leia [protocolo visual](references/universal-visual-approval.md) antes da produção.
 <!-- universal-visual-approval:end -->'''
 PATTERN=re.compile(r'(?i)(?:^|-)(?:video|videos|motion|animation|cinematic|storyboard|b-roll|hyperframes|remotion|heygen|ffmpeg|captions|faceless|talking-head|ugc|slideshow|blitzreels)(?:-|$)')
-EXTRA={'cut-the-curve','seam-craft','media-use','gda-editorial-lateral','gda-face-and-body-swap','music-to-video','narrator','script-writer','higgsfield','previs-storyboard','ad-campaign','consistent-characters','sound-and-voice','adobe-edit-quick-cut','adobe-resize-photos-and-videos'}
+EXTRA={'cut-the-curve','seam-craft','media-use','disteven-editorial-lateral','disteven-face-and-body-swap','music-to-video','narrator','script-writer','higgsfield','previs-storyboard','ad-campaign','consistent-characters','sound-and-voice','adobe-edit-quick-cut','adobe-resize-photos-and-videos'}
 
 def updated(text):
     if START in text:

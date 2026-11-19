@@ -38,7 +38,7 @@ try{
    if(command==='validate')console.log(JSON.stringify({status:'valid_not_rendered',...preparation},null,2));
    else if(command==='stills'){
     const out=path.resolve(arg('--out',path.join(prepared,'storyboard')));await fs.mkdir(out,{recursive:true});const work=await fs.mkdtemp(path.join(out,'.render-work-'));
-    try{const edited=await editGraph(plan,store,work),serveUrl=await bundle({entryPoint:path.join(repoRoot,'src/production/index.tsx'),publicDir:edited.publicDir,outDir:path.join(work,'bundle')}),browserExecutable=process.env.CHROME_PATH,inputProps={plan:edited.plan},composition=await selectComposition({serveUrl,id:'GdaGraph',inputProps,browserExecutable});
+    try{const edited=await editGraph(plan,store,work),serveUrl=await bundle({entryPoint:path.join(repoRoot,'src/production/index.tsx'),publicDir:edited.publicDir,outDir:path.join(work,'bundle')}),browserExecutable=process.env.CHROME_PATH,inputProps={plan:edited.plan},composition=await selectComposition({serveUrl,id:'DiStevenGraph',inputProps,browserExecutable});
      let cursor=0;const records=[];for(const scene of plan.scenes){const frame=cursor+Math.floor(scene.durationFrames/2),file=`${scene.id}.png`;await renderStill({serveUrl,composition,inputProps,output:path.join(out,file),frame,imageFormat:'png',browserExecutable});records.push({sceneId:scene.id,frame,file});cursor+=scene.durationFrames;}await atomicJson(path.join(out,'frames.json'),{planSha256:preparation.editPlanSha256,records,approval:'pending'});console.log(JSON.stringify({status:'visual_frames_for_review',out,records},null,2));
     }finally{await fs.rm(work,{recursive:true,force:true});}
    }else{
