@@ -44,6 +44,7 @@ with sync_playwright() as playwright:
         page.on('pageerror', lambda error: errors.append(str(error)))
         assert page.goto(args.base, timeout=45000).ok
         page.wait_for_function('window.ATLAS_READY && history.state?.atlasNavigation')
+        page.evaluate('document.fonts.ready')
         mobile = width <= 700
         if mobile:
             page.locator('#distevenCategoryToggle').click()

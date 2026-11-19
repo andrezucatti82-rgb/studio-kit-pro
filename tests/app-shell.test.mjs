@@ -24,8 +24,8 @@ async function boot({page=false,saved=null,hash="",imageOrigin=null,disteven=fal
  for(const el of document.querySelectorAll('*')){el.focus=()=>{};el.scrollIntoView=()=>{};el.reportValidity=()=>true;}
  document.getElementById('briefForm').requestSubmit=function(){this.dispatchEvent(new dom.Event('submit',{bubbles:true,cancelable:true}))};
  const events=new dom.EventTarget();
- const ctx={document,Event:dom.Event,URL,URLSearchParams,Blob,console:{error:e=>errors.push(e)},setTimeout,clearTimeout,
-  location:{search:'',hash,href:'https://example.org/release/index.html'},matchMedia:query=>({matches:query==='(min-width: 1024px)'?desktop:true,addEventListener(){}}),requestAnimationFrame:()=>0,cancelAnimationFrame(){},
+ const ctx={document,CSS:{escape:String},Event:dom.Event,URL,URLSearchParams,Blob,console:{error:e=>errors.push(e)},setTimeout,clearTimeout,
+  location:{search:'',hash,href:'https://example.org/release/index.html'},matchMedia:query=>({matches:query==='(max-width: 700px)'?!desktop:true,addEventListener(){}}),requestAnimationFrame:()=>0,cancelAnimationFrame(){},
   getComputedStyle:()=>({paddingLeft:"0px"}),scrollTo(){},confirm:()=>true,FontFace:class{load(){return Promise.resolve(this)}},
   fetch:async name=>({ok:true,json:async()=>JSON.parse(await read(String(name)))}),
   navigator:{clipboard:{writeText:async text=>{ctx.copied=text}}},
@@ -433,7 +433,7 @@ test('DiSteven keeps business topics in the desktop menu and searches the whole 
  assert.equal(ctx.AtlasDiSteven.getState().browseGroup,'');
  assert.ok(d.querySelectorAll('#grid [data-style-id]').length>0);
  const mobile=await boot({disteven:true,desktop:false});
- mobile.click('[data-disteven-open-group="tutorials"]');mobile.click('[data-disteven-topic="tela"]');
+ mobile.click('#distevenCategoryToggle');mobile.click('[data-disteven-mobile-group="tutorials"]');mobile.click('[data-disteven-topic="tela"]');
  assert.equal(mobile.document.getElementById('distevenMenu').hidden,true);
  assert.equal(mobile.ctx.AtlasDiSteven.getState().browseTopic,'tela');
 });
