@@ -1,7 +1,7 @@
 {
   "plugin": "video-multimarcas",
-  "pluginVersion": "2.16.0",
-  "kitVersion": "2.16.0",
+  "pluginVersion": "2.16.1",
+  "kitVersion": "2.16.1",
   "catalogVersion": "4.8",
   "styleCount": 1425,
   "categoryCount": 30,
@@ -10,7 +10,7 @@
   "presenterSectorCount": 53,
   "skillSystem": {
     "version": 4,
-    "kitVersion": "2.16.0",
+    "kitVersion": "2.16.1",
     "orchestrator": "video-multimarcas",
     "entryPoint": "video-multimarcas",
     "skills": [
@@ -68,34 +68,34 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 218225,
-      "sha256": "c5277e817e7b25390550f5ff82b09c24e981129fbb6172b6caaf0fc418a0d4fe"
+      "bytes": 220505,
+      "sha256": "ee3f6a31c9a33824c6843157a71f6ea5949d5b42cc16c9ec8e825500e3f1c9e4"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 218739,
-      "sha256": "da126f53c7829e57562706877157536805bdfed9c991fff8f52e4c7892a0ace4"
+      "bytes": 221062,
+      "sha256": "ea9013dc18d49e08f970fb442039803dc52497517001727d0075654410a7a43a"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4877625,
-      "sha256": "795f39c30c3701932cc47aa0522fcf6f20332d6d349c8d589428f36961288ac5"
+      "bytes": 4883241,
+      "sha256": "569314a1fa878dd03e5db41ce9b42823298cbe906860487967b4fd739a9a6926"
     },
     "video-multimarcas.skill": {
-      "bytes": 217202,
-      "sha256": "2d5ce3876e88ff1a3456212d88fc928ccec65c42dd947ce77eef6c879c924e5a"
+      "bytes": 219469,
+      "sha256": "9d585983dc5858ba6f0d57d6cdfa2960349305fa54131ee217c95a1dd40ea5fa"
     },
     "video-multimarcas.zip": {
-      "bytes": 217202,
-      "sha256": "2d5ce3876e88ff1a3456212d88fc928ccec65c42dd947ce77eef6c879c924e5a"
+      "bytes": 219469,
+      "sha256": "9d585983dc5858ba6f0d57d6cdfa2960349305fa54131ee217c95a1dd40ea5fa"
     }
   },
   "installer": {
     "version": 1,
-    "kitVersion": "2.16.0",
-    "sourceRevision": "126b3397facd9df4087889c2f7adf249793f820d",
+    "kitVersion": "2.16.1",
+    "sourceRevision": "3cf7c93cea25cb967750ee1a4f89269f9e29e24d",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 679594,
-    "sha256": "bd4ad8c2b8c6754b694ec13f9df5a036682a23be2c121c5916debc9b725369d1",
+    "bytes": 679767,
+    "sha256": "9d3e5d961bb06ef5d3b8790280ac27d2bbb1a17a3f633ed5ec7591f065a0bb73",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
