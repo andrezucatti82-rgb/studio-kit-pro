@@ -52,7 +52,7 @@ test('shared production contract carries dependencies and distinguishes receipts
 });
 
 test('Page startup shares conversation and visual gates without assuming an installed skill or native menu',()=>{
- const page=W.pagePrompt('https://example.org/catalog.json');assert.ok(page.includes(W.conversationProtocol));for(const t of ['styleContributions','invalidatedAfter','qualityPolicy','identityPolicy','REGRA UNIVERSAL','STATUS_PROJETO','https://example.org/catalog.json','contributionBindings'])assert.ok(page.includes(t),t);assert.doesNotMatch(page,/\bGDA\b|wa\.me/);
+ const page=W.pagePrompt('https://example.org/catalog.json');assert.ok(page.includes(W.conversationProtocol));for(const t of ['styleContributions','invalidatedAfter','qualityPolicy','identityPolicy','REGRA UNIVERSAL','texto comum','https://example.org/catalog.json','contributionBindings'])assert.ok(page.includes(t),t);assert.doesNotMatch(page,/\bGDA\b|wa\.me/);
 });
 
 test('dependency scenarios preserve real inputs without inferring suitability or hidden views',()=>{

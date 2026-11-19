@@ -113,7 +113,7 @@ Preserve targetDurationSeconds (padrão 30 s); firstDeliverySeconds permanece 10
 
 ## Ficha de continuidade
 
-Encerre cada etapa com <<<STATUS_PROJETO seguido de JSON com etapa, estado, versao:1, custoInformadoUSD, resumo e pendencias, e feche com STATUS_PROJETO>>>. Etapas: choice, materials_and_resources, script, moodboard, visual_storyboard, sample, technical_review, user_approval, final_video. Estados: pendente, em_andamento, aguardando_aprovacao, concluido, bloqueado, correcao. Resumo até 500 caracteres e até 12 pendências de 300. Custos são informados, não consulta de conta. O bloco nunca concede aprovação pelo usuário.
+Informe em texto comum o que foi concluído, o que precisa de uma decisão e a próxima entrega. Atualize a ficha e os registros de continuidade do projeto. Mostre na conversa os arquivos visuais que o usuário precisa avaliar. Aprovações continuam vinculadas às decisões do usuário e aos artefatos correspondentes.
 
 ## Pré-produção visual com aprovação
 

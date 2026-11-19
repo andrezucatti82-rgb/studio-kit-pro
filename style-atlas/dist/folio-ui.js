@@ -151,7 +151,7 @@
  header.querySelector('[data-folio-choice]').hidden=true;
  function syncHeader(view=document.body.dataset.view){
   const count=latest?.selected.length||0,inGuide=document.body.dataset.folioPanel==='guidedDialog';
-  const text=inGuide?$('guidedNext').textContent:view==='brief'?($('briefDialog').dataset.stage==='review'?'Copiar pedido':'Revisar pedido'):count?'Meu vídeo':'Criar vídeo';
+  const text=inGuide?$('guidedNext').textContent:view==='brief'?($('briefDialog').dataset.stage==='review'?'Abrir produção':'Revisar pedido'):count?'Meu vídeo':'Criar vídeo';
   const markup='<span>'+esc(text)+'</span>'+(count&&view!=='brief'&&!inGuide?'<small aria-label="'+count+' estilos escolhidos">'+count+'</small>':'');
   if(headerNext.innerHTML!==markup)headerNext.innerHTML=markup;
   headerNext.disabled=inGuide&&$('guidedNext').disabled;
@@ -160,7 +160,7 @@
   if(document.body.dataset.folioPanel==='guidedDialog'){$('guidedNext').click();return;}
   if(document.body.dataset.view==='brief'){
    window.AtlasInlinePanels.reset();
-   if($('briefDialog').dataset.stage==='review')$('copyPrompt').click();else $('prepare').click();return;
+   if($('briefDialog').dataset.stage==='review')$('chatLink').click();else $('prepare').click();return;
   }
   if(!latest?.selected.length||window.AtlasGuidedFlow?.hasDraft())$('startGuided').click();else window.AtlasShell.openBrief();
  });

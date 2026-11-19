@@ -60,6 +60,6 @@ test('old and expanded styles hand off the actual sequence, action plan and neut
   assert.ok(prompt.includes('moodboard'));
   assert.ok(prompt.includes('storyboard'));
   assert.doesNotMatch(prompt,/\bGDA\b|wa\.me|WHATSAPP/);
-  assert.ok(prompt.indexOf('STATUS_PROJETO')>prompt.indexOf(s.id),'status instructions follow the creative brief');
+  assert.doesNotMatch(prompt,/STATUS_PROJETO/,'no machine status snippet is requested in chat');
  }
 });

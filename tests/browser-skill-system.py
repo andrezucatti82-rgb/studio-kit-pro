@@ -18,8 +18,8 @@ with sync_playwright() as p:
   summary=page.locator('#styleIntentSummary').inner_text();assert 'Apresentador' in summary and 'Filme inteiro' in summary
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
   for platform in ['chatgpt','claude']:
-   page.locator('#handoffPlatform').select_option(platform);page.locator('#copyPrompt').click();copied=page.evaluate('navigator.clipboard.readText()');assert 'video-explicador-interativo' in copied and 'video-tratamento' in copied and 'INTENÇÃO E APLICAÇÃO' in copied
-   assert page.locator('#chatLink').get_attribute('href')==('https://claude.ai/new' if platform=='claude' else 'https://chatgpt.com/')
+   page.locator('#handoffPlatform').select_option(platform);page.locator('#promptDetails').evaluate('(e)=>e.open=true');page.locator('#copyPrompt').click();copied=page.evaluate('navigator.clipboard.readText()');assert 'video-explicador-interativo' in copied and 'video-tratamento' in copied and 'INTENÇÃO E APLICAÇÃO' in copied
+   assert page.locator('#chatLink').get_attribute('href')==('https://claude.ai/code' if platform=='claude' else 'https://chatgpt.com/codex')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
   with page.expect_download() as d:page.locator('[data-starter-file="projeto-video.json"]').click()
   file=out/f'project-{width}.json';d.value.save_as(str(file));bundle=json.loads(file.read_text());route=bundle['orchestrator']['skillRouting'];assert route['primarySkill']=='video-explicador-interativo';assert 'video-revisao' in route['modules'];assert route['version']==3 and 'video-tratamento' in route['modules'];assert bundle['project']['conversationPlatform']=='claude';assert route['filesTransferred'] is False

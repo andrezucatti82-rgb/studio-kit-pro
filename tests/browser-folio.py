@@ -54,7 +54,7 @@ with sync_playwright() as p:
   page.locator('#folioContinue').click();expect(page.locator('#handoff')).to_be_visible()
   page.screenshot(path=str(out/f'brief-{width}.png'),full_page=False,animations='disabled')
   assert style_id in page.locator('#promptOutput').input_value()
-  page.locator('#folioContinue').click();assert style_id in page.evaluate('navigator.clipboard.readText()')
+  page.locator('#promptDetails').evaluate('(e)=>e.open=true');page.locator('#copyPrompt').click();assert style_id in page.evaluate('navigator.clipboard.readText()')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
   with page.expect_download() as download:page.locator('[data-starter-file="projeto-video.json"]').click()
   file=out/f'project-{width}.json';download.value.save_as(str(file));project=json.loads(file.read_text())

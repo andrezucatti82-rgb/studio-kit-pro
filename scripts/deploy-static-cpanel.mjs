@@ -1,4 +1,4 @@
-// Scoped static deployment. Secrets stay in environment; no browser cookies or PHP helpers.
+// Scoped deployment of the static gallery and its encrypted handoff endpoint.
 import {readFile,writeFile,mkdir,readdir,lstat} from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
@@ -36,7 +36,7 @@ async function files(dir,rel=''){
  const out=[];for(const e of await readdir(path.join(dir,rel),{withFileTypes:true})){
   if(e.name.startsWith('.'))throw Error('Hidden file in static bundle.');const r=path.join(rel,e.name);
   if(e.isSymbolicLink())throw Error('Symlink in static bundle.');if(e.isDirectory())out.push(...await files(dir,r));
-  else {if(!/\.(html|css|js|json|png|webp|jpe?g|svg|ico|woff2?|ttf|txt|mp4|zip)$/i.test(e.name))throw Error('Unexpected static asset type.');out.push(r.split(path.sep).join('/'));}
+  else {if(r!=='cloud-handoff.php'&&!/\.(html|css|js|json|png|webp|jpe?g|svg|ico|woff2?|ttf|txt|mp4|zip)$/i.test(e.name))throw Error('Unexpected release asset type.');out.push(r.split(path.sep).join('/'));}
  }return out;
 }
 const info=await api('DomainInfo','single_domain_data',{domain});
@@ -79,7 +79,14 @@ for(let offset=0;offset<encodedBackup.length;offset+=512000){
 await upload(backupDir,'receipt.json',Buffer.from(JSON.stringify(receipt,null,2)));
 await boundedWork(paths.filter(rel=>rel!=='index.html'),6,async rel=>{const dir=path.posix.join(root,release,path.posix.dirname(rel));await upload(dir,path.posix.basename(rel),await readFile(path.join(source,rel)));});
 // Verify immutable release assets before switching the homepage.
-await boundedWork(paths.filter(rel=>rel!=='index.html'),8,async rel=>{const url=`https://${domain}/${release}/${rel}`;const bytes=await readPublicAsset(url);if(hash(bytes)!==hash(await readFile(path.join(source,rel))))throw Error(`Public release verification failed: ${rel}. Homepage unchanged.`);});
+await boundedWork(paths.filter(rel=>rel!=='index.html'),8,async rel=>{
+ const url=`https://${domain}/${release}/${rel}`,expected=await readFile(path.join(source,rel));
+ if(rel==='cloud-handoff.php'){
+  const saved=await api('Fileman','get_file_content',{dir:path.posix.join(root,release),file:rel,from_charset:'UTF-8',to_charset:'UTF-8',update_html_document_encoding:0});
+  const response=await fetch(url,{signal:AbortSignal.timeout(45000),redirect:'error'});
+  if(typeof saved.content!=='string'||hash(Buffer.from(saved.content))!==hash(expected)||response.status!==404||!(await response.json()).error)throw Error('Encrypted handoff verification failed.');
+ }else if(hash(await readPublicAsset(url))!==hash(expected))throw Error(`Public release verification failed: ${rel}. Homepage unchanged.`);
+});
 // A stable, bookmarked sample URL must resolve media from its immutable release.
 // Back up an existing sample page before replacing it, like the main entry.
 if(paths.includes('motion-campaign.html')){
@@ -113,7 +120,7 @@ if(paths.includes('automation-pilot.html')){
 }
 let html=releaseEntryHtml(await readFile(path.join(source,'index.html'),'utf8'),release);
 html=html.replaceAll('src="assets/',`src="${release}/assets/`).replace('href="styles.css"',`href="${release}/styles.css"`).replace('src="app.js"',`src="${release}/app.js"`).replace('href="catalog.json"',`href="${release}/catalog.json"`);
-html=html.replace('</head>',`<meta name="gda-atlas-release" content="${release}"><script>window.ATLAS_ASSET_BASE=${JSON.stringify(release+'/')};window.ATLAS_CATALOG_URL=${JSON.stringify(release+'/catalog.json')};</script></head>`);
+html=html.replace('</head>',`<meta name="gda-atlas-release" content="${release}"><script>window.ATLAS_ASSET_BASE=${JSON.stringify(release+'/')};window.ATLAS_CATALOG_URL=${JSON.stringify(release+'/catalog.json')};window.ATLAS_HANDOFF_ENDPOINT=${JSON.stringify('/'+release+'/cloud-handoff.php')};</script></head>`);
 try{
  await upload(root,'index.html',Buffer.from(html));
  const r=await fetch(`https://${domain}/?release=${release}`,{headers:{'User-Agent':'GDA-Static-Deploy/1.0'},signal:AbortSignal.timeout(45000),redirect:'error'});const text=await r.text();

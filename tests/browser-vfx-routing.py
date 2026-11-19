@@ -12,8 +12,8 @@ with sync_playwright() as p:
   page.goto(os.environ.get('GDA_QA_URL','http://127.0.0.1:8770/')+'?estilo=rotoscopia#briefSection');page.wait_for_function('window.ATLAS_READY===true');assert page.evaluate('AtlasWorkflow.skillSystem.skills.length')==1;assert page.evaluate('AtlasWorkflow.skillSystem.modules.length')==7;page.wait_for_selector('#briefDialog:visible')
   page.locator('#topic').fill('Texto atrás da pessoa com oclusão fiel');page.locator('#prepare').click();page.wait_for_selector('#handoff:not([hidden])')
   for platform in ['chatgpt','claude']:
-   page.locator('#handoffPlatform').select_option(platform);page.locator('#copyPrompt').click();prompt=page.evaluate('navigator.clipboard.readText()');assert 'VFX POR PLANO' in prompt and 'video-vfx' in prompt
-   assert page.locator('#chatLink').get_attribute('href')==('https://claude.ai/new' if platform=='claude' else 'https://chatgpt.com/')
+   page.locator('#handoffPlatform').select_option(platform);page.locator('#promptDetails').evaluate('(e)=>e.open=true');page.locator('#copyPrompt').click();prompt=page.evaluate('navigator.clipboard.readText()');assert 'VFX POR PLANO' in prompt and 'video-vfx' in prompt
+   assert page.locator('#chatLink').get_attribute('href')==('https://claude.ai/code' if platform=='claude' else 'https://chatgpt.com/codex')
   page.locator('#starterKit').evaluate('(e)=>e.open=true')
   for name in ['pedido.txt','projeto-video.json']:
    with page.expect_download() as d:page.locator('[data-starter-file="'+name+'"]').click()
