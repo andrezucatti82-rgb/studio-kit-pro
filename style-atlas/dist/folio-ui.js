@@ -279,7 +279,7 @@
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);
   $('folioNiche').innerHTML='<option value="">Todos os nichos</option>'+niches.map(n=>`<option value="${esc(n.id)}">${esc(n.name)}</option>`).join('');
-  renderCategoryBar();ready=true;document.body.dataset.folio='true';refresh();
+  renderCategoryBar();ready=true;refresh();document.body.dataset.folio='true';
   if(!window.ATLAS_PAGE_MODE&&window.location.hash==='#briefSection')window.AtlasShell.openBrief();
  });
 })();
