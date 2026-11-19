@@ -21,7 +21,7 @@ with sync_playwright() as p:
    assert parent.evaluate('e=>getComputedStyle(e).fontSize')==child.evaluate('e=>getComputedStyle(e).fontSize')=='14px'
    assert page.locator('.folio-text-links').evaluate('e=>parseFloat(getComputedStyle(e).columnGap)')<=24
    if width>900:assert page.locator('.folio-text-links').evaluate('e=>Math.max(...getComputedStyle(e).gridTemplateColumns.split(" ").map(parseFloat))')<=230
-   parent.hover();assert parent.evaluate('e=>getComputedStyle(e).color')=='rgb(226, 255, 59)'
+   parent.hover();expect(parent).to_have_css('background-color','rgb(226, 255, 59)');expect(parent).to_have_css('color','rgb(22, 27, 5)')
    child.hover();assert child.evaluate('e=>getComputedStyle(e).color')=='rgb(226, 255, 59)'
    page.screenshot(path=str(out/f'compact-menu-{width}.png'),animations='disabled');page.keyboard.press('Escape');page.locator('#folioHeader .folio-brand').click()
   page.locator('[data-folio-collection="explanations"]').first.click();page.locator('#grid [data-choose]').first.click();page.locator('#folioContinue').click()

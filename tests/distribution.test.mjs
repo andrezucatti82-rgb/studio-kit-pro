@@ -5,6 +5,19 @@ import os from 'node:os';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 
+test('compact runtime can rebuild discovery tags without reference images or dependencies',async()=>{
+ const temp=await fs.mkdtemp(path.join(os.tmpdir(),'atlas-search-runtime-'));
+ try{
+  execFileSync('python3',['-c','import sys,zipfile;zipfile.ZipFile(sys.argv[1]).extractall(sys.argv[2])',path.resolve('dist/video-multimarcas-runtime.zip'),temp]);
+  const root=path.join(temp,'video-multimarcas-runtime');
+  assert.equal((await fs.readdir(path.join(root,'style-atlas/dist/assets'))).includes('film-sequences'),false);
+  const result=execFileSync(process.execPath,[path.join(root,'scripts/build-search-index.mjs')],{cwd:root,encoding:'utf8'});
+  assert.match(result,/1425 styles indexed/);
+  const catalog=JSON.parse(await fs.readFile(path.join(root,'style-atlas/dist/catalog.json'),'utf8'));
+  assert.equal(Object.keys(catalog.search.styleColors).length,1425);
+ }finally{await fs.rm(temp,{recursive:true,force:true});}
+});
+
 test('Codex, Claude and runtime archives match canonical files, versions and integrity without private media or credentials',()=>{
  execFileSync('python3',['-c',String.raw`
 from pathlib import Path

@@ -442,7 +442,7 @@ body[data-folio=true] :is([data-frame],[data-board],[data-sequence-download],#st
 @media(max-width:700px){
  body[data-folio=true] .folio-header{display:grid;grid-template-columns:max-content minmax(0,1fr) auto;gap:2px 8px;padding:10px 16px 4px}
  .folio-header .folio-brand{grid-column:1;grid-row:1;min-width:0}.folio-header .folio-endorsement{display:none}
- .folio-header-progress{grid-column:2;grid-row:1;order:initial;flex:none;min-width:0;justify-self:end}.folio-header-progress button{min-width:0;width:auto;max-width:100%;padding:9px 14px;white-space:normal;line-height:1.25;font-size:15px;font-weight:600}
+ .folio-header-progress{grid-column:2;grid-row:1;order:initial;flex:none;min-width:0;justify-self:end}.folio-header-progress button{min-width:0;width:auto;max-width:100%;padding:9px 10px;white-space:normal;line-height:1.25;font-size:15px;font-weight:600}
  .folio-header>nav:not(.folio-category-bar){grid-column:3;grid-row:1;margin:0}
  .folio-header .folio-category-bar{display:flex;grid-column:1/-1;grid-row:2;order:initial;min-width:0;width:100%;padding:0;margin:0;gap:16px;justify-content:flex-start}
  .folio-header .folio-category-bar>button{padding:8px 0;font-size:14px;flex:none}
@@ -512,3 +512,44 @@ body[data-folio=true] .font-card[aria-pressed=true] :is(.font-label,.font-body,.
 body[data-folio=true] :is(#sequencePrev,#sequenceNext){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;background:var(--folio-accent);border:1px solid var(--folio-accent);border-radius:999px;color:#161b05;font-size:15px;line-height:1.3;font-weight:600;text-align:center}
 body[data-folio=true] .guided-preferences>h3{font-size:15px;line-height:1.4;margin:12px 0 6px;font-weight:600;letter-spacing:0}
 body[data-folio=true] .guided-preferences>h3 small{font-size:12px;font-weight:400;color:var(--muted);margin-left:6px}
+
+/* Category navigation shares the goal selector's segmented surface. */
+body[data-folio=true] .folio-header .folio-category-bar{background:#1c1c1c;border-radius:28px;padding:4px;gap:4px}
+body[data-folio=true] .folio-header .folio-category-bar>button{min-height:44px;padding:8px;border-radius:999px;background:transparent;color:var(--muted)}
+body[data-folio=true] .folio-header .folio-category-bar>button[aria-current=true]{background:var(--folio-accent);color:#161b05;font-weight:500}
+body[data-folio=true] .folio-header .folio-category-bar>button:is(:hover,:focus-visible):not([aria-current=true]){background:#2a2a2a;color:var(--folio-accent)}
+@media(max-width:700px){
+ body[data-folio=true] .folio-header .folio-category-bar{width:calc(100% + 16px);margin:2px -8px 0;padding:4px 6px;gap:0 2px;flex-wrap:wrap;overflow:visible}
+ body[data-folio=true] .folio-header .folio-category-bar>button{padding:8px 2px;font-size:14px}
+}
+
+/* Shared type scale: captions, compact navigation, reading/controls and headings. */
+body[data-folio=true]{--folio-type-meta:12px;--folio-type-compact:14px;--folio-type-body:16px;--folio-type-section:20px;--folio-type-title:28px;font-size:var(--folio-type-body)}
+body[data-folio=true] :is(.folio-goals button,.folio-niche select,.folio-search input,.primary,.outline,.button,.folio-add){font-size:var(--folio-type-body)}
+body[data-folio=true] :is(.folio-header-progress button,#sequencePrev,#sequenceNext){font-size:var(--folio-type-body)}
+body[data-folio=true] #folioPanelHost .folio-panel-back{font-size:var(--folio-type-body)}
+body[data-folio=true] :is(.folio-category-bar>button,#folioMenu button,.folio-card h3,.folio-scope .text-button,.folio-shelf-tools>button,.folio-story-link,.brief-steps button){font-size:var(--folio-type-compact)}
+body[data-folio=true] :is(.folio-reference,.folio-compare,.folio-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--folio-type-meta)}
+body[data-folio=true] :is(.guided-dialog label,.guided-preferences>h3,.brief-editor form label){font-size:var(--folio-type-compact)}
+body[data-folio=true] :is(.guided-dialog section>h3,.film-story>h3,#handoff h2){font-size:var(--folio-type-section)}
+body[data-folio=true] .folio-shelf h2{font-size:var(--folio-type-section)}
+body[data-folio=true] .request-summary dt{font-size:var(--folio-type-meta)}
+body[data-folio=true] .request-summary dd{font-size:var(--folio-type-body)}
+body[data-folio=true] :is(.folio-discovery h1,.folio-collection-heading h1,.direction-header h2,.brief-heading h1,#guidedTitle,.folio-sheet header h2){font-size:var(--folio-type-title)}
+body[data-folio=true] #briefDialog form label{font-size:var(--folio-type-compact)}
+body[data-folio=true] #briefDialog :is(input,select,textarea){font-size:var(--folio-type-body)}
+@media(max-width:700px){
+ body[data-folio=true] .folio-shelf h2{font-size:var(--folio-type-body)}
+ body[data-folio=true] :is(.folio-catalogue-controls button,.folio-collection-heading p){font-size:var(--folio-type-compact)}
+}
+body[data-folio=true] .folio-header-progress small{font-size:var(--folio-type-meta)}
+
+/* Search predictions remain in document flow, with no menu overlay. */
+.search-suggestions{position:relative;max-height:280px;overflow-y:auto;margin-top:8px;padding:4px;background:#1c1c1c;border-radius:20px;overscroll-behavior:contain}
+.search-suggestions[hidden]{display:none}
+.search-suggestions>button{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;width:100%;padding:10px 12px;border:0;border-radius:16px;background:transparent;text-align:left;color:var(--ink);font-size:var(--folio-type-compact,14px);line-height:1.4}
+.search-suggestions>button span{min-width:0;overflow-wrap:anywhere}
+.search-suggestions>button small{flex:none;color:var(--muted);font-size:var(--folio-type-meta,12px)}
+.search-suggestions>button:is(:hover,[aria-selected=true]){background:var(--folio-accent);color:#161b05}
+.search-suggestions>button:is(:hover,[aria-selected=true]) small{color:#161b05}
+body[data-folio-keyboard=true] .search-suggestions{max-height:max(44px,min(280px,calc(var(--folio-viewport-height) - var(--folio-header-height) - 132px)))}

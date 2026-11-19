@@ -91,9 +91,10 @@ for folder in ['server','src','scripts','tools','templates','docs','packaging','
     for source in (root/folder).rglob('*'):
         if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff','.sh','.cmd','.ps1'] or source.name.startswith('LICENSE')):
             runtime_files.add(source)
-for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js','search.js']:
+for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js','search.js','frame-presentation.js']:
     runtime_files.add(root/'style-atlas/dist'/runtime_name)
 runtime_files.add(root/'style-atlas/records/search/overrides.json')
+runtime_files.add(root/'style-atlas/records/search/colors.json')
 for record_name in ['briefs.json','research.json']:
     runtime_files.add(root/'style-atlas/records/presenter-180'/record_name)
 runtime_files=sorted(runtime_files)

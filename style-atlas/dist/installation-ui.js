@@ -1,9 +1,10 @@
 /* One download, explicit local execution, then a tutorial. No remote installation. */
 (()=>{
- const base=new URL(window.ATLAS_ASSET_BASE||'.',document.baseURI),button=document.getElementById('downloadStudioKit'),status=document.getElementById('installationStatus'),tutorial=document.getElementById('installationTutorial');
+ const base=new URL(window.ATLAS_INSTALL_ASSET_BASE||window.ATLAS_ASSET_BASE||'.',document.baseURI),button=document.getElementById('downloadStudioKit'),status=document.getElementById('installationStatus'),tutorial=document.getElementById('installationTutorial');
  if(!button||!status)return;
  button.removeAttribute('href');button.setAttribute('aria-disabled','true');status.textContent='Conferindo o pacote disponível…';
- fetch(new URL('installation.json',base)).then(response=>{if(!response.ok)throw Error();return response.json()}).then(data=>{
+ const manifest=window.ATLAS_INSTALL_MANIFEST?Promise.resolve(window.ATLAS_INSTALL_MANIFEST):fetch(new URL('installation.json',base)).then(response=>{if(!response.ok)throw Error();return response.json()});
+ manifest.then(data=>{
   if(data.version!==1||data.download!=='downloads/studio-kit-pro-installer.zip'||data.tutorial!=='como-instalar.html'||!Number.isFinite(data.bytes))throw Error();
   tutorial.href=new URL(data.tutorial,base).href;
   if(!data.sourceReady){status.textContent='Estamos atualizando o pacote. Aguarde um pouco e tente baixar novamente.';return;}
