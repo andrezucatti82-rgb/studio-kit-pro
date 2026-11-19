@@ -64,6 +64,10 @@ with sync_playwright() as p:
             assert frames.evaluate_all('es=>es.map(e=>Number(e.dataset.frameIndex))') == [0, 1, 2, 3]
             bounds = frames.evaluate_all('es=>es.map(e=>{const r=e.getBoundingClientRect();return [r.top,r.width,r.height]})')
             assert all(max(v)-min(v) < 1 for v in zip(*bounds)), (style, width, bounds)
+            assert frames.evaluate_all('''es=>es.every(e=>{
+                const media=e.firstElementChild.getBoundingClientRect(),well=e.getBoundingClientRect();
+                return media.width<=well.width+1 && media.height<=well.height+1;
+            })'''), (style, width, 'artwork clipped by frame')
             height = bounds[0][2]
             assert height <= (230 if width <= 700 else 400), (width, height)
             heights.append(height)

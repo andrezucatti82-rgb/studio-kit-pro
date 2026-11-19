@@ -135,7 +135,7 @@ body[data-view="library"]:has(#selectionTray:not([hidden])) .guided-launch{displ
  max-height:var(--film-frame-limit);background:transparent;
 }
 .film-steps .frame-expand:focus-visible{outline-offset:-3px}
-.film-steps .frame-expand>img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;object-position:center top}
+.film-steps .frame-expand>img{width:auto;height:100cqh;max-width:100cqw;aspect-ratio:auto;object-fit:contain;object-position:center top;border-radius:inherit}
 .film-steps .frame-expand>.reference-panel{width:min(100cqw,calc(100cqh * var(--frame-ratio)));border-radius:inherit}
 .film-steps figcaption{margin-top:8px;font-size:.875rem;line-height:1.45}
 .film-steps figcaption p{margin:4px 0 0;color:var(--muted);font-size:.8125rem}
