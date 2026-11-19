@@ -87,5 +87,34 @@
       "bytes": 217113,
       "sha256": "bfc367245769d4bab5a5320e4c36453613e3997054d0c13dee4f2e93fa42388a"
     }
+  },
+  "installer": {
+    "version": 1,
+    "kitVersion": "2.16.0",
+    "sourceRevision": "15a5031904344d5579d646370689fa246ce241fb",
+    "sourceReady": true,
+    "download": "downloads/studio-kit-pro-installer.zip",
+    "bytes": 679234,
+    "sha256": "1a4a2edf77d4049ea6ba0050ee0d1e0574f5cc7584a49788f898032dec161a2c",
+    "tutorial": "como-instalar.html",
+    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
+    "internetRequired": true,
+    "freeToolchain": {
+      "profile": "all-free",
+      "toolCount": 15,
+      "verification": "on each target machine",
+      "binariesBundled": false
+    },
+    "fullProjectDownloadMiB": 819,
+    "skills": 1,
+    "internalModules": 7,
+    "presenterStyles": 265,
+    "curadoria": {
+      "enabled": true,
+      "documentation": "https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/CURADORIA-LIVRE.md",
+      "mcp": "studio_curadoria",
+      "accountsRequired": false
+    },
+    "localFile": "studio-kit-pro-installer.zip"
   }
 }
