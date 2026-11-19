@@ -6,7 +6,7 @@ A regra padrão é **CC0 ou domínio público comprovado no item**. O download a
 
 ## Começar pelo Codex ou Claude Code
 
-Abra a pasta instalada como projeto. Ela inclui `.codex/config.toml` e `.mcp.json` para o servidor local `studio_curadoria`. Aceite o projeto/servidor nas opções do cliente, se solicitado. O servidor usa o Node do kit e funciona sem conta, assinatura ou chave dos provedores integrados. Em máquinas com proxy, configure o Node conforme seu ambiente. No ChatGPT sem executor local, use o catálogo embarcado para pesquisa e consulte os arquivos nas fontes oficiais.
+Abra a pasta instalada como projeto. Ela inclui `.codex/config.toml` e `.mcp.json` para o servidor local `studio_curadoria`. Aceite o projeto/servidor nas opções do cliente, se solicitado. Para iniciar o Codex CLI com o MCP carregado explicitamente, use `sh studio.sh codex` ou `STUDIO.cmd codex`. O servidor usa o Node do kit e funciona sem conta, assinatura ou chave dos provedores integrados. Em máquinas com proxy, configure o Node conforme seu ambiente. No ChatGPT sem executor local, use o catálogo embarcado para pesquisa e consulte os arquivos nas fontes oficiais.
 
 A CLI funciona mesmo com o MCP desativado. Para obter sugestões sem executar buscas, use `sources`. Para baixar, use um projeto existente em `projects/`.
 
