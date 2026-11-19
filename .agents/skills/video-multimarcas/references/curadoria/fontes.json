@@ -1,0 +1,776 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "commons",
+      "name": "Wikimedia Commons",
+      "types": [
+        "image",
+        "video",
+        "audio",
+        "vector",
+        "graphics",
+        "meme"
+      ],
+      "policy": "mixed",
+      "access": "api",
+      "url": "https://commons.wikimedia.org/",
+      "rightsUrl": "https://commons.wikimedia.org/wiki/Commons:Licensing",
+      "note": "Busca em arquivos; confira autor, licença e origem na página de cada item."
+    },
+    {
+      "id": "openverse",
+      "name": "Openverse",
+      "types": [
+        "image",
+        "audio"
+      ],
+      "policy": "mixed",
+      "access": "api",
+      "url": "https://openverse.org/",
+      "rightsUrl": "https://docs.openverse.org/api/",
+      "note": "Índice de descoberta. Abra a fonte original para confirmar o rótulo e baixar."
+    },
+    {
+      "id": "polyhaven",
+      "name": "Poly Haven",
+      "types": [
+        "3d",
+        "texture",
+        "hdri"
+      ],
+      "policy": "cc0",
+      "access": "api",
+      "url": "https://polyhaven.com/",
+      "rightsUrl": "https://polyhaven.com/license",
+      "note": "Modelos, materiais e iluminação HDRI. API gratuita, inclusive comercial, com identificação da fonte."
+    },
+    {
+      "id": "ambientcg",
+      "name": "ambientCG",
+      "types": [
+        "3d",
+        "texture",
+        "hdri"
+      ],
+      "policy": "cc0",
+      "access": "api",
+      "url": "https://ambientcg.com/",
+      "rightsUrl": "https://docs.ambientcg.com/license/",
+      "note": "Materiais PBR, HDRI e modelos. Escolha resolução e formato no download oficial."
+    },
+    {
+      "id": "kenney",
+      "name": "Kenney Assets",
+      "types": [
+        "image",
+        "vector",
+        "element",
+        "3d",
+        "audio"
+      ],
+      "policy": "cc0",
+      "access": "direct",
+      "url": "https://kenney.nl/assets",
+      "rightsUrl": "https://kenney.nl/support",
+      "note": "Packs de UI, sprites, sons e 3D. Confira a indicação CC0 em cada pacote."
+    },
+    {
+      "id": "quaternius",
+      "name": "Quaternius",
+      "types": [
+        "3d",
+        "element"
+      ],
+      "policy": "cc0",
+      "access": "direct",
+      "url": "https://quaternius.com/",
+      "rightsUrl": "https://quaternius.com/faq.html",
+      "note": "Use os pacotes gratuitos com confirmação CC0 no download."
+    },
+    {
+      "id": "opengameart",
+      "name": "OpenGameArt",
+      "types": [
+        "3d",
+        "texture",
+        "element",
+        "audio"
+      ],
+      "policy": "mixed",
+      "access": "direct",
+      "url": "https://opengameart.org/",
+      "rightsUrl": "https://opengameart.org/content/faq",
+      "note": "Escolha CC0 na página do ativo. Há várias licenças no acervo."
+    },
+    {
+      "id": "blendswap",
+      "name": "Blend Swap",
+      "types": [
+        "3d",
+        "texture"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://www.blendswap.com/",
+      "rightsUrl": "https://www.blendswap.com/terms",
+      "note": "Confira licença por projeto e recursos de terceiros incorporados."
+    },
+    {
+      "id": "sketchfab",
+      "name": "Sketchfab",
+      "types": [
+        "3d",
+        "texture"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://sketchfab.com/search?features=downloadable&type=models",
+      "rightsUrl": "https://sketchfab.com/licenses",
+      "note": "Procure CC0 explícito, com arquivo baixável e titular identificado."
+    },
+    {
+      "id": "opentextures",
+      "name": "CGBookcase",
+      "types": [
+        "texture"
+      ],
+      "policy": "cc0",
+      "access": "direct",
+      "url": "https://www.cgbookcase.com/textures/",
+      "rightsUrl": "https://www.cgbookcase.com/about/",
+      "note": "Texturas PBR para cenário. Confira CC0 na fonte."
+    },
+    {
+      "id": "texturelabs",
+      "name": "Texturelabs",
+      "types": [
+        "texture",
+        "element"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://texturelabs.org/",
+      "rightsUrl": "https://texturelabs.org/license/",
+      "note": "Termos próprios. Use como referência no modo estrito."
+    },
+    {
+      "id": "openclipart",
+      "name": "Openclipart",
+      "types": [
+        "vector",
+        "meme",
+        "element"
+      ],
+      "policy": "cc0",
+      "access": "direct",
+      "url": "https://openclipart.org/",
+      "rightsUrl": "https://openclipart.org/share",
+      "note": "Clipart SVG. Confira procedência para evitar reproduções de marcas e personagens."
+    },
+    {
+      "id": "svgrepo",
+      "name": "SVG Repo",
+      "types": [
+        "vector",
+        "element",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "direct",
+      "url": "https://www.svgrepo.com/",
+      "rightsUrl": "https://www.svgrepo.com/page/licensing/",
+      "note": "Confira CC0 explícito por vetor. A licença padrão da plataforma é própria."
+    },
+    {
+      "id": "undraw",
+      "name": "unDraw",
+      "types": [
+        "vector",
+        "element"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://undraw.co/illustrations",
+      "rightsUrl": "https://undraw.co/license",
+      "note": "Licença própria com condições. Referência no modo estrito."
+    },
+    {
+      "id": "openmoji",
+      "name": "OpenMoji",
+      "types": [
+        "vector",
+        "meme",
+        "element"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://openmoji.org/",
+      "rightsUrl": "https://openmoji.org/about/",
+      "note": "CC BY-SA. Consulte para referência visual."
+    },
+    {
+      "id": "phylopic",
+      "name": "PhyloPic",
+      "types": [
+        "vector",
+        "image",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.phylopic.org/",
+      "rightsUrl": "https://www.phylopic.org/api/",
+      "note": "Silhuetas de espécies. Verifique CC0 por imagem."
+    },
+    {
+      "id": "publicdomainreview",
+      "name": "The Public Domain Review",
+      "types": [
+        "image",
+        "video",
+        "text",
+        "meme"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://publicdomainreview.org/collections/",
+      "rightsUrl": "https://publicdomainreview.org/legal/",
+      "note": "Obras históricas para formatos de meme e B-roll. Confirme a reprodução original."
+    },
+    {
+      "id": "internetarchive",
+      "name": "Internet Archive",
+      "types": [
+        "image",
+        "video",
+        "audio",
+        "meme"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://archive.org/",
+      "rightsUrl": "https://archive.org/about/terms.php",
+      "note": "Metadados não são garantia de direitos. Verifique titular, obra, trilha e gravação."
+    },
+    {
+      "id": "prelinger",
+      "name": "Prelinger Archives",
+      "types": [
+        "video"
+      ],
+      "policy": "mixed",
+      "access": "direct",
+      "url": "https://archive.org/details/prelinger",
+      "rightsUrl": "https://archive.org/details/prelinger",
+      "note": "Filmes históricos. Consulte licença e elementos incorporados por item."
+    },
+    {
+      "id": "loc",
+      "name": "Library of Congress Free to Use and Reuse",
+      "types": [
+        "image",
+        "video",
+        "graphics",
+        "audio"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.loc.gov/free-to-use/",
+      "rightsUrl": "https://www.loc.gov/apis/",
+      "note": "Leia Rights & Access e a coleção de cada item."
+    },
+    {
+      "id": "nara",
+      "name": "US National Archives",
+      "types": [
+        "image",
+        "video",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://catalog.archives.gov/",
+      "rightsUrl": "https://www.archives.gov/research/catalog/api",
+      "note": "Filmagem e documentos históricos. Confira restrições de uso e origem por registro."
+    },
+    {
+      "id": "nasa",
+      "name": "NASA Image and Video Library",
+      "types": [
+        "image",
+        "video",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://images.nasa.gov/",
+      "rightsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "note": "Espaço e ciência. Verifique material de terceiros, pessoas e restrições de marca/uso promocional."
+    },
+    {
+      "id": "nasasvs",
+      "name": "NASA Scientific Visualization Studio",
+      "types": [
+        "video",
+        "graphics",
+        "image"
+      ],
+      "policy": "mixed",
+      "access": "direct",
+      "url": "https://svs.gsfc.nasa.gov/",
+      "rightsUrl": "https://svs.gsfc.nasa.gov/help/",
+      "note": "Visualizações científicas. Confira créditos, áudio e fontes em cada item."
+    },
+    {
+      "id": "noaa",
+      "name": "NOAA Photo Library",
+      "types": [
+        "image",
+        "video",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://photolib.noaa.gov/",
+      "rightsUrl": "https://www.noaa.gov/disclaimer",
+      "note": "Clima, oceano e fauna. Confira exceções de terceiros e créditos."
+    },
+    {
+      "id": "usgs",
+      "name": "USGS Multimedia Gallery",
+      "types": [
+        "image",
+        "video",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://www.usgs.gov/products/multimedia-gallery",
+      "rightsUrl": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+      "note": "Geologia, mapas e natureza. Confira exceções por item."
+    },
+    {
+      "id": "cdc",
+      "name": "CDC Public Health Image Library",
+      "types": [
+        "image",
+        "video"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://phil.cdc.gov/",
+      "rightsUrl": "https://phil.cdc.gov/FAQ.aspx",
+      "note": "Saúde pública. Verifique aviso de copyright e uso de imagem."
+    },
+    {
+      "id": "smithsonian",
+      "name": "Smithsonian Open Access",
+      "types": [
+        "image",
+        "3d",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.si.edu/openaccess",
+      "rightsUrl": "https://www.si.edu/openaccess/faq",
+      "note": "Use somente itens explicitamente CC0. API oficial pode exigir chave gratuita."
+    },
+    {
+      "id": "met",
+      "name": "The Met Open Access",
+      "types": [
+        "image",
+        "texture",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api",
+      "url": "https://www.metmuseum.org/policies/image-resources",
+      "rightsUrl": "https://metmuseum.github.io/",
+      "note": "Seleção Open Access em CC0. API sem chave para objetos e imagens elegíveis."
+    },
+    {
+      "id": "aic",
+      "name": "Art Institute of Chicago",
+      "types": [
+        "image",
+        "texture",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.artic.edu/open-access/open-access-images",
+      "rightsUrl": "https://api.artic.edu/docs/",
+      "note": "Apenas reproduções marcadas como abertas. Confira is_public_domain e créditos."
+    },
+    {
+      "id": "rijks",
+      "name": "Rijksmuseum",
+      "types": [
+        "image",
+        "graphics",
+        "texture"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.rijksmuseum.nl/en/rijksstudio",
+      "rightsUrl": "https://data.rijksmuseum.nl/",
+      "note": "Confirme direitos da obra e da imagem. Use os links/IIIF oficiais."
+    },
+    {
+      "id": "europeana",
+      "name": "Europeana",
+      "types": [
+        "image",
+        "video",
+        "graphics",
+        "3d"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.europeana.eu/",
+      "rightsUrl": "https://www.europeana.eu/en/rights",
+      "note": "Filtro CC0 ou domínio público no item do provedor. Acesso a certas APIs exige chave."
+    },
+    {
+      "id": "wellcome",
+      "name": "Wellcome Collection",
+      "types": [
+        "image",
+        "graphics",
+        "video"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://wellcomecollection.org/works",
+      "rightsUrl": "https://developers.wellcomecollection.org/",
+      "note": "Medicina, ciência e história. Material em domínio público convive com outros termos."
+    },
+    {
+      "id": "bn",
+      "name": "Biblioteca Nacional Digital Brasil",
+      "types": [
+        "image",
+        "graphics",
+        "text"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://bndigital.bn.gov.br/",
+      "rightsUrl": "https://bndigital.bn.gov.br/",
+      "note": "Brasil histórico. Confira direitos do item, da edição e da digitalização."
+    },
+    {
+      "id": "hemera",
+      "name": "Hemeroteca Digital Brasileira",
+      "types": [
+        "image",
+        "text",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://bndigital.bn.gov.br/hemeroteca-digital/",
+      "rightsUrl": "https://bndigital.bn.gov.br/",
+      "note": "Pesquise notícias de época. Confira cada texto, fotografia e ilustração antes de reutilizar."
+    },
+    {
+      "id": "nypl",
+      "name": "NYPL Digital Collections",
+      "types": [
+        "image",
+        "graphics",
+        "meme"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://digitalcollections.nypl.org/",
+      "rightsUrl": "https://www.nypl.org/research/collections/digital-collections/public-domain",
+      "note": "Busque itens marcados public domain. Confira a jurisdição."
+    },
+    {
+      "id": "naturalearth",
+      "name": "Natural Earth",
+      "types": [
+        "vector",
+        "graphics"
+      ],
+      "policy": "pd",
+      "access": "direct",
+      "url": "https://www.naturalearthdata.com/downloads/",
+      "rightsUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "note": "Mapas vetoriais e raster dedicados ao domínio público."
+    },
+    {
+      "id": "census",
+      "name": "US Census Bureau Data",
+      "types": [
+        "data",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://data.census.gov/",
+      "rightsUrl": "https://www.census.gov/data/developers/data-sets.html",
+      "note": "Dados oficiais para gerar gráficos originais. Verifique nota de terceiros e data."
+    },
+    {
+      "id": "ibge",
+      "name": "IBGE SIDRA",
+      "types": [
+        "data",
+        "graphics"
+      ],
+      "policy": "reference",
+      "access": "api-reference",
+      "url": "https://sidra.ibge.gov.br/",
+      "rightsUrl": "https://apisidra.ibge.gov.br/",
+      "note": "Dados brasileiros para gráfico próprio. Registre tabela, período, metodologia e fonte."
+    },
+    {
+      "id": "worldbank",
+      "name": "World Bank Open Data",
+      "types": [
+        "data",
+        "graphics"
+      ],
+      "policy": "reference",
+      "access": "api-reference",
+      "url": "https://data.worldbank.org/",
+      "rightsUrl": "https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets",
+      "note": "Dados com atribuição e exceções específicas. Consulte para pesquisa."
+    },
+    {
+      "id": "owid",
+      "name": "Our World in Data",
+      "types": [
+        "data",
+        "graphics"
+      ],
+      "policy": "reference",
+      "access": "api-reference",
+      "url": "https://ourworldindata.org/",
+      "rightsUrl": "https://ourworldindata.org/faqs",
+      "note": "Confira créditos e licenças do gráfico e de cada fonte de dados."
+    },
+    {
+      "id": "googlefonts",
+      "name": "Google Fonts",
+      "types": [
+        "font"
+      ],
+      "policy": "reference",
+      "access": "direct",
+      "url": "https://fonts.google.com/",
+      "rightsUrl": "https://developers.google.com/fonts/faq",
+      "note": "Fontes gratuitas com licenças diversas. OFL é licença aberta com condições, consulte em modo referência. Solicite escopo explícito antes de usar."
+    },
+    {
+      "id": "fontsquirrel",
+      "name": "Font Squirrel",
+      "types": [
+        "font"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://www.fontsquirrel.com/",
+      "rightsUrl": "https://www.fontsquirrel.com/faq",
+      "note": "Confira a licença da família e condições de incorporação e redistribuição."
+    },
+    {
+      "id": "ofl",
+      "name": "SIL Open Font License",
+      "types": [
+        "font"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://openfontlicense.org/",
+      "rightsUrl": "https://openfontlicense.org/ofl-faq/",
+      "note": "Guia de uso, incorporação e redistribuição. A OFL permite produzir vídeo comercial, observadas suas condições."
+    },
+    {
+      "id": "lospec",
+      "name": "Lospec Palette List",
+      "types": [
+        "color"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://lospec.com/palette-list",
+      "rightsUrl": "https://lospec.com/",
+      "note": "Use códigos de cor como referência para montar paleta própria. Confira direitos antes de reutilizar arquivos ou composições."
+    },
+    {
+      "id": "colorbrewer",
+      "name": "ColorBrewer",
+      "types": [
+        "color",
+        "graphics"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://colorbrewer2.org/",
+      "rightsUrl": "https://colorbrewer2.org/",
+      "note": "Referência de contraste e cores para mapas. Crie sua paleta e confira os termos da implementação antes de redistribuir."
+    },
+    {
+      "id": "pexels",
+      "name": "Pexels",
+      "types": [
+        "image",
+        "video"
+      ],
+      "policy": "reference",
+      "access": "api-reference",
+      "url": "https://www.pexels.com/",
+      "rightsUrl": "https://www.pexels.com/license/",
+      "note": "Gratuito sob licença própria. API oficial com chave e condições."
+    },
+    {
+      "id": "pixabay",
+      "name": "Pixabay",
+      "types": [
+        "image",
+        "video",
+        "audio",
+        "vector"
+      ],
+      "policy": "reference",
+      "access": "api-reference",
+      "url": "https://pixabay.com/",
+      "rightsUrl": "https://pixabay.com/service/license-summary/",
+      "note": "Licença própria e restrições de redistribuição. API com chave."
+    },
+    {
+      "id": "unsplash",
+      "name": "Unsplash",
+      "types": [
+        "image"
+      ],
+      "policy": "reference",
+      "access": "api-reference",
+      "url": "https://unsplash.com/",
+      "rightsUrl": "https://unsplash.com/license",
+      "note": "Consulte a licença própria e as regras da API. Para reutilização estrita, procure item equivalente CC0."
+    },
+    {
+      "id": "mixkit",
+      "name": "Mixkit",
+      "types": [
+        "video",
+        "audio",
+        "element"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://mixkit.co/",
+      "rightsUrl": "https://mixkit.co/license/",
+      "note": "Licenças variam por categoria e clipe. Pesquise por referência."
+    },
+    {
+      "id": "youtube-nasa",
+      "name": "NASA no YouTube",
+      "types": [
+        "video"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://www.youtube.com/@NASA",
+      "rightsUrl": "https://www.youtube.com/t/terms",
+      "note": "Use para localizar pauta e contexto. Busque o arquivo original no acervo NASA e valide os direitos."
+    },
+    {
+      "id": "youtube-noaa",
+      "name": "NOAA no YouTube",
+      "types": [
+        "video"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://www.youtube.com/@NOAA",
+      "rightsUrl": "https://www.youtube.com/t/terms",
+      "note": "Use como referência e procure o original no acervo oficial."
+    },
+    {
+      "id": "youtube-nara",
+      "name": "US National Archives no YouTube",
+      "types": [
+        "video"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://www.youtube.com/@USNationalArchives",
+      "rightsUrl": "https://support.google.com/youtube/answer/2797468",
+      "note": "Verifique o original no catálogo NARA. Licença padrão e CC BY do YouTube têm escopos diferentes."
+    },
+    {
+      "id": "know-your-meme",
+      "name": "Know Your Meme",
+      "types": [
+        "meme",
+        "text",
+        "image"
+      ],
+      "policy": "reference",
+      "access": "manual",
+      "url": "https://knowyourmeme.com/",
+      "rightsUrl": "https://knowyourmeme.com/terms-of-service",
+      "note": "Pesquise origem e contexto da piada. Refaça o conceito com mídia própria ou CC0, sem copiar a imagem do meme."
+    },
+    {
+      "id": "freesound",
+      "name": "Freesound",
+      "types": [
+        "audio"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://freesound.org/",
+      "rightsUrl": "https://freesound.org/help/faq/",
+      "note": "Filtre CC0 e confira o item. API oficial com credenciais."
+    },
+    {
+      "id": "flickr-commons",
+      "name": "Flickr Commons",
+      "types": [
+        "image",
+        "graphics",
+        "meme"
+      ],
+      "policy": "mixed",
+      "access": "api-reference",
+      "url": "https://www.flickr.com/commons",
+      "rightsUrl": "https://www.flickr.com/commons/usage/",
+      "note": "Sem restrições conhecidas é evidência de busca, insuficiente para liberação automática."
+    },
+    {
+      "id": "eol",
+      "name": "Encyclopedia of Life",
+      "types": [
+        "image",
+        "video",
+        "graphics"
+      ],
+      "policy": "mixed",
+      "access": "manual",
+      "url": "https://eol.org/",
+      "rightsUrl": "https://eol.org/docs/what-is-eol/what-is-eol",
+      "note": "Verifique a licença do item de biodiversidade e o provedor original."
+    },
+    {
+      "id": "aileron",
+      "name": "Aileron (Dotcolon)",
+      "types": [
+        "font"
+      ],
+      "policy": "cc0",
+      "access": "direct",
+      "url": "https://dotcolon.net/fonts/aileron/",
+      "rightsUrl": "https://fontsource.org/fonts/aileron/about",
+      "note": "Família grotesca de Sora Sagano. Download OTF oficial em ZIP, com versão e hash fixados no kit."
+    }
+  ]
+}

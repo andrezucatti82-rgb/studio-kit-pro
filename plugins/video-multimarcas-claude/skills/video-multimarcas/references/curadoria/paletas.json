@@ -1,0 +1,11 @@
+{
+  "license": "CC0-1.0",
+  "description": "Paletas originais do Studio Kit Pro para adaptar ao contraste, ao bruto e à marca.",
+  "palettes": [
+    {"id":"noticia","use":"notícia e dados","background":"#111C2E","text":"#F5F8FC","accent":"#44C3E2","secondary":"#F3AF56"},
+    {"id":"arquivo","use":"arquivo histórico","background":"#221E1B","text":"#FCF2DD","accent":"#DEAC72","secondary":"#82A69B"},
+    {"id":"tecnologia","use":"tecnologia e VFX","background":"#090E18","text":"#EDF5FF","accent":"#51D8E9","secondary":"#B2A0FF"},
+    {"id":"natureza","use":"fauna e clima","background":"#142922","text":"#F1F7ED","accent":"#A4D291","secondary":"#F5C88A"},
+    {"id":"explicador","use":"explicadores e apresentações","background":"#222435","text":"#FFFFFF","accent":"#F1C659","secondary":"#98D3FB"}
+  ]
+}

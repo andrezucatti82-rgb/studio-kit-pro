@@ -85,7 +85,7 @@ with zipfile.ZipFile(root/'dist/video-multimarcas-claude-plugin.zip','w',zipfile
 # A small executable runtime, separate from instructions and from the full media catalogue.
 # Only these public source trees are allowed; never archive projects, .env, caches or node_modules.
 runtime_files=set()
-for runtime_name in ['AGENTS.md','CLAUDE.md','README.md','THIRD_PARTY.md','LICENSE','package.json','package-lock.json','tsconfig.json','studio.sh','STUDIO.cmd']:
+for runtime_name in ['AGENTS.md','CLAUDE.md','README.md','THIRD_PARTY.md','LICENSE','package.json','package-lock.json','tsconfig.json','studio.sh','STUDIO.cmd','.mcp.json','.codex/config.toml']:
     runtime_files.add(root/runtime_name)
 for folder in ['server','src','scripts','tools','templates','docs','packaging','.agents/skills/video-multimarcas','.claude/skills/video-multimarcas','public/template','public/fonts','style-atlas/dist/assets/fonts','style-atlas/records/motion-campaign']:
     for source in (root/folder).rglob('*'):

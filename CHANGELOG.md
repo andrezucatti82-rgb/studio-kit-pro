@@ -1,5 +1,9 @@
 # 2.12.0 — publicada
 
+## 2.15.0
+
+- Curadoria de conteúdos com 57 fontes, paletas CC0 e integração local de busca, inspeção e download por CLI e MCP.
+
 - Busca local por conteúdo nos 1.220 estilos: tags internas, sinônimos/plurais, termos combinados e curadoria visual de pets. Busca global ao começar, com refinamento explícito por categoria e preservação do projeto.
 
 - Sete skills modulares com orquestração, edição de apresentador e tratamento dedicado, compartilhadas por Codex/Claude Code e pelos pacotes.
