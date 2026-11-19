@@ -113,3 +113,7 @@ O instalador compacto do site inclui a preparação da toolchain gratuita por si
 O bootstrap aceita `--free-tools base|automation|ai|all-free|none`. A instalação principal pode terminar em `ready_with_toolchain_blockers`: leia o relatório para saber quais recursos precisam de Python, pacote nativo, modelo ou hardware. Retome pelo CLI, sem descartar projetos. Linux foi o ambiente desta implementação; Windows/macOS exigem confirmação no dispositivo real, e algumas ferramentas podem ter somente a rota oficial manual.
 
 O instalador 2.14 com a toolchain gratuita também está disponível no [espelho oficial do projeto](https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/downloads/studio-kit-pro-installer.zip). Use essa distribuição enquanto a atualização do domínio principal estiver pendente.
+
+## Curadoria de conteúdos
+
+Use a [curadoria de conteúdos](CURADORIA-LIVRE.md) para encontrar B-roll, imagens, dados e recursos de uso livre antes de gerar novos ativos. No projeto local, execute `npm run curadoria -- sources` ou use o servidor MCP `studio_curadoria`. Confira os direitos e o contexto do item antes de editar.

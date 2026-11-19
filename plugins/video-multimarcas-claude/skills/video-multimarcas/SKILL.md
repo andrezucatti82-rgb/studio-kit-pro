@@ -52,3 +52,7 @@ Preserve originais, identidade, voz, rótulos, arquitetura, dados e cobertura re
 ## Ferramentas VFX gratuitas e instalação local
 
 Leia [toolchain gratuita](references/free-toolchain.md). No runtime, use `npm run tools:doctor` antes de escolher executores e `npm run tools:smoke` para provas técnicas; planeje/instale pelo manifesto canônico. O bootstrap do site inclui essa preparação, mas a instalação só existe após rodar no computador de destino. Mantenha uma única entrada pública e os sete módulos internos. O perfil gratuito não usa APIs pagas nem depende do renderer Remotion; preserve os gates criativos e diferencie presença, startup, inferência/render e revisão audiovisual.
+
+## Curadoria de conteúdos
+
+Use a [curadoria de conteúdos](references/curadoria/CURADORIA.md) para encontrar B-roll, imagens, dados e recursos de uso livre antes de gerar novos ativos. No projeto local, execute `npm run curadoria -- sources` ou use o servidor MCP `studio_curadoria`. Confira os direitos e o contexto do item antes de editar.

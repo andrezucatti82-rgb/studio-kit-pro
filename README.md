@@ -223,3 +223,7 @@ Escolha características de cada estilo e onde aplicá-las: [guia da edição 2.
 ## Toolchain VFX gratuita · 2.14.0
 
 O instalador do site agora prepara também [15 ferramentas VFX locais](docs/FREE-VFX-TOOLCHAIN.md), com manifesto, perfis, modelos oficiais e testes por máquina. A entrada continua sendo `$video-multimarcas`, com sete módulos internos. Use `npm run tools:doctor`, `npm run tools:install -- --profile all-free --apply` e `npm run tools:smoke`; filtros/composição/máscaras podem executar por `npm run tools:run`. Programas/pesos são baixados no dispositivo, não transferidos por importar uma skill. [Guia portátil](.agents/skills/video-multimarcas/references/free-toolchain.md).
+
+## Curadoria de conteúdos
+
+Use a [curadoria de conteúdos](docs/CURADORIA-LIVRE.md) para encontrar B-roll, imagens, dados e recursos de uso livre antes de gerar novos ativos. No projeto local, execute `npm run curadoria -- sources` ou use o servidor MCP `studio_curadoria`. Confira os direitos e o contexto do item antes de editar.
