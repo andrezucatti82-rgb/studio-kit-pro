@@ -532341,7 +532341,7 @@
     "version": 1,
     "language": "pt-BR",
     "sourceSha256": "928050697ccd9e9ac9004a6c6a61cc38d31bcb8b35bfb49aa7a98a7b8dcf8d9c",
-    "referenceColorsSha256": "c4d4d4e71af4e96a45f88d11d7474255f06c542b2e9e84e281c1a79fac46849f",
+    "referenceColorsSha256": "13fd80f3a33115743cdcedebe68f1a9a08acd116203d023508a6da6716ad0f6f",
     "styleColors": {
       "publicidade-cinematografica": [
         "marrom",
@@ -538094,8 +538094,8 @@
         "vermelho",
         "marrom",
         "laranja",
-        "cinza",
-        "vinho"
+        "vinho",
+        "cinza"
       ],
       "explicador-lousa-desenhada": [
         "cinza"
@@ -538218,8 +538218,8 @@
         "preto"
       ],
       "explicador-pet-detalhe": [
-        "marrom",
         "preto",
+        "marrom",
         "cinza",
         "laranja"
       ],
@@ -538322,7 +538322,8 @@
       ],
       "explicador-turismo-contexto": [
         "azul",
-        "cinza"
+        "cinza",
+        "verde"
       ],
       "explicador-perfumaria-assinatura-em-notas": [
         "marrom",
@@ -565786,7 +565787,8 @@
         "tipografia",
         "turismo",
         "Turismo e hotelaria: Contextualizar um destino ou paisagem",
-        "turquesa"
+        "turquesa",
+        "verde"
       ],
       "explicador-perfumaria-assinatura-em-notas": [
         "amarelo",

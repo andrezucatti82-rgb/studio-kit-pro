@@ -1,7 +1,7 @@
 {
   "version": 2,
   "styleCount": 1425,
-  "tagAssociations": 32463,
+  "tagAssociations": 32464,
   "referenceFramesAnalyzed": 1425,
   "analysisBasis": "positive catalogue descriptions, intended commercial uses, declared palettes and measured reference colors; not a claim of visual or audiovisual review",
   "styleDataSha256": "73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0",
@@ -107785,10 +107785,10 @@
         "laranja": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "vinho": [
           "reference_color_analysis"
         ],
-        "vinho": [
+        "cinza": [
           "reference_color_analysis"
         ],
         "explicacao interativa": [
@@ -111746,10 +111746,10 @@
         "off white": [
           "declared_palette"
         ],
-        "marrom": [
+        "preto": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "marrom": [
           "reference_color_analysis"
         ],
         "cinza": [
@@ -114901,7 +114901,8 @@
         "tipografia",
         "turismo",
         "Turismo e hotelaria: Contextualizar um destino ou paisagem",
-        "turquesa"
+        "turquesa",
+        "verde"
       ],
       "evidence": {
         "apresentador": [
@@ -114988,6 +114989,9 @@
           "reference_color_analysis"
         ],
         "cinza": [
+          "reference_color_analysis"
+        ],
+        "verde": [
           "reference_color_analysis"
         ],
         "explicacao interativa": [
