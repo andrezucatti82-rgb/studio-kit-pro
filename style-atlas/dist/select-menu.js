@@ -5,7 +5,7 @@
  const selector='body[data-folio=true] select:not([multiple],[size],.sr,:disabled)';
  const menu=document.createElement('div');
  menu.id='folio-select-menu';menu.className='folio-select-menu';menu.setAttribute('role','listbox');menu.setAttribute('aria-label','Opções');
- let select=null,entries=[],active=-1,typed='',lastTyped=0;
+ let select=null,entries=[],active=-1,typed='',lastTyped=0,touchStart=null,consumedTouch=null;
 
  function position(){
   if(!select)return;
@@ -64,17 +64,33 @@
   control.selectedIndex=index;close();
   if(changed){control.dispatchEvent(new Event('input',{bubbles:true}));control.dispatchEvent(new Event('change',{bubbles:true}));}
  }
+ function toggle(control){
+  control.focus({preventScroll:true});
+  if(select===control)close();else open(control);
+ }
 
  document.addEventListener('pointerdown',event=>{
-  if(event.target.closest(selector))event.preventDefault();
-  else if(!menu.contains(event.target))close();
-  else event.preventDefault();
+  const control=event.target.closest(selector),inMenu=menu.contains(event.target);
+  consumedTouch=null;touchStart=null;
+  if(!control&&!inMenu){close();return;}
+  event.preventDefault();
+  if(event.pointerType==='touch')touchStart={control,item:inMenu?event.target.closest('[role=option]'):null,id:event.pointerId,x:event.clientX,y:event.clientY};
  },true);
+ // WebKit may skip the synthesized click after cancelling a touch's pointerdown.
+ document.addEventListener('pointerup',event=>{
+  const start=touchStart;touchStart=null;
+  if(!start||event.pointerId!==start.id||Math.hypot(event.clientX-start.x,event.clientY-start.y)>10)return;
+  if(start.control){consumedTouch=start.control;toggle(start.control);}
+  else if(start.item&&menu.contains(start.item))choose(start.item);
+ },true);
+ document.addEventListener('pointercancel',()=>{touchStart=null;},true);
  document.addEventListener('click',event=>{
   const control=event.target.closest(selector);
   if(!control)return;
-  event.preventDefault();control.focus({preventScroll:true});
-  if(select===control)close();else open(control);
+  event.preventDefault();
+  if(consumedTouch===control&&event.detail!==0){consumedTouch=null;return;}
+  consumedTouch=null;
+  toggle(control);
  },true);
  menu.addEventListener('click',event=>choose(event.target.closest('[role=option]')));
  document.addEventListener('focusin',event=>{if(event.target!==select)close();});
