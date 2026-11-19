@@ -19,3 +19,5 @@ Before any AI video generation (including free tests, avatar previews and paid s
 ## Free local VFX toolchain
 
 For VFX, read the coordinator reference `references/free-toolchain.md`. Use `npm run tools:doctor`, `tools:install -- --apply`, and `tools:smoke`; runtime sources are under `tools/free-vfx/`. Never treat the maintainer installation as the visitor environment. The new free execution path uses FFmpeg/Blender/Python, not a paid API or a universally free Remotion license. Preserve source media and distinguish installed/startup/inference from audiovisual approval.
+
+For B-roll and external media, follow the coordinator’s curation workflow in `references/curadoria/SKILL.md`. Use item-level rights and provenance. Start with free local search before requesting generation.

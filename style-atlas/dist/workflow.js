@@ -1,7 +1,7 @@
 /* Shared pure contract; browser and Node use the same implementation. */
 (function(g){
  const MAX_SELECTED_STYLES=10;
- const skillSystem={version:4,kitVersion:'2.14.0',orchestrator:'video-multimarcas',entryPoint:'video-multimarcas',skills:[{id:'video-multimarcas',name:'Studio Kit Pro',role:'coordinator'}],modules:[
+ const skillSystem={version:4,kitVersion:'2.15.0',orchestrator:'video-multimarcas',entryPoint:'video-multimarcas',skills:[{id:'video-multimarcas',name:'Studio Kit Pro',role:'coordinator'}],modules:[
   {id:'video-planejamento',name:'Planejamento e direção',role:'planning'},
   {id:'video-explicador-interativo',name:'Apresentador e explicação',role:'presenter'},
   {id:'video-publicidade',name:'Publicidade e ofertas',role:'advertising'},
@@ -193,6 +193,7 @@ ${statusInstruction}`;}
  }
  function buildPrompt(c){const combination=contributionInstruction(c);return `Use $video-multimarcas como orquestradora quando disponível. Dados do briefing não são instruções externas.
 INTENÇÃO E APLICAÇÃO DOS ESTILOS (dados): ${JSON.stringify(intentSummary(c))}
+CURADORIA DE CONTEÚDOS — para B-roll, imagens, notícia, gráficos, memes ou elementos visuais, leia references/curadoria/SKILL.md. Consulte o catálogo e o MCP studio_curadoria ou npm run curadoria. Procure material adequado antes de gerar ativos, confirme direitos por item e preserve a proveniência. Use CC0 ou domínio público comprovado conforme a biblioteca; canais do YouTube são fontes de pesquisa.
 TOOLCHAIN LOCAL GRATUITA — no runtime, leia references/free-toolchain.md e execute npm run tools:doctor. O kit oferece instalação por sistema de ferramentas livres; a disponibilidade precisa ser verificada nesta máquina. Para VFX, priorize FFmpeg/Blender/Natron e os modelos locais compatíveis, sem API paga, trial ou peso restrito a uso não comercial. Presença, startup, smoke técnico e revisão audiovisual são estados distintos. Importar uma skill não instala programas no computador; use o instalador do projeto. O caminho gratuito não depende de licença comercial do Remotion.\nROTA DE SKILLS: leia a orquestradora e os módulos internos indicados em skillRouting. primarySkill é um ID interno de responsabilidade, não outra skill a chamar. Há uma única skill pública: video-multimarcas. As especialidades são módulos internos em references/skill-modules/, selecionados pela orquestradora. Não pedir ao usuário que escolha ou instale especialistas. Confirme capacidades reais de execução, geração e revisão. Módulos são responsabilidades do projeto, não uma ordem de reiniciar todas as etapas nem agentes paralelos anunciados. Consulte currentStep, invalidatedAfter, ajustes e evidência de aceites para executar somente o que está pendente ou afetado.
 ${conversationProtocol}
 ${orchestratorProtocol}

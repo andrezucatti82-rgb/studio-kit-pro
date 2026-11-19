@@ -1,6 +1,6 @@
 {
   "name": "video-multimarcas-kit",
-  "version": "2.14.0",
+  "version": "2.15.0",
   "private": true,
   "type": "module",
   "description": "Brand-adaptive B-roll agent skill and editable production starter",
@@ -34,7 +34,8 @@
     "tools:doctor": "node scripts/free-tools.mjs doctor",
     "tools:install": "node scripts/free-tools.mjs install",
     "tools:smoke": "node scripts/free-tools.mjs smoke",
-    "tools:run": "node scripts/free-tools.mjs run"
+    "tools:run": "node scripts/free-tools.mjs run",
+    "curadoria": "node tools/curadoria/cli.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.540",
