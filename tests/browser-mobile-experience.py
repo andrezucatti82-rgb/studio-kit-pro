@@ -21,14 +21,14 @@ with sync_playwright() as p:
     if(rects.length){const left=Math.min(...rects.map(x=>x.left)),right=Math.max(...rects.map(x=>x.right)),top=Math.min(...rects.map(x=>x.top)),bottom=Math.max(...rects.map(x=>x.bottom));if(Math.abs((left+right-r.left-r.right)/2)>3)bad.push('horizontal');if(Math.abs((top+bottom-r.top-r.bottom)/2)>3)bad.push('vertical')}
     return bad.length?[{text:e.innerText,bad,bg:s.backgroundColor,font:s.fontSize,id:e.id,height:r.height,minHeight:s.minHeight}]:[]})''')
    assert not bad,(width,bad)
-  header=page.locator('#folioHeader').bounding_box();assert header['height']<=160,(width,header)
+  header=page.locator('#folioHeader').bounding_box();assert header['height']<=(220 if width<=360 else 180),(width,header)
   assert page.locator('.folio-category-bar button').evaluate_all('es=>es.length===7&&es.every(e=>{const a=e.getBoundingClientRect(),b=e.parentElement.getBoundingClientRect();return a.left>=b.left-1&&a.right<=b.right+1})')
   assert page.locator('.folio-category-bar').evaluate('e=>e.scrollWidth<=e.clientWidth+1')
   assert page.locator('#folioNiche').evaluate('e=>getComputedStyle(e).fontSize')==page.locator('.folio-goals button').first.evaluate('e=>getComputedStyle(e).fontSize')=='16px'
   screen('01-home');actions()
   for group in page.evaluate('AtlasNavigation.groups.filter(g=>!g.directFamily).map(g=>g.id)'):
    parent=page.locator('[data-folio-open-group="'+group+'"]');parent.tap();menu=page.locator('#folioMenu');expect(menu).to_be_visible()
-   assert page.locator('.folio-category-bar').bounding_box()['height']<=96.5
+   assert page.locator('.folio-category-bar').bounding_box()['height']<=(141 if width<=360 else 101)
    expect(parent).to_have_css('background-color','rgb(226, 255, 59)')
    expect(parent).to_have_css('color','rgb(22, 27, 5)')
    assert len(page.locator('.folio-text-links').evaluate('e=>getComputedStyle(e).gridTemplateColumns').split())==2

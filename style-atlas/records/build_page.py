@@ -37,7 +37,7 @@ soup.find('script',src='frame-presentation.js')['src']=runtime_origin+'frame-pre
 # Search vocabulary and catalogue data are shared external scripts, keeping the
 # embed within its size budget as the discovery vocabulary grows.
 soup.find('script',src='search.js')['src']=runtime_origin+'search.js?v='+hashlib.sha256((r/'dist/search.js').read_bytes()).hexdigest()[:16]
-css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/folio.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
+css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/folio.css').read_text()+'\n'+(r/'dist/folio-components.css').read_text()).replace("url('assets/","url('"+origin+"assets/")
 for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  face=TTFont(r/'dist/assets'/font)
  # Embed Latin/Portuguese and UI symbols; unsupported scripts use browser fallback.
