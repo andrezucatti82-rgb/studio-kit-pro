@@ -49,3 +49,23 @@ test('shelf diversification keeps every original ID once and brings different bu
  assert.ok(new Set(ordered.slice(1,9).map(s=>s.presenterEditing.sector)).size>=7);
  assert.deepEqual([...source].map(s=>s.id),catalog.styles.filter(s=>s.presenterEditing).map(s=>s.id));
 });
+
+test('browse categories cover the catalogue and every subdivision has matching references',()=>{
+ const colorsFor=style=>catalog.search.styleColors[style.id];
+ const matches=(style,group,topic,detail)=>model.matchesBrowse(style,group,topic,detail,colorsFor(style));
+ assert.equal(model.browseGroups.length,6);
+ for(const style of catalog.styles)assert.ok(model.browseGroups.some(group=>matches(style,group.id)),style.id);
+ for(const group of model.browseGroups)for(const topic of group.topics){
+  const styles=catalog.styles.filter(style=>matches(style,group.id,topic.id));
+  assert.ok(styles.length,`${group.id}/${topic.id}`);
+  for(const detail of topic.children){
+   const selected=catalog.styles.filter(style=>matches(style,group.id,topic.id,detail.id));
+   assert.ok(selected.length,`${group.id}/${topic.id}/${detail.id}`);
+   assert.ok(selected.every(style=>styles.includes(style)),detail.id);
+  }
+ }
+ const portrait=catalog.styles.find(style=>style.presenterEditing?.sector==='dentistas');
+ assert.ok(matches(portrait,'business','bem-estar','odontologia'));
+ assert.ok(!matches(portrait,'business','bem-estar','academias'));
+ assert.equal(matches(portrait,'look','cores','azul'),colorsFor(portrait).includes('azul'));
+});

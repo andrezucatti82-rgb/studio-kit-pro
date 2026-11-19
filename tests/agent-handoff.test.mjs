@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import '../style-atlas/dist/guided.js';
 import '../style-atlas/dist/workflow.js';
-import {importSiteRequest,readContext,contextFingerprint,assertHandoffContext} from '../server/handoff.mjs';
+import {importSiteRequest,readContext,contextFingerprint,assertHandoffContext,makeGraphRequest,registerDurationSource} from '../server/handoff.mjs';
 import {graphPlanSchema,graphRequestSchema,validateGraphPlan} from '../server/scene-graph.mjs';
 import {checkSampleApprovals} from '../server/sample-approval.mjs';
 import {sha256} from '../scripts/workflow-gate.mjs';
@@ -18,7 +18,7 @@ import {editGraph} from '../server/graph-editor.mjs';
 import {run,probe} from '../server/process.mjs';
 const catalog=JSON.parse(await fs.readFile(new URL('../style-atlas/dist/catalog.json',import.meta.url),'utf8')),W=globalThis.AtlasWorkflow;
 function choice(){return {selectedStyles:[catalog.styles.find(s=>s.id==='tipografia-cinetica'),catalog.styles.find(s=>s.family==='software')].map(s=>({...s,referenceFrame:W.referenceFrame(s),visualSequence:s.sequence})),styleContributions:{'tipografia-cinetica':[{aspect:'kinetic_type',scope:'film'}],[catalog.styles.find(s=>s.family==='software').id]:[{aspect:'lighting',scope:'details'}]},catalogVersion:catalog.version,catalogUrl:'https://example.org/catalog.json',topic:'Vídeo de teste de passagem completa',brand:'Marca de teste',typography:'auto',targetDurationSeconds:30,format:'16:9',projectState:{history:[],approvals:W.emptyApprovals(),preProductionApprovals:W.emptyPreProductionApprovals()}};}
-async function imported(){const root=await fs.mkdtemp(path.join(os.tmpdir(),'video-handoff-')),c=choice();c.styleContributions={[c.selectedStyles[0].id]:[{aspect:'kinetic_type',scope:'film'}],[c.selectedStyles[1].id]:[{aspect:'lighting',scope:'details'}]};const file=path.join(root,'site-project.json');await fs.writeFile(file,W.starterFiles(c).find(f=>f.name==='projeto-video.json').text);const project=path.join(root,'project');await importSiteRequest(file,project);return {root,project,c,context:await readContext(project),cleanup:()=>fs.rm(root,{recursive:true,force:true})};}
+async function imported(overrides={}){const root=await fs.mkdtemp(path.join(os.tmpdir(),'video-handoff-')),c={...choice(),...overrides};c.styleContributions={[c.selectedStyles[0].id]:[{aspect:'kinetic_type',scope:'film'}],[c.selectedStyles[1].id]:[{aspect:'lighting',scope:'details'}]};const file=path.join(root,'site-project.json');await fs.writeFile(file,W.starterFiles(c).find(f=>f.name==='projeto-video.json').text);const project=path.join(root,'project');await importSiteRequest(file,project);return {root,project,c,context:await readContext(project),cleanup:()=>fs.rm(root,{recursive:true,force:true})};}
 function planFor(context){const scene=(id,role)=>({id,role,durationFrames:450,background:'#09122a',initialState:'Uma mensagem entra',action:'O texto revela o argumento',result:'Mensagem legível',transition:{type:'cut',durationFrames:0,reason:'Mudança de ideia'},layers:[{id:'copy',type:'text',text:'UMA IDEIA',x:.1,y:.2,width:.8,height:.4,font:'Geist',fontSize:90,color:'#eeeeee',kinetic:'word'}]});return graphPlanSchema.parse({schemaVersion:2,provider:'agent',styleId:context.selectedStyleIds[0],selectedStyleIds:context.selectedStyleIds,contextSha256:context.contextSha256,objective:context.topic,output:{format:'16:9',width:1280,height:720,fps:30,durationFrames:900,codec:'h264'},fidelity:{preserveOriginals:true,inventAngles:false,avatar:false},scenes:[scene('opening','opening'),scene('detail','details')],audio:{proceduralScore:false,tracks:[]},captions:[],styleBindings:[{styleId:context.selectedStyleIds[0],aspect:'kinetic_type',scope:'film',sceneIds:['opening','detail'],decision:'Texto em camadas editáveis, com revelação por palavra',implementation:'layers',referenceIds:[context.selectedStyleIds[0]+':frame:1']},{styleId:context.selectedStyleIds[1],aspect:'lighting',scope:'details',sceneIds:['detail'],decision:'Luz aplicada somente à cena de detalhes conforme referência',implementation:'layers',referenceIds:[context.selectedStyleIds[1]+':frame:2']}],limitations:['Teste de software, sem aprovação estética']});}
 function requestFor(c){return graphRequestSchema.parse({requestVersion:2,prompt:c.topic,styleId:c.selectedStyleIds[0],selectedStyleIds:c.selectedStyleIds,contextSha256:c.contextSha256,assetIds:[],durationSeconds:30,format:'16:9',fps:30,phase:'full'});}
 
@@ -28,6 +28,35 @@ test('site prompt, Page and starter bundle route both agents to real execution w
 });
 test('full site bundle imports every selected contribution, reference and original source without granting approvals',async()=>{
  const h=await imported();try{assert.deepEqual(h.context.selectedStyleIds,h.c.selectedStyles.map(s=>s.id));assert.equal(h.context.combination.entries[1].contributions[0].scope,'details');assert.equal(h.context.sourceBrief.packageVersion,1);assert.equal(h.context.referenceManifest.styles[0].frames.length,4);assert.deepEqual(h.context.contract.approvalCriteria,W.fidelityContract);assert.equal(h.context.contextSha256,contextFingerprint(h.context));const wf=JSON.parse(await fs.readFile(path.join(h.project,'workflow.json'),'utf8'));assert.notEqual(wf.approvals.visual?.status,'approved');const file=path.join(h.project,'agent-context.json');const changed=structuredClone(h.context);changed.topic='Tampered';await fs.writeFile(file,JSON.stringify(changed));await assert.rejects(readContext(h.project),/modified/);}finally{await h.cleanup();}
+});
+test('source duration stays pending until measured and constrains the actual render request',async()=>{
+ const h=await imported({durationMode:'source',targetDurationSeconds:null,scenePlan:null});
+ try{
+  assert.equal(h.context.durationMode,'source');assert.equal(h.context.targetDurationSeconds,null);
+  assert.equal(h.context.contract.brief.targetDurationSeconds,null);
+  assert.equal(h.context.contract.sampleDurationRule,'up_to_original_duration');
+  for(const prompt of [W.buildPrompt(h.c),W.pagePrompt(h.c.catalogUrl),W.starterFiles(h.c).find(f=>f.name==='pedido.txt').text]){
+   assert.match(prompt,/Meça a duração do vídeo original autorizado/);
+   assert.match(prompt,/--duration-source/);
+   assert.doesNotMatch(prompt,/Duração alvo: null segundos/);
+  }
+  const store=new AssetStore(path.join(h.project,'runtime','assets'));await store.init();
+  await assert.rejects(makeGraphRequest(h.context,store),/Register the original video/);
+  const original=path.join(h.root,'original.mp4');
+  await run('ffmpeg',['-v','error','-f','lavfi','-i','color=black:s=32x32:r=30:d=6.7','-c:v','libx264','-pix_fmt','yuv420p','-y',original]);
+  const item=await store.import(await fs.readFile(original),{name:'original.mp4',rights:'Original sintético de teste'});
+  const duration=await registerDurationSource(h.context,store,item.id);
+  assert.deepEqual(await registerDurationSource(h.context,store,item.id),duration);
+  assert.equal(duration.seconds,6.7);
+  const request=graphRequestSchema.parse(await makeGraphRequest(h.context,store,{durationSeconds:30}));
+  assert.equal(request.durationSeconds,duration.seconds);
+  assert.equal(request.durationSource.assetId,item.id);
+  await assert.rejects(makeGraphRequest(h.context,store,{phase:'sample',durationSeconds:10}),/Sample exceeds/);
+  assert.throws(()=>assertHandoffContext(h.context,{...request,durationSeconds:30}),/original video duration/);
+  const plan=planFor(h.context);plan.output.durationFrames=201;plan.scenes[0].durationFrames=100;plan.scenes[1].durationFrames=101;
+  assert.equal(validateGraphPlan(plan,[item],request,h.context).output.durationFrames,201);
+  assert.throws(()=>validateGraphPlan(plan,[item],{...request,durationSource:{...duration,sha256:'0'.repeat(64)}},h.context),/verified original video/);
+ }finally{await h.cleanup();}
 });
 test('graph preserves explicit contributions/scopes and rejects silent substitution, omitted aspects and forged references',async()=>{
  const h=await imported();try{const p=planFor(h.context),r=requestFor(h.context);assert.equal(validateGraphPlan(p,[],r,h.context).provider,'agent');assertHandoffContext(h.context,r);

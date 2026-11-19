@@ -4,10 +4,12 @@ import {dimensions} from './schema.mjs';
 const id=z.string().regex(/^[a-zA-Z0-9_-]{1,100}$/),hash=z.string().regex(/^[a-f0-9]{64}$/);
 const frame=z.number().int().nonnegative(),unit=z.number().min(0).max(1),color=z.string().regex(/^#[0-9a-fA-F]{6}$/);
 const easing=z.tuple([unit,z.number().min(-1).max(2),unit,z.number().min(-1).max(2)]);
+export const sourceSampleFrames=(seconds,fps)=>Math.floor(Math.min(10,seconds)*fps+1e-8);
 export const graphRequestSchema=z.object({
  requestVersion:z.literal(2),prompt:z.string().min(3).max(12000),styleId:id,selectedStyleIds:z.array(id).min(1).max(10),
- contextSha256:hash,assetIds:z.array(id).max(100),durationSeconds:z.number().min(1).max(3600),format:z.enum(['16:9','9:16','1:1','4:5']),fps:z.union([z.literal(24),z.literal(30)]),phase:z.enum(['sample','full']),
-}).strict().superRefine((r,c)=>{if(r.styleId!==r.selectedStyleIds[0]||new Set(r.selectedStyleIds).size!==r.selectedStyleIds.length)c.addIssue({code:'custom',message:'Keep one principal and unique selected styles'});if(new Set(r.assetIds).size!==r.assetIds.length)c.addIssue({code:'custom',message:'Duplicate assets'});if(r.phase==='sample'&&r.durationSeconds>15)c.addIssue({code:'custom',message:'Representative sample must be <=15 seconds'});});
+ contextSha256:hash,assetIds:z.array(id).max(100),durationSeconds:z.number().positive().max(3600),format:z.enum(['16:9','9:16','1:1','4:5']),fps:z.union([z.literal(24),z.literal(30)]),phase:z.enum(['sample','full']),
+ durationSource:z.object({assetId:id,sha256:hash,seconds:z.number().positive().max(3600)}).strict().optional(),
+}).strict().superRefine((r,c)=>{if(r.styleId!==r.selectedStyleIds[0]||new Set(r.selectedStyleIds).size!==r.selectedStyleIds.length)c.addIssue({code:'custom',message:'Keep one principal and unique selected styles'});if(new Set(r.assetIds).size!==r.assetIds.length)c.addIssue({code:'custom',message:'Duplicate assets'});if(r.phase==='sample'&&r.durationSeconds>15)c.addIssue({code:'custom',message:'Representative sample must be <=15 seconds'});if(!r.durationSource&&r.durationSeconds<1)c.addIssue({code:'custom',message:'Duration must be at least one second'});});
 const animation=z.object({property:z.enum(['x','y','opacity','scale','rotation','reveal','tracking','pathProgress']),keyframes:z.array(z.object({frame,value:z.number().finite(),easing:easing.default([.22,.75,.2,1])}).strict()).min(2).max(40)}).strict();
 const anchorTrack=z.object({sourceAssetId:id,sourceStartSeconds:z.number().nonnegative().max(3600),origin:z.enum(['manual','externally_measured']),space:z.literal('output-normalized'),offsetX:z.number().min(-1).max(1).default(0),offsetY:z.number().min(-1).max(1).default(0),points:z.array(z.object({frame,x:unit,y:unit,confidence:unit.min(.7)}).strict()).min(2).max(20000)}).strict();
 const base={id,x:unit,y:unit,width:unit.min(.005),height:unit.min(.005),opacity:unit.default(1),rotation:z.number().min(-180).max(180).default(0),scale:z.number().min(.25).max(2).default(1),animations:z.array(animation).max(8).default([]),active:z.object({fromFrame:frame,durationFrames:frame.min(1)}).strict().optional(),anchorTrack:anchorTrack.optional()};
@@ -20,10 +22,10 @@ const shape=z.object({...base,type:z.literal('shape'),shape:z.enum(['rect','elli
 const vector=z.object({...base,type:z.literal('path'),d:z.string().min(1).max(3000).regex(/^[MmLlHhVvCcSsQqTtAaZz0-9eE+.,\s-]+$/),color,strokeWidth:z.number().min(.1).max(30),progress:unit.default(1)}).strict();
 export const graphPlanSchema=z.object({
  schemaVersion:z.literal(2),provider:z.literal('agent'),styleId:id,selectedStyleIds:z.array(id).min(1).max(10),contextSha256:hash,objective:z.string().min(3).max(12000),
- output:z.object({format:z.enum(['16:9','9:16','1:1','4:5']),width:z.number().int().positive().max(1920),height:z.number().int().positive().max(1920),fps:z.union([z.literal(24),z.literal(30)]),durationFrames:frame.min(24).max(108000),codec:z.literal('h264')}).strict(),
+ output:z.object({format:z.enum(['16:9','9:16','1:1','4:5']),width:z.number().int().positive().max(1920),height:z.number().int().positive().max(1920),fps:z.union([z.literal(24),z.literal(30)]),durationFrames:frame.min(1).max(108000),codec:z.literal('h264')}).strict(),
  fidelity:z.object({preserveOriginals:z.literal(true),inventAngles:z.literal(false),avatar:z.boolean()}).strict(),
  finishing:z.object({brightness:z.number().min(.9).max(1.1).default(1),contrast:z.number().min(.9).max(1.1).default(1.02),saturation:z.number().min(.85).max(1.15).default(1),shadowLift:z.number().min(0).max(.04).default(0),highlightCompression:z.number().min(0).max(.05).default(0),grainAmount:z.number().min(0).max(.045).default(.012),seed:z.number().int().min(0).max(1000000).default(1)}).strict().optional(),
- scenes:z.array(z.object({id,durationFrames:frame.min(2),role:z.enum(['opening','body','details','demonstration','closing']),background:color,initialState:z.string().min(1).max(500),action:z.string().min(1).max(500),result:z.string().min(1).max(500),transition:z.object({type:z.enum(['cut','dissolve','wipe']),durationFrames:frame.max(60),reason:z.string().min(1).max(300)}).strict(),layers:z.array(z.discriminatedUnion('type',[text,media,shape,vector])).min(1).max(40)}).strict()).min(1).max(180),
+ scenes:z.array(z.object({id,durationFrames:frame.min(1),role:z.enum(['opening','body','details','demonstration','closing']),background:color,initialState:z.string().min(1).max(500),action:z.string().min(1).max(500),result:z.string().min(1).max(500),transition:z.object({type:z.enum(['cut','dissolve','wipe']),durationFrames:frame.max(60),reason:z.string().min(1).max(300)}).strict(),layers:z.array(z.discriminatedUnion('type',[text,media,shape,vector])).min(1).max(40)}).strict()).min(1).max(180),
  audio:z.object({proceduralScore:z.boolean().default(false),bpm:z.number().min(40).max(200).default(100),tracks:z.array(z.object({assetId:id,role:z.enum(['narration','music','sfx']),fromFrame:frame,sourceStartSeconds:z.number().nonnegative().default(0),durationFrames:frame.min(1),volume:unit,fadeFrames:frame.max(90).default(8),loop:z.boolean().default(false)}).strict()).max(40)}).strict(),
  captions:z.array(z.object({start:z.number().nonnegative(),end:z.number().positive(),text:z.string().min(1).max(180)}).strict()).max(2000),
  captionFont:font.default('Geist'),
@@ -39,6 +41,13 @@ export function validateGraphPlan(raw,assets,request,context){
  if(request&&(p.objective!==request.prompt||p.styleId!==request.styleId||JSON.stringify(p.selectedStyleIds)!==JSON.stringify(request.selectedStyleIds)||p.contextSha256!==request.contextSha256||o.format!==request.format||o.fps!==request.fps||o.durationFrames!==Math.round(request.durationSeconds*request.fps)))throw Error('Plan changed the imported request');
  const sceneIds=new Set(),byAsset=new Map(assets.map(a=>[a.id,a]));
  const asset=(id,kind)=>{const a=byAsset.get(id);if(!a||request&&!request.assetIds.includes(id)||kind&&!kind.includes(a.kind))throw Error('Unknown or incompatible input asset');return a;};
+ if(request?.durationSource){
+  const source=request.durationSource,original=asset(source.assetId,['video']);
+  if(original.sha256!==source.sha256||original.durationSeconds!==source.seconds||
+   (request.phase==='full'&&request.durationSeconds!==source.seconds)||
+   (request.phase==='sample'&&o.durationFrames>sourceSampleFrames(source.seconds,o.fps)))throw Error('Render duration must match the verified original video');
+ }
+ else if(o.durationFrames<24||p.scenes.some(scene=>scene.durationFrames<2))throw Error('Fixed duration plans require at least 24 frames and two frames per scene');
  for(const [i,s]of p.scenes.entries()){
   if(sceneIds.has(s.id))throw Error('Duplicate scene ID');sceneIds.add(s.id);
   const previous=p.scenes[i-1];

@@ -80,7 +80,9 @@ export function validatePreset(p){
  if(p.productionContract!==undefined&&JSON.stringify(p.productionContract)!==JSON.stringify(AtlasWorkflow.productionContract(p)))throw Error('Production contract differs from the current choices');
  if(p.projectState?.continuity!==undefined)AtlasWorkflow.validateContinuity(p.projectState.continuity);if(p.continuity!==undefined)AtlasWorkflow.validateContinuity(p.continuity);
  if(!p.fidelityContract||!['appearance','movement','text','identity'].every(k=>typeof p.fidelityContract[k]==='string'&&p.fidelityContract[k]))throw Error('Four fidelity locks required');
- if(p.firstDeliverySeconds!==10||!Number.isInteger(p.targetDurationSeconds)||p.targetDurationSeconds<15||!p.scenePlan?.budgetOnly)throw Error('Separate target and sample duration required');
+ const durationValid=p.durationMode==='source'?p.targetDurationSeconds===null&&p.scenePlan===null:
+  p.durationMode===undefined&&Number.isInteger(p.targetDurationSeconds)&&p.targetDurationSeconds>=15&&p.scenePlan?.budgetOnly;
+ if(p.firstDeliverySeconds!==10||!durationValid)throw Error('Separate target and sample duration required');
  if(!Array.isArray(p.selectedStyles)||p.selectedStyles.length<1||p.selectedStyles.length>AtlasWorkflow.MAX_SELECTED_STYLES)throw Error('Choose one to ten styles');
  if(p.styleContributions!==undefined)AtlasWorkflow.combinationPlan(p,{requireResolved:true});
  if(p.preProduction&&JSON.stringify(p.preProduction)!==JSON.stringify(AtlasWorkflow.preProductionContract))throw Error('Incompatible visual preproduction contract');
