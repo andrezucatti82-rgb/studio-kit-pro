@@ -167,6 +167,21 @@ body[data-folio=true] .folio-catalogue-controls :is(button,select){border-radius
 /* The header is the single visible place to browse categories. */
 body[data-folio=true] :is(.folio-goals,.folio-niche,.inline-type-filter,#presenterSectorWrap){display:none!important}
 body[data-folio-browse=category] .folio-search{margin:8px 0 16px}
+body[data-folio=true][data-folio-mode=catalogue] .folio-collection-heading{--folio-type-title:1.5rem}
+body[data-folio=true][data-folio-mode=catalogue] .folio-collection-heading h1{letter-spacing:-.45px}
+@media(min-width:701px){
+ body[data-folio=true][data-folio-mode=catalogue] .folio-library-header{
+  display:grid;grid-template-columns:minmax(0,1fr) min(46%,520px);
+  column-gap:24px;align-items:start;margin:8px 0;
+ }
+ body[data-folio=true][data-folio-mode=catalogue] .folio-search{
+  grid-column:2;grid-row:1;width:100%;margin:0;
+ }
+ body[data-folio=true][data-folio-mode=catalogue] .folio-search input{min-height:48px}
+ body[data-folio=true][data-folio-mode=catalogue] .folio-collection-heading{
+  grid-column:1;grid-row:1;min-height:48px;margin:0;
+ }
+}
 body[data-folio=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44px;padding:10px 12px;border:0;background:transparent;box-shadow:none;justify-content:flex-start;font-size:var(--folio-type-compact);font-weight:400}
 
 @media(max-width:700px){
