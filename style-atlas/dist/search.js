@@ -170,14 +170,33 @@
   return {tags:list,evidence};
  }
  function tagsFor(s,extra=[],referenceColors=[]){return analyze(s,extra,referenceColors).tags;}
+ // The public code uses only the immutable catalogue ID, independent of names and order.
+ const codeAlphabet='0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+ function styleCode(id){
+  let hash=0xcbf29ce484222325n;
+  for(const char of id)hash=BigInt.asUintN(64,(hash^BigInt(char.codePointAt(0)))*0x100000001b3n);
+  let code='';
+  for(let i=0;i<8;i++,hash>>=5n)code=codeAlphabet[Number(hash&31n)]+code;
+  return 'FOL-'+code;
+ }
+ function readCode(query){
+  const match=/^FOL[\s-]*([0-9A-HJKMNP-TV-Z]{8})$/i.exec(query.trim());
+  return match?'FOL-'+match[1].toUpperCase():'';
+ }
  function createIndex(styles,metadata={}){
   const entries=styles.map((style,order)=>{
    const tags=metadata.styleTags?.[style.id]||tagsFor(style,[],metadata.styleColors?.[style.id]||[]),text=fields(style).concat(tags).join(' '),tokens=new Set(units(text).map(u=>u.value));
    if(tokens.has('cachorro')||tokens.has('gato'))tokens.add('pet');if(tokens.has('pet'))tokens.add('animal');
    return {style,order,tags,tokens,words:new Set(normalize(text).split(' ')),title:normalize(style.name),titleTokens:new Set(units(style.name).map(u=>u.value))};
   });
+  const byCode=new Map(entries.map(entry=>[styleCode(entry.style.id),entry]));
   function search(query){
-   const q=normalize(String(query??'').slice(0,256)),terms=[...new Map(units(q).map(u=>[u.value,u])).values()];if(!terms.length)return entries.map(e=>({style:e.style,score:0}));
+   const raw=String(query??'').slice(0,256),code=readCode(raw);
+   if(code){
+    const entry=byCode.get(code);
+    return entry?[{style:entry.style,score:1000,order:entry.order}]:[];
+   }
+   const q=normalize(raw),terms=[...new Map(units(q).map(u=>[u.value,u])).values()];if(!terms.length)return entries.map(e=>({style:e.style,score:0}));
    return entries.flatMap(e=>{
     const matches=terms.map(t=>e.tokens.has(t.value)||e.words.has(normalize(t.value))||(!t.known&&t.value.length>=3&&[...e.words].some(w=>w.startsWith(t.value))));if(matches.some(m=>!m))return [];
     const score=(e.title===q?1000:e.title.includes(q)?300:0)+terms.reduce((n,t)=>n+(e.titleTokens.has(t.value)?30:0)+(e.tokens.has(t.value)?10:1),0);
@@ -190,7 +209,12 @@
    return a.length>b.length?a.slice(i+1)===b.slice(i):a.slice(i)===b.slice(i+1);
   }
   function suggest(query,{limit=6,filter=()=>true}={}){
-   const q=normalize(String(query??'').slice(0,256));if(q.length<2)return [];
+   const raw=String(query??'').slice(0,256),code=readCode(raw);
+   if(code){
+    const entry=byCode.get(code);
+    return entry&&filter(entry.style)?[{query:code,label:entry.style.name,kind:'style',id:entry.style.id,count:1}]:[];
+   }
+   const q=normalize(raw);if(q.length<2)return [];
    limit=Math.max(1,Math.min(8,Math.floor(Number(limit)||6)));
    const split=q.lastIndexOf(' '),prefix=split<0?'':q.slice(0,split+1),tail=split<0?q:q.slice(split+1),seen=new Set(),words=[];
    for(const concept of concepts){
@@ -223,5 +247,5 @@
    const score=(style.family===source.family?4:0)+(style.kind===source.kind?2:0)+(sector&&style.presenterEditing?.sector===sector?8:0)+12*shared/Math.max(1,new Set([...origin,...terms]).size);
    return {style,score,order};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.order-b.order).slice(0,limit).map(x=>x.style);
  }
- root.AtlasSearch={normalize,concepts,fields,tagsFor,analyze,sourceFields,paletteColors,createIndex,similar};
+ root.AtlasSearch={normalize,concepts,fields,tagsFor,analyze,sourceFields,paletteColors,createIndex,similar,styleCode};
 })(globalThis);

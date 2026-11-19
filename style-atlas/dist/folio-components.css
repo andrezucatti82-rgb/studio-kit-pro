@@ -18,6 +18,9 @@ body[data-folio=true] :is(#briefDialog,#guidedDialog,#fontDialog,#materialsDialo
 body[data-folio=true] :is(#briefDialog,#guidedDialog,#fontDialog,#materialsDialog,#myProject,#appHelp) .text-button{font-size:var(--folio-type-compact)}
 body[data-folio=true] #briefDialog .selected-font strong{font-size:var(--folio-type-compact);line-height:1.5}
 body[data-folio=true] .direction-header>p:not(.eyebrow){font-size:var(--folio-type-body);line-height:1.6}
+body[data-folio=true] .direction-identity{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
+body[data-folio=true] .direction-code{font-weight:500;letter-spacing:0}
+body[data-folio=true] .direction-code code{margin-inline-start:3px;color:var(--folio-accent);letter-spacing:.03em}
 
 /* Spacious action labels, including long Portuguese labels and small utility actions. */
 body[data-folio=true] :is(.primary,.outline,.button,.folio-add,.folio-panel-back,#sequencePrev,#sequenceNext),
