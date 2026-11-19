@@ -1,6 +1,6 @@
 Use $video-multimarcas como única skill pública. A orquestradora seleciona automaticamente o módulo interno de explicação em references/skill-modules/video-explicador-interativo.md e o contrato references/presenter-interaction.md conforme o pedido. Não preciso escolher ou instalar especialistas separados.
 
-Quero editar o vídeo anexado para que a explicação seja demonstrada visualmente junto da pessoa. Use o projeto-video.json da galeria, preservando os estilos, características e escopos que escolhi. Tema: [ASSUNTO]. Formato: [9:16]. Duração desejada: [30 s ou duração da fala]. Apresentador: [meu vídeo gravado / avatar já fornecido / avatar a selecionar explicitamente].
+Quero editar o vídeo anexado para que a explicação seja demonstrada visualmente junto da pessoa. Use o projeto-video.json da galeria, preservando os estilos, características e escopos que escolhi. Tema: [ASSUNTO]. Formato: [9:16]. Duração desejada: [tempo escolhido ou manter a duração do vídeo original]. Apresentador: [meu vídeo gravado / avatar já fornecido / avatar a selecionar explicitamente].
 
 Primeiro inspecione o bruto e a fala. Preserve o original e seu hash, rosto, corpo, roupa e voz. Não regenere minha pessoa para trocar o cenário. Confira quais ferramentas e arquivos realmente existem; não use APIs pagas sem orçamento e autorização específica. Não confunda uma receita do catálogo com um recurso automático instalado.
 
@@ -17,6 +17,8 @@ Mostre o plano por trecho: fala e tempos no bruto/editado, corte proposto e moti
 Use somente o que estiver implementado e demonstrado. Para palavra atrás do corpo ou cenário novo, use máscara temporal conferida. Para objeto na mão ou toque, use trajetória e instante de contato medidos no take, com revisão de falhas; não substituir por animação aleatória. Para produto desmontado ou câmera 3D, exigir modelo/vistas compatíveis. Se algo faltar, explique e prepare as etapas independentes sem anunciar o efeito como pronto.
 
 Todo texto, número, linha e rótulo deve permanecer editável. Transcrição precisa ter tempos reais; não inventar alinhamento. Use o áudio original uma única vez, música discreta com ducking quando pertinente e SFX apenas nos acontecimentos. Um avatar novo depende de seleção, direitos, conexão e aprovação próprios; não clonar pessoa ou voz por inferência.
+
+Se a duração seguir o original, confirme qual vídeo autorizado é a referência e meça sua duração total antes de planejar. Ajuste edição, fala, legendas e efeitos a esse tempo. Não estime nem retime a fala para caber em um valor fixo, e não ultrapasse o original na amostra.
 
 Apresente roteiro/EDL, moodboard e storyboard visuais para os aceites aplicáveis. Depois, proponha a amostra de até 10 segundos da interação mais difícil e de sua transição. Não iniciar geração de vídeo IA antes dos aceites exigidos, nem o filme completo antes da aprovação da amostra. Reutilize aprovações válidas já documentadas.
 

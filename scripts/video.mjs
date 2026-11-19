@@ -3,7 +3,7 @@ import path from 'node:path';
 import {bundle} from '@remotion/bundler';
 import {selectComposition,renderStill} from '@remotion/renderer';
 import {z} from 'zod';
-import {importSiteRequest,readContext,runtimeContext,makeGraphRequest,fingerprint} from '../server/handoff.mjs';
+import {importSiteRequest,readContext,runtimeContext,makeGraphRequest,fingerprint,registerDurationSource} from '../server/handoff.mjs';
 import {graphPlanSchema,validateGraphPlan,graphRequestSchema} from '../server/scene-graph.mjs';
 import {AssetStore,digest} from '../server/assets.mjs';
 import {Orchestrator,atomicJson} from '../server/orchestrator.mjs';
@@ -21,7 +21,13 @@ try{
  if(command==='import')console.log(JSON.stringify(await importSiteRequest(required('--preset'),required('--out')),null,2));
  else {
   const project=path.resolve(required('--project')),context=await readContext(project),root=path.join(project,'runtime'),store=new AssetStore(path.join(root,'assets'));await store.init();
-  if(command==='media')console.log(JSON.stringify(await store.import(await fs.readFile(required('--file')),{name:path.basename(required('--file')),rights:required('--rights')}),null,2));
+  if(command==='media'){
+   const source=args.includes('--duration-source'),file=required('--file');
+   if(source&&context.durationMode!=='source')throw Error('This request does not preserve source duration');
+   const asset=await store.import(await fs.readFile(file),{name:path.basename(file),rights:required('--rights')});
+   const result=source?{...asset,durationSource:await registerDurationSource(context,store,asset.id)}:asset;
+   console.log(JSON.stringify(result,null,2));
+  }
   else if(command==='context'){
    const result=await runtimeContext(project,store),schema=path.join(project,'render-plan.schema.json');await fs.writeFile(schema,JSON.stringify(z.toJSONSchema(graphPlanSchema),null,2)+'\n');console.log(JSON.stringify({...result,planSchemaFile:schema,environment:{node:process.version,heygenEnvironmentKey:Boolean(process.env.HEYGEN_API_KEY),note:'A connected HeyGen plugin/API may exist outside environment variables. Verify available tools before requesting credentials. Never print secret values.'}},null,2));
   }else if(['validate','stills','render'].includes(command)){

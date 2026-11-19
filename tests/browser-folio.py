@@ -29,15 +29,14 @@ with sync_playwright() as p:
   assert page.locator('.folio-portrait').first.evaluate('e=>{const p=e.querySelector(".folio-artwork").firstElementChild;const a=e.getBoundingClientRect(),b=p.getBoundingClientRect();const [w,h]=e.style.getPropertyValue("--folio-source-ratio").split("/").map(Number);return b.left<=a.left+.6 && b.top<=a.top+.6 && b.right>=a.right-.6 && b.bottom>=a.bottom-.6 && Math.abs(b.width/b.height-w/h)<.002 && !e.querySelector(".folio-reference");}')
   page.screenshot(path=str(out/f'home-{width}.png'),full_page=False,animations='disabled')
   rail=page.locator('.folio-shelf-rail').first;rail.evaluate('(e)=>e.scrollLeft=220');assert rail.evaluate('(e)=>e.scrollLeft')>0
-  page.locator('[data-folio-goal="present"]').click();expect(page.locator('#folio-shelf-people-and-business')).to_be_visible()
-  page.locator('[data-folio-goal="sell"]').click();expect(page.locator('#folio-shelf-product-value')).to_be_visible()
-  page.locator('[data-folio-goal="explain"]').click()
-  page.locator('#folioNiche').select_option('dentistas')
+  expect(page.locator('#folio-shelf-people-and-business')).to_be_visible()
+  expect(page.locator('#folio-shelf-product-value')).to_be_visible()
+  expect(page.locator('#folioNiche')).to_be_hidden()
   page.locator('[data-folio-collection="explanations"]').first.click()
   assert page.evaluate('AtlasFolio.getState().mode')=='collection'
   if width<=700:
-   cells=page.locator('#grid .folio-card');a=cells.nth(0).bounding_box();b=cells.nth(1).bounding_box();assert abs(a['y']-b['y'])<2 and b['x']+b['width']<=width-17
-  assert page.evaluate('Array.from(document.querySelectorAll("#grid [data-style-id]")).every(e=>FolioCollections.matchesNiche(AtlasApp.getStyle(e.dataset.styleId),"dentistas",FolioCollections.niches(AtlasApp.getCatalog().styles)))')
+   cells=page.locator('#grid .folio-card');a=cells.nth(0).bounding_box();b=cells.nth(1).bounding_box();assert abs(a['y']-b['y'])<2 and b['x']+b['width']<=width-15,(a,b,width)
+  assert page.evaluate('Array.from(document.querySelectorAll("#grid [data-style-id]")).every(e=>FolioCollections.matchesCollection(AtlasApp.getStyle(e.dataset.styleId),FolioCollections.collection("explanations")))')
   page.screenshot(path=str(out/f'collection-{width}.png'),full_page=False,animations='disabled')
   first=page.locator('#grid [data-choose]').first;style_id=first.get_attribute('data-choose');first.click()
   assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')==style_id
@@ -64,23 +63,22 @@ with sync_playwright() as p:
   # Reading a collection must not touch a prepared brief, its scopes or approvals.
   before=page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')
   page.locator('#folioHeader .folio-brand').click()
-  page.locator('#folioHeader .folio-brand').click();page.locator('[data-folio-goal="sell"]').click()
   assert page.evaluate('JSON.stringify(AtlasApp.exportBundle().project)')==before
-  page.locator('[data-folio-open-group="technology"]').click();expect(page.locator('#folioMenu')).to_be_visible()
-  page.locator('[data-folio-family="software"]').click();expect(page.locator('#folioMenu')).not_to_be_visible()
-  assert page.evaluate('AtlasApp.categorySelection().family')=='software'
+  tutorials=page.locator('[data-folio-open-group="tutorials"]')
+  tutorials.click();expect(page.locator('#folioMenu')).to_be_visible()
+  page.locator('[data-folio-topic="tela"]').click()
+  expect(page.locator('#folioMenu')).to_be_visible(visible=width>=1024)
+  assert page.evaluate('AtlasFolio.getState().browseTopic')=='tela'
   expect(page.locator('#folioCollectionTitle')).to_be_focused()
-  page.locator('[data-folio-open-group="technology"]').click();page.keyboard.press('Escape');expect(page.locator('[data-folio-open-group="technology"]')).to_be_focused()
-  page.locator('#folioHeader .folio-brand').click();page.locator('#folioNiche').select_option('dentistas')
-  page.locator('#search').fill('cachorro');assert page.evaluate('AtlasFolio.getState().niche')==''
+  if width<1024:tutorials.click()
+  page.keyboard.press('Escape');expect(tutorials).to_be_focused()
+  page.locator('#search').fill('cachorro');assert page.evaluate('AtlasFolio.getState().browseGroup')==''
   assert page.locator('#grid .folio-card').count()>0
   assert page.evaluate('AtlasApp.categorySelection().family')==''
-  # Full-catalogue access and the existing compare tool remain reachable.
+  # The full catalogue remains reachable with no comparison controls.
   page.locator('#folioHeader .folio-brand').click();page.locator('#folioBrowseAll').click()
   assert '1425' in page.locator('#resultCount').inner_text().replace('.','')
-  page.locator('#grid [data-compare]').nth(0).check();page.locator('#grid [data-compare]').nth(1).check()
-  page.locator('#compareOpen').click();expect(page.locator('#compareDialog')).to_be_visible()
-  page.locator('#compareDialog [data-close]').click()
+  expect(page.locator('[data-compare],#compareBar,#compareDialog')).to_have_count(0)
   # Persisted favorites and selection survive reload in the real site adapter.
   page.reload();page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.folio==="true"')
   assert page.evaluate('AtlasCurrentChoice().selectedStyles[0].id')==style_id
@@ -91,7 +89,7 @@ with sync_playwright() as p:
   page.screenshot(path=str(out/f'help-{width}.png'),full_page=False,animations='disabled')
   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
   report['viewports'].append({'width':width,'height':height,'portraitRatio':stage['height']/stage['width']})
-  report['checks'].append(f'{width}px: goals, niche, horizontal collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category/niche menu dismissal, Escape focus, global search, compare, reload and installation help')
+  report['checks'].append(f'{width}px: featured collections, selection, favorite, generated/copied/exported brief, unchanged project while browsing, category topics, Escape focus, global search, no comparison controls, reload and installation help')
   context.close()
  # Render every real card through the same production adapter; inspect layout,
  # not fictional pixel content. Block image downloads for this geometry-only pass.

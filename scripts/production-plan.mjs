@@ -16,6 +16,8 @@ export function prepareProduction(presetFile,output){
   preset={...preset,...project,selectedStyles:project.styles.map(id=>({id,referenceFrame:project.referenceFrames.find(f=>f.styleId===id),selectedAspects:project.styleAspects?.[id]})),projectState:{history:project.history,approvals:project.approvals,preProductionApprovals:project.preProductionApprovals,invalidatedAfter:project.invalidatedAfter||{},continuity:project.continuity||AtlasWorkflow.emptyContinuity()}};
  }
  if(!preset||typeof preset!=='object')throw Error('A valid preset or portable project is required');
+ if(preset.durationMode!==undefined&&(preset.durationMode!=='source'||preset.targetDurationSeconds!==null))throw Error('Source duration must remain unknown until the original is registered');
+ const duration=AtlasWorkflow.durationFields(preset.durationMode==='source'?preset:{targetDurationSeconds:AtlasWorkflow.normalizeDuration(preset.targetDurationSeconds)});
  if(typeof preset.topic!=='string'||!preset.topic.trim())throw Error('A topic is required');
  if(!['9:16','16:9','1:1','4:5'].includes(preset.format))throw Error('Unsupported format');
  if(!Array.isArray(preset.selectedStyles)||preset.selectedStyles.length<1||preset.selectedStyles.length>AtlasWorkflow.MAX_SELECTED_STYLES)throw Error('Select one to ten styles');
@@ -52,7 +54,7 @@ export function prepareProduction(presetFile,output){
   execution.styleCombination=styleCombination;
   execution.contributionBindings=[];
   execution.fidelityRecord='fidelity-plan.json';
-  execution.targetDurationSeconds=AtlasWorkflow.normalizeDuration(preset.targetDurationSeconds);
+  Object.assign(execution,duration);
   execution.selectedStyles=styles.map(s=>({id:s.id,name:s.name,avatar:s.preset?.avatar===true,signature:s.signature,uses:s.uses,motion:s.motion,resources:s.resources,audio:s.audio,requirements:s.requirements,proof:s.proof,novelty:s.novelty,readiness:s.readiness,productFidelity:s.preset.productFidelity,referenceFrame:AtlasWorkflow.referenceFrame(s),visualSequence:s.sequence,executionPlan:s.executionPlan,advertising:s.advertising,presenterEditing:s.presenterEditing,selectedAspects:selectedParts(s)}));
   execution.styleRoles=styles.map((s,i)=>({contributions:styleCombination.entries[i].contributions,styleId:s.id,role:i===0?'principal':'complementary',shotIds:[],use:'',exclude:'',status:'planning'}));
   fs.writeFileSync(executionFile,JSON.stringify(execution,null,2)+'\n');
@@ -69,7 +71,7 @@ export function prepareProduction(presetFile,output){
   return {directory:dest,status:'resumed_without_overwrite'};
  }
  const preApprovals=preset.projectState?.preProductionApprovals||AtlasWorkflow.emptyPreProductionApprovals();AtlasWorkflow.validatePreProductionApprovals(preApprovals);
- const plan={schemaVersion:1,productionContractRecord:'production-contract.json',continuityRecord:'continuity.json',styleCombination,preProduction:AtlasWorkflow.preProductionContract,preProductionApprovals:preApprovals,sampleBlockedUntilPreProductionApproval:true,fidelityContract:preset.fidelityContract||AtlasWorkflow.fidelityContract,referenceFrames:styles.map(s=>AtlasWorkflow.referenceFrame(s)),visualSequences:styles.map(s=>({id:s.id,sequence:s.sequence})),presetSha256:hash,topic:preset.topic,format:preset.format,targetDurationSeconds:AtlasWorkflow.normalizeDuration(preset.targetDurationSeconds),scenePlan:AtlasWorkflow.estimateScenePlan(AtlasWorkflow.normalizeDuration(preset.targetDurationSeconds)),firstDeliverySeconds:10,provider:'heygen_direct_api',providerFallback:'propose_same_provider_alternative_for_approval',fullVideoBlockedUntilUserApproval:true,styles:styles.map(s=>({selectedAspects:selectedParts(s),id:s.id,name:s.name,avatar:s.preset?.avatar===true,resources:s.resources,motion:s.motion,advertising:s.advertising,readiness:s.readiness})),stages:Object.fromEntries(stages.map(s=>[s,{status:'pending',evidence:[]}]))};
+ const plan={schemaVersion:1,productionContractRecord:'production-contract.json',continuityRecord:'continuity.json',styleCombination,preProduction:AtlasWorkflow.preProductionContract,preProductionApprovals:preApprovals,sampleBlockedUntilPreProductionApproval:true,fidelityContract:preset.fidelityContract||AtlasWorkflow.fidelityContract,referenceFrames:styles.map(s=>AtlasWorkflow.referenceFrame(s)),visualSequences:styles.map(s=>({id:s.id,sequence:s.sequence})),presetSha256:hash,topic:preset.topic,format:preset.format,...duration,scenePlan:duration.targetDurationSeconds===null?null:AtlasWorkflow.estimateScenePlan(duration.targetDurationSeconds),firstDeliverySeconds:10,provider:'heygen_direct_api',providerFallback:'propose_same_provider_alternative_for_approval',fullVideoBlockedUntilUserApproval:true,styles:styles.map(s=>({selectedAspects:selectedParts(s),id:s.id,name:s.name,avatar:s.preset?.avatar===true,resources:s.resources,motion:s.motion,advertising:s.advertising,readiness:s.readiness})),stages:Object.fromEntries(stages.map(s=>[s,{status:'pending',evidence:[]}]))};
  plan.styleExecutionRecord='style-execution-plan.json';
  fs.mkdirSync(dest,{recursive:true});fs.writeFileSync(record,JSON.stringify(plan,null,2)+'\n');
  saveStyleExecution();

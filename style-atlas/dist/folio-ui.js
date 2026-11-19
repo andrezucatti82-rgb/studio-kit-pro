@@ -49,7 +49,7 @@
  const icons={heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1C0 9 6 15 12 21c6-6 12-12 8-16Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>'};
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
  let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuScroll=0,gridScroll=0,homeScroll=0;
- const state={goal:'mixed',mode:'home',collection:'',niche:'',similar:'',browseGroup:'',browseTopic:''};
+ const state={goal:'mixed',mode:'home',collection:'',niche:'',similar:'',browseGroup:'',browseTopic:'',browseDetail:''};
  const featuredCollections=['inside-products','product-value','people-and-business','explanations'];
 
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
@@ -65,12 +65,12 @@
   return `<span class="folio-portrait" style="--folio-source-ratio:${model.previewRatio(s)};--folio-focus-y:${s.presenterEditing?'100%':'35%'}"><span class="folio-artwork">${picture(s)}</span><span class="folio-cover-hint" aria-hidden="true">Explorar ${icon('arrow')}</span></span>`;
  }
  function card(s,large=false){
-  return `<article class="folio-card${large?' folio-card-expanded':''}${selected(s.id)?' is-selected':''}" data-style-id="${esc(s.id)}"><button type="button" class="folio-cover" data-detail="${esc(s.id)}" aria-label="Ver ${esc(s.name)}">${preview(s)}</button><div class="folio-card-footer"><span class="folio-reference">Referência visual</span><div class="folio-card-title"><h3><button type="button" data-detail="${esc(s.id)}">${esc(s.name)}</button></h3><button type="button" class="folio-save" data-fav="${esc(s.id)}" aria-pressed="${!!favorite(s.id)}" aria-label="${favorite(s.id)?'Remover dos':'Adicionar aos'} favoritos: ${esc(s.name)}">${icon(large?'bookmark':'heart')}</button></div>${large?`<div class="folio-card-actions"><span>${s.sequence?'4 quadros':'Estudo visual'}</span><button type="button" data-choose="${esc(s.id)}" class="folio-add" aria-pressed="${!!selected(s.id)}" aria-label="${selected(s.id)?'Selecionado:':'Escolher'} ${esc(s.name)}">${selected(s.id)?'Selecionado ✓':'Escolher estilo'}</button></div>`:''}</div>${!large&&state.mode==='catalogue'?`<label class="folio-compare"><input type="checkbox" data-compare="${esc(s.id)}" ${latest?.compared.includes(s.id)?'checked':''}>Comparar</label>`:''}${large?`<button type="button" class="folio-story-link" data-detail="${esc(s.id)}">Ver os momentos ${icon('arrow')}</button>`:''}</article>`;
+  return `<article class="folio-card${large?' folio-card-expanded':''}${selected(s.id)?' is-selected':''}" data-style-id="${esc(s.id)}"><button type="button" class="folio-cover" data-detail="${esc(s.id)}" aria-label="Ver ${esc(s.name)}">${preview(s)}</button><div class="folio-card-footer"><span class="folio-reference">Referência visual</span><div class="folio-card-title"><h3><button type="button" data-detail="${esc(s.id)}">${esc(s.name)}</button></h3><button type="button" class="folio-save" data-fav="${esc(s.id)}" aria-pressed="${!!favorite(s.id)}" aria-label="${favorite(s.id)?'Remover dos':'Adicionar aos'} favoritos: ${esc(s.name)}">${icon(large?'bookmark':'heart')}</button></div>${large?`<div class="folio-card-actions"><span>${s.sequence?'4 quadros':'Estudo visual'}</span><button type="button" data-choose="${esc(s.id)}" class="folio-add" aria-pressed="${!!selected(s.id)}" aria-label="${selected(s.id)?'Selecionado:':'Escolher'} ${esc(s.name)}">${selected(s.id)?'Selecionado ✓':'Escolher estilo'}</button></div>`:''}</div>${large?`<button type="button" class="folio-story-link" data-detail="${esc(s.id)}">Ver os momentos ${icon('arrow')}</button>`:''}</article>`;
  }
  function filter(items){
   const c=model.collection(state.collection);
   const result=items.filter(s=>model.matchesNiche(s,state.niche,niches)&&
-   model.matchesBrowse(s,state.browseGroup,state.browseTopic)&&
+   model.matchesBrowse(s,state.browseGroup,state.browseTopic,state.browseDetail,catalog?.search?.styleColors?.[s.id])&&
    (state.mode!=='collection'||model.matchesCollection(s,c)));
   if(state.similar){const ranked=AtlasSearch.similar(catalog.styles,window.AtlasApp.getStyle(state.similar),24,catalog.search),allowed=new Set(result.map(s=>s.id));return ranked.filter(s=>allowed.has(s.id));}
   return state.mode==='collection'||state.browseGroup?model.diversify(result,c?.preferred):result;
@@ -85,6 +85,7 @@
   document.body.dataset.folioDensity='compact';
   categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioOpenGroup===state.browseGroup)));
   $('folioMenuGroups').querySelectorAll('[data-folio-topic]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioTopic===state.browseTopic)));
+  $('folioMenuGroups').querySelectorAll('[data-folio-detail]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioDetail===state.browseDetail)));
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
   $('folioChangeGoal').hidden=state.mode!=='collection';$('folioBrowseAll').hidden=state.mode!=='home';
   $('folioCollections').hidden=state.mode!=='home';$('grid').hidden=state.mode==='home';
@@ -94,7 +95,8 @@
   else{
    const c=model.collection(state.collection),group=model.browseGroup(state.browseGroup);
    const topic=group?.topics.find(t=>t.id===state.browseTopic);
-   $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':topic?.label||group?.label||(data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos');
+   const detail=topic?.children.find(t=>t.id===state.browseDetail);
+   $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':detail?.label||topic?.label||group?.label||(data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos');
    $('folioCollectionDescription').textContent=state.mode==='collection'?c.description:data.query?'Referências encontradas no catálogo completo.':'Explore as referências e encontre o ponto de partida do seu vídeo.';
    $('grid').innerHTML=data.shown.map(s=>card(s,state.mode==='collection')).join('');
    $('grid').scrollLeft=gridScroll;
@@ -122,7 +124,7 @@
  }
  function refresh(){window.AtlasApp.refresh();}
  $('folioBrowseAll').textContent='Ver todos →';
- function clearBrowse(){state.browseGroup='';state.browseTopic='';}
+ function clearBrowse(){state.browseGroup='';state.browseTopic='';state.browseDetail='';}
  function catalogue(){window.AtlasInlinePanels.reset();clearBrowse();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
   window.AtlasInlinePanels.reset();
@@ -146,7 +148,7 @@
  const categoryBar=document.createElement('nav');categoryBar.className='folio-category-bar';categoryBar.setAttribute('aria-label','Categorias de estilos');$('folioHeader').insertBefore(categoryBar,$('folioHeader').lastElementChild);
  const header=$('folioHeader'),headerProgress=document.createElement('div');headerProgress.className='folio-header-progress';
  const headerNext=document.createElement('button');headerNext.type='button';headerNext.id='folioContinue';headerNext.className='primary';headerProgress.append(headerNext);header.insertBefore(headerProgress,header.lastElementChild);
- header.querySelector('[data-folio-choice]').hidden=true;header.append($('compareBar'));
+ header.querySelector('[data-folio-choice]').hidden=true;
  function syncHeader(view=document.body.dataset.view){
   const count=latest?.selected.length||0,inGuide=document.body.dataset.folioPanel==='guidedDialog';
   const text=inGuide?$('guidedNext').textContent:view==='brief'?($('briefDialog').dataset.stage==='review'?'Copiar pedido':'Revisar pedido'):count?'Meu vídeo':'Criar vídeo';
@@ -202,9 +204,16 @@
  function menuRows(){
   const group=model.browseGroup(menuGroup);
   $('folioMenu').setAttribute('aria-label',group.label);
-  $('folioMenuGroups').innerHTML='<div class="folio-text-links">'+group.topics.map(topic=>
-   `<button type="button" data-folio-topic="${esc(topic.id)}" aria-current="${state.browseTopic===topic.id}"><span>${esc(topic.label)}</span></button>`
-  ).join('')+'</div>';
+  const topics=group.topics.map(topic=>{
+   const active=state.browseTopic===topic.id;
+   const disclosure=topic.children.length?` aria-controls="folioMenuDetail" aria-expanded="${active}"`:'';
+   return `<button type="button" data-folio-topic="${esc(topic.id)}" aria-current="${active}"${disclosure}><span>${esc(topic.label)}</span></button>`;
+  }).join('');
+  const active=group.topics.find(topic=>topic.id===state.browseTopic);
+  const details=active?.children.map(detail=>
+   `<button type="button" data-folio-detail="${esc(detail.id)}" aria-current="${state.browseDetail===detail.id}"><span>${esc(detail.label)}</span></button>`
+  ).join('')||'';
+  $('folioMenuGroups').innerHTML=`<div class="folio-text-links">${topics}</div><div id="folioMenuDetail" class="folio-menu-refinements"${details?'':' hidden'} role="group" aria-label="${esc(active?.label||'Mais opções')}"><div class="folio-text-links">${details}</div></div>`;
  }
  function alignMenu(){
   const menu=$('folioMenu'),first=categoryBar.querySelector('button');if(menu.hidden||!first||!first.getClientRects().length)return;
@@ -227,10 +236,10 @@
   if($('folioMenu').hidden)menuScroll=window.scrollY;window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;
   window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));measureNavigation();if(keyboard)focusMenu();
  }
- function selectCategory(group,topic='',keepMenu=false){
+ function selectCategory(group,topic='',detail='',keepMenu=false){
   window.AtlasInlinePanels.reset();
 
-  state.browseGroup=group;state.browseTopic=topic;
+  state.browseGroup=group;state.browseTopic=topic;state.browseDetail=detail;
   state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;
   if(!keepMenu)closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
@@ -274,12 +283,20 @@
    if(!wasOpen)showMenu(openGroup,group,e.detail===0);
   }
   const topic=t.closest('[data-folio-topic]');
-  if(topic)selectCategory(menuGroup,topic.dataset.folioTopic,stickySubcategories.matches);
+  if(topic){
+   const item=model.browseGroup(menuGroup).topics.find(value=>value.id===topic.dataset.folioTopic);
+   const hasDetails=!!item.children.length;
+   selectCategory(menuGroup,item.id,'',hasDetails||stickySubcategories.matches);
+   if(!$('folioMenu').hidden){menuRows();measureNavigation();}
+   if(hasDetails&&e.detail===0)$('folioMenuDetail')?.querySelector('button')?.focus({preventScroll:true});
+  }
+  const detail=t.closest('[data-folio-detail]');
+  if(detail)selectCategory(menuGroup,state.browseTopic,detail.dataset.folioDetail,stickySubcategories.matches);
  });
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);
   $('folioNiche').innerHTML='<option value="">Todos os nichos</option>'+niches.map(n=>`<option value="${esc(n.id)}">${esc(n.name)}</option>`).join('');
-  renderCategoryBar();ready=true;document.body.dataset.folio='true';refresh();
+  renderCategoryBar();ready=true;refresh();document.body.dataset.folio='true';
   if(!window.ATLAS_PAGE_MODE&&window.location.hash==='#briefSection')window.AtlasShell.openBrief();
  });
 })();

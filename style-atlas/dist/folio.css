@@ -95,8 +95,6 @@ body[data-folio-mode=catalogue] .folio-collection-heading p{display:none}
 .folio-save svg{width:22px;height:22px}
 .folio-save[aria-pressed=true]{color:var(--accent)}
 .folio-save[aria-pressed=true] svg{fill:#ffffff1a}
-.folio-compare{display:flex;align-items:center;gap:7px;min-height:44px;font-size:11px;margin:0;color:var(--muted)}
-.folio-compare input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
 .folio-card.is-selected .folio-cover{box-shadow:0 0 0 2px var(--folio-accent)}
 .folio-more-card{flex:0 0 calc((100% - 70px)/6);border:1px solid var(--line);background:transparent;align-self:flex-start;aspect-ratio:3/4;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;color:var(--accent);scroll-snap-align:start}
 .folio-more-card>span{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
@@ -263,8 +261,6 @@ body[data-folio=true] .picker-option{border:1px solid #383838;border-radius:20px
 body[data-folio=true] .picker-binding select{background:var(--surface-raised);border-color:#444;color:var(--ink);border-radius:14px}
 body[data-folio=true] :is(.controls,.filter-chips) [aria-pressed=true]{background:#f5f5f5;border-color:#f5f5f5;color:#111}
 body[data-folio=true] :is(.font-card[aria-pressed=true],#newFilter[aria-pressed=true]){background:var(--folio-accent);border-color:var(--folio-accent);color:#161b05}
-body[data-folio=true] .compare-bar{background:#242424;border-color:#444;color:#fff;border-radius:999px}
-body[data-folio=true] .compare-bar button{background:var(--folio-accent);color:#161b05;border-radius:999px}
 body[data-folio=true] .toast{background:#353535;border-color:#555;color:#fff;border-radius:999px}
 body[data-folio=true] .new-tag{background:#353535;color:#ddd}
 body[data-folio=true] .delivery-note{background:#242424;border-color:#444;color:#bdbdbd}
@@ -346,7 +342,7 @@ body[data-folio=true] #appHelp .workflow strong{color:#f5f5f5}
 body[data-folio=true] #appHelp .workflow b{background:#353535;color:#f5f5f5}
 body[data-folio=true] :is(h1,h2,h3,h4,h5,h6){font-family:'Folio UI',Arial,sans-serif}
 body[data-folio=true] #folioPanelHost{max-width:1600px;margin:0 auto;padding:24px 40px 120px}
-body[data-folio=true][data-folio-panel] :is(.app-main,#briefDialog,#selectionTray,#compareBar,#folioMenu,.folio-to-top){display:none!important}
+body[data-folio=true][data-folio-panel] :is(.app-main,#briefDialog,#selectionTray,#folioMenu,.folio-to-top){display:none!important}
 body[data-folio=true] #folioPanelHost .folio-page-panel{position:static;inset:auto;width:100%;max-width:none;max-height:none;height:auto;margin:0;padding:0;overflow:visible;overscroll-behavior:auto;box-shadow:none;border:0;border-radius:0;background:transparent;outline:none}
 body[data-folio=true] #folioPanelHost .folio-page-panel:not([open]),body[data-folio=true] #folioPanelHost .folio-page-panel:not(.is-current){display:none!important}
 body[data-folio=true] #folioPanelHost .folio-page-panel>footer{position:static;bottom:auto}
@@ -410,8 +406,6 @@ body[data-folio=true] #folioHeader [data-folio-choice]{display:none!important}
 .folio-header>nav:not(.folio-category-bar){order:2}
 .folio-header-progress button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 16px;font-size:13px;white-space:nowrap}
 .folio-header-progress small{min-width:20px;padding:1px 5px;border-radius:999px;background:#161b0520;font-size:11px}
-body[data-folio=true] #folioHeader #compareBar{position:static;inset:auto;order:4;flex:1 0 100%;display:flex;justify-content:flex-end;gap:12px;margin:0;padding:4px 0 0;border:0;border-radius:0;box-shadow:none;background:transparent;width:auto;max-width:none}
-body[data-folio=true] #folioHeader #compareBar[hidden]{display:none!important}
 body[data-folio=true] .folio-category-bar>button{background:transparent;border-radius:0;color:#b5b5b5;font-size:14px;font-weight:400}
 body[data-folio=true] .folio-category-bar>button:is(:hover,:focus-visible){color:var(--folio-accent)}
 .folio-category-bar>button>span{display:inline-block;transform-origin:center;transition:transform .16s ease}
@@ -419,7 +413,7 @@ body[data-folio=true] .folio-category-bar>button:is(:hover,:focus-visible){color
 body[data-folio=true] .app-main main,body[data-folio=true] #folioPanelHost,body[data-folio=true] #briefDialog.brief-workspace{padding-bottom:48px}
 body[data-folio=true] :is(#prepare,#copyPrompt,#guidedNext){display:none!important}
 html:has(body[data-folio=true]){scroll-padding-top:calc(var(--folio-header-height,140px) + 8px)}
-@media(max-width:700px){body[data-folio=true] .folio-header{flex-wrap:wrap;gap:8px 10px;padding-bottom:10px}.folio-header-progress{order:3;flex:1 0 100%;justify-content:flex-end}.folio-header-progress button{min-width:132px}.folio-header>nav:not(.folio-category-bar){margin-left:auto}.folio-header .folio-help{display:inline-flex}body[data-folio=true] #folioHeader #compareBar{justify-content:space-between;flex-wrap:wrap;font-size:11px}}
+@media(max-width:700px){body[data-folio=true] .folio-header{flex-wrap:wrap;gap:8px 10px;padding-bottom:10px}.folio-header-progress{order:3;flex:1 0 100%;justify-content:flex-end}.folio-header-progress button{min-width:132px}.folio-header>nav:not(.folio-category-bar){margin-left:auto}.folio-header .folio-help{display:inline-flex}}
 @media(prefers-reduced-motion:reduce){.folio-category-bar>button>span{transition:none}}
 
 body[data-folio=true] .folio-header{flex-wrap:wrap}
@@ -446,7 +440,6 @@ body[data-folio=true] :is([data-frame],[data-board],[data-sequence-download],#st
  .folio-header>nav:not(.folio-category-bar){grid-column:3;grid-row:1;margin:0}
  .folio-header .folio-category-bar{display:flex;grid-column:1/-1;grid-row:2;order:initial;min-width:0;width:100%;padding:0;margin:0;gap:16px;justify-content:flex-start}
  .folio-header .folio-category-bar>button{padding:8px 0;font-size:14px;flex:none}
- body[data-folio=true] #folioHeader #compareBar{grid-column:1/-1;grid-row:3}
 }
 @media(hover:hover) and (pointer:fine){.folio-card h3 button:hover,.folio-shelf-tools button:hover,.folio-save:hover{color:var(--folio-accent)}}
 
@@ -516,8 +509,7 @@ body[data-folio=true] .guided-preferences>h3 small{font-size:12px;font-weight:40
 /* Category navigation shares the goal selector's segmented surface. */
 body[data-folio=true] .folio-header .folio-category-bar{background:#1c1c1c;border-radius:28px;padding:4px;gap:4px}
 body[data-folio=true] .folio-header .folio-category-bar>button{min-height:44px;padding:8px;border-radius:999px;background:transparent;color:var(--muted)}
-body[data-folio=true] .folio-header .folio-category-bar>button[aria-current=true]{background:var(--folio-accent);color:#161b05;font-weight:500}
-body[data-folio=true] .folio-header .folio-category-bar>button:is(:hover,:focus-visible):not([aria-current=true]){background:#2a2a2a;color:var(--folio-accent)}
+body[data-folio=true] .folio-header .folio-category-bar>button:is([aria-current=true],:hover,:focus-visible){color:var(--folio-accent)}
 @media(max-width:700px){
  body[data-folio=true] .folio-header .folio-category-bar{width:calc(100% + 16px);margin:2px -8px 0;padding:4px 6px;gap:0 2px;flex-wrap:wrap;overflow:visible}
  body[data-folio=true] .folio-header .folio-category-bar>button{padding:8px 2px;font-size:14px}
@@ -529,7 +521,7 @@ body[data-folio=true] :is(.folio-goals button,.folio-niche select,.folio-search 
 body[data-folio=true] :is(.folio-header-progress button,#sequencePrev,#sequenceNext){font-size:var(--folio-type-body)}
 body[data-folio=true] #folioPanelHost .folio-panel-back{font-size:var(--folio-type-body)}
 body[data-folio=true] :is(.folio-category-bar>button,#folioMenu button,.folio-card h3,.folio-scope .text-button,.folio-shelf-tools>button,.folio-story-link,.brief-steps button){font-size:var(--folio-type-compact)}
-body[data-folio=true] :is(.folio-reference,.folio-compare,.folio-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--folio-type-meta)}
+body[data-folio=true] :is(.folio-reference,.folio-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--folio-type-meta)}
 body[data-folio=true] :is(.guided-dialog label,.guided-preferences>h3,.brief-editor form label){font-size:var(--folio-type-compact)}
 body[data-folio=true] :is(.guided-dialog section>h3,.film-heading>h3,#handoff h2){font-size:var(--folio-type-section)}
 body[data-folio=true] .folio-shelf h2{font-size:var(--folio-type-section)}
