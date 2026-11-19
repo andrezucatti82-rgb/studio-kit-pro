@@ -13,7 +13,7 @@
 <p class="status" id="result" aria-live="polite"></p><div id="gallery" aria-live="polite"></div>
 <p class="footer">São conceitos estáticos, com pessoas, produtos, interfaces e dados fictícios. As imagens ajudam a imaginar aparência e sequência; não comprovam movimento, funcionamento de um sistema ou fidelidade a um produto real. Textos do filme serão compostos em código. Seus comentários ficam neste navegador e só são compartilhados se você baixar e enviar o arquivo.</p>
 </main><dialog id="viewer" aria-label="Quadro ampliado"><div class="dialog-head"><strong id="viewerTitle"></strong><button id="closeViewer" aria-label="Fechar quadro ampliado">Fechar</button></div><div id="viewerImage"></div><div class="viewer-nav"><button id="prev">← Anterior</button><span id="viewerCount"></span><button id="next">Próximo →</button></div></dialog>
-<script src="frame-presentation.js"></script><script src="gallery-views.js"></script><script>
+<script src="select-menu.js"></script><script src="frame-presentation.js"></script><script src="gallery-views.js"></script><script>
 'use strict';
 const $=id=>document.getElementById(id), storageKey='gda-sequence-pilot-v1';let data,notes={},current=null,position=0,returnFocus=null;try{const raw=JSON.parse(window.ATLAS_PAGE_MODE?'{}':localStorage.getItem(storageKey)||'{}');if(raw&&typeof raw==='object'&&!Array.isArray(raw))notes=raw}catch{}
 const el=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x};

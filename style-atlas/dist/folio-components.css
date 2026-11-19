@@ -166,17 +166,35 @@ body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),s
 }
 body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),select,textarea){background:var(--surface-raised)}
 @supports (appearance:base-select) and selector(::picker(select)){
- body[data-folio=true] :is(#duration,#guidedDuration){
-  appearance:base-select;display:flex;align-items:center;gap:10px;
+ html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size]){
+  appearance:base-select;align-items:center;gap:10px;
  }
- body[data-folio=true] :is(#duration,#guidedDuration)::picker(select){appearance:base-select}
- body[data-folio=true] :is(#duration,#guidedDuration)::picker-icon{flex:none;margin-inline-start:auto}
- body[data-folio=true] :is(#duration,#guidedDuration)::picker(select){
+ html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size])::picker-icon{flex:none;margin-inline-start:auto;color:var(--ink)}
+ html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size])::picker(select){
+  appearance:base-select;
   background:#242424;color:var(--ink);border:1px solid var(--folio-accent);border-radius:16px;padding:4px;
  }
- body[data-folio=true] :is(#duration,#guidedDuration) option{padding:10px 12px;border-radius:10px}
- body[data-folio=true] :is(#duration,#guidedDuration) option:is(:checked,:hover,:focus){background:#303030;color:var(--folio-accent)}
+ html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size]) option{
+  padding:10px 12px;border-radius:10px;
+ }
+ html:not([data-folio-select-fallback]) body[data-folio=true] select:not([multiple],[size]) option:is(:checked,:hover,:focus){
+  background:#303030;color:var(--folio-accent);
+ }
 }
+html[data-folio-select-fallback] body[data-folio=true] select:not([multiple],[size],.sr){
+ appearance:none;padding-inline-end:36px;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23f5f5f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+ background-position:right 12px center;background-repeat:no-repeat;background-size:16px;
+}
+.folio-select-menu{
+ position:fixed;z-index:1000;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;
+ padding:4px;border:1px solid var(--folio-accent,#e2ff3b);border-radius:16px;background:#242424;
+ color:var(--ink,#f5f5f5);box-shadow:0 8px 30px #0007;font:400 16px/1.4 'Folio UI',sans-serif;
+}
+.folio-select-menu [role=option]{padding:10px 12px;border-radius:10px;cursor:pointer}
+.folio-select-menu [role=option]:is(:hover,[aria-selected=true],[data-active]){background:#303030;color:var(--folio-accent,#e2ff3b)}
+.folio-select-menu [aria-disabled=true]{opacity:.5;cursor:default}
+.folio-select-menu [role=group]>div:first-child{padding:8px 12px;color:#b5b5b5;font-size:.85em}
 body[data-folio=true] .folio-search input{min-height:54px;padding-left:48px;padding-right:16px;border-radius:999px}
 body[data-folio=true] .folio-search .search>span{left:20px}
 body[data-folio=true] :is(textarea,#briefDialog #topic){line-height:1.6}
