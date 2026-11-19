@@ -151,8 +151,11 @@ body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),s
 }
 body[data-folio=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),select,textarea){background:var(--surface-raised)}
 @supports (appearance:base-select) and selector(::picker(select)){
- body[data-folio=true] :is(#duration,#guidedDuration),
+ body[data-folio=true] :is(#duration,#guidedDuration){
+  appearance:base-select;display:flex;align-items:center;gap:10px;
+ }
  body[data-folio=true] :is(#duration,#guidedDuration)::picker(select){appearance:base-select}
+ body[data-folio=true] :is(#duration,#guidedDuration)::picker-icon{flex:none;margin-inline-start:auto}
  body[data-folio=true] :is(#duration,#guidedDuration)::picker(select){
   background:#242424;color:var(--ink);border:1px solid var(--folio-accent);border-radius:16px;padding:4px;
  }
