@@ -164,6 +164,8 @@ Verificar quadros de início, meio, fim e transições, além de reprodução in
 
 ## Pacotes de instalação e atualização
 
+Para escolher o modelo da HeyGen por plano, execute `npm run heygen:models` e siga o [guia de seleção](.agents/skills/video-multimarcas/references/heygen-model-selection.md). O diagnóstico consulta documentação e autenticação sem gerar mídia.
+
 [Skill](dist/video-multimarcas.skill) · [ZIP da skill](dist/video-multimarcas.zip) · [Plugin Codex](dist/video-multimarcas-plugin.zip) · [Versões e hashes](dist/release-manifest.json) · [Instalar ou atualizar](docs/INSTALL-SKILL.md). Pacotes preparados: plugin 2.12.0, kit 2.12.0 e catálogo 4.8 (1.425 estilos em sete categorias); instalação e publicação são verificadas separadamente. O marketplace público distribui somente `video-multimarcas`; a skill pessoal `video-b-roll` permanece separada. Importação na conta do ChatGPT depende da interface disponível e não acontece automaticamente ao atualizar este repositório.
 
 ## Referências visuais para o pedido

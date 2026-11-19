@@ -1,6 +1,6 @@
 {
   "name": "video-multimarcas-kit",
-  "version": "2.16.0",
+  "version": "2.16.1",
   "private": true,
   "type": "module",
   "description": "Brand-adaptive B-roll agent skill and editable production starter",
@@ -35,7 +35,8 @@
     "tools:install": "node scripts/free-tools.mjs install",
     "tools:smoke": "node scripts/free-tools.mjs smoke",
     "tools:run": "node scripts/free-tools.mjs run",
-    "curadoria": "node tools/curadoria/cli.mjs"
+    "curadoria": "node tools/curadoria/cli.mjs",
+    "heygen:models": "node scripts/heygen-models.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.540",

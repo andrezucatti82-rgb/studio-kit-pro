@@ -41,3 +41,5 @@ Quando houver pedido de boca discreta: solicitar expressão contida, abertura co
 Forneça à orquestradora o plano de interação, fontes/tempos/âncoras necessários, instrução de atuação, limites comprovados e amostra representativa. Reutilize roteiro e visual selecionados; aprovações visuais aplicáveis antecedem vídeo IA e custo exige autorização própria. A amostra integra pessoa, gesto, gráfico, voz, legenda e passagem mais difíceis. Uma imagem estática, avatar isolado ou render válido não aprova interação.
 
 Quando a interação exigir criar/corrigir track, matte, roto, key, cleanup ou integração CG, acione `video-vfx` pela orquestradora. Este módulo conserva fala/gesto/intenção; VFX entrega insumos e QA por plano; edição integra. Não executar duas vezes a mesma composição.
+
+Na recriação falada pela HeyGen, use a [seleção de modelos por plano](../heygen-model-selection.md). Compare o quadro aprovado com o original, incluindo idade aparente e textura da pele. Verifique lábios, gesto e oclusão na amostra.

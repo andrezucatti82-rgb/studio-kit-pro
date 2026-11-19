@@ -18,7 +18,7 @@ Use **Agora / Entrega / Preciso de você / Próximo passo**. Aproveite respostas
 - **Composição híbrida:** proteger produto/pessoa/logo/rótulo em camadas; gerar ambiente separado quando adequado. Confirmar se perspectiva e movimento permitem integração convincente. Não achatar o produto protegido numa nova geração esperando que permaneça exato.
 - **Avatar:** autorização específica, consentimento do provedor quando aplicável, identidade e voz testadas. Nunca habilitar avatar só porque o provedor o oferece.
 
-HeyGen pela API direta continua prioritário para clipes compatíveis. A edição pode usar código, FFmpeg e composição local. Essa preferência não torna um serviço competente para qualquer efeito. MCP e API direta podem ter contas, limites e contratos diferentes. No kit, `heygen-clips.py` aceita 5–15 s, texto, imagem inicial ou até nove referências de imagem; isso não é o limite universal do HeyGen. Sem suporte à direção, explicar e propor alternativa dentro da preferência do usuário. Não trocar provedor ou simplificar silenciosamente.
+HeyGen pela API direta continua prioritário para clipes compatíveis. A edição pode usar código, FFmpeg e composição local. Essa preferência não torna um serviço competente para qualquer efeito. MCP e API direta podem ter contas, limites e contratos diferentes. Leia [seleção de modelos da HeyGen](heygen-model-selection.md). No kit, `heygen-clips.py` aceita texto, quadro inicial, referências visuais no HeyGen Video 1 e foto com áudio autorizado no Avatar 6. Os limites do adaptador valem por rota. Sem suporte à direção, explicar e propor alternativa dentro da preferência do usuário. Não trocar provedor ou simplificar silenciosamente.
 
 ## Estado de capacidade com evidência
 
