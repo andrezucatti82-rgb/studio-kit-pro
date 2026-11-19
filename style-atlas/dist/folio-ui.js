@@ -157,6 +157,30 @@
  });
  if(globalThis.ResizeObserver){const observer=new ResizeObserver(()=>{document.documentElement.style.setProperty('--folio-header-height',header.getBoundingClientRect().height+'px');alignMenu();});observer.observe(header);observer.observe(categoryBar);observer.observe($('folioMenu'));}
  window.addEventListener('resize',alignMenu);document.fonts?.ready?.then(alignMenu);
+ // iOS keeps the layout viewport behind the keyboard. Follow the visual
+ // viewport instead, leaving room for its input accessory bar as well.
+ const viewport=window.visualViewport;
+ if(viewport){
+  let viewportFrame=0,editingHeight=0,lastEdit=0;
+  const editable=()=>{const e=document.activeElement;return e?.matches('textarea,input:not([type=checkbox],[type=radio],[type=file],[type=button],[type=submit],[type=reset],[type=range],[type=color],[type=hidden])')&&!e.disabled&&!e.readOnly?e:null;};
+  function keepEditorVisible(){
+   viewportFrame=0;const field=editable(),mobile=window.innerWidth<=700,height=viewport.height;
+   if(!mobile||!field){delete document.body.dataset.folioKeyboard;editingHeight=0;return;}
+   if(!editingHeight)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,height);
+   const keyboard=editingHeight-height>100;
+   document.documentElement.style.setProperty('--folio-viewport-height',height+'px');
+   document.documentElement.style.setProperty('--folio-keyboard-inset',Math.max(0,editingHeight-height)+'px');
+   if(keyboard)document.body.dataset.folioKeyboard='true';else delete document.body.dataset.folioKeyboard;
+   if(!keyboard)return;
+   const top=Math.max(viewport.offsetTop,header.getBoundingClientRect().bottom)+12,bottom=viewport.offsetTop+height-48,rect=field.getBoundingClientRect();
+   const delta=rect.height>bottom-top?rect.top-top:rect.bottom>bottom?rect.bottom-bottom:rect.top<top?rect.top-top:0;
+   if(Math.abs(delta)>1)window.scrollTo({top:Math.max(0,window.scrollY+delta),behavior:'auto'});
+  }
+  const scheduleEditor=()=>{if(!viewportFrame)viewportFrame=requestAnimationFrame(keepEditorVisible);};
+  document.addEventListener('focusin',()=>{lastEdit=Date.now();if(!document.body.dataset.folioKeyboard)editingHeight=Math.max(window.innerHeight,document.documentElement.clientHeight,viewport.height);scheduleEditor();});
+  document.addEventListener('focusout',scheduleEditor);document.addEventListener('input',()=>{lastEdit=Date.now();scheduleEditor();});
+  viewport.addEventListener('resize',scheduleEditor);viewport.addEventListener('scroll',()=>{if(Date.now()-lastEdit<700)scheduleEditor();});window.addEventListener('resize',scheduleEditor);
+ }
  const shortNames={commercial:'Publicidade','natural-ads':'Por segmento',business:'Serviços',technology:'Tecnologia',presenters:'Apresentador',movement:'Motion',visual:'Estéticas'};
  function renderCategoryBar(){
   categoryBar.innerHTML=window.AtlasNavigation.groups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-label="${esc(g.name)}" ${g.directFamily?'':`aria-controls="folioMenu" aria-expanded="false"`}><span>${esc(shortNames[g.id]||g.name)}</span>${g.directFamily?'':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>'}</button>`).join('');
@@ -182,10 +206,10 @@
   if(focusTarget?.parentElement===categoryBar){const box=focusTarget.getBoundingClientRect(),bar=categoryBar.getBoundingClientRect();if(box.left<bar.left)categoryBar.scrollLeft-=bar.left-box.left;else if(box.right>bar.right)categoryBar.scrollLeft+=box.right-bar.right;}
   focusTarget?.focus({preventScroll:true});
  }
- function showMenu(trigger,group=''){
+ function showMenu(trigger,group='',keyboard=false){
   if(!$('folioMenu').hidden&&menuTrigger===trigger){closeMenu();return;}
   if($('folioMenu').hidden)menuScroll=window.scrollY;window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;
-  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));alignMenu();focusMenu();
+  window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));alignMenu();if(keyboard)focusMenu();
  }
  function selectCategory({family='',group=''}={}){
   window.AtlasInlinePanels.reset();
@@ -223,8 +247,8 @@
   if(t.closest('[data-folio-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-folio-choice]');if(choice)showChoice(choice);
   const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
-  const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{const wasOpen=!$('folioMenu').hidden&&menuGroup===g.id;selectCategory({group:g.id});if(!wasOpen)showMenu(openGroup,g.id);}}
-  const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{selectCategory({group:g.id});showMenu(categoryBar.querySelector('[data-folio-open-group="'+g.id+'"]'),g.id);}}
+  const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{const wasOpen=!$('folioMenu').hidden&&menuGroup===g.id;selectCategory({group:g.id});if(!wasOpen)showMenu(openGroup,g.id,e.detail===0);}}
+  const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{selectCategory({group:g.id});showMenu(categoryBar.querySelector('[data-folio-open-group="'+g.id+'"]'),g.id,e.detail===0);}}
   const family=t.closest('[data-folio-family]');if(family)selectCategory({family:family.dataset.folioFamily});
   if(t.closest('[data-folio-all]')){state.niche='';catalogue();}
  });
