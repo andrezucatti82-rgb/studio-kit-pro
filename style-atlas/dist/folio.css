@@ -371,7 +371,7 @@ body[data-folio=true] #folioMenu[hidden]{display:none!important}
 /* Opening a category reveals its words immediately below the header. */
 body[data-folio=true]:has(#folioMenu:not([hidden])) .folio-header{padding-bottom:8px}
 body[data-view=library][data-folio-browse=category] .app-main main{padding-top:0}
-body[data-folio-browse=category] :is(#folioSearch,.folio-scope,.folio-collection-heading>.folio-back){display:none!important}
+body[data-folio-browse=category] :is(.folio-scope,.folio-collection-heading>.folio-back){display:none!important}
 body[data-folio-browse=category] .folio-collection-heading{margin:0 0 4px;gap:0}
 body[data-folio-browse=category] .folio-collection-heading h1{font-size:20px;line-height:1.3;letter-spacing:-.4px;margin:0}
 body[data-folio-browse=category] .folio-catalogue-controls{margin:0 0 4px;gap:6px}

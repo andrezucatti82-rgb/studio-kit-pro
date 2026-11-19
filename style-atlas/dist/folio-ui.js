@@ -49,7 +49,8 @@
  const icons={heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1C0 9 6 15 12 21c6-6 12-12 8-16Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>'};
  const icon=id=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.arrow}</svg>`;
  let ready=false,niches=[],catalog,latest,homeKey='',menuGroup='',menuTrigger,menuScroll=0,gridScroll=0,homeScroll=0;
- const state={goal:'explain',mode:'home',collection:'',niche:'',similar:''};
+ const state={goal:'mixed',mode:'home',collection:'',niche:'',similar:'',browseGroup:'',browseTopic:''};
+ const featuredCollections=['inside-products','product-value','people-and-business','explanations'];
 
  const selected=id=>latest?.selected.includes(id),favorite=id=>latest?.favorites.includes(id);
  function picture(s,small=true){
@@ -68,9 +69,11 @@
  }
  function filter(items){
   const c=model.collection(state.collection);
-  const result=items.filter(s=>model.matchesNiche(s,state.niche,niches)&&(state.mode!=='collection'||model.matchesCollection(s,c)));
+  const result=items.filter(s=>model.matchesNiche(s,state.niche,niches)&&
+   model.matchesBrowse(s,state.browseGroup,state.browseTopic)&&
+   (state.mode!=='collection'||model.matchesCollection(s,c)));
   if(state.similar){const ranked=AtlasSearch.similar(catalog.styles,window.AtlasApp.getStyle(state.similar),24,catalog.search),allowed=new Set(result.map(s=>s.id));return ranked.filter(s=>allowed.has(s.id));}
-  return state.mode==='collection'?model.diversify(result,c?.preferred):result;
+  return state.mode==='collection'||state.browseGroup?model.diversify(result,c?.preferred):result;
  }
  function beforeRender(){gridScroll=$('grid').scrollLeft;}
  function update(data){
@@ -80,10 +83,8 @@
   document.body.dataset.folioMode=state.mode;
   document.body.dataset.folioBrowse=state.mode==='catalogue'&&!data.query?'category':'';
   document.body.dataset.folioDensity='compact';
-  categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>{const g=window.AtlasNavigation.groups.find(g=>g.id===b.dataset.folioOpenGroup);b.setAttribute('aria-current',String(data.group===g.id||g.families.includes(data.family)));});
-  $('folioMenuGroups').querySelectorAll('[data-folio-family]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioFamily===data.family)));
-  syncKindFilter();
-  if(state.mode==='home')setKindOpen(false);
+  categoryBar.querySelectorAll('[data-folio-open-group]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioOpenGroup===state.browseGroup)));
+  $('folioMenuGroups').querySelectorAll('[data-folio-topic]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.folioTopic===state.browseTopic)));
   $('folioDiscovery').hidden=state.mode!=='home';$('folioCollectionHeading').hidden=state.mode==='home';
   $('folioChangeGoal').hidden=state.mode!=='collection';$('folioBrowseAll').hidden=state.mode!=='home';
   $('folioCollections').hidden=state.mode!=='home';$('grid').hidden=state.mode==='home';
@@ -91,8 +92,9 @@
   document.querySelectorAll('[data-folio-goal]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.folioGoal===state.goal)));
   if(state.mode==='home')renderHome(data.items);
   else{
-   const c=model.collection(state.collection);
-   $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos';
+   const c=model.collection(state.collection),group=model.browseGroup(state.browseGroup);
+   const topic=group?.topics.find(t=>t.id===state.browseTopic);
+   $('folioCollectionTitle').textContent=state.similar?'Estilos parecidos com '+window.AtlasApp.getStyle(state.similar).name:state.mode==='collection'?c.title:data.onlyFav?'Seus favoritos':data.query?'Resultados da busca':topic?.label||group?.label||(data.family?catalog.families.find(f=>f.id===data.family)?.name:data.group?window.AtlasNavigation.groups.find(g=>g.id===data.group)?.name:'Todos os estilos');
    $('folioCollectionDescription').textContent=state.mode==='collection'?c.description:data.query?'Referências encontradas no catálogo completo.':'Explore as referências e encontre o ponto de partida do seu vídeo.';
    $('grid').innerHTML=data.shown.map(s=>card(s,state.mode==='collection')).join('');
    $('grid').scrollLeft=gridScroll;
@@ -106,7 +108,8 @@
   const key=state.goal+'|'+state.niche+'|'+items.map(s=>s.id).join(',');
   if(key!==homeKey){
    homeKey=key;
-   $('folioCollections').innerHTML=model.definitions.filter(c=>c.goal===state.goal).map(c=>{
+   const collections=state.goal==='mixed'?featuredCollections.map(model.collection):model.definitions.filter(c=>c.goal===state.goal);
+   $('folioCollections').innerHTML=collections.map(c=>{
     const styles=model.diversify(items.filter(s=>model.matchesCollection(s,c)),c.preferred);if(!styles.length)return '';
     return `<section class="folio-shelf" aria-labelledby="folio-shelf-${c.id}"><header><h2 id="folio-shelf-${c.id}">${esc(c.title)}</h2><div class="folio-shelf-tools"><button type="button" class="folio-rail-arrow" data-folio-rail="${c.id}" data-rail-direction="-1" aria-label="Estilos anteriores de ${esc(c.title)}">←</button><button type="button" class="folio-rail-arrow" data-folio-rail="${c.id}" data-rail-direction="1" aria-label="Mais estilos de ${esc(c.title)}">→</button><button type="button" data-folio-collection="${c.id}" aria-label="Ver coleção: ${esc(c.title)}">Ver coleção ${icon('arrow')}</button></div></header><div class="folio-shelf-rail" tabindex="0" role="region" aria-label="${esc(c.title)} — deslize para explorar">${styles.slice(0,8).map(s=>card(s)).join('')}<button type="button" class="folio-more-card" data-folio-collection="${c.id}"><span>${icon('arrow')}</span><strong>Explorar a coleção</strong><small>${styles.length} estilos</small></button></div></section>`;
    }).join('');
@@ -119,15 +122,16 @@
  }
  function refresh(){window.AtlasApp.refresh();}
  $('folioBrowseAll').textContent='Ver todos →';
- function catalogue(){window.AtlasInlinePanels.reset();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
+ function clearBrowse(){state.browseGroup='';state.browseTopic='';}
+ function catalogue(){window.AtlasInlinePanels.reset();clearBrowse();state.niche='';state.mode='catalogue';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();}
  function home({restore=false}={}){
   window.AtlasInlinePanels.reset();
-  state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
+  clearBrowse();state.mode='home';state.collection='';state.similar='';gridScroll=0;closeMenu($('folioDiscoveryTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
   requestAnimationFrame(()=>{window.scrollTo({top:restore?homeScroll:0,behavior:'auto'});if(!restore)$('folioDiscoveryTitle').focus({preventScroll:true});});
  }
  function openCollection(id){
   const c=model.collection(id);if(!c)return;
-  homeScroll=window.scrollY;state.mode='collection';state.collection=id;gridScroll=0;refresh();
+  clearBrowse();homeScroll=window.scrollY;state.mode='collection';state.collection=id;gridScroll=0;refresh();
   window.scrollTo({top:0,behavior:'auto'});$('folioCollectionTitle').focus({preventScroll:true});
  }
  function syncNavigation(view){
@@ -135,7 +139,7 @@
   const skip=document.querySelector('.skip-link');let content=view==='help'?$('installTitle'):view==='brief'?$('briefTitle'):view==='library'?(state.mode==='home'?$('folioDiscoveryTitle'):$('folioCollectionTitle')):$('projectTitle');
   if(skip&&content){if(!content.id)content.id='folioContentTitle';content.tabIndex=-1;skip.href='#'+content.id;skip.textContent='Pular para o conteúdo';}
   window.AtlasInlinePanels.onView(view);
-  if(view!=='library'){closeMenu();setKindOpen(false);if($('folioChoice').open){$('folioChoice').close();}}
+  if(view!=='library'){closeMenu();if($('folioChoice').open){$('folioChoice').close();}}
   document.querySelectorAll('[data-folio-home]').forEach(b=>b.setAttribute('aria-current',view==='library'?'page':'false'));
   document.querySelectorAll('[data-folio-choice]').forEach(b=>b.setAttribute('aria-current',['brief','project'].includes(view)?'page':'false'));
  }
@@ -192,15 +196,15 @@
   document.addEventListener('focusout',scheduleEditor);document.addEventListener('input',()=>{lastEdit=Date.now();scheduleEditor();});
   viewport.addEventListener('resize',scheduleEditor);viewport.addEventListener('scroll',()=>{if(Date.now()-lastEdit<700)scheduleEditor();});window.addEventListener('resize',scheduleEditor);
  }
- const shortNames={commercial:'Publicidade','natural-ads':'Por segmento',business:'Serviços',technology:'Tecnologia',presenters:'Apresentador',movement:'Motion',visual:'Estéticas'};
  function renderCategoryBar(){
-  categoryBar.innerHTML=window.AtlasNavigation.groups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-label="${esc(g.name)}" ${g.directFamily?'':`aria-controls="folioMenu" aria-expanded="false"`}><span>${esc(shortNames[g.id]||g.name)}</span>${g.directFamily?'':'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>'}</button>`).join('');
+  categoryBar.innerHTML=model.browseGroups.map(g=>`<button type="button" data-folio-open-group="${esc(g.id)}" aria-controls="folioMenu" aria-expanded="false"><span>${esc(g.label)}</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg></button>`).join('');
  }
  function menuRows(){
-  const groups=window.AtlasNavigation.groups,selected=groups.find(g=>g.id===menuGroup);
-  const links=selected?selected.families.map(id=>{const f=catalog.families.find(f=>f.id===id);return `<button type="button" data-folio-family="${esc(f.id)}" aria-current="${latest?.family===f.id}"><span>${esc(f.name)}</span></button>`;}):groups.map(g=>`<button type="button" data-folio-group="${esc(g.id)}"><span>${esc(g.name)}</span></button>`);
-  $('folioMenu').setAttribute('aria-label',selected?selected.name:'Categorias de estilos');
-  $('folioMenuGroups').innerHTML=`<div class="folio-text-links">${links.join('')}${selected?'':'<button type="button" data-folio-all><span>Todos os estilos</span></button>'}</div>`;
+  const group=model.browseGroup(menuGroup);
+  $('folioMenu').setAttribute('aria-label',group.label);
+  $('folioMenuGroups').innerHTML='<div class="folio-text-links">'+group.topics.map(topic=>
+   `<button type="button" data-folio-topic="${esc(topic.id)}" aria-current="${state.browseTopic===topic.id}"><span>${esc(topic.label)}</span></button>`
+  ).join('')+'</div>';
  }
  function alignMenu(){
   const menu=$('folioMenu'),first=categoryBar.querySelector('button');if(menu.hidden||!first||!first.getClientRects().length)return;
@@ -210,7 +214,7 @@
   const columns=available>=800?4:available>=560?3:available>=310?2:1;
   menu.style.setProperty('--folio-menu-start',start+'px');menu.style.setProperty('--folio-menu-columns',String(columns));
  }
- function focusMenu(){($('folioMenuGroups').querySelector('[data-folio-family],[data-folio-group]')||$('folioMenuGroups').querySelector('button'))?.focus({preventScroll:true});}
+ function focusMenu(){$('folioMenuGroups').querySelector('button')?.focus({preventScroll:true});}
  function closeMenu(destination){
   if($('folioMenu').hidden)return;
   $('folioMenu').hidden=true;measureNavigation();if(!destination&&!stickySubcategories.matches)window.scrollTo({top:menuScroll,behavior:'auto'});categoryBar.querySelectorAll('[aria-expanded]').forEach(b=>b.setAttribute('aria-expanded','false'));
@@ -223,55 +227,14 @@
   if($('folioMenu').hidden)menuScroll=window.scrollY;window.AtlasInlinePanels.reset();menuTrigger=trigger;menuGroup=group;menuRows();$('folioMenu').hidden=false;
   window.scrollTo({top:0,behavior:'auto'});categoryBar.querySelectorAll('[data-folio-open-group][aria-expanded]').forEach(b=>b.setAttribute('aria-expanded',String(b===trigger)));measureNavigation();if(keyboard)focusMenu();
  }
- function selectCategory({family='',group='',keepMenu=false}={}){
+ function selectCategory(group,topic='',keepMenu=false){
   window.AtlasInlinePanels.reset();
 
+  state.browseGroup=group;state.browseTopic=topic;
   state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;
-  setKindOpen(false);
   if(!keepMenu)closeMenu($('folioCollectionTitle'));
   window.AtlasShell.view('library');window.AtlasApp.resetBrowse();
-  if(group)window.AtlasApp.setCategoryGroup(group);
-  else if(family){$('familySelect').value=family;$('familySelect').dispatchEvent(new Event('change',{bubbles:true}));}
   $('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});
- }
- // Keep the native field as the catalogue's source of truth. The in-page
- // choices avoid the operating system's colors and preserve the same filter.
- const kindSelect=$('kind');
- const kindTrigger=document.createElement('button');
- kindTrigger.type='button';kindTrigger.className='folio-kind-trigger';
- kindTrigger.setAttribute('aria-controls','folioKindOptions');
- const kindOptions=document.createElement('div');
- kindOptions.id='folioKindOptions';kindOptions.className='folio-kind-options';
- kindOptions.setAttribute('role','group');kindOptions.setAttribute('aria-label','Tipos de estilo');
- function setKindOpen(open,restoreFocus=false){
-  kindTrigger.setAttribute('aria-expanded',String(open));kindOptions.hidden=!open;
-  if(restoreFocus)kindTrigger.focus();
- }
- function syncKindFilter(){
-  const label=Array.from(kindSelect.options).find(option=>option.value===kindSelect.value)?.textContent||'Todos os tipos';
-  kindTrigger.textContent=label;kindTrigger.setAttribute('aria-label','Filtrar por tipo: '+label);
-  kindOptions.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.value===kindSelect.value)));
- }
- function initKindFilter(){
-  const nativeLabel=kindSelect.closest('label');
-  nativeLabel.before(kindTrigger);nativeLabel.hidden=true;
-  kindSelect.closest('.folio-catalogue-controls').append(kindOptions);
-  for(const option of kindSelect.options){
-   const choice=document.createElement('button');
-   choice.type='button';choice.value=option.value;choice.textContent=option.textContent;
-   kindOptions.append(choice);
-  }
-  setKindOpen(false);syncKindFilter();
-  kindTrigger.addEventListener('click',()=>{
-   const open=kindOptions.hidden;setKindOpen(open);
-   if(open)kindOptions.querySelector('[aria-pressed=true]')?.focus();
-  });
-  kindOptions.addEventListener('click',e=>{
-   const choice=e.target.closest('button');if(!choice)return;
-   kindSelect.value=choice.value;
-   kindSelect.dispatchEvent(new Event('change',{bubbles:true}));
-   setKindOpen(false,true);
-  });
  }
  function renderChoice(){
   const ids=latest.selected;$('folioChoiceHelp').textContent=ids.length?'Um estilo orienta seu vídeo. Você pode trocar a referência a qualquer momento.':'Explore uma coleção e escolha um estilo.';
@@ -279,18 +242,17 @@
   $('folioChoiceContinue').disabled=!ids.length;
  }
  function showChoice(trigger){window.AtlasInlinePanels.reset();renderChoice();$('folioChoice').showModal();}
- function similar(id){if(!window.AtlasApp.getStyle(id))return;window.AtlasInlinePanels.reset();state.mode='catalogue';state.collection='';state.niche='';state.similar=id;gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();$('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
+ function similar(id){if(!window.AtlasApp.getStyle(id))return;window.AtlasInlinePanels.reset();clearBrowse();state.mode='catalogue';state.collection='';state.niche='';state.similar=id;gridScroll=0;closeMenu($('folioCollectionTitle'));window.AtlasShell.view('library');window.AtlasApp.resetBrowse();$('folioCollectionTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
  window.AtlasFolio={filter,beforeRender,update,onView:syncNavigation,getState:()=>({...state}),syncHeader,similar};
  // Listeners are installed before app.js: a free-text search starts across all styles.
- $('search').addEventListener('input',()=>{state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
- $('reset').addEventListener('click',()=>{state.mode='home';state.collection='';state.similar='';state.niche='';});
+ $('search').addEventListener('input',()=>{clearBrowse();if(!$('folioMenu').hidden){closeMenu($('search'));}state.mode=$('search').value.trim()?'catalogue':'home';state.collection='';state.similar='';state.niche='';gridScroll=0;});
+ $('reset').addEventListener('click',()=>{clearBrowse();state.mode='home';state.collection='';state.similar='';state.niche='';});
  $('searchEverywhere').addEventListener('click',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';});
  $('familySelect').addEventListener('change',()=>{state.mode='catalogue';state.collection='';state.similar='';state.niche='';gridScroll=0;});
  $('folioNiche').addEventListener('change',()=>{state.niche=$('folioNiche').value;gridScroll=0;refresh();});
  document.addEventListener('keydown',e=>{
   if(e.key!=='Escape'||e.defaultPrevented)return;
-  if(!kindOptions.hidden){e.preventDefault();setKindOpen(false,true);}
-  else if(!$('folioMenu').hidden){e.preventDefault();closeMenu();}
+  if(!$('folioMenu').hidden){e.preventDefault();closeMenu();}
  });
  $('folioChoiceContinue').addEventListener('click',()=>{$('folioChoice').close();window.AtlasShell.openBrief();});
  $('folioBack').addEventListener('click',()=>home({restore:true}));$('folioChangeGoal').addEventListener('click',()=>home());
@@ -304,15 +266,20 @@
   if(t.closest('[data-folio-home]')){e.preventDefault();home();}
   const choice=t.closest('[data-folio-choice]');if(choice)showChoice(choice);
   const closer=t.closest('[data-folio-close]');if(closer){if(closer.closest('#folioMenu'))closeMenu();else closer.closest('dialog')?.close();}
-  const openGroup=t.closest('[data-folio-open-group]');if(openGroup){const g=window.AtlasNavigation.groups.find(g=>g.id===openGroup.dataset.folioOpenGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{const wasOpen=!$('folioMenu').hidden&&menuGroup===g.id;selectCategory({group:g.id});if(!wasOpen)showMenu(openGroup,g.id,e.detail===0);}}
-  const group=t.closest('[data-folio-group]');if(group){const g=window.AtlasNavigation.groups.find(g=>g.id===group.dataset.folioGroup);if(g.directFamily)selectCategory({family:g.directFamily});else{selectCategory({group:g.id});showMenu(categoryBar.querySelector('[data-folio-open-group="'+g.id+'"]'),g.id,e.detail===0);}}
-  const family=t.closest('[data-folio-family]');if(family)selectCategory({family:family.dataset.folioFamily,keepMenu:stickySubcategories.matches});
-  if(t.closest('[data-folio-all]')){state.niche='';catalogue();}
+  const openGroup=t.closest('[data-folio-open-group]');
+  if(openGroup){
+   const group=openGroup.dataset.folioOpenGroup;
+   const wasOpen=!$('folioMenu').hidden&&menuGroup===group;
+   selectCategory(group);
+   if(!wasOpen)showMenu(openGroup,group,e.detail===0);
+  }
+  const topic=t.closest('[data-folio-topic]');
+  if(topic)selectCategory(menuGroup,topic.dataset.folioTopic,stickySubcategories.matches);
  });
  window.addEventListener('atlas:ready',()=>{
   catalog=window.AtlasApp.getCatalog();niches=model.niches(catalog.styles);
   $('folioNiche').innerHTML='<option value="">Todos os nichos</option>'+niches.map(n=>`<option value="${esc(n.id)}">${esc(n.name)}</option>`).join('');
-  renderCategoryBar();initKindFilter();ready=true;document.body.dataset.folio='true';refresh();
+  renderCategoryBar();ready=true;document.body.dataset.folio='true';refresh();
   if(!window.ATLAS_PAGE_MODE&&window.location.hash==='#briefSection')window.AtlasShell.openBrief();
  });
 })();

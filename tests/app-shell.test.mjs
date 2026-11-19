@@ -416,20 +416,26 @@ test('Fólio goals and niche browsing preserve selections, contribution scopes a
  const after=ctx.AtlasCurrentChoice();assert.equal(JSON.stringify({styles:after.selectedStyles.map(s=>s.id),contributions:after.styleContributions,state:after.projectState}),before);
 });
 
-test('Fólio retains the desktop subcategory menu and searches beyond a niche',async()=>{
+test('Fólio keeps business topics in the desktop menu and searches the whole catalogue',async()=>{
  const a=await boot({folio:true}),{ctx,document:d,click,change}=a;
  assert.equal(d.getElementById('folioOpenMenu'),null);
- click('[data-folio-open-group="technology"]');assert.equal(d.getElementById('folioMenu').hidden,false);
- click('[data-folio-family="software"]');assert.equal(d.getElementById('folioMenu').hidden,false);assert.equal(ctx.AtlasApp.categorySelection().family,'software');
- assert.equal(d.querySelector('[data-folio-family="software"]').getAttribute('aria-current'),'true');
+ click('[data-folio-open-group="business"]');assert.equal(d.getElementById('folioMenu').hidden,false);
+ click('[data-folio-topic="casa"]');assert.equal(d.getElementById('folioMenu').hidden,false);assert.equal(ctx.AtlasFolio.getState().browseTopic,'casa');
+ assert.equal(d.querySelector('[data-folio-topic="casa"]').getAttribute('aria-current'),'true');
+ const cards=[...d.querySelectorAll('#grid [data-style-id]')];
+ assert.ok(cards.length&&cards.every(el=>ctx.FolioCollections.matchesBrowse(ctx.AtlasApp.getStyle(el.dataset.styleId),'business','casa')));
+ const mat=ctx.AtlasApp.getStyle('natural-capachos-a-casa-comeca-antes-da-porta');
+ assert.ok(ctx.FolioCollections.matchesBrowse(mat,'business','casa'));
+ assert.ok(ctx.FolioCollections.matchesBrowse(mat,'ads','servicos'));
  click('[data-folio-home]');change('folioNiche','dentistas');
  d.getElementById('search').value='cachorro';d.getElementById('search').dispatchEvent(new ctx.Event('input',{bubbles:true}));
  assert.equal(ctx.AtlasFolio.getState().mode,'catalogue');assert.equal(ctx.AtlasFolio.getState().niche,'');assert.equal(ctx.AtlasApp.categorySelection().family,'');
+ assert.equal(ctx.AtlasFolio.getState().browseGroup,'');
  assert.ok(d.querySelectorAll('#grid [data-style-id]').length>0);
  const mobile=await boot({folio:true,desktop:false});
- mobile.click('[data-folio-open-group="technology"]');mobile.click('[data-folio-family="software"]');
+ mobile.click('[data-folio-open-group="tutorials"]');mobile.click('[data-folio-topic="tela"]');
  assert.equal(mobile.document.getElementById('folioMenu').hidden,true);
- assert.equal(mobile.ctx.AtlasApp.categorySelection().family,'software');
+ assert.equal(mobile.ctx.AtlasFolio.getState().browseTopic,'tela');
 });
 
 test('Fólio collection additions are the real persisted choices carried into the existing brief',async()=>{

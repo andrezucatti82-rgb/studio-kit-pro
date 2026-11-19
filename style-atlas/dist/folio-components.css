@@ -153,23 +153,9 @@ body[data-folio=true] .search-suggestions{padding:6px;border:1px solid var(--fol
 body[data-folio=true] .search-suggestions>button{padding:12px 16px;min-height:48px;border-radius:18px}
 body[data-folio=true] .toast{padding:14px 20px;border:1px solid var(--folio-edge);box-shadow:var(--folio-depth)}
 body[data-folio=true] .folio-catalogue-controls :is(button,select){border-radius:999px;padding:10px 12px;min-height:44px;font-size:var(--folio-type-compact);box-shadow:none;background:transparent}
-body[data-folio=true] .folio-catalogue-controls .folio-kind-trigger{
- display:inline-flex;justify-content:space-between;align-items:center;gap:12px;
- border:1px solid var(--folio-edge);text-align:left;
-}
-.folio-kind-trigger::after{
- content:'';flex:none;width:6px;height:6px;border:solid currentColor;border-width:0 1px 1px 0;
- transform:translateY(-2px) rotate(45deg);
-}
-.folio-kind-trigger[aria-expanded=true]::after{transform:translateY(2px) rotate(225deg)}
-.folio-kind-options{
- flex:0 0 100%;display:flex;flex-wrap:wrap;gap:4px;padding:8px;
- border:1px solid var(--folio-edge);border-radius:16px;background:#1c1c1c;
-}
-.folio-kind-options[hidden]{display:none}
-body[data-folio=true] .folio-catalogue-controls .folio-kind-options button{color:var(--ink);text-align:left}
-body[data-folio=true] .folio-catalogue-controls .folio-kind-options button:is(:hover,:focus-visible){background:#272727;color:var(--folio-accent)}
-body[data-folio=true] .folio-catalogue-controls .folio-kind-options button[aria-pressed=true]{background:var(--folio-accent);color:#161b05}
+/* The header is the single visible place to browse categories. */
+body[data-folio=true] :is(.folio-goals,.folio-niche,.inline-type-filter,#presenterSectorWrap){display:none!important}
+body[data-folio-browse=category] .folio-search{margin:8px 0 16px}
 body[data-folio=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44px;padding:10px 12px;border:0;background:transparent;box-shadow:none;justify-content:flex-start;font-size:var(--folio-type-compact);font-weight:400}
 
 @media(max-width:700px){
