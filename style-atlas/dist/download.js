@@ -1,4 +1,4 @@
-/* Same-origin canvas export for links opened from the cross-origin Page viewer. */
+/* Canvas export from the configured public reference origin. */
 (async()=>{
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search);
  let url;
@@ -12,7 +12,7 @@
   const refs=sequence?s.sequence.frames.map(f=>({path:f.src,crop:f.crop||null})):index===null?[AtlasWorkflow.referenceFrame(s)]:[{path:s.sequence.frames[index].src,crop:s.sequence.frames[index].crop||null}];
   const panels=await Promise.all(refs.map(async ref=>{
    if(!/^assets\/[a-zA-Z0-9_,./-]+\.(webp|png|jpe?g)$/.test(ref.path)||ref.path.includes('..'))throw Error('Referência inválida.');
-   const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Não foi possível carregar a imagem. Tente novamente.'));img.src=ref.path;});
+   const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Não foi possível carregar a imagem. Tente novamente.'));img.crossOrigin='anonymous';img.src=new URL(ref.path,window.ATLAS_IMAGE_ASSET_BASE||document.baseURI).href;});
    const [x,y,w,h]=ref.crop||[0,0,1,1],c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*w);c.height=Math.round(img.naturalHeight*h);c.getContext('2d').drawImage(img,img.naturalWidth*x,img.naturalHeight*y,img.naturalWidth*w,img.naturalHeight*h,0,0,c.width,c.height);return c;
   }));
   let canvas=panels[0];
