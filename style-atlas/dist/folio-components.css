@@ -10,7 +10,7 @@ body[data-folio=true]{
 }
 body[data-folio=true] :is(h1,h2,h3){line-height:1.25;text-wrap:balance}
 body[data-folio=true] :is(.project-heading h2,#appHelp>h1,#fontDialog>h2,#materialsDialog>h2,.picker-head h2){font-size:var(--folio-type-title);font-weight:500;letter-spacing:-.035em}
-body[data-folio=true] :is(.project-card h3,.install-kit h2,.help-topic summary,.guided-dialog section>h3,.film-story>h3,#handoff h3){font-size:var(--folio-type-section);font-weight:600;line-height:1.4}
+body[data-folio=true] :is(.project-card h3,.install-kit h2,.help-topic summary,.guided-dialog section>h3,.film-heading>h3,#handoff h3){font-size:var(--folio-type-section);font-weight:600;line-height:1.4}
 body[data-folio=true] :is(.small,.optional,.folio-reference,.guided-step-count,.app-footer,.eyebrow,.brief-delivery,.font-label,.font-state){font-size:var(--folio-type-meta);line-height:1.5}
 body[data-folio=true] :is(.brief-style-name,.selected-font strong,.request-summary dd,.notice,.guided-review p,.material-item p,.project-card p,.help-topic p){font-size:var(--folio-type-body);line-height:1.6}
 body[data-folio=true] :is(.guided-dialog label,#briefDialog form label,.handoff-platform,.font-tools,.picker-search label){font-size:var(--folio-type-compact);line-height:1.5;font-weight:500}
@@ -79,10 +79,19 @@ body[data-folio=true] .folio-goals button{padding:12px 18px;min-height:48px}
 body[data-folio=true] #folioNiche{padding:12px 38px 12px 20px;min-height:48px}
 
 /* Panels sit above the canvas; fields sit above their panel. */
-body[data-folio=true] :is(.brief-editor,.brief-preview,#myProject,.project-card,.install-kit,#instalar,.guided-current-style,.guided-continue,.preproduction-grid article,.production-readiness,.style-requirements,.setup-box){
+body[data-folio=true] :is(.brief-editor,.brief-preview,#myProject,.project-card,.install-kit,#instalar,.guided-current-style,.guided-continue,.preproduction-grid article,.production-readiness,.style-requirements,.setup-box,#detailDialog .presenter-story,#detailDialog .direction-use,#detailDialog .direction-disclosure){
  background-color:var(--surface);background-image:linear-gradient(145deg,rgba(255,255,255,.025),transparent 65%);
  border:1px solid var(--folio-edge);border-radius:var(--folio-radius);box-shadow:var(--folio-depth);
 }
+body[data-folio=true] .film-sheet{row-gap:14px;align-items:start}
+body[data-folio=true] #detailDialog :is(.presenter-story,.direction-use,.direction-disclosure){
+ margin:16px 0;padding:clamp(16px,2vw,24px);
+}
+body[data-folio=true] #detailDialog .direction-disclosure{padding-block:4px}
+body[data-folio=true] #detailDialog .direction-disclosure[open]{padding-bottom:clamp(16px,2vw,24px)}
+body[data-folio=true] #detailDialog .direction-disclosure .production-readiness{background-color:#1d1d1d}
+body[data-folio=true] .presenter-story-body>[data-presenter-image-host]{margin:0 auto}
+body[data-folio=true] .presenter-story-body .reference-panel{border-radius:12px}
 body[data-folio=true] :is(.brief-editor,.brief-preview){padding:24px}
 body[data-folio=true] #guidedDialog>section{padding:24px;border:1px solid var(--folio-edge);border-radius:var(--folio-radius);background:var(--surface);box-shadow:var(--folio-depth)}
 body[data-folio=true] :is(.guided-materials label,.guided-option,.font-card:not([aria-pressed=true]),.material-item,.requirement-grid details){
