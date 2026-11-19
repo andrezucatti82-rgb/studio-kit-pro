@@ -55,4 +55,4 @@ Leia [toolchain gratuita](references/free-toolchain.md). No runtime, use `npm ru
 
 ## Curadoria de conteúdos
 
-Use a [curadoria de conteúdos](references/curadoria/SKILL.md) para encontrar B-roll, imagens, dados e recursos de uso livre antes de gerar novos ativos. No projeto local, execute `npm run curadoria -- sources` ou use o servidor MCP `studio_curadoria`. Confira os direitos e o contexto do item antes de editar.
+Use a [curadoria de conteúdos](references/curadoria/CURADORIA.md) para encontrar B-roll, imagens, dados e recursos de uso livre antes de gerar novos ativos. No projeto local, execute `npm run curadoria -- sources` ou use o servidor MCP `studio_curadoria`. Confira os direitos e o contexto do item antes de editar.
