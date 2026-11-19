@@ -1,0 +1,171 @@
+{
+  "dateUTC": "2026-11-19T02:03:24.932463+00:00",
+  "pullRequest": "https://github.com/andrezucatti82-rgb/studio-kit-pro/pull/36",
+  "sourceRevision": "e5fc7d062b0bdb691b5c0c32507c4ed7ea59b1c1",
+  "artifactCommit": "7bfe8ece71cbc2affe2c273290828195d1708e78",
+  "styles": 1425,
+  "keywordAssociations": 32463,
+  "previousKeywordAssociations": 17375,
+  "originalStyleContractsSha256": "73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0",
+  "originalMediaChanged": false,
+  "tests": {
+    "javascript": 267,
+    "python": 9,
+    "typecheck": true,
+    "projectValidator": true,
+    "postMergeDistributionInstaller": 9
+  },
+  "installation": {
+    "version": 1,
+    "kitVersion": "2.15.0",
+    "sourceRevision": "e5fc7d062b0bdb691b5c0c32507c4ed7ea59b1c1",
+    "sourceReady": true,
+    "download": "downloads/studio-kit-pro-installer.zip",
+    "bytes": 677182,
+    "sha256": "c08714e42b2fdab1a4e059100dea5c7d92f1f60c3c0bb726fcf94076cbae31ff",
+    "tutorial": "como-instalar.html",
+    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
+    "internetRequired": true,
+    "freeToolchain": {
+      "profile": "all-free",
+      "toolCount": 15,
+      "verification": "on each target machine",
+      "binariesBundled": false
+    },
+    "fullProjectDownloadMiB": 816,
+    "skills": 1,
+    "internalModules": 7,
+    "presenterStyles": 265,
+    "curadoria": {
+      "enabled": true,
+      "documentation": "https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/CURADORIA-LIVRE.md",
+      "mcp": "studio_curadoria",
+      "accountsRequired": false
+    }
+  },
+  "sites": {
+    "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/",
+    "project_id": "appgprj_6aec09533b208191aaa63ba6e104d2ce",
+    "version_number": 45,
+    "version_id": "appgprj_6aec09533b208191aaa63ba6e104d2ce~appgver_09db7b7fa2d88191836a447590b70399",
+    "deployment_id": "appgdep_6afe57799a648191bd7d25bd5a3fb2c4",
+    "sourceCommit": "475cf4bce667bbe4d1ef5b8a86fb657757d8b21c",
+    "status": "succeeded",
+    "audience": "public"
+  },
+  "page": {
+    "url": "https://chatgpt.com/space/page_05d0233621d081919b31df2863cab40b",
+    "sequence": 87,
+    "block_id": "ce5e7e47-e979-4879-9a10-bcba2791d02c",
+    "block_hash": "c6156a00359cb906ef3f6a81788983da9168b10cf1c96adb1ed993b1d1db3284",
+    "file_reference": "fde1_bGliZmlsZV9sZUZnVWswS1djNVp0RXN4WUtPbjVn_FileDrive_bb2d275d5f00819191b05d59fafc6334",
+    "bytes": 257121,
+    "htmlSha256": "d94c58e03d1ee81b2c87b48b0a854d418d4b1a5946e59d65fc03d37e19c11739",
+    "nativeViewerInspected": false,
+    "compiledBrowserTestPassed": true
+  },
+  "primaryDomain": {
+    "url": "https://videos.gerenciadordeanuncios.com.br/",
+    "status": "publication_blocked",
+    "attemptHTTP": 403,
+    "responseServer": "envoy",
+    "responseBody": "Access denied",
+    "browserConnection": "unavailable: gaas-browser sandbox cannot be disabled",
+    "credentialValidity": "not established by proxy response",
+    "writesAttempted": false
+  },
+  "limitations": [
+    "Color extraction is approximate dominant-color analysis of principal reference frames, not audiovisual review.",
+    "Physical iPhone and native Page viewer were not tested."
+  ],
+  "autocomplete": {
+    "checks": [
+      {
+        "width": 375,
+        "embedded": false,
+        "keyboardAndPointer": true,
+        "typoSuggestion": true,
+        "compoundQueries": true,
+        "noOverlay": true,
+        "projectPreserved": true,
+        "localSearch": true
+      },
+      {
+        "width": 1440,
+        "embedded": false,
+        "keyboardAndPointer": true,
+        "typoSuggestion": true,
+        "compoundQueries": true,
+        "noOverlay": true,
+        "projectPreserved": true,
+        "localSearch": true
+      }
+    ],
+    "errors": []
+  },
+  "publicSmoke": {
+    "url": "https://video-multimarcas-estilos.andrezucatti82.chatgpt.site/",
+    "release": "Sites 45",
+    "checks": [
+      "375px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow",
+      "1440px: actual HTTP 200, expected release/1425 styles/Folio, loaded original images/fonts, single-style details without manual image downloads, actual installer ZIP/hash and updated tutorial, no overflow"
+    ],
+    "errors": []
+  },
+  "compiledPage": {
+    "checks": [
+      "embedded Fólio below 256 KiB",
+      "real catalogue and reference assets",
+      "collection and selection written to widget state",
+      "complete generated brief",
+      "localStorage access rejected by browser fixture",
+      "no viewport overflow"
+    ],
+    "errors": [],
+    "embeddedBytes": 257121
+  },
+  "assetHashes": [
+    {
+      "path": "app.js",
+      "http": 200,
+      "sha256": "bb320eddb78aaf33cac06e0f694ea3b57aa12ccc1ea731a14f3f138ed876998e",
+      "matchesSource": true
+    },
+    {
+      "path": "search.js",
+      "http": 200,
+      "sha256": "551f4994f19c3ae4683b9ae525a044b1c669d4ddd1ac5ab56d325443bdc2db44",
+      "matchesSource": true
+    },
+    {
+      "path": "folio.css",
+      "http": 200,
+      "sha256": "bc96f4f7905cc781034eaa5a24b6708e3d2b33f3409b1b822aeaafd0fb11e640",
+      "matchesSource": true
+    },
+    {
+      "path": "folio-ui.js",
+      "http": 200,
+      "sha256": "925a5812d0df1a94aac49d96f23a634927662615499f24071cb46fb06f314045",
+      "matchesSource": true
+    },
+    {
+      "path": "installation-ui.js",
+      "http": 200,
+      "sha256": "5b2f5f49f28d604e9dea25fa8ab774ef76f5ee3ad2431aa6cf0feddb0bfc67ee",
+      "matchesSource": true
+    },
+    {
+      "path": "installation.json",
+      "http": 200,
+      "sha256": "3bfedb5eecd366ec7a24f6c468e65121b3cbcc02d267d58d1aa7434bdacecd88",
+      "matchesSource": true
+    },
+    {
+      "path": "assets/catalog-data-66824a35095b5a59.js",
+      "http": 200,
+      "sha256": "66824a35095b5a590b9139d3aeb1e2e401eb73e6dbab04c8e9788928efaa68af",
+      "matchesSource": true
+    }
+  ]
+}
