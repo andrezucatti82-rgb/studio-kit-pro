@@ -1,7 +1,7 @@
 {
   "version": 2,
   "styleCount": 1425,
-  "tagAssociations": 32463,
+  "tagAssociations": 32464,
   "referenceFramesAnalyzed": 1425,
   "analysisBasis": "positive catalogue descriptions, intended commercial uses, declared palettes and measured reference colors; not a claim of visual or audiovisual review",
   "styleDataSha256": "73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0",
@@ -3784,7 +3784,8 @@
         "obra",
         "preto",
         "Terminal ASCII",
-        "tipografia"
+        "tipografia",
+        "verde"
       ],
       "evidence": {
         "interface": [
@@ -3816,6 +3817,9 @@
           "topic"
         ],
         "preto": [
+          "reference_color_analysis"
+        ],
+        "verde": [
           "reference_color_analysis"
         ]
       }

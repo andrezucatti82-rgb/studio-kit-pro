@@ -30,6 +30,7 @@ with sync_playwright() as p:
   from PIL import Image
   assert Image.open(reference_file).size==(style['sequence']['frames'][style['sequence']['heroIndex']]['width'],style['sequence']['frames'][style['sequence']['heroIndex']]['height'])
 
+  page.locator('[data-presenter-story] > summary').click()
   for index,beat in enumerate(style['presenterEditing']['interactionPlan']['beats']):
    page.locator(f'[data-presenter-step="{index}"]').click();assert page.locator('[data-beat="graphicAction"]').inner_text()==beat['graphicAction'];assert page.locator('[data-beat="speechIntent"]').inner_text()==beat['speechIntent'];page.locator('[data-presenter-image-host] img').wait_for();page.wait_for_function('document.querySelector("[data-presenter-image-host] img").complete && document.querySelector("[data-presenter-image-host] img").naturalWidth>0')
   if width==375:page.screenshot(path=str(out/'storyboard-mobile.png'),full_page=False,animations='disabled')

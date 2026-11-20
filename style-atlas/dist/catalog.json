@@ -532341,7 +532341,7 @@
     "version": 1,
     "language": "pt-BR",
     "sourceSha256": "928050697ccd9e9ac9004a6c6a61cc38d31bcb8b35bfb49aa7a98a7b8dcf8d9c",
-    "referenceColorsSha256": "162245c9d73a4d7724efc8f6caa42e1953d55efadc1039786edca7b97618bea7",
+    "referenceColorsSha256": "9327583a0863737adeacf56aab56e79cbdb1755f3367797f30b6aab50bcdd9ef",
     "styleColors": {
       "publicidade-cinematografica": [
         "marrom",
@@ -532612,7 +532612,8 @@
         "turquesa"
       ],
       "terminal-ascii": [
-        "preto"
+        "preto",
+        "verde"
       ],
       "pixel-art": [
         "azul",
@@ -540242,7 +540243,8 @@
         "obra",
         "preto",
         "Terminal ASCII",
-        "tipografia"
+        "tipografia",
+        "verde"
       ],
       "pixel-art": [
         "animação",

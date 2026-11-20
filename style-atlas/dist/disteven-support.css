@@ -1,7 +1,7 @@
 /* Existing research and reference pages share DiSteven's UI without changing media. */
 body[data-disteven-support]{background:#101010;color:#f5f5f5;font-size:var(--disteven-type-body);overflow-wrap:break-word}
 body[data-disteven-support] main{width:100%;max-width:1120px;margin:0 auto;padding:28px 24px 64px}
-body[data-disteven-support] main>header{padding:20px 0 28px;margin:0 0 20px;max-width:900px}
+body[data-disteven-support] main>header{padding:12px 0 16px;margin:0 0 16px;max-width:900px}
 body[data-disteven-support] :is(h1,h2,h3){font-family:'DiSteven UI',Arial,sans-serif;font-weight:600;letter-spacing:-.025em;min-height:0}
 body[data-disteven-support] h1{font-size:var(--disteven-type-title);line-height:1.25;margin:24px 0 16px}
 body[data-disteven-support] h2{font-size:var(--disteven-type-section);line-height:1.4;margin:20px 0 12px}
@@ -11,15 +11,15 @@ body[data-disteven-support] :is(.eyebrow,.label,.note,.small,.state,.status,.pro
 body[data-disteven-support] .intro p{color:var(--muted)}
 body[data-disteven-support] a{color:var(--disteven-accent);text-underline-offset:4px}
 body[data-disteven-support] button:not(.frame-button),body[data-disteven-support] a.button,body[data-disteven-support] a.download{
- min-height:48px;padding:12px 20px;border:1px solid var(--disteven-accent);border-radius:999px;
+ min-height:44px;padding:8px 16px;border:1px solid var(--disteven-accent);border-radius:999px;
  display:inline-flex;align-items:center;justify-content:center;gap:8px;max-width:100%;
- background:var(--disteven-accent);color:#161b05;font-size:var(--disteven-type-body);font-weight:600;
+ background:var(--disteven-accent);color:#161b05;font-size:var(--disteven-type-compact);font-weight:600;
  line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere;box-shadow:var(--disteven-control-depth);text-decoration:none;
 }
 body[data-disteven-support] button:disabled{opacity:.5}
 body[data-disteven-support] .frame-button{background:#151515;box-shadow:none}
 body[data-disteven-support] :is(button,a,select,textarea,input,summary):focus-visible{outline:2px solid var(--disteven-accent);outline-offset:4px}
-body[data-disteven-support] :is(select,textarea,input){max-width:100%;background:var(--surface-raised);color:var(--ink);font-size:var(--disteven-type-body)}
+body[data-disteven-support] :is(select,textarea,input){max-width:100%;background:var(--surface-raised);color:var(--ink);font-size:var(--disteven-type-control)}
 body[data-disteven-support] :is(article,details,.toolbar,.notice,.review){border-color:var(--disteven-edge);border-radius:24px;background:var(--surface);box-shadow:var(--disteven-depth);color:var(--ink)}
 body[data-disteven-support] #gallery .error{background:var(--surface);color:var(--ink);border-color:var(--disteven-edge);border-radius:20px;box-shadow:var(--disteven-depth)}
 body[data-disteven-support] footer{color:var(--muted);font-size:var(--disteven-type-compact);line-height:1.5;border-color:var(--disteven-edge)}
