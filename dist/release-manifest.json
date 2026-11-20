@@ -69,33 +69,33 @@
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
       "bytes": 218788,
-      "sha256": "273c1ed5146a25f50fa50bc04966c6cf967ad353e2522b4da6940927d4dd0ce3"
+      "sha256": "ff0ef4ad121218dd0080255e9004eccea4c7e9550c3d8196cd6204e217c4fd83"
     },
     "video-multimarcas-plugin.zip": {
       "bytes": 219302,
-      "sha256": "7df9412909f98b671cdce439317bd04286dcfa020d2201c4b529514bcf78acf6"
+      "sha256": "4950065e63ff97ab020f28bad7d9eac16fcca916484e469a14328b0df1af1920"
     },
     "video-multimarcas-runtime.zip": {
       "bytes": 4876141,
-      "sha256": "e7fda71672e0fdc80a8a55bb50e1d68ab1125707ec9e4a8674ab392ccd889889"
+      "sha256": "e7a724d4928e0f52d4bc156e0cb55af099dfa9c141885dcb6b8a1f2beb93e193"
     },
     "video-multimarcas.skill": {
       "bytes": 217765,
-      "sha256": "d5fcbb9995afd6b96a1c30d46c3370d1e63852a7080d4ef98b941a0c24fbf049"
+      "sha256": "22b1349dbebc07b4d84b79d566a78d97f3ba5070488ce2a46cdd8562d8282b69"
     },
     "video-multimarcas.zip": {
       "bytes": 217765,
-      "sha256": "d5fcbb9995afd6b96a1c30d46c3370d1e63852a7080d4ef98b941a0c24fbf049"
+      "sha256": "22b1349dbebc07b4d84b79d566a78d97f3ba5070488ce2a46cdd8562d8282b69"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.16.0",
-    "sourceRevision": "415a82ac5301aea232bd04afc0154b8f8947f79e",
+    "sourceRevision": "3a2ff66e108270d6a968ad78d69959b3a8a7c188",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 680389,
-    "sha256": "4a30d1c7deb516d5ebb055f94a8b609bf7fb269d9fc487a6f2c96baabea228eb",
+    "bytes": 680439,
+    "sha256": "768fd3d06a63111cc9275047aa1bbf1e6cc26503d3846049dfea7d64faa88b04",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
