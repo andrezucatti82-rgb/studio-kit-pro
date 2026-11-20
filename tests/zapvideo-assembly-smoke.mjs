@@ -3,8 +3,19 @@ import {createHash,randomUUID} from 'node:crypto';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {verifyMediaAsset} from '../zapvideo/renderer.mjs';
 
-const base='http://127.0.0.1:8792';
-const [stranger,,owner]=JSON.parse(await readFile('.cache/zapvideo/fixture-access.json','utf8'));
+const stage=process.argv.includes('--staging');
+const cache='.cache/zapvideo/staging-remote';
+const base=stage?'https://zapvideo-staging.andrezucatti82.workers.dev':'http://127.0.0.1:8792';
+const seats=JSON.parse(await readFile(stage?cache+'/fixture-seats.json':'.cache/zapvideo/fixture-access.json','utf8'));
+const [owner,stranger]=stage?seats:[seats[2],seats[0]];
+const stageHeaders=stage?{Authorization:(await readFile(cache+'/access.txt','utf8')).trim()}:{};
+const stageFetch=(path,options={})=>fetch(base+path,{...options,redirect:'error',signal:AbortSignal.timeout(30_000),
+  headers:{...stageHeaders,...options.headers}});
+if (stage) {
+  const capabilities=await (await stageFetch('/api/zapvideo/capabilities')).json();
+  assert.equal(capabilities.assembly,'container');
+  for (const flag of ['imageAI','tts','music','videoAI']) assert.equal(capabilities[flag],false);
+}
 const project=randomUUID(),root='projects/zapvideo-prova',out=root+'/'+project+'-assembly';
 await mkdir(out);
 await verifyMediaAsset({kind:'speech'},null,out+'/speech-fixture');
@@ -28,7 +39,7 @@ const plan={format:'zapvideo-project',version:1,id:project,revision:1,intent:{mo
     {id:'fecho',title:'Fecho',narration:'',shots:[shot('plano-3','video','video','Encerramento')]},
   ]};
 const prefix='/api/zapvideo/projects/'+project;
-const call=(path,{method='GET',body,user=owner,raw=false}={})=>fetch(base+path,{method,
+const call=(path,{method='GET',body,user=owner,raw=false}={})=>stageFetch(path,{method,
   headers:{'ZapVideo-Token':user.token,...(body?{'Content-Type':raw?'application/octet-stream':'application/json'}:{})},
   body:raw?body:body?JSON.stringify(body):undefined});
 const post=(path,body)=>call(path,{method:'POST',body});
@@ -58,7 +69,7 @@ async function run(phase,approvalId) {
   const accepted=await check(await post(prefix+'/jobs',spec),202);
   const route=prefix+'/jobs/'+accepted.id;
   let state=accepted;
-  for (let i=0;i<75 && ['queued','processing'].includes(state.state);i++) {
+  for (let i=0;i<(stage?150:75) && ['queued','processing'].includes(state.state);i++) {
     await new Promise(resolve=>setTimeout(resolve,1000));
     state=await check(await call(route),200);
   }
@@ -68,10 +79,12 @@ async function run(phase,approvalId) {
   assert.deepEqual([file.width,file.height,file.audio],[720,1280,true]);
   assert(Math.abs(file.duration-(phase==='sample'?6:9))<0.17);
   const grant=await post(route+'/grant',{file:file.id});
-  const cookie=grant.headers.get('Set-Cookie').split(';')[0];
+  const cookieHeader=grant.headers.get('Set-Cookie');
+  if (stage) assert.match(cookieHeader,/Secure/);
+  const cookie=cookieHeader.split(';')[0];
   const {url}=await check(grant,200);
-  assert.equal((await fetch(base+url)).status,404);
-  const result=await fetch(base+url,{headers:{Cookie:cookie}});
+  assert.equal((await stageFetch(url)).status,404);
+  const result=await stageFetch(url,{headers:{Cookie:cookie}});
   assert.equal(result.status,200);
   const bytes=Buffer.from(await result.arrayBuffer());
   assert.equal(createHash('sha256').update(bytes).digest('hex'),file.sha256);
@@ -80,7 +93,7 @@ async function run(phase,approvalId) {
 }
 const sample=await run('sample');
 const approvalRequest={revision:1,sampleJob:sample.jobId,sampleSha256:sample.sha256,
-  storyboard:evidence.image,animatic:evidence.video,seen:true,message:'Aceite sintético para a prova local.'};
+  storyboard:evidence.image,animatic:evidence.video,seen:true,message:'Aceite registrado exclusivamente para a fixture sintética de engenharia.'};
 await check(await post(prefix+'/assembly/approve',{...approvalRequest,seen:false}),400);
 await check(await call(prefix+'/assembly/approve',{method:'POST',body:approvalRequest,user:stranger}),404);
 const approval=await check(await post(prefix+'/assembly/approve',approvalRequest),201);
@@ -90,4 +103,4 @@ plan.revision=2;
 plan.scenes[0].shots[0].overlay='Alteração de título invalida a amostra.';
 await check(await call(prefix,{method:'PUT',body:plan}),200);
 await check(await post(prefix+'/jobs',{...payload,revision:2,phase:'full',key:'changed',approvalId:approval.id}),409);
-console.log(JSON.stringify({state:'passed',out,sample,full}));
+console.log(JSON.stringify({state:'passed',environment:stage?'staging':'local',out,sample,full}));

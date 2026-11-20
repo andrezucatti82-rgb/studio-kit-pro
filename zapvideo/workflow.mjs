@@ -14,6 +14,10 @@ export class ZapVideoRenderer extends Container {
   defaultPort = 4000;
   sleepAfter = '2m';
   enableInternet = false;
+
+  async onActivityExpired() {
+    if (this.container.running) await this.destroy();
+  }
 }
 
 const getJob = (env,id) => sql(env,'SELECT * FROM jobs WHERE id=?',id).first();
@@ -32,10 +36,19 @@ function renderer(env, id) {
   throw new Error('Renderizador indisponível.');
 }
 
-async function responseJson(response) {
+async function releaseRenderer(env,id) {
+  if (env.RENDERER) {
+    // Each job owns one Container. Its verified outputs have already been copied to R2.
+    await env.RENDERER.getByName(id).destroy();
+  } else if (renderMode(env)==='local') {
+    await (await renderer(env,id)('',{method:'DELETE'})).body?.cancel();
+  }
+}
+
+async function responseJson(response,operation='operação') {
   if (!response.ok) {
     await response.body?.cancel();
-    throw new Error('O renderizador não aceitou a operação.');
+    throw new Error('O renderizador recusou '+operation+' (HTTP '+response.status+').');
   }
   return response.json();
 }
@@ -105,7 +118,7 @@ async function cleanGenerated(env,id,step,needsRenderer,original,output) {
   await step.do('Limpar mídia temporária',recoverable,async ()=>{
     const job=await getJob(env,id);
     if (needsRenderer) {
-      try {await (await renderer(env,id)('',{method:'DELETE'})).body?.cancel();}
+      try {await releaseRenderer(env,id);}
       catch { /* O Container tem expiração própria. */ }
     }
     await env.PRIVATE.delete(keyFor(job,original));
@@ -300,7 +313,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
         if (job.state !== 'processing') return;
         const request = renderer(env,id);
         const state = await request();
-        if (state.status !== 404 && (await responseJson(state)).state !== 'pending') return;
+        if (state.status !== 404 && (await responseJson(state,'a consulta do estado inicial')).state !== 'pending') return;
         await state.body?.cancel().catch(() => {});
         const plan = await readRevision(env,job.project_id,job.revision);
         const selected=JSON.parse(job.parameters);
@@ -311,10 +324,10 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           const object = await env.PRIVATE.get(row.key);
           if (!object || object.size !== row.bytes) throw new Error('Material incompleto.');
           await responseJson(await request('/inputs/'+material,{method:'PUT',body:object.body,
-            headers:{'Content-Length':String(object.size),'ZapVideo-SHA256':row.sha256}}));
+            headers:{'Content-Length':String(object.size),'ZapVideo-SHA256':row.sha256}}),'o envio do material');
         }
         const renderPlan=assembly?{plan,phase:selected.phase}:plan;
-        await responseJson(await request(assembly?'/render-assembly':'/render',{method:'POST',body:JSON.stringify(renderPlan)}));
+        await responseJson(await request(assembly?'/render-assembly':'/render',{method:'POST',body:JSON.stringify(renderPlan)}),'o início do processamento');
       });
       for (let poll = 0; poll < 100; poll++) {
         const state = await step.do('Consultar FFmpeg '+poll,recoverable,async () => {
@@ -368,10 +381,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
       });
     } finally {
       await step.do('Liberar espaço do renderizador',none,async () => {
-        try {
-          const response = await renderer(env,id)('',{method:'DELETE'});
-          await response.body?.cancel();
-        } catch { /* Container inactivity and R2 retention also cover interruptions. */ }
+        try {await releaseRenderer(env,id);}
+        catch { /* Container inactivity and R2 retention also cover interruptions. */ }
       });
       await step.do('Limpar entregas incompletas',recoverable,async () => {
         const job = await getJob(env,id);

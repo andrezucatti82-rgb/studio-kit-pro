@@ -57,3 +57,20 @@ A branch incorporou a `origin/main` em `74d45378` e preservou as atualizações 
 | Google e domínio | Segredo Gemini ainda ausente no ZapVideo. Consumo de Google R$ 0. Os dois resolvedores ainda mostraram os nameservers da HostGator. A conta Cloudflare não exibiu zona de `zapvideo.com.br` e o acesso disponível permite leitura. |
 
 A consulta de uso da Cloudflare apontou 45,514 GiB-h de memória antes da prova remota do ZapVideo, acima dos 25 GiB-h mensais incluídos no Workers Paid. A prova com FFmpeg remoto depende de aceite de custo próprio. Os portais da Cloudflare e da HostGator ainda são necessários para criação da zona, conferência do e-mail e delegação. [Preços de Containers](https://developers.cloudflare.com/containers/platform/pricing/).
+
+
+### Prova de edição e montagem no Container remoto
+
+A edição passou da API ao Container da Cloudflare em 36,2 segundos, incluindo a confirmação dos downloads. Entregou MP4 640×360 de 6,07 s, três MP4s 720×1280 e um SRT acentuado. Os quatro MP4s foram decodificados novamente em outro processo. Houve confirmação de AAC, SHA-256, Range válido e inválido, autenticação, isolamento por proprietário e idempotência.
+
+A primeira amostra de montagem passou. O primeiro job completo falhou antes do FFmpeg enquanto duas instâncias antigas ainda estavam em execução. Após implementar o encerramento explícito por job e por inatividade, o staging gerou amostra de 6,008 s e montagem de 9,008 s com três cenas, títulos, animação de imagem, voz sintética, trilha e SRT. Ambos os MP4s passaram por verificação e decodificação independente em 720×1280, H.264 e AAC. A mesma base de materiais foi confirmada nas duas saídas. O teste recusou a montagem completa sem aceite, rejeitou o aceite de outra pessoa e detectou alteração de título após o aceite. Os aceites usados pertencem à fixture sintética de engenharia.
+
+A versão protegida voltou a desativar o render depois dos testes. O painel registrou zero instâncias em execução. A estimativa conservadora para as métricas de Containers do ZapVideo foi de aproximadamente R$ 0,13, antes da fatura, usando tarifas de excedente até para itens ainda dentro da franquia. O Google segue com R$ 0. [Preços de Containers](https://developers.cloudflare.com/containers/platform/pricing/).
+
+### Zona de produção
+
+A zona `zapvideo.com.br` foi criada no plano gratuito da Cloudflare e confirmada pela API como pendente. O par atribuído é `annabel.ns.cloudflare.com` e `valentin.ns.cloudflare.com`. A zona importou o A 162.240.81.81, os CNAMEs `ftp`, `mail` e `www` e o MX prioridade 0, com proxy desligado. Os resolvedores ainda exibem `dns3.hostgator.com.br` e `dns4.hostgator.com.br`. A aba do registrador está na tela de login, necessária para conferir e preservar os registros de e-mail antes da delegação.
+
+No Google AI Studio, a busca por ZapVideo nos projetos disponíveis retornou zero resultados. As chaves importadas pertencem ao GDA Insight Flow. A criação de projeto e chave exclusivos do ZapVideo aguarda confirmação na sessão do Google.
+
+O Worker de produção `zapvideo` foi provisionado na versão `0721d342-755b-4a99-81f0-d65d8af93fe3`. Tem D1 migrado, dois buckets próprios, catálogo versionado, Workflow e Container dedicado. A API confirmou `workers.dev` e URLs de prévia desativados, zero domínios vinculados e zero instâncias em execução.
