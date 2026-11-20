@@ -1351,15 +1351,19 @@
       "source": "assets/style-sequences/terminal-ascii-04.webp",
       "sourceSha256": "c3567ec215d17e215ae44889de07d3a4229b88d9902ad7bae8e5fa1d3862d6e8",
       "crop": [
-        0,
-        0,
-        1,
-        1
+        0.005859375,
+        0.00390625,
+        0.98828125,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.839
+          "share": 0.8291
+        },
+        {
+          "tag": "verde",
+          "share": 0.1244
         }
       ]
     },
@@ -3149,16 +3153,16 @@
         0,
         0,
         1,
-        1
+        0.995856354
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.6106
+          "share": 0.6091
         },
         {
           "tag": "verde",
-          "share": 0.1411
+          "share": 0.1418
         }
       ]
     },
@@ -3550,16 +3554,16 @@
         0,
         0,
         1,
-        1
+        0.99609375
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.734
+          "share": 0.7361
         },
         {
           "tag": "cinza",
-          "share": 0.2403
+          "share": 0.2349
         }
       ]
     },
@@ -4430,20 +4434,20 @@
         0,
         0,
         1,
-        1
+        0.99609375
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3653
+          "share": 0.368
         },
         {
           "tag": "cinza",
-          "share": 0.2876
+          "share": 0.286
         },
         {
           "tag": "laranja",
-          "share": 0.1343
+          "share": 0.134
         }
       ]
     },
@@ -4607,19 +4611,19 @@
       "source": "assets/style-sequences/rede-topologica-04.webp",
       "sourceSha256": "671345b0e480f553df2f57f2d921590837d5140deb3034a02b9988c3f6acdeb4",
       "crop": [
-        0,
+        0.005859375,
         0.00390625,
-        1,
+        0.994140625,
         0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.6621
+          "share": 0.6694
         },
         {
           "tag": "azul",
-          "share": 0.2073
+          "share": 0.1993
         }
       ]
     },
@@ -4670,19 +4674,19 @@
       "source": "assets/style-sequences/dendrograma-de-classificacao-04.webp",
       "sourceSha256": "7c180871849b4d719f0a2b7594826f2dd5dedeaf6c617c1754375794c03c9c16",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.668
+          "share": 0.6625
         },
         {
           "tag": "preto",
-          "share": 0.3081
+          "share": 0.3133
         }
       ]
     },
@@ -8294,12 +8298,12 @@
         0,
         0,
         1,
-        1
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.6594
+          "share": 0.6575
         }
       ]
     },
@@ -9268,19 +9272,19 @@
       "source": "assets/style-sequences/maquete-fotogrametrica-com-cobertura-declarada-02.webp",
       "sourceSha256": "9eba756e4e73b752181b798136111f0e2a3f5bc3fc431db77863bfe6e4d403a1",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        1
+        0.994140625,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6318
+          "share": 0.6301
         },
         {
           "tag": "marrom",
-          "share": 0.3051
+          "share": 0.3046
         }
       ]
     },
@@ -11960,15 +11964,15 @@
       "source": "assets/style-sequences/conceito-em-exemplo-e-nao-exemplo-02.webp",
       "sourceSha256": "b241f40be73302ff9be97dfd8ceb2a560050438807ee2f3d392f559668bbc6de",
       "crop": [
+        0.005524862,
         0,
-        0,
-        1,
+        0.994475138,
         1
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.6661
+          "share": 0.6686
         }
       ]
     },
@@ -15178,19 +15182,19 @@
       "source": "assets/style-sequences/exp-anuncio-em-mesa-de-gravacao-sonora-02.webp",
       "sourceSha256": "0fa40746554f85e71958c5bbdec721861ab9b0cf584bf7fb00af3773a1939b58",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
-        1
+        0.994140625,
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4554
+          "share": 0.4572
         },
         {
           "tag": "cinza",
-          "share": 0.3256
+          "share": 0.3209
         }
       ]
     },
@@ -16369,20 +16373,20 @@
         0,
         0,
         1,
-        1
+        0.99609375
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.4404
+          "share": 0.4426
         },
         {
           "tag": "marrom",
-          "share": 0.1644
+          "share": 0.1608
         },
         {
           "tag": "vermelho",
-          "share": 0.1518
+          "share": 0.1546
         }
       ]
     },
@@ -16974,23 +16978,23 @@
       "source": "assets/style-sequences/exp-uma-habilidade-em-criterio-de-dominio-02.webp",
       "sourceSha256": "582f623ffb425d5c2af826ec4a80ecd8760973a74879d3e1b6f6c53b5ba094f9",
       "crop": [
+        0.005859375,
         0,
-        0,
-        1,
+        0.994140625,
         1
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.3668
+          "share": 0.3695
         },
         {
           "tag": "preto",
-          "share": 0.2078
+          "share": 0.2041
         },
         {
           "tag": "marrom",
-          "share": 0.1889
+          "share": 0.19
         }
       ]
     },
