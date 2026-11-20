@@ -26,6 +26,13 @@ const singleRequest = {retries:{limit:0,delay:'1 second'},timeout:'4 minutes'};
 const recoverable = {retries:{limit:2,delay:'3 seconds'},timeout:'3 minutes'};
 const keyFor = (row,file) => `projects/${row.project_id}/jobs/${row.id}/${file}`;
 
+async function saveClipMedia(env,job,received) {
+  const saved=await env.PRIVATE.put(keyFor(job,'clipe-original'),received.bytes,{
+    sha256:received.sha256,customMetadata:{sha256:received.sha256},httpMetadata:{contentType:'video/mp4'},
+  });
+  if (saved?.size!==received.bytes.length) throw new Error('O arquivo recebido está incompleto.');
+}
+
 function renderer(env, id) {
   const base = `/jobs/${id}`;
   if (renderMode(env) === 'local') return (suffix = '',init) => fetch(env.RENDER_LOCAL_URL+base+suffix,init);
@@ -167,6 +174,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
         const submission=await step.do('Enviar uma vez ao Google',singleRequest,async ()=>{
           const job=await getJob(env,id);
           if (job.provider_file_id) return {fileId:job.provider_file_id};
+          if (job.provider_claim_at && await env.PRIVATE.head(keyFor(job,'clipe-original'))) return {inline:true};
           const plan=await readRevision(env,job.project_id,job.revision);
           const request=await checkClipBeforeRun(env,plan,spec.owner,JSON.parse(job.parameters));
           const claim=await sql(env,`UPDATE jobs SET provider_claim_at=? WHERE id=? AND state='processing'
@@ -175,7 +183,11 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
           const sent=await submitOmni(request,env.GEMINI_API_KEY);
           if (sent.rejected) return sent;
-          await sql(env,'UPDATE jobs SET provider_id=?,provider_file_id=? WHERE id=?',sent.id,sent.fileId,id).run();
+          await sql(env,'UPDATE jobs SET provider_id=?,provider_file_id=? WHERE id=?',sent.id,sent.fileId ?? null,id).run();
+          if (sent.bytes) {
+            await saveClipMedia(env,job,sent);
+            return {inline:true};
+          }
           return {fileId:sent.fileId};
         });
         if (submission.rejected) {
@@ -185,27 +197,27 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           failure='O Google recusou o clipe'+diagnostic+'.';
           throw new Error(failure);
         }
-        if (!submission.fileId) throw new Error('Arquivo do Google pendente de conciliação.');
-        let ready=false;
-        for (let poll=0;poll<60;poll++) {
-          const state=await step.do('Consultar clipe do Google '+poll,recoverable,
-            ()=>omniFileState(submission.fileId,env.GEMINI_API_KEY));
-          if (state==='ACTIVE') { ready=true; break; }
-          if (state==='FAILED') {
-            confirmedFailure=true;
-            failure='O Google informou que o clipe falhou.';
-            throw new Error(failure);
+        if (!submission.inline) {
+          if (!submission.fileId) throw new Error('Arquivo do Google pendente de conciliação.');
+          let ready=false;
+          for (let poll=0;poll<60;poll++) {
+            const state=await step.do('Consultar clipe do Google '+poll,recoverable,
+              ()=>omniFileState(submission.fileId,env.GEMINI_API_KEY));
+            if (state==='ACTIVE') { ready=true; break; }
+            if (state==='FAILED') {
+              confirmedFailure=true;
+              failure='O Google informou que o clipe falhou.';
+              throw new Error(failure);
+            }
+            await step.sleep('Aguardar clipe do Google '+poll,'5 seconds');
           }
-          await step.sleep('Aguardar clipe do Google '+poll,'5 seconds');
+          if (!ready) throw new Error('O Google ainda não disponibilizou o clipe.');
+          await step.do('Guardar MP4 para verificação',recoverable,async ()=>{
+            const job=await getJob(env,id);
+            const received=await downloadOmni(submission.fileId,env.GEMINI_API_KEY);
+            await saveClipMedia(env,job,received);
+          });
         }
-        if (!ready) throw new Error('O Google ainda não disponibilizou o clipe.');
-        await step.do('Guardar MP4 para verificação',recoverable,async ()=>{
-          const job=await getJob(env,id);
-          const received=await downloadOmni(submission.fileId,env.GEMINI_API_KEY);
-          const saved=await env.PRIVATE.put(keyFor(job,'clipe-original'),received.bytes,
-            {sha256:received.sha256,customMetadata:{sha256:received.sha256},httpMetadata:{contentType:'video/mp4'}});
-          if (saved?.size!==received.bytes.length) throw new Error('O arquivo recebido está incompleto.');
-        });
       }
       needsRenderer=true;
       await verifyGenerated(env,id,step,{spec,output:clipOutput,maximum:clipMaxBytes,original:'clipe-original',route:'clip',

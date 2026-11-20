@@ -39,7 +39,7 @@ test('Omni requests preserve format and use an allowlisted identifier with no du
   const scope=clipScope(plan,selection);
   const input={model:omniModel,scope,frame:{data:'AA==',mime:'image/png'}};
   const uri='https://generativelanguage.googleapis.com/v1beta/files/clip-123:download?alt=media';
-  const expected={type:'video',duration:'5s',aspect_ratio:'9:16',resolution:'720p',delivery:'uri'};
+  const expected={type:'video',duration:'5s',aspect_ratio:'9:16',resolution:'720p',delivery:'inline'};
   assert.equal(omniFileId(uri),'clip-123');
   for (const invalid of ['https://example.com/v1beta/files/clip-123','files/chave%2fsegredo','//example.com/files/x','https://user:pass@generativelanguage.googleapis.com/v1beta/files/test']) {
     assert.throws(()=>omniFileId(invalid));
@@ -48,6 +48,7 @@ test('Omni requests preserve format and use an allowlisted identifier with no du
     assert.equal(url,'https://generativelanguage.googleapis.com/v1beta/interactions');
     assert.equal(options.method,'POST');
     assert.deepEqual(JSON.parse(options.body).response_format,expected);
+    assert.equal(JSON.parse(options.body).store,false);
     assert.equal(JSON.parse(options.body).input[0].mime_type,'image/png');
     return Response.json({id:'v1_test',steps:[{type:'model_output',content:[{type:'video',uri}]}]});
   });
@@ -56,6 +57,12 @@ test('Omni requests preserve format and use an allowlisted identifier with no du
     steps:[{type:'model_output',content:[{type:'video',uri}]}],
   }));
   assert.deepEqual(stateless,{id:null,fileId:'clip-123'});
+  const fixtureMp4=Uint8Array.of(0,0,0,12,102,116,121,112,109,112,52,50);
+  const inline=await submitOmni(input,'fictitious',async()=>Response.json({
+    steps:[{type:'model_output',content:[{type:'video',mime_type:'video/mp4',data:Buffer.from(fixtureMp4).toString('base64')}]}],
+  }));
+  assert.deepEqual(inline.bytes,fixtureMp4);
+  assert.match(inline.sha256,/^[a-f0-9]{64}$/);
   const rejected=await submitOmni(input,'fictitious',async()=>Response.json({error:{
     message:'This raw message must never be exposed.',
     details:[{fieldViolations:[{field:'private.field'},{field:'response_format.duration'}]}],

@@ -4,6 +4,8 @@ import {fetchWithoutRedirects,hex} from './http.mjs';
 const host='https://generativelanguage.googleapis.com';
 const api=host+'/v1beta';
 const providerIdPattern=/^[A-Za-z0-9_-]{1,160}$/;
+const inlineMaxBytes=4*1024**2;
+const inlineBase64Limit=Math.ceil(inlineMaxBytes/3)*4;
 const filePath=/^(?:\/v1beta\/)?files\/([a-z0-9-]{1,80})(?::download)?$/;
 const requestFields=new Set([
   'model','input','input[0]','input[0].data','input[0].mime_type','input[1]','input[1].text',
@@ -53,8 +55,15 @@ async function boundedBody(response,limit,errorMessage) {
   }
   return bytes;
 }
-const readMetadata=async response=>JSON.parse(new TextDecoder().decode(
-  await boundedBody(response,256*1024,'O Google retornou metadados acima do limite.')));
+const readMetadata=async (response,limit=256*1024)=>JSON.parse(new TextDecoder().decode(
+  await boundedBody(response,limit,'O Google retornou uma resposta acima do limite.')));
+
+async function verifiedMp4(bytes) {
+  if (bytes.length<12 || String.fromCharCode(...bytes.subarray(4,8))!=='ftyp') {
+    throw new Error('O arquivo recebido não é um MP4.');
+  }
+  return {bytes,sha256:hex(await crypto.subtle.digest('SHA-256',bytes))};
+}
 
 async function rejectedSubmission(response) {
   const body=await readMetadata(response).catch(()=>null);
@@ -72,7 +81,8 @@ export async function submitOmni({model,scope,frame},key,request=fetch) {
     body:JSON.stringify({model,store:false,background:false,stream:false,
       input:[{type:'image',data:frame.data,mime_type:frame.mime},{type:'text',
         text:'Use o quadro fornecido como referência visual inicial. '+scope.direction}],
-      response_format:{type:'video',duration:scope.seconds+'s',aspect_ratio:scope.aspect,resolution:'720p',delivery:'uri'}}),
+      // Google requires store=true for URI delivery. Keep provider storage disabled.
+      response_format:{type:'video',duration:scope.seconds+'s',aspect_ratio:scope.aspect,resolution:'720p',delivery:'inline'}}),
   });
   if (!response.ok) {
     if (response.status>=500 || response.status===408) {
@@ -81,11 +91,20 @@ export async function submitOmni({model,scope,frame},key,request=fetch) {
     }
     return rejectedSubmission(response);
   }
-  const result=await readMetadata(response);
+  const result=await readMetadata(response,inlineBase64Limit+256*1024);
   const id=providerIdPattern.test(result?.id ?? '')?result.id:null;
   const video=(Array.isArray(result?.steps)?result.steps:[]).filter(item=>item?.type==='model_output')
     .flatMap(item=>Array.isArray(item.content)?item.content:[])
-    .find(item=>item?.type==='video' && item.uri);
+    .find(item=>item?.type==='video' && (item.uri || typeof item.data==='string'));
+  if (typeof video?.data==='string') {
+    if (video.data.length>inlineBase64Limit || (video.mime_type && video.mime_type!=='video/mp4')) {
+      throw new Error('O vídeo retornado excede o limite ou tem um formato incompatível.');
+    }
+    const bytes=typeof Uint8Array.fromBase64==='function'?Uint8Array.fromBase64(video.data):
+      Uint8Array.from(atob(video.data),char=>char.charCodeAt(0));
+    if (bytes.length>inlineMaxBytes) throw new Error('O vídeo retornado excede o limite de 4 MiB.');
+    return {id,...await verifiedMp4(bytes)};
+  }
   let fileId=null;
   if (video) {
     try { fileId=omniFileId(video.uri); } catch {}
@@ -124,6 +143,5 @@ export async function downloadOmni(fileId,key,request=fetch) {
   }
   const bytes=await boundedBody(response,clipMaxBytes,'O vídeo ultrapassa o limite de 24 MiB.');
   if (bytes.length<12 || (declared>0 && declared!==bytes.length)) throw new Error('Download incompleto.');
-  if (String.fromCharCode(...bytes.subarray(4,8))!=='ftyp') throw new Error('O arquivo recebido não é um MP4.');
-  return {bytes,sha256:hex(await crypto.subtle.digest('SHA-256',bytes))};
+  return verifiedMp4(bytes);
 }

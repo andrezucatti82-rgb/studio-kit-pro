@@ -121,3 +121,11 @@ A aprovação visual da prancha v1 e do limite de US$ 0,30 foi registrada antes 
 O Worker validou o aceite, recusou uma solicitação sem confirmação de valor e disparou a mesma estimativa em um único trabalho. O Workflow registrou uma tentativa de envio e a recusa do Google. O D1 ficou em `failed`, sem identificador de interação ou arquivo. O painel do projeto mostrou HTTP 400 na janela do teste. A métrica é agregada e a versão do ZapVideo usada para o envio guardava uma mensagem genérica. O campo que motivou a recusa continua desconhecido.
 
 A reserva de US$ 0,30 foi mantida para conciliação. Após o teste, a homologação voltou à configuração protegida com o clipe desativado. A implementação passou a registrar o código HTTP e, quando disponível, um campo reconhecido da solicitação. A cobertura simulada confirma que texto bruto e campos desconhecidos do Google ficam fora do diagnóstico.
+
+### Causa do HTTP 400 e prova com entrega direta
+
+Um reteste com a mesma prancha e os mesmos parâmetros reproduziu o HTTP 400. A Gemini Developer API confirmou que a entrega por URI exige `store=true`. O pedido combinava `delivery: "uri"` com `store: false`. A implementação passou a pedir `delivery: "inline"`, mantendo `store: false`, e grava os bytes no R2 privado antes de liberar o MP4 pelo verificador.
+
+A prova corrigida usou a mesma prancha v1 e o mesmo SHA-256 do quadro de partida. O Gemini Omni 1.2 Flash gerou um MP4 de 1.746.255 bytes. O vídeo tem 3,000 s, 720 × 1.280, 72 quadros em H.264 e uma faixa AAC estéreo de 48 kHz. O Container verificou a duração, a proporção, os codecs e a decodificação. O download protegido devolveu o mesmo SHA-256, `8526d6dbee7ccf5b0757f423a3b35694489eaa35fee3ea1ef7e1239553907649`. Uma decodificação independente leu o arquivo inteiro. Sete quadros mostraram a aproximação contínua sobre os três cartões. A faixa ficou abaixo de −35 dB em toda a duração pela medição do FFmpeg. O resultado segue como prévia para revisão.
+
+O reteste de diagnóstico e a prova corrigida tiveram reservas separadas de US$ 0,30. A API recusou o reteste na validação de parâmetros. A cobrança efetiva segue pendente de conciliação. A configuração temporária foi removida e o gerador voltou a ficar desativado na homologação.
