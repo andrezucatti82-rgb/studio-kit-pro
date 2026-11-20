@@ -356,3 +356,75 @@ body[data-disteven=true] #grid:empty{display:none}
 body[data-disteven=true] #empty .actions{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:14px}
 body[data-disteven=true] #empty :is(#distevenEditSearch,#reset){margin:0}
 body[data-disteven=true] #empty button[hidden]{display:none!important}
+
+/* Compact visual scale with the same touch sizing and readable form controls. */
+@media(max-width:700px){
+ body[data-disteven=true]{
+  --disteven-type-body:.875rem;
+  --disteven-type-compact:.8125rem;
+  --disteven-type-meta:.75rem;
+  --disteven-type-section:1.125rem;
+  --disteven-type-title:clamp(1.375rem,6vw,1.5rem);
+  --disteven-radius:18px;
+  --disteven-radius-field:12px;
+  --mobile-gutter:14px;
+  font-size:var(--disteven-type-body);
+ }
+ body[data-disteven=true] .disteven-header{padding:5px var(--mobile-gutter);gap:4px 6px}
+ body[data-disteven=true] .disteven-header .zapvideo-logo{width:clamp(110px,34vw,144px)}
+ body[data-disteven=true] .disteven-header #distevenContinue{
+  min-height:44px;padding:7px 12px;gap:6px;font-size:14px;line-height:1.2;
+ }
+ .disteven-header-progress small{min-width:17px;padding:1px 4px;font-size:10px}
+ body[data-disteven=true] .disteven-header .disteven-help{width:44px;height:44px;min-width:44px;min-height:44px;padding:9px}
+
+ body[data-disteven=true] :is(.app-main main,#distevenPanelHost,#briefDialog.brief-workspace){padding-inline:var(--mobile-gutter)}
+ body[data-disteven=true] :is(.app-main main,#distevenPanelHost){padding-top:8px}
+ body[data-disteven=true] .disteven-library-header{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:10px 8px}
+ body[data-disteven=true] .disteven-mobile-browse{margin:0}
+ body[data-disteven=true] #distevenCategoryToggle{gap:6px;padding:6px 10px}
+ body[data-disteven=true] #distevenSearch{display:block;min-width:0;margin:0}
+ body[data-disteven=true] #distevenSearch input{min-height:44px;padding:7px 34px;font-size:16px;line-height:1.3}
+ body[data-disteven=true] #distevenSearch .search>span{left:12px;font-size:20px}
+ body[data-disteven=true] :is(.disteven-discovery,.disteven-collection-heading){grid-column:1/-1}
+ body[data-disteven=true] :is(.disteven-discovery h1,.disteven-collection-heading h1){margin-bottom:4px;line-height:1.2}
+ body[data-disteven=true] .disteven-collection-heading{--disteven-type-title:1.375rem;margin:0}
+ body[data-disteven=true] .disteven-result-count{margin-top:3px}
+ body[data-disteven=true] #favoriteFilter{padding:6px 4px;gap:6px}
+ body[data-disteven=true] .disteven-shelf{padding-block:10px 14px}
+ body[data-disteven=true] .disteven-shelf>header{margin-bottom:6px;gap:6px}
+ body[data-disteven=true] .disteven-shelf h2{font-size:16px}
+ body[data-disteven=true] .disteven-card h3{font-size:13px;line-height:1.35}
+ body[data-disteven=true] .disteven-reference{font-size:12px}
+ body[data-disteven=true] #grid{row-gap:14px}
+ body[data-disteven=true] #distevenMenu{inset-inline:var(--mobile-gutter)}
+ #distevenMenu .disteven-menu-heading{min-height:46px}
+ body[data-disteven=true] .disteven-menu-heading{padding-block:0}
+ #distevenMenu .disteven-menu-heading button{font-size:13px}
+ #distevenMenu [data-disteven-close-categories]{font-size:21px}
+ #distevenMenu .disteven-menu-root>li>button{font-size:15px}
+ #distevenMenu button{padding-block:8px}
+ .disteven-select-menu [role=option]{min-height:44px;padding:10px;font-size:14px}
+
+ body[data-disteven=true] :is(#briefDialog,#guidedDialog,#distevenPanelHost,#appHelp,#myProject) :is(.primary,.outline,.button,.disteven-panel-back){min-height:44px;padding:8px 13px;font-size:14px}
+ body[data-disteven=true] :is(.brief-editor,.brief-preview,#guidedDialog>section,.request-summary,.material-assignments,.material-item){padding:12px;border-radius:var(--disteven-radius)}
+ body[data-disteven=true] :is(.brief-heading,.direction-header,#guidedDialog>header){margin-bottom:10px}
+ body[data-disteven=true] #briefDialog .brief-heading h1{font-size:var(--disteven-type-title)}
+ body[data-disteven=true] :is(.brief-steps,.guided-progress){gap:3px;margin-bottom:10px;padding:3px}
+ body[data-disteven=true] .brief-steps button{min-height:44px;padding:6px 4px;font-size:13px;line-height:1.28}
+ body[data-disteven=true] .guided-progress li{min-height:34px;padding:5px 3px;font-size:12px;line-height:1.25}
+ body[data-disteven=true] #guidedDialog label{margin:6px 0;line-height:1.4}
+ body[data-disteven=true] :is(#briefDialog,#guidedDialog,#myProject,#fontDialog,#stylePicker)
+ :is(input:not([type=checkbox],[type=radio]),select,textarea){min-height:44px;padding-block:8px;font-size:16px;line-height:1.35}
+ body[data-disteven=true] :is(#briefDialog,#guidedDialog,#myProject,#fontDialog,#stylePicker) select{padding-inline-start:11px}
+ body[data-disteven=true] #briefDialog #topic{min-height:104px}
+ body[data-disteven=true] :is(.guided-dialog footer,.direction-actions,.brief-editor .actions){gap:7px}
+ body[data-disteven=true] .guided-dialog footer{margin-top:10px;padding:10px 0}
+ body[data-disteven=true] #briefDialog .brief-font-choice{gap:8px;padding:8px}
+ body[data-disteven=true] #briefDialog #openFonts{min-width:0;padding-inline:12px}
+ body[data-disteven=true] :is(#detailDialog .direction-use,#detailDialog .presenter-story,#detailDialog .direction-disclosure[open],#appHelp .workflow>div,#myProject.project-card){padding:12px;margin-block:10px}
+ body[data-disteven=true] .help-topic{padding-block:12px}
+ body[data-disteven=true] #sequenceDialog .sequence-navigation{margin:8px 0;gap:5px}
+ body[data-disteven=true] :is(#sequencePrev,#sequenceNext){padding-inline:10px;font-size:13px}
+ body[data-disteven-support] :is(.support-brand,.mast .brand) .zapvideo-logo{width:122px}
+}
