@@ -1,5 +1,5 @@
 import {clipMaxBytes,omniModel} from './clips.mjs';
-import {hex} from './http.mjs';
+import {fetchWithoutRedirects,hex} from './http.mjs';
 
 const host='https://generativelanguage.googleapis.com';
 const api=host+'/v1beta';
@@ -54,8 +54,8 @@ const readMetadata=async response=>JSON.parse(new TextDecoder().decode(
 export async function submitOmni({model,scope,frame},key,request=fetch) {
   if (model!==omniModel || !frame?.data || !frame.mime || !['9:16','16:9'].includes(scope?.aspect) ||
     !Number.isSafeInteger(scope.seconds) || scope.seconds<3 || scope.seconds>15) throw new Error('Configuração de clipe incompatível.');
-  const response=await request(api+'/interactions',{
-    method:'POST',redirect:'error',signal:AbortSignal.timeout(180_000),headers:{...headers(key),'Content-Type':'application/json'},
+  const response=await fetchWithoutRedirects(request,api+'/interactions',{
+    method:'POST',signal:AbortSignal.timeout(180_000),headers:{...headers(key),'Content-Type':'application/json'},
     body:JSON.stringify({model,store:false,background:false,
       input:[{type:'image',data:frame.data,mime_type:frame.mime},{type:'text',
         text:'Use o quadro fornecido como referência visual inicial. '+scope.direction}],
@@ -77,7 +77,7 @@ export async function submitOmni({model,scope,frame},key,request=fetch) {
 
 export async function omniFileState(fileId,key,request=fetch) {
   const id=omniFileId('files/'+fileId);
-  const response=await request(api+'/files/'+id,{headers:headers(key),redirect:'error',signal:AbortSignal.timeout(20_000)});
+  const response=await request(api+'/files/'+id,{headers:headers(key),redirect:'manual',signal:AbortSignal.timeout(20_000)});
   if (!response.ok) {
     await response.body?.cancel();
     throw new Error('Não foi possível consultar o arquivo do Google.');
@@ -96,7 +96,7 @@ export async function downloadOmni(fileId,key,request=fetch) {
     await response.body?.cancel();
     const destination=new URL(location || 'about:blank');
     if (destination.origin!=='https://storage.googleapis.com' || destination.username || destination.password) throw new Error('Destino de download do Google inválido.');
-    response=await request(destination,{redirect:'error',signal});
+    response=await request(destination,{redirect:'manual',signal});
   }
   const declared=Number(response.headers.get('Content-Length'));
   if (!response.ok || !response.body || declared>clipMaxBytes || /^(?:text\/|application\/json)/i.test(response.headers.get('Content-Type') || '')) {

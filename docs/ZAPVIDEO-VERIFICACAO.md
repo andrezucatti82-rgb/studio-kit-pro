@@ -92,3 +92,13 @@ O inventário privado anterior à mudança registrou os servidores da HostGator,
 | Gemini com o projeto GDA Insight Flow | Uso autorizado para o staging protegido, até R$ 50/dia em testes do ZapVideo. O segredo foi gravado no Worker de staging, mas seu valor falhou na checagem de formato. O teste parou antes da consulta ao Google e da geração. As capacidades Gemini seguem desligadas. |
 
 O retorno está documentado em [ZapVideo](ZAPVIDEO.md#retorno). O inventário privado preserva os cinco registros anteriores e o par original de servidores para restauração.
+
+### Gemini conectado à homologação
+
+O segredo instalado no Worker de staging autenticou a Gemini Developer API pelo projeto GDA Insight Flow. A listagem e a consulta individual dos modelos `gemini-nano-banana-2.1`, `gemini-3.8-flash-tts`, `lyria-3-clip-preview` e `gemini-omni-1.2-flash` retornaram HTTP 200. Foram feitas chamadas de geração apenas para imagem.
+
+A prova expôs duas incompatibilidades. No Worker, chamadas com o modo de redirecionamento `error` paravam antes de sair da Cloudflare. A implementação passou a usar `manual` e interrompe o pedido diante de um redirecionamento inesperado. A primeira resposta de geração chegou com HTTP de sucesso, mas o ZapVideo não encontrou um identificador utilizável. A reserva desse trabalho foi preservada. A leitura da resposta passou a aceitar mídia válida em uma interação com armazenamento desativado quando não há um identificador utilizável. O estado no D1 e a cópia privada no R2 evitam repetir a geração do mesmo trabalho. [API de Request da Cloudflare](https://developers.cloudflare.com/workers/runtime-apis/request/) · [Retenção da Interactions API](https://aistudio.google.com/docs/interactions-overview#data-storage-retention).
+
+Um trabalho separado confirmou o percurso completo. O Nano Banana 2.1 entregou um JPEG vertical de 768 × 1.376 pixels (535.346 bytes). O Container verificou o formato e a decodificação, o download exigiu a credencial temporária e o SHA-256 conferiu com o arquivo guardado. Reenviar a mesma confirmação devolveu o mesmo trabalho. O resultado permaneceu em revisão visual. SHA-256 `af8e54ec85f98bb981b243e8ac211d543f5182bf681ae288a38e86026a4b98ef`.
+
+Foram reservados US$ 0,10 por trabalho, US$ 0,20 ao todo. A fatura do Google ainda não foi conciliada. A credencial temporária do teste foi revogada. O segredo Google ficou na homologação e as capacidades de geração voltaram a ficar desativadas após a prova. A geração de áudio e vídeo continua pendente de teste real.

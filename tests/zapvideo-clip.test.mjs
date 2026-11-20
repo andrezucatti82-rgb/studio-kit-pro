@@ -68,6 +68,7 @@ test('Omni download caps bytes, enforces MP4 signature and strips provider key f
       return Response.redirect('https://storage.googleapis.com/fixture-download',302);
     }
     assert.equal(init.headers,undefined);
+    assert.equal(init.redirect,'manual');
     return new Response(bytes,{headers:{'Content-Type':'video/mp4','Content-Length':String(bytes.length)}});
   });
   assert.deepEqual(result.bytes,bytes);

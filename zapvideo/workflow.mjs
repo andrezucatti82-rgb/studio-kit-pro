@@ -244,7 +244,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
       if (spec.mode==='gemini') {
         const accepted=await step.do('Solicitar mídia uma vez',singleRequest,async ()=>{
           const job=await getJob(env,id);
-          if (job.provider_id && await env.PRIVATE.head(keyFor(job,'asset-original'))) return {};
+          if (job.provider_claim_at && await env.PRIVATE.head(keyFor(job,'asset-original'))) return {};
           const claim=await sql(env,`UPDATE jobs SET provider_claim_at=? WHERE id=? AND provider_claim_at IS NULL AND state='processing'
             AND EXISTS(SELECT 1 FROM people WHERE id=? AND expires_at>? AND revoked_at IS NULL)`,now(),id,spec.owner,now()).run();
           if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');

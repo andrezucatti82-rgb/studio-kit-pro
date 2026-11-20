@@ -1,6 +1,6 @@
 import {assetOutputs,clipAspects,isId} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {detectType} from './analysis-media.mjs';
-import {boundedBytes,googleDailyBudget,hex,json,now,readJson,reject,sql,uuid} from './http.mjs';
+import {boundedBytes,fetchWithoutRedirects,googleDailyBudget,hex,json,now,readJson,reject,sql,uuid} from './http.mjs';
 
 export const mediaMaxBytes=8*1024**2;
 export const frameMaxBytes=2*1024**2;
@@ -81,8 +81,8 @@ export function mediaRequest({model,scope}) {
 }
 
 export async function generateMedia(selection,key,request=fetch) {
-  const response=await request('https://generativelanguage.googleapis.com/v1beta/interactions',{
-    method:'POST',redirect:'error',signal:AbortSignal.timeout(180_000),
+  const response=await fetchWithoutRedirects(request,'https://generativelanguage.googleapis.com/v1beta/interactions',{
+    method:'POST',signal:AbortSignal.timeout(180_000),
     headers:{'x-goog-api-key':key,'Api-Revision':'2026-05-20','Content-Type':'application/json'},
     body:JSON.stringify(mediaRequest(selection)),
   });
@@ -92,12 +92,14 @@ export async function generateMedia(selection,key,request=fetch) {
     return {rejected:true};
   }
   const result=JSON.parse(new TextDecoder().decode(await boundedBytes(response,12*1024**2,'Resposta de mídia acima do limite.')));
-  const id=/^[A-Za-z0-9_-]{1,160}$/.test(result?.id ?? '')?result.id:null;
+  const id=typeof result?.id==='string' && /^[\x21-\x7E]{1,512}$/.test(result.id)?result.id:null;
   const output=assetOutputs[selection.scope.kind];
-  const parts=result?.steps?.filter(step=>step.type==='model_output').flatMap(step=>step.content)
+  const parts=(Array.isArray(result?.steps)?result.steps:[]).filter(step=>step?.type==='model_output')
+    .flatMap(step=>Array.isArray(step.content)?step.content:[])
     .filter(block=>block?.type===output.type.split('/')[0] && typeof block.data==='string');
-  if (!id) throw new Error('O Google não retornou comprovante utilizável.');
-  if (parts?.length!==1) return {id,error:'O Google não retornou um único arquivo neste formato.'};
+  if (!id && result?.status!=='completed' && parts.length!==1) throw new Error('O Google não retornou comprovante utilizável.');
+  if (result?.status && result.status!=='completed') return {id,error:'O Google não confirmou a conclusão da mídia.'};
+  if (parts.length!==1) return {id,error:'O Google não retornou um único arquivo neste formato.'};
   const content=parts[0];
   if (content.data.length>(Math.ceil(mediaMaxBytes/3)*4)) return {id,error:'O arquivo do Google ultrapassou o limite.'};
   let bytes;

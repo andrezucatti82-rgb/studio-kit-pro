@@ -18,6 +18,16 @@ export function googleDailyBudget(env) {
   return Math.min(Number(value),5_000_000);
 }
 
+export async function fetchWithoutRedirects(request,url,options) {
+  // Stop at the first response so the provider credential stays on the original request.
+  const response=await request(url,{...options,redirect:'manual'});
+  if (response.status>=300 && response.status<400) {
+    await response.body?.cancel();
+    throw new Error('O provedor respondeu com um redirecionamento inesperado.');
+  }
+  return response;
+}
+
 export async function boundedBytes(response,max,message) {
   if (!response.body || Number(response.headers.get('Content-Length'))>max) {
     await response.body?.cancel();

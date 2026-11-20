@@ -62,7 +62,7 @@ test('Gemini fail-closed capability, HTTP payload, structured validation and fai
   let calls=0;
   const sample=async (_url,init)=>{
     calls++;
-    assert.equal(init.redirect,'error');
+    assert.equal(init.redirect,'manual');
     assert.equal(JSON.parse(init.body).response_format.mime_type,'application/json');
     return new Response(JSON.stringify({id:'fake',steps:[{type:'model_output',content:[{type:'text',text:JSON.stringify(mock.proposal)}]}]}));
   };

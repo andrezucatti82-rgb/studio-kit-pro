@@ -37,7 +37,22 @@ test('respostas simuladas preservam comprovante, limitam bytes e distinguem falh
   const result=await generateMedia(build('frame'),'fictitious',mock('image','image/jpeg',[255,216,255,224,0,0]));
   assert.equal(result.id,'v1-fixture');
   assert.equal(result.sha256.length,64);
+  const stateless=await generateMedia(build('frame'),'fictitious',async()=>{
+    const response=await mock('image','image/jpeg',[255,216,255,224,0,0])();
+    const {steps}=await response.json();
+    return Response.json({status:'completed',steps});
+  });
+  assert.equal(stateless.id,null);
+  assert.equal(stateless.sha256,result.sha256);
+  await assert.rejects(generateMedia(build('frame'),'fictitious',async()=>Response.json({})),/comprovante utilizável/);
   assert.match((await generateMedia(build('speech'),'fictitious',mock('audio','audio/wav',[0,0,0,0]))).error,/incompatível/);
   assert.deepEqual(await generateMedia(build('music'),'fictitious',async()=>new Response(null,{status:403})),{rejected:true});
   await assert.rejects(generateMedia(build('music'),'fictitious',async()=>new Response(null,{status:503})),/sem confirmação/);
+  let redirectedCalls=0;
+  await assert.rejects(generateMedia(build('frame'),'fictitious',async(_url,init)=>{
+    redirectedCalls++;
+    assert.equal(init.redirect,'manual');
+    return Response.redirect('https://example.com/updated-endpoint',307);
+  }),/redirecionamento inesperado/);
+  assert.equal(redirectedCalls,1);
 });
