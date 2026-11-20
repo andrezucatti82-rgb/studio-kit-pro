@@ -29,12 +29,19 @@
       <h1 id="start-title">O que você quer fazer?</h1>
       <div class="choices">
         <button class="choice" data-mode="edit" type="button">
+          <img src="/assets/style-sequences/apresentadora-despojada-em-cafe-externo-02-small.webp" width="320" height="180" alt="">
           <strong>Editar um vídeo que já tenho</strong>
           <span>Legendar, cortar na vertical e ajustar imagem e áudio.</span>
         </button>
         <button class="choice" data-mode="create" type="button">
+          <img src="/assets/segments-440/ads26-alimentacao-o-cafe-muda-o-ponto-de-vista-02-small.webp" width="320" height="180" alt="">
           <strong>Criar um vídeo com IA</strong>
           <span>Organizar a ideia, o roteiro e os materiais do vídeo.</span>
+        </button>
+        <button class="choice" data-mode="create" data-entry="link" type="button">
+          <img src="/assets/segments-440/ads26-alimentacao-o-cafe-muda-o-ponto-de-vista-04-small.webp" width="320" height="180" alt="">
+          <strong>Criar a partir de um link</strong>
+          <span>Use a página do produto e escolha um estilo.</span>
         </button>
       </div>
       <button id="resume-draft" class="secondary" type="button" hidden>Retomar meu projeto</button>
@@ -43,6 +50,17 @@
     <section id="workspace" aria-labelledby="workspace-title" hidden>
       <button class="plain" data-back type="button">← Voltar ao início</button>
       <h1 id="workspace-title" tabindex="-1"></h1>
+      <div id="planning-header" hidden>
+        <nav class="planning-nav" aria-label="Etapas do planejamento">
+          <ol>
+            <li><button type="button" data-step="idea"><span>1</span> Origem</button></li>
+            <li><button type="button" data-step="style"><span>2</span> Estilo</button></li>
+            <li><button type="button" data-step="scenes"><span>3</span> Storyboard</button></li>
+            <li><button type="button" data-step="assembly"><span>4</span> Montagem</button></li>
+            <li><button type="button" data-step="delivery"><span>5</span> Entrega</button></li>
+          </ol>
+        </nav>
+      </div>
       <div id="grid">
         <div class="steps">
           <section class="panel" id="edit-section" aria-labelledby="original-title" hidden>
@@ -82,8 +100,38 @@
               <ol id="cut-suggestions"></ol>
             </details>
           </section>
-          <section id="create-section" class="panel" aria-labelledby="brief-title" hidden>
-            <h2 id="brief-title">Conte sua ideia</h2>
+          <section id="create-section" class="panel planning-slide" data-plan-step="idea" aria-labelledby="brief-title" hidden>
+            <h2 id="brief-title" tabindex="-1">Defina o assunto</h2>
+            <div class="button-row" role="group" aria-label="Origem do projeto">
+              <button id="origin-link" class="secondary" type="button" aria-pressed="false">Link do produto</button>
+              <button id="origin-manual" class="secondary" type="button" aria-pressed="true">Escrever ideia</button>
+            </div>
+            <div id="guided-intake" hidden>
+              <div class="intake-grid">
+                <div>
+                  <label for="product-url">Página pública do produto</label>
+                  <input id="product-url" type="url" inputmode="url" maxlength="500" placeholder="https://sualoja.com.br/produto">
+                  <p id="product-note" class="muted"></p>
+                  <button id="read-product" class="secondary" type="button">Analisar link</button>
+                  <div class="intake-settings">
+                    <label>Objetivo <select id="product-objective"><option value="sell">Vender produto</option><option value="show">Mostrar como funciona</option><option value="brand">Divulgar marca</option></select></label>
+                    <label>Formato <select id="product-aspect"><option value="9:16">Vertical · 9:16</option><option value="16:9">Horizontal · 16:9</option></select></label>
+                    <label>Duração <select id="product-duration"><option value="9">9 s</option><option value="15">15 s</option><option value="30">30 s</option></select></label>
+                  </div>
+                </div>
+                <div class="product-card">
+                  <h3>Confirme o produto</h3>
+                  <p class="muted" id="product-source">Você também pode preencher o nome diretamente.</p>
+                  <label for="product-name">Nome</label><input id="product-name" maxlength="120">
+                  <label for="product-category">Categoria <span class="muted">opcional</span></label><input id="product-category" maxlength="100">
+                  <details id="product-details">
+                    <summary>Descrição e observações</summary>
+                    <label for="product-description">Informações sobre o produto</label><textarea id="product-description" rows="3" maxlength="500"></textarea>
+                  </details>
+                </div>
+              </div>
+            </div>
+            <div id="manual-intake">
             <label for="subject">Sobre o que é o vídeo?</label>
             <textarea id="subject" rows="4" maxlength="1220" placeholder="Ex.: apresentar os bastidores da minha loja"></textarea>
             <button id="suggest" class="secondary" type="button">Me ajude a montar</button>
@@ -93,8 +141,24 @@
               <ol id="proposal-scenes"></ol>
               <button class="secondary" id="apply-proposal" type="button">Usar proposta</button>
             </div>
+            </div>
+          </section>
+          <section id="style-section" class="panel planning-slide" data-plan-step="style" aria-labelledby="style-title" hidden>
+            <h2 id="style-title" tabindex="-1">Escolha o estilo</h2>
+            <p class="muted">Veja os exemplos antes de decidir.</p>
+            <div id="style-cards" class="visual-grid"></div>
+            <p id="board-replace" class="muted" hidden>Refazer substitui as cenas da ficha. Seus arquivos ficam disponíveis em Referências.</p>
+          </section>
+          <section id="scene-section" class="panel planning-slide" data-plan-step="scenes" aria-labelledby="scene-title" hidden>
+            <h2 id="scene-title" tabindex="-1">Revise o storyboard</h2>
+            <div id="moodboard" class="moodboard" hidden></div>
+            <p id="board-note" class="muted" hidden>As imagens do catálogo mostram a direção escolhida. Adicione ou prepare um quadro do seu produto para aprovar cada plano.</p>
+            <p id="scenes-empty" class="muted">Adicione uma cena ou volte à ideia para pedir uma proposta de roteiro.</p>
             <div id="scenes"></div>
             <button id="add-scene" class="secondary" type="button">+ Adicionar cena</button>
+            <p id="generation-note" class="muted">A geração de clipes exige aprovação do quadro de cada plano.</p>
+            <details id="materials-section">
+            <summary>Referências e tomadas</summary>
             <div class="details">
               <label for="reference-files">Referências e imagens</label>
               <input id="reference-files" type="file" multiple>
@@ -117,28 +181,31 @@
               </div>
             </details>
             <button type="button" class="secondary" id="asset-music" hidden>Preparar trilha</button>
-            <p id="generation-note" class="muted">A geração de clipes exige aprovação do quadro de cada plano.</p>
+            </details>
           </section>
-          <section class="panel" id="assembly-tools" aria-labelledby="assembly-title" hidden>
-            <h2 id="assembly-title">Montar vídeo</h2>
-            <label for="assembly-aspect">Proporção do vídeo</label>
-            <select id="assembly-aspect"><option value="9:16">9:16 · Vertical</option><option value="16:9">16:9 · Horizontal</option></select>
-            <label for="assembly-scene">Cena para a amostra</label><select id="assembly-scene"></select>
-            <label for="assembly-audio">Adicionar áudio em WAV, MP3, M4A ou AAC</label>
-            <input type="file" id="assembly-audio" accept=".wav,.mp3,.m4a,.aac" multiple>
-            <label for="assembly-music">Escolher trilha</label><select id="assembly-music"></select>
-            <label for="assembly-captions">Legendas em SRT</label><input type="file" id="assembly-captions" accept=".srt">
-            <p class="muted" id="assembly-captions-note"></p>
-            <label class="toggle"><input type="checkbox" id="assembly-permit"> Autorizo enviar os materiais escolhidos para esta montagem.</label>
-            <div class="button-row">
-              <button type="button" class="secondary" id="assembly-sample">Montar amostra</button>
-              <button type="button" class="primary" id="assembly-full" disabled>Revisar e montar vídeo completo</button>
+          <section class="panel planning-slide" id="assembly-step" data-plan-step="assembly" aria-labelledby="assembly-title" hidden>
+            <h2 id="assembly-title" tabindex="-1">Monte e revise a amostra</h2>
+            <p id="assembly-unavailable" class="muted" hidden></p>
+            <div id="assembly-tools" hidden>
+              <label for="assembly-aspect">Proporção do vídeo</label>
+              <select id="assembly-aspect"><option value="9:16">9:16 · Vertical</option><option value="16:9">16:9 · Horizontal</option></select>
+              <label for="assembly-scene">Cena para a amostra</label><select id="assembly-scene"></select>
+              <label for="assembly-audio">Adicionar áudio em WAV, MP3, M4A ou AAC</label>
+              <input type="file" id="assembly-audio" accept=".wav,.mp3,.m4a,.aac" multiple>
+              <label for="assembly-music">Escolher trilha</label><select id="assembly-music"></select>
+              <label for="assembly-captions">Legendas em SRT</label><input type="file" id="assembly-captions" accept=".srt">
+              <p class="muted" id="assembly-captions-note"></p>
+              <label class="toggle"><input type="checkbox" id="assembly-permit"> Autorizo enviar os materiais escolhidos para esta montagem.</label>
+              <div class="button-row">
+                <button type="button" class="secondary" id="assembly-sample">Montar amostra</button>
+                <button type="button" class="primary" id="assembly-full" disabled>Revisar e montar vídeo completo</button>
+              </div>
             </div>
           </section>
         </div>
 
-        <aside class="panel delivery" aria-labelledby="delivery-title">
-          <h2 id="delivery-title">Revisar e entregar</h2>
+        <aside class="panel delivery planning-slide" data-plan-step="delivery" aria-labelledby="delivery-title">
+          <h2 id="delivery-title" tabindex="-1">Revisar e entregar</h2>
           <p id="summary" class="summary"></p>
           <p id="sizes" class="muted"></p>
           <div class="button-row">
@@ -152,21 +219,27 @@
             <p>Use o Studio Kit Pro e mantenha a ficha junto dos arquivos originais ou extraia o ZIP em uma pasta nova.</p>
             <code>npm run video -- edit --preset projeto-video.json --out entrega</code>
           </details>
-          <details id="pilot">
-            <summary>Acesso ao piloto</summary>
-            <label for="token">Código de acesso</label>
-            <input id="token" type="password" autocomplete="off" spellcheck="false">
-            <button id="connect" class="secondary" type="button">Conectar</button>
-          </details>
+          <div id="edit-pilot">
+            <details id="pilot">
+              <summary>Acesso ao piloto</summary>
+              <label for="token">Código de acesso</label>
+              <input id="token" type="password" autocomplete="off" spellcheck="false">
+              <button id="connect" class="secondary" type="button">Conectar</button>
+            </details>
+          </div>
           <label id="permit-label" class="toggle small" hidden><input id="permit" type="checkbox"> Autorizo enviar o vídeo e o SRT selecionados para este processamento.</label>
           <p id="render-note" class="muted" hidden></p>
           <div class="button-row">
             <button id="produce" class="primary" type="button" hidden>Processar vídeo</button>
-            <button id="stop" class="secondary" type="button" hidden>Cancelar</button>
           </div>
-          <progress id="progress" aria-label="Progresso do envio" hidden></progress>
-          <p id="status" role="status" aria-live="polite" tabindex="-1"></p>
-          <section id="results" aria-labelledby="files-title" hidden><h3 id="files-title">Arquivos para revisão</h3><div id="files"></div></section>
+          <div id="edit-feedback">
+            <div id="work-feedback">
+              <button id="stop" class="secondary" type="button" hidden>Cancelar</button>
+              <progress id="progress" aria-label="Progresso do envio" hidden></progress>
+              <p id="status" role="status" aria-live="polite" tabindex="-1"></p>
+              <section id="results" aria-labelledby="files-title" hidden><h3 id="files-title">Arquivos para revisão</h3><div id="files"></div></section>
+            </div>
+          </div>
           <button id="send-handoff" class="secondary" type="button" hidden>Gerar pacote temporário</button>
           <div id="handoff-detail" hidden>
             <label for="handoff-instruction">Instrução para Codex ou Claude Code</label>
@@ -175,9 +248,31 @@
           <p class="small"><a class="catalog-link" href="/catalogo">Preparar pelo catálogo</a></p>
         </aside>
       </div>
+      <div id="planning-feedback" hidden></div>
+      <nav id="planning-footer" aria-label="Continuar planejamento" hidden>
+        <button class="secondary" id="planning-prev" type="button">← Anterior</button>
+        <button class="primary" id="planning-next" type="button">Continuar →</button>
+      </nav>
     </section>
   </main>
 
+  <dialog id="style-dialog" aria-labelledby="style-example-title">
+    <h2 id="style-example-title"></h2>
+    <img id="style-example-image" width="512" height="288" alt="Quadro de exemplo do catálogo">
+    <div class="button-row" aria-label="Navegar pelos quadros">
+      <button id="style-example-prev" class="secondary" type="button">← Anterior</button>
+      <span id="style-example-position" role="status"></span>
+      <button id="style-example-next" class="secondary" type="button">Próximo →</button>
+    </div>
+    <button id="style-example-close" class="plain" type="button">Fechar</button>
+  </dialog>
+  <dialog id="product-dialog" aria-labelledby="product-confirm-title">
+    <h2 id="product-confirm-title">Analisar a página</h2>
+    <p id="product-confirm-url"></p>
+    <p id="product-confirm-price"></p>
+    <button id="product-confirm" class="primary" type="button">Confirmar análise</button>
+    <button id="product-cancel" class="plain" type="button">Cancelar</button>
+  </dialog>
   <dialog id="assembly-dialog" aria-labelledby="assembly-review-title">
     <h2 id="assembly-review-title">Revisar a montagem completa</h2>
     <label for="assembly-storyboard">Prancha de moodboard, styleframes e storyboard</label>

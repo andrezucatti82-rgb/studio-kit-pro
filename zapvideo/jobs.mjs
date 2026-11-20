@@ -1,5 +1,5 @@
 import {assetOutputs,clipOutput,editOutputs, isId, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
-import {analysisMode, briefMode, briefReserve} from './gemini.mjs';
+import {analysisMode, briefMode, briefReserve, productMode} from './gemini.mjs';
 import {analysisBytes, mediaType, publicUrl} from './analysis-media.mjs';
 import {authorizeClip,clipMode,dailyBudget} from './clips.mjs';
 import {authorizeMedia,mediaBudget} from './media-assets.mjs';
@@ -29,7 +29,7 @@ export async function jobFiles(env,row) {
 }
 
 export async function startJob(request, env, project, owner) {
-  const {kind,revision,inputs={},key,url:publicAddress,quoteId,confirmed,agreedMicros,phase,approvalId}=(await readJson(request,8192)) ?? {};
+  const {kind,revision,inputs={},key,url:publicAddress,productUrl,quoteId,confirmed,agreedMicros,phase,approvalId}=(await readJson(request,8192)) ?? {};
   const quoted=['clip','asset'].includes(kind);
   const identity=quoted?quoteId:key;
   if (!isId(identity) || !['edit','brief','analysis','clip','asset','assembly'].includes(kind) || !Number.isSafeInteger(revision) ||
@@ -44,7 +44,7 @@ export async function startJob(request, env, project, owner) {
     if (kind==='clip') selected=await authorizeClip(env,plan,owner,quoteId);
     if (kind==='asset') selected=await authorizeMedia(env,plan,quoteId);
     if (kind==='assembly') selected={...await authorizeAssembly(env,plan,owner,{phase,inputs,approvalId}),inputIds:inputs};
-    const mode=quoted?selected.mode:kind==='brief'?briefMode(env):kind==='analysis'?analysisMode(env):null;
+    const mode=quoted?selected.mode:kind==='brief'?(productUrl===undefined?briefMode(env):productMode(env)):kind==='analysis'?analysisMode(env):null;
     if (mode==='gemini') {
       const uncertain=await sql(env,"SELECT id FROM jobs WHERE project_id=? AND state='uncertain' AND kind IN ('brief','analysis','clip','asset') LIMIT 1",project.id).first();
       if (uncertain) reject(409,'Existe uma chamada ao Gemini sem confirmação. Concilie o pedido antes de iniciar outro.');
@@ -62,6 +62,11 @@ export async function startJob(request, env, project, owner) {
     } else if (kind==='brief') {
       if (plan.intent.mode !== 'create') reject(400,'Use a opção Criar um vídeo com IA.');
       if (mode === 'unavailable') reject(503,'Gemini indisponível. Você pode continuar o briefing manualmente.');
+      if (productUrl!==undefined) {
+        if (confirmed!==true) reject(400,'Confirme o envio do link público.');
+        try { selected.productUrl=publicUrl(productUrl); }
+        catch (error) { reject(400,error.message); }
+      }
       const requested=mode==='gemini'?briefReserve(env):0;
       if (requested>0 && agreedMicros!==requested) reject(400,'Confirme a reserva mostrada para o briefing.');
       selected.reservedMicros=requested;

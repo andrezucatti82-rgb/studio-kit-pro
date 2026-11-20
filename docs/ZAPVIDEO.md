@@ -36,6 +36,10 @@ O original é validado por tamanho, SHA-256 e FFprobe antes do processamento. O 
 
 ## Homologação local
 
+O assistente aceita um link público HTTPS como ponto de partida. No modo local, a leitura retorna um produto fictício; a seleção de estilo, os quadros de exemplo e a ficha do storyboard funcionam localmente. Os quadros do catálogo servem para escolher a direção. Cada plano usa o quadro associado pelo usuário no diálogo de aprovação visual antes de cotar um clipe.
+
+A leitura real usa URL Context no mesmo canal privado e orçamento diário do briefing. Antes de configurar `GEMINI_PRODUCT_URL_VERIFIED=1` no piloto, valide o retorno de `url_context_result` do modelo de briefing, o custo da página lida e a reserva exibida. O recurso exige `GEMINI_BRIEF_PAID_VERIFIED=1` e uma reserva positiva. A entrada manual continua disponível com a leitura desativada ou se a página exigir login, tiver bloqueio ou não retornar um produto verificável.
+
 O Wrangler está fixado no projeto. Staging e produção usam os UUIDs dos bancos remotos provisionados. O UUID iniciado em zero é reservado ao emulador local. O build exclui PHP e `catalog.json` dos Assets.
 
 ```sh

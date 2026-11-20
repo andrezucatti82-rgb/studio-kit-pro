@@ -3,6 +3,7 @@ import {describeProject, editOutputs, isId, limits, parseTime, projectFormat, pr
 import {encryptHandoff} from './zapvideo-transfer.mjs';
 import {readSrt, suggestCuts} from './zapvideo-captions.mjs';
 import {assemblyPlan} from './zapvideo-assembly.mjs';
+import {styles,durations,objectives,makeBoard} from './zapvideo-guided.mjs';
 
 const $ = id => document.getElementById(id);
 const storage = 'zapvideo-workspace-v1';
@@ -23,6 +24,14 @@ const newDraft = mode => ({id:unique(),version:projectVersion,revision:1,mode,su
 let draft = null, previewUrl, previewIndex = -1, proposal = null, job = null, task, token = '', lastJob;
 let capabilities = {render:'unavailable',brief:'unavailable',analysis:'unavailable',clip:'unavailable'};
 const availableAsset=kind=>['mock','gemini'].includes(capabilities.assets?.[kind]);
+const planningButtons=[...document.querySelectorAll('[data-step]')];
+const planningPanels=planningButtons.map(button=>document.querySelector(`[data-plan-step="${button.dataset.step}"]`));
+const planningNext=['Escolher estilo','Ver storyboard','Continuar para montagem','Revisar e entregar'];
+const storyboardIndex=planningButtons.findIndex(button=>button.dataset.step==='scenes');
+const guided=()=>draft.guided ??= {url:'',name:'',category:'',description:'',style:'',aspect:'9:16',duration:15,objective:'sell'};
+let stylePreview,productRequest;
+const boardUrls=[];
+let planningIndex=0;
 
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
@@ -54,6 +63,15 @@ function update() {
   save();
   refresh();
 }
+const cameraOptions={
+  'Enquadramento':['Ambiente','Plano médio','Detalhe'], 'Ângulo':['De frente','De lado','De cima'],
+  'Movimento':['Parada','Aproximação suave','Deslize lateral'], 'Transição':['Corte direto','Dissolver'],
+};
+function shotDirection(shot) {
+  const direction=Object.entries(cameraOptions).filter(([key,values])=>values.includes(shot.camera?.[key]))
+    .map(([key])=>`${key}: ${shot.camera[key]}.`).join(' ');
+  return direction ? `${shot.direction} ${direction}` : shot.direction;
+}
 function draftPlan() {
   const analysisIds=new Set(draft.analysisIds || []);
   const assemblyIds=new Set(draft.assemblyIds || []);
@@ -66,7 +84,8 @@ function draftPlan() {
     actions:{captions:draft.captions ? (draft.separate ? 'mp4+srt' : 'mp4') : null,
       cuts:draft.cuts ? draft.ranges.map(cut => ({...cut,start:parseTime(cut.start),end:parseTime(cut.end)})) : [],
       treatment:draft.treatment ? draft.finish : null},
-    scenes:draft.scenes,reviewStatus:'pending',...(draft.mode==='create'?{assembly:{aspect:draft.assemblyAspect || '9:16',
+    scenes:draft.scenes.map(scene=>({...scene,shots:scene.shots.map(({example,camera,referenceFrameId,...shot})=>
+      ({...shot,direction:shotDirection({...shot,camera})}))})),reviewStatus:'pending',...(draft.mode==='create'?{assembly:{aspect:draft.assemblyAspect || '9:16',
       sampleSceneId:draft.sampleSceneId || null,musicMaterialId:draft.musicMaterialId || null,
       captionMaterialId:draft.materials.find(item=>item.kind==='subtitle')?.id || null}}:{})};
 }
@@ -145,6 +164,7 @@ function refresh() {
   $('local-help').hidden = draft.mode !== 'edit';
   $('asset-music').hidden=!availableAsset('music');
   refreshAssembly();
+  if (draft.mode==='create') refreshGuided();
   $('generation-note').textContent=capabilities.clip==='mock'?'Clipe em simulação local. Aprovações e arquivos de teste ficam neste ambiente.':
     capabilities.clip==='unavailable'?'Geração de clipes, imagens, narração e trilha indisponível no piloto.':
       'A geração de cada clipe exige aprovação do quadro e confirmação do valor.';
@@ -220,28 +240,97 @@ function action(text, handler) {
   button.type='button';button.className='plain';button.textContent=text;button.onclick=handler;
   return button;
 }
+function boardImage(path,alt) {
+  const img=document.createElement('img');
+  img.src=path;img.alt=alt;img.loading='lazy';img.width=512;img.height=288;
+  return img;
+}
+function detachClip(shot,row) {
+  if (!shot.selectedClip) return;
+  delete shot.selectedClip;
+  row.querySelector('[data-linked-clip]')?.remove();
+  note('O plano mudou. Revise um clipe para a nova direção.');
+}
+function renderShotVisual(shot,row) {
+  const preview=document.createElement('figure'),caption=document.createElement('figcaption');
+  preview.className='shot-visual';
+  const original=files.get(shot.referenceFrameId);
+  if (original) boardUrls.push(URL.createObjectURL(original));
+  preview.append(boardImage(original?boardUrls.at(-1):shot.example,original?'Quadro deste plano':'Referência do catálogo'),caption);
+  caption.textContent=original?'Quadro deste plano':'Exemplo de direção';
+  const wrapper=document.createElement('label'), frames=document.createElement('select');
+  const candidates=draft.materials.filter(item=>['frame','reference'].includes(item.kind) && files.has(item.id) &&
+    /\.(?:png|jpeg|jpg|webp)$/i.test(item.name) && item.bytes<=(capabilities.clipFrameMaxBytes ?? 2*1024**2));
+  choiceOptions(frames,candidates,shot.referenceFrameId,'Escolha em Referências');
+  frames.onchange=()=>{
+    shot.referenceFrameId=frames.value || null;
+    detachClip(shot,row);
+    const old=preview.querySelector('img');
+    const file=files.get(shot.referenceFrameId);
+    if (old.src.startsWith('blob:')) URL.revokeObjectURL(old.src);
+    if (file) boardUrls.push(URL.createObjectURL(file));
+    old.src=file?boardUrls.at(-1):shot.example;
+    old.alt=caption.textContent=file?'Quadro deste plano':'Exemplo de direção';
+    update();
+  };
+  wrapper.append('Quadro do projeto',frames);
+  const camera=document.createElement('div');
+  camera.className='camera-grid';
+  for (const [key,values] of Object.entries(cameraOptions)) {
+    const label=document.createElement('label'),menu=document.createElement('select');
+    choiceOptions(menu,values.map(value=>({id:value,name:value})),shot.camera?.[key],'Padrão do estilo');
+    menu.onchange=()=>{
+      (shot.camera ??= {})[key]=menu.value;
+      detachClip(shot,row);
+      if (key==='Movimento') {
+        shot.motion=menu.value==='Aproximação suave'?'push':'still';
+        const zoom=row.querySelector('[data-image-zoom]');
+        if (zoom) zoom.checked=shot.motion==='push';
+      }
+      update();
+    };
+    label.append(key,menu);camera.append(label);
+  }
+  return [preview,wrapper,camera];
+}
 function renderScenes() {
+  for (const url of boardUrls.splice(0)) URL.revokeObjectURL(url);
+  $('scenes-empty').hidden=draft.scenes.length>0;
   const container = $('scenes');
+  container.classList.toggle('has-examples',draft.scenes.some(scene=>scene.shots.some(shot=>shot.example)));
+  const opened=new Set([...container.querySelectorAll('details[open][data-editor]')].map(item=>item.dataset.editor));
+  const editor=(title,id)=>{
+    const details=document.createElement('details'),summary=document.createElement('summary');
+    details.dataset.editor=id;details.open=opened.has(id);summary.textContent=title;details.append(summary);
+    return details;
+  };
   container.replaceChildren();
   draft.scenes.forEach((scene,i) => {
     const box = document.createElement('fieldset');
     const legend = document.createElement('legend');
-    legend.textContent = 'Cena '+(i+1);
-    box.append(legend,field('Título da cena',scene.title,value => scene.title=value,{max:120}),
+    const compact=scene.shots.some(shot=>shot.example);
+    legend.textContent = compact && scene.title ? `${i+1} · ${scene.title}` : 'Cena '+(i+1);
+    const sceneSettings=compact?editor('Título e narração',scene.id):box;
+    box.append(legend);
+    sceneSettings.append(field('Título da cena',scene.title,value=>{
+      scene.title=value;
+      if (compact) legend.textContent=value?`${i+1} · ${value}`:'Cena '+(i+1);
+    },{max:120}),
       field('O que será falado',scene.narration,value => scene.narration=value,{textarea:true,max:1200}));
-    if (availableAsset('speech')) box.append(action('Preparar narração',()=>openAsset('speech',scene)));
+    if (availableAsset('speech')) sceneSettings.append(action('Preparar narração',()=>openAsset('speech',scene)));
     if (['local','container'].includes(capabilities.assembly)) {
       const label=document.createElement('label'), audio=document.createElement('select');
       choiceOptions(audio,draft.materials.filter(item=>item.kind==='audio'),scene.narrationMaterialId,'Sem narração');
       audio.onchange=()=>{scene.narrationMaterialId=audio.value || null;update();};
       label.append('Faixa de narração',audio);
-      box.append(label);
+      sceneSettings.append(label);
     }
     scene.shots.forEach((shot,j) => {
       const row = document.createElement('div');
       row.className='details';
       const title = document.createElement('h3');
-      title.textContent='Plano '+(j+1);
+      const titleText=()=>`Plano ${j+1}${shot.example && Number.isFinite(shot.seconds)?` · ${shot.seconds} s`:''}`;
+      title.textContent=titleText();
       const support = document.createElement('label');
       support.className='toggle';
       const check = document.createElement('input');
@@ -261,45 +350,276 @@ function renderScenes() {
       };
       const label=document.createElement('label');
       label.append('Vincular material',material);
-      row.append(title,field('O que aparece',shot.direction,value=>shot.direction=value,{textarea:true,max:500}),
-        field('Segundos',shot.seconds,value=>shot.seconds=value,{type:'number'}),label,support,clipButton);
-      if (availableAsset('frame')) row.append(action('Preparar quadro conceitual',()=>openAsset('frame',scene,shot)));
+      const shotSettings=shot.example?editor('Ajustar plano',shot.id):row;
+      row.append(title);
+      if (shot.example) {
+        const [preview,frame,controls]=renderShotVisual(shot,row);
+        row.append(preview,frame);
+        shotSettings.append(controls);
+      }
+      shotSettings.append(field('O que aparece',shot.direction,value=>{
+        shot.direction=value;
+        if (shot.example) detachClip(shot,row);
+      },{textarea:true,max:shot.example?360:500}),field('Segundos',shot.seconds,value=>{
+        shot.seconds=value;title.textContent=titleText();
+        if (shot.example) detachClip(shot,row);
+      },{type:'number'}),label,support);
       if (['local','container'].includes(capabilities.assembly)) {
         const motion=document.createElement('label'), zoom=document.createElement('input');
         motion.className='toggle';zoom.type='checkbox';zoom.checked=shot.motion==='push';
+        zoom.dataset.imageZoom='';
         zoom.onchange=()=>{shot.motion=zoom.checked?'push':'still';update();};
         motion.append(zoom,'Aproximação suave se o material for uma imagem');
         const sound=document.createElement('label'), keep=document.createElement('input');
         sound.className='toggle';keep.type='checkbox';keep.checked=shot.keepAudio!==false;
         keep.onchange=()=>{shot.keepAudio=keep.checked;update();};
         sound.append(keep,'Manter o som da tomada');
-        row.append(field('Título sobre a imagem',shot.overlay || '',value=>shot.overlay=value,{max:100}),motion,sound);
+        shotSettings.append(field('Título sobre a imagem',shot.overlay || '',value=>shot.overlay=value,{max:100}),motion,sound);
       }
+      if (shot.example) row.append(shotSettings);
+      row.append(clipButton);
+      if (availableAsset('frame')) row.append(action('Preparar quadro conceitual',()=>openAsset('frame',scene,shot)));
       if (shot.selectedClip) {
         const selected=document.createElement('p');
+        const linked=document.createElement('div');linked.dataset.linkedClip='';
         selected.className='muted';
         selected.textContent=shot.selectedClip.mode==='mock'?'Clipe simulado vinculado.':'Clipe vinculado ao plano.';
-        row.append(selected,action('Desvincular clipe',()=>{
+        linked.append(selected,action('Desvincular clipe',()=>{
           delete shot.selectedClip;
           renderScenes();
           update();
           note('Clipe desvinculado do plano.');
         }));
+        row.append(linked);
       }
       if (scene.shots.length>1) row.append(action('Remover plano',()=>{scene.shots.splice(j,1);renderScenes();update();box.focus();}));
       box.append(row);
     });
-    if (scene.shots.length<8) box.append(action('+ Adicionar plano',()=>{scene.shots.push(newShot());renderScenes();update();container.querySelectorAll('fieldset')[i].querySelectorAll('textarea')[scene.shots.length].focus();}));
+    if (compact) box.append(sceneSettings);
+    if (scene.shots.length<8) box.append(action('+ Adicionar plano',()=>{
+      scene.shots.push(newShot());renderScenes();update();
+      const fields=container.children[i].querySelectorAll('textarea');
+      fields[compact?fields.length-2:fields.length-1].focus();
+    }));
     box.append(action('Remover cena',()=>{draft.scenes.splice(i,1);renderScenes();update();$('add-scene').focus();}));
     container.append(box);
   });
+  renderMoodboard();
 }
+
+function renderMoodboard() {
+  const board=$('moodboard'),style=styles[draft.guided?.boardStyle];
+  board.hidden=$('board-note').hidden=!style || !draft.scenes.some(scene=>scene.shots.some(shot=>shot.example));
+  board.replaceChildren();
+  if (board.hidden) return;
+  const images=document.createElement('div'),copy=document.createElement('div'),title=document.createElement('h3');
+  images.className='mood-samples';
+  for (const frame of [...new Set(style.frames)].slice(0,2)) images.append(boardImage(frame,'Referência de estilo'));
+  title.textContent='Moodboard · '+style.name;
+  const caption=document.createElement('p');caption.className='muted';caption.textContent=style.mood;
+  const palette=document.createElement('div');palette.className='mood-palette';palette.setAttribute('aria-hidden','true');
+  for (const value of style.palette) {
+    const swatch=document.createElement('span');swatch.style.backgroundColor=value;palette.append(swatch);
+  }
+  copy.append(title,caption,palette);board.append(images,copy);
+}
+
+function renderOrigin() {
+  const linking=draft.origin==='link',settings=guided();
+  $('origin-link').setAttribute('aria-pressed',String(linking));
+  $('origin-manual').setAttribute('aria-pressed',String(!linking));
+  $('manual-intake').hidden=linking;$('guided-intake').hidden=!linking;
+  for (const key of ['url','name','category','description','objective','aspect','duration']) $('product-'+key).value=settings[key];
+}
+function setOrigin(origin) {
+  draft.origin=origin;
+  renderOrigin();
+  save();
+  refreshGuided();
+}
+$('origin-link').onclick=()=>setOrigin('link');
+$('origin-manual').onclick=()=>setOrigin('manual');
+for (const key of ['url','name','category','description','objective','aspect','duration']) {
+  $('product-'+key).oninput=event=>{
+    const settings=guided();
+    settings[key]=key==='duration'?Number(event.target.value):event.target.value;
+    if (key==='url' && settings.sourceUrl) {
+      Object.assign(settings,{name:'',category:'',description:'',sourceUrl:'',recommended:'',sourceMode:''});
+      renderOrigin();
+    }
+    update();
+  };
+}
+function refreshGuided() {
+  const settings=guided(),reserve=capabilities.briefReservedMicros;
+  const available=['mock','gemini'].includes(capabilities.product);
+  $('read-product').disabled=!available || Boolean(task) || !settings.url.trim();
+  $('product-note').textContent=capabilities.product==='mock'?'Análise simulada com dados fictícios.':
+    available?`Envia só o link ao Google. Reserva de ${briefPrice(reserve)}.`:
+      capabilities.pilotAvailable && !token?'Conecte o piloto para verificar o acesso à análise de links.':'Leitura de links indisponível. Informe o produto para continuar.';
+  $('product-source').textContent=settings.sourceMode==='mock'?'Dados simulados para homologação.':
+    settings.sourceUrl?'Dados sugeridos pela página. Confira antes de usar.':'Você também pode preencher o nome diretamente.';
+  $('board-replace').hidden=planningIndex!==1 || !draft.scenes.length || sameBoard();
+  $('planning-next').textContent=planningIndex===1 && !$('board-replace').hidden?'Refazer storyboard →':
+    planningNext[planningIndex]?`${planningNext[planningIndex]} →`:'';
+}
+
+const productDialog=$('product-dialog');
+$('read-product').onclick=()=>{
+  const input=$('product-url'),value=input.value.trim();
+  if (!value.startsWith('https://') || !input.reportValidity()) return note('Informe o endereço público completo, começando com https://.');
+  let url;
+  try { url=new URL(value); }
+  catch { return note('Informe um link público válido.'); }
+  if (url.username || url.password || url.port || url.search || url.hash) return note('Use o endereço público sem parâmetros, portas ou dados de acesso.');
+  productRequest={value:url.href,revision:draft.revision,reserve:capabilities.briefReservedMicros || 0};
+  $('product-confirm-url').textContent=url.href;
+  $('product-confirm-price').textContent=capabilities.product==='mock'?'Simulação local sem cobrança.':
+    `Somente o link será enviado ao Google. Reserva de ${briefPrice(productRequest.reserve)}.`;
+  productDialog.showModal();
+};
+$('product-cancel').onclick=()=>productDialog.close();
+$('product-confirm').onclick=()=>{
+  const request=productRequest;
+  productDialog.close();
+  if (request.revision!==draft.revision || request.reserve!==(capabilities.briefReservedMicros || 0)) return note('O pedido mudou. Confira o link e o valor novamente.');
+  void runTask('brief',false,{productUrl:request.value,agreedMicros:request.reserve});
+};
+function productView(result,revision) {
+  if (draft.revision!==revision || draft.origin!=='link') return note('A análise é de uma revisão anterior. Seus dados foram preservados.');
+  const product=result.product;
+  const {url,name,category,description,recommended}=product;
+  Object.assign(guided(),{name,category,description,recommended,sourceUrl:url,sourceMode:result.mode});
+  renderOrigin();update();
+  note('Confira os dados sugeridos e avance para escolher o estilo.');
+}
+
+function renderStyles() {
+  const list=$('style-cards'),settings=guided();
+  list.replaceChildren();
+  const entries=Object.entries(styles).sort(([a],[b])=>Number(b===settings.recommended)-Number(a===settings.recommended));
+  for (const [id,style] of entries) {
+    const selected=id===settings.style;
+    const card=document.createElement('article');card.className='style-card';card.classList.toggle('selected',selected);
+    const title=document.createElement('h3');title.textContent=style.name;
+    const caption=document.createElement('p');caption.className='muted';caption.textContent=style.description;
+    if (id===settings.recommended) caption.textContent+=' Recomendado para este produto.';
+    const choose=action(selected?'Selecionado':'Usar estilo',()=>{
+      settings.style=id;update();renderStyles();
+      list.querySelector('[aria-pressed="true"]').focus();
+    });
+    choose.className='secondary';choose.setAttribute('aria-pressed',String(selected));
+    choose.setAttribute('aria-label','Usar estilo '+style.name);
+    const preview=action('Ver prévia',()=>{
+      stylePreview={style,index:0};renderStylePreview();$('style-dialog').showModal();
+    });
+    preview.setAttribute('aria-label','Ver prévia de '+style.name);
+    const row=document.createElement('div');row.className='button-row';row.append(choose,preview);
+    card.append(boardImage(style.frames[0],'Exemplo de '+style.name),title,caption,row);list.append(card);
+  }
+}
+function renderStylePreview() {
+  const {style,index}=stylePreview;
+  $('style-example-title').textContent=style.name;
+  $('style-example-image').src=style.frames[index];
+  $('style-example-position').textContent=`Quadro ${index+1} de ${style.frames.length}`;
+  $('style-example-prev').disabled=index===0;
+  $('style-example-next').disabled=index===style.frames.length-1;
+}
+$('style-example-prev').onclick=()=>{stylePreview.index--;renderStylePreview();};
+$('style-example-next').onclick=()=>{stylePreview.index++;renderStylePreview();};
+$('style-example-close').onclick=()=>$('style-dialog').close();
+
+function boardKey() {
+  const settings=guided();
+  return JSON.stringify([draft.subject,settings.style,settings.duration,settings.objective]);
+}
+function sameBoard() { return draft.scenes.length>0 && guided().boardKey===boardKey(); }
+function confirmOrigin() {
+  if (draft.origin!=='link') {
+    if (!draft.subject.trim()) { $('subject').focus();note('Escreva uma frase sobre seu vídeo.');return false; }
+    return true;
+  }
+  const {name,category,description,objective,aspect}=guided();
+  if (!name.trim()) { $('product-name').focus();note('Confirme o nome do produto para escolher o estilo.');return false; }
+  const subject=[name.trim(),category.trim(),description.trim(),objectives[objective]].filter(Boolean).join('. ');
+  if (draft.subject!==subject || draft.assemblyAspect!==aspect) {
+    draft.subject=subject;draft.assemblyAspect=aspect;$('subject').value=subject;update();
+  }
+  return true;
+}
+function prepareBoard() {
+  const settings=guided();
+  if (!settings.style || !Object.hasOwn(styles,settings.style)) return note('Selecione um estilo para montar o storyboard.');
+  if (!sameBoard()) {
+    const boardSettings={...settings,name:draft.origin==='link'?settings.name.trim():draft.subject.slice(0,120),
+      duration:durations.includes(settings.duration)?settings.duration:15};
+    draft.scenes=makeBoard(boardSettings,unique);
+    settings.boardKey=boardKey();settings.boardStyle=settings.style;
+    delete draft.sampleSceneId;
+    delete draft.assemblySample;
+    renderScenes();update();
+  }
+  showPlanningStep(storyboardIndex);note('');
+}
+
+function showPlanningStep(index,{focus=true}={}) {
+  if (draft.mode!=='create' || !planningPanels[index]) return;
+  $('grid').dataset.direction=index<planningIndex?'back':'next';
+  $('grid').classList.toggle('planning-motion',focus && index!==planningIndex);
+  planningIndex=index;
+  planningButtons.forEach((button,i)=>{
+    planningPanels[i].hidden=i!==index;
+    if (i===index) button.setAttribute('aria-current','step');
+    else button.removeAttribute('aria-current');
+  });
+  $('planning-prev').disabled=index===0;
+  $('planning-next').hidden=index===planningPanels.length-1;
+  if (index===1) renderStyles();
+  refreshGuided();
+  const button=planningButtons[index], nav=button.closest('ol');
+  $('planning-feedback').dataset.step=button.dataset.step;
+  if (nav.scrollWidth>nav.clientWidth) {
+    const delta=button.getBoundingClientRect().left-nav.getBoundingClientRect().left;
+    nav.scrollLeft+=delta-(nav.clientWidth-button.offsetWidth)/2;
+  }
+  if (focus) {
+    const heading=planningPanels[index].querySelector('h2');
+    heading.focus({preventScroll:true});
+    $('planning-header').scrollIntoView({block:'start'});
+  }
+  if (draft.planningStep!==button.dataset.step) {
+    draft.planningStep=button.dataset.step;
+    save();
+  }
+}
+planningButtons.forEach((button,index)=>{button.onclick=()=>{
+  if (index===1 && !confirmOrigin()) return showPlanningStep(0);
+  showPlanningStep(index);
+};});
+$('planning-prev').onclick=()=>showPlanningStep(planningIndex-1);
+$('planning-next').onclick=()=>{
+  if (planningIndex===0 && !confirmOrigin()) return;
+  if (planningIndex===1) return prepareBoard();
+  showPlanningStep(planningIndex+1);
+};
 
 function showWorkspace() {
   $('workspace-title').textContent = draft.mode === 'edit' ? editTitle : createTitle;
   $('choose').hidden=true;$('workspace').hidden=false;
-  $('edit-section').hidden=$('edit-actions').hidden=draft.mode !== 'edit';
-  $('create-section').hidden=draft.mode !== 'create';
+  const creating=draft.mode==='create';
+  $('grid').classList.toggle('planning',creating);
+  $('planning-header').hidden=$('planning-footer').hidden=$('planning-feedback').hidden=!creating;
+  (creating?$('planning-header'):$('edit-pilot')).append($('pilot'));
+  (creating?$('planning-feedback'):$('edit-feedback')).append($('work-feedback'));
+  $('edit-section').hidden=$('edit-actions').hidden=creating;
+  if (creating) {
+    renderOrigin();
+    const savedIndex=planningButtons.findIndex(button=>button.dataset.step===draft.planningStep);
+    showPlanningStep(savedIndex<0 && draft.planningStep==='materials'?storyboardIndex:Math.max(0,savedIndex),{focus:false});
+  } else {
+    for (const panel of planningPanels) panel.hidden=panel.dataset.planStep!=='delivery';
+  }
   $('workspace-title').focus();
   $('subject').value=draft.subject;
   $('analysis-url').value=draft.analysisUrl || '';
@@ -336,8 +656,12 @@ for (const button of document.querySelectorAll('[data-mode]')) button.onclick = 
     $('analysis-result').replaceChildren();
     $('analysis-permit').checked=false;
     $('proposal').hidden = $('results').hidden = true;
+    note('');
     $('resume-draft').hidden = false;
     save();
+  }
+  if (button.dataset.entry==='link') {
+    draft.origin='link';draft.planningStep='idea';save();
   }
   showWorkspace();
 };
@@ -533,10 +857,14 @@ $('apply-proposal').onclick=()=>{
   if (!proposal || proposal.revision!==draft.revision) return;
   draft.scenes=proposal.proposal.scenes.map(scene=>({...scene,id:unique(),
     shots:scene.shots.map(shot=>({...shot,...{id:unique(),generateSupport:false,layers:[]}}))}));
+  delete guided().boardKey;
+  delete guided().boardStyle;
   $('proposal').hidden=true;
   proposal=null;
   renderScenes();
   update();
+  showPlanningStep(storyboardIndex);
+  note('');
 };
 async function showResults(projectPath, job, signal) {
   const container=$('files');
@@ -606,14 +934,17 @@ async function runTask(kind, resume=false, clipQuote=null) {
   const controller=new AbortController(),signal=controller.signal;
   task=controller;
   $('stop').hidden=false;$('produce').disabled=$('suggest').disabled=$('analyze').disabled=true;
+  $('read-product').disabled=true;
   try {
     const projectPath='/projects/'+draft.id;
     if (resume && lastJob?.id) job=lastJob;
     else {
       // User can keep editing while the immutable snapshot is sent.
-      const plan=structuredClone(validateProject(draftPlan()));
-      const agreedMicros=kind==='brief'?capabilities.briefReservedMicros:undefined;
-      if (agreedMicros>0 && !window.confirm('Confirma a reserva de '+briefPrice(agreedMicros)+' para pedir uma proposta ao Gemini?')) return;
+      const form=draftPlan(),productUrl=kind==='brief'?clipQuote?.productUrl:undefined;
+      if (productUrl && !form.intent.subject.trim()) form.intent.subject='Identificar produto pela página pública';
+      const plan=structuredClone(validateProject(form));
+      const agreedMicros=kind==='brief'?(productUrl?clipQuote.agreedMicros:capabilities.briefReservedMicros):undefined;
+      if (!productUrl && agreedMicros>0 && !window.confirm('Confirma a reserva de '+briefPrice(agreedMicros)+' para pedir uma proposta ao Gemini?')) return;
       if (kind==='edit' && !$('permit').checked) throw new Error('Autorize o envio dos arquivos para processar online.');
       let selected=kind==='edit'?requireSelected(plan):[];
       if (kind==='assembly') selected=clipQuote?.filesToSend || [];
@@ -641,7 +972,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
       }
       const body=['clip','asset'].includes(kind)?{kind,revision:plan.revision,quoteId:clipQuote?.id,confirmed:clipQuote?.revision===plan.revision}:
         {kind,revision:plan.revision,inputs,url:publicAddress,phase:clipQuote?.phase,approvalId,agreedMicros,
-          key:kind+(kind==='assembly'?'-'+clipQuote.phase:'')+'-'+plan.revision};
+          ...(productUrl?{productUrl,confirmed:true}:{}),key:(productUrl?'product':kind)+(kind==='assembly'?'-'+clipQuote.phase:'')+'-'+plan.revision};
       const started=await api(projectPath+'/jobs',{method:'POST',body,signal});
       job={id:started.id,project:plan.id,kind,revision:plan.revision};
       lastJob=job;save();
@@ -654,6 +985,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
       if (state.state==='verified') {
         if (['edit','clip','asset','assembly'].includes(kind)) await showResults(projectPath,state,signal);
         else if (kind==='analysis') showAnalysis(state);
+        else if (state.result.product) productView(state.result,state.revision);
         else proposalView(state.result,state.revision);
         return;
       }
@@ -669,6 +1001,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
     $('progress').hidden=$('stop').hidden=true;
     $('produce').disabled=$('analyze').disabled=false;$('suggest').disabled=capabilities.brief==='unavailable';
     job=null;task=null;
+    if (draft.mode==='create') refreshGuided();
   }
 }
 $('produce').onclick=()=>runTask('edit');
@@ -699,6 +1032,10 @@ function choiceOptions(select,items,selected,placeholder) {
 }
 function refreshAssembly() {
   $('assembly-tools').hidden=draft.mode!=='create' || !['local','container'].includes(capabilities.assembly);
+  $('assembly-unavailable').hidden=!$('assembly-tools').hidden;
+  $('assembly-unavailable').textContent=capabilities.pilotAvailable && !token ?
+    'Conecte seu código em Acesso ao piloto para montar neste site.' :
+    'Montagem online indisponível. Você pode baixar a ficha e os materiais na etapa Entrega.';
   if ($('assembly-tools').hidden) return;
   $('assembly-aspect').value=draft.assemblyAspect || '9:16';
   choiceOptions($('assembly-music'),draft.materials.filter(item=>item.kind==='audio'),draft.musicMaterialId,'Sem trilha');
@@ -820,11 +1157,11 @@ function openAsset(kind,scene,shot) {
   }
   assetPanel={kind,scene,shot,quote:null};
   $('asset-title').textContent=assetLabels[kind];
-  $('asset-input-preview').textContent=kind==='frame'?shot.direction:kind==='speech'?scene.narration:'';
+  $('asset-input-preview').textContent=kind==='frame'?shotDirection(shot):kind==='speech'?scene.narration:'';
   $('asset-frame-options').hidden=kind!=='frame';
   $('asset-speech-options').hidden=kind!=='speech';
   $('asset-music-options').hidden=kind!=='music';
-  $('asset-aspect').value='9:16';
+  $('asset-aspect').value=draft.assemblyAspect || '9:16';
   $('asset-voice').value='Kore';
   $('asset-prompt').value='';
   $('asset-estimate').hidden=true;
@@ -904,6 +1241,10 @@ async function useAsset(job,output,grant) {
       const scene=draft.scenes.find(item=>item.id===job.result.sceneId);
       if (scene) scene.narrationMaterialId=record.id;
     } else if(job.result.mediaKind==='music') draft.musicMaterialId=record.id;
+    else {
+      const shot=draft.scenes.find(scene=>scene.id===job.result.sceneId)?.shots.find(item=>item.id===job.result.shotId);
+      if (shot?.example) shot.referenceFrameId=record.id;
+    }
     renderScenes();
     renderAnalysisFiles();
     update();
@@ -940,10 +1281,10 @@ function openClip(scene,shot) {
   const previous=draft.clipApprovals?.[key];
   clipPanel={scene,shot,key};
   resetClipFrame();
-  $('clip-scope').textContent=[scene.title,shot.direction].filter(Boolean).join(' · ');
+  $('clip-scope').textContent=[scene.title,shotDirection(shot)].filter(Boolean).join(' · ');
   $('clip-mode').textContent=capabilities.clip==='mock'?'Simulação local com vídeo de teste.':
     'O Google recebe somente o quadro selecionado e a descrição deste plano.';
-  $('clip-aspect').value=previous?.aspect || '9:16';
+  $('clip-aspect').value=shot.example?(draft.assemblyAspect || '9:16'):(previous?.aspect || '9:16');
   $('clip-message').value='';
   $('clip-status').textContent='';
   const choices=draft.materials.filter(item=>['reference','frame'].includes(item.kind) && files.has(item.id) &&
@@ -953,6 +1294,10 @@ function openClip(scene,shot) {
   $('clip-reuse').disabled=false;
   if (!choices.length) $('clip-status').textContent='Adicione uma imagem de referência de até 2 MiB no projeto.';
   clipDialog.showModal();
+  if (choices.some(item=>item.id===shot.referenceFrameId)) {
+    $('clip-frame').value=shot.referenceFrameId;
+    void $('clip-frame').onchange();
+  }
 }
 $('clip-frame').onchange=async()=>{
   resetClipFrame();
@@ -1009,6 +1354,8 @@ async function clipAction(reuse) {
     if (reuse) {
       const prior=draft.clipApprovals?.[panel.key];
       if (!prior || prior.aspect!==$('clip-aspect').value) throw new Error('A proporção mudou. Apresente e aprove o novo quadro.');
+      const current=$('clip-frame').value || panel.shot.referenceFrameId;
+      if (current && current!==prior.frameId) throw new Error('O quadro mudou. Apresente e aprove a nova imagem.');
       approvalId=prior.id;
     } else {
       const present=panel.visibleFrame, message=$('clip-message').value;

@@ -9,8 +9,9 @@ import {encryptHandoff} from '../style-atlas/dist/zapvideo-transfer.mjs';
 import {parseHandoffLink,unpackHandoff} from '../scripts/retrieve-disteven-handoff.mjs';
 import {probeVideo,renderEdit} from '../zapvideo/renderer.mjs';
 import {readSrt,suggestCuts} from '../style-atlas/dist/zapvideo-captions.mjs';
-import {analyzeMaterials,proposeBrief} from '../zapvideo/gemini.mjs';
+import {analyzeMaterials,proposeBrief,readProduct} from '../zapvideo/gemini.mjs';
 import {detectType,publicUrl} from '../zapvideo/analysis-media.mjs';
+import {durations,makeBoard,styles} from '../style-atlas/dist/zapvideo-guided.mjs';
 
 const source = {id:'source',kind:'source',name:'câmera original.mp4',permission:'local',bytes:1};
 const subtitle = {id:'srt',kind:'subtitle',name:'legendas.srt',permission:'local',bytes:1};
@@ -126,6 +127,42 @@ test('multimodal sources use checked formats and known source IDs without callin
     return Response.json({id:'fake',steps:[{type:'model_output',content:[{type:'text',text:'[{"id":"invented","note":"Teste"}]'}]}]});
   });
   assert.match(answer.error,/sem uma análise válida/);
+});
+
+test('product intake requires a verified lookup and a public source with successful retrieval',async()=>{
+  const link='https://loja.com.br/cafe';
+  const env={ENVIRONMENT:'staging',GEMINI_PRODUCT_URL_VERIFIED:'1',GEMINI_BRIEF_PAID_VERIFIED:'1',GEMINI_BRIEF_RESERVE_MICROS:'30000',
+    GEMINI_TEST_DAILY_BUDGET_MICROS:'5000000',GEMINI_API_KEY:'synthetic',GEMINI_BRIEF_MODEL:'gemini-test'};
+  const output={name:'Café',category:'Bebidas',description:'Em grãos',recommended:'sensory'};
+  const model={type:'model_output',content:[{type:'text',text:JSON.stringify(output)}]};
+  let calls=0;
+  const mockFetch=async(_provider,init)=>{
+    calls++;
+    const payload=JSON.parse(init.body);
+    assert.deepEqual(JSON.parse(payload.input),{url:link});
+    assert.deepEqual(payload.tools,[{type:'url_context'}]);
+    assert.equal(payload.store,false);
+    return Response.json({steps:[{type:'url_context_result',result:[{status:'success',url:link}]},model]});
+  };
+  await assert.rejects(readProduct(link,{...env,GEMINI_PRODUCT_URL_VERIFIED:'0'},mockFetch),/indisponível/);
+  assert.equal(calls,0);
+  assert.deepEqual((await readProduct(link,env,mockFetch)).product,{url:link,...output});
+  assert.equal(calls,1);
+  for (const retrieval of [{url:link,status:'paywall'},{url:'https://outrasite.com.br/',status:'success'}]) {
+    const response=()=>Response.json({steps:[{type:'url_context_result',result:[retrieval]},model]});
+    assert.match((await readProduct(link,env,response)).error,/não retornou dados verificáveis/);
+  }
+});
+
+test('each guided storyboard uses explicit supported clip durations and style-bound directions',()=>{
+  let next=0;
+  for (const style of Object.keys(styles)) for (const duration of durations) {
+    const scenes=makeBoard({name:'Café $&',style,duration,objective:'sell'},()=>String(++next));
+    const shots=scenes.flatMap(scene=>scene.shots);
+    assert.equal(shots.reduce((sum,shot)=>sum+shot.seconds,0),duration);
+    assert.ok(shots.every(shot=>shot.seconds>=3 && shot.seconds<=15 && shot.direction.includes('Café $&') && !shot.layers.length));
+    assert.deepEqual(shots.map(shot=>shot.example),styles[style].frames);
+  }
 });
 
 test('FFmpeg applies SRT and creates three decodable vertical previews, including rotated VFR without audio',
