@@ -1,0 +1,55 @@
+name: ZapVideo renderer
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/zapvideo-online]
+    paths:
+      - '.dockerignore'
+      - '.github/workflows/zapvideo-renderer.yml'
+      - 'zapvideo/**'
+      - 'style-atlas/dist/zapvideo-*.mjs'
+      - 'tests/zapvideo-container-smoke.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  renderer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.dockerignore
+            /zapvideo/
+            /style-atlas/dist/zapvideo-*.mjs
+            /tests/zapvideo-container-smoke.mjs
+      - name: Build Cloudflare renderer
+        run: docker build --platform linux/amd64 --tag zapvideo-renderer:ci --file zapvideo/Dockerfile .
+      - name: Verify edits with synthetic footage
+        run: |
+          docker run --rm --entrypoint ffmpeg zapvideo-renderer:ci -nostdin -v error -f lavfi \
+            -i testsrc2=size=640x360:rate=25 -f lavfi -i sine=frequency=440:sample_rate=48000 \
+            -t 6 -c:v libx264 -c:a aac -movflags frag_keyframe+empty_moov -f mp4 pipe:1 > "$RUNNER_TEMP/source.mp4"
+          docker run --detach --name zapvideo-renderer --cpus 1 --memory 6g \
+            --publish 127.0.0.1:4002:4000 zapvideo-renderer:ci
+          node tests/zapvideo-container-smoke.mjs "$RUNNER_TEMP/source.mp4"
+          docker stats --no-stream zapvideo-renderer
+      - name: Archive verified image
+        run: |
+          docker save zapvideo-renderer:ci | gzip -1 > "$RUNNER_TEMP/zapvideo-renderer.tar.gz"
+          test "$(stat -c %s "$RUNNER_TEMP/zapvideo-renderer.tar.gz")" -lt 350000000
+          cd "$RUNNER_TEMP"
+          sha256sum zapvideo-renderer.tar.gz > zapvideo-renderer.sha256
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: zapvideo-renderer
+          path: |
+            ${{ runner.temp }}/zapvideo-renderer.tar.gz
+            ${{ runner.temp }}/zapvideo-renderer.sha256
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error

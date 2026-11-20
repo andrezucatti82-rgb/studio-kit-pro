@@ -20,7 +20,7 @@
       "workers_dev": true,
       "preview_urls": false,
       "vars": { "ENVIRONMENT": "staging", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0", "GEMINI_CLIP_VERIFIED": "0", "GEMINI_CLIP_DAILY_BUDGET_MICROS": "0", "GEMINI_ASSET_DAILY_BUDGET_MICROS": "0", "GEMINI_TEST_DAILY_BUDGET_MICROS": "5000000" },
-      "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-staging", "database_id": "00000000-0000-4000-8000-000000000001", "migrations_dir": "migrations/zapvideo" }],
+      "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-staging", "database_id": "a0f46792-7cbe-4df8-a466-e0e5e3039efa", "migrations_dir": "migrations/zapvideo" }],
       "r2_buckets": [
         { "binding": "PUBLIC", "bucket_name": "zapvideo-staging-public" },
         { "binding": "PRIVATE", "bucket_name": "zapvideo-staging-private" }
