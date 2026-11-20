@@ -2,6 +2,7 @@ import {describeProject, editOutputs, isId, limits, parseTime, projectFormat, pr
   supportedVideo, validateProject} from './zapvideo-contract.mjs';
 import {encryptHandoff} from './zapvideo-transfer.mjs';
 import {readSrt, suggestCuts} from './zapvideo-captions.mjs';
+import {assemblyPlan} from './zapvideo-assembly.mjs';
 
 const $ = id => document.getElementById(id);
 const storage = 'zapvideo-workspace-v1';
@@ -20,6 +21,7 @@ const newDraft = mode => ({id:unique(),version:projectVersion,revision:1,mode,su
   finish:{balance:true,denoise:false,brightness:0,contrast:1,saturation:1}});
 let draft = null, previewUrl, previewIndex = -1, proposal = null, job = null, task, token = '', lastJob;
 let capabilities = {render:'unavailable',brief:'unavailable',analysis:'unavailable',clip:'unavailable'};
+const availableAsset=kind=>['mock','gemini'].includes(capabilities.assets?.[kind]);
 
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
@@ -53,15 +55,19 @@ function update() {
 }
 function draftPlan() {
   const analysisIds=new Set(draft.analysisIds || []);
+  const assemblyIds=new Set(draft.assemblyIds || []);
   return {format:projectFormat,version:projectVersion,id:draft.id,revision:draft.revision,
     intent:{mode:draft.mode,subject:draft.mode === 'create' ? draft.subject : ''},
     materials:draft.materials.filter(item => draft.mode === 'create' || item.kind !== 'subtitle' || draft.captions)
       .map(item => ({...item,permission:(draft.mode==='edit' && draft.permission) ||
-        (draft.mode==='create' && ((draft.analysisPermit && analysisIds.has(item.id)) || draft.clipFrameIds?.includes(item.id))) ? 'process' : 'local'})),
+        (draft.mode==='create' && ((draft.analysisPermit && analysisIds.has(item.id)) || draft.clipFrameIds?.includes(item.id) ||
+          assemblyIds.has(item.id))) ? 'process' : 'local'})),
     actions:{captions:draft.captions ? (draft.separate ? 'mp4+srt' : 'mp4') : null,
       cuts:draft.cuts ? draft.ranges.map(cut => ({...cut,start:parseTime(cut.start),end:parseTime(cut.end)})) : [],
       treatment:draft.treatment ? draft.finish : null},
-    scenes:draft.scenes, reviewStatus:'pending'};
+    scenes:draft.scenes,reviewStatus:'pending',...(draft.mode==='create'?{assembly:{aspect:draft.assemblyAspect || '9:16',
+      sampleSceneId:draft.sampleSceneId || null,musicMaterialId:draft.musicMaterialId || null,
+      captionMaterialId:draft.materials.find(item=>item.kind==='subtitle')?.id || null}}:{})};
 }
 function requireSelected(project) {
   return project.materials.map(item => {
@@ -85,6 +91,8 @@ function materialList(container, kinds) {
     button.setAttribute('aria-label','Remover '+item.name);
     button.onclick = () => {
       draft.materials = draft.materials.filter(value => value.id !== item.id);
+      if (draft.musicMaterialId===item.id) delete draft.musicMaterialId;
+      for (const scene of draft.scenes) if (scene.narrationMaterialId===item.id) delete scene.narrationMaterialId;
       draft.analysisIds=(draft.analysisIds || []).filter(id=>id!==item.id);
       draft.analysisPermit=false;
       for (const scene of draft.scenes) for (const shot of scene.shots) {
@@ -113,7 +121,7 @@ function refresh() {
   summary.actions.cuts = plan.actions.cuts.filter(cut => Number.isFinite(cut.start) && Number.isFinite(cut.end));
   $('summary').textContent = describeProject(summary);
   $('sizes').textContent = `Arquivos da ficha: ${formatBytes(plan.materials.reduce((sum,item) => sum+item.bytes,0))}. Vídeo: até 512 MiB. SRT: até 2 MiB.`;
-  materialList($('reference-list'),['reference']);
+  materialList($('reference-list'),['reference','frame','audio']);
   materialList($('take-list'),['take']);
   const online = draft.mode === 'edit' && capabilities.render !== 'unavailable';
   $('permit-label').hidden = !online;
@@ -129,6 +137,8 @@ function refresh() {
   $('produce').hidden = !online;
   $('send-handoff').hidden = !token || !capabilities.limits;
   $('local-help').hidden = draft.mode !== 'edit';
+  $('asset-music').hidden=!availableAsset('music');
+  refreshAssembly();
   $('generation-note').textContent=capabilities.clip==='mock'?'Clipe em simulação local. Aprovações e arquivos de teste ficam neste ambiente.':
     capabilities.clip==='unavailable'?'Geração de clipes, imagens, narração e trilha indisponível no piloto.':
       'A geração de cada clipe exige aprovação do quadro e confirmação do valor.';
@@ -213,6 +223,14 @@ function renderScenes() {
     legend.textContent = 'Cena '+(i+1);
     box.append(legend,field('Título da cena',scene.title,value => scene.title=value,{max:120}),
       field('O que será falado',scene.narration,value => scene.narration=value,{textarea:true,max:1200}));
+    if (availableAsset('speech')) box.append(action('Preparar narração',()=>openAsset('speech',scene)));
+    if (['local','container'].includes(capabilities.assembly)) {
+      const label=document.createElement('label'), audio=document.createElement('select');
+      choiceOptions(audio,draft.materials.filter(item=>item.kind==='audio'),scene.narrationMaterialId,'Sem narração');
+      audio.onchange=()=>{scene.narrationMaterialId=audio.value || null;update();};
+      label.append('Faixa de narração',audio);
+      box.append(label);
+    }
     scene.shots.forEach((shot,j) => {
       const row = document.createElement('div');
       row.className='details';
@@ -239,6 +257,18 @@ function renderScenes() {
       label.append('Vincular material',material);
       row.append(title,field('O que aparece',shot.direction,value=>shot.direction=value,{textarea:true,max:500}),
         field('Segundos',shot.seconds,value=>shot.seconds=value,{type:'number'}),label,support,clipButton);
+      if (availableAsset('frame')) row.append(action('Preparar quadro conceitual',()=>openAsset('frame',scene,shot)));
+      if (['local','container'].includes(capabilities.assembly)) {
+        const motion=document.createElement('label'), zoom=document.createElement('input');
+        motion.className='toggle';zoom.type='checkbox';zoom.checked=shot.motion==='push';
+        zoom.onchange=()=>{shot.motion=zoom.checked?'push':'still';update();};
+        motion.append(zoom,'Aproximação suave se o material for uma imagem');
+        const sound=document.createElement('label'), keep=document.createElement('input');
+        sound.className='toggle';keep.type='checkbox';keep.checked=shot.keepAudio!==false;
+        keep.onchange=()=>{shot.keepAudio=keep.checked;update();};
+        sound.append(keep,'Manter o som da tomada');
+        row.append(field('Título sobre a imagem',shot.overlay || '',value=>shot.overlay=value,{max:100}),motion,sound);
+      }
       if (shot.selectedClip) {
         const selected=document.createElement('p');
         selected.className='muted';
@@ -505,9 +535,15 @@ async function showResults(projectPath, job, signal) {
   const container=$('files');
   container.replaceChildren();
   $('results').hidden=false;
+  if (job.kind==='assembly' && job.result.phase==='sample') {
+    draft.assemblySample={id:job.id,sha256:job.result.outputs[0].sha256};
+    save();
+    refreshAssembly();
+  }
   const ending = job.revision === draft.revision ? '' : ' Os arquivos são de uma revisão anterior.';
-  const label=job.result.mode==='mock'?'Clipe simulado verificado.':'Arquivo(s) verificado(s).';
-  note(label+' Assista e confira o áudio.'+ending);
+  const label=job.kind==='assembly'?(job.result.phase==='sample'?'Amostra integrada verificada.':'Montagem completa verificada.'):
+    job.result.mode==='mock'?(job.kind==='clip'?'Clipe simulado verificado.':'Material simulado verificado.'):'Arquivo(s) verificado(s).';
+  note(label+(job.kind==='asset'?' Revise a prévia.':' Assista e confira o áudio.')+ending);
   for (const output of job.result.outputs) {
     const row=document.createElement('div');
     const link=document.createElement('a');
@@ -516,9 +552,18 @@ async function showResults(projectPath, job, signal) {
       const video=document.createElement('video');
       video.controls=true;video.playsInline=true;video.preload='metadata';video.src=grant.url;
       row.append(video);
+    } else if (output.type.startsWith('image/')) {
+      const preview=document.createElement('img');
+      preview.src=grant.url;preview.alt='Prévia do quadro conceitual';
+      row.append(preview);
+    } else if (output.type.startsWith('audio/')) {
+      const audio=document.createElement('audio');
+      audio.controls=true;audio.preload='metadata';audio.src=grant.url;
+      row.append(audio);
     }
     link.href=grant.url+'?download=1';link.textContent='Baixar '+output.name;
     row.append(link);container.append(row);
+    if (job.kind==='asset') row.append(action('Adicionar aos materiais',()=>useAsset(job,output,grant)));
     if (job.kind==='clip') {
       row.append(action(job.result.mode==='mock'?'Vincular clipe simulado ao plano':'Vincular ao plano',()=>{
         if (job.revision!==draft.revision) return note('O plano mudou desde esta prévia. Confira a revisão antes de vincular outro clipe.');
@@ -562,6 +607,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
       const plan=structuredClone(validateProject(draftPlan()));
       if (kind==='edit' && !$('permit').checked) throw new Error('Autorize o envio dos arquivos para processar online.');
       let selected=kind==='edit'?requireSelected(plan):[];
+      if (kind==='assembly') selected=clipQuote?.filesToSend || [];
       let publicAddress;
       if (kind==='analysis') {
         if (!$('analysis-permit').checked) throw new Error('Autorize o uso das fontes selecionadas.');
@@ -575,19 +621,29 @@ async function runTask(kind, resume=false, clipQuote=null) {
       await api(projectPath,{method:'PUT',body:plan,signal});
       const inputs={};
       for (const attachment of selected) inputs[attachment.id]=await upload(projectPath,attachment,signal);
-      const body=kind==='clip'?{kind,revision:plan.revision,quoteId:clipQuote?.id,confirmed:clipQuote?.revision===plan.revision}:
-        {kind,revision:plan.revision,inputs,url:publicAddress,key:kind+'-'+plan.revision};
+      let approvalId;
+      if (kind==='assembly' && clipQuote?.phase==='full') {
+        const review=clipQuote.review;
+        const approval=await api(projectPath+'/assembly/approve',{method:'POST',signal,body:{
+          revision:plan.revision,seen:true,message:review.message,sampleJob:review.sample.id,sampleSha256:review.sample.sha256,
+          storyboard:await presentedObject(review.storyboard,inputs),animatic:await presentedObject(review.animatic,inputs),
+        }});
+        approvalId=approval.id;
+      }
+      const body=['clip','asset'].includes(kind)?{kind,revision:plan.revision,quoteId:clipQuote?.id,confirmed:clipQuote?.revision===plan.revision}:
+        {kind,revision:plan.revision,inputs,url:publicAddress,phase:clipQuote?.phase,approvalId,
+          key:kind+(kind==='assembly'?'-'+clipQuote.phase:'')+'-'+plan.revision};
       const started=await api(projectPath+'/jobs',{method:'POST',body,signal});
       job={id:started.id,project:plan.id,kind,revision:plan.revision};
       lastJob=job;save();
     }
     const path=projectPath+'/jobs/'+job.id;
-    note(kind==='edit'?'Processando o vídeo…':kind==='analysis'?'Analisando as fontes…':
+    note(kind==='assembly'?'Montando o vídeo…':kind==='asset'?'Preparando o material…':kind==='edit'?'Processando o vídeo…':kind==='analysis'?'Analisando as fontes…':
       kind==='clip'?'Processando o clipe…':'Preparando a proposta…');
     while (!signal.aborted) {
       const state=await api(path,{signal});
       if (state.state==='verified') {
-        if (kind==='edit' || kind==='clip') await showResults(projectPath,state,signal);
+        if (['edit','clip','asset','assembly'].includes(kind)) await showResults(projectPath,state,signal);
         else if (kind==='analysis') showAnalysis(state);
         else proposalView(state.result,state.revision);
         return;
@@ -626,6 +682,228 @@ $('send-handoff').onclick=withPlan(async plan=>{
   $('handoff-detail').hidden=false;$('handoff-instruction').focus();$('handoff-instruction').select();
   note('Pacote privado disponível por duas horas. Copie a instrução para o Codex ou Claude Code.');
 });
+const assemblyDialog=$('assembly-dialog');
+let reviewUrls=[];
+function choiceOptions(select,items,selected,placeholder) {
+  select.replaceChildren(new Option(placeholder,''),...items.map(item=>new Option(item.name,item.id)));
+  select.value=selected || '';
+}
+function refreshAssembly() {
+  $('assembly-tools').hidden=draft.mode!=='create' || !['local','container'].includes(capabilities.assembly);
+  if ($('assembly-tools').hidden) return;
+  $('assembly-aspect').value=draft.assemblyAspect || '9:16';
+  choiceOptions($('assembly-music'),draft.materials.filter(item=>item.kind==='audio'),draft.musicMaterialId,'Sem trilha');
+  const scenes=draft.scenes.map(scene=>({id:scene.id,name:scene.title||'Cena'}));
+  choiceOptions($('assembly-scene'),scenes,draft.sampleSceneId,'Primeira cena');
+  $('assembly-captions-note').textContent=displayFile('subtitle','Legendas opcionais.');
+  $('assembly-full').disabled=!draft.assemblySample;
+}
+function setAssemblyValue(key,value) {
+  draft[key]=value;
+  update();
+}
+$('assembly-aspect').onchange=()=>setAssemblyValue('assemblyAspect',$('assembly-aspect').value);
+$('assembly-scene').onchange=()=>setAssemblyValue('sampleSceneId',$('assembly-scene').value);
+$('assembly-music').onchange=()=>setAssemblyValue('musicMaterialId',$('assembly-music').value);
+for (const [id,kind,single] of [['assembly-audio','audio',false],['assembly-captions','subtitle',true]]) {
+  $(id).onchange=()=>{
+    try {
+      if (kind==='audio' && [...$(id).files].some(file=>!/\.(?:mp3|wav|m4a|aac)$/i.test(file.name))) throw new Error('Escolha MP3, WAV, M4A ou AAC.');
+      selectFiles(kind,$(id).files,single);
+      note('');
+    } catch (error) {note(error.message);$(id).value='';}
+  };
+}
+function assemblyInputs(phase,evidence=[]) {
+  const timeline=assemblyPlan(draftPlan());
+  const ids=[...new Set([...timeline.materials.filter(item=>item.kind!=='generated').map(item=>item.id),...evidence])];
+  if (JSON.stringify(ids)!==JSON.stringify(draft.assemblyIds)) {
+    draft.assemblyIds=ids;
+    update();
+  }
+  const materials=draftPlan().materials.filter(item=>timeline.materials.some(source=>source.id===item.id)||evidence.includes(item.id));
+  const filesToSend=requireSelected({materials});
+  return {phase,filesToSend};
+}
+$('assembly-sample').onclick=()=>{
+  if (task) return note('Aguarde o trabalho em andamento.');
+  if (!token) {
+    $('pilot').open=true;$('token').focus();return note('Informe seu código de acesso para montar.');
+  }
+  if (!$('assembly-permit').checked) return note('Autorize o envio dos materiais selecionados para montar.');
+  try {void runTask('assembly',false,assemblyInputs('sample'));}
+  catch (error) {note(error.message);}
+};
+function clearAssemblyReview() {
+  for (const url of reviewUrls) URL.revokeObjectURL(url);
+  reviewUrls=[];
+  for (const id of ['assembly-storyboard-preview','assembly-animatic-preview','assembly-sample-preview']) {
+    const preview=$(id);
+    if (preview instanceof HTMLVideoElement) preview.pause();
+    preview.removeAttribute('src');
+    preview.hidden=true;
+  }
+}
+$('assembly-full').onclick=async()=>{
+  if (task || !draft.assemblySample || !token) return;
+  if (!$('assembly-permit').checked) return note('Autorize o envio dos materiais selecionados para montar.');
+  clearAssemblyReview();
+  const current=draft.id,sample=draft.assemblySample;
+  const eligible=draft.materials.filter(item=>files.has(item.id));
+  choiceOptions($('assembly-storyboard'),eligible.filter(item=>/\.(?:png|jpg|jpeg|webp)$/i.test(item.name)),null,'Escolha a prancha');
+  choiceOptions($('assembly-animatic'),eligible.filter(item=>['take','source','broll'].includes(item.kind)),null,'Escolha o animatic');
+  $('assembly-review-checkbox').checked=false;
+  $('assembly-review-message').value='';
+  $('assembly-review-status').textContent='Apresente a prancha e o animatic, depois reveja a amostra.';
+  assemblyDialog.showModal();
+  try {
+    const result=await api('/projects/'+current+'/jobs/'+sample.id+'/grant',{method:'POST',body:{file:'montagem'}});
+    if (!assemblyDialog.open || draft.id!==current) return;
+    $('assembly-sample-preview').src=result.url;
+    $('assembly-sample-preview').hidden=false;
+  } catch(error) {$('assembly-review-status').textContent=error.message;}
+};
+for (const [id,element] of [['assembly-storyboard','assembly-storyboard-preview'],['assembly-animatic','assembly-animatic-preview']]) {
+  $(id).onchange=()=>{
+    $('assembly-review-checkbox').checked=false;
+    const file=files.get($(id).value), preview=$(element);
+    if (!file) {preview.hidden=true;return;}
+    const url=URL.createObjectURL(file);
+    reviewUrls.push(url);
+    preview.src=url;
+    preview.hidden=false;
+  };
+}
+$('assembly-review-close').onclick=()=>assemblyDialog.close();
+assemblyDialog.addEventListener('close',clearAssemblyReview);
+$('assembly-review-confirm').onclick=async()=>{
+  const message=$('assembly-review-message').value;
+  const storyboard=$('assembly-storyboard').value,animatic=$('assembly-animatic').value;
+  try {
+    if (!$('assembly-review-checkbox').checked || !message.trim() || !storyboard || !animatic ||
+      $('assembly-animatic-preview').readyState<1 || $('assembly-sample-preview').readyState<1) {
+      throw new Error('Abra a prancha, o animatic e a amostra e registre seu aceite.');
+    }
+    await $('assembly-storyboard-preview').decode();
+    if (!assemblyDialog.open || storyboard!==$('assembly-storyboard').value || animatic!==$('assembly-animatic').value ||
+      !$('assembly-review-checkbox').checked || message!==$('assembly-review-message').value) throw new Error('A seleção mudou.');
+    const command={...assemblyInputs('full',[storyboard,animatic]),review:{storyboard,animatic,message,sample:draft.assemblySample}};
+    assemblyDialog.close();
+    void runTask('assembly',false,command);
+  } catch(error) {$('assembly-review-status').textContent=error.message;}
+};
+async function presentedObject(id,uploads) {
+  const hashed=new Uint8Array(await crypto.subtle.digest('SHA-256',await files.get(id).arrayBuffer()));
+  const presentedSha256=Array.from(hashed,byte=>byte.toString(16).padStart(2,'0')).join('');
+  return {id,uploadId:uploads[id],presentedSha256};
+}
+
+const assetDialog=$('asset-dialog');
+const assetLabels={frame:'Quadro conceitual',speech:'Narração da cena',music:'Trilha instrumental'};
+let assetPanel=null;
+let assetRequest=null;
+function openAsset(kind,scene,shot) {
+  if (task) return note('Aguarde o trabalho em andamento.');
+  if (!token) {
+    $('pilot').open=true;
+    $('token').focus();
+    return note('Informe seu código de acesso para usar o piloto.');
+  }
+  assetPanel={kind,scene,shot,quote:null};
+  $('asset-title').textContent=assetLabels[kind];
+  $('asset-input-preview').textContent=kind==='frame'?shot.direction:kind==='speech'?scene.narration:'';
+  $('asset-frame-options').hidden=kind!=='frame';
+  $('asset-speech-options').hidden=kind!=='speech';
+  $('asset-music-options').hidden=kind!=='music';
+  $('asset-aspect').value='9:16';
+  $('asset-voice').value='Kore';
+  $('asset-prompt').value='';
+  $('asset-estimate').hidden=true;
+  $('asset-status').textContent=capabilities.assets[kind]==='mock'?'Simulação local com mídia sintética.':'Revise o material antes de confirmar.';
+  assetDialog.showModal();
+}
+function resetAssetQuote() {
+  if (assetPanel) assetPanel.quote=null;
+  $('asset-estimate').hidden=true;
+}
+for (const key of ['asset-aspect','asset-voice','asset-prompt']) $(key).oninput=resetAssetQuote;
+$('asset-close').onclick=()=>assetDialog.close();
+assetDialog.addEventListener('close',()=>{
+  assetRequest?.abort();
+  assetPanel=null;
+});
+$('asset-quote').onclick=async()=>{
+  const panel=assetPanel;
+  if (!panel || assetRequest) return;
+  const controller=new AbortController(),signal=controller.signal;
+  assetRequest=controller;
+  resetAssetQuote();
+  $('asset-quote').disabled=true;
+  try {
+    const plan=structuredClone(validateProject(draftPlan()));
+    const options=()=>({kind:panel.kind,sceneId:panel.scene?.id,shotId:panel.shot?.id,
+      aspect:$('asset-aspect').value,voice:$('asset-voice').value,prompt:$('asset-prompt').value});
+    const selection=options(),baseline=JSON.stringify(selection);
+    const path='/projects/'+plan.id;
+    await api(path,{method:'PUT',body:plan,signal});
+    const quote=await api(path+'/assets/quote',{method:'POST',body:{revision:plan.revision,...selection},signal});
+    if (assetPanel!==panel || signal.aborted || baseline!==JSON.stringify(options())) return;
+    panel.quote=quote;
+    const money=new Intl.NumberFormat('pt-BR',{style:'currency',currency:quote.currency,minimumFractionDigits:2,maximumFractionDigits:6});
+    $('asset-value').textContent=[quote.model,quote.scope.aspect,quote.scope.voice,quote.scope.seconds && quote.scope.seconds+' s',
+      (quote.mode==='mock'?'Simulação sem cobrança':'Reserva estimada')+' '+money.format(quote.reservedMicros/1e6)].filter(Boolean).join(' · ');
+    $('asset-confirm-content').textContent=quote.scope.input;
+    $('asset-estimate').hidden=false;
+    $('asset-confirm').focus();
+    $('asset-status').textContent='Confira o conteúdo e confirme o pedido.';
+  } catch(error) {
+    if (!signal.aborted) $('asset-status').textContent=error.message;
+  } finally {
+    if (assetRequest===controller) assetRequest=null;
+    $('asset-quote').disabled=false;
+  }
+};
+$('asset-confirm').onclick=()=>{
+  const quote=assetPanel?.quote;
+  if (!quote || quote.revision!==draft.revision || Date.now()/1000>=quote.expires) {
+    $('asset-status').textContent='A estimativa mudou ou expirou. Solicite outra.';
+    return;
+  }
+  assetDialog.close();
+  void runTask('asset',false,quote);
+};
+$('asset-music').onclick=()=>openAsset('music');
+
+async function useAsset(job,output,grant) {
+  const revision=draft.revision,project=draft.id;
+  if (job.revision!==revision) return note('Este material é de uma revisão anterior.');
+  if (draft.materials.length>=24) return note('Limite de 24 materiais por ficha.');
+  try {
+    const response=await fetch(grant.url,{redirect:'error'});
+    if (!response.ok || Number(response.headers.get('Content-Length'))!==output.bytes) throw new Error('O acesso ao material expirou.');
+    const bytes=await response.arrayBuffer();
+    const actual=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
+    if (actual!==output.sha256 || bytes.byteLength!==output.bytes) throw new Error('O arquivo baixado diverge da prévia verificada.');
+    if (draft.revision!==revision || draft.id!==project) throw new Error('A ficha mudou durante o download.');
+    const name=output.name.replace('-previa',job.result.mode==='mock'?'-simulado-'+job.id.slice(0,8):'-'+job.id.slice(0,8));
+    const file=new File([bytes],name,{type:output.type});
+    const kind=job.result.mediaKind==='frame'?'frame':'audio';
+    const record={id:unique(),name,kind,bytes:file.size,origin:{jobId:job.id,mode:job.result.mode,sha256:output.sha256}};
+    files.set(record.id,file);
+    draft.materials.push(record);
+    if (job.result.mediaKind==='speech') {
+      const scene=draft.scenes.find(item=>item.id===job.result.sceneId);
+      if (scene) scene.narrationMaterialId=record.id;
+    } else if(job.result.mediaKind==='music') draft.musicMaterialId=record.id;
+    renderScenes();
+    renderAnalysisFiles();
+    update();
+    note(kind==='frame'?'Quadro adicionado aos materiais. Abra o plano para revisá-lo e aprová-lo.':'Áudio adicionado aos materiais.');
+  } catch(error) {
+    note(error.message);
+  }
+}
+
 let clipPanel=null, clipRequest=null, frameUrl;
 const clipDialog=$('clip-dialog');
 function resetClipQuote() {

@@ -1,7 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {createReadStream} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {validateProject, describeProject} from '../style-atlas/dist/zapvideo-contract.mjs';
-import {renderEdit} from './renderer.mjs';
+import {renderAssembly,renderEdit} from './renderer.mjs';
+import {assemblyPlan} from '../style-atlas/dist/zapvideo-assembly.mjs';
 
 export async function readProject(file) {
   if ((await fs.stat(file)).size > 2 * 1024 ** 2) throw new Error('Ficha excede 2 MiB.');
@@ -47,19 +50,57 @@ async function readManifest(file) {
     return null;
   }
 }
-export async function executeLocal(projectFile, output, selected = {}) {
-  const project = await readProject(projectFile);
+async function localMaterials(projectFile) {
   let directory = path.dirname(path.resolve(projectFile));
   try {
     const link = JSON.parse(await fs.readFile(path.join(directory,'materiais-origem.json'),'utf8'));
     if (typeof link.directory === 'string') directory = path.resolve(directory,link.directory);
   } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const records = await readManifest(path.join(directory,'arquivos-recebidos.json')) ?? [];
+  return material=>{
+    const item=records.find(value=>value?.id===material.id);
+    if (item) validateFilename(item);
+    return path.join(directory,item?.filename ?? material.name);
+  };
+}
+
+export async function executeLocal(projectFile, output, selected = {}) {
+  const project = await readProject(projectFile);
+  const resolve=await localMaterials(projectFile);
   const inputs = Object.create(null);
   for (const material of project.materials.filter(item => item.kind === 'source' || item.kind === 'subtitle')) {
-    const item = records.find(value => value?.id === material.id);
-    if (item) validateFilename(item);
-    inputs[material.id] = selected[material.kind] ?? path.join(directory,item?.filename ?? material.name);
+    inputs[material.id] = selected[material.kind] ?? resolve(material);
   }
   return renderEdit(project,inputs,output);
+}
+
+export async function executeLocalAssembly(projectFile,output,phase,clipDirectory,approvedBasis) {
+  const project=await readProject(projectFile);
+  const timeline=assemblyPlan(project), resolve=await localMaterials(projectFile);
+  const inputs=Object.create(null);
+  const materialProof=[];
+  for (const proof of timeline.materials) {
+    let file;
+    if (proof.kind==='generated') {
+      if (!clipDirectory) throw new Error('Baixe os clipes vinculados e informe a pasta com --clips.');
+      file=path.join(path.resolve(clipDirectory),proof.id+'.mp4');
+    } else {
+      const material=project.materials.find(item=>item.id===proof.id);
+      file=resolve(material);
+      const stat=await fs.stat(file);
+      if (!stat.isFile() || stat.size!==material.bytes) throw new Error('Material local diferente da ficha.');
+    }
+    const hash=createHash('sha256');
+    let length=0;
+    for await (const chunk of createReadStream(file)) {hash.update(chunk);length+=chunk.length;}
+    const sha256=hash.digest('hex');
+    if (proof.sha256 && sha256!==proof.sha256) throw new Error('Clipe local diferente da ficha.');
+    inputs[proof.id]=file;
+    materialProof.push({id:proof.id,bytes:length,sha256});
+  }
+  const basis=createHash('sha256').update(JSON.stringify({version:1,timeline,files:materialProof})).digest('hex');
+  if (phase==='full' && approvedBasis!==basis) throw new Error('A montagem completa precisa da aprovação desta ficha e dos mesmos materiais.');
+  const report={...await renderAssembly(project,phase,inputs,output),basis};
+  await fs.writeFile(path.join(output,'relatorio-tecnico.json'),JSON.stringify(report,null,2)+'\n',{flag:'wx'});
+  return report;
 }

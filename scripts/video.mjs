@@ -11,7 +11,7 @@ import {editGraph} from '../server/graph-editor.mjs';
 import {repoRoot} from '../server/skills.mjs';
 import {checkReview} from './review.mjs';
 import {checkWorkflow} from './workflow-gate.mjs';
-import {executeLocal, importProject} from '../zapvideo/local.mjs';
+import {executeLocal,executeLocalAssembly,importProject} from '../zapvideo/local.mjs';
 import {projectFormat, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
 
 const args=process.argv.slice(2),command=args[0],arg=(key,fallback)=>args.includes(key)?args[args.indexOf(key)+1]:fallback;
@@ -39,6 +39,19 @@ try{
  else if(command==='edit'){
   const file=arg('--preset')??path.join(required('--project'),'projeto-video.json');
   console.log(JSON.stringify(await executeLocal(file,required('--out'),{source:arg('--source'),subtitle:arg('--srt')}),null,2));
+ }
+ else if(command==='assemble'){
+  const file=arg('--preset')??path.join(required('--project'),'projeto-video.json');
+  const phase=arg('--phase','sample');
+  let basis;
+  if(phase==='full'){
+   const workflow=path.resolve(required('--workflow'));
+   const approval=await read(workflow);
+   const gate=checkWorkflow(approval,'full-render',path.dirname(workflow));
+   if(!gate.ready)throw Error('Aprovações pendentes: '+gate.errors.join('; '));
+   basis=approval.assemblyBasisSha256;
+  }
+  console.log(JSON.stringify(await executeLocalAssembly(file,required('--out'),phase,arg('--clips'),basis),null,2));
  }
  else if(zapVideoContext)console.log(JSON.stringify(zapVideoContext,null,2));
  else {
@@ -73,6 +86,6 @@ try{
    try{const job=orchestrator.get(required('--job'));if(job.state!=='completed')throw Error('Job must be technically completed before delivery');const directory=orchestrator.directory(job.id),video=path.join(directory,'candidate.mp4'),hash=digest(await fs.readFile(video)),review=await read(path.join(directory,'review.json')),technical=await read(path.join(directory,'technical-report.json'));
     if(technical.sha256!==hash)throw Error('Technical report no longer matches video');const quality=checkReview(review,hash),workflowFile=required('--workflow'),workflow=checkWorkflow(await read(workflowFile),'deliver',path.dirname(path.resolve(workflowFile)),video);if(!quality.ready||!workflow.ready)throw Error('Final delivery review pending: '+[...quality.errors,...workflow.errors].join('; '));job.reviewStatus='reviewed';orchestrator.jobs.set(job.id,job);await orchestrator.save(job);const delivery={status:'reviewed',video,sha256:hash,captions:path.join(directory,'captions.srt'),plan:path.join(directory,'edit-plan.json'),technical:path.join(directory,'technical-report.json'),review:path.join(directory,'review.json')};await atomicJson(path.join(project,'delivery.json'),delivery);console.log(JSON.stringify(delivery,null,2));
    }finally{await orchestrator.close();}
-  }else throw Error('Use video import --preset file --out project; then context, edit, media, validate, stills, render or deliver --project project');
+  }else throw Error('Use video import --preset file --out project; then context, edit, assemble, media, validate, stills, render or deliver --project project');
  }
 }catch(error){console.error(error.message);process.exitCode=1;}

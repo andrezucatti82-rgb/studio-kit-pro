@@ -15,7 +15,9 @@ Base remota `origin/main` em `86b09382` (PR #52). Implementação isolada em `co
 | Catálogo e instalador | Staging emulado pediu autenticação. Catálogo de 35.311.530 bytes com ETag e 304 na revalidação. ZIP do instalador com 200. PHP com 404 no Worker. |
 | Gemini, proposta e análise por fonte | Simulados. Delimitação de permissões, preservação de edições mais recentes, resposta inválida e erro do provedor testados. Nenhuma chamada real de IA. |
 | Gemini, clipe isolado por plano | Passou no modo simulado local. Quadro apresentado e registrado por SHA-256, aceite com texto literal, estimativa separada, trabalho idempotente, MP4 720×1280 H.264/AAC com 3 segundos verificado, download e vínculo ao plano. O adaptador Omni foi testado com respostas simuladas. |
-| Gemini, demais gerações e montagem completa | Imagens, TTS, trilha e montagem completa seguem pendentes. As ferramentas e os gates do Studio Kit Pro continuam disponíveis no seu fluxo local. |
+| Gemini, quadro, narração e trilha | Percurso local simulado entregou JPEG vertical, WAV mono e MP3 estéreo de 30 s. O navegador adicionou o quadro ao projeto e abriu sua revisão antes do aceite do clipe. |
+| Montagem | Prova do Worker local gerou amostra de 6 s e montagem de 9 s com três cenas, títulos, movimento, narração, trilha e SRT. A CLI reproduziu os mesmos hashes. O Worker recusou montagem completa sem aceite e com título alterado após o aceite. |
+| Acesso ao Google | O segredo existe no GDA. O ZapVideo não tem Worker remoto nem credencial local. A requisição real segue sem ocorrer. O teto autorizado é R$ 50 por dia e o staging reserva no máximo US$ 5 em 24 horas. |
 | Container remoto | Configurado no manifesto, com o dry-run do Worker concluído sem rollout. O dry-run que compila a imagem parou por falta do Docker. Sem prova de uso de CPU, disco, memória ou tempo no Container remoto. |
 | DNS, TLS e publicação | DNS público inventariado. A zona ainda não foi criada na Cloudflare. Delegação, vínculo do Worker e HTTPS do aplicativo seguem pendentes. |
 

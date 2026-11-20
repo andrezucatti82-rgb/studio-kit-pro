@@ -19,7 +19,7 @@
       "name": "zapvideo-staging",
       "workers_dev": true,
       "preview_urls": false,
-      "vars": { "ENVIRONMENT": "staging", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0", "GEMINI_CLIP_VERIFIED": "0", "GEMINI_CLIP_DAILY_BUDGET_MICROS": "0" },
+      "vars": { "ENVIRONMENT": "staging", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0", "GEMINI_CLIP_VERIFIED": "0", "GEMINI_CLIP_DAILY_BUDGET_MICROS": "0", "GEMINI_ASSET_DAILY_BUDGET_MICROS": "0", "GEMINI_TEST_DAILY_BUDGET_MICROS": "5000000" },
       "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-staging", "database_id": "00000000-0000-4000-8000-000000000001", "migrations_dir": "migrations/zapvideo" }],
       "r2_buckets": [
         { "binding": "PUBLIC", "bucket_name": "zapvideo-staging-public" },
@@ -35,7 +35,7 @@
       "name": "zapvideo",
       "workers_dev": false,
       "preview_urls": false,
-      "vars": { "ENVIRONMENT": "production", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0", "GEMINI_CLIP_VERIFIED": "0", "GEMINI_CLIP_DAILY_BUDGET_MICROS": "0" },
+      "vars": { "ENVIRONMENT": "production", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0", "GEMINI_CLIP_VERIFIED": "0", "GEMINI_CLIP_DAILY_BUDGET_MICROS": "0", "GEMINI_ASSET_DAILY_BUDGET_MICROS": "0" },
       "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-production", "database_id": "00000000-0000-4000-8000-000000000002", "migrations_dir": "migrations/zapvideo" }],
       "r2_buckets": [
         { "binding": "PUBLIC", "bucket_name": "zapvideo-production-public" },

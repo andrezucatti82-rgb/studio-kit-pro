@@ -4,6 +4,7 @@ import {clipBasis,clipMode,clipScope,omniModel} from '../zapvideo/clips.mjs';
 import {downloadOmni,omniFileId,omniFileState,submitOmni} from '../zapvideo/omni.mjs';
 
 const config={ENVIRONMENT:'staging',GEMINI_CLIP_MODEL:omniModel,GEMINI_CLIP_VERIFIED:'1',GEMINI_API_KEY:'fictitious',
+  GEMINI_TEST_DAILY_BUDGET_MICROS:'5000000',
   RENDER_ENABLED:'1',RENDERER:{},GEMINI_CLIP_RESERVE_MICROS_PER_SECOND:'80000'};
 const selection={sceneId:'cena',shotId:'plano',frameId:'pauta',aspect:'9:16'};
 const plan={intent:{mode:'create',subject:'Tema do vídeo'},

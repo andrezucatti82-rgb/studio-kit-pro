@@ -116,7 +116,24 @@
                 <ul id="analysis-result"></ul>
               </div>
             </details>
+            <button type="button" class="secondary" id="asset-music" hidden>Preparar trilha</button>
             <p id="generation-note" class="muted">A geração de clipes exige aprovação do quadro de cada plano.</p>
+          </section>
+          <section class="panel" id="assembly-tools" aria-labelledby="assembly-title" hidden>
+            <h2 id="assembly-title">Montar vídeo</h2>
+            <label for="assembly-aspect">Proporção do vídeo</label>
+            <select id="assembly-aspect"><option value="9:16">9:16 · Vertical</option><option value="16:9">16:9 · Horizontal</option></select>
+            <label for="assembly-scene">Cena para a amostra</label><select id="assembly-scene"></select>
+            <label for="assembly-audio">Adicionar áudio em WAV, MP3, M4A ou AAC</label>
+            <input type="file" id="assembly-audio" accept=".wav,.mp3,.m4a,.aac" multiple>
+            <label for="assembly-music">Escolher trilha</label><select id="assembly-music"></select>
+            <label for="assembly-captions">Legendas em SRT</label><input type="file" id="assembly-captions" accept=".srt">
+            <p class="muted" id="assembly-captions-note"></p>
+            <label class="toggle"><input type="checkbox" id="assembly-permit"> Autorizo enviar os materiais escolhidos para esta montagem.</label>
+            <div class="button-row">
+              <button type="button" class="secondary" id="assembly-sample">Montar amostra</button>
+              <button type="button" class="primary" id="assembly-full" disabled>Revisar e montar vídeo completo</button>
+            </div>
           </section>
         </div>
 
@@ -161,6 +178,36 @@
     </section>
   </main>
 
+  <dialog id="assembly-dialog" aria-labelledby="assembly-review-title">
+    <h2 id="assembly-review-title">Revisar a montagem completa</h2>
+    <label for="assembly-storyboard">Prancha de moodboard, styleframes e storyboard</label>
+    <select id="assembly-storyboard"></select><img id="assembly-storyboard-preview" alt="Prancha apresentada" hidden>
+    <label for="assembly-animatic">Vídeo do animatic</label><select id="assembly-animatic"></select>
+    <video id="assembly-animatic-preview" controls preload="metadata" playsinline hidden></video>
+    <h3>Amostra integrada</h3><video id="assembly-sample-preview" controls preload="metadata" playsinline hidden></video>
+    <label class="toggle"><input type="checkbox" id="assembly-review-checkbox"> Revisei a prancha, assisti ao animatic e à amostra com áudio e aprovo a montagem completa.</label>
+    <label for="assembly-review-message">Seu aceite por escrito</label><textarea id="assembly-review-message" rows="2" maxlength="500"></textarea>
+    <p id="assembly-review-status" role="status" aria-live="polite"></p>
+    <button type="button" class="primary" id="assembly-review-confirm">Montar vídeo completo</button>
+    <button type="button" class="plain" id="assembly-review-close">Fechar</button>
+  </dialog>
+  <dialog id="asset-dialog" aria-labelledby="asset-title">
+    <h2 id="asset-title"></h2>
+    <p id="asset-input-preview"></p>
+    <div id="asset-frame-options" hidden><label for="asset-aspect">Proporção da imagem</label>
+      <select id="asset-aspect"><option value="9:16">9:16 · Vertical</option><option value="16:9">16:9 · Horizontal</option></select></div>
+    <div id="asset-speech-options" hidden><label for="asset-voice">Voz da narração</label>
+      <select id="asset-voice"><option>Kore</option><option>Charon</option><option>Zephyr</option></select></div>
+    <div id="asset-music-options" hidden><label for="asset-prompt">Como deve soar a trilha de 30 segundos?</label>
+      <textarea id="asset-prompt" maxlength="500" rows="3" placeholder="Ex.: piano leve, ritmo calmo, sem vocais"></textarea></div>
+    <button type="button" class="secondary" id="asset-quote">Consultar valor</button>
+    <div id="asset-estimate" hidden>
+      <p id="asset-confirm-content"></p><p id="asset-value"></p>
+      <button type="button" class="primary" id="asset-confirm">Confirmar criação do material</button>
+    </div>
+    <p id="asset-status" role="status" aria-live="polite"></p>
+    <button type="button" class="plain" id="asset-close">Fechar</button>
+  </dialog>
   <dialog id="clip-dialog" aria-labelledby="clip-title">
     <h2 id="clip-title">Aprovar quadro do clipe</h2>
     <p id="clip-scope"></p>

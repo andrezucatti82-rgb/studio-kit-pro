@@ -1,12 +1,14 @@
 import {WorkflowEntrypoint} from 'cloudflare:workers';
 import {Container} from '@cloudflare/containers';
-import {clipOutput,editOutputs} from '../style-atlas/dist/zapvideo-contract.mjs';
+import {assetOutputs,clipOutput,editOutputs} from '../style-atlas/dist/zapvideo-contract.mjs';
+import {assemblyOutput} from '../style-atlas/dist/zapvideo-assembly.mjs';
 import {exactBody, isHash, now, sql} from './http.mjs';
 import {readRevision, renderMode} from './jobs.mjs';
 import {analyzeMaterials, proposeBrief} from './gemini.mjs';
 import {getAnalysisInput} from './analysis-media.mjs';
 import {checkClipBeforeRun,clipMaxBytes} from './clips.mjs';
 import {downloadOmni,omniFileState,submitOmni} from './omni.mjs';
+import {checkMediaSelection,frameMaxBytes,generateMedia,mediaMaxBytes} from './media-assets.mjs';
 
 export class ZapVideoRenderer extends Container {
   defaultPort = 4000;
@@ -47,6 +49,73 @@ async function reserveOutput(env,job,total) {
   if (!claimed.meta.changes) throw new Error('Armazenamento de entregas no limite.');
 }
 
+class InvalidGeneratedMedia extends Error {}
+async function verifyGenerated(env,id,step,{spec,output,maximum,original,route,settings,extra}) {
+  await step.do('Iniciar verificação da mídia',recoverable,async ()=>{
+    const job=await getJob(env,id);
+    if (job.state!=='processing') return;
+    const request=renderer(env,id);
+    if (spec.mode==='gemini') {
+      const current=await request();
+      if (current.status===404) await current.body?.cancel();
+      else if ((await responseJson(current)).state!=='pending') return;
+      const source=await env.PRIVATE.get(keyFor(job,original));
+      const sha256=source?.customMetadata?.sha256;
+      if (!source || !isHash(sha256) || source.size>maximum) {
+        await source?.body.cancel();
+        throw new Error('Arquivo do provedor indisponível.');
+      }
+      await responseJson(await request('/inputs/candidate',{method:'PUT',
+        headers:{'Content-Length':String(source.size),'ZapVideo-SHA256':sha256},body:source.body}));
+    }
+    await responseJson(await request('/'+route+(spec.mode==='mock'?'-fixture':'-verify'),{
+      method:'POST',body:JSON.stringify(settings),
+    }));
+  });
+  for (let poll=0;poll<50;poll++) {
+    const current=await step.do('Consultar verificação da mídia '+poll,recoverable,async ()=>{
+      const job=await getJob(env,id);
+      if (job.state==='cancelled') return {state:'cancelled'};
+      return responseJson(await renderer(env,id)());
+    });
+    if (current.state==='cancelled') return;
+    if (current.state==='failed') throw new InvalidGeneratedMedia('Falha na verificação de formato e decodificação.');
+    if (current.state==='verified') {
+      await step.do('Liberar mídia verificada',recoverable,async ()=>{
+        const job=await getJob(env,id), report=current.report, file=report?.outputs?.[0];
+        if (!file || file.id!==output.id || file.name!==output.name || file.type!==output.type || !isHash(file.sha256) ||
+          !Number.isSafeInteger(file.bytes) || file.bytes<=0 || file.bytes>maximum) throw new Error('Relatório da mídia incompatível.');
+        await reserveOutput(env,job,file.bytes);
+        const response=await renderer(env,id)('/outputs/'+file.id);
+        if (!response.ok) {await response.body?.cancel();throw new Error('Entrega indisponível.');}
+        const saved=await env.PRIVATE.put(keyFor(job,file.id),exactBody(response,file.bytes),
+          {sha256:file.sha256,httpMetadata:{contentType:file.type}});
+        if (saved?.size!==file.bytes) throw new Error('Arquivo incompleto.');
+        await sql(env,"UPDATE jobs SET state='verified',result=? WHERE id=? AND state='processing'",
+          JSON.stringify({...report,project:job.project_id,revision:job.revision,mode:spec.mode,...extra}),id).run();
+      });
+      return;
+    }
+    await step.sleep('Aguardar verificação da mídia '+poll,'5 seconds');
+  }
+  throw new Error('Verificação da mídia expirou.');
+}
+
+async function cleanGenerated(env,id,step,needsRenderer,original,output) {
+  await step.do('Limpar mídia temporária',recoverable,async ()=>{
+    const job=await getJob(env,id);
+    if (needsRenderer) {
+      try {await (await renderer(env,id)('',{method:'DELETE'})).body?.cancel();}
+      catch { /* O Container tem expiração própria. */ }
+    }
+    await env.PRIVATE.delete(keyFor(job,original));
+    if (job.output_bytes && job.state!=='verified' && job.state!=='processing') {
+      await env.PRIVATE.delete(keyFor(job,output));
+      await sql(env,'UPDATE jobs SET output_bytes=0 WHERE id=?',id).run();
+    }
+  });
+}
+
 export class ZapVideoWorkflow extends WorkflowEntrypoint {
   async run(event, step) {
     const {id} = event.payload, env = this.env;
@@ -57,6 +126,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
     });
     if (!started) return;
     if (started==='clip') return this.clip(id,step);
+    if (started==='asset') return this.asset(id,step);
+    if (started==='assembly') return this.edit(id,step,true);
     if (started !== 'edit') return this.gemini(id,step);
     return this.edit(id,step);
   }
@@ -122,65 +193,13 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
         });
       }
       needsRenderer=true;
-      await step.do('Iniciar verificação do clipe',recoverable,async ()=>{
-        const job=await getJob(env,id);
-        if (job.state!=='processing') return;
-        const request=renderer(env,id);
-        if (spec.mode==='gemini') {
-          const current=await request();
-          if (current.status===404) {
-            await current.body?.cancel();
-          } else if ((await responseJson(current)).state!=='pending') {
-            return;
-          }
-          const file=await env.PRIVATE.get(keyFor(job,'clipe-original'));
-          const sha256=file?.customMetadata?.sha256;
-          if (!file || !isHash(sha256) || file.size>clipMaxBytes) {
-            await file?.body.cancel();
-            throw new Error('MP4 indisponível.');
-          }
-          await responseJson(await request('/inputs/candidate',{method:'PUT',headers:{
-            'Content-Length':String(file.size),'ZapVideo-SHA256':sha256},body:file.body}));
-        }
-        await responseJson(await request(spec.mode==='mock'?'/clip-fixture':'/clip-verify',{method:'POST',body:JSON.stringify({
-          aspect:spec.aspect,seconds:spec.seconds,
-        })}));
-      });
-      for(let poll=0;poll<50;poll++) {
-        const current=await step.do('Consultar renderizador do clipe '+poll,recoverable,async ()=>{
-          const job=await getJob(env,id);
-          if (job.state==='cancelled') return {state:'cancelled'};
-          return responseJson(await renderer(env,id)());
-        });
-        if (current.state==='cancelled') return;
-        if (current.state==='failed') {
-          confirmedFailure=true;
-          failure='O clipe falhou na verificação de formato, duração, áudio ou decodificação.';
-          throw new Error(failure);
-        }
-        if (current.state==='verified') {
-          await step.do('Liberar clipe verificado',recoverable,async ()=>{
-            const job=await getJob(env,id), report=current.report, output=report?.outputs?.[0];
-            if (!output || output.id!==clipOutput.id || output.type!==clipOutput.type || output.name!==clipOutput.name ||
-              !isHash(output.sha256) || output.bytes<=0 || output.bytes>clipMaxBytes || !Number.isSafeInteger(output.bytes)) {
-              throw new Error('Relatório do clipe incompatível.');
-            }
-            await reserveOutput(env,job,output.bytes);
-            const response=await renderer(env,id)('/outputs/'+clipOutput.id);
-            if (!response.ok) {await response.body?.cancel();throw new Error('Clipe indisponível.');}
-            const object=await env.PRIVATE.put(keyFor(job,clipOutput.id),exactBody(response,output.bytes),
-              {sha256:output.sha256,httpMetadata:{contentType:clipOutput.type}});
-            if (object?.size!==output.bytes) throw new Error('O clipe foi transferido parcialmente.');
-            await sql(env,"UPDATE jobs SET state='verified',result=? WHERE id=? AND state='processing'",
-              JSON.stringify({...report,project:spec.project,revision:spec.revision,mode:spec.mode,
-                sceneId:spec.sceneId,shotId:spec.shotId}),id).run();
-          });
-          return;
-        }
-        await step.sleep('Aguardar renderizador do clipe '+poll,'5 seconds');
+      await verifyGenerated(env,id,step,{spec,output:clipOutput,maximum:clipMaxBytes,original:'clipe-original',route:'clip',
+        settings:{aspect:spec.aspect,seconds:spec.seconds},extra:{sceneId:spec.sceneId,shotId:spec.shotId}});
+    } catch(error) {
+      if (error instanceof InvalidGeneratedMedia) {
+        failure='O clipe falhou na verificação de formato, duração, áudio ou decodificação.';
+        confirmedFailure=true;
       }
-      throw new Error('A verificação do clipe expirou.');
-    } catch {
       await step.do('Registrar interrupção do clipe',recoverable,async ()=>{
         const job=await getJob(env,id);
         const uncertain=job.provider_claim_at && !confirmedFailure;
@@ -188,18 +207,62 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           uncertain?'uncertain':'failed',uncertain?'Resultado sem confirmação. Concilie no Google antes de repetir.':failure,id).run();
       });
     } finally {
-      await step.do('Limpar material temporário do clipe',recoverable,async ()=>{
+      await cleanGenerated(env,id,step,needsRenderer,'clipe-original',clipOutput.id);
+    }
+  }
+
+  async asset(id,step) {
+    const env=this.env;
+    let needsRenderer=false, output;
+    let rejection;
+    try {
+      const spec=await step.do('Conferir configuração da mídia',recoverable,async ()=>{
         const job=await getJob(env,id);
-        if (needsRenderer) {
-          try {await (await renderer(env,id)('',{method:'DELETE'})).body?.cancel();}
-          catch { /* O Container tem expiração própria. */ }
-        }
-        await env.PRIVATE.delete(keyFor(job,'clipe-original'));
-        if (job.output_bytes && job.state!=='verified' && job.state!=='processing') {
-          await env.PRIVATE.delete(keyFor(job,clipOutput.id));
-          await sql(env,'UPDATE jobs SET output_bytes=0 WHERE id=?',id).run();
-        }
+        if (job.state!=='processing') return null;
+        const person=await sql(env,`SELECT p.owner FROM projects p JOIN people u ON p.owner=u.id
+          WHERE p.id=? AND u.revoked_at IS NULL AND u.expires_at>?`,job.project_id,now()).first();
+        if (!person) throw new Error('Código de acesso expirado.');
+        return {...checkMediaSelection(env,JSON.parse(job.parameters)),owner:person.owner};
       });
+      if (!spec) return;
+      const {scope}=spec;
+      output=assetOutputs[scope.kind];
+      const maximum=scope.kind==='frame'?frameMaxBytes:mediaMaxBytes;
+      if (spec.mode==='gemini') {
+        const accepted=await step.do('Solicitar mídia uma vez',singleRequest,async ()=>{
+          const job=await getJob(env,id);
+          if (job.provider_id && await env.PRIVATE.head(keyFor(job,'asset-original'))) return {};
+          const claim=await sql(env,`UPDATE jobs SET provider_claim_at=? WHERE id=? AND provider_claim_at IS NULL AND state='processing'
+            AND EXISTS(SELECT 1 FROM people WHERE id=? AND expires_at>? AND revoked_at IS NULL)`,now(),id,spec.owner,now()).run();
+          if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
+          const result=await generateMedia(checkMediaSelection(env,spec),env.GEMINI_API_KEY);
+          if (result.rejected) return {error:'O Google recusou o pedido de mídia.'};
+          await sql(env,'UPDATE jobs SET provider_id=? WHERE id=?',result.id,id).run();
+          if (result.error) return {error:result.error};
+          const saved=await env.PRIVATE.put(keyFor(job,'asset-original'),result.bytes,{
+            sha256:result.sha256,customMetadata:{sha256:result.sha256},httpMetadata:{contentType:output.type},
+          });
+          if (saved?.size!==result.bytes.length) throw new Error('Arquivo incompleto.');
+          return {};
+        });
+        rejection=accepted.error;
+        if (rejection) throw new Error(rejection);
+      }
+      needsRenderer=true;
+      await verifyGenerated(env,id,step,{spec,output,maximum,original:'asset-original',route:'asset',
+        settings:{kind:scope.kind,aspect:scope.aspect},extra:{
+          mediaKind:scope.kind,sceneId:scope.sceneId,shotId:scope.shotId,aspect:scope.aspect,voice:scope.voice,
+        }});
+    } catch(error) {
+      await step.do('Registrar interrupção da mídia',recoverable,async ()=>{
+        const job=await getJob(env,id);
+        const uncertain=job.provider_claim_at && !rejection && !(error instanceof InvalidGeneratedMedia);
+        await sql(env,"UPDATE jobs SET state=?,error=? WHERE id=? AND state='processing'",
+          uncertain?'uncertain':'failed',uncertain?'Resultado sem confirmação. Concilie no Google antes de repetir.':
+            (rejection || 'A mídia falhou na verificação ou no processamento.'),id).run();
+      });
+    } finally {
+      if (output) await cleanGenerated(env,id,step,needsRenderer,'asset-original',output.id);
     }
   }
 
@@ -228,7 +291,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
     }
   }
 
-  async edit(id,step) {
+  async edit(id,step,assembly=false) {
     const env = this.env;
     let error = 'O processamento falhou. Confira o formato do vídeo e os tempos da ficha.';
     try {
@@ -240,8 +303,9 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
         if (state.status !== 404 && (await responseJson(state)).state !== 'pending') return;
         await state.body?.cancel().catch(() => {});
         const plan = await readRevision(env,job.project_id,job.revision);
-        for (const [material, upload] of Object.entries(JSON.parse(job.parameters))) {
-          const row = await sql(env,"SELECT key,bytes,sha256 FROM uploads WHERE id=? AND project_id=? AND state='ready' AND expires_at>?",
+        const selected=JSON.parse(job.parameters);
+        for (const [material,upload] of Object.entries(assembly?selected.files:selected)) {
+          const row=assembly?upload:await sql(env,"SELECT key,bytes,sha256 FROM uploads WHERE id=? AND project_id=? AND state='ready' AND expires_at>?",
             upload,job.project_id,now()).first();
           if (!row) throw new Error('Material indisponível.');
           const object = await env.PRIVATE.get(row.key);
@@ -249,7 +313,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           await responseJson(await request('/inputs/'+material,{method:'PUT',body:object.body,
             headers:{'Content-Length':String(object.size),'ZapVideo-SHA256':row.sha256}}));
         }
-        await responseJson(await request('/render',{method:'POST',body:JSON.stringify(plan)}));
+        const renderPlan=assembly?{plan,phase:selected.phase}:plan;
+        await responseJson(await request(assembly?'/render-assembly':'/render',{method:'POST',body:JSON.stringify(renderPlan)}));
       });
       for (let poll = 0; poll < 100; poll++) {
         const state = await step.do('Consultar FFmpeg '+poll,recoverable,async () => {
@@ -267,9 +332,14 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
             const job = await getJob(env,id);
             if (job.state !== 'processing') return;
             const plan = await readRevision(env,job.project_id,job.revision);
-            const expected = editOutputs(plan), report = state.report;
+            const expected=assembly?[assemblyOutput]:editOutputs(plan), report=state.report;
             if (report?.project !== job.project_id || report.revision !== job.revision || report.outputs?.length !== expected.length) {
               throw new Error('Relatório incompatível.');
+            }
+            if (assembly) {
+              const selection=JSON.parse(job.parameters);
+              if (report.phase!==selection.phase) throw new Error('Fase de montagem incompatível.');
+              report.basis=selection.basis;
             }
             const total = report.outputs.reduce((sum,file) => sum+file.bytes,0);
             if (!Number.isSafeInteger(total) || total <= 0 || total > 1024 ** 3) throw new Error('Tamanho de entregas inválido.');
@@ -307,7 +377,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
         const job = await getJob(env,id);
         if (!job?.output_bytes || job.state === 'verified' || job.state === 'processing') return;
         const plan = await readRevision(env,job.project_id,job.revision);
-        await env.PRIVATE.delete(editOutputs(plan).map(({id}) => keyFor(job,id)));
+        const outputs=assembly?[assemblyOutput]:editOutputs(plan);
+        await env.PRIVATE.delete(outputs.map(({id}) => keyFor(job,id)));
         await sql(env,'UPDATE jobs SET output_bytes=0 WHERE id=?',id).run();
       });
     }

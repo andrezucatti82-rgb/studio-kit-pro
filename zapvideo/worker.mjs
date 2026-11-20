@@ -4,6 +4,8 @@ import {analysisBytes, analysisTypes} from './analysis-media.mjs';
 import {digest, exactBody, hours, HttpError, isExpired, isHash, json, now, objectResponse, person, randomHex, readJson, reject, sql} from './http.mjs';
 import {jobFiles,jobRoute, readRevision, renderMode, startJob} from './jobs.mjs';
 import {clipMode,clipModel,clipRoute,clipFrameMaxBytes} from './clips.mjs';
+import {mediaMode,quoteMedia} from './media-assets.mjs';
+import {approveAssembly,assemblyMode} from './assembly.mjs';
 import {startUpload, uploadRoute} from './uploads.mjs';
 export {ZapVideoRenderer, ZapVideoWorkflow} from './workflow.mjs';
 
@@ -91,7 +93,7 @@ async function handoff(request,env,url) {
 async function fileGrant(request,env,job,fileId,url) {
   const token = /(?:^|;\s*)zapvideo-file=([a-f0-9]{64})(?:;|$)/.exec(request.headers.get('Cookie') || '')?.[1];
   if (!isGet(request) || !isHash(token) || !isHash(job) || !isId(fileId)) reject(404,'Arquivo indisponível.');
-  const row = await sql(env,`SELECT j.project_id,j.revision,j.kind,j.id AS job,g.file_id
+  const row = await sql(env,`SELECT j.project_id,j.revision,j.kind,j.parameters,j.id AS job,g.file_id
     FROM grants g JOIN jobs j ON g.job_id=j.id JOIN people p ON g.owner=p.id
     WHERE g.hash=? AND g.job_id=? AND g.file_id=? AND g.expires_at>? AND j.expires_at>? AND p.expires_at>? AND p.revoked_at IS NULL AND j.state='verified'`,
     await digest(token),job,fileId,now(),now(),now()).first();
@@ -108,7 +110,8 @@ async function api(request,env,url) {
   if (segments.length === 1 && resource === 'capabilities' && request.method === 'GET') return json({
     render:renderMode(env),brief:briefMode(env),analysis:analysisMode(env),analysisBytes,analysisTypes,
     transcript:false,videoAI:clipMode(env)==='gemini',clip:clipMode(env),clipModel:clipModel(env),clipFrameMaxBytes,
-    imageAI:false,tts:false,music:false,limits,
+    imageAI:mediaMode(env,'frame')==='gemini',tts:mediaMode(env,'speech')==='gemini',music:mediaMode(env,'music')==='gemini',
+    assets:Object.fromEntries(['frame','speech','music'].map(kind=>[kind,mediaMode(env,kind)])),assembly:assemblyMode(env),limits,
   });
   if (segments.length === 1 && resource === 'handoff') return handoff(request,env,url);
   if (segments.length === 3 && resource === 'file') return fileGrant(request,env,id,scope,url);
@@ -126,21 +129,29 @@ async function api(request,env,url) {
   if (scope==='clips' && segments.length===4 && request.method==='POST' && ['approve','quote'].includes(item)) {
     return clipRoute(request,env,await readRevision(env,id,project.revision),owner,item);
   }
+  if (scope==='assets' && segments.length===4 && item==='quote' && request.method==='POST') {
+    return quoteMedia(request,env,await readRevision(env,id,project.revision),owner);
+  }
+  if (scope==='assembly' && segments.length===4 && item==='approve' && request.method==='POST') {
+    return approveAssembly(request,env,await readRevision(env,id,project.revision),owner);
+  }
   reject(404,'Rota indisponível.');
 }
 
 async function purge(env) {
   const cutoff = now();
   await env.DB.batch([
-    sql(env,"UPDATE jobs SET state='failed',error='Processamento interrompido.' WHERE kind='edit' AND state IN ('queued','processing') AND created_at<?",cutoff-1800),
-    sql(env,"UPDATE jobs SET state='failed',error='Pedido não iniciado.' WHERE kind IN ('brief','analysis','clip') AND state='queued' AND created_at<?",cutoff-1800),
-    sql(env,"UPDATE jobs SET state='uncertain',error='Sem confirmação do Gemini.' WHERE kind IN ('brief','analysis','clip') AND state='processing' AND created_at<?",cutoff-1800),
+    sql(env,"UPDATE jobs SET state='failed',error='Processamento interrompido.' WHERE kind IN ('edit','assembly') AND state IN ('queued','processing') AND created_at<?",cutoff-1800),
+    sql(env,"UPDATE jobs SET state='failed',error='Pedido não iniciado.' WHERE kind IN ('brief','analysis','clip','asset') AND state='queued' AND created_at<?",cutoff-1800),
+    sql(env,"UPDATE jobs SET state='uncertain',error='Sem confirmação do Gemini.' WHERE kind IN ('brief','analysis','clip','asset') AND state='processing' AND created_at<?",cutoff-1800),
     sql(env,'DELETE FROM clip_quotes WHERE expires_at<=?',cutoff),
+    sql(env,'DELETE FROM asset_quotes WHERE expires_at<=?',cutoff),
   ]);
   await sql(env,'DELETE FROM grants WHERE expires_at<=?',cutoff).run();
-  const jobs = (await sql(env,"SELECT id,project_id FROM jobs WHERE expires_at<=? AND NOT (kind='clip' AND state='uncertain' AND reserved_micros>0) LIMIT 25",cutoff).all()).results;
+  const jobs = (await sql(env,"SELECT id,project_id FROM jobs WHERE expires_at<=? AND NOT (kind IN ('clip','asset') AND state='uncertain' AND reserved_micros>0) LIMIT 25",cutoff).all()).results;
   for (const job of jobs) {
-    await env.PRIVATE.delete(['video','corte-1','corte-2','corte-3','legendas','clipe','clipe-original'].map(id => `projects/${job.project_id}/jobs/${job.id}/${id}`));
+    await env.PRIVATE.delete(['video','corte-1','corte-2','corte-3','legendas','clipe','clipe-original',
+      'quadro','narracao','trilha','asset-original','montagem'].map(id => `projects/${job.project_id}/jobs/${job.id}/${id}`));
     await sql(env,'DELETE FROM jobs WHERE id=?',job.id).run();
   }
   const uploads = (await sql(env,`SELECT * FROM uploads u WHERE expires_at<=? AND lock_until<=? AND NOT EXISTS

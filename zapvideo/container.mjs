@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {Transform} from 'node:stream';
 import {pipeline} from 'node:stream/promises';
-import {renderClipCandidate,renderEdit} from './renderer.mjs';
+import {renderAssembly,renderClipCandidate,renderEdit,verifyMediaAsset} from './renderer.mjs';
 import {isId, limits, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(),'zapvideo-'));
@@ -14,6 +14,8 @@ const jobs = new Map();
 const maxOutputBytes = 1024 ** 3;
 const uploadSize = limits.videoBytes;
 const fixturesAllowed=(process.env.RENDER_HOST || '127.0.0.1')==='127.0.0.1';
+const mediaRoutes={ 'clip-verify':renderClipCandidate,'asset-verify':verifyMediaAsset,
+  ...(fixturesAllowed?{'clip-fixture':renderClipCandidate,'asset-fixture':verifyMediaAsset}:{}) };
 
 function json(res, status, body) {
   res.writeHead(status, {'Content-Type':'application/json','Cache-Control':'no-store'});
@@ -64,7 +66,7 @@ const server = createServer(async (req,res) => {
     let job = jobs.get(id);
     if (!job && !route && req.method === 'DELETE') return json(res,200,{state:'removed'});
     if (!job && ((req.method === 'PUT' && route === 'inputs' && isId(item)) ||
-      (req.method==='POST' && route==='clip-fixture' && !item && fixturesAllowed))) {
+      (req.method==='POST' && !item && fixturesAllowed && ['clip-fixture','asset-fixture'].includes(route)))) {
       if (jobs.size >= 2) return json(res,429,{error:'Renderizador ocupado.'});
       const dir = path.join(root,id);
       await fs.mkdir(dir,{recursive:true});
@@ -92,13 +94,25 @@ const server = createServer(async (req,res) => {
       });
       return json(res,202,{state:'working'});
     }
-    if (req.method==='POST' && !item && (route==='clip-verify' || (route==='clip-fixture' && fixturesAllowed))) {
+    if (route==='render-assembly' && !item && req.method==='POST') {
+      if (job.state!=='pending') { req.resume();return json(res,202,{state:job.state}); }
+      const {plan,phase}=await readObject(req,128*1024);
+      job.state='working';
+      job.work=renderAssembly(plan,phase,job.inputs,path.join(job.dir,'out'),
+        AbortSignal.any([job.controller.signal,AbortSignal.timeout(15*60_000)])).then(report=>{
+        if (report.outputs[0].bytes>maxOutputBytes) throw new Error('Saída acima do limite.');
+        job.report=report;job.state='verified';
+      }).catch(error=>{job.state='failed';job.error=error.message;});
+      return json(res,202,{state:'working'});
+    }
+    if (req.method==='POST' && !item && Object.hasOwn(mediaRoutes,route)) {
       if (job.state!=='pending') { req.resume();return json(res,202,{state:job.state}); }
       const settings=await readObject(req,2048);
       const source=job.inputs.candidate;
-      if (route==='clip-verify' && !source) return json(res,400,{error:'Envie o MP4 do provedor.'});
+      const real=route.endsWith('-verify');
+      if (real && !source) return json(res,400,{error:'Envie o arquivo do provedor.'});
       job.state='working';
-      job.work=renderClipCandidate(settings,route==='clip-verify'?source:null,path.join(job.dir,'out'),
+      job.work=mediaRoutes[route](settings,real?source:null,path.join(job.dir,'out'),
         AbortSignal.any([job.controller.signal,AbortSignal.timeout(3*60_000)])).then(report=>{
         job.report=report;job.state='verified';
       }).catch(error=>{

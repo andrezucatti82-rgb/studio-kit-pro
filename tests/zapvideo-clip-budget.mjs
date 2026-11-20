@@ -3,11 +3,12 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
 import {clipRoute,omniModel} from '../zapvideo/clips.mjs';
+import {models,quoteMedia} from '../zapvideo/media-assets.mjs';
 import {startJob} from '../zapvideo/jobs.mjs';
 import {hex,now} from '../zapvideo/http.mjs';
 
 const db=new DatabaseSync(':memory:');
-for (const name of ['0001_pilot.sql','0002_output_quota.sql','0003_clip_approvals.sql']) {
+for (const name of ['0001_pilot.sql','0002_output_quota.sql','0003_clip_approvals.sql','0004_asset_quotes.sql']) {
   db.exec(readFileSync(new URL('../migrations/zapvideo/'+name,import.meta.url),'utf8'));
 }
 const dbBinding={prepare(query){return {bind(...args){
@@ -19,6 +20,8 @@ const sha=hex(await crypto.subtle.digest('SHA-256',selected));
 const starts=[];
 const env={ENVIRONMENT:'staging',GEMINI_CLIP_VERIFIED:'1',GEMINI_CLIP_MODEL:omniModel,
   GEMINI_API_KEY:'fictitious',RENDER_ENABLED:'1',RENDERER:{},GEMINI_CLIP_RESERVE_MICROS_PER_SECOND:'80000',
+  GEMINI_TEST_DAILY_BUDGET_MICROS:'400000',GEMINI_ASSET_DAILY_BUDGET_MICROS:'100000',
+  GEMINI_FRAME_VERIFIED:'1',GEMINI_FRAME_MODEL:models.frame,GEMINI_FRAME_RESERVE_MICROS:'50000',
   GEMINI_CLIP_DAILY_BUDGET_MICROS:'400000',DB:dbBinding,
   PRIVATE:{get:async()=>new Blob([selected])},JOBS:{create:async({id})=>starts.push(id)}};
 const original=globalThis.fetch;
@@ -58,6 +61,10 @@ try{
   const repeat=await quote(first);
   await assert.rejects(dispatch(first,repeat),error=>error.status===409);
   await assert.rejects(dispatch(other,fee2),error=>error.status===429);
+  const frame=await (await quoteMedia(request({revision:1,kind:'frame',sceneId:'scene',shotId:'shot',aspect:'9:16'}),
+    env,other.plan,other.owner)).json();
+  await assert.rejects(startJob(request({revision:1,kind:'asset',quoteId:frame.id,confirmed:true}),
+    env,other.plan,other.owner),error=>error.status===429);
   assert.equal(new Set(starts).size,1);
   assert.equal(db.prepare('SELECT count(*) count, sum(reserved_micros) sum FROM jobs').get().sum,400000);
   console.log('Reserva simulada: zero bloqueia, orçamento é cumulativo, chamada incerta bloqueia nova tentativa.');

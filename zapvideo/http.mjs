@@ -12,6 +12,26 @@ export const hours = count => count * 3600;
 export const isHash = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
 export const isExpired = row => row.expires_at <= now();
 export const uuid = () => crypto.randomUUID();
+export function googleDailyBudget(env) {
+  const value=env.GEMINI_TEST_DAILY_BUDGET_MICROS;
+  if (env.ENVIRONMENT!=='staging' || typeof value!=='string' || !/^[0-9]{1,7}$/.test(value)) return 0;
+  return Math.min(Number(value),5_000_000);
+}
+
+export async function boundedBytes(response,max,message) {
+  if (!response.body || Number(response.headers.get('Content-Length'))>max) {
+    await response.body?.cancel();
+    throw new Error(message);
+  }
+  const chunks=[];
+  let length=0;
+  for await (const chunk of response.body) {
+    length+=chunk.length;
+    if (length>max) throw new Error(message);
+    chunks.push(chunk);
+  }
+  return new Uint8Array(await new Blob(chunks).arrayBuffer());
+}
 
 export async function readJson(request, max = 128 * 1024) {
   if (!/^application\/json(?:;|$)/i.test(request.headers.get('Content-Type') || '') || !request.body) {

@@ -6,6 +6,11 @@ export const limits = Object.freeze({
 });
 export const captionsFormats = ['mp4', 'mp4+srt'];
 export const clipOutput = Object.freeze({id:'clipe',name:'clipe-previa.mp4',type:'video/mp4'});
+export const assetOutputs=Object.freeze({
+  frame:Object.freeze({id:'quadro',name:'quadro-previa.jpg',type:'image/jpeg'}),
+  speech:Object.freeze({id:'narracao',name:'narracao-previa.wav',type:'audio/wav'}),
+  music:Object.freeze({id:'trilha',name:'trilha-previa.mp3',type:'audio/mpeg'}),
+});
 export const clipAspects = ['9:16','16:9'];
 export const validClipSettings = ({aspect,seconds}) => clipAspects.includes(aspect) &&
   Number.isSafeInteger(seconds) && seconds>=3 && seconds<=15;

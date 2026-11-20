@@ -1,6 +1,6 @@
 import {isId,validClipSettings} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {detectType,mediaType,encodeBase64} from './analysis-media.mjs';
-import {digest, hex, isHash, json, now, readJson, reject, sql, uuid} from './http.mjs';
+import {digest, googleDailyBudget, hex, isHash, json, now, readJson, reject, sql, uuid} from './http.mjs';
 
 export const clipMaxBytes=24*1024**2;
 export const clipFrameMaxBytes=2*1024**2;
@@ -13,7 +13,7 @@ export function clipMode(env) {
   return 'unavailable';
 }
 const micros=value=>typeof value==='string' && /^[0-9]{1,8}$/.test(value)?Number(value):0;
-export const dailyBudget=env=>micros(env.GEMINI_CLIP_DAILY_BUDGET_MICROS);
+export const dailyBudget=env=>Math.min(micros(env.GEMINI_CLIP_DAILY_BUDGET_MICROS),googleDailyBudget(env));
 const unitPrice=env=>micros(env.GEMINI_CLIP_RESERVE_MICROS_PER_SECOND);
 const configuredModel=env=>env.GEMINI_CLIP_MODEL || '';
 export const clipModel=(env,mode=clipMode(env))=>mode==='mock'?omniModel:configuredModel(env);

@@ -2,9 +2,11 @@ import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {createReadStream} from 'node:fs';
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
-import {clipOutput,editOutputs, limits, validateProject,validClipSettings} from '../style-atlas/dist/zapvideo-contract.mjs';
+import {assetOutputs,clipAspects,clipOutput,editOutputs, limits, validateProject,validClipSettings} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {readSrt} from '../style-atlas/dist/zapvideo-captions.mjs';
+import {assemblyOutput,assemblyPlan} from '../style-atlas/dist/zapvideo-assembly.mjs';
 
 const formats = new Set(['mov', 'mp4', 'm4a', '3gp', '3g2', 'mj2', 'matroska', 'webm']);
 const tool = name => process.env[name.toUpperCase() + '_PATH'] || name;
@@ -90,6 +92,182 @@ export async function renderClipCandidate(settings, source, directory, signal) {
     {signal,timeout:60_000});
   return {status:'review_pending',outputs:[{...clipOutput,width,height,audio:true,duration,
     bytes:(await fs.stat(output)).size,sha256:await checksum(output)}]};
+}
+
+export async function verifyMediaAsset(settings,source,directory,signal) {
+  const {kind,aspect}=settings;
+  if (!Object.hasOwn(assetOutputs,kind) || (kind==='frame' && !clipAspects.includes(aspect))) throw new Error('Formato de material inválido.');
+  const spec=assetOutputs[kind];
+  const output=path.join(directory,spec.name);
+  await fs.mkdir(directory);
+  if (source) {
+    await fs.copyFile(source,output);
+  } else {
+    const size=aspect==='9:16'?'720x1280':'1280x720';
+    const filters=kind==='frame' ? ['-f','lavfi','-i',`testsrc2=size=${size}:rate=1`,'-frames:v','1','-q:v','4','-update','1'] :
+      kind==='speech' ? ['-f','lavfi','-i','sine=frequency=420:sample_rate=24000:duration=3','-c:a','pcm_s16le'] :
+        ['-f','lavfi','-i','sine=frequency=220:sample_rate=44100:duration=30',
+          '-f','lavfi','-i','sine=frequency=329.63:sample_rate=44100:duration=30',
+          '-filter_complex','amix=inputs=2:normalize=1','-ac','2','-c:a','libmp3lame','-b:a','96k'];
+    await run('ffmpeg',['-nostdin','-v','error','-n','-threads','1',...filters,'-threads','1',output],{signal,timeout:60_000});
+  }
+  const input=['-protocol_whitelist','file,pipe','-format_whitelist',kind==='frame'?'jpeg_pipe,image2':kind==='speech'?'wav':'mp3'];
+  const {streams,format}=JSON.parse(await run('ffprobe',['-v','error',...input,'-show_streams','-show_format','-of','json',output],
+    {signal,timeout:20_000}));
+  const [stream]=streams;
+  const bytes=(await fs.stat(output)).size;
+  let properties;
+  if (kind==='frame') {
+    const [w,h]=aspect.split(':').map(Number);
+    if (streams.length!==1 || stream.codec_name!=='mjpeg' || stream.width<300 || stream.height<300 ||
+      stream.width*stream.height>4096**2 || Math.abs((stream.width/stream.height)/(w/h)-1)>0.02 ||
+      bytes>2*1024**2) throw new Error('Quadro incompatível com a proporção ou tamanho solicitado.');
+    properties={width:stream.width,height:stream.height};
+  } else {
+    const duration=Number(format.duration);
+    const expected=kind==='speech'?{codec:'pcm_s16le',rate:24000,channels:1}:{codec:'mp3',rate:44100,channels:2};
+    if (streams.length!==1 || stream.codec_name!==expected.codec || Number(stream.sample_rate)!==expected.rate ||
+      stream.channels!==expected.channels || !Number.isFinite(duration) || duration<=0 || duration>170 ||
+      (kind==='music' && Math.abs(duration-30)>1) || bytes>8*1024**2) throw new Error('Áudio incompatível com o formato solicitado.');
+    properties={duration,channels:stream.channels,sampleRate:expected.rate};
+  }
+  await run('ffmpeg',['-nostdin','-v','error','-xerror','-threads','1',...input,'-i',output,'-map','0','-f','null','-'],
+    {signal,timeout:60_000});
+  return {status:'review_pending',outputs:[{...spec,...properties,bytes,sha256:await checksum(output)}]};
+}
+
+const fps=30;
+const seconds=frames=>frames/fps;
+const milliseconds=frames=>Math.round(seconds(frames)*1000);
+function escapeAss(value) {
+  return value.replace(/[{}\\\r\n\x00-\x1f]/g,' ');
+}
+async function titleFile(directory,text,width,height) {
+  const data=`[Script Info]
+ScriptType: v4.00+
+PlayResX: ${width}
+PlayResY: ${height}
+[V4+ Styles]
+Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding
+Style: Title,Arial,${Math.round(Math.min(width,height)*0.066)},&H00FFFFFF,&H00000000,&H00101010,&H90000000,-1,0,0,0,100,100,0,0,1,3,1,8,38,38,65,1
+[Events]
+Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
+Dialogue: 0,0:00:00.00,0:10:00.00,Title,,0,0,0,,{\\fad(180,240)}${escapeAss(text)}
+`;
+  await fs.writeFile(path.join(directory,'title.ass'),data);
+}
+async function audioDuration(file,signal) {
+  const {streams,format}=JSON.parse(await run('ffprobe',['-v','error','-protocol_whitelist','file,pipe',
+    '-format_whitelist','wav,mp3,mov,aac','-show_streams','-show_format','-of','json',file],{signal,timeout:20_000}));
+  const duration=Number(format.duration);
+  if (!Number.isFinite(duration) || duration<=0 || duration>900 || !streams.some(stream=>stream.codec_type==='audio')) {
+    throw new Error('Faixa de áudio incompatível.');
+  }
+  return duration;
+}
+const audioInput=['-protocol_whitelist','file,pipe','-format_whitelist','wav,mp3,mov,aac'];
+async function stillInput(file) {
+  const input=await fs.open(file,'r');
+  const header=Buffer.alloc(12);
+  try {await input.read(header);} finally {await input.close();}
+  const codec=header[0]===255 && header[1]===216 && header[2]===255?'mjpeg':
+    header[0]===137 && header.toString('ascii',1,4)==='PNG'?'png':
+      header.toString('ascii',0,4)==='RIFF' && header.toString('ascii',8,12)==='WEBP'?'webp':null;
+  if (!codec) throw new Error('Imagem da montagem incompatível.');
+  return ['-protocol_whitelist','file,pipe','-pattern_type','none','-loop','1','-f','image2','-c:v',codec];
+}
+
+export async function renderAssembly(raw,phase,inputs,directory,signal) {
+  if (!['sample','full'].includes(phase)) throw new Error('Fase de montagem inválida.');
+  const timeline=assemblyPlan(raw);
+  const span=phase==='sample'?timeline.sample:{start:0,end:timeline.totalFrames};
+  const width=timeline.aspect==='9:16'?720:1280, height=timeline.aspect==='9:16'?1280:720;
+  const total=span.end-span.start, duration=seconds(total);
+  const lookup=async id=>{
+    const file=inputs[id];
+    if (!file || !(await fs.stat(file)).isFile()) throw new Error('Material ausente na montagem.');
+    return path.resolve(file);
+  };
+  const out=path.resolve(directory);
+  await fs.mkdir(out);
+  const work=await fs.mkdtemp(path.join(os.tmpdir(),'zapvideo-assembly-'));
+  try {
+    const parts=[];
+    const localShots=timeline.shots.filter(shot=>shot.start>=span.start && shot.start<span.end);
+    for (const [index,shot] of localShots.entries()) {
+      const source=await lookup(shot.id), length=seconds(shot.frames);
+      const image=shot.type==='image';
+      let audio;
+      let videoIndex;
+      if (!image) {
+        const probe=await probeVideo(source,signal);
+        audio=shot.audio?probe.audio:null;
+        videoIndex=probe.video.index;
+        if (probe.duration+0.045<length) throw new Error('A tomada é mais curta que o tempo marcado no plano '+(index+1)+'.');
+      }
+      const filters=[`scale=${width}:${height}:force_original_aspect_ratio=decrease:force_divisible_by=2`,
+        `pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2`,'setsar=1'];
+      if (shot.motion) filters.push(`zoompan=z='min(pzoom+0.0012,1.12)':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s=${width}x${height}:fps=30`);
+      filters.push('fps=30','format=yuv420p');
+      if (shot.overlay) {
+        await titleFile(work,shot.overlay,width,height);
+        filters.push('subtitles=title.ass');
+      }
+      const name='part-'+index+'.mp4';
+      const sourceInput=image?await stillInput(source):ffmpegInput;
+      await run('ffmpeg',['-nostdin','-v','error','-xerror','-n','-threads','2','-filter_threads','2',...sourceInput,'-i',source,
+        ...(!audio?['-f','lavfi','-i','anullsrc=r=48000:cl=stereo']:[]),
+        '-t',String(length),'-map',image?'0:v:0':`0:${videoIndex}`,'-map',audio?`0:${audio.index}`:'1:a:0',
+        '-vf',filters.join(','),'-af','aresample=48000,apad','-c:v','libx264','-preset','veryfast','-crf','20',
+        '-threads','2','-c:a','aac','-ar','48000','-ac','2',name],{cwd:work,signal});
+      parts.push(`file '${name}'`);
+    }
+    await fs.writeFile(path.join(work,'parts.txt'),parts.join('\n')+'\n');
+    const args=['-nostdin','-v','error','-xerror','-n','-filter_threads','2','-filter_complex_threads','2',
+      '-f','concat','-safe','1','-protocol_whitelist','file,pipe','-i','parts.txt'];
+    const tracks=[];
+    for (const track of timeline.narrations.filter(item=>item.start>=span.start&&item.start<span.end)) {
+      const source=await lookup(track.id);
+      if (await audioDuration(source,signal)>seconds(track.frames)+0.08) {
+        throw new Error('A narração é mais longa que a cena. Ajuste os tempos antes de montar.');
+      }
+      args.push(...audioInput,'-i',source);
+      tracks.push(`aresample=48000,adelay=${milliseconds(track.start-span.start)}:all=1`);
+    }
+    if (timeline.music) {
+      const source=await lookup(timeline.music);
+      await audioDuration(source,signal);
+      args.push(...audioInput,'-ss',String(seconds(span.start)),'-i',source);
+      tracks.push('aresample=48000,volume=0.13');
+    }
+    const filters=tracks.map((filter,index)=>`[${index+1}:a:0]${filter}[a${index}]`);
+    const labels=['[0:a:0]',...tracks.map((_,index)=>`[a${index}]`)].join('');
+    if (tracks.length) filters.push(`${labels}amix=inputs=${tracks.length+1}:duration=first:normalize=0,alimiter=limit=0.9[aout]`);
+    let captions='';
+    if (timeline.captions) {
+      const file=await lookup(timeline.captions);
+      const cues=readSrt(new TextDecoder('utf-8',{fatal:true}).decode(await fs.readFile(file)),seconds(timeline.totalFrames));
+      captions=writeSrt(cues,milliseconds(span.start),milliseconds(span.end));
+    }
+    if (captions) {
+      await fs.writeFile(path.join(work,'assembly.srt'),captions);
+      args.push('-vf',"subtitles=assembly.srt:force_style='FontName=Arial,FontSize=19,Outline=2,MarginV=26'",
+        '-c:v','libx264','-preset','veryfast','-crf','20','-threads','2');
+    } else args.push('-c:v','copy');
+    if (filters.length) args.push('-filter_complex',filters.join(';'));
+    const target=path.join(out,assemblyOutput.name);
+    args.push('-map','0:v:0','-map',tracks.length?'[aout]':'0:a:0','-t',String(duration),
+      '-c:a','aac','-ar','48000','-ac','2','-movflags','+faststart',target);
+    await run('ffmpeg',args,{cwd:work,signal});
+    const proof=await probeVideo(target,signal);
+    if (proof.video.codec_name!=='h264' || proof.video.width!==width || proof.video.height!==height ||
+      proof.audio?.codec_name!=='aac' || Math.abs(proof.duration-duration)>0.18) throw new Error('A montagem não corresponde à ficha.');
+    await run('ffmpeg',['-nostdin','-v','error','-xerror','-threads','2',...ffmpegInput,'-i',target,'-map','0','-f','null','-'],{signal});
+    return {status:'review_pending',phase,project:raw.id,revision:raw.revision,
+      outputs:[{...assemblyOutput,width,height,audio:true,duration:proof.duration,bytes:(await fs.stat(target)).size,sha256:await checksum(target)}]};
+  } finally {
+    await fs.rm(work,{recursive:true,force:true});
+  }
 }
 
 export async function renderEdit(raw, inputs, directory, signal) {

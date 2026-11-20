@@ -36,7 +36,9 @@ export async function startUpload(request, env, project, owner) {
   const revision = await sql(env,'SELECT body FROM revisions WHERE project_id=? AND revision=?',project.id,project.revision).first();
   const material = JSON.parse(revision.body).materials.find(item => item.id === materialId && item.permission === 'process');
   if (!material || material.bytes !== bytes) reject(400,'Arquivo não autorizado na ficha.');
-  if (!['source','subtitle'].includes(material.kind) && (!mediaType(material.name) || bytes>analysisBytes)) {
+  const assemblyType=['broll','take','audio'].includes(material.kind) &&
+    (material.kind!=='audio' || /\.(?:mp3|wav|m4a|aac)$/i.test(material.name));
+  if (!['source','subtitle'].includes(material.kind) && !assemblyType && (!mediaType(material.name) || bytes>analysisBytes)) {
     reject(400,'Arquivo incompatível com a análise de materiais.');
   }
   const id = uuid(), key = `projects/${project.id}/input/${id}`;
