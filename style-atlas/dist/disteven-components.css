@@ -165,6 +165,18 @@ html[data-disteven-select-fallback] body[data-disteven=true] select:not([multipl
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23f5f5f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
  background-position:right 12px center;background-repeat:no-repeat;background-size:16px;
 }
+.disteven-select-field{position:relative;display:inline-grid;max-width:100%;vertical-align:middle}
+body[data-disteven=true] label>.disteven-select-field{display:grid;width:100%}
+.disteven-select-field:has(>select[hidden]){display:none}
+.disteven-select-field>select{pointer-events:none}
+body[data-disteven=true] .disteven-select-trigger{
+ position:absolute;inset:0;width:100%;min-height:0;padding:0;appearance:none;
+ background:transparent;border:0;border-radius:16px;box-shadow:none;cursor:pointer;
+}
+body[data-disteven=true] .disteven-select-trigger:is(:focus-visible,[aria-expanded=true]){
+ outline:2px solid var(--disteven-accent);outline-offset:-1px;
+}
+body[data-disteven=true] .disteven-select-trigger:disabled{cursor:default}
 .disteven-select-menu{
  position:fixed;z-index:1000;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;
  padding:4px;border:1px solid var(--disteven-accent,#e2ff3b);border-radius:16px;background:#242424;
@@ -234,8 +246,6 @@ body[data-disteven=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44p
  body[data-disteven=true] .disteven-catalogue-controls select{font-size:var(--disteven-type-body)}
 }
 @media(max-width:360px){
- body[data-disteven=true] .disteven-brand .disteven-wordmark{font-size:26px}
- body[data-disteven=true] .disteven-brand>img{width:24px}
  body[data-disteven=true] .disteven-header-progress #distevenContinue{padding-inline:14px}
 }
 @media(min-width:701px){body[data-disteven=true] .disteven-header .disteven-help{font-size:var(--disteven-type-compact)}}

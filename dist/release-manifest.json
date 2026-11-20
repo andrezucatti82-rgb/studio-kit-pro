@@ -68,53 +68,24 @@
   "installationScope": "Packages do not install or update a ChatGPT account automatically.",
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
-      "bytes": 218136,
-      "sha256": "48793f1869827d61fc794ef4c212a7462d8f64f888622ec894acb9a8c8a4c8aa"
+      "bytes": 218788,
+      "sha256": "aca56aa567f51fe7f86770d93954bf037a3b4ca0405f4108532b817ef19934ec"
     },
     "video-multimarcas-plugin.zip": {
-      "bytes": 218650,
-      "sha256": "bf9cd40bf6a62773ed2c246f05d6561ff98202bdf9fb12fb7bea82a51bf85696"
+      "bytes": 219302,
+      "sha256": "27820af2551f7e92e99ff5bfd06b46657aba8585d5676d9662a850db89f39d8d"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4875033,
-      "sha256": "6629a8413601a760c0db25d8963be95ad554637e255c536d68b2da2a6b6f56b7"
+      "bytes": 4875682,
+      "sha256": "a1c0525febc63403e6c328b7729498076b255132d5da3c4a46938e0f72da472b"
     },
     "video-multimarcas.skill": {
-      "bytes": 217113,
-      "sha256": "b5bc6751502282d04be5e57a453560e632389db242b2a544dfa3b603738a073c"
+      "bytes": 217765,
+      "sha256": "c0be8d1ba64eb12cf08e0c1a6697c0308322d69afe3b5d37733008cb485e3636"
     },
     "video-multimarcas.zip": {
-      "bytes": 217113,
-      "sha256": "b5bc6751502282d04be5e57a453560e632389db242b2a544dfa3b603738a073c"
+      "bytes": 217765,
+      "sha256": "c0be8d1ba64eb12cf08e0c1a6697c0308322d69afe3b5d37733008cb485e3636"
     }
-  },
-  "installer": {
-    "version": 1,
-    "kitVersion": "2.16.0",
-    "sourceRevision": "e8b67bc79970118414094cac11614c60cfdbc483",
-    "sourceReady": true,
-    "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 679285,
-    "sha256": "971c51567ec7ccd9d6cdcfe8cbf770cde8fdb36c4be4c1299f09faa1e13d96b4",
-    "tutorial": "como-instalar.html",
-    "scope": "local project for Codex and Claude Code; no automatic web-account installation",
-    "internetRequired": true,
-    "freeToolchain": {
-      "profile": "all-free",
-      "toolCount": 15,
-      "verification": "on each target machine",
-      "binariesBundled": false
-    },
-    "fullProjectDownloadMiB": 819,
-    "skills": 1,
-    "internalModules": 7,
-    "presenterStyles": 265,
-    "curadoria": {
-      "enabled": true,
-      "documentation": "https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/docs/CURADORIA-LIVRE.md",
-      "mcp": "studio_curadoria",
-      "accountsRequired": false
-    },
-    "localFile": "studio-kit-pro-installer.zip"
   }
 }
