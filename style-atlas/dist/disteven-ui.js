@@ -197,12 +197,17 @@
   if(!latest?.selected.length||window.AtlasGuidedFlow?.hasDraft())$('startGuided').click();else window.AtlasShell.openBrief();
  });
  const mobileNavigation=matchMedia('(max-width: 700px)');
- const categoryToggle=$('distevenCategoryToggle');
+ const categoryToggle=$('distevenCategoryToggle'),searchField=$('search'),desktopPlaceholder=searchField.getAttribute('placeholder');
+ function updateSearchHint(){
+  searchField.placeholder=mobileNavigation.matches?'Buscar estilos':desktopPlaceholder;
+ }
+ updateSearchHint();
  categoryToggle.addEventListener('click',e=>{
   if(!menu.hidden){closeMenu(categoryToggle);return;}
   showMenu(categoryToggle,'',{focus:e.detail===0});
  });
  mobileNavigation.addEventListener?.('change',()=>{
+  updateSearchHint();
   if(menu.hidden)return;
   if(mobileNavigation.matches)showMenu(categoryToggle,menuGroup,{topic:expandedTopic});
   else if(menuGroup)showMenu(desktopTrigger(menuGroup),menuGroup,{topic:expandedTopic});
