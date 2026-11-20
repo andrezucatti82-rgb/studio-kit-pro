@@ -116,7 +116,7 @@
                 <ul id="analysis-result"></ul>
               </div>
             </details>
-            <p id="generation-note" class="muted">Geração de clipes, imagens, narração e trilha indisponível no piloto. Aprovações visuais são exigidas antes de qualquer clipe com IA.</p>
+            <p id="generation-note" class="muted">A geração de clipes exige aprovação do quadro de cada plano.</p>
           </section>
         </div>
 
@@ -161,6 +161,29 @@
     </section>
   </main>
 
+  <dialog id="clip-dialog" aria-labelledby="clip-title">
+    <h2 id="clip-title">Aprovar quadro do clipe</h2>
+    <p id="clip-scope"></p>
+    <p class="muted" id="clip-mode"></p>
+    <label for="clip-aspect">Proporção</label>
+    <select id="clip-aspect"><option value="9:16">9:16 · Vertical</option><option value="16:9">16:9 · Horizontal</option></select>
+    <label for="clip-frame">Quadro de referência</label>
+    <select id="clip-frame"></select>
+    <img id="clip-frame-preview" alt="Quadro apresentado para aprovação do clipe" hidden>
+    <label class="toggle small"><input type="checkbox" id="clip-seen"> Revisei este quadro e autorizo seu uso para este plano.</label>
+    <label for="clip-message">Sua aprovação por escrito</label>
+    <textarea id="clip-message" rows="2" maxlength="500" placeholder="Ex.: Aprovo este enquadramento para o plano."></textarea>
+    <div class="button-row">
+      <button type="button" class="secondary" id="clip-approve" disabled>Registrar aprovação e consultar valor</button>
+      <button type="button" class="secondary" id="clip-reuse" hidden>Usar aprovação registrada</button>
+    </div>
+    <div id="clip-quote-section" hidden>
+      <p id="clip-quote"></p>
+      <button type="button" class="primary" id="clip-confirm">Confirmar geração do clipe</button>
+    </div>
+    <p role="status" aria-live="polite" id="clip-status"></p>
+    <button type="button" class="plain" id="clip-close">Fechar</button>
+  </dialog>
   <template id="cut-template">
     <fieldset>
       <legend></legend>

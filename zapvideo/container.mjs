@@ -6,28 +6,29 @@ import os from 'node:os';
 import path from 'node:path';
 import {Transform} from 'node:stream';
 import {pipeline} from 'node:stream/promises';
-import {renderEdit} from './renderer.mjs';
+import {renderClipCandidate,renderEdit} from './renderer.mjs';
 import {isId, limits, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(),'zapvideo-'));
 const jobs = new Map();
 const maxOutputBytes = 1024 ** 3;
 const uploadSize = limits.videoBytes;
+const fixturesAllowed=(process.env.RENDER_HOST || '127.0.0.1')==='127.0.0.1';
 
 function json(res, status, body) {
   res.writeHead(status, {'Content-Type':'application/json','Cache-Control':'no-store'});
   res.end(JSON.stringify(body));
 }
 
-async function readPlan(req) {
+async function readObject(req,maxBytes) {
   let bytes = 0;
   const chunks = [];
   for await (const chunk of req) {
     bytes += chunk.length;
-    if (bytes > 128*1024) throw new Error('Ficha excede o limite.');
+    if (bytes > maxBytes) throw new Error('Ficha excede o limite.');
     chunks.push(chunk);
   }
-  return validateProject(JSON.parse(Buffer.concat(chunks).toString('utf8')));
+  return JSON.parse(Buffer.concat(chunks).toString('utf8'));
 }
 
 async function upload(req, job, id) {
@@ -57,11 +58,13 @@ async function upload(req, job, id) {
 
 const server = createServer(async (req,res) => {
   try {
+    if (req.headers.origin) return json(res,403,{error:'Origem indisponível.'});
     const [, prefix, id, route, item, extra] = new URL(req.url,'http://renderer').pathname.split('/');
     if (prefix !== 'jobs' || !isId(id) || extra) return json(res,404,{error:'Rota indisponível.'});
     let job = jobs.get(id);
     if (!job && !route && req.method === 'DELETE') return json(res,200,{state:'removed'});
-    if (!job && req.method === 'PUT' && route === 'inputs' && isId(item)) {
+    if (!job && ((req.method === 'PUT' && route === 'inputs' && isId(item)) ||
+      (req.method==='POST' && route==='clip-fixture' && !item && fixturesAllowed))) {
       if (jobs.size >= 2) return json(res,429,{error:'Renderizador ocupado.'});
       const dir = path.join(root,id);
       await fs.mkdir(dir,{recursive:true});
@@ -77,7 +80,7 @@ const server = createServer(async (req,res) => {
     }
     if (route === 'render' && !item && req.method === 'POST') {
       if (job.state !== 'pending') { req.resume(); return json(res,202,{state:job.state}); }
-      const plan = await readPlan(req);
+      const plan = validateProject(await readObject(req,128*1024));
       job.state = 'working';
       job.work = renderEdit(plan,job.inputs,path.join(job.dir,'out'),
         AbortSignal.any([job.controller.signal,AbortSignal.timeout(15*60_000)])).then(report => {
@@ -86,6 +89,20 @@ const server = createServer(async (req,res) => {
       }).catch(error => {
         job.state='failed';
         job.error=error.message;
+      });
+      return json(res,202,{state:'working'});
+    }
+    if (req.method==='POST' && !item && (route==='clip-verify' || (route==='clip-fixture' && fixturesAllowed))) {
+      if (job.state!=='pending') { req.resume();return json(res,202,{state:job.state}); }
+      const settings=await readObject(req,2048);
+      const source=job.inputs.candidate;
+      if (route==='clip-verify' && !source) return json(res,400,{error:'Envie o MP4 do provedor.'});
+      job.state='working';
+      job.work=renderClipCandidate(settings,route==='clip-verify'?source:null,path.join(job.dir,'out'),
+        AbortSignal.any([job.controller.signal,AbortSignal.timeout(3*60_000)])).then(report=>{
+        job.report=report;job.state='verified';
+      }).catch(error=>{
+        job.state='failed';job.error=error.message;
       });
       return json(res,202,{state:'working'});
     }

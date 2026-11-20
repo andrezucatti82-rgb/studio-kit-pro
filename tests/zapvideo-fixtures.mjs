@@ -12,9 +12,12 @@ execFileSync('ffmpeg',['-nostdin','-v','error','-y','-f','lavfi','-i','testsrc2=
   '-filter_complex','[1:a][2:a]amix=inputs=2:normalize=0[a]','-map','0:v','-map','[a]','-c:v','libx264',
   '-pix_fmt','yuv420p','-c:a','aac','-shortest',path.join(fixtures,'câmera sintética.mp4')]);
 await writeFile(path.join(fixtures,'legendas.srt'),'1\n00:00:00,250 --> 00:00:02,000\nEdição com acentuação.\n\n2\n00:00:02,500 --> 00:00:05,000\nSegunda legenda.\n');
+execFileSync('ffmpeg',['-nostdin','-v','error','-y','-i',path.join(fixtures,'câmera sintética.mp4'),
+  '-vf','scale=270:480','-frames:v','1','-threads','1',path.join(fixtures,'quadro para aprovação.png')]);
 const hash = text => createHash('sha256').update(text).digest('hex');
 const expires = Math.floor(Date.now()/1000)+86400;
-const people = Array.from({length:2},(_,i)=>({id:'fixture-'+i,token:randomBytes(32).toString('hex')}));
+const runId=randomBytes(6).toString('hex');
+const people = Array.from({length:3},(_,i)=>({id:'fixture-'+runId+'-'+i,token:randomBytes(32).toString('hex')}));
 await writeFile(path.join(data,'fixture-access.json'),JSON.stringify(people),{mode:0o600});
 await writeFile(path.join(data,'fixture-access.sql'),people.map(({id,token})=>
   `INSERT INTO people (id,token_hash,expires_at) VALUES ('${id}','${hash(token)}',${expires})

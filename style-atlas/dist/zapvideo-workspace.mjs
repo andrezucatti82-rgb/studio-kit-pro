@@ -19,7 +19,7 @@ const newDraft = mode => ({id:unique(),version:projectVersion,revision:1,mode,su
   captions:false,separate:true,cuts:false,ranges:[blankCut(),blankCut(),blankCut()],treatment:false,
   finish:{balance:true,denoise:false,brightness:0,contrast:1,saturation:1}});
 let draft = null, previewUrl, previewIndex = -1, proposal = null, job = null, task, token = '', lastJob;
-let capabilities = {render:'unavailable',brief:'unavailable',analysis:'unavailable'};
+let capabilities = {render:'unavailable',brief:'unavailable',analysis:'unavailable',clip:'unavailable'};
 
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
@@ -57,7 +57,7 @@ function draftPlan() {
     intent:{mode:draft.mode,subject:draft.mode === 'create' ? draft.subject : ''},
     materials:draft.materials.filter(item => draft.mode === 'create' || item.kind !== 'subtitle' || draft.captions)
       .map(item => ({...item,permission:(draft.mode==='edit' && draft.permission) ||
-        (draft.mode==='create' && draft.analysisPermit && analysisIds.has(item.id)) ? 'process' : 'local'})),
+        (draft.mode==='create' && ((draft.analysisPermit && analysisIds.has(item.id)) || draft.clipFrameIds?.includes(item.id))) ? 'process' : 'local'})),
     actions:{captions:draft.captions ? (draft.separate ? 'mp4+srt' : 'mp4') : null,
       cuts:draft.cuts ? draft.ranges.map(cut => ({...cut,start:parseTime(cut.start),end:parseTime(cut.end)})) : [],
       treatment:draft.treatment ? draft.finish : null},
@@ -129,6 +129,9 @@ function refresh() {
   $('produce').hidden = !online;
   $('send-handoff').hidden = !token || !capabilities.limits;
   $('local-help').hidden = draft.mode !== 'edit';
+  $('generation-note').textContent=capabilities.clip==='mock'?'Clipe em simulação local. Aprovações e arquivos de teste ficam neste ambiente.':
+    capabilities.clip==='unavailable'?'Geração de clipes, imagens, narração e trilha indisponível no piloto.':
+      'A geração de cada clipe exige aprovação do quadro e confirmação do valor.';
 }
 function renderAnalysisFiles() {
   if (draft?.mode!=='create') return;
@@ -219,7 +222,9 @@ function renderScenes() {
       support.className='toggle';
       const check = document.createElement('input');
       check.type='checkbox';check.checked=shot.generateSupport;
-      check.onchange=()=>{shot.generateSupport=check.checked;update();};
+      const clipButton=action('Revisar clipe deste plano',()=>openClip(scene,shot));
+      clipButton.hidden=!shot.generateSupport || capabilities.clip==='unavailable';
+      check.onchange=()=>{shot.generateSupport=check.checked;clipButton.hidden=!check.checked || capabilities.clip==='unavailable';update();};
       support.append(check,'Planejar mídia de apoio com IA para este plano');
       const material = document.createElement('select');
       material.add(new Option('Sem material vinculado',''));
@@ -233,7 +238,18 @@ function renderScenes() {
       const label=document.createElement('label');
       label.append('Vincular material',material);
       row.append(title,field('O que aparece',shot.direction,value=>shot.direction=value,{textarea:true,max:500}),
-        field('Segundos',shot.seconds,value=>shot.seconds=value,{type:'number'}),label,support);
+        field('Segundos',shot.seconds,value=>shot.seconds=value,{type:'number'}),label,support,clipButton);
+      if (shot.selectedClip) {
+        const selected=document.createElement('p');
+        selected.className='muted';
+        selected.textContent=shot.selectedClip.mode==='mock'?'Clipe simulado vinculado.':'Clipe vinculado ao plano.';
+        row.append(selected,action('Desvincular clipe',()=>{
+          delete shot.selectedClip;
+          renderScenes();
+          update();
+          note('Clipe desvinculado do plano.');
+        }));
+      }
       if (scene.shots.length>1) row.append(action('Remover plano',()=>{scene.shots.splice(j,1);renderScenes();update();box.focus();}));
       box.append(row);
     });
@@ -490,7 +506,8 @@ async function showResults(projectPath, job, signal) {
   container.replaceChildren();
   $('results').hidden=false;
   const ending = job.revision === draft.revision ? '' : ' Os arquivos são de uma revisão anterior.';
-  note('Arquivo(s) verificado(s). Assista e confira o áudio.'+ending);
+  const label=job.result.mode==='mock'?'Clipe simulado verificado.':'Arquivo(s) verificado(s).';
+  note(label+' Assista e confira o áudio.'+ending);
   for (const output of job.result.outputs) {
     const row=document.createElement('div');
     const link=document.createElement('a');
@@ -502,6 +519,18 @@ async function showResults(projectPath, job, signal) {
     }
     link.href=grant.url+'?download=1';link.textContent='Baixar '+output.name;
     row.append(link);container.append(row);
+    if (job.kind==='clip') {
+      row.append(action(job.result.mode==='mock'?'Vincular clipe simulado ao plano':'Vincular ao plano',()=>{
+        if (job.revision!==draft.revision) return note('O plano mudou desde esta prévia. Confira a revisão antes de vincular outro clipe.');
+        const scene=draft.scenes.find(scene=>scene.id===job.result.sceneId);
+        const shot=scene?.shots.find(shot=>shot.id===job.result.shotId);
+        if (!shot) return note('O plano deste clipe não está na ficha.');
+        shot.selectedClip={jobId:job.id,sha256:output.sha256,mode:job.result.mode,revision:job.revision};
+        renderScenes();
+        update();
+        note(job.result.mode==='mock'?'Clipe simulado vinculado ao plano.':'Clipe vinculado ao plano.');
+      }));
+    }
   }
 }
 function showAnalysis(state) {
@@ -517,7 +546,7 @@ function showAnalysis(state) {
 $('analysis-url').oninput=()=>{draft.analysisUrl=$('analysis-url').value;draft.analysisPermit=false;update();};
 $('analysis-permit').onchange=()=>{draft.analysisPermit=$('analysis-permit').checked;update();};
 $('analyze').onclick=()=>runTask('analysis');
-async function runTask(kind, resume=false) {
+async function runTask(kind, resume=false, clipQuote=null) {
   if (task) return;
   if (!token) {
     $('pilot').open=true;$('token').focus();note('Informe seu código de acesso para usar o piloto.');return;
@@ -546,17 +575,19 @@ async function runTask(kind, resume=false) {
       await api(projectPath,{method:'PUT',body:plan,signal});
       const inputs={};
       for (const attachment of selected) inputs[attachment.id]=await upload(projectPath,attachment,signal);
-      const started=await api(projectPath+'/jobs',{method:'POST',body:{kind,revision:plan.revision,
-        inputs,url:publicAddress,key:kind+'-'+plan.revision},signal});
+      const body=kind==='clip'?{kind,revision:plan.revision,quoteId:clipQuote?.id,confirmed:clipQuote?.revision===plan.revision}:
+        {kind,revision:plan.revision,inputs,url:publicAddress,key:kind+'-'+plan.revision};
+      const started=await api(projectPath+'/jobs',{method:'POST',body,signal});
       job={id:started.id,project:plan.id,kind,revision:plan.revision};
       lastJob=job;save();
     }
     const path=projectPath+'/jobs/'+job.id;
-    note(kind==='edit'?'Processando o vídeo…':kind==='analysis'?'Analisando as fontes…':'Preparando a proposta…');
+    note(kind==='edit'?'Processando o vídeo…':kind==='analysis'?'Analisando as fontes…':
+      kind==='clip'?'Processando o clipe…':'Preparando a proposta…');
     while (!signal.aborted) {
       const state=await api(path,{signal});
       if (state.state==='verified') {
-        if (kind==='edit') await showResults(projectPath,state,signal);
+        if (kind==='edit' || kind==='clip') await showResults(projectPath,state,signal);
         else if (kind==='analysis') showAnalysis(state);
         else proposalView(state.result,state.revision);
         return;
@@ -595,4 +626,153 @@ $('send-handoff').onclick=withPlan(async plan=>{
   $('handoff-detail').hidden=false;$('handoff-instruction').focus();$('handoff-instruction').select();
   note('Pacote privado disponível por duas horas. Copie a instrução para o Codex ou Claude Code.');
 });
-void api('/capabilities').then(result=>{capabilities=result;renderAnalysisFiles();refresh();}).catch(()=>{});
+let clipPanel=null, clipRequest=null, frameUrl;
+const clipDialog=$('clip-dialog');
+function resetClipQuote() {
+  if (clipPanel) clipPanel.quote=null;
+  $('clip-quote-section').hidden=true;
+}
+function resetClipFrame() {
+  if (frameUrl) URL.revokeObjectURL(frameUrl);
+  frameUrl=null;
+  if (clipPanel) clipPanel.visibleFrame=null;
+  $('clip-frame-preview').removeAttribute('src');
+  $('clip-frame-preview').hidden=true;
+  $('clip-seen').checked=false;
+  $('clip-approve').disabled=true;
+  resetClipQuote();
+}
+function openClip(scene,shot) {
+  if (task) return note('Aguarde o trabalho em andamento.');
+  if (!token) {
+    $('pilot').open=true;
+    $('token').focus();
+    return note('Informe seu código de acesso para usar o piloto.');
+  }
+  const key=scene.id+':'+shot.id;
+  const previous=draft.clipApprovals?.[key];
+  clipPanel={scene,shot,key};
+  resetClipFrame();
+  $('clip-scope').textContent=[scene.title,shot.direction].filter(Boolean).join(' · ');
+  $('clip-mode').textContent=capabilities.clip==='mock'?'Simulação local com vídeo de teste.':
+    'O Google recebe somente o quadro selecionado e a descrição deste plano.';
+  $('clip-aspect').value=previous?.aspect || '9:16';
+  $('clip-message').value='';
+  $('clip-status').textContent='';
+  const choices=draft.materials.filter(item=>['reference','frame'].includes(item.kind) && files.has(item.id) &&
+    /\.(?:png|jpeg|jpg|webp)$/i.test(item.name) && item.bytes<=capabilities.clipFrameMaxBytes);
+  $('clip-frame').replaceChildren(new Option('Escolha o quadro',''),...choices.map(item=>new Option(item.name,item.id)));
+  $('clip-reuse').hidden=!previous;
+  $('clip-reuse').disabled=false;
+  if (!choices.length) $('clip-status').textContent='Adicione uma imagem de referência de até 2 MiB no projeto.';
+  clipDialog.showModal();
+}
+$('clip-frame').onchange=async()=>{
+  resetClipFrame();
+  const id=$('clip-frame').value, file=files.get(id);
+  if (!file || !clipPanel) return;
+  const panel=clipPanel,url=URL.createObjectURL(file), preview=$('clip-frame-preview');
+  frameUrl=url;
+  preview.src=url;
+  preview.hidden=false;
+  try {
+    await preview.decode();
+    if (frameUrl!==url || panel!==clipPanel) return;
+    panel.visibleFrame={id,file,url};
+    $('clip-status').textContent='Confira o enquadramento mostrado antes de aprovar.';
+    $('clip-approve').disabled=false;
+  } catch {
+    if (frameUrl!==url || panel!==clipPanel) return;
+    resetClipFrame();
+    $('clip-status').textContent='Não foi possível abrir o quadro escolhido.';
+  }
+};
+$('clip-aspect').onchange=()=>{
+  $('clip-seen').checked=false;
+  resetClipQuote();
+};
+$('clip-close').onclick=()=>clipDialog.close();
+clipDialog.addEventListener('close',()=>{
+  clipRequest?.abort();
+  resetClipFrame();
+  clipPanel=null;
+});
+async function showQuote(projectPath,revision,approvalId,signal) {
+  const panel=clipPanel;
+  const choice=$('clip-frame').value,aspect=$('clip-aspect').value;
+  const quote=await api(projectPath+'/clips/quote',{method:'POST',body:{revision,approvalId},signal});
+  if (!panel || panel!==clipPanel || $('clip-frame').value!==choice || $('clip-aspect').value!==aspect || quote.aspect!==aspect) return;
+  clipPanel.quote={...quote,revision};
+  const money=new Intl.NumberFormat('pt-BR',{style:'currency',currency:quote.currency,minimumFractionDigits:2,maximumFractionDigits:6});
+  const cost=money.format(quote.reservedMicros/1e6);
+  $('clip-quote').textContent=`${quote.scene} · ${quote.direction} · Quadro ${quote.frameName} · ${quote.seconds} s · ${quote.aspect} · ${quote.resolution} · ${quote.model} · ${quote.mode==='mock'?'Simulação, sem cobrança':'Reserva estimada'} ${cost}`;
+  $('clip-quote-section').hidden=false;
+  $('clip-status').textContent='Confira o escopo e o valor. A confirmação da geração é separada.';
+  $('clip-confirm').focus();
+}
+async function clipAction(reuse) {
+  if (!clipPanel || clipRequest) return;
+  const panel=clipPanel, controller=new AbortController(), signal=controller.signal;
+  clipRequest=controller;
+  $('clip-approve').disabled=$('clip-reuse').disabled=true;
+  resetClipQuote();
+  try {
+    const path='/projects/'+draft.id;
+    let approvalId;
+    if (reuse) {
+      const prior=draft.clipApprovals?.[panel.key];
+      if (!prior || prior.aspect!==$('clip-aspect').value) throw new Error('A proporção mudou. Apresente e aprove o novo quadro.');
+      approvalId=prior.id;
+    } else {
+      const present=panel.visibleFrame, message=$('clip-message').value;
+      if (!present || !$('clip-seen').checked || !message.trim()) throw new Error('Veja o quadro, marque a conferência e registre seu aceite.');
+      const aspect=$('clip-aspect').value, projectId=draft.id, originalRevision=draft.revision;
+      const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await present.file.arrayBuffer())),
+        byte=>byte.toString(16).padStart(2,'0')).join('');
+      if (signal.aborted || present!==panel.visibleFrame || aspect!==$('clip-aspect').value ||
+        message!==$('clip-message').value || !$('clip-seen').checked || draft.id!==projectId || draft.revision!==originalRevision) {
+        throw new Error('A seleção mudou. Revise e confirme o quadro novamente.');
+      }
+      if (!draft.clipFrameIds?.includes(present.id)) {
+        draft.clipFrameIds=[...draft.clipFrameIds || [],present.id];
+        update();
+      }
+      const plan=structuredClone(validateProject(draftPlan()));
+      await api(path,{method:'PUT',body:plan,signal});
+      $('clip-status').textContent='Enviando e conferindo o quadro aprovado…';
+      const uploadId=await upload(path,{id:present.id,file:present.file},signal);
+      if (present!==panel.visibleFrame || aspect!==$('clip-aspect').value || message!==$('clip-message').value ||
+        !$('clip-seen').checked || plan.revision!==draft.revision) throw new Error('O quadro ou o plano mudou. Confirme novamente.');
+      const approval=await api(path+'/clips/approve',{method:'POST',signal,body:{
+        revision:plan.revision,sceneId:panel.scene.id,shotId:panel.shot.id,frameId:present.id,aspect,uploadId,
+        seen:true,presentedSha256:sha256,message,
+      }});
+      draft.clipApprovals={...draft.clipApprovals,[panel.key]:{...approval,aspect,frameId:present.id}};
+      $('clip-reuse').hidden=false;
+      save();
+      approvalId=approval.id;
+    }
+    const plan=structuredClone(validateProject(draftPlan()));
+    await api(path,{method:'PUT',body:plan,signal});
+    await showQuote(path,plan.revision,approvalId,signal);
+  } catch(error) {
+    if (!signal.aborted) $('clip-status').textContent=error.message;
+  } finally {
+    if (clipRequest===controller) clipRequest=null;
+    $('clip-approve').disabled=!clipPanel?.visibleFrame;
+    $('clip-reuse').disabled=false;
+    $('progress').hidden=true;
+  }
+}
+$('clip-approve').onclick=()=>clipAction(false);
+$('clip-reuse').onclick=()=>clipAction(true);
+$('clip-confirm').onclick=()=>{
+  const quote=clipPanel?.quote;
+  if (!quote || quote.revision!==draft.revision || Date.now()/1000>=quote.expires) {
+    return $('clip-status').textContent='A estimativa mudou ou expirou. Solicite outra.';
+  }
+  clipDialog.close();
+  void runTask('clip',false,quote);
+};
+
+void api('/capabilities').then(result=>{capabilities=result;if(draft?.mode==='create')renderScenes();renderAnalysisFiles();refresh();}).catch(()=>{});

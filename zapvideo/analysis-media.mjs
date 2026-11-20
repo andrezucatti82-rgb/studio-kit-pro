@@ -35,7 +35,7 @@ export function detectType(bytes,mime) {
     default:return false;
   }
 }
-function base64(bytes) {
+export function encodeBase64(bytes) {
   if (typeof bytes.toBase64 === 'function') return bytes.toBase64();
   const pieces=[];
   for (let i=0;i<bytes.length;i+=24576) pieces.push(btoa(String.fromCharCode(...bytes.subarray(i,i+24576))));
@@ -59,7 +59,7 @@ export async function getAnalysisInput(env,project,selected) {
     const actual=Array.from(hash,x=>x.toString(16).padStart(2,'0')).join('');
     if (row.sha256!==actual || !detectType(bytes,match[1])) throw new Error('Arquivo divergente ou incompatível com a análise.');
     input.push({type:'text',text:'Fonte '+id+' ('+asset.name+')'});
-    input.push({type:match[0],mime_type:match[1],data:base64(bytes)});
+    input.push({type:match[0],mime_type:match[1],data:encodeBase64(bytes)});
     sources.push({id,label:asset.name});
   }
   if (selected.url) sources.push({id:'public-url',label:publicUrl(selected.url)});

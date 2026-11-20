@@ -14,11 +14,14 @@ Base remota `origin/main` em `86b09382` (PR #52). Implementação isolada em `co
 | Pacote temporário | Passou do Worker local ao importador. Comparação do original com o arquivo recuperado. A CLI importou os materiais e abriu os originais com hashes de saída iguais aos do Workflow. A rota HTTPS canônica do pacote ainda precisa de prova remota. |
 | Catálogo e instalador | Staging emulado pediu autenticação. Catálogo de 35.311.530 bytes com ETag e 304 na revalidação. ZIP do instalador com 200. PHP com 404 no Worker. |
 | Gemini, proposta e análise por fonte | Simulados. Delimitação de permissões, preservação de edições mais recentes, resposta inválida e erro do provedor testados. Nenhuma chamada real de IA. |
-| Gemini, geração de mídia e montagem completa | Clipe por trecho, imagens, TTS, trilha, montagem completa e seus novos gates no aplicativo seguem pendentes. As ferramentas e os gates do Studio Kit Pro continuam disponíveis no seu fluxo local. |
+| Gemini, clipe isolado por plano | Passou no modo simulado local. Quadro apresentado e registrado por SHA-256, aceite com texto literal, estimativa separada, trabalho idempotente, MP4 720×1280 H.264/AAC com 3 segundos verificado, download e vínculo ao plano. O adaptador Omni foi testado com respostas simuladas. |
+| Gemini, demais gerações e montagem completa | Imagens, TTS, trilha e montagem completa seguem pendentes. As ferramentas e os gates do Studio Kit Pro continuam disponíveis no seu fluxo local. |
 | Container remoto | Configurado no manifesto, com o dry-run do Worker concluído sem rollout. O dry-run que compila a imagem parou por falta do Docker. Sem prova de uso de CPU, disco, memória ou tempo no Container remoto. |
 | DNS, TLS e publicação | DNS público inventariado. A zona ainda não foi criada na Cloudflare. Delegação, vínculo do Worker e HTTPS do aplicativo seguem pendentes. |
 
 As provas usam mídia sintética. Um MP4 foi reproduzido até o fim em Chromium. Foram inspecionados um quadro com legenda queimada, a decodificação de todos os arquivos e métricas do sinal de áudio, com média de −18,3 dBFS e pico de −13,3 dBFS na prova legendada. Os arquivos estão marcados como prévias para revisão.
+
+Na prova de clipe, o navegador exibiu a imagem real usada na simulação antes do aceite de teste. O Worker recusou aprovação sem confirmação visual, imagem trocada, acesso cruzado, confirmação de valor ausente e uso de estimativa de outra revisão. Permitiu reutilizar o aceite após uma edição em outro trecho. Uma alteração de direção no plano invalidou o aceite. Teste separado com SQLite e fila simulada confirmou orçamento zero, limite cumulativo, reserva em USD e bloqueio de nova tentativa após estado incerto. A migração `0003_clip_approvals.sql` passou localmente nos três ambientes.
 
 ## DNS observado
 

@@ -5,6 +5,10 @@ export const limits = Object.freeze({
   seconds: 900, uploadPartBytes: 8 * 1024 ** 2, handoffBytes: 32 * 1024 ** 2,
 });
 export const captionsFormats = ['mp4', 'mp4+srt'];
+export const clipOutput = Object.freeze({id:'clipe',name:'clipe-previa.mp4',type:'video/mp4'});
+export const clipAspects = ['9:16','16:9'];
+export const validClipSettings = ({aspect,seconds}) => clipAspects.includes(aspect) &&
+  Number.isSafeInteger(seconds) && seconds>=3 && seconds<=15;
 export const supportedVideo = /\.(?:mp4|mov|m4v|webm|mkv)$/i;
 export const isId = value => typeof value === 'string' && /^[a-z0-9][a-z0-9-]{0,63}$/.test(value);
 const require = (condition, message) => { if (!condition) throw new Error(message); };
@@ -62,6 +66,10 @@ export function validateProject(input) {
         shot.layers.every(layer => layer && ['video','broll','image','title','narration','music','subtitle','motion'].includes(layer.kind) &&
           (layer.materialId === null || ids.has(layer.materialId))), 'Plano ou camada inválida.');
       shotIds.add(shot.id);
+      const clip=shot.selectedClip;
+      require(clip===undefined || (clip && /^[a-f0-9]{64}$/.test(clip.jobId || '') &&
+        /^[a-f0-9]{64}$/.test(clip.sha256 || '') && ['mock','gemini'].includes(clip.mode) &&
+        Number.isSafeInteger(clip.revision) && clip.revision>0 && clip.revision<=revision), 'Referência de clipe inválida.');
     }
   }
   if (intent.mode === 'edit') {
@@ -90,6 +98,7 @@ export function describeProject(project) {
   if (treatment) lines.push(`Ajustar imagem (brilho ${treatment.brightness}, contraste ${treatment.contrast}, saturação ${treatment.saturation}).`,
     ...(treatment.balance ? ['Equilibrar áudio.'] : []), ...(treatment.denoise ? ['Reduzir ruído moderado.'] : []));
   for (const scene of project.scenes) lines.push(scene.title, scene.narration, ...scene.shots.map(shot =>
-    `${shot.seconds} s · ${shot.direction}${shot.generateSupport ? ' · apoio IA solicitado' : ''}`));
+    `${shot.seconds} s · ${shot.direction}${shot.generateSupport ? ' · apoio IA solicitado' : ''}${shot.selectedClip ?
+      (shot.selectedClip.mode==='mock'?' · clipe simulado vinculado':' · clipe vinculado') : ''}`));
   return lines.filter(Boolean).join('\n');
 }

@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 import {createReadStream} from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {editOutputs, limits, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
+import {clipOutput,editOutputs, limits, validateProject,validClipSettings} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {readSrt} from '../style-atlas/dist/zapvideo-captions.mjs';
 
 const formats = new Set(['mov', 'mp4', 'm4a', '3gp', '3g2', 'mj2', 'matroska', 'webm']);
@@ -66,6 +66,30 @@ async function checksum(file) {
   const hash = createHash('sha256');
   for await (const chunk of createReadStream(file)) hash.update(chunk);
   return hash.digest('hex');
+}
+
+export async function renderClipCandidate(settings, source, directory, signal) {
+  if (!validClipSettings(settings)) throw new Error('Formato ou duração do clipe inválido.');
+  const [width,height]=settings.aspect==='9:16'?[720,1280]:[1280,720];
+  await fs.mkdir(directory);
+  const output=path.join(directory,clipOutput.name);
+  if (source) {
+    await fs.copyFile(source,output);
+  } else {
+    await run('ffmpeg',['-nostdin','-v','error','-f','lavfi',
+      '-i',`testsrc2=size=${width}x${height}:rate=24:duration=${settings.seconds}`,
+      '-f','lavfi','-i',`sine=frequency=440:sample_rate=48000:duration=${settings.seconds}`,
+      '-c:v','libx264','-threads','2','-pix_fmt','yuv420p','-preset','ultrafast','-crf','24',
+      '-c:a','aac','-movflags','+faststart','-shortest','-n',output],{signal,timeout:90_000});
+  }
+  const {video,audio,duration}=await probeVideo(output,signal);
+  if (video.width!==width || video.height!==height || video.codec_name!=='h264' || video.pix_fmt!=='yuv420p' ||
+    audio?.codec_name!=='aac' || Math.abs(duration-settings.seconds)>0.15 ||
+    video.side_data_list?.some(item=>item.rotation)) throw new Error('O clipe não corresponde ao formato, ao áudio ou à duração solicitados.');
+  await run('ffmpeg',['-nostdin','-v','error','-xerror','-threads','2',...ffmpegInput,'-i',output,'-map','0','-f','null','-'],
+    {signal,timeout:60_000});
+  return {status:'review_pending',outputs:[{...clipOutput,width,height,audio:true,duration,
+    bytes:(await fs.stat(output)).size,sha256:await checksum(output)}]};
 }
 
 export async function renderEdit(raw, inputs, directory, signal) {
