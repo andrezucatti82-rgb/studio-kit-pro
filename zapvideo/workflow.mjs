@@ -9,6 +9,7 @@ import {getAnalysisInput} from './analysis-media.mjs';
 import {checkClipBeforeRun,clipMaxBytes} from './clips.mjs';
 import {downloadOmni,omniFileState,submitOmni} from './omni.mjs';
 import {checkMediaSelection,frameMaxBytes,generateMedia,mediaMaxBytes} from './media-assets.mjs';
+import {geminiFetch} from './google-provider.mjs';
 
 export class ZapVideoRenderer extends Container {
   defaultPort = 4000;
@@ -181,7 +182,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
             AND provider_claim_at IS NULL
             AND EXISTS(SELECT 1 FROM people WHERE id=? AND revoked_at IS NULL AND expires_at>?)`,now(),id,spec.owner,now()).run();
           if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
-          const sent=await submitOmni(request,env.GEMINI_API_KEY);
+          const sent=await submitOmni(request,env.GEMINI_API_KEY,geminiFetch(env));
           if (sent.rejected) return sent;
           await sql(env,'UPDATE jobs SET provider_id=?,provider_file_id=? WHERE id=?',sent.id,sent.fileId ?? null,id).run();
           if (sent.bytes) {
@@ -202,7 +203,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           let ready=false;
           for (let poll=0;poll<60;poll++) {
             const state=await step.do('Consultar clipe do Google '+poll,recoverable,
-              ()=>omniFileState(submission.fileId,env.GEMINI_API_KEY));
+              ()=>omniFileState(submission.fileId,env.GEMINI_API_KEY,geminiFetch(env)));
             if (state==='ACTIVE') { ready=true; break; }
             if (state==='FAILED') {
               confirmedFailure=true;
@@ -214,7 +215,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           if (!ready) throw new Error('O Google ainda não disponibilizou o clipe.');
           await step.do('Guardar MP4 para verificação',recoverable,async ()=>{
             const job=await getJob(env,id);
-            const received=await downloadOmni(submission.fileId,env.GEMINI_API_KEY);
+            const received=await downloadOmni(submission.fileId,env.GEMINI_API_KEY,geminiFetch(env));
             await saveClipMedia(env,job,received);
           });
         }
@@ -262,7 +263,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           const claim=await sql(env,`UPDATE jobs SET provider_claim_at=? WHERE id=? AND provider_claim_at IS NULL AND state='processing'
             AND EXISTS(SELECT 1 FROM people WHERE id=? AND expires_at>? AND revoked_at IS NULL)`,now(),id,spec.owner,now()).run();
           if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
-          const result=await generateMedia(checkMediaSelection(env,spec),env.GEMINI_API_KEY);
+          const result=await generateMedia(checkMediaSelection(env,spec),env.GEMINI_API_KEY,geminiFetch(env));
           if (result.rejected) return {error:'O Google recusou o pedido de mídia.'};
           await sql(env,'UPDATE jobs SET provider_id=? WHERE id=?',result.id,id).run();
           if (result.error) return {error:result.error};
@@ -303,7 +304,9 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
           if (job.reserved_micros!==briefReserve(env)) return {error:'A configuração da reserva mudou.',providerId:null};
           if (job.reserved_micros>0) {
             const claim=await sql(env,`UPDATE jobs SET provider_claim_at=?
-              WHERE id=? AND state='processing' AND provider_claim_at IS NULL`,now(),id).run();
+              WHERE id=? AND state='processing' AND provider_claim_at IS NULL
+              AND EXISTS(SELECT 1 FROM projects p JOIN people u ON u.id=p.owner
+                WHERE p.id=? AND u.revoked_at IS NULL AND u.expires_at>?)`,now(),id,job.project_id,now()).run();
             if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
           }
           return proposeBrief(plan.intent.subject,env);

@@ -1,6 +1,7 @@
 import {isId,validClipSettings} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {detectType,mediaType,encodeBase64} from './analysis-media.mjs';
 import {digest, googleDailyBudget, hex, isHash, json, now, readJson, reject, sql, uuid} from './http.mjs';
+import {hasGeminiProvider} from './google-provider.mjs';
 
 export const clipMaxBytes=24*1024**2;
 export const clipFrameMaxBytes=2*1024**2;
@@ -8,7 +9,7 @@ export const omniModel='gemini-omni-1.2-flash';
 
 export function clipMode(env) {
   if (env.ENVIRONMENT==='local' && env.GEMINI_MOCK==='1' && env.RENDER_LOCAL_URL==='http://127.0.0.1:4000') return 'mock';
-  if (env.GEMINI_CLIP_VERIFIED==='1' && env.GEMINI_API_KEY && env.RENDER_ENABLED==='1' && env.RENDERER &&
+  if (env.GEMINI_CLIP_VERIFIED==='1' && hasGeminiProvider(env) && env.RENDER_ENABLED==='1' && env.RENDERER &&
     dailyBudget(env)>0 && unitPrice(env)>0 && configuredModel(env)===omniModel) return 'gemini';
   return 'unavailable';
 }

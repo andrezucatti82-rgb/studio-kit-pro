@@ -23,6 +23,42 @@ function plan() {
 }
 const hasFfmpeg = spawnSync('ffmpeg',['-version']).status === 0 && spawnSync('ffprobe',['-version']).status === 0;
 
+test('production pilot expires and authenticates Gemini only in the private staging entrypoint',async()=>{
+  const google='https://generativelanguage.googleapis.com';
+  const active=String(now()+3600);
+  const expired=String(now()-1);
+  const source={ENVIRONMENT:'staging',GEMINI_BRIDGE_EXPIRES_AT:active,GEMINI_API_KEY:'synthetic-google-secret'};
+  let upstreamCalls=0;
+  async function provider(url,init) {
+    upstreamCalls++;
+    assert.equal(url,google+'/v1beta/interactions');
+    assert.equal(init.headers['x-goog-api-key'],'synthetic-google-secret');
+    assert.equal(init.headers.Cookie,undefined);
+    assert.equal(init.redirect,'manual');
+    return Response.json({model:'fixture'});
+  }
+  const binding={fetch(request){
+    assert.equal(request.headers.has('x-goog-api-key'),false);
+    return forwardGemini(request,source,provider);
+  }};
+  const live={ENVIRONMENT:'production',ZAPVIDEO_PILOT_EXPIRES_AT:active,GEMINI_PROVIDER:binding,
+    GEMINI_TEST_DAILY_BUDGET_MICROS:'2500000'};
+  assert.equal(hasGeminiProvider(live),true);
+  assert.equal(googleDailyBudget(live),2500000);
+  const closed={...live,ZAPVIDEO_PILOT_EXPIRES_AT:expired};
+  assert.equal(hasGeminiProvider(closed),false);
+  assert.equal(googleDailyBudget(closed),0);
+  assert.equal((await geminiFetch(closed)(google+'/v1beta/interactions')).status,503);
+  const answer=await geminiFetch(live)(google+'/v1beta/interactions',{
+    method:'POST',body:'{}',headers:{'Content-Type':'application/json','x-goog-api-key':'untrusted',Cookie:'untrusted'},
+  });
+  assert.equal(answer.status,200);
+  assert.equal((await forwardGemini(new Request('https://example.test/v1beta/files/frame'),source,provider)).status,404);
+  assert.equal((await forwardGemini(new Request(google+'/v1beta/files/frame?key=untrusted'),source,provider)).status,404);
+  assert.equal((await forwardGemini(new Request(google+'/v1beta/files/frame'),{...source,GEMINI_BRIDGE_EXPIRES_AT:expired},provider)).status,503);
+  assert.equal(upstreamCalls,1);
+});
+
 test('portable plan combines captions, three vertical cuts and treatment without changing the original', () => {
   const input=plan();
   assert.equal(validateProject(input),input);
@@ -123,3 +159,5 @@ test('FFmpeg applies SRT and creates three decodable vertical previews, includin
     await writeFile(broken,Buffer.alloc(before.length));
     await assert.rejects(renderEdit(input,{source:broken,srt},path.join(temp,'rejeitar')));
   });
+import {forwardGemini,geminiFetch,hasGeminiProvider} from '../zapvideo/google-provider.mjs';
+import {googleDailyBudget,now} from '../zapvideo/http.mjs';

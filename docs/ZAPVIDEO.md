@@ -73,6 +73,12 @@ npx wrangler deploy --dry-run --env staging --containers-rollout=none
 
 O [relatório de verificação](ZAPVIDEO-VERIFICACAO.md#publicação-no-domínio-canônico-em-20-de-novembro-de-2026) registra a implantação do domínio, as provas do piloto e o estado de cada função.
 
+### Piloto temporário no domínio oficial
+
+No domínio oficial, a pessoa entra em **Editar um vídeo que já tenho** ou **Criar um vídeo com IA**, abre **Acesso ao piloto** e conecta seu código pessoal. A produção confere a expiração do código em D1 e a da janela em `ZAPVIDEO_PILOT_EXPIRES_AT`. O navegador renova a lista de capacidades após conectar. A expiração encerra a criação de trabalhos de renderização e de IA desse piloto. As fichas, os originais, os arquivos e os trabalhos usam os recursos de produção.
+
+O Service Binding `GEMINI_PROVIDER` chama o ponto de entrada privado `ZapVideoGeminiProvider` da homologação. Ele acrescenta a chave do Gemini apenas nas rotas permitidas do Google e tem a mesma expiração em `GEMINI_BRIDGE_EXPIRES_AT`. A URL HTTPS da homologação continua protegida por Basic. Faça o deploy da homologação com o ponto de entrada antes de publicar a configuração do piloto em produção. As variáveis de expiração e capacidade são aplicadas na implantação do piloto. Os padrões no repositório mantêm os geradores desativados. [Service Bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/).
+
 #### Build Linux e imagem de homologação
 
 O workflow `.github/workflows/zapvideo-renderer.yml` compila o Dockerfile em um runner Ubuntu, sobe o serviço restrito a loopback e prova SRT e três cortes com vídeo sintético. O artefato contém a imagem testada e o SHA-256 do arquivo compactado e expira em um dia. A imagem pode ser publicada no registro privado com uma credencial de vida curta da Cloudflare. Use sua referência no campo `containers[0].image` da configuração de staging. Preserve `RENDER_ENABLED=0` enquanto a capacidade de render não estiver liberada para teste. O processo dispensa Docker na máquina que implanta a imagem publicada. Cada job encerra sua instância após gravar os resultados verificados no R2. O limite de inatividade encerra instâncias interrompidas. [Implantação de Containers](https://developers.cloudflare.com/containers/guides/deploy/).

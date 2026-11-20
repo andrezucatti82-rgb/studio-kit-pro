@@ -1,11 +1,12 @@
 import {assemblyPlan} from '../style-atlas/dist/zapvideo-assembly.mjs';
 import {isId} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {detectType,mediaType} from './analysis-media.mjs';
-import {digest,hex,isHash,json,now,readJson,reject,sql,uuid} from './http.mjs';
+import {digest,hex,isHash,json,now,productionPilotOpen,readJson,reject,sql,uuid} from './http.mjs';
 
 export function assemblyMode(env) {
   if (env.ENVIRONMENT==='local' && env.RENDER_LOCAL_URL==='http://127.0.0.1:4000') return 'local';
-  return env.ASSEMBLY_ENABLED==='1' && env.RENDER_ENABLED==='1' && env.RENDERER ? 'container' : 'unavailable';
+  return env.ASSEMBLY_ENABLED==='1' && env.RENDER_ENABLED==='1' && env.RENDERER &&
+    (env.ENVIRONMENT!=='production' || productionPilotOpen(env)) ? 'container' : 'unavailable';
 }
 const findSample=(env,project,id)=>sql(env,`SELECT * FROM jobs WHERE id=? AND project_id=? AND kind='assembly'
   AND state='verified' AND expires_at>?`,id,project,now()).first();

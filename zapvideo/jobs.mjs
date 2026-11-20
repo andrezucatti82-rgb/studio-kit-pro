@@ -5,12 +5,12 @@ import {authorizeClip,clipMode,dailyBudget} from './clips.mjs';
 import {authorizeMedia,mediaBudget} from './media-assets.mjs';
 import {assemblyOutput} from '../style-atlas/dist/zapvideo-assembly.mjs';
 import {authorizeAssembly} from './assembly.mjs';
-import {digest,googleDailyBudget,hours, isExpired, json, now, randomHex, readJson, reject, sql} from './http.mjs';
+import {digest,googleDailyBudget,hours, isExpired, json, now, productionPilotOpen, randomHex, readJson, reject, sql} from './http.mjs';
 
 const active = "'queued','processing'";
 export function renderMode(env) {
   return env.ENVIRONMENT === 'local' && env.RENDER_LOCAL_URL === 'http://127.0.0.1:4000' ? 'local' :
-    env.RENDER_ENABLED === '1' && env.RENDERER ? 'container' : 'unavailable';
+    env.RENDER_ENABLED === '1' && env.RENDERER && (env.ENVIRONMENT!=='production' || productionPilotOpen(env)) ? 'container' : 'unavailable';
 }
 export const readRevision = async (env, project, revision) => {
   const record = await sql(env,'SELECT body FROM revisions WHERE project_id=? AND revision=?',project,revision).first();

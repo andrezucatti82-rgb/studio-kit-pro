@@ -12,9 +12,11 @@ export const hours = count => count * 3600;
 export const isHash = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
 export const isExpired = row => row.expires_at <= now();
 export const uuid = () => crypto.randomUUID();
+export const productionPilotOpen = env => env.ENVIRONMENT==='production' &&
+  /^[0-9]{10}$/.test(env.ZAPVIDEO_PILOT_EXPIRES_AT ?? '') && Number(env.ZAPVIDEO_PILOT_EXPIRES_AT)>now();
 export function googleDailyBudget(env) {
   const value=env.GEMINI_TEST_DAILY_BUDGET_MICROS;
-  if (env.ENVIRONMENT!=='staging' || typeof value!=='string' || !/^[0-9]{1,7}$/.test(value)) return 0;
+  if ((env.ENVIRONMENT!=='staging' && !productionPilotOpen(env)) || typeof value!=='string' || !/^[0-9]{1,7}$/.test(value)) return 0;
   return Math.min(Number(value),5_000_000);
 }
 

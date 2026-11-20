@@ -1,6 +1,7 @@
 import {assetOutputs,clipAspects,isId} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {detectType} from './analysis-media.mjs';
 import {boundedBytes,fetchWithoutRedirects,googleDailyBudget,hex,json,now,readJson,reject,sql,uuid} from './http.mjs';
+import {hasGeminiProvider} from './google-provider.mjs';
 
 export const mediaMaxBytes=8*1024**2;
 export const frameMaxBytes=2*1024**2;
@@ -15,7 +16,7 @@ export const isMediaKind=kind=>typeof kind==='string' && Object.hasOwn(models,ki
 export function mediaMode(env,kind) {
   if (!isMediaKind(kind)) return 'unavailable';
   if (env.ENVIRONMENT==='local' && env.GEMINI_MOCK==='1' && env.RENDER_LOCAL_URL==='http://127.0.0.1:4000') return 'mock';
-  if (env['GEMINI_'+kind.toUpperCase()+'_VERIFIED']==='1' && env.GEMINI_API_KEY && env.RENDER_ENABLED==='1' && env.RENDERER &&
+  if (env['GEMINI_'+kind.toUpperCase()+'_VERIFIED']==='1' && hasGeminiProvider(env) && env.RENDER_ENABLED==='1' && env.RENDERER &&
     configured(env,kind)===models[kind] && unit(env,kind)>0 && mediaBudget(env)>=unit(env,kind)) return 'gemini';
   return 'unavailable';
 }

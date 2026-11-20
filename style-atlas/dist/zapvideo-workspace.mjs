@@ -127,10 +127,13 @@ function refresh() {
   const online = draft.mode === 'edit' && capabilities.render !== 'unavailable';
   $('permit-label').hidden = !online;
   $('render-note').hidden = draft.mode !== 'edit';
-  $('render-note').textContent = online ? 'Se o envio cair, selecione o mesmo arquivo para retomar.' : 'Edição online indisponível. Use a ficha no Studio Kit Pro.';
+  const connectPilot=capabilities.pilotAvailable && !token;
+  $('render-note').textContent = online ? 'Se o envio cair, selecione o mesmo arquivo para retomar.' :
+    connectPilot ? 'Conecte seu código em Acesso ao piloto para editar online.' : 'Edição online indisponível. Use a ficha no Studio Kit Pro.';
   $('suggest').disabled = Boolean(task) || capabilities.brief === 'unavailable';
   $('suggest-note').textContent = capabilities.brief === 'mock' ? 'Proposta simulada para testes.' :
-    capabilities.brief === 'unavailable' ? 'Gemini indisponível. Você pode montar o briefing aqui.' :
+    capabilities.brief === 'unavailable' ? (connectPilot ? 'Conecte seu código em Acesso ao piloto para usar o Gemini.' :
+      'Gemini indisponível. Você pode montar o briefing aqui.') :
       capabilities.briefReservedMicros>0 ? 'Reserva por proposta de '+briefPrice(capabilities.briefReservedMicros)+'. Envia apenas o assunto ao Gemini.' :
         'Apenas seu assunto será enviado ao Gemini.';
   $('analysis-controls').hidden=capabilities.analysis==='unavailable';
@@ -481,6 +484,7 @@ $('connect').onclick=async()=>{
   token=$('token').value.trim();
   try {
     await api('/session');
+    await refreshCapabilities();
     sessionStorage.setItem(accessKey,token);
     $('token').value='';note('Acesso confirmado.');
     if (lastJob?.project === draft.id && !task) void runTask(lastJob.kind,true);
@@ -1058,4 +1062,10 @@ $('clip-confirm').onclick=()=>{
   void runTask('clip',false,quote);
 };
 
-void api('/capabilities').then(result=>{capabilities=result;if(draft?.mode==='create')renderScenes();renderAnalysisFiles();refresh();}).catch(()=>{});
+async function refreshCapabilities() {
+  capabilities=await api('/capabilities');
+  if (draft?.mode==='create') renderScenes();
+  renderAnalysisFiles();
+  refresh();
+}
+void refreshCapabilities().catch(()=>{});

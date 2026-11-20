@@ -1,13 +1,19 @@
+import {WorkerEntrypoint} from 'cloudflare:workers';
 import {isId, limits, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {analysisMode, briefMode, briefReserve} from './gemini.mjs';
 import {analysisBytes, analysisTypes} from './analysis-media.mjs';
-import {digest, exactBody, hours, HttpError, isExpired, isHash, json, now, objectResponse, person, randomHex, readJson, reject, sql} from './http.mjs';
+import {digest, exactBody, hours, HttpError, isExpired, isHash, json, now, objectResponse, person, productionPilotOpen, randomHex, readJson, reject, sql} from './http.mjs';
 import {jobFiles,jobRoute, readRevision, renderMode, startJob} from './jobs.mjs';
 import {clipMode,clipModel,clipRoute,clipFrameMaxBytes} from './clips.mjs';
 import {mediaMode,quoteMedia} from './media-assets.mjs';
 import {approveAssembly,assemblyMode} from './assembly.mjs';
 import {startUpload, uploadRoute} from './uploads.mjs';
+import {forwardGemini} from './google-provider.mjs';
 export {ZapVideoRenderer, ZapVideoWorkflow} from './workflow.mjs';
+
+export class ZapVideoGeminiProvider extends WorkerEntrypoint {
+  fetch(request) { return forwardGemini(request,this.env); }
+}
 
 const API = '/api/zapvideo';
 const handoffId = /^[a-f0-9]{48}$/;
@@ -107,13 +113,23 @@ async function fileGrant(request,env,job,fileId,url) {
 async function api(request,env,url) {
   const segments = url.pathname.slice(API.length).split('/').slice(1);
   const [resource,id,scope,item,action,number] = segments;
-  if (segments.length === 1 && resource === 'capabilities' && request.method === 'GET') return json({
-    render:renderMode(env),brief:briefMode(env),briefReservedMicros:briefMode(env)==='gemini'?briefReserve(env):0,
-    analysis:analysisMode(env),analysisBytes,analysisTypes,
-    transcript:false,videoAI:clipMode(env)==='gemini',clip:clipMode(env),clipModel:clipModel(env),clipFrameMaxBytes,
-    imageAI:mediaMode(env,'frame')==='gemini',tts:mediaMode(env,'speech')==='gemini',music:mediaMode(env,'music')==='gemini',
-    assets:Object.fromEntries(['frame','speech','music'].map(kind=>[kind,mediaMode(env,kind)])),assembly:assemblyMode(env),limits,
-  });
+  if (segments.length === 1 && resource === 'capabilities' && request.method === 'GET') {
+    const pilotAvailable=productionPilotOpen(env);
+    let connected=false;
+    if (pilotAvailable && request.headers.has('ZapVideo-Token')) {
+      try { connected=Boolean(await person(request,env)); }
+      catch (error) { if (!(error instanceof HttpError) || error.status!==401) throw error; }
+    }
+    const visible=pilotAvailable && !connected ? {ENVIRONMENT:'production'} : env;
+    return json({
+      pilotAvailable,render:renderMode(visible),brief:briefMode(visible),
+      briefReservedMicros:briefMode(visible)==='gemini'?briefReserve(visible):0,
+      analysis:analysisMode(visible),analysisBytes,analysisTypes,
+      transcript:false,videoAI:clipMode(visible)==='gemini',clip:clipMode(visible),clipModel:clipModel(visible),clipFrameMaxBytes,
+      imageAI:mediaMode(visible,'frame')==='gemini',tts:mediaMode(visible,'speech')==='gemini',music:mediaMode(visible,'music')==='gemini',
+      assets:Object.fromEntries(['frame','speech','music'].map(kind=>[kind,mediaMode(visible,kind)])),assembly:assemblyMode(visible),limits,
+    });
+  }
   if (segments.length === 1 && resource === 'handoff') return handoff(request,env,url);
   if (segments.length === 3 && resource === 'file') return fileGrant(request,env,id,scope,url);
   const owner = await person(request,env);
