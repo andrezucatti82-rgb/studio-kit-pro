@@ -2,8 +2,8 @@
   "plugin": "video-multimarcas",
   "pluginVersion": "2.16.0",
   "kitVersion": "2.16.0",
-  "catalogVersion": "4.8",
-  "styleCount": 1425,
+  "catalogVersion": "4.9",
+  "styleCount": 1455,
   "categoryCount": 30,
   "mainCategoryCount": 7,
   "presenterStyleCount": 265,
@@ -69,33 +69,33 @@
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
       "bytes": 218869,
-      "sha256": "b0ce7f60cf377b9d36ef739d21619028c1bc67ac5de011ded9173721bc0a1f92"
+      "sha256": "bb83bffea2160129ce05077e70e20aae10b10f146ad868633fbd85ce75567a32"
     },
     "video-multimarcas-plugin.zip": {
       "bytes": 219383,
-      "sha256": "9ffc6e53e508009f3d227cedf1e93cd3e9c834c64c431d6f32f7a7e50f0ca13f"
+      "sha256": "97088e649b3ce40970e541d450219b6b36272e69cb3d6cfc0b85db846ccf6582"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4893237,
-      "sha256": "f088e4d3dc4551d1ad89296fbbe33830f3eeee85b3f875c7dd49b310d516c406"
+      "bytes": 4962233,
+      "sha256": "b5e4032039698755b9dd346319a4cac25c30f793c0b0210ca83e89b6af7dfe45"
     },
     "video-multimarcas.skill": {
       "bytes": 217846,
-      "sha256": "bcbc4210b697557ed42ff7db3e7df6fca2058c903feb4c4360a57e2eb82aa1bf"
+      "sha256": "2941fcae4cb55bac0f8dbd21148a95abf6748aad241220909fe52b69207d162b"
     },
     "video-multimarcas.zip": {
       "bytes": 217846,
-      "sha256": "bcbc4210b697557ed42ff7db3e7df6fca2058c903feb4c4360a57e2eb82aa1bf"
+      "sha256": "2941fcae4cb55bac0f8dbd21148a95abf6748aad241220909fe52b69207d162b"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.16.0",
-    "sourceRevision": "ecf304302d4a11fab768e0fe95c2a602e244b857",
+    "sourceRevision": "4035e5d5b7973210ffd17a0428776df046dfdadb",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 641390,
-    "sha256": "1525fafbda02c39935c711aeaf6f18bcfc33a70358656bb08d3207b67ecc9866",
+    "bytes": 695439,
+    "sha256": "3625fc473a8ea0dc81a53ce2d9a0e116e648d4541632a2b0159b94736573bd81",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
@@ -105,7 +105,7 @@
       "verification": "on each target machine",
       "binariesBundled": false
     },
-    "fullProjectDownloadMiB": 822,
+    "fullProjectDownloadMiB": 829,
     "skills": 1,
     "internalModules": 7,
     "presenterStyles": 265,
