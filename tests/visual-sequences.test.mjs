@@ -4,18 +4,61 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {referenceImageInfo} from '../scripts/reference-image-info.mjs';
 import '../style-atlas/dist/workflow.js';
+import '../style-atlas/dist/search.js';
+import '../style-atlas/dist/disteven-model.js';
 
 const root=new URL('../style-atlas/',import.meta.url);
 const read=p=>JSON.parse(fs.readFileSync(new URL(p,root),'utf8'));
 const catalog=read('dist/catalog.json');
-const provenance=[...read('records/sequences-720/assets.json'),...read('records/natural-ads-60/assets.json'),...read('records/segments-440/assets.json'),...read('records/presenter-realistic/manifest.json').images];
+const provenance=[...read('records/sequences-720/assets.json'),...read('records/natural-ads-60/assets.json'),...read('records/segments-440/assets.json'),...read('records/presenter-realistic/manifest.json').images,...read('records/broll-apresentacoes/assets.json')];
 const W=globalThis.AtlasWorkflow;
 
-test('1425 distinct visual sequences preserve IDs, four complete frames and review boundaries',()=>{
- assert.equal(catalog.styles.length,1425);
+test('B-roll collection is discoverable and exports stock guidance within the chosen scope',()=>{
+ const model=globalThis.DiStevenCollections;
+ const search=globalThis.AtlasSearch.createIndex(catalog.styles,catalog.search);
+ const styles=catalog.styles.filter(s=>model.matchesBrowse(s,'presentations','b-roll'));
+ assert.equal(styles.length,30);
+ assert.equal(new Set(styles.map(s=>s.broll.niche)).size,30);
+ for(const treatment of ['recorte','match-cut','janela']){
+  const group=styles.filter(s=>s.broll.treatment===treatment);
+  assert.equal(group.length,10);
+  assert.equal(group.filter(s=>s.broll.examplePresenter==='mulher').length,5);
+ }
+ for(const s of styles){
+  assert.equal(s.family,'apresentacoes');
+  assert.ok(search.search('B-roll '+s.name).some(result=>result.style.id===s.id),s.id);
+  assert.deepEqual(search.search(globalThis.AtlasSearch.styleCode(s.id)).map(result=>result.style.id),[s.id]);
+ }
+ assert.equal(model.groupByNiche(styles).flatMap(group=>group.styles).length,30);
+ const [first,second]=styles;
+ const choice={
+  selectedStyles:[first,second].map(s=>({...s,visualSequence:s.sequence,referenceFrame:W.referenceFrame(s)})),
+  styleContributions:{
+   [first.id]:[{aspect:'style_direction',scope:'film'}],
+   [second.id]:[{aspect:'movement_language',scope:'details'}]
+  },
+  topic:'Como escolher as frutas do gelato',format:'16:9',durationMode:'source',targetDurationSeconds:null,
+  materialAssignments:[{id:'tomada-original',label:'Apresentação.mp4',kind:'video',source:'picked_locally',
+   roles:['reference','incorporate'],rights:{image:'authorized',voice:'authorized'}}]
+ };
+ const prompt=W.buildPrompt(choice);
+ const bundle=W.portableBundle(choice);
+ assert.equal(bundle.brief.productionIntent.deliverable,'final_ai_video');
+ assert.equal(bundle.brief.format,'16:9');
+ assert.equal(bundle.brief.durationMode,'source');
+ assert.deepEqual(bundle.brief.materialAssignments,choice.materialAssignments);
+ assert.deepEqual(bundle.brief.styleContributions,choice.styleContributions);
+ for(const s of bundle.brief.selectedStyles){
+  assert.match(s.executionPlan.planningRule,/curadoria-de-conteudos/);
+  assert.ok(prompt.includes(s.executionPlan.planningRule));
+ }
+});
+
+test('1455 distinct visual sequences preserve IDs, four complete frames and review boundaries',()=>{
+ assert.equal(catalog.styles.length,1455);
  assert.equal(catalog.visualEditionStatus,'complete');
- assert.equal(provenance.length,1425);
- assert.equal(new Set(catalog.styles.map(s=>s.id)).size,1425);
+ assert.equal(provenance.length,1455);
+ assert.equal(new Set(catalog.styles.map(s=>s.id)).size,1455);
  const hashes=new Set();
  for(const s of catalog.styles){
   const record=provenance.find(r=>r.id===s.id);
@@ -32,6 +75,7 @@ test('1425 distinct visual sequences preserve IDs, four complete frames and revi
    else assert.equal(data.toString('ascii',8,12),'WEBP');
    const hash=createHash('sha256').update(data).digest('hex');
    hashes.add(hash+JSON.stringify(f.crop||null));if(f.crop)assert.equal(hash,record.sha256,s.id);
+   if(s.broll)assert.equal(hash,record.frames[i].sha256,s.id);
    assert.ok(fs.statSync(new URL('dist/'+f.thumbnail,root)).size>100);
    if(record.crops){
     assert.equal(hash,record.crops[i].sha256,s.id);
@@ -46,7 +90,7 @@ test('1425 distinct visual sequences preserve IDs, four complete frames and revi
   assert.equal(s.executionPlan.movementLanguage,s.motion);
   assert.deepEqual(s.executionPlan.resources,s.resources);
  }
- assert.equal(hashes.size,5700,'each frame has a distinct complete address, never a repeated cover');
+ assert.equal(hashes.size,5820,'each frame has a distinct complete address, never a repeated cover');
 });
 
 test('old and expanded styles hand off the actual sequence, action plan and neutral approval rules',()=>{

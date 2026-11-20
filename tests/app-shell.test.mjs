@@ -129,16 +129,16 @@ test('Page migration retains 4.1 favourites and resets approvals when reference 
  assert.equal(resumed.getStorageReads(),0);
 });
 
-test('two-level categories partition all 1425 styles and never render example-style shortcuts',async()=>{
+test('two-level categories partition all 1455 styles and never render example-style shortcuts',async()=>{
  const {document:d,ctx,click}=await boot();const catalog=ctx.AtlasApp.getCatalog(),groups=ctx.AtlasNavigation.groups;
  assert.equal(groups.length,7);
  const families=groups.flatMap(g=>g.families);
  assert.equal(families.length,30);assert.equal(new Set(families).size,30);
  assert.deepEqual(new Set(families),new Set(catalog.families.map(f=>f.id)));
- assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1425);
+ assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1455);
  assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,29);
  assert.equal(d.querySelectorAll('#categoryTiles [data-visual-family]').length,3);
- for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',160],['visual',240]]){
+ for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',190],['visual',240]]){
   click('[data-nav-group="'+id+'"]');
   assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+total+' estilos'));
   assert.equal(ctx.AtlasApp.categorySelection().group,id);
@@ -163,7 +163,7 @@ test('two-level categories partition all 1425 styles and never render example-st
  assert.equal(ctx.AtlasCurrentChoice().selectedStyles.length,0,'navigation does not change the brief');
  click('.category-all');assert.equal(d.getElementById('familySelect').value,'');
  assert.equal(ctx.AtlasApp.categorySelection().group,'');
- assert.match(d.getElementById('resultCount').textContent,/^1425 estilos/);
+ assert.match(d.getElementById('resultCount').textContent,/^1455 estilos/);
  assert.equal(d.querySelectorAll('#grid .card').length,24);
 });
 test('browsing parents and subcategories preserves selected styles, contributions and approvals',async()=>{
@@ -380,7 +380,7 @@ test('presenter storyboard steps show real selected recipe directions and retain
 test('content search opens the whole catalogue, finds hidden dog synonyms and retains explicit refinements and choices',async()=>{
  const app=await boot(),d=app.document;app.click('[data-nav-family="ads-joias"]');app.ctx.AtlasApp.chooseStyle('vidro-e-refracao');const chosen=app.ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id);
  const input=d.getElementById('search'),search=q=>{input.value=q;input.dispatchEvent(new app.ctx.Event('input',{bubbles:true}));};search('cachorro');
- assert.equal(d.getElementById('familySelect').value,'');assert.equal(app.ctx.AtlasApp.categorySelection().group,'');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));assert.match(d.getElementById('searchScopeText').textContent,/todas/);assert.match(d.getElementById('resultCount').textContent,/39 estilos · 4 subcategorias/);
+ assert.equal(d.getElementById('familySelect').value,'');assert.equal(app.ctx.AtlasApp.categorySelection().group,'');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));assert.match(d.getElementById('searchScopeText').textContent,/todas/);assert.match(d.getElementById('resultCount').textContent,/40 estilos · 5 subcategorias/);
  const first=[...d.querySelectorAll('#grid .card')].map(e=>e.dataset.styleId);search('cães');assert.deepEqual([...d.querySelectorAll('#grid .card')].map(e=>e.dataset.styleId),first);assert.deepEqual(app.ctx.AtlasCurrentChoice().selectedStyles.map(s=>s.id),chosen);
  app.click('[data-nav-family="ads-pets"]');assert.equal(d.getElementById('searchEverywhere').hidden,false);assert(!d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));app.click('#searchEverywhere');assert(d.querySelector('[data-style-id="pet-em-uso-cotidiano"]'));
  search('cachorro xyzzy');assert.equal(d.querySelectorAll('#grid .card').length,0);assert.equal(d.getElementById('empty').hidden,false);search('');assert.equal(d.getElementById('searchScope').hidden,true);assert(d.querySelectorAll('#grid .card').length>0);

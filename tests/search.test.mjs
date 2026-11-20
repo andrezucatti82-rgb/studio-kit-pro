@@ -20,7 +20,7 @@ test('public style codes are unique, stable and find one style by case-insensiti
  assert.deepEqual(ids('FOL-00000000'),[]);
 });
 test('all styles have reproducible, nonempty hidden tags without changing visual styles',()=>{
- assert.equal(createHash('sha256').update(JSON.stringify(c.styles)).digest('hex'),'73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0','search enrichment must preserve all published style contracts');assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
+ assert.equal(createHash('sha256').update(JSON.stringify(c.styles.filter(style=>!style.broll))).digest('hex'),'73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0','search enrichment must preserve all published style contracts');assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
  for(const s of c.styles){assert.deepEqual(c.search.styleTags[s.id],S.tagsFor(s,overrides[s.id]?.tags||[],c.search.styleColors?.[s.id]||[]));assert(c.search.styleTags[s.id].length>=3,s.id);assert.equal(new Set(c.search.styleTags[s.id]).size,c.search.styleTags[s.id].length);}
 });
 test('dog synonyms find actual dog descriptions across the complete catalogue, never a substring in education',()=>{
@@ -74,7 +74,7 @@ test('similar styles are deterministic, distinct and retain the source niche wit
 
 test('reference colors cover every style and are discovery metadata with source evidence',async()=>{
  const colors=JSON.parse(await fs.readFile(new URL('../style-atlas/records/search/colors.json',import.meta.url)));
- assert.equal(colors.imageFilesModified,false);assert.equal(Object.keys(c.search.styleColors).length,1425);
+ assert.equal(colors.imageFilesModified,false);assert.equal(Object.keys(c.search.styleColors).length,1455);
  assert.equal(c.search.referenceColorsSha256,createHash('sha256').update(JSON.stringify(colors.styles)).digest('hex'));
  for(const s of c.styles){const record=colors.styles[s.id];assert.equal(record.source,s.sequence.frames[s.sequence.heroIndex??1].src);assert.match(record.sourceSha256,/^[a-f0-9]{64}$/);assert(record.colors.length>0);for(const color of c.search.styleColors[s.id])assert(c.search.styleTags[s.id].includes(color),s.id+': '+color);}
 });

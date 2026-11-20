@@ -35048,6 +35048,748 @@
           "share": 0.5981
         }
       ]
+    },
+    "broll-sorveteria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-sorveteria-03.webp",
+      "sourceSha256": "58c2abc12efcf00ea1d71c93bcd804e57836a09c89370a05da8587b12407e941",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.2866
+        },
+        {
+          "tag": "marrom",
+          "share": 0.251
+        },
+        {
+          "tag": "vermelho",
+          "share": 0.24
+        },
+        {
+          "tag": "vinho",
+          "share": 0.1231
+        }
+      ]
+    },
+    "broll-acaiteria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-acaiteria-03.webp",
+      "sourceSha256": "f5c7a9ed2b0788b3e50a0a6455f13522c6d100e41663986c68fb320b03b0d0f0",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "rosa",
+          "share": 0.2341
+        },
+        {
+          "tag": "vinho",
+          "share": 0.1963
+        },
+        {
+          "tag": "vermelho",
+          "share": 0.1796
+        }
+      ]
+    },
+    "broll-bar-pub": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-bar-pub-03.webp",
+      "sourceSha256": "c108e45f6667c17ec6a45af4ae0d1a754a2f61bfdc081129043cd0554aa837f5",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.3018
+        },
+        {
+          "tag": "preto",
+          "share": 0.2498
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1901
+        }
+      ]
+    },
+    "broll-roupas": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-roupas-03.webp",
+      "sourceSha256": "7c593c28db04e2bc5bde4e71889b6ae51fb38a829630c44f6a649476961b384b",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.662
+        },
+        {
+          "tag": "vinho",
+          "share": 0.133
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1248
+        }
+      ]
+    },
+    "broll-calcados": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-calcados-03.webp",
+      "sourceSha256": "ec905a3775e3fceed078d9dbbd2643ca12d09c7c3e2b540ed9236803e634debc",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.3703
+        },
+        {
+          "tag": "preto",
+          "share": 0.2474
+        },
+        {
+          "tag": "laranja",
+          "share": 0.239
+        }
+      ]
+    },
+    "broll-papelaria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-papelaria-03.webp",
+      "sourceSha256": "19abfa311aaed17ac8782a433a0edaf6548414f6e1778bd3c839e902d6d82650",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4041
+        }
+      ]
+    },
+    "broll-livraria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-livraria-03.webp",
+      "sourceSha256": "7d1f9376c8938b199c4880d3457136b6e2f72de507964f7280a57c5f1b4a636b",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.6541
+        },
+        {
+          "tag": "marrom",
+          "share": 0.159
+        }
+      ]
+    },
+    "broll-pet-shop": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-pet-shop-03.webp",
+      "sourceSha256": "7a4945e5a9d8eed7e827c799c05b3ffdfca38acf5273c5390966db4423fdc251",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4438
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1638
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1614
+        }
+      ]
+    },
+    "broll-eletronicos": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-eletronicos-03.webp",
+      "sourceSha256": "08b972ba5e53ed2292060f863bef4194c245ac4430dbdf4460312811518aab8b",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4643
+        },
+        {
+          "tag": "laranja",
+          "share": 0.186
+        },
+        {
+          "tag": "preto",
+          "share": 0.1759
+        }
+      ]
+    },
+    "broll-celulares": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-celulares-03.webp",
+      "sourceSha256": "4a59c7c5823ed620b620540291065c9a09823f8a3dea49fbc8e74d1b94865b8a",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.3792
+        },
+        {
+          "tag": "cinza",
+          "share": 0.3432
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1559
+        }
+      ]
+    },
+    "broll-floricultura": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-floricultura-03.webp",
+      "sourceSha256": "bce93daefbd4d66542af4916d0a5a33b4233e13f3212ed99ca2b704c40fdad2d",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.3936
+        },
+        {
+          "tag": "marrom",
+          "share": 0.2153
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1545
+        },
+        {
+          "tag": "preto",
+          "share": 0.1524
+        }
+      ]
+    },
+    "broll-jardinagem": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-jardinagem-03.webp",
+      "sourceSha256": "eaab346c2090ddbd6b5fdad9360b430c7b79ea0f8594c6103f87254be461b47a",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.2558
+        },
+        {
+          "tag": "cinza",
+          "share": 0.2133
+        },
+        {
+          "tag": "laranja",
+          "share": 0.2104
+        }
+      ]
+    },
+    "broll-relojoaria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-relojoaria-03.webp",
+      "sourceSha256": "a2df81cb3c5d1f6380623c80d1844b30b0e3687bafe335a213ecfbd6da9055d8",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.3472
+        },
+        {
+          "tag": "cinza",
+          "share": 0.2519
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1772
+        }
+      ]
+    },
+    "broll-otica": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-otica-03.webp",
+      "sourceSha256": "730726bba2e9a4a8645c6a7abb655336621414d871f8affd9f1cf94a45ad2c2d",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.4596
+        },
+        {
+          "tag": "laranja",
+          "share": 0.2458
+        }
+      ]
+    },
+    "broll-salao-beleza": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-salao-beleza-03.webp",
+      "sourceSha256": "29a928d01742b1c7be651239719bc11ab0e167052fc113c25984f6bf6ce060d1",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.2829
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1777
+        },
+        {
+          "tag": "preto",
+          "share": 0.1624
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1554
+        }
+      ]
+    },
+    "broll-barbearia": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-barbearia-03.webp",
+      "sourceSha256": "c747f588d61a03ba114328ec3e5d411a2d43bd7bfd886f4861f4c5f9df843688",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.4738
+        },
+        {
+          "tag": "marrom",
+          "share": 0.2161
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1552
+        }
+      ]
+    },
+    "broll-estudio-pilates": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-estudio-pilates-03.webp",
+      "sourceSha256": "f655b4bca396d80b155ba9c3ad41cb2cd531f2e9433dd8c1122f3f0c37862800",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.3761
+        },
+        {
+          "tag": "preto",
+          "share": 0.2253
+        },
+        {
+          "tag": "azul",
+          "share": 0.1234
+        }
+      ]
+    },
+    "broll-academia": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-academia-03.webp",
+      "sourceSha256": "a02188d32feb5112584b5670ede96daddc481a51200c99fbd5bbe480fea3898c",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4888
+        },
+        {
+          "tag": "preto",
+          "share": 0.1626
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1478
+        }
+      ]
+    },
+    "broll-cosmeticos": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-cosmeticos-03.webp",
+      "sourceSha256": "b07e511e96d50f24e95b7568c4f280214410a3eb0e5ad4a8e51a38d21cb4ae15",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.4284
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1911
+        },
+        {
+          "tag": "vermelho",
+          "share": 0.1858
+        }
+      ]
+    },
+    "broll-perfumaria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-perfumaria-03.webp",
+      "sourceSha256": "d85a89287b21940dd81e605a138af31d18f94b7edb494d58f4a62cd3e0f00603",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.3391
+        },
+        {
+          "tag": "cinza",
+          "share": 0.2795
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1734
+        }
+      ]
+    },
+    "broll-lavanderia": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-lavanderia-03.webp",
+      "sourceSha256": "417dc1f53f372581e06b99b548d762799bab7fca5aec2139e3d64f6940ad25d8",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4746
+        },
+        {
+          "tag": "azul",
+          "share": 0.1912
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1204
+        }
+      ]
+    },
+    "broll-agencia-turismo": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-agencia-turismo-03.webp",
+      "sourceSha256": "5801298cec00ed47d77159e30c3d16a6c7072d33df0634a5f5aa8958eed91ccc",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "azul",
+          "share": 0.3326
+        },
+        {
+          "tag": "amarelo",
+          "share": 0.193
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1316
+        }
+      ]
+    },
+    "broll-imobiliaria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-imobiliaria-03.webp",
+      "sourceSha256": "3fee1d48acd47316ceae4dd5e2167a9456cead65e5de8eb682b59b9b16937b07",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "preto",
+          "share": 0.2548
+        },
+        {
+          "tag": "cinza",
+          "share": 0.2199
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1699
+        },
+        {
+          "tag": "marrom",
+          "share": 0.1211
+        }
+      ]
+    },
+    "broll-ecommerce": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-ecommerce-03.webp",
+      "sourceSha256": "f83e6a09076ba1278529fa6eb691d9444819df2dc391aa2ed9990b53a794978d",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "laranja",
+          "share": 0.2797
+        },
+        {
+          "tag": "cinza",
+          "share": 0.1871
+        },
+        {
+          "tag": "preto",
+          "share": 0.1768
+        }
+      ]
+    },
+    "broll-material-construcao": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-material-construcao-03.webp",
+      "sourceSha256": "47c200c9464a2f603ab4050d08fd6a4145d1969c39df6ffb6b04d4d2ce7a3581",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.7607
+        }
+      ]
+    },
+    "broll-ferragem": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-ferragem-03.webp",
+      "sourceSha256": "13923628ea56d2d2647c5028b4c079a8910c08fac086b1a7ec78587b17468de4",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "azul",
+          "share": 0.3329
+        },
+        {
+          "tag": "laranja",
+          "share": 0.2706
+        },
+        {
+          "tag": "cinza",
+          "share": 0.144
+        }
+      ]
+    },
+    "broll-acougue": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-acougue-03.webp",
+      "sourceSha256": "2ecdcf97764613528e26fac15959dc347eb10f902c70dbe2af32c9c553b81dcc",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4071
+        },
+        {
+          "tag": "vermelho",
+          "share": 0.1731
+        },
+        {
+          "tag": "vinho",
+          "share": 0.1587
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1255
+        }
+      ]
+    },
+    "broll-peixaria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-peixaria-03.webp",
+      "sourceSha256": "0e1ebe8d3f637c816eabe7501b82a2c670ed327d2cd92a2a5d3549cac54fd983",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "vermelho",
+          "share": 0.4714
+        },
+        {
+          "tag": "cinza",
+          "share": 0.2874
+        }
+      ]
+    },
+    "broll-automotivo": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-automotivo-03.webp",
+      "sourceSha256": "1c98916457a88286edc63a220450bd8abe21c58257745ddedb151aa5839cabfc",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "cinza",
+          "share": 0.4872
+        },
+        {
+          "tag": "azul",
+          "share": 0.2728
+        }
+      ]
+    },
+    "broll-cafeteria": {
+      "frame": 2,
+      "source": "assets/broll-apresentacoes/broll-cafeteria-03.webp",
+      "sourceSha256": "7f933a56cb4c8587d5164f376b21885eb464c7c9d8ee17f838ecabd7214c953b",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "colors": [
+        {
+          "tag": "marrom",
+          "share": 0.2319
+        },
+        {
+          "tag": "laranja",
+          "share": 0.1562
+        },
+        {
+          "tag": "cinza",
+          "share": 0.15
+        },
+        {
+          "tag": "preto",
+          "share": 0.1413
+        }
+      ]
     }
   }
 }

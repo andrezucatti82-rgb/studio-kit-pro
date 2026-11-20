@@ -24,9 +24,9 @@ with sync_playwright() as p:
   # Every source covers its frame at native aspect ratio; no decorative fill.
   page.route('**/*',lambda route:route.abort() if route.request.resource_type=='image' else route.continue_())
   result=page.evaluate('''()=>{let items=AtlasApp.getCatalog().styles;AtlasDiSteven.update({items,shown:items,selected:[],favorites:[],compared:[],family:'',group:'',query:'',kind:'',onlyFav:false,onlyVideo:false});return {count:items.length,bad:[...document.querySelectorAll('#grid .disteven-portrait')].filter(e=>{let a=e.getBoundingClientRect(),b=e.querySelector('.disteven-artwork').firstElementChild.getBoundingClientRect(),[w,h]=e.style.getPropertyValue('--disteven-source-ratio').split('/').map(Number);return b.left>a.left+.6||b.top>a.top+.6||b.right<a.right-.6||b.bottom<a.bottom-.6||Math.abs(b.width/b.height-w/h)>.002||!!e.querySelector('.disteven-image-fill')}).length}}''')
-  assert result=={'count':1425,'bad':0},result
+  assert result=={'count':1455,'bad':0},result
   assert page.locator('.disteven-to-top').count()==0
-  report['layouts'].append({'width':width,'columns':columns,'all1425FillFrame':True,'uniformThreeByFourHeight':True,'compactHeight':compact['height']})
+  report['layouts'].append({'width':width,'columns':columns,'all1455FillFrame':True,'uniformThreeByFourHeight':True,'compactHeight':compact['height']})
   page.close()
  for reduced in ['no-preference','reduce']:
   page=b.new_page(viewport={'width':1440,'height':1000},reduced_motion=reduced)

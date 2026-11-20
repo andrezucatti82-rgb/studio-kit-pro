@@ -12,9 +12,9 @@ test('compact runtime can rebuild discovery tags without reference images or dep
   const root=path.join(temp,'video-multimarcas-runtime');
   assert.equal((await fs.readdir(path.join(root,'style-atlas/dist/assets'))).includes('film-sequences'),false);
   const result=execFileSync(process.execPath,[path.join(root,'scripts/build-search-index.mjs')],{cwd:root,encoding:'utf8'});
-  assert.match(result,/1425 styles indexed/);
+  assert.match(result,/1455 styles indexed/);
   const catalog=JSON.parse(await fs.readFile(path.join(root,'style-atlas/dist/catalog.json'),'utf8'));
-  assert.equal(Object.keys(catalog.search.styleColors).length,1425);
+  assert.equal(Object.keys(catalog.search.styleColors).length,1455);
  }finally{await fs.rm(temp,{recursive:true,force:true});}
 });
 
