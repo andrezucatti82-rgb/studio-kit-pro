@@ -41,3 +41,19 @@ Cloudflare DNS e Google Public DNS responderam com os mesmos dados principais.
 A consulta autenticada à conta Cloudflare exibiu zero zonas com esse nome. O OAuth do Wrangler tinha leitura de zona, sem escrita; o endpoint de assinaturas recusou o acesso. Os painéis dos portais também ficaram inacessíveis no mecanismo de controle da interface. O endereço apex e a variante www atingiram timeout no teste HTTPS. A página anterior respondeu 200. Catálogo, instalador, helper de imagens e instruções legadas responderam 200 na base publicada `/atlas-20261120002100/`. A rota legada `cloud-handoff.php` respondeu 405 a HEAD, coerente com a implementação antiga. A compatibilidade do importador foi testada com pacote sintético e a allowlist da rota anterior.
 
 A troca do apex exige confirmação no portal dos registros de e-mail. O MX e o alias `mail` dependem atualmente do apex. Os dois nameservers acima são o caminho de retorno da delegação, sujeito ao inventário completo dos registros e à conferência de DNSSEC/DS no registrador. Nenhum DNS, serviço existente ou plano foi alterado. A prova não consumiu chamadas pagas.
+
+
+## Homologação protegida em 20 de novembro de 2026
+
+A branch incorporou a `origin/main` em `74d45378` e preservou as atualizações do catálogo, do guia e de tipografia. O commit `bd23328c` configurou o D1 de staging e a prova automatizada da imagem Linux. O [build 44695830780](https://github.com/andrezucatti82-rgb/studio-kit-pro/actions/runs/44695830780) compilou e rodou a imagem com 1 vCPU e 6 GiB como limites. Edição legendada, três cortes verticais com áudio e SRT passaram em 5,2 segundos no teste sintético. Os hashes dos cinco arquivos corresponderam ao relatório de saída. A medição é do runner Linux.
+
+| Item | Resultado em homologação remota |
+| --- | --- |
+| Worker e acesso | HTTPS em `zapvideo-staging.andrezucatti82.workers.dev`, com 401 sem credencial e 200 com credencial. Chrome abriu a interface em 390 e 1280 px e acionou a edição por teclado. |
+| Catálogo, instalador e PHP | Catálogo de 35.311.566 bytes entregue pelo R2. SHA-256 verificado e 304 com ETag. O instalador baixado correspondeu ao hash de seu manifesto. A rota PHP devolveu 404. |
+| D1, R2 e Workflows | Cinco migrações aplicadas. Dois buckets e um Workflow exclusivos de staging. Upload de vídeo retomado depois da primeira de duas partes. Reenvio idempotente, parte inválida recusada e ficha privada para seu proprietário. |
+| Pacote criptografado | O mesmo importador de produção consumiu as respostas do staging em uma prova autenticada. Original e SRT recuperados com SHA-256 idênticos. URL canônica ainda pendente. |
+| Container | Imagem Linux enviada ao registro privado e configuração criada no staging. SHA-256 da imagem `514236ab2d1f12f595d3520d981cb2996c2f9374ac5f3e0dfdbf5d4602545ba5`. Render remoto desligado até autorização. |
+| Google e domínio | Segredo Gemini ainda ausente no ZapVideo. Consumo de Google R$ 0. Os dois resolvedores ainda mostraram os nameservers da HostGator. A conta Cloudflare não exibiu zona de `zapvideo.com.br` e o acesso disponível permite leitura. |
+
+A consulta de uso da Cloudflare apontou 45,514 GiB-h de memória antes da prova remota do ZapVideo, acima dos 25 GiB-h mensais incluídos no Workers Paid. A prova com FFmpeg remoto depende de aceite de custo próprio. Os portais da Cloudflare e da HostGator ainda são necessários para criação da zona, conferência do e-mail e delegação. [Preços de Containers](https://developers.cloudflare.com/containers/platform/pricing/).
