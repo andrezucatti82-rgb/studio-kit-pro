@@ -74,3 +74,21 @@ A zona `zapvideo.com.br` foi criada no plano gratuito da Cloudflare e confirmada
 No Google AI Studio, a busca por ZapVideo nos projetos disponíveis retornou zero resultados. As chaves importadas pertencem ao GDA Insight Flow. A criação de projeto e chave exclusivos do ZapVideo aguarda confirmação na sessão do Google.
 
 O Worker de produção `zapvideo` foi provisionado na versão `0721d342-755b-4a99-81f0-d65d8af93fe3`. Tem D1 migrado, dois buckets próprios, catálogo versionado, Workflow e Container dedicado. A API confirmou `workers.dev` e URLs de prévia desativados, zero domínios vinculados e zero instâncias em execução.
+
+## Publicação no domínio canônico em 20 de novembro de 2026
+
+A HostGator confirmou a delegação de `zapvideo.com.br` para `annabel.ns.cloudflare.com` e `valentin.ns.cloudflare.com`. A zona ficou ativa e os resolvedores 1.1.1.1 e 9.9.9.9 confirmaram o novo par. Às 13h24 de Brasília, o Google Public DNS ainda retornava os servidores anteriores do cache. O Chrome local e a CLI abriram o endereço canônico pela resolução normal.
+
+O inventário privado anterior à mudança registrou os servidores da HostGator, os cinco registros, a ausência de DS e o destino de e-mail. A HostGator listava zero caixas de e-mail para o domínio. Antes de substituir os registros do site, foram criados registros A sem proxy para `mail` e `ftp`, ambos em `162.240.81.81`, e o MX do apex passou a apontar a `mail.zapvideo.com.br` com prioridade 0. Os dois servidores autoritativos confirmaram o MX e os endereços preservados.
+
+| Função | Resultado publicado |
+| --- | --- |
+| Domínio e TLS | `zapvideo.com.br` e `www.zapvideo.com.br` vinculados ao Worker `zapvideo`, versão `50212cef-04a3-43f1-a3f6-2e694c760206`. Certificados válidos. O HTTP e o www redirecionaram com 308, preservando caminho e parâmetros. |
+| Página e catálogo | Página inicial, navegação por teclado no desktop, fluxo de criação a 390 px e carregamento da biblioteca verificados no Chrome. Metadados canônicos conferidos. Catálogo R2 de 35.311.566 bytes conferido por SHA-256 e revalidado com ETag e 304. |
+| Prévia e instalador | O MP4 de catálogo amostrado foi servido completo com HTTP 200 e decodificado como H.264/AAC de 10 s. O ZIP do instalador (641.390 bytes) correspondeu ao SHA-256 do manifesto, revisão fonte `ecf30430`. Os arquivos privados de edição em staging passaram no teste de HTTP Range. |
+| Pacote para Codex e Claude Code | O importador recuperou vídeo sintético e SRT pelo URL HTTPS canônico. Os dois arquivos recuperados eram idênticos aos originais e o FFprobe abriu o vídeo. Upload anônimo recusado com 401, identificador inexistente e pacote expirado devolveram 404. A credencial de teste foi revogada. |
+| API e endereço anterior | Sessão sem código devolveu 401. A rota PHP no novo domínio devolveu 404. A página de vídeos do GDA continuou a responder 200. |
+| Edição e montagem online | A prova completa de FFmpeg passou em staging. A configuração pública oferece ficha, ZIP, instalador e encaminhamento criptografado. Renderização em produção segue desativada. |
+| Gemini com o projeto GDA Insight Flow | Uso autorizado para o staging protegido, até R$ 50/dia em testes do ZapVideo. O segredo foi gravado no Worker de staging, mas seu valor falhou na checagem de formato. O teste parou antes da consulta ao Google e da geração. As capacidades Gemini seguem desligadas. |
+
+O retorno está documentado em [ZapVideo](ZAPVIDEO.md#retorno). O inventário privado preserva os cinco registros anteriores e o par original de servidores para restauração.

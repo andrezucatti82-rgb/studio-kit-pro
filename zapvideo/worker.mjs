@@ -182,7 +182,8 @@ export default {
         status:401,headers:{'WWW-Authenticate':'Basic realm="ZapVideo staging", charset="UTF-8"','Cache-Control':'no-store'},
       });
       const url = new URL(request.url);
-      if (env.ENVIRONMENT === 'production' && url.hostname === 'www.zapvideo.com.br') {
+      if (env.ENVIRONMENT === 'production' && (url.hostname === 'www.zapvideo.com.br' ||
+        (url.hostname === 'zapvideo.com.br' && url.protocol === 'http:'))) {
         url.hostname='zapvideo.com.br'; url.protocol='https:'; return Response.redirect(url,308);
       }
       if (!isGet(request) && request.headers.get('Origin') && request.headers.get('Origin') !== url.origin) reject(403,'Origem inválida.');

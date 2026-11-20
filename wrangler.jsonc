@@ -35,6 +35,10 @@
       "name": "zapvideo",
       "workers_dev": false,
       "preview_urls": false,
+      "routes": [
+        { "pattern": "zapvideo.com.br", "custom_domain": true, "zone_name": "zapvideo.com.br" },
+        { "pattern": "www.zapvideo.com.br", "custom_domain": true, "zone_name": "zapvideo.com.br" }
+      ],
       "vars": { "ENVIRONMENT": "production", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0", "GEMINI_CLIP_VERIFIED": "0", "GEMINI_CLIP_DAILY_BUDGET_MICROS": "0", "GEMINI_ASSET_DAILY_BUDGET_MICROS": "0" },
       "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-production", "database_id": "8c8d4528-d88b-4162-be81-03b6f6b439ef", "migrations_dir": "migrations/zapvideo" }],
       "r2_buckets": [
