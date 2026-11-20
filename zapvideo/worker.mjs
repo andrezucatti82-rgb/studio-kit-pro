@@ -1,5 +1,5 @@
 import {isId, limits, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
-import {analysisMode, briefMode} from './gemini.mjs';
+import {analysisMode, briefMode, briefReserve} from './gemini.mjs';
 import {analysisBytes, analysisTypes} from './analysis-media.mjs';
 import {digest, exactBody, hours, HttpError, isExpired, isHash, json, now, objectResponse, person, randomHex, readJson, reject, sql} from './http.mjs';
 import {jobFiles,jobRoute, readRevision, renderMode, startJob} from './jobs.mjs';
@@ -108,7 +108,8 @@ async function api(request,env,url) {
   const segments = url.pathname.slice(API.length).split('/').slice(1);
   const [resource,id,scope,item,action,number] = segments;
   if (segments.length === 1 && resource === 'capabilities' && request.method === 'GET') return json({
-    render:renderMode(env),brief:briefMode(env),analysis:analysisMode(env),analysisBytes,analysisTypes,
+    render:renderMode(env),brief:briefMode(env),briefReservedMicros:briefMode(env)==='gemini'?briefReserve(env):0,
+    analysis:analysisMode(env),analysisBytes,analysisTypes,
     transcript:false,videoAI:clipMode(env)==='gemini',clip:clipMode(env),clipModel:clipModel(env),clipFrameMaxBytes,
     imageAI:mediaMode(env,'frame')==='gemini',tts:mediaMode(env,'speech')==='gemini',music:mediaMode(env,'music')==='gemini',
     assets:Object.fromEntries(['frame','speech','music'].map(kind=>[kind,mediaMode(env,kind)])),assembly:assemblyMode(env),limits,
@@ -148,7 +149,7 @@ async function purge(env) {
     sql(env,'DELETE FROM asset_quotes WHERE expires_at<=?',cutoff),
   ]);
   await sql(env,'DELETE FROM grants WHERE expires_at<=?',cutoff).run();
-  const jobs = (await sql(env,"SELECT id,project_id FROM jobs WHERE expires_at<=? AND NOT (kind IN ('clip','asset') AND state='uncertain' AND reserved_micros>0) LIMIT 25",cutoff).all()).results;
+  const jobs = (await sql(env,"SELECT id,project_id FROM jobs WHERE expires_at<=? AND NOT (kind IN ('brief','clip','asset') AND state='uncertain' AND reserved_micros>0) LIMIT 25",cutoff).all()).results;
   for (const job of jobs) {
     await env.PRIVATE.delete(['video','corte-1','corte-2','corte-3','legendas','clipe','clipe-original',
       'quadro','narracao','trilha','asset-original','montagem'].map(id => `projects/${job.project_id}/jobs/${job.id}/${id}`));

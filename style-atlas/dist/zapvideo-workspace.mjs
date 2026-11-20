@@ -14,6 +14,7 @@ const editTitle = 'Editar um vídeo que já tenho';
 const createTitle = 'Criar um vídeo com IA';
 const accessKey = 'zapvideo-pilot';
 const formatBytes = bytes => `${new Intl.NumberFormat('pt-BR',{maximumFractionDigits:2}).format(bytes/1024**2)} MiB`;
+const briefPrice = micros => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'USD',maximumFractionDigits:6}).format(micros/1e6);
 const unique = () => crypto.randomUUID();
 const blankCut = () => ({start:'',end:'',x:0.5,y:0.5});
 const newDraft = mode => ({id:unique(),version:projectVersion,revision:1,mode,subject:'',materials:[],scenes:[],
@@ -129,7 +130,9 @@ function refresh() {
   $('render-note').textContent = online ? 'Se o envio cair, selecione o mesmo arquivo para retomar.' : 'Edição online indisponível. Use a ficha no Studio Kit Pro.';
   $('suggest').disabled = Boolean(task) || capabilities.brief === 'unavailable';
   $('suggest-note').textContent = capabilities.brief === 'mock' ? 'Proposta simulada para testes.' :
-    capabilities.brief === 'unavailable' ? 'Gemini indisponível. Você pode montar o briefing aqui.' : 'Apenas seu assunto será enviado ao Gemini.';
+    capabilities.brief === 'unavailable' ? 'Gemini indisponível. Você pode montar o briefing aqui.' :
+      capabilities.briefReservedMicros>0 ? 'Reserva por proposta de '+briefPrice(capabilities.briefReservedMicros)+'. Envia apenas o assunto ao Gemini.' :
+        'Apenas seu assunto será enviado ao Gemini.';
   $('analysis-controls').hidden=capabilities.analysis==='unavailable';
   $('analysis-note').textContent=capabilities.analysis==='unavailable'?'Análise online indisponível. Suas referências podem acompanhar a ficha.' :
     (capabilities.analysis==='mock'?'Análise simulada para testes. ':'O Gemini recebe somente o assunto e as fontes selecionadas. ')+
@@ -605,6 +608,8 @@ async function runTask(kind, resume=false, clipQuote=null) {
     else {
       // User can keep editing while the immutable snapshot is sent.
       const plan=structuredClone(validateProject(draftPlan()));
+      const agreedMicros=kind==='brief'?capabilities.briefReservedMicros:undefined;
+      if (agreedMicros>0 && !window.confirm('Confirma a reserva de '+briefPrice(agreedMicros)+' para pedir uma proposta ao Gemini?')) return;
       if (kind==='edit' && !$('permit').checked) throw new Error('Autorize o envio dos arquivos para processar online.');
       let selected=kind==='edit'?requireSelected(plan):[];
       if (kind==='assembly') selected=clipQuote?.filesToSend || [];
@@ -631,7 +636,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
         approvalId=approval.id;
       }
       const body=['clip','asset'].includes(kind)?{kind,revision:plan.revision,quoteId:clipQuote?.id,confirmed:clipQuote?.revision===plan.revision}:
-        {kind,revision:plan.revision,inputs,url:publicAddress,phase:clipQuote?.phase,approvalId,
+        {kind,revision:plan.revision,inputs,url:publicAddress,phase:clipQuote?.phase,approvalId,agreedMicros,
           key:kind+(kind==='assembly'?'-'+clipQuote.phase:'')+'-'+plan.revision};
       const started=await api(projectPath+'/jobs',{method:'POST',body,signal});
       job={id:started.id,project:plan.id,kind,revision:plan.revision};

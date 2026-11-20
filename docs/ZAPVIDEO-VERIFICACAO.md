@@ -102,3 +102,14 @@ A prova expôs duas incompatibilidades. No Worker, chamadas com o modo de redire
 Um trabalho separado confirmou o percurso completo. O Nano Banana 2.1 entregou um JPEG vertical de 768 × 1.376 pixels (535.346 bytes). O Container verificou o formato e a decodificação, o download exigiu a credencial temporária e o SHA-256 conferiu com o arquivo guardado. Reenviar a mesma confirmação devolveu o mesmo trabalho. O resultado permaneceu em revisão visual. SHA-256 `af8e54ec85f98bb981b243e8ac211d543f5182bf681ae288a38e86026a4b98ef`.
 
 Foram reservados US$ 0,10 por trabalho, US$ 0,20 ao todo. A fatura do Google ainda não foi conciliada. A credencial temporária do teste foi revogada. O segredo Google ficou na homologação e as capacidades de geração voltaram a ficar desativadas após a prova. A geração de áudio e vídeo continua pendente de teste real.
+
+### Briefing e áudio em homologação
+
+| Prova | Resultado |
+| --- | --- |
+| Briefing | O primeiro pedido com Gemini 3.1 Flash-Lite foi recusado. Um segundo trabalho com Gemini 3.8 Flash e esquema de resposta simplificado entregou uma proposta de três cenas e seis planos. A ficha do projeto permaneceu igual à revisão enviada. O Worker recusou a solicitação paga sem confirmação do valor e devolveu o mesmo trabalho no reenvio. |
+| Narração | Gemini 3.8 Flash TTS gerou uma prévia de 6,8 s com a voz Kore. O WAV foi decodificado em PCM de 16 bits, mono, a 24 kHz. O download protegido conferiu por SHA-256. |
+| Trilha | Lyria 3 Clip Preview gerou uma prévia de 30,77 s. O MP3 estéreo a 44,1 kHz passou na decodificação e conferiu por SHA-256 no download protegido. |
+| Clipe vertical | A prancha v1 apresenta três enquadramentos de um plano contínuo de 3 s, em 9:16. A checagem bloqueou a geração até o aceite visual explícito. SHA-256 da prancha `825e29d4dc5f35520c81eed7f0b4a60f05a2eedaef40587b0c3bc60c9717c6cf`. |
+
+Os quatro trabalhos desta rodada reservaram US$ 0,13. A soma com os dois pedidos de imagem chegou a US$ 0,33. A cobrança efetiva segue pendente de conciliação. As prévias de áudio têm verificação técnica e revisão de escuta pendente. A credencial de teste foi revogada e a homologação voltou à configuração protegida com os geradores desligados.

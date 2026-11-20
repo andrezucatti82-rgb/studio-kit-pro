@@ -56,7 +56,7 @@ export async function submitOmni({model,scope,frame},key,request=fetch) {
     !Number.isSafeInteger(scope.seconds) || scope.seconds<3 || scope.seconds>15) throw new Error('Configuração de clipe incompatível.');
   const response=await fetchWithoutRedirects(request,api+'/interactions',{
     method:'POST',signal:AbortSignal.timeout(180_000),headers:{...headers(key),'Content-Type':'application/json'},
-    body:JSON.stringify({model,store:false,background:false,
+    body:JSON.stringify({model,store:false,background:false,stream:false,
       input:[{type:'image',data:frame.data,mime_type:frame.mime},{type:'text',
         text:'Use o quadro fornecido como referência visual inicial. '+scope.direction}],
       response_format:{type:'video',duration:scope.seconds+'s',aspect_ratio:scope.aspect,resolution:'720p',delivery:'uri'}}),
@@ -68,11 +68,15 @@ export async function submitOmni({model,scope,frame},key,request=fetch) {
   }
   const result=await readMetadata(response);
   const id=providerIdPattern.test(result?.id ?? '')?result.id:null;
-  const video=result?.steps?.filter(item=>item.type==='model_output').flatMap(item=>item.content)
+  const video=(Array.isArray(result?.steps)?result.steps:[]).filter(item=>item?.type==='model_output')
+    .flatMap(item=>Array.isArray(item.content)?item.content:[])
     .find(item=>item?.type==='video' && item.uri);
-  if (!id) throw new Error('O Google retornou sem um comprovante utilizável.');
-  if (!video) return {id,fileId:null};
-  try { return {id,fileId:omniFileId(video.uri)}; } catch { return {id,fileId:null}; }
+  let fileId=null;
+  if (video) {
+    try { fileId=omniFileId(video.uri); } catch {}
+  }
+  if (!id && !fileId) throw new Error('O Google retornou sem um comprovante utilizável.');
+  return {id,fileId};
 }
 
 export async function omniFileState(fileId,key,request=fetch) {

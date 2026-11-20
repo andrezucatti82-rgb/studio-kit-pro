@@ -65,8 +65,17 @@ try{
     env,other.plan,other.owner)).json();
   await assert.rejects(startJob(request({revision:1,kind:'asset',quoteId:frame.id,confirmed:true}),
     env,other.plan,other.owner),error=>error.status===429);
-  assert.equal(new Set(starts).size,1);
-  assert.equal(db.prepare('SELECT count(*) count, sum(reserved_micros) sum FROM jobs').get().sum,400000);
+  const paid={...env,GEMINI_BRIEF_PAID_VERIFIED:'1',GEMINI_BRIEF_MODEL:'gemini-test',GEMINI_BRIEF_RESERVE_MICROS:'20000'};
+  const briefing=(config,agreedMicros)=>startJob(request({kind:'brief',revision:1,key:'brief-fixture',agreedMicros}),
+    config,other.plan,other.owner);
+  await assert.rejects(briefing(paid),error=>error.status===400);
+  await assert.rejects(briefing(paid,20000),error=>error.status===429);
+  const expanded={...paid,GEMINI_TEST_DAILY_BUDGET_MICROS:'420000'};
+  const brief=await (await briefing(expanded,20000)).json();
+  assert.equal(brief.reservedMicros,20000);
+  assert.equal((await (await briefing(expanded,20000)).json()).id,brief.id);
+  assert.equal(new Set(starts).size,2);
+  assert.equal(db.prepare('SELECT sum(reserved_micros) sum FROM jobs').get().sum,420000);
   console.log('Reserva simulada: zero bloqueia, orçamento é cumulativo, chamada incerta bloqueia nova tentativa.');
 } finally {
   globalThis.fetch=original;

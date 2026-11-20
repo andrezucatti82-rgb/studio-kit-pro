@@ -4,7 +4,7 @@ import {assetOutputs,clipOutput,editOutputs} from '../style-atlas/dist/zapvideo-
 import {assemblyOutput} from '../style-atlas/dist/zapvideo-assembly.mjs';
 import {exactBody, isHash, now, sql} from './http.mjs';
 import {readRevision, renderMode} from './jobs.mjs';
-import {analyzeMaterials, proposeBrief} from './gemini.mjs';
+import {analyzeMaterials, briefReserve, proposeBrief} from './gemini.mjs';
 import {getAnalysisInput} from './analysis-media.mjs';
 import {checkClipBeforeRun,clipMaxBytes} from './clips.mjs';
 import {downloadOmni,omniFileState,submitOmni} from './omni.mjs';
@@ -166,7 +166,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
       if (spec.mode==='gemini') {
         const submission=await step.do('Enviar uma vez ao Google',singleRequest,async ()=>{
           const job=await getJob(env,id);
-          if (job.provider_id && job.provider_file_id) return {fileId:job.provider_file_id};
+          if (job.provider_file_id) return {fileId:job.provider_file_id};
           const plan=await readRevision(env,job.project_id,job.revision);
           const request=await checkClipBeforeRun(env,plan,spec.owner,JSON.parse(job.parameters));
           const claim=await sql(env,`UPDATE jobs SET provider_claim_at=? WHERE id=? AND state='processing'
@@ -285,7 +285,15 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
       const result = await step.do('Consultar Gemini',none,async () => {
         const job = await getJob(env,id);
         const plan = await readRevision(env,job.project_id,job.revision);
-        if (job.kind==='brief') return proposeBrief(plan.intent.subject,env);
+        if (job.kind==='brief') {
+          if (job.reserved_micros!==briefReserve(env)) return {error:'A configuração da reserva mudou.',providerId:null};
+          if (job.reserved_micros>0) {
+            const claim=await sql(env,`UPDATE jobs SET provider_claim_at=?
+              WHERE id=? AND state='processing' AND provider_claim_at IS NULL`,now(),id).run();
+            if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
+          }
+          return proposeBrief(plan.intent.subject,env);
+        }
         let media;
         try { media=await getAnalysisInput(env,plan,JSON.parse(job.parameters)); }
         catch { return {error:'Confira formato real, tamanho e acesso aos arquivos selecionados.',providerId:null}; }

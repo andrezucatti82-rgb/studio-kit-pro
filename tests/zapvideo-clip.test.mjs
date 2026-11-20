@@ -52,6 +52,10 @@ test('Omni requests preserve format and use an allowlisted identifier with no du
     return Response.json({id:'v1_test',steps:[{type:'model_output',content:[{type:'video',uri}]}]});
   });
   assert.deepEqual(result,{id:'v1_test',fileId:'clip-123'});
+  const stateless=await submitOmni(input,'fictitious',async()=>Response.json({
+    steps:[{type:'model_output',content:[{type:'video',uri}]}],
+  }));
+  assert.deepEqual(stateless,{id:null,fileId:'clip-123'});
   assert.equal(await omniFileState(result.fileId,'fictitious',async()=>Response.json({state:'ACTIVE'})),'ACTIVE');
   let calls=0;
   await assert.rejects(submitOmni(input,'fictitious',async()=>{

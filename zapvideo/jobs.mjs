@@ -1,5 +1,5 @@
 import {assetOutputs,clipOutput,editOutputs, isId, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
-import {analysisMode, briefMode} from './gemini.mjs';
+import {analysisMode, briefMode, briefReserve} from './gemini.mjs';
 import {analysisBytes, mediaType, publicUrl} from './analysis-media.mjs';
 import {authorizeClip,clipMode,dailyBudget} from './clips.mjs';
 import {authorizeMedia,mediaBudget} from './media-assets.mjs';
@@ -29,7 +29,7 @@ export async function jobFiles(env,row) {
 }
 
 export async function startJob(request, env, project, owner) {
-  const {kind,revision,inputs={},key,url:publicAddress,quoteId,confirmed,phase,approvalId}=(await readJson(request,8192)) ?? {};
+  const {kind,revision,inputs={},key,url:publicAddress,quoteId,confirmed,agreedMicros,phase,approvalId}=(await readJson(request,8192)) ?? {};
   const quoted=['clip','asset'].includes(kind);
   const identity=quoted?quoteId:key;
   if (!isId(identity) || !['edit','brief','analysis','clip','asset','assembly'].includes(kind) || !Number.isSafeInteger(revision) ||
@@ -61,7 +61,10 @@ export async function startJob(request, env, project, owner) {
       }
     } else if (kind==='brief') {
       if (plan.intent.mode !== 'create') reject(400,'Use a opção Criar um vídeo com IA.');
-      if (briefMode(env) === 'unavailable') reject(503,'Gemini indisponível. Você pode continuar o briefing manualmente.');
+      if (mode === 'unavailable') reject(503,'Gemini indisponível. Você pode continuar o briefing manualmente.');
+      const requested=mode==='gemini'?briefReserve(env):0;
+      if (requested>0 && agreedMicros!==requested) reject(400,'Confirme a reserva mostrada para o briefing.');
+      selected.reservedMicros=requested;
     } else if (kind==='analysis') {
       if (plan.intent.mode !== 'create' || analysisMode(env)==='unavailable') reject(503,'Análise de materiais indisponível.');
       if (!inputs || typeof inputs!=='object' || Array.isArray(inputs)) reject(400,'Selecione os arquivos para análise.');
@@ -84,7 +87,8 @@ export async function startJob(request, env, project, owner) {
       if (total>analysisBytes) reject(413,'A análise aceita até 8 MiB por pedido.');
       selected={uploads,url};
     }
-    const reserve=quoted?selected.reservedMicros:0, clock=now();
+    const reserve=quoted || kind==='brief'?selected.reservedMicros:0, clock=now();
+    const kindBudget=kind==='asset'?mediaBudget(env):kind==='brief'?googleDailyBudget(env):dailyBudget(env);
     await sql(env,`INSERT OR IGNORE INTO jobs(id,project_id,revision,kind,state,parameters,created_at,expires_at,reserved_micros)
       SELECT ?,?,?,?,'queued',?,?,?,?
       WHERE EXISTS(SELECT 1 FROM projects WHERE id=? AND owner=? AND revision=?)
@@ -94,11 +98,11 @@ export async function startJob(request, env, project, owner) {
         AND (SELECT count(*) FROM jobs WHERE created_at>?)<40
         AND (?=0 OR (SELECT coalesce(sum(reserved_micros),0) FROM jobs WHERE kind=?
           AND (created_at>? OR state IN ('queued','processing','uncertain')) AND state<>'cancelled')+?<=?)
-        AND (?=0 OR (SELECT coalesce(sum(reserved_micros),0) FROM jobs WHERE kind IN ('clip','asset')
+        AND (?=0 OR (SELECT coalesce(sum(reserved_micros),0) FROM jobs WHERE kind IN ('brief','clip','asset')
           AND (created_at>? OR state IN ('queued','processing','uncertain')) AND state<>'cancelled')+?<=?)`,
       id,project.id,revision,kind,JSON.stringify(selected),clock,clock+hours(24*7),reserve,
       project.id,owner,revision,owner,owner,clock-hours(24),clock-hours(24),
-      reserve,kind,clock-hours(24),reserve,kind==='asset'?mediaBudget(env):dailyBudget(env),
+      reserve,kind,clock-hours(24),reserve,kindBudget,
       reserve,clock-hours(24),reserve,googleDailyBudget(env)).run();
     job = await sql(env,'SELECT * FROM jobs WHERE id=?',id).first();
     if (!job) reject(429,'A revisão mudou ou o limite de processamentos ou orçamento foi atingido.');
