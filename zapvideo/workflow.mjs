@@ -174,13 +174,15 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
             AND EXISTS(SELECT 1 FROM people WHERE id=? AND revoked_at IS NULL AND expires_at>?)`,now(),id,spec.owner,now()).run();
           if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
           const sent=await submitOmni(request,env.GEMINI_API_KEY);
-          if (sent.rejected) return {rejected:true};
+          if (sent.rejected) return sent;
           await sql(env,'UPDATE jobs SET provider_id=?,provider_file_id=? WHERE id=?',sent.id,sent.fileId,id).run();
           return {fileId:sent.fileId};
         });
         if (submission.rejected) {
           confirmedFailure=true;
-          failure='O Google recusou o clipe.';
+          const diagnostic=Number.isInteger(submission.status)
+            ? ' (HTTP '+submission.status+(submission.field?', campo '+submission.field:'')+')':'';
+          failure='O Google recusou o clipe'+diagnostic+'.';
           throw new Error(failure);
         }
         if (!submission.fileId) throw new Error('Arquivo do Google pendente de conciliação.');

@@ -56,6 +56,13 @@ test('Omni requests preserve format and use an allowlisted identifier with no du
     steps:[{type:'model_output',content:[{type:'video',uri}]}],
   }));
   assert.deepEqual(stateless,{id:null,fileId:'clip-123'});
+  const rejected=await submitOmni(input,'fictitious',async()=>Response.json({error:{
+    message:'This raw message must never be exposed.',
+    details:[{fieldViolations:[{field:'private.field'},{field:'response_format.duration'}]}],
+  }},{status:400}));
+  assert.deepEqual(rejected,{rejected:true,status:400,field:'response_format.duration'});
+  assert.deepEqual(await submitOmni(input,'fictitious',async()=>new Response('non-JSON',{status:429})),
+    {rejected:true,status:429});
   assert.equal(await omniFileState(result.fileId,'fictitious',async()=>Response.json({state:'ACTIVE'})),'ACTIVE');
   let calls=0;
   await assert.rejects(submitOmni(input,'fictitious',async()=>{

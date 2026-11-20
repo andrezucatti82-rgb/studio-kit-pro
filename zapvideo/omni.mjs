@@ -5,6 +5,11 @@ const host='https://generativelanguage.googleapis.com';
 const api=host+'/v1beta';
 const providerIdPattern=/^[A-Za-z0-9_-]{1,160}$/;
 const filePath=/^(?:\/v1beta\/)?files\/([a-z0-9-]{1,80})(?::download)?$/;
+const requestFields=new Set([
+  'model','input','input[0]','input[0].data','input[0].mime_type','input[1]','input[1].text',
+  'response_format','response_format.duration','response_format.aspect_ratio','response_format.resolution',
+  'response_format.delivery','store','background','stream',
+]);
 
 export function omniFileId(value) {
   if (typeof value!=='string' || value.length>400) throw new Error('Referência do arquivo do Google inválida.');
@@ -51,6 +56,14 @@ async function boundedBody(response,limit,errorMessage) {
 const readMetadata=async response=>JSON.parse(new TextDecoder().decode(
   await boundedBody(response,256*1024,'O Google retornou metadados acima do limite.')));
 
+async function rejectedSubmission(response) {
+  const body=await readMetadata(response).catch(()=>null);
+  const details=Array.isArray(body?.error?.details)?body.error.details:[];
+  const fields=details.flatMap(item=>Array.isArray(item?.fieldViolations)?item.fieldViolations:[]);
+  const field=fields.find(item=>requestFields.has(item?.field))?.field;
+  return {rejected:true,status:response.status,...(field?{field}:{})};
+}
+
 export async function submitOmni({model,scope,frame},key,request=fetch) {
   if (model!==omniModel || !frame?.data || !frame.mime || !['9:16','16:9'].includes(scope?.aspect) ||
     !Number.isSafeInteger(scope.seconds) || scope.seconds<3 || scope.seconds>15) throw new Error('Configuração de clipe incompatível.');
@@ -62,9 +75,11 @@ export async function submitOmni({model,scope,frame},key,request=fetch) {
       response_format:{type:'video',duration:scope.seconds+'s',aspect_ratio:scope.aspect,resolution:'720p',delivery:'uri'}}),
   });
   if (!response.ok) {
-    await response.body?.cancel();
-    if (response.status>=500 || response.status===408) throw new Error('Aceitação do Google sem confirmação.');
-    return {rejected:true};
+    if (response.status>=500 || response.status===408) {
+      await response.body?.cancel();
+      throw new Error('Aceitação do Google sem confirmação.');
+    }
+    return rejectedSubmission(response);
   }
   const result=await readMetadata(response);
   const id=providerIdPattern.test(result?.id ?? '')?result.id:null;

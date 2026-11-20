@@ -113,3 +113,11 @@ Foram reservados US$ 0,10 por trabalho, US$ 0,20 ao todo. A fatura do Google ain
 | Clipe vertical | A prancha v1 apresenta três enquadramentos de um plano contínuo de 3 s, em 9:16. A checagem bloqueou a geração até o aceite visual explícito. SHA-256 da prancha `825e29d4dc5f35520c81eed7f0b4a60f05a2eedaef40587b0c3bc60c9717c6cf`. |
 
 Os quatro trabalhos desta rodada reservaram US$ 0,13. A soma com os dois pedidos de imagem chegou a US$ 0,33. A cobrança efetiva segue pendente de conciliação. As prévias de áudio têm verificação técnica e revisão de escuta pendente. A credencial de teste foi revogada e a homologação voltou à configuração protegida com os geradores desligados.
+
+### Tentativa real do clipe vertical
+
+A aprovação visual da prancha v1 e do limite de US$ 0,30 foi registrada antes do teste. O gate executável validou os hashes. A homologação habilitou apenas o clipe Gemini Omni 1.2 Flash com reserva máxima de US$ 0,30 para o teste. A configuração do projeto usou o primeiro quadro autorizado, um plano contínuo de 3 s, proporção 9:16 e saída 720p.
+
+O Worker validou o aceite, recusou uma solicitação sem confirmação de valor e disparou a mesma estimativa em um único trabalho. O Workflow registrou uma tentativa de envio e a recusa do Google. O D1 ficou em `failed`, sem identificador de interação ou arquivo. O painel do projeto mostrou HTTP 400 na janela do teste. A métrica é agregada e a versão do ZapVideo usada para o envio guardava uma mensagem genérica. O campo que motivou a recusa continua desconhecido.
+
+A reserva de US$ 0,30 foi mantida para conciliação. Após o teste, a homologação voltou à configuração protegida com o clipe desativado. A implementação passou a registrar o código HTTP e, quando disponível, um campo reconhecido da solicitação. A cobertura simulada confirma que texto bruto e campos desconhecidos do Google ficam fora do diagnóstico.
