@@ -1,0 +1,84 @@
+# ZapVideo no Studio Kit Pro
+
+O ZapVideo usa o domínio canônico [zapvideo.com.br](https://zapvideo.com.br/) e abre com duas opções: editar um original ou montar o briefing de um vídeo com IA. O catálogo ocupa `/catalogo`. O instalador fica em `/catalogo#instalar`. O kit instalado continua com `npm run atlas` e seus comandos de produção.
+
+## Edição e exportação
+
+1. Escolha o vídeo original. Você pode combinar legendas de um SRT, três cortes verticais e ajustes de som e cor.
+2. Informe os tempos de cada corte. A prévia permite ajustar horizontal e verticalmente a janela sobre a tomada original. Se enviar uma transcrição SRT com os tempos da fala, a página sugere intervalos pelas pausas entre as legendas. Cada sugestão mostra texto, motivo e tempos no original.
+3. Baixe a ficha e mantenha os originais na mesma pasta, ou baixe o ZIP que inclui os arquivos selecionados. A alternativa online usa o código do piloto e pede autorização para enviar o material.
+4. Assista às prévias e confira áudio, enquadramento e legendas antes de divulgar.
+
+```sh
+npm run video -- import --preset caminho/projeto-video.json --out projects/zapvideo-local
+npm run video -- context --project projects/zapvideo-local
+npm run video -- edit --project projects/zapvideo-local --source "caminho/câmera.mp4" --srt "caminho/legendas.srt" --out projects/zapvideo-local/entrega
+```
+
+Com o ZIP extraído ou com um pacote recuperado pelo importador, a ficha de arquivos liga IDs aos originais. Use `npm run video -- edit --preset caminho/projeto-video.json --out caminho/entrega` para editar diretamente. A pasta de entrega precisa ser nova. FFmpeg e FFprobe devem estar no PATH ou ser indicados em `FFMPEG_PATH` e `FFPROBE_PATH`. A ficha nova tem formato `zapvideo-project` v1. O importador mantém os formatos legados de catálogo. O seletor do navegador pode precisar de outra ferramenta para pré-visualizar certos codecs que o FFmpeg aceita.
+
+O pacote criptografado temporário pode ser enviado ao Codex ou Claude Code. Sua validade é de duas horas. O comando histórico `scripts/retrieve-disteven-handoff.mjs` aceita a rota de pacote em `https://zapvideo.com.br/api/zapvideo/handoff` e as rotas PHP explicitamente permitidas da origem antiga. O limite da rota anterior é 64 MiB. O limite do novo pacote criptografado é 32 MiB, separado do upload retomável. Para materiais maiores, use o ZIP local, o upload de edição ou envie os originais separadamente. Trate a instrução com o link como credencial temporária.
+
+## Infraestrutura
+
+| Componente | Papel |
+| --- | --- |
+| Worker + Static Assets | Aplicação e API na mesma origem. A hospedagem mantém as páginas da galeria, fontes, referências e binários do instalador compatível. |
+| R2 público por aplicação | Bucket privado no painel, com leitura pública somente do catálogo pelo Worker. São 35.311.530 bytes, referenciados por SHA-256, ETag e cache por versão. |
+| R2 privado | Originais, saídas e pacotes. O app confirma acesso por projeto e trabalho. Um cookie HttpOnly temporário e restrito à rota do arquivo libera reprodução e downloads com HTTP Range. |
+| D1 | Pessoas do piloto, projetos por proprietário, revisões, uploads e partes, jobs, reservas, grants e metadados de aprovação. Familiarizar-se com a tabela de aprovações antes de ligar qualquer serviço de geração. O briefing atual envia somente o assunto. |
+| Workflows | Recebe IDs, entrega os originais ao renderer, consulta o andamento e publica os objetos após validação. A etapa Gemini de proposta tem zero retries da chamada. Timeout de resultado incerto precisa de conciliação antes de repetir. |
+| Container | Uma imagem própria com FFmpeg/FFprobe e rede externa desativada. Candidato `standard-2` de 1 vCPU, 6 GiB e 12 GB. A capacidade online fica desativada até homologação real da imagem. |
+
+Staging e produção usam bancos, buckets, Workflows e Containers próprios. O renderer GDA serviu como referência. A API da conta confirmou sua configuração de 1 vCPU, 6 GiB e 12 GB. O ZapVideo v1 limita vídeo a 512 MiB e duração a 15 minutos, SRT a 2 MiB, partes a 8 MiB e um job simultâneo por pessoa, dois no total. A reserva global é de 4 GiB para originais e 4 GiB para saídas. O teto diário é de 12 jobs por pessoa e 40 globais. Ambientes usam projetos diferentes do Gemini. Consulte limites e preços antes de habilitar renderização. A referência oficial do Workers Paid é US$ 5 por mês e a franquia de Containers é compartilhada na conta. [Limites de Workers](https://developers.cloudflare.com/workers/platform/limits/) · [Containers e preços](https://developers.cloudflare.com/containers/platform/pricing/).
+
+O original é validado por tamanho, SHA-256 e FFprobe antes do processamento. O FFmpeg usa um conjunto fixo de filtros, sem shell. Cada MP4 entregue tem dimensões, duração, streams, decodificação e hash verificados. As saídas permanecem em revisão. O cron exclui uploads inativos vencidos, pacotes e entregas. Configure uma política R2 de expiração equivalente como proteção complementar, inclusive abortar multiparts incompletos. O TTL é de 24 horas para upload em aberto, 7 dias para originais completos e saídas, duas horas para pacotes e 15 minutos para acesso aos arquivos. As fichas em D1 são dados do piloto; a exclusão solicitada exige revogar a conta e remover seus registros e objetos com operação administrativa rastreável. Observabilidade remota começa desativada. Em logs de operação, mantenha apenas identificadores e estado.
+
+## Homologação local
+
+O Wrangler está fixado no projeto. Os UUIDs iniciados em zero em `wrangler.jsonc` servem às migrações no emulador. O build exclui PHP e `catalog.json` dos Assets.
+
+```sh
+npm ci
+npm run zapvideo:prepare
+npx wrangler d1 migrations apply zapvideo-local --local --env local
+node tests/zapvideo-fixtures.mjs
+npx wrangler d1 execute zapvideo-local --local --env local --file .cache/zapvideo/fixture-access.sql
+```
+
+Leia `catalogKey` da saída do build ou a chave em `.cache/zapvideo/assets/catalog-version.json`. Substitua `<catalogKey>` pela chave completa.
+
+```sh
+npx wrangler r2 object put "zapvideo-local-public/<catalogKey>" --file style-atlas/dist/catalog.json --local --env local
+npm run zapvideo:renderer
+npx wrangler dev --env local --port 8792 --ip 127.0.0.1
+```
+
+Execute os dois últimos comandos em terminais separados. O servidor de FFmpeg de desenvolvimento usa loopback e só recebe o protocolo interno. Rode `node tests/zapvideo-worker-smoke.mjs` e `python tests/browser-zapvideo.py --chrome caminho/do/chrome`. O script de teste do navegador requer Playwright. O ambiente local usa Gemini simulado e FFmpeg real com insumos sintéticos. Para testar a proteção do estágio, aplique as migrações e semeie o catálogo em `zapvideo-staging` e `zapvideo-staging-public` com `--local --env staging`, depois abra `npx wrangler dev --env staging --port 8791`. O segredo de staging local é gerado em `.dev.vars.staging`. Todos os arquivos de credenciais de fixture são ignorados pelo Git.
+
+```sh
+npx wrangler deploy --dry-run --env staging
+# Verificação do pacote do Worker sem compilar a imagem
+npx wrangler deploy --dry-run --env staging --containers-rollout=none
+```
+
+## Homologação remota e publicação
+
+1. Confirme conta, franquia de Containers e R2 e qualquer custo, via painel. Não ative plano ou recarga para executar a prova. Crie primeiro somente recursos de staging. No Docker em Linux ou ambiente compatível, compile a imagem usando o contexto raiz. Registre tamanho, memória, CPU, espaço e tempo consumidos pelas fixtures.
+2. Na conta confirmada, crie `zapvideo-staging` no D1 e os buckets `zapvideo-staging-public` e `zapvideo-staging-private`. Substitua o UUID provisório de staging pelo ID do banco criado. Proteja a URL temporária. `STAGING_ACCESS_SHA256` é o SHA-256 do valor completo do cabeçalho Basic, de um usuário operacional com senha aleatória, instalado por `wrangler secret put`. Gere um código distinto de 32 bytes aleatórios por pessoa, guarde só seu SHA-256 em `people.token_hash` e defina expiração em Unix seconds. Use um canal privado para credenciais.
+3. Execute a migração D1 remota com `npx wrangler d1 migrations apply zapvideo-staging --remote --env staging`. Suba o catálogo ao bucket público de staging com `npx wrangler r2 object put "zapvideo-staging-public/<catalogKey>" --file style-atlas/dist/catalog.json --remote --env staging`. Faça o deploy com Docker, o segredo já instalado e os bindings reais. Confira 401 sem credencial, 200 com credencial, catálogo com ETag, referências, instalador e API. Habilite `RENDER_ENABLED=1` somente no staging autorizado para provar FFmpeg em Container. Faça o percurso completo com as fixtures e valide recuperação do pacote, Range, falhas e isolamento. Registre URL, versão do Worker, imagem, migrações e estado anterior.
+4. Compare o DNS público com a zona atual no Portal HostGator. Exporte a zona e identifique os registros de serviço. O MX público apontava ao próprio apex. Antes de trocar seu A por um Custom Domain, identifique o destino real do e-mail no painel e preserve o roteamento. Adicione a zona `zapvideo.com.br` em Full setup na conta Cloudflare e confira os importados. Se existir DS, trate a transição conforme o procedimento Cloudflare. Use exatamente o par atribuído àquela zona no registrador HostGator, valide em dois resolvedores e aguarde `Active`. [Cloudflare Full setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/) · [Troca de nameservers na HostGator](https://suporte.hostgator.com.br/hc/pt-br/articles/30821922972691-Como-configurar-para-outra-empresa-um-dom%C3%ADnio-registrado-na-HostGator).
+5. Após homologação real, repita a criação e migração com `zapvideo-production`, `zapvideo-production-public` e `zapvideo-production-private` em `--env production`, usando credenciais próprias. Publique o Worker, inspecione conflitos e vincule `zapvideo.com.br` como Custom Domain. Se `www` estiver disponível e for validado, vincule-o ao mesmo Worker que redireciona com 308 ao apex e mantém caminho e parâmetros. Confira HTTP → HTTPS, certificado, canonical, links internos, catálogo, previews, API, instalador, cookie seguro e rotas impróprias. Registre recibo e resultados. [Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/).
+6. Preserve a implantação antiga em videos.gerenciadordeanuncios.com.br. Ao liberar o novo instalador, regenere com `python scripts/package-installer.py` depois do commit fonte limpo e publique somente após provar o download da mesma revisão pelo GitHub.
+
+### Retorno
+
+Em caso de incidente de aplicativo, suspenda as capacidades do piloto e volte à versão anterior do Worker, com catálogo da mesma versão ainda no R2. Mantenha migrações D1 aditivas e não remova tabelas como parte do retorno de código. Se o problema for no Custom Domain, remova somente o vínculo criado do ZapVideo e restaure os registros do apex/www que constarem do inventário. Se for a delegação, recoloque os nameservers anteriores documentados na HostGator e trate o DS de acordo com o provedor efetivo. Confira A, MX, resolução pública e TLS. O endereço anterior continua como alternativa enquanto isso.
+
+## Gemini e aprovações
+
+`Me ajude a montar` envia um assunto à Interactions API, valida um retorno estruturado e registra a proposta na revisão pedida. Aplicar a proposta exige uma ação explícita. Se o assunto, material ou plano mudar durante a espera, a página mantém a edição atual e bloqueia a aplicação daquela resposta. Os testes cobrem respostas válidas, rejeição do provedor e saída inválida com dublês da API. O piloto mantém `GEMINI_BRIEF_FREE_VERIFIED=0`. Para uma prova real futura, identifique projeto e região, capacidade e modelo específico, verifique o tipo de faturamento no Google AI Studio, confira os termos de uso de dados e instale `GEMINI_API_KEY` como segredo. Os US$ 5 citados não liberam chamadas. [Saída estruturada](https://aistudio.google.com/docs/structured-output) · [Preços](https://aistudio.google.com/docs/pricing) · [Termos do Gemini](https://aistudio.google.com/docs/terms).
+
+A análise de materiais roda em modo simulado no ambiente local. A pessoa escolhe até quatro arquivos (8 MiB combinados) e uma URL pública HTTPS sem parâmetros. O Worker valida assinatura e hash dos bytes e a análise identifica as fontes selecionadas. A URL usa a ferramenta URL Context do Google quando habilitada, com checagem de compatibilidade do modelo. A capacidade usa seu próprio `GEMINI_ANALYSIS_FREE_VERIFIED` e modelo e requer prova real autorizada por tipo de mídia. [URL Context](https://aistudio.google.com/docs/url-context) · [Análise de vídeo](https://aistudio.google.com/docs/video-understanding).
+
+A geração de clipes, Nano Banana, TTS, Lyria e montagem completa seguem pendentes. Antes de ligar geração de clipe, use o fluxo de aprovação visual em `docs/VISUAL-APPROVAL.md` com painéis apresentados e aceitos, revisão e hash por escopo, orçamento autorizado e reserva antes da chamada. A documentação enumera Omni 1.2 Flash com 3 a 15 segundos, 9:16 e 16:9, e limites adicionais por duração e tipo de referência. A disponibilidade e o preço na conta continuam sujeitos à prova. A montagem de filme completo exige animatic e amostra integrada. [Omni](https://aistudio.google.com/docs/omni) · [Nano Banana](https://aistudio.google.com/docs/image-generation) · [TTS](https://aistudio.google.com/docs/speech-generation) · [Lyria](https://aistudio.google.com/docs/music-generation).

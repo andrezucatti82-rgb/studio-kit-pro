@@ -1,0 +1,29 @@
+@font-face{font-family:ZapVideo;src:url('/assets/Geist-Regular.ttf') format('truetype');font-display:swap}
+:root{color-scheme:dark;--bg:#101010;--panel:#171717;--line:#383838;--text:#f5f5f5;--muted:#b6b6b6;--lime:#e2ff3b;font:16px/1.5 ZapVideo,system-ui,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--bg);color:var(--text)}
+.site-header{min-height:72px;display:flex;justify-content:space-between;align-items:center;gap:.9rem;padding:.75rem max(1rem,calc((100% - 1152px)/2));border-bottom:1px solid var(--line)}
+.site-header a{display:inline-flex;align-items:center;min-height:44px}.site-header img{display:block;max-width:100%;height:auto}
+nav{display:flex;gap:1.4rem;align-items:center}a{color:var(--text);text-underline-offset:.2em}a:hover{color:var(--lime)}
+main{width:min(1152px,100% - 2rem);margin:0 auto;padding:clamp(1.5rem,5vw,4rem) 0 3rem}
+#choose{max-width:750px;margin:6vh auto}h1{font-size:clamp(2rem,5vw,3.75rem);line-height:1.02;letter-spacing:-.055em;margin:0 0 1.35rem}
+h2{font-size:1.25rem;margin:0 0 .8rem;line-height:1.15}h3{font-size:1rem;margin:.75rem 0 .5rem}p{margin:.65rem 0;overflow-wrap:anywhere}
+.choices,#grid{display:grid;gap:1rem}.choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.6;cursor:not-allowed}
+.choice,.panel{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);min-width:0}
+.choice{text-align:left;padding:1.25rem;display:grid;gap:.6rem;align-content:start;min-height:134px}.choice:hover{border-color:var(--lime)}.choice strong{font-size:1.2rem;line-height:1.2}.choice span,.muted,.small{color:var(--muted)}.muted,.small{font-size:.9rem}
+#resume-draft{margin-top:1rem}#grid{grid-template-columns:minmax(0,1fr) minmax(300px,.65fr);align-items:start}
+.steps{display:grid;gap:1rem;min-width:0}.panel{padding:1.25rem}.delivery{align-self:start}
+.toggle{display:flex;gap:.65rem;align-items:center;min-height:44px}.toggle input{accent-color:var(--lime);width:1.15rem;height:1.15rem;flex-shrink:0}
+input:not([type="checkbox"]),textarea,select{color:var(--text);background:#0f0f0f;border:1px solid var(--line);border-radius:8px;padding:.6rem;width:100%;max-width:100%;min-width:0}
+input[type="range"]{accent-color:var(--lime);padding:0;min-height:34px}input[type="file"]{padding:.35rem}input::file-selector-button{min-height:38px;padding:.25rem .55rem;border-radius:6px;background:#292929;color:var(--text);border:1px solid var(--line);margin-right:.55rem}
+label:not(.toggle){display:block;margin:.45rem 0 .2rem}textarea{resize:vertical}fieldset{margin:.45rem 0 1rem;min-width:0;border:1px solid var(--line);border-radius:10px;padding:.7rem}
+.details{border-left:2px solid var(--line);padding-left:.8rem;margin:.4rem 0 1rem}.times,.ranges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
+.primary,.secondary,.plain{min-height:44px;border-radius:9px;padding:.48rem .8rem;color:var(--text);border:1px solid var(--line);background:#252525;text-align:center}
+.primary{background:var(--lime);color:#171c02;border-color:var(--lime);font-weight:750}.secondary:hover,.plain:hover{border-color:var(--lime)}
+.plain{background:transparent;border-color:transparent;padding-left:0;text-align:left}.button-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}.summary{white-space:pre-line}.summary:empty,#status:empty{display:none}
+details{margin-top:.8rem;overflow-wrap:anywhere}summary{cursor:pointer;min-height:44px;align-content:center}details button{margin-top:.55rem}
+.preview{margin-top:.8rem;background:#080808;border-radius:9px;overflow:hidden}.preview video,#files video{width:100%;display:block;max-height:440px}
+.preview.vertical{margin-inline:auto;width:min(100%,220px);aspect-ratio:9/16}.preview.vertical video{height:100%;max-height:none;object-fit:cover}
+#files > div{padding:.6rem 0;border-top:1px solid var(--line);display:grid;gap:.35rem}progress{accent-color:var(--lime);width:100%}code{font-size:.85rem}
+@media(max-width:720px){#grid{grid-template-columns:minmax(0,1fr)}.site-header{padding:.5rem 1rem}nav{gap:.8rem;font-size:.87rem}.site-header img{width:105px}.choices{grid-template-columns:minmax(0,1fr)}#choose{margin:4vh 0}.choice{min-height:110px}.panel{padding:1rem}}

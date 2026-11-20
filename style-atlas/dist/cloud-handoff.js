@@ -13,6 +13,20 @@ Abra projeto-video.json e arquivos-recebidos.json. Importe a ficha com npm run v
 ${AtlasWorkflow.wizardInstruction}`;
  }
  async function send(bundle,attachments){
+  const url=endpoint();
+  if(url.origin!==location.origin)throw new Error('Endereço de envio inválido.');
+  if(url.pathname==='/api/zapvideo/handoff'){
+   const token=sessionStorage.getItem('zapvideo-pilot');
+   if(!token)throw new Error('Conecte-se ao piloto no ZapVideo para enviar um pacote temporário.');
+   const {encryptHandoff}=await import('./zapvideo-transfer.mjs');
+   const {body,key}=await encryptHandoff(bundle,attachments,32*1024*1024);
+   const response=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/octet-stream','ZapVideo-Token':token},
+    body,signal:AbortSignal.timeout(120000),redirect:'error'});
+   const result=await response.json().catch(()=>null);
+   if(!response.ok||!/^[0-9a-f]{48}$/.test(result?.id||''))throw new Error(result?.error||'O envio temporário está indisponível.');
+   url.searchParams.set('id',result.id);url.hash=key;
+   return url.href;
+  }
   const project=new Blob([JSON.stringify(bundle)],{type:'application/json'});
   const parts=[{id:'project',file:project,name:'projeto-video.json'},...attachments.map(({id,file})=>({id,file,name:file.name.slice(0,200)}))];
   const header=encoder.encode(JSON.stringify({version:1,files:parts.map(({id,name,file})=>({id,name,size:file.size}))}));
@@ -24,8 +38,6 @@ ${AtlasWorkflow.wizardInstruction}`;
   const key=crypto.getRandomValues(new Uint8Array(32)),iv=crypto.getRandomValues(new Uint8Array(12));
   const aes=await crypto.subtle.importKey('raw',key,'AES-GCM',false,['encrypt']);
   const ciphertext=await crypto.subtle.encrypt({name:'AES-GCM',iv},aes,await message.arrayBuffer());
-  const url=endpoint();
-  if(url.origin!==location.origin)throw new Error('Endereço de envio inválido.');
   const response=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/octet-stream'},body:new Blob([iv,ciphertext]),signal:AbortSignal.timeout(120000),redirect:'error'});
   const result=await response.json().catch(()=>null);
   if(!response.ok||!/^[0-9a-f]{48}$/.test(result?.id||''))throw new Error(result?.error||'O envio temporário está indisponível.');
@@ -60,7 +72,8 @@ ${AtlasWorkflow.wizardInstruction}`;
    const copying=nativeCopy?navigator.clipboard.write([new ClipboardItem({'text/plain':prepared.then(value=>new Blob([value],{type:'text/plain'}))})]).then(()=>true,()=>false):Promise.resolve(false);
    try{
     currentText=await prepared;
-    if(platform==='claude'){
+    const workerPacket=endpoint().pathname==='/api/zapvideo/handoff';
+    if(platform==='claude'&&!workerPacket){
      target.searchParams.set('repositories',repository);
      target.searchParams.set('prompt',currentText);
     }
@@ -68,7 +81,7 @@ ${AtlasWorkflow.wizardInstruction}`;
     if(popup&&!popup.closed)popup.location.replace(target.href);
     copy.hidden=false;
     const copied=await copying;
-    status.textContent=platform==='claude'
+    status.textContent=platform==='claude'&&!workerPacket
      ?'Pedido preparado no Claude Code. Revise a instrução e inicie a conversa para carregar o pacote.'
      :(copied?'Instrução copiada. Selecione o ambiente Studio Kit Pro no Codex, cole e inicie a conversa.':'Selecione o ambiente Studio Kit Pro no Codex. Use o botão para copiar e colar a instrução.');
    }catch(error){

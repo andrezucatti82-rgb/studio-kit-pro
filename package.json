@@ -25,6 +25,8 @@
     "production:serve": "node scripts/serve-production.mjs",
     "production:poc": "node scripts/production.mjs --engineering-poc --root projects/orchestrator-poc",
     "video": "node scripts/video.mjs",
+    "zapvideo:prepare": "node zapvideo/prepare-assets.mjs",
+    "zapvideo:renderer": "node zapvideo/container.mjs",
     "video:inspect": "node scripts/inspect-media.mjs",
     "setup:verify": "node scripts/setup-check.mjs",
     "search:index": "node scripts/build-search-index.mjs",
@@ -38,9 +40,12 @@
     "curadoria": "node tools/curadoria/cli.mjs"
   },
   "dependencies": {
+    "@cloudflare/containers": "0.3.7",
+    "@noble/hashes": "2.4.0",
     "@remotion/bundler": "4.0.540",
     "@remotion/cli": "4.0.540",
     "@remotion/renderer": "4.0.540",
+    "fflate": "0.8.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "remotion": "4.0.540",
@@ -50,7 +55,9 @@
     "@types/node": "24.10.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "esbuild": "0.28.2",
     "linkedom": "^0.18.12",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wrangler": "4.165.0"
   }
 }

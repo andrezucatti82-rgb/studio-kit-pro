@@ -1,0 +1,61 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "zapvideo",
+  "main": "zapvideo/worker.mjs",
+  "compatibility_date": "2026-11-19",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "assets": {
+    "directory": "./.cache/zapvideo/assets",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none"
+  },
+  "dev": { "enable_containers": false },
+  "env": {
+    "staging": {
+      "name": "zapvideo-staging",
+      "workers_dev": true,
+      "preview_urls": false,
+      "vars": { "ENVIRONMENT": "staging", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0" },
+      "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-staging", "database_id": "00000000-0000-4000-8000-000000000001", "migrations_dir": "migrations/zapvideo" }],
+      "r2_buckets": [
+        { "binding": "PUBLIC", "bucket_name": "zapvideo-staging-public" },
+        { "binding": "PRIVATE", "bucket_name": "zapvideo-staging-private" }
+      ],
+      "workflows": [{ "binding": "JOBS", "name": "zapvideo-staging-jobs", "class_name": "ZapVideoWorkflow" }],
+      "containers": [{ "class_name": "ZapVideoRenderer", "image": "./zapvideo/Dockerfile", "image_build_context": ".", "instance_type": "standard-2", "max_instances": 2 }],
+      "durable_objects": { "bindings": [{ "name": "RENDERER", "class_name": "ZapVideoRenderer" }] },
+      "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ZapVideoRenderer"] }],
+      "triggers": { "crons": ["15 * * * *"] }
+    },
+    "production": {
+      "name": "zapvideo",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": { "ENVIRONMENT": "production", "RENDER_ENABLED": "0", "GEMINI_BRIEF_FREE_VERIFIED": "0" },
+      "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-production", "database_id": "00000000-0000-4000-8000-000000000002", "migrations_dir": "migrations/zapvideo" }],
+      "r2_buckets": [
+        { "binding": "PUBLIC", "bucket_name": "zapvideo-production-public" },
+        { "binding": "PRIVATE", "bucket_name": "zapvideo-production-private" }
+      ],
+      "workflows": [{ "binding": "JOBS", "name": "zapvideo-production-jobs", "class_name": "ZapVideoWorkflow" }],
+      "containers": [{ "class_name": "ZapVideoRenderer", "image": "./zapvideo/Dockerfile", "image_build_context": ".", "instance_type": "standard-2", "max_instances": 2 }],
+      "durable_objects": { "bindings": [{ "name": "RENDERER", "class_name": "ZapVideoRenderer" }] },
+      "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ZapVideoRenderer"] }],
+      "triggers": { "crons": ["15 * * * *"] }
+    },
+    "local": {
+      "name": "zapvideo-local",
+      "vars": { "ENVIRONMENT": "local", "RENDER_LOCAL_URL": "http://127.0.0.1:4000", "GEMINI_MOCK": "1" },
+      "d1_databases": [{ "binding": "DB", "database_name": "zapvideo-local", "database_id": "00000000-0000-4000-8000-000000000003", "migrations_dir": "migrations/zapvideo" }],
+      "r2_buckets": [
+        { "binding": "PUBLIC", "bucket_name": "zapvideo-local-public" },
+        { "binding": "PRIVATE", "bucket_name": "zapvideo-local-private" }
+      ],
+      "workflows": [{ "binding": "JOBS", "name": "zapvideo-local-jobs", "class_name": "ZapVideoWorkflow" }]
+    }
+  }
+}

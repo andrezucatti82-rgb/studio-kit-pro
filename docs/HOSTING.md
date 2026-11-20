@@ -1,5 +1,7 @@
 # Hospedagem do atlas
 
+O aplicativo ZapVideo e a migração para `zapvideo.com.br` têm seu próprio [guia de implantação na Cloudflare](ZAPVIDEO.md). As instruções abaixo documentam a hospedagem do catálogo anterior, mantida durante a transição.
+
 Endereço de divulgação: https://videos.gerenciadordeanuncios.com.br/ . Espelho: https://video-multimarcas-estilos.andrezucatti82.chatgpt.site . A implantação só é confirmada por recibo e leitura da URL, não por este documento.
 
 A galeria é estática: publicar somente `style-atlas/dist/`. Não precisa de banco, chave de API, autenticação DiSteven ou backend de geração. O vídeo é produzido no ambiente do usuário, depois de enviar o pedido.

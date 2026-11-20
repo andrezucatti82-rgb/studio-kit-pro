@@ -3,6 +3,7 @@ import {mkdir,rm,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
+import {limits,projectFormat,validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
 const limit=64*1024*1024;
 const endpointPath=/^\/(?:atlas-\d{14}\/)?cloud-handoff(?:-[a-f0-9]{12})?\.php$/;
 const tokenPattern=/^[a-f0-9]{48}$/;
@@ -10,12 +11,14 @@ const cipherKeyPattern=/^[a-f0-9]{64}$/;
 
 export function parseHandoffLink(value){
  const url=new URL(value),key=url.hash.slice(1);
- if(url.origin!=='https://videos.gerenciadordeanuncios.com.br'||url.username||url.password||!endpointPath.test(url.pathname)||
+ const legacy=url.origin==='https://videos.gerenciadordeanuncios.com.br'&&endpointPath.test(url.pathname);
+ const worker=['https://zapvideo.com.br'].includes(url.origin)&&url.pathname==='/api/zapvideo/handoff';
+ if((!legacy&&!worker)||url.username||url.password||
     url.searchParams.size!==1||!tokenPattern.test(url.searchParams.get('id'))||!cipherKeyPattern.test(key)){
-  throw new Error('Use o link temporário gerado pelo DiSteven.');
+  throw new Error('Use o link temporário gerado pelo ZapVideo.');
  }
  url.hash='';
- return {url,key:Buffer.from(key,'hex')};
+ return {url,key:Buffer.from(key,'hex'),limit:worker?limits.handoffBytes:limit};
 }
 
 export async function unpackHandoff(bytes,key){
@@ -41,19 +44,29 @@ export async function unpackHandoff(bytes,key){
   offset+=size;
   return {id,name,data,filename:project?'projeto-video.json':id+'--'+name.replace(/[^a-zA-Z0-9._-]/g,'_')};
  });
- if(offset!==plain.length||JSON.parse(files[0].data.toString('utf8')).packageVersion!==1)throw new Error('Ficha inválida no pacote.');
+ const project=JSON.parse(files[0].data.toString('utf8'));
+ if(offset!==plain.length)throw new Error('Ficha inválida no pacote.');
+ if(project?.format===projectFormat)validateProject(project);
+ else if(project?.packageVersion!==1)throw new Error('Ficha inválida no pacote.');
  return files;
 }
 
-async function run(value,directory){
+export async function retrieveHandoff(value,directory,request=fetch){
  if(!value||!directory)throw new Error('Use node scripts/retrieve-disteven-handoff.mjs LINK DIRETORIO_NOVO.');
- const {url,key}=parseHandoffLink(value);
- const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(60000)});
+ const {url,key,limit:maximum}=parseHandoffLink(value);
+ const response=await request(url,{redirect:'error',signal:AbortSignal.timeout(60000)});
  const length=Number(response.headers.get('content-length'));
- if(!response.ok||!length||length>limit||response.headers.get('content-type')!=='application/octet-stream'){
+ if(!response.ok||!length||length>maximum||response.headers.get('content-type')!=='application/octet-stream'){
   throw new Error('Pacote indisponível, expirado ou inválido. Peça a ficha e os originais pelo anexo da conversa.');
  }
- const files=await unpackHandoff(new Uint8Array(await response.arrayBuffer()),key);
+ const buffer=new Uint8Array(length);
+ let offset=0;
+ for await(const chunk of response.body){
+  if(offset+chunk.length>length)throw new Error('O tamanho recebido diverge do pacote.');
+  buffer.set(chunk,offset);offset+=chunk.length;
+ }
+ if(offset!==length)throw new Error('Pacote incompleto.');
+ const files=await unpackHandoff(buffer,key);
  const root=path.resolve(directory);
  await mkdir(root,{mode:0o700});
  try{
@@ -64,6 +77,6 @@ async function run(value,directory){
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- try{console.log(JSON.stringify(await run(process.argv[2],process.argv[3])));}
+ try{console.log(JSON.stringify(await retrieveHandoff(process.argv[2],process.argv[3])));}
  catch(error){console.error(error instanceof SyntaxError||error.name==='OperationError'?'Pacote inválido ou chave incorreta.':error.message);process.exitCode=1;}
 }

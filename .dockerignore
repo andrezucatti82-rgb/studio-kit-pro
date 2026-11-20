@@ -1,0 +1,8 @@
+**
+!zapvideo/
+!zapvideo/container.mjs
+!zapvideo/renderer.mjs
+!style-atlas/
+!style-atlas/dist/
+!style-atlas/dist/zapvideo-contract.mjs
+!style-atlas/dist/zapvideo-captions.mjs

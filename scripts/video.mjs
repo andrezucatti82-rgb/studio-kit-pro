@@ -11,14 +11,36 @@ import {editGraph} from '../server/graph-editor.mjs';
 import {repoRoot} from '../server/skills.mjs';
 import {checkReview} from './review.mjs';
 import {checkWorkflow} from './workflow-gate.mjs';
+import {executeLocal, importProject} from '../zapvideo/local.mjs';
+import {projectFormat, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
 
 const args=process.argv.slice(2),command=args[0],arg=(key,fallback)=>args.includes(key)?args[args.indexOf(key)+1]:fallback;
 const required=key=>{const value=arg(key);if(!value||value.startsWith('--'))throw Error(`Missing ${key}`);return value;};
 const read=async file=>JSON.parse(await fs.readFile(file,'utf8'));
+async function readZapVideoContext(directory){
+ const file=path.join(directory,'projeto-video.json');
+ try{
+  if((await fs.stat(file)).size>2*1024*1024)return null;
+  const value=await read(file);
+  return value?.format===projectFormat?validateProject(value):null;
+ }catch(error){if(error.code==='ENOENT'||error instanceof SyntaxError)return null;throw error;}
+}
 async function exactFile(file,value){const text=JSON.stringify(value,null,2)+'\n';try{await fs.writeFile(file,text,{flag:'wx'});}catch(error){if(error.code!=='EEXIST')throw error;if(await fs.readFile(file,'utf8')!==text)throw Error('Preserving existing different file: '+file);}}
 
 try{
- if(command==='import')console.log(JSON.stringify(await importSiteRequest(required('--preset'),required('--out')),null,2));
+ const zapVideoContext=command==='context'?await readZapVideoContext(required('--project')):null;
+ if(command==='import'){
+  const file=required('--preset'),out=required('--out');
+  if((await fs.stat(file)).size>2*1024*1024)throw Error('Site project exceeds 2 MiB');
+  const raw=await read(file);
+  const project=raw.format===projectFormat&&validateProject(raw);
+  console.log(JSON.stringify(project?await importProject(project,out,file):await importSiteRequest(file,out),null,2));
+ }
+ else if(command==='edit'){
+  const file=arg('--preset')??path.join(required('--project'),'projeto-video.json');
+  console.log(JSON.stringify(await executeLocal(file,required('--out'),{source:arg('--source'),subtitle:arg('--srt')}),null,2));
+ }
+ else if(zapVideoContext)console.log(JSON.stringify(zapVideoContext,null,2));
  else {
   const project=path.resolve(required('--project')),context=await readContext(project),root=path.join(project,'runtime'),store=new AssetStore(path.join(root,'assets'));await store.init();
   if(command==='media'){
@@ -51,6 +73,6 @@ try{
    try{const job=orchestrator.get(required('--job'));if(job.state!=='completed')throw Error('Job must be technically completed before delivery');const directory=orchestrator.directory(job.id),video=path.join(directory,'candidate.mp4'),hash=digest(await fs.readFile(video)),review=await read(path.join(directory,'review.json')),technical=await read(path.join(directory,'technical-report.json'));
     if(technical.sha256!==hash)throw Error('Technical report no longer matches video');const quality=checkReview(review,hash),workflowFile=required('--workflow'),workflow=checkWorkflow(await read(workflowFile),'deliver',path.dirname(path.resolve(workflowFile)),video);if(!quality.ready||!workflow.ready)throw Error('Final delivery review pending: '+[...quality.errors,...workflow.errors].join('; '));job.reviewStatus='reviewed';orchestrator.jobs.set(job.id,job);await orchestrator.save(job);const delivery={status:'reviewed',video,sha256:hash,captions:path.join(directory,'captions.srt'),plan:path.join(directory,'edit-plan.json'),technical:path.join(directory,'technical-report.json'),review:path.join(directory,'review.json')};await atomicJson(path.join(project,'delivery.json'),delivery);console.log(JSON.stringify(delivery,null,2));
    }finally{await orchestrator.close();}
-  }else throw Error('Use video import --preset file --out project; then context, media, validate, stills, render or deliver --project project');
+  }else throw Error('Use video import --preset file --out project; then context, edit, media, validate, stills, render or deliver --project project');
  }
 }catch(error){console.error(error.message);process.exitCode=1;}
