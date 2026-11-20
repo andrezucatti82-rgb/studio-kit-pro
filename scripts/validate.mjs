@@ -40,7 +40,9 @@ export function validate(p){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const input=JSON.parse(fs.readFileSync(process.argv[2]||'templates/project.json','utf8'));(input.selectedStyles?validatePreset:validate)(input);console.log('Project valid. This does not certify creative quality.');}
 
 export function validateCatalog(c){
- if(c.styles.length!==1425||new Set(c.styles.map(s=>s.id)).size!==1425)throw Error('1425 unique styles required');
+ if(c.styles.length!==1455||new Set(c.styles.map(s=>s.id)).size!==1455)throw Error('1455 unique styles required');
+ const broll=c.styles.filter(s=>s.broll);
+ if(broll.length!==30||broll.some(s=>s.family!=='apresentacoes'||!s.broll.niche||!s.broll.stockSearch?.length||s.broll.recommendedFormat!=='9:16'))throw Error('30 B-roll directions required under Apresentações');
  if(c.families.length!==30)throw Error('30 subcategories required');
  for(const f of c.families)if(f.count!==c.styles.filter(s=>s.family===f.id).length)throw Error('Family count mismatch: '+f.id);
  for(const f of c.families.filter(f=>f.id.startsWith('ads-')))if(f.count!==40)throw Error('Forty ads per grouped segment required: '+f.id);

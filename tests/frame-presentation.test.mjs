@@ -25,7 +25,7 @@ test('presentation crops address only their original logical panels and never mu
   }
  }
  const report=JSON.parse(await readFile(new URL('style-atlas/records/frame-framing/report.json',root),'utf8'));
- assert.equal(frames,5700);assert.equal(changed,report.adjustedFrames);assert(changed>0);
+ assert.equal(frames,5820);assert.equal(changed,report.adjustedFrames);assert(changed>0);
  assert.equal(JSON.stringify(catalog),original);
  const example=catalog.styles.find(s=>s.id==='natural-advocacia-antes-da-assinatura-uma-conversa');
  for(let i=0;i<4;i++)assert(ctx.AtlasFramePresentation[example.id][i],'the reported white border must be handled in all four moments');

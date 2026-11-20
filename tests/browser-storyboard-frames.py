@@ -71,7 +71,7 @@ def verify_catalog(page, viewport):
         host.remove();
       }
     }""")
-    assert checked['styles'] == 1425
+    assert checked['styles'] == 1455
     print(f'{viewport}px: {checked["styles"]} styles, {checked["size"]} storyboard frames', flush=True)
 
 

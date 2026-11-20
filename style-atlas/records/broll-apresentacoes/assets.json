@@ -1,0 +1,692 @@
+[
+  {
+    "id": "broll-sorveteria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-sorveteria-01.webp",
+        "sha256": "2bac60c13b036cb013e37dc8f168db22c1363639a4f3e097af859e85b6b61108"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-sorveteria-02.webp",
+        "sha256": "8ae2fa81aab222420026dae8ba1676337ed3713b4bcfe34bd47df45aa482532a"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-sorveteria-03.webp",
+        "sha256": "58c2abc12efcf00ea1d71c93bcd804e57836a09c89370a05da8587b12407e941"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-sorveteria-04.webp",
+        "sha256": "9ffb6966563891028400c79fee66ff0533276c16e875d1d0467f88314227307a"
+      }
+    ]
+  },
+  {
+    "id": "broll-acaiteria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-acaiteria-01.webp",
+        "sha256": "cc0258132e21d8e54a7d696076d6d4ed008feb377bd0cd9d194932db8a60a178"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-acaiteria-02.webp",
+        "sha256": "85b08e912c7be2f6e3c60eb8d4733212d52ea2f01c0fa80ba406ca9b4c0b5369"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-acaiteria-03.webp",
+        "sha256": "f5c7a9ed2b0788b3e50a0a6455f13522c6d100e41663986c68fb320b03b0d0f0"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-acaiteria-04.webp",
+        "sha256": "b3bb24a2ac8a7298ae38402e8ce1d106b48ffaaad45339d239f21f0e66a9b595"
+      }
+    ]
+  },
+  {
+    "id": "broll-bar-pub",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-bar-pub-01.webp",
+        "sha256": "89964f331e8549e9026319b6cb6db0f785d26b5dde968ad33f636ff9f0eb38d2"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-bar-pub-02.webp",
+        "sha256": "322f334973fa40e8c5f3f83241891f7bdb244e90bd02eb97e92ab891c8932294"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-bar-pub-03.webp",
+        "sha256": "c108e45f6667c17ec6a45af4ae0d1a754a2f61bfdc081129043cd0554aa837f5"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-bar-pub-04.webp",
+        "sha256": "3bed2fb082110649af0ecf35cef2daba5c9a6a2e01a540855dfc872b32e1a886"
+      }
+    ]
+  },
+  {
+    "id": "broll-roupas",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-roupas-01.webp",
+        "sha256": "b5c3215ef979d71822b826e966ff9c795143cc2f580cdfc4330cdb609a6a8da7"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-roupas-02.webp",
+        "sha256": "011f3f19af830d31c9f760a28303caf70a04a07acaac43506539f1a7589aceb2"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-roupas-03.webp",
+        "sha256": "7c593c28db04e2bc5bde4e71889b6ae51fb38a829630c44f6a649476961b384b"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-roupas-04.webp",
+        "sha256": "11cbde031152e7542340615a847705abc95eed3ad853331c668e8a1c0a6a9a6b"
+      }
+    ]
+  },
+  {
+    "id": "broll-calcados",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-calcados-01.webp",
+        "sha256": "99e03a56b585cb127624b0124fd531a6b92203bdec088c87ff286e913094629a"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-calcados-02.webp",
+        "sha256": "4197ffa9025ed56e7e21f36eb4c4aabc76289f59dd5765afe4ed99c6af5e1bdc"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-calcados-03.webp",
+        "sha256": "ec905a3775e3fceed078d9dbbd2643ca12d09c7c3e2b540ed9236803e634debc"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-calcados-04.webp",
+        "sha256": "7cf8437ff9a22e3711e5ec2ee0acf0f40beb7f1dfb455c04b6d74359dc7cc45d"
+      }
+    ]
+  },
+  {
+    "id": "broll-papelaria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-papelaria-01.webp",
+        "sha256": "299bf9dba3766980f675bd9db86921ff1f9b5180d516e9738c3333d00f3472e0"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-papelaria-02.webp",
+        "sha256": "fec743a1a811d903d39e7b33e4437b1f29c1d100032fcad51dfb3269e50b1651"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-papelaria-03.webp",
+        "sha256": "19abfa311aaed17ac8782a433a0edaf6548414f6e1778bd3c839e902d6d82650"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-papelaria-04.webp",
+        "sha256": "69640e897911c39dc06935292f37068f3a36f72a5f26f815746d3e41aa732c75"
+      }
+    ]
+  },
+  {
+    "id": "broll-livraria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-livraria-01.webp",
+        "sha256": "8d51e4845d68c071180f8ac513533cde1f7a27bce903efeb3210e3365b9af2f2"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-livraria-02.webp",
+        "sha256": "d7c319c094d1372f1513b148dbf1c9c6fe4ad93938b4041ba40d5c051a966c75"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-livraria-03.webp",
+        "sha256": "7d1f9376c8938b199c4880d3457136b6e2f72de507964f7280a57c5f1b4a636b"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-livraria-04.webp",
+        "sha256": "689ca917687f82d3bc19be4a2719dcf225a622661fcf2d54a4600d33843b1071"
+      }
+    ]
+  },
+  {
+    "id": "broll-pet-shop",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-pet-shop-01.webp",
+        "sha256": "4d48613d7ecaac77a059da6e1d10ab5ed6e87ceff0cd491b82e3f5120fc5531e"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-pet-shop-02.webp",
+        "sha256": "04dd908057e375813b3e4a7e05385efd7495d2c1f59e9034719b4ecaac75ebd3"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-pet-shop-03.webp",
+        "sha256": "7a4945e5a9d8eed7e827c799c05b3ffdfca38acf5273c5390966db4423fdc251"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-pet-shop-04.webp",
+        "sha256": "4c17814f101a8f5f25dabe5867b94bf4bf14cc9d44e7cb6e1a41b9525b1eb6ac"
+      }
+    ]
+  },
+  {
+    "id": "broll-eletronicos",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-eletronicos-01.webp",
+        "sha256": "29ac8b3d8b5f143b98b3fb2cb44016f58b2c25d823d4d9305c876c31330c8a07"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-eletronicos-02.webp",
+        "sha256": "0a688ed8c14dea81e9f7cf83cfe2aa23c8a5b4167564dbe3e209469f2285a9d7"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-eletronicos-03.webp",
+        "sha256": "08b972ba5e53ed2292060f863bef4194c245ac4430dbdf4460312811518aab8b"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-eletronicos-04.webp",
+        "sha256": "025e9485c38a488e6902dc68ad1288a2e19646e23c29505b0b1d2a70b4bc96d5"
+      }
+    ]
+  },
+  {
+    "id": "broll-celulares",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-celulares-01.webp",
+        "sha256": "e99d7d30f255d3f48fd5e7694adbbff2667b80fecdfe34534bcb4840e7a7a627"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-celulares-02.webp",
+        "sha256": "e1e8c6a6d9308052651e01445153358f0e57f481405f62589d41cf5f20c9c6c3"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-celulares-03.webp",
+        "sha256": "4a59c7c5823ed620b620540291065c9a09823f8a3dea49fbc8e74d1b94865b8a"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-celulares-04.webp",
+        "sha256": "a7da38963e46026fb9ee85f9f7bc6d2f5dfe711ca5ee01ef8d9afeb99ff2d48d"
+      }
+    ]
+  },
+  {
+    "id": "broll-floricultura",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-floricultura-01.webp",
+        "sha256": "99fd37344b188b984e49206f2d1410b47ea714d5f08617338401212fcf937f2a"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-floricultura-02.webp",
+        "sha256": "a77c6106c399e19058edc076dcbc7c1bdc5173f43b435c0687f90c89a4da0a5d"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-floricultura-03.webp",
+        "sha256": "bce93daefbd4d66542af4916d0a5a33b4233e13f3212ed99ca2b704c40fdad2d"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-floricultura-04.webp",
+        "sha256": "52e9cbd469fe2dc92e820675e133bb9856b7f072d5bf08ccfe808a7ba0a67434"
+      }
+    ]
+  },
+  {
+    "id": "broll-jardinagem",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-jardinagem-01.webp",
+        "sha256": "41ae2431229af14466684a03197f08794bc21b65fc14c6acfed256b1b423164d"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-jardinagem-02.webp",
+        "sha256": "883f853bea05b8dde865dc4739715fced878923328df804b3eea02db50374a42"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-jardinagem-03.webp",
+        "sha256": "eaab346c2090ddbd6b5fdad9360b430c7b79ea0f8594c6103f87254be461b47a"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-jardinagem-04.webp",
+        "sha256": "b1e1691aee5d3a4e8d981eede71dd8240780fbffb974d970a69b4065b02927df"
+      }
+    ]
+  },
+  {
+    "id": "broll-otica",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-otica-01.webp",
+        "sha256": "5795d929b8064512b44f68a7b7f4a0bab41fb371aee3ad59dd38507d3a1d90d9"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-otica-02.webp",
+        "sha256": "958f8fef6845a618594652a9405874ab1aa59f43706c1464eee2de5031a37cba"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-otica-03.webp",
+        "sha256": "730726bba2e9a4a8645c6a7abb655336621414d871f8affd9f1cf94a45ad2c2d"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-otica-04.webp",
+        "sha256": "a66dd34594c7421fd747f75c3eb4f510fe4b28fdf9098d08ad7265a398421b36"
+      }
+    ]
+  },
+  {
+    "id": "broll-relojoaria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-relojoaria-01.webp",
+        "sha256": "e9fbfc2250e0fb816eebbea4ca6a1bd7178547086e3418651ca5446ab0959626"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-relojoaria-02.webp",
+        "sha256": "ceb611479407e81d9580744c6ea1da1323ccde201417f379e39627043f49608f"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-relojoaria-03.webp",
+        "sha256": "a2df81cb3c5d1f6380623c80d1844b30b0e3687bafe335a213ecfbd6da9055d8"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-relojoaria-04.webp",
+        "sha256": "06bd002618d00a6b80f15d461a9478d549d6139e90cac5d87f96ea06fee6e554"
+      }
+    ]
+  },
+  {
+    "id": "broll-salao-beleza",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-salao-beleza-01.webp",
+        "sha256": "3d9ad878908cd52ddb970bfee7193f44dc5137df02197e25fb41cac1d0317f17"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-salao-beleza-02.webp",
+        "sha256": "f9157a5256fbe5947fd88c1d5911b2d1dca99ab19a6caf8d221e2b6ec0ab4aa8"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-salao-beleza-03.webp",
+        "sha256": "29a928d01742b1c7be651239719bc11ab0e167052fc113c25984f6bf6ce060d1"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-salao-beleza-04.webp",
+        "sha256": "dfb8c579c3a854d4959f18360f3be4140d153ec46fcb2cb7c54a117b1189f53c"
+      }
+    ]
+  },
+  {
+    "id": "broll-barbearia",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-barbearia-01.webp",
+        "sha256": "9da45bb362d1e9408500664f1147e6417d35cab2e0dd3d0fb68a4df0b8661677"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-barbearia-02.webp",
+        "sha256": "8c47ae1474352886e79651e3127ab55891e502bf4c31632483ccbe064f5ff685"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-barbearia-03.webp",
+        "sha256": "c747f588d61a03ba114328ec3e5d411a2d43bd7bfd886f4861f4c5f9df843688"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-barbearia-04.webp",
+        "sha256": "f90a429f172d3216b6ae677272da3ccfe654fb816772e83d112b3637fbf05aa1"
+      }
+    ]
+  },
+  {
+    "id": "broll-academia",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-academia-01.webp",
+        "sha256": "b56be16fa030f17392bdf9ea45541f71bdd612634c8b18e988f03e53782686ac"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-academia-02.webp",
+        "sha256": "f00e091a1bf41d81290b613d209dd9e1c24090cc273567666ae51abef80208ac"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-academia-03.webp",
+        "sha256": "a02188d32feb5112584b5670ede96daddc481a51200c99fbd5bbe480fea3898c"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-academia-04.webp",
+        "sha256": "5b71d986521ec4e1097bc0e167ac3150333fe4767e8aa7c0599e5e88888a37f1"
+      }
+    ]
+  },
+  {
+    "id": "broll-estudio-pilates",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-estudio-pilates-01.webp",
+        "sha256": "20d93e954bd3a60da171281cd54675e2a5265542a48e4ed994ae60782bcf4227"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-estudio-pilates-02.webp",
+        "sha256": "2b999792466e138b09a25bd6de963c11f72d2407eeb2796c33318cc5eb8d4f86"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-estudio-pilates-03.webp",
+        "sha256": "f655b4bca396d80b155ba9c3ad41cb2cd531f2e9433dd8c1122f3f0c37862800"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-estudio-pilates-04.webp",
+        "sha256": "3bc65c4a049d60d83a5ca9387d0df21fb17daba1277e9d070d1b7edf417c324e"
+      }
+    ]
+  },
+  {
+    "id": "broll-cosmeticos",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-cosmeticos-01.webp",
+        "sha256": "17b480e681a87fdb889cc38a6075a13642cfde1f76ccc639128f263e134f0165"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-cosmeticos-02.webp",
+        "sha256": "f48ae65e14d886d623ff4f80253a5a4f343a894aee26639d604dfc521fed58ef"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-cosmeticos-03.webp",
+        "sha256": "b07e511e96d50f24e95b7568c4f280214410a3eb0e5ad4a8e51a38d21cb4ae15"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-cosmeticos-04.webp",
+        "sha256": "09838a909c52ba7296884fb277ad44f070f50b08314cd90d29ac9b605aafd4a9"
+      }
+    ]
+  },
+  {
+    "id": "broll-perfumaria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-perfumaria-01.webp",
+        "sha256": "c21a8bc6721009a24e1d230b4bef3602115b03ffe29438426296c98f624f4a41"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-perfumaria-02.webp",
+        "sha256": "556c6eafc21e4dc8f63aa24b84df097ab555eca49b0f68ba16e03c1e540909b0"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-perfumaria-03.webp",
+        "sha256": "d85a89287b21940dd81e605a138af31d18f94b7edb494d58f4a62cd3e0f00603"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-perfumaria-04.webp",
+        "sha256": "4848cb14cf0a565f7275db4de7d151a7f94a9e42fbb9a19eef98b98cead85a19"
+      }
+    ]
+  },
+  {
+    "id": "broll-lavanderia",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-lavanderia-01.webp",
+        "sha256": "ae0ad51cb4c64f23d5af8083edee2661d823dfe4c4bff0b0b13781fb8b404b8c"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-lavanderia-02.webp",
+        "sha256": "d6cb21524168d57176510f397c948a2986ca861cad424e0e86c77f5c7947ecc0"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-lavanderia-03.webp",
+        "sha256": "417dc1f53f372581e06b99b548d762799bab7fca5aec2139e3d64f6940ad25d8"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-lavanderia-04.webp",
+        "sha256": "21f04ce7b8ce237989b3802c7afef3de1dc646c2aae12ed68b937f9b7cd49fc9"
+      }
+    ]
+  },
+  {
+    "id": "broll-agencia-turismo",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-agencia-turismo-01.webp",
+        "sha256": "4d52e051a147737b44e13b7f6c6ae1faa5214552462c67825efee25ecd853a11"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-agencia-turismo-02.webp",
+        "sha256": "71f40de7e7d1823a98b4625f408805aef6a063677b3c4057269e27bedcb867e6"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-agencia-turismo-03.webp",
+        "sha256": "5801298cec00ed47d77159e30c3d16a6c7072d33df0634a5f5aa8958eed91ccc"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-agencia-turismo-04.webp",
+        "sha256": "32615c3ec9dedc6263bb83ce55cd9eb19b3c359638af250a89d931912f3601de"
+      }
+    ]
+  },
+  {
+    "id": "broll-imobiliaria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-imobiliaria-01.webp",
+        "sha256": "721374b57a9df61fd8496de41855990c193afae418fc2678c3e4d0d8663d6d52"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-imobiliaria-02.webp",
+        "sha256": "b358b7f451872e6974080b0ebe1c0037559723e2aec21474ee8ba0a743193ba9"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-imobiliaria-03.webp",
+        "sha256": "3fee1d48acd47316ceae4dd5e2167a9456cead65e5de8eb682b59b9b16937b07"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-imobiliaria-04.webp",
+        "sha256": "4af42db7b01815c2dc034a52432c30f6f1cde42a3975270b2cb715f4e07039c9"
+      }
+    ]
+  },
+  {
+    "id": "broll-ecommerce",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-ecommerce-01.webp",
+        "sha256": "0c0de68b38a1a63bbcb99ba764dced5e1cf18b12e01a57be19155327e96be171"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-ecommerce-02.webp",
+        "sha256": "bc9877ed09dac99a4f70c5649e0adafc9107ec536db82e2724f234bb623bf214"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-ecommerce-03.webp",
+        "sha256": "f83e6a09076ba1278529fa6eb691d9444819df2dc391aa2ed9990b53a794978d"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-ecommerce-04.webp",
+        "sha256": "fcce3818eda7fa96a8b562062dc84f8a18571316c0f891eea5d1068871d4c89c"
+      }
+    ]
+  },
+  {
+    "id": "broll-material-construcao",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-material-construcao-01.webp",
+        "sha256": "f50431d0459ac9ff3dc79fff068feebee0c6dd4613d61db11aa6db388aaf1f43"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-material-construcao-02.webp",
+        "sha256": "1f0b77970a8b7e21392ffeee7544caafbbcabd8f534a1dd4b9d7a1566d59c6fd"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-material-construcao-03.webp",
+        "sha256": "47c200c9464a2f603ab4050d08fd6a4145d1969c39df6ffb6b04d4d2ce7a3581"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-material-construcao-04.webp",
+        "sha256": "dee7d3e45b127c3c163078e6dc8f4a2840e73374f66ceebe3fabef20d53459e4"
+      }
+    ]
+  },
+  {
+    "id": "broll-ferragem",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-ferragem-01.webp",
+        "sha256": "4baf893dc99a2e302a6ad5b603a9a731a116547a0fc500b4d49661dd423ea09e"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-ferragem-02.webp",
+        "sha256": "3982136b48480eb20e46f8a708b2448995536971c2cc06bdd1ff576cbf2a7226"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-ferragem-03.webp",
+        "sha256": "13923628ea56d2d2647c5028b4c079a8910c08fac086b1a7ec78587b17468de4"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-ferragem-04.webp",
+        "sha256": "823dd1ba0941eff2067dda2c906bcf9481ec5bb1c53614ee79f52f656cbef4c7"
+      }
+    ]
+  },
+  {
+    "id": "broll-acougue",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-acougue-01.webp",
+        "sha256": "469ea912899883268b2643f1810615ccdf760f279f2aaf65d4aad00701c1e5a2"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-acougue-02.webp",
+        "sha256": "fa663de2e7ca85c36dfbadf13b6f58d8dd6b741b1b87b9a8cb8b94ea1fe5b663"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-acougue-03.webp",
+        "sha256": "2ecdcf97764613528e26fac15959dc347eb10f902c70dbe2af32c9c553b81dcc"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-acougue-04.webp",
+        "sha256": "ff293e8f02bbdc31aa761fb535fcd18c9680cbc328cfb7cabd263c6729c8ac04"
+      }
+    ]
+  },
+  {
+    "id": "broll-peixaria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-peixaria-01.webp",
+        "sha256": "86aab4fb0dc2ba6dc145bbeecf0a05c6706db71b5a4cca7098d4b1866fd2bfba"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-peixaria-02.webp",
+        "sha256": "5cbbe858a69ea3dacd19e9b5cd300ced20ee6de1141564b8d25ef85268b99357"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-peixaria-03.webp",
+        "sha256": "0e1ebe8d3f637c816eabe7501b82a2c670ed327d2cd92a2a5d3549cac54fd983"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-peixaria-04.webp",
+        "sha256": "ea85a2225ae266408b490d843ce440b3616ee37a3abf20efb1d740be1736cd9a"
+      }
+    ]
+  },
+  {
+    "id": "broll-cafeteria",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-cafeteria-01.webp",
+        "sha256": "317e5e561a00d167273a4b0e064a3920b457889562327d17ce05ca0b9c005747"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-cafeteria-02.webp",
+        "sha256": "c24a6f1c0767dd294a970c16ffc29ad947074ca1ca672e050b3478700b507a61"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-cafeteria-03.webp",
+        "sha256": "7f933a56cb4c8587d5164f376b21885eb464c7c9d8ee17f838ecabd7214c953b"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-cafeteria-04.webp",
+        "sha256": "b13fb78f0fc872e686c16a5eab5d942814e9d8b1ae58932d8bde0ab6ba15c38f"
+      }
+    ]
+  },
+  {
+    "id": "broll-automotivo",
+    "source": "Fotografia sintética original, composta como estudo visual. Sem pessoas, empresas ou produtos identificados. Movimento a validar na amostra.",
+    "motionValidated": false,
+    "frames": [
+      {
+        "src": "assets/broll-apresentacoes/broll-automotivo-01.webp",
+        "sha256": "078209ed7cb36e3a5f76130a005ae66d575331ee9d9fa14565cdf1dcc71aab40"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-automotivo-02.webp",
+        "sha256": "129a8465a2dbb7d71a064ec81ab2d86f8463aaa9e28bd0d825a00185adcf4fe0"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-automotivo-03.webp",
+        "sha256": "1c98916457a88286edc63a220450bd8abe21c58257745ddedb151aa5839cabfc"
+      },
+      {
+        "src": "assets/broll-apresentacoes/broll-automotivo-04.webp",
+        "sha256": "eb97fa80f8b6040a5edd30e41cef62ea928088791c9289fe5b10e3573111ca65"
+      }
+    ]
+  }
+]

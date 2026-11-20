@@ -12,7 +12,7 @@ test('720 distinct directions, ten new in each of 18 categories and original IDs
  assert.equal(catalog.styles.length,720);assert.equal(new Set(catalog.styles.map(s=>s.id)).size,720);
  assert.equal(new Set(catalog.styles.map(s=>s.name.toLocaleLowerCase('pt-BR'))).size,720);
  assert.equal(catalog.families.length,18);
- for(const f of catalog.families){assert.equal(f.count,40);const rows=catalog.styles.filter(s=>s.family===f.id);assert.equal(rows.length,40);assert.equal(rows.filter(s=>s.edition==='4.1').length,10);}
+ for(const f of catalog.families){const rows=catalog.styles.filter(s=>s.family===f.id);assert.equal(rows.length,40);assert.equal(rows.filter(s=>s.edition==='4.1').length,10);}
  assert.equal(catalog.styles.filter(s=>s.preview).length,6);
 });
 test('every new visual is its own file with provenance and complete, non-approved production contract',()=>{

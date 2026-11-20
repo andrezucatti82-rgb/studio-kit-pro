@@ -32,6 +32,7 @@
    audience('demonstracao','Demonstrar benefícios',['anuncios','campanhas','volume','software','tecnologia'])
   ]},
   {id:'presentations',label:'Apresentações',topics:[
+   {...audience('b-roll','Explicar com B-roll'),collection:'broll'},
    audience('empresa','Apresentar a empresa',['apresentacoes','avatares','explicadores','grafico','saude','tecnologia','infoprodutores','ads-juridico']),
    audience('portfolio','Mostrar produtos e portfólios',['anuncios','ecommerce','volume','materiais','cinema','ads-moda','ads-joias','ads-casa']),
    audience('espacos','Apresentar espaços',space),
@@ -119,8 +120,10 @@
   ]}
  ];
  const browseGroup=id=>browseGroups.find(group=>group.id===id);
+ const marketSector=style=>style.broll?.sector||style.presenterEditing?.sector;
  function matchesNode(style,node,colors){
-  return node.families?.includes(style.family)||node.sectors?.includes(style.presenterEditing?.sector)||
+  return (node.collection==='broll'&&Boolean(style.broll))||
+   node.families?.includes(style.family)||node.sectors?.includes(marketSector(style))||
    node.colors?.some(color=>colors.includes(color))||node.children?.some(child=>matchesNode(style,child,colors))||false;
  }
  function matchesBrowse(style,group,topic='',detail='',colors=[]){
@@ -137,7 +140,7 @@
  function groupByNiche(styles,preferredSectors=[]){
   const groups=new Map();
   for(const style of styles){
-   const sector=style.presenterEditing?.sector;
+   const sector=marketSector(style);
    const niche=marketSectors.get(sector)||businessTopics.find(topic=>matchesNode(style,topic,[]));
    const id=niche?.id||'geral';
    if(!groups.has(id))groups.set(id,{id,label:niche?.label||'Para vários tipos de negócio',prioritized:[],styles:[]});

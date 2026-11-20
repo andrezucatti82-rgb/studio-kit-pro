@@ -21,9 +21,10 @@ export function prepareProduction(presetFile,output){
  if(typeof preset.topic!=='string'||!preset.topic.trim())throw Error('A topic is required');
  if(!['9:16','16:9','1:1','4:5'].includes(preset.format))throw Error('Unsupported format');
  if(!Array.isArray(preset.selectedStyles)||preset.selectedStyles.length<1||preset.selectedStyles.length>AtlasWorkflow.MAX_SELECTED_STYLES)throw Error('Select one to ten styles');
- if(preset.catalogVersion&&preset.catalogVersion!==catalog.version)throw Error('Catalog version changed; review references and export a fresh preset before production');
  const styles=preset.selectedStyles.map(s=>catalog.styles.find(x=>x.id===(typeof s==='string'?s:s.id)));
  if(styles.some(x=>!x))throw Error('Unknown style; refresh the preset from the current atlas');
+ const compatibleAppend=preset.catalogVersion==='4.8'&&catalog.version==='4.9'&&styles.every(style=>!style.broll);
+ if(preset.catalogVersion&&preset.catalogVersion!==catalog.version&&!compatibleAppend)throw Error('Catalog version changed; review references and export a fresh preset before production');
  const contributionChoice={...preset,selectedStyles:styles.map((s,i)=>({...s,selectedAspects:preset.selectedStyles[i]?.selectedAspects}))};
  const styleCombination=AtlasWorkflow.combinationPlan(contributionChoice,{requireResolved:true});
  const selectedParts=s=>AtlasWorkflow.contributionAspects(AtlasWorkflow.contributionsFor(contributionChoice,s));
