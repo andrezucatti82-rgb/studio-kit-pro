@@ -2,11 +2,40 @@
   "styleCount": 1425,
   "frameCount": 5700,
   "sourceCount": 4905,
-  "adjustedFrames": 1018,
+  "adjustedFrames": 1025,
   "adjustedStyles": 287,
-  "criterion": "Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. A gray hairline requires brightness of at least 30, limited variation across the edge, and 85% neutral pixels at least 12 levels brighter than both adjoining strips. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.",
+  "criterion": "Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. A gray hairline requires brightness of at least 30, limited variation across the edge, and 85% neutral pixels at least 12 levels brighter than both adjoining strips. An uneven pale margin requires at least two contiguous rows or columns with 78% pale neutral pixels and an abrupt drop into the next two strips. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.",
   "imageFilesModified": false,
   "frames": [
+    {
+      "style": "construtivismo",
+      "frame": 0,
+      "source": "assets/style-sequences/construtivismo-01.webp",
+      "sourceSha256": "8e30024cd380da2104fccb28aaa0153de6e8090593314bef7024725754d76e8f",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        6
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.9921875
+        ],
+        512,
+        762.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "paleMarginEdges": [
+        3
+      ]
+    },
     {
       "style": "construtivismo",
       "frame": 1,
@@ -377,22 +406,26 @@
       "insetPixels": [
         0,
         0,
-        0,
+        5,
         6
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0,
-          1,
+          0.990791897,
           0.991712707
         ],
-        543,
+        538.0,
         718.0
       ],
       "fringeEdges": [
+        2,
         3
+      ],
+      "paleMarginEdges": [
+        2
       ]
     },
     {
@@ -401,24 +434,28 @@
       "source": "assets/style-sequences/colagem-vintage-02.webp",
       "sourceSha256": "5177f307163b5eca791b9fd3413806a923c37b9621575cc1ca1e4b1a4855b6d7",
       "insetPixels": [
-        0,
+        6,
         0,
         0,
         6
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
+          0.011049724,
           0,
-          0,
-          1,
+          0.988950276,
           0.991712707
         ],
-        543,
+        537.0,
         718.0
       ],
       "fringeEdges": [
+        0,
         3
+      ],
+      "paleMarginEdges": [
+        0
       ]
     },
     {
@@ -615,21 +652,25 @@
         0,
         0,
         3,
-        0
+        5
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0,
           0.994140625,
-          1
+          0.993489583
         ],
         509.0,
-        768
+        763.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -1225,6 +1266,37 @@
     },
     {
       "style": "isometria-3d",
+      "frame": 0,
+      "source": "assets/style-sequences/isometria-3d-01.webp",
+      "sourceSha256": "62b3d049c03774c60228f949cb3083856f99543b3b43fb5fcc423dcaf25f9749",
+      "insetPixels": [
+        0,
+        0,
+        6,
+        5
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          0.98828125,
+          0.993489583
+        ],
+        506.0,
+        763.0
+      ],
+      "fringeEdges": [
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        2,
+        3
+      ]
+    },
+    {
+      "style": "isometria-3d",
       "frame": 1,
       "source": "assets/style-sequences/isometria-3d-02.webp",
       "sourceSha256": "c337a38c48c45e35c69634ed019514bc9af6cba20cea8c348459109968b041c5",
@@ -1257,22 +1329,26 @@
       "insetPixels": [
         0,
         3,
-        0,
+        6,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0.00390625,
-          1,
+          0.98828125,
           0.99609375
         ],
-        512,
+        506.0,
         765.0
       ],
       "fringeEdges": [
-        1
+        1,
+        2
+      ],
+      "paleMarginEdges": [
+        2
       ]
     },
     {
@@ -1607,7 +1683,7 @@
         5,
         0,
         0,
-        0
+        5
       ],
       "edgeRule": "neutral_strips",
       "view": [
@@ -1615,13 +1691,17 @@
           0.009765625,
           0,
           0.990234375,
-          1
+          0.993489583
         ],
         507.0,
-        768
+        763.0
       ],
       "fringeEdges": [
-        0
+        0,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -3420,22 +3500,26 @@
       "insetPixels": [
         0,
         0,
-        0,
+        5,
         3
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0,
-          1,
+          0.990234375,
           0.99609375
         ],
-        512,
+        507.0,
         765.0
       ],
       "fringeEdges": [
+        2,
         3
+      ],
+      "paleMarginEdges": [
+        2
       ]
     },
     {
@@ -6873,7 +6957,7 @@
         0,
         0,
         4,
-        0
+        5
       ],
       "edgeRule": "neutral_strips",
       "view": [
@@ -6881,13 +6965,17 @@
           0,
           0,
           0.992633517,
-          1
+          0.993093923
         ],
         539.0,
-        724
+        719.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -7041,6 +7129,35 @@
         ],
         507.0,
         768
+      ]
+    },
+    {
+      "style": "apresentador-de-negocios-em-rua",
+      "frame": 1,
+      "source": "assets/style-sequences/apresentador-de-negocios-em-rua-02.webp",
+      "sourceSha256": "76800b41974253f6f30d6d27ba5ce5ec64059822ca703ccf320c0411ee88e429",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        6
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.9921875
+        ],
+        512,
+        762.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -8689,6 +8806,35 @@
     },
     {
       "style": "estafeta-entre-cenarios-de-uso",
+      "frame": 0,
+      "source": "assets/style-sequences/estafeta-entre-cenarios-de-uso-01.webp",
+      "sourceSha256": "8a23f1226dec7c036c5c6436b092df5c19813a1ef5ae7ec3098e3691453a39ff",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        4
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.995215311
+        ],
+        470,
+        832.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "paleMarginEdges": [
+        3
+      ]
+    },
+    {
+      "style": "estafeta-entre-cenarios-de-uso",
       "frame": 1,
       "source": "assets/style-sequences/estafeta-entre-cenarios-de-uso-02.webp",
       "sourceSha256": "ac54fe4fec844deb72355e8cdc3bf95da88d91a09371221e66a9a68af17e098a",
@@ -8830,7 +8976,7 @@
         0,
         0,
         4,
-        0
+        6
       ],
       "edgeRule": "neutral_strips",
       "view": [
@@ -8838,13 +8984,17 @@
           0,
           0,
           0.992633517,
-          1
+          0.991712707
         ],
         539.0,
-        724
+        718.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -9745,21 +9895,25 @@
         0,
         0,
         4,
-        0
+        5
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0,
           0.992633517,
-          1
+          0.993093923
         ],
         539.0,
-        724
+        719.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -13945,6 +14099,35 @@
     },
     {
       "style": "exp-duas-versoes-de-uma-mesma-tarefa",
+      "frame": 0,
+      "source": "assets/style-sequences/exp-duas-versoes-de-uma-mesma-tarefa-01.webp",
+      "sourceSha256": "08b20aef7794e9c82b801a7f3539ebec546244f2bd59c33bcb4fe58f73ad05b5",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        5
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.993489583
+        ],
+        512,
+        763.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "paleMarginEdges": [
+        3
+      ]
+    },
+    {
+      "style": "exp-duas-versoes-de-uma-mesma-tarefa",
       "frame": 1,
       "source": "assets/style-sequences/exp-duas-versoes-de-uma-mesma-tarefa-02.webp",
       "sourceSha256": "187befa5593b4a577cba0e46c43272c2b6bc72b88fed5b95faf4cbbfa75cd3f9",
@@ -13952,21 +14135,25 @@
         4,
         0,
         0,
-        0
+        5
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0.0078125,
           0,
           0.9921875,
-          1
+          0.993489583
         ],
         508.0,
-        768
+        763.0
       ],
       "fringeEdges": [
-        0
+        0,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -13977,22 +14164,26 @@
       "insetPixels": [
         0,
         4,
-        0,
+        5,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0.005208333,
-          1,
+          0.990234375,
           0.994791667
         ],
-        512,
+        507.0,
         764.0
       ],
       "fringeEdges": [
-        1
+        1,
+        2
+      ],
+      "paleMarginEdges": [
+        2
       ]
     },
     {
@@ -14214,21 +14405,54 @@
         0,
         0,
         4,
-        0
+        4
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0,
           0,
           0.9921875,
-          1
+          0.994791667
         ],
         508.0,
-        768
+        764.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
+      ]
+    },
+    {
+      "style": "exp-produto-e-gesto-de-conservacao",
+      "frame": 1,
+      "source": "assets/style-sequences/exp-produto-e-gesto-de-conservacao-02.webp",
+      "sourceSha256": "6e8274064536bebad2c855bd790df47449c5b2676f4f9c44ea06422761493763",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        4
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.994791667
+        ],
+        512,
+        764.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -16425,7 +16649,7 @@
         0,
         0,
         5,
-        0
+        6
       ],
       "edgeRule": "neutral_strips",
       "view": [
@@ -16433,13 +16657,46 @@
           0,
           0,
           0.990234375,
-          1
+          0.9921875
         ],
         507.0,
-        768
+        762.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
+      ]
+    },
+    {
+      "style": "exp-pos-procedimento-com-sinais-de-contato",
+      "frame": 1,
+      "source": "assets/style-sequences/exp-pos-procedimento-com-sinais-de-contato-02.webp",
+      "sourceSha256": "cd421c77dbe50ada6c324845251c4f75a1347d77d216b160443594bbbcd2a257",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        6
+      ],
+      "edgeRule": "pale_margin",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.9921875
+        ],
+        512,
+        762.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -18199,7 +18456,7 @@
         8,
         7,
         6,
-        0
+        9
       ],
       "edgeRule": "coherent_light_frame",
       "view": [
@@ -18207,14 +18464,18 @@
           0.019138756,
           0.007438895,
           0.966507177,
-          0.992561105
+          0.982996812
         ],
         404.0,
-        934.0
+        925.0
       ],
       "fringeEdges": [
         0,
-        2
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -18282,24 +18543,30 @@
       "sourceSha256": "04c93df7f3909b3ecf4c2f1f0f9075860ebf947552547d37416d58e8beecca57",
       "insetPixels": [
         8,
-        0,
         8,
-        0
+        8,
+        9
       ],
       "edgeRule": "neutral_strips",
       "view": [
         [
           0.019138756,
-          0,
+          0.008501594,
           0.961722488,
-          1
+          0.981934113
         ],
         402.0,
-        941
+        924.0
       ],
       "fringeEdges": [
         0,
-        2
+        1,
+        2,
+        3
+      ],
+      "paleMarginEdges": [
+        1,
+        3
       ]
     },
     {
@@ -18738,7 +19005,7 @@
       "insetPixels": [
         7,
         7,
-        0,
+        5,
         9
       ],
       "edgeRule": "coherent_light_frame",
@@ -18746,16 +19013,20 @@
         [
           0.016746411,
           0.007438895,
-          0.983253589,
+          0.971291866,
           0.982996812
         ],
-        411.0,
+        406.0,
         925.0
       ],
       "fringeEdges": [
         0,
         1,
+        2,
         3
+      ],
+      "paleMarginEdges": [
+        2
       ]
     },
     {
@@ -18764,25 +19035,31 @@
       "source": "assets/natural-ads-60/natural-barras-a-pausa-cabe-na-bolsa-02.webp",
       "sourceSha256": "c49792a04f9819b6331391295b98a65e34153814087246fa7dac6890064b45fe",
       "insetPixels": [
-        0,
         7,
-        0,
+        7,
+        6,
         9
       ],
       "edgeRule": "neutral_strips",
       "view": [
         [
-          0,
+          0.016746411,
           0.007438895,
-          1,
+          0.968899522,
           0.982996812
         ],
-        418,
+        405.0,
         925.0
       ],
       "fringeEdges": [
+        0,
         1,
+        2,
         3
+      ],
+      "paleMarginEdges": [
+        0,
+        2
       ]
     },
     {
@@ -18792,23 +19069,29 @@
       "sourceSha256": "0ac74d4f56d722262f334a8b6aa27d936d5570e1a5b6d293c9311e6be998fb15",
       "insetPixels": [
         0,
-        0,
-        0,
+        7,
+        6,
         9
       ],
       "edgeRule": "neutral_strips",
       "view": [
         [
           0,
-          0,
-          1,
-          0.990435707
+          0.007438895,
+          0.985645933,
+          0.982996812
         ],
-        418,
-        932.0
+        412.0,
+        925.0
       ],
       "fringeEdges": [
+        1,
+        2,
         3
+      ],
+      "paleMarginEdges": [
+        1,
+        2
       ]
     },
     {
@@ -18817,7 +19100,7 @@
       "source": "assets/natural-ads-60/natural-barras-a-pausa-cabe-na-bolsa-04.webp",
       "sourceSha256": "75d705d6c83b386d5615ae3236ad37d936019095710ad17e2d51bfe8a4fe7aaf",
       "insetPixels": [
-        0,
+        6,
         7,
         7,
         9
@@ -18825,18 +19108,22 @@
       "edgeRule": "coherent_light_frame",
       "view": [
         [
-          0,
+          0.014354067,
           0.007438895,
-          0.983253589,
+          0.968899522,
           0.982996812
         ],
-        411.0,
+        405.0,
         925.0
       ],
       "fringeEdges": [
+        0,
         1,
         2,
         3
+      ],
+      "paleMarginEdges": [
+        0
       ]
     },
     {
@@ -21838,7 +22125,7 @@
       "insetPixels": [
         4,
         5,
-        0,
+        6,
         5
       ],
       "edgeRule": "neutral_strips",
@@ -21846,16 +22133,20 @@
         [
           0.503683241,
           0.003453039,
-          0.496316759,
+          0.490791897,
           0.493093923
         ],
-        539.0,
+        533.0,
         714.0
       ],
       "fringeEdges": [
         0,
         1,
+        2,
         3
+      ],
+      "paleMarginEdges": [
+        2
       ]
     },
     {
@@ -25803,21 +26094,25 @@
         3,
         0,
         0,
-        0
+        5
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "pale_margin",
       "view": [
         [
           0.502762431,
           0,
           0.497237569,
-          0.5
+          0.496546961
         ],
         540.0,
-        724.0
+        719.0
       ],
       "fringeEdges": [
-        0
+        0,
+        3
+      ],
+      "paleMarginEdges": [
+        3
       ]
     },
     {
@@ -26219,7 +26514,7 @@
       "source": "assets/presenter-realistic/explicador-rh-do-curriculo-a-conversa.webp",
       "sourceSha256": "f0b5cb4cd6a357b3ed806574d94258558755a5263f2c54eaae7e43d6638c0f1c",
       "insetPixels": [
-        0,
+        5,
         0,
         0,
         4
@@ -26227,16 +26522,20 @@
       "edgeRule": "neutral_strips",
       "view": [
         [
-          0.5,
+          0.504604052,
           0,
-          0.5,
+          0.495395948,
           0.497237569
         ],
-        543.0,
+        538.0,
         720.0
       ],
       "fringeEdges": [
+        0,
         3
+      ],
+      "paleMarginEdges": [
+        0
       ]
     },
     {
@@ -26246,7 +26545,7 @@
       "sourceSha256": "f0b5cb4cd6a357b3ed806574d94258558755a5263f2c54eaae7e43d6638c0f1c",
       "insetPixels": [
         0,
-        0,
+        5,
         4,
         0
       ],
@@ -26254,15 +26553,19 @@
       "view": [
         [
           0,
-          0.5,
+          0.503453039,
           0.496316759,
-          0.5
+          0.496546961
         ],
         539.0,
-        724.0
+        719.0
       ],
       "fringeEdges": [
+        1,
         2
+      ],
+      "paleMarginEdges": [
+        1
       ]
     },
     {
@@ -26914,7 +27217,7 @@
       "source": "assets/presenter-realistic/explicador-floriculturas-a-mesa-ganha-um-centro.webp",
       "sourceSha256": "028e9d020fe0c0b829af588c96a6acabf6c6b6ff9387ff139a11397e1c7647e7",
       "insetPixels": [
-        0,
+        5,
         0,
         0,
         5
@@ -26922,16 +27225,20 @@
       "edgeRule": "neutral_strips",
       "view": [
         [
-          0.5,
+          0.504604052,
           0,
-          0.5,
+          0.495395948,
           0.496546961
         ],
-        543.0,
+        538.0,
         719.0
       ],
       "fringeEdges": [
+        0,
         3
+      ],
+      "paleMarginEdges": [
+        0
       ]
     },
     {

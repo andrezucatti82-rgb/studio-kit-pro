@@ -34,7 +34,9 @@ with sync_playwright() as p:
             assert 0 <= category['x'] - brand['x'] - brand['width'] <= 35
         if width <= 700:
             page.locator('#distevenCategoryToggle').click()
-        page.locator('[data-disteven-open-group=presentations]').click()
+            page.locator('[data-disteven-mobile-group=presentations]').click()
+        else:
+            page.locator('[data-disteven-open-group=presentations]').click()
         page.locator('[data-disteven-topic=profissional]').click()
         grouped = page.locator('#grid .disteven-niche-section')
         assert grouped.count() >= 3
@@ -72,10 +74,11 @@ with sync_playwright() as p:
             assert all(max(v)-min(v) < 1 for v in zip(*bounds)), (style, width, bounds)
             assert frames.evaluate_all('''es=>es.every(e=>{
                 const media=e.firstElementChild.getBoundingClientRect(),well=e.getBoundingClientRect();
-                return media.width<=well.width+1 && media.height<=well.height+1;
-            })'''), (style, width, 'artwork clipped by frame')
+                return Math.abs(well.width/well.height-2/3)<.01 &&
+                    media.width>=well.width-1 && media.height>=well.height-1;
+            })'''), (style, width, 'artwork must fill the standard storyboard frame')
             height = bounds[0][2]
-            assert height <= (230 if width <= 700 else 400), (width, height)
+            assert height <= (222 if width <= 700 else 330), (width, height)
             heights.append(height)
             assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
             if width in (375, 1680) and style in styles[:2]:

@@ -1171,19 +1171,19 @@
       "source": "assets/style-sequences/colagem-vintage-02.webp",
       "sourceSha256": "5177f307163b5eca791b9fd3413806a923c37b9621575cc1ca1e4b1a4855b6d7",
       "crop": [
+        0.011049724,
         0,
-        0,
-        1,
+        0.988950276,
         0.991712707
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.461
+          "share": 0.4578
         },
         {
           "tag": "marrom",
-          "share": 0.3785
+          "share": 0.3844
         }
       ]
     },
@@ -2235,24 +2235,24 @@
         0.009765625,
         0,
         0.990234375,
-        1
+        0.993489583
       ],
       "colors": [
         {
           "tag": "azul",
-          "share": 0.2838
+          "share": 0.2864
         },
         {
           "tag": "marrom",
-          "share": 0.171
+          "share": 0.1702
         },
         {
           "tag": "laranja",
-          "share": 0.1608
+          "share": 0.1582
         },
         {
           "tag": "preto",
-          "share": 0.1386
+          "share": 0.1342
         }
       ]
     },
@@ -6763,20 +6763,20 @@
         0,
         0,
         1,
-        1
+        0.9921875
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.3815
+          "share": 0.3756
         },
         {
           "tag": "azul",
-          "share": 0.199
+          "share": 0.2019
         },
         {
           "tag": "preto",
-          "share": 0.1546
+          "share": 0.1558
         }
       ]
     },
@@ -14843,20 +14843,20 @@
         0.0078125,
         0,
         0.9921875,
-        1
+        0.993489583
       ],
       "colors": [
         {
           "tag": "preto",
-          "share": 0.3005
+          "share": 0.3024
         },
         {
           "tag": "cinza",
-          "share": 0.2522
+          "share": 0.2483
         },
         {
           "tag": "marrom",
-          "share": 0.2279
+          "share": 0.229
         }
       ]
     },
@@ -15164,16 +15164,16 @@
         0,
         0,
         1,
-        1
+        0.994791667
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.5471
+          "share": 0.5531
         },
         {
           "tag": "laranja",
-          "share": 0.3227
+          "share": 0.3202
         }
       ]
     },
@@ -16548,16 +16548,16 @@
         0,
         0,
         1,
-        1
+        0.9921875
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.361
+          "share": 0.3616
         },
         {
           "tag": "vermelho",
-          "share": 0.3475
+          "share": 0.3488
         }
       ]
     },
@@ -18685,27 +18685,27 @@
       "source": "assets/natural-ads-60/natural-barras-a-pausa-cabe-na-bolsa-02.webp",
       "sourceSha256": "c49792a04f9819b6331391295b98a65e34153814087246fa7dac6890064b45fe",
       "crop": [
-        0,
+        0.016746411,
         0.007438895,
-        1,
+        0.968899522,
         0.982996812
       ],
       "colors": [
         {
           "tag": "marrom",
-          "share": 0.3525
+          "share": 0.3651
         },
         {
           "tag": "vinho",
-          "share": 0.1855
+          "share": 0.1922
         },
         {
           "tag": "laranja",
-          "share": 0.1754
+          "share": 0.166
         },
         {
           "tag": "cinza",
-          "share": 0.1352
+          "share": 0.1249
         }
       ]
     },
@@ -29281,17 +29281,17 @@
       "crop": [
         0.503683241,
         0.003453039,
-        0.496316759,
+        0.490791897,
         0.493093923
       ],
       "colors": [
         {
           "tag": "cinza",
-          "share": 0.6065
+          "share": 0.6033
         },
         {
           "tag": "preto",
-          "share": 0.1742
+          "share": 0.1772
         }
       ]
     },
@@ -30657,20 +30657,20 @@
         0.502762431,
         0,
         0.497237569,
-        0.5
+        0.496546961
       ],
       "colors": [
         {
           "tag": "laranja",
-          "share": 0.3914
+          "share": 0.394
         },
         {
           "tag": "marrom",
-          "share": 0.2193
+          "share": 0.222
         },
         {
           "tag": "cinza",
-          "share": 0.2166
+          "share": 0.2101
         }
       ]
     },
