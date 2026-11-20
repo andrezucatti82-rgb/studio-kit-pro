@@ -138,7 +138,7 @@ test('two-level categories partition all 1455 styles and never render example-st
  assert.equal(catalog.styles.filter(s=>families.includes(s.family)).length,1455);
  assert.equal(d.querySelectorAll('#categoryGroups [data-nav-family]').length,29);
  assert.equal(d.querySelectorAll('#categoryTiles [data-visual-family]').length,3);
- for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',160],['visual',270]]){
+ for(const [id,total] of [['commercial',120],['natural-ads',440],['business',120],['technology',80],['movement',190],['visual',240]]){
   click('[data-nav-group="'+id+'"]');
   assert.match(d.getElementById('resultCount').textContent,new RegExp('^'+total+' estilos'));
   assert.equal(ctx.AtlasApp.categorySelection().group,id);
