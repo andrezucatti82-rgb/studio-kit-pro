@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "styleCount": 1425,
-  "tagAssociations": 32464,
-  "referenceFramesAnalyzed": 1425,
+  "styleCount": 1455,
+  "tagAssociations": 33016,
+  "referenceFramesAnalyzed": 1455,
   "analysisBasis": "positive catalogue descriptions, intended commercial uses, declared palettes and measured reference colors; not a claim of visual or audiovisual review",
-  "styleDataSha256": "73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0",
+  "styleDataSha256": "6fc20252a13d5b6609d8277c7c1a215e20e538802f1f698520f5bd99ffd20944",
   "styles": {
     "publicidade-cinematografica": {
       "tags": [
@@ -158529,6 +158529,2769 @@
         ],
         "apresentar": [
           "presenter_recipe"
+        ]
+      }
+    },
+    "broll-sorveteria": {
+      "tags": [
+        "A bola toma forma",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "gesto",
+        "legenda",
+        "localização",
+        "marrom",
+        "realista",
+        "reels",
+        "rosto",
+        "Sorveteria — Mostre a colher saindo da cuba e a bola chegando à casquinha.",
+        "stories",
+        "tipografia",
+        "vermelho",
+        "vinho"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "localizacao": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "a bola toma forma": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "sorveteria mostre a colher saindo da cuba e a bola chegando a casquinha": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "vermelho": [
+          "reference_color_analysis"
+        ],
+        "vinho": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-acaiteria": {
+      "tags": [
+        "Açaiteria — Revele a base e depois a cobertura que o cliente pode escolher.",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "camadas",
+        "Camadas no copo",
+        "explicar",
+        "gesto",
+        "janela",
+        "legenda",
+        "realista",
+        "reels",
+        "rosa",
+        "stories",
+        "tipografia",
+        "vermelho",
+        "vinho"
+      ],
+      "evidence": {
+        "camadas": [
+          "name",
+          "frames"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "camadas no copo": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "acaiteria revele a base e depois a cobertura que o cliente pode escolher": [
+          "topic"
+        ],
+        "rosa": [
+          "reference_color_analysis"
+        ],
+        "vinho": [
+          "reference_color_analysis"
+        ],
+        "vermelho": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-bar-pub": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "bar",
+        "Bar e pub — Mostre o fluxo da torneira e o colarinho se formando.",
+        "Do puxador ao copo",
+        "explicar",
+        "janela",
+        "laranja",
+        "legenda",
+        "localização",
+        "marrom",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "bar": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "localizacao": [
+          "appearance"
+        ],
+        "do puxador ao copo": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "bar e pub mostre o fluxo da torneira e o colarinho se formando": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-roupas": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "explicar",
+        "gesto",
+        "laranja",
+        "legenda",
+        "loja",
+        "Loja de roupas — Mostre a peça inteira e aproxime a trama e a costura.",
+        "marrom",
+        "O tecido em movimento",
+        "realista",
+        "reels",
+        "rosto",
+        "roupa",
+        "stories",
+        "tecido",
+        "tipografia",
+        "vinho"
+      ],
+      "evidence": {
+        "tecido": [
+          "name",
+          "frames"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "loja": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "roupa": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "o tecido em movimento": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "loja de roupas mostre a peca inteira e aproxime a trama e a costura": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "vinho": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-calcados": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "calçado",
+        "Da passada ao solado",
+        "explicar",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "loja",
+        "Loja de calçados — Relacione o passo ao desenho do solado.",
+        "marrom",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "loja": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "calcado": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "da passada ao solado": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "loja de calcados relacione o passo ao desenho do solado": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-papelaria": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "É o papel que muda a linha",
+        "explicar",
+        "janela",
+        "legenda",
+        "papel",
+        "papelaria",
+        "Papelaria — Mostre o mesmo traço em duas superfícies e aproxime a diferença visível.",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "papel": [
+          "name",
+          "frames"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "papelaria": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "e o papel que muda a linha": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "papelaria mostre o mesmo traco em duas superficies e aproxime a diferenca visivel": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-livraria": {
+      "tags": [
+        "Abra e encontre seu livro",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "explicar",
+        "gesto",
+        "laranja",
+        "legenda",
+        "livraria",
+        "Livraria — Leve da estante a um detalhe que ajuda a escolher a edição.",
+        "livro",
+        "localização",
+        "marrom",
+        "realista",
+        "reels",
+        "rosto",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "livro": [
+          "name",
+          "frames"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "livraria": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "localizacao": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "abra e encontre seu livro": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "livraria leve da estante a um detalhe que ajuda a escolher a edicao": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-pet-shop": {
+      "tags": [
+        "animal",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "banho",
+        "cachorro",
+        "cinza",
+        "Do pelo à escova",
+        "escova",
+        "explicar",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "marrom",
+        "pet",
+        "Pet shop — Enquadre o cão e mostre o movimento da escova no pelo.",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "escova": [
+          "name",
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "pet": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance",
+          "animal_hierarchy"
+        ],
+        "cachorro": [
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "banho": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "do pelo a escova": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "pet shop enquadre o cao e mostre o movimento da escova no pelo": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "animal": [
+          "animal_hierarchy"
+        ]
+      }
+    },
+    "broll-eletronicos": {
+      "tags": [
+        "A conexão certa",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "janela",
+        "laranja",
+        "legenda",
+        "loja",
+        "Loja de eletrônicos — Mostre a entrada do aparelho antes de aproximar o conector.",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "loja": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "a conexao certa": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "loja de eletronicos mostre a entrada do aparelho antes de aproximar o conector": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-celulares": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "gesto",
+        "laranja",
+        "legenda",
+        "loja",
+        "Loja de celulares — Demonstre a posição da câmera e o enquadramento que ela produz.",
+        "marrom",
+        "O enquadramento no celular",
+        "realista",
+        "reels",
+        "rosto",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "loja": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "o enquadramento no celular": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "loja de celulares demonstre a posicao da camera e o enquadramento que ela produz": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-floricultura": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "buquê",
+        "cinza",
+        "Como nasce um buquê",
+        "explicar",
+        "flores",
+        "Floricultura — Mostre a montagem das flores e como o buquê é amarrado.",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "madeira",
+        "marrom",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "buque": [
+          "name",
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "flores": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "madeira": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "como nasce um buque": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "floricultura mostre a montagem das flores e como o buque e amarrado": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-jardinagem": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "janela",
+        "Jardinagem — Leve do vaso inicial ao momento em que a raiz passa para outro recipiente.",
+        "laranja",
+        "legenda",
+        "luz",
+        "marrom",
+        "Raízes têm espaço",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "luz": [
+          "appearance"
+        ],
+        "raizes tem espaco": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "jardinagem leve do vaso inicial ao momento em que a raiz passa para outro recipiente": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-otica": {
+      "tags": [
+        "A armação de perto",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "explicar",
+        "gesto",
+        "laranja",
+        "legenda",
+        "marrom",
+        "óculos",
+        "Ótica — Compare a forma geral com o detalhe da dobradiça.",
+        "realista",
+        "reels",
+        "rosto",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "oculos": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "a armacao de perto": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "otica compare a forma geral com o detalhe da dobradica": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-relojoaria": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "Do mostrador ao fecho",
+        "explicar",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "madeira",
+        "marrom",
+        "realista",
+        "reels",
+        "Relojoaria — Siga do mostrador ao fecho para explicar o uso.",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "explicar": [
+          "topic",
+          "signature",
+          "uses",
+          "frames",
+          "appearance"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "madeira": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "do mostrador ao fecho": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "relojoaria siga do mostrador ao fecho para explicar o uso": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-salao-beleza": {
+      "tags": [
+        "A mecha muda de direção",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "janela",
+        "laranja",
+        "legenda",
+        "marrom",
+        "preto",
+        "realista",
+        "reels",
+        "salão de beleza",
+        "Salão de beleza — Relacione a separação das mechas à direção do acabamento.",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "salao de beleza": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "a mecha muda de direcao": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "salao de beleza relacione a separacao das mechas a direcao do acabamento": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-barbearia": {
+      "tags": [
+        "A linha do acabamento",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "Barbearia — Demonstre onde começa a linha e como o acabamento aparece.",
+        "cinza",
+        "explicar",
+        "gesto",
+        "laranja",
+        "legenda",
+        "marrom",
+        "realista",
+        "reels",
+        "rosto",
+        "salão de beleza",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "salao de beleza": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "a linha do acabamento": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "barbearia demonstre onde comeca a linha e como o acabamento aparece": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-academia": {
+      "tags": [
+        "A pegada em detalhe",
+        "Academia — Mostre a posição da mão e a relação com o punho.",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "fitness",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "mão",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "fitness": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "mao": [
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "a pegada em detalhe": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "academia mostre a posicao da mao e a relacao com o punho": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-estudio-pilates": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "azul",
+        "cinza",
+        "Estúdio de pilates — Mostre o carrinho e destaque o trajeto sobre o trilho.",
+        "explicar",
+        "janela",
+        "legenda",
+        "O caminho do carrinho",
+        "pagamento",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "pagamento": [
+          "name",
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "o caminho do carrinho": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "estudio de pilates mostre o carrinho e destaque o trajeto sobre o trilho": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ],
+        "azul": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-cosmeticos": {
+      "tags": [
+        "A textura aparece",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cosmético",
+        "explicar",
+        "gesto",
+        "laranja",
+        "legenda",
+        "loja",
+        "Loja de cosméticos — Demonstre a consistência e como a textura se espalha.",
+        "marrom",
+        "realista",
+        "reels",
+        "rosto",
+        "stories",
+        "textura",
+        "tipografia",
+        "vermelho"
+      ],
+      "evidence": {
+        "textura": [
+          "name",
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "loja": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "cosmetico": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "a textura aparece": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "loja de cosmeticos demonstre a consistencia e como a textura se espalha": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "vermelho": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-perfumaria": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "Do frasco à fita",
+        "explicar",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "luz",
+        "marrom",
+        "Perfumaria — Demonstre o borrifo e a fita usada para experimentar.",
+        "perfume",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "perfume": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "luz": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "do frasco a fita": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "perfumaria demonstre o borrifo e a fita usada para experimentar": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-lavanderia": {
+      "tags": [
+        "A etiqueta guia a lavagem",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "azul",
+        "cinza",
+        "explicar",
+        "janela",
+        "Lavanderia — Aproxime a etiqueta depois de mostrar a separação das peças.",
+        "legenda",
+        "marrom",
+        "realista",
+        "reels",
+        "roupa",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "roupa": [
+          "appearance"
+        ],
+        "a etiqueta guia a lavagem": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "lavanderia aproxime a etiqueta depois de mostrar a separacao das pecas": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "azul": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-agencia-turismo": {
+      "tags": [
+        "agência",
+        "Agência de turismo — Associe a rota ao tipo de caminho que a pessoa vai percorrer.",
+        "amarelo",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "azul",
+        "cinza",
+        "Do mapa ao percurso",
+        "explicar",
+        "gesto",
+        "legenda",
+        "mapa",
+        "realista",
+        "reels",
+        "rosto",
+        "rota",
+        "stories",
+        "tipografia",
+        "turismo"
+      ],
+      "evidence": {
+        "mapa": [
+          "name",
+          "frames"
+        ],
+        "rota": [
+          "name",
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "agencia": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "turismo": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "do mapa ao percurso": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "agencia de turismo associe a rota ao tipo de caminho que a pessoa vai percorrer": [
+          "topic"
+        ],
+        "azul": [
+          "reference_color_analysis"
+        ],
+        "amarelo": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-imobiliaria": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "Da planta à passagem",
+        "explicar",
+        "gesto",
+        "Imobiliária — Relacione o traço na planta ao espaço que ele representa.",
+        "imóvel",
+        "janela",
+        "laranja",
+        "legenda",
+        "marrom",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "imovel": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "da planta a passagem": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "imobiliaria relacione o traco na planta ao espaco que ele representa": [
+          "topic"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-ecommerce": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "Da caixa ao detalhe",
+        "E-commerce — Mostre como o produto chega e o que aparece ao abrir.",
+        "ecommerce",
+        "embalagem",
+        "explicar",
+        "janela",
+        "laranja",
+        "legenda",
+        "loja",
+        "preto",
+        "produto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "ecommerce": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "produto": [
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "embalagem": [
+          "appearance"
+        ],
+        "loja": [
+          "appearance"
+        ],
+        "da caixa ao detalhe": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "e commerce mostre como o produto chega e o que aparece ao abrir": [
+          "topic"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-material-construcao": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "gesto",
+        "legenda",
+        "loja",
+        "luz",
+        "Material de construção — Demonstre a diferença entre as superfícies sob a mesma luz.",
+        "obra",
+        "realista",
+        "reels",
+        "rosto",
+        "stories",
+        "tipografia",
+        "Uma face, dois acabamentos"
+      ],
+      "evidence": {
+        "rosto": [
+          "name",
+          "frames",
+          "appearance"
+        ],
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "obra": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "luz": [
+          "topic",
+          "signature",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "loja": [
+          "appearance"
+        ],
+        "uma face dois acabamentos": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "material de construcao demonstre a diferenca entre as superficies sob a mesma luz": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-ferragem": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "azul",
+        "cinza",
+        "Da cabeça ao encaixe",
+        "explicar",
+        "Ferragem — Mostre como o perfil de cada ponta se relaciona à cabeça.",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "da cabeca ao encaixe": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "ferragem mostre como o perfil de cada ponta se relaciona a cabeca": [
+          "topic"
+        ],
+        "azul": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-acougue": {
+      "tags": [
+        "A fibra indica o corte",
+        "Açougue — Mostre a peça e o sentido das fibras visíveis.",
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "explicar",
+        "janela",
+        "laranja",
+        "legenda",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia",
+        "vermelho",
+        "vinho"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "a fibra indica o corte": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "acougue mostre a peca e o sentido das fibras visiveis": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "vermelho": [
+          "reference_color_analysis"
+        ],
+        "vinho": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-peixaria": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "cinza",
+        "Da peça ao filé",
+        "explicar",
+        "gesto",
+        "legenda",
+        "Peixaria — Ligue o plano da peça ao detalhe do filé.",
+        "realista",
+        "reels",
+        "rosto",
+        "stories",
+        "tipografia",
+        "vermelho"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "gesto": [
+          "motion",
+          "frames"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "da peca ao file": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "peixaria ligue o plano da peca ao detalhe do file": [
+          "topic"
+        ],
+        "vermelho": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-cafeteria": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "Cafeteria — Relacione a moagem à extração na xícara.",
+        "cinza",
+        "Da moagem à xícara",
+        "explicar",
+        "gesto",
+        "janela",
+        "laranja",
+        "legenda",
+        "localização",
+        "luz",
+        "marrom",
+        "preto",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "localizacao": [
+          "appearance"
+        ],
+        "luz": [
+          "appearance"
+        ],
+        "janela": [
+          "appearance"
+        ],
+        "gesto": [
+          "appearance"
+        ],
+        "da moagem a xicara": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "cafeteria relacione a moagem a extracao na xicara": [
+          "topic"
+        ],
+        "marrom": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
+          "reference_color_analysis"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
+        ]
+      }
+    },
+    "broll-automotivo": {
+      "tags": [
+        "Apresentação com B-roll",
+        "Apresentações e tipografia",
+        "apresentador",
+        "apresentar",
+        "azul",
+        "carro",
+        "cinza",
+        "explicar",
+        "janela",
+        "legenda",
+        "oficina",
+        "Oficina automotiva — Mostre a porta e detalhe o ponto onde procurar a etiqueta.",
+        "Onde conferir a pressão",
+        "realista",
+        "reels",
+        "stories",
+        "tipografia"
+      ],
+      "evidence": {
+        "apresentar": [
+          "family",
+          "kind",
+          "uses",
+          "appearance",
+          "presenter_recipe"
+        ],
+        "tipografia": [
+          "family"
+        ],
+        "oficina": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "carro": [
+          "topic",
+          "signature",
+          "uses",
+          "resources",
+          "appearance"
+        ],
+        "janela": [
+          "signature",
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "explicar": [
+          "uses"
+        ],
+        "reels": [
+          "uses"
+        ],
+        "stories": [
+          "uses"
+        ],
+        "apresentador": [
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "legenda": [
+          "resources"
+        ],
+        "realista": [
+          "appearance"
+        ],
+        "onde conferir a pressao": [
+          "name"
+        ],
+        "apresentacoes e tipografia": [
+          "family"
+        ],
+        "apresentacao com b roll": [
+          "kind"
+        ],
+        "oficina automotiva mostre a porta e detalhe o ponto onde procurar a etiqueta": [
+          "topic"
+        ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "azul": [
+          "reference_color_analysis"
         ]
       }
     }

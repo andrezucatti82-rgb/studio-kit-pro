@@ -79,7 +79,7 @@ with sync_playwright() as p:
   assert page.evaluate('AtlasApp.categorySelection().family')==''
   # The full catalogue remains reachable with no comparison controls.
   page.locator('#distevenHeader .disteven-brand').click();page.locator('#distevenBrowseAll').click()
-  assert '1425' in page.locator('#resultCount').inner_text().replace('.','')
+  assert '1455' in page.locator('#resultCount').inner_text().replace('.','')
   expect(page.locator('[data-compare],#compareBar,#compareDialog')).to_have_count(0)
   # Persisted favorites and selection survive reload in the real site adapter.
   page.reload();page.wait_for_function('window.ATLAS_READY===true && document.body.dataset.disteven==="true"')
@@ -115,7 +115,7 @@ with sync_playwright() as p:
    }
    return {count:document.querySelectorAll('#grid .disteven-card').length,bad};
   }''')
-  assert geometry['count']==1425 and not geometry['bad'],geometry
+  assert geometry['count']==1455 and not geometry['bad'],geometry
   report['catalogueGeometry'].append({'width':width,**geometry})
   context.close()
  browser.close()

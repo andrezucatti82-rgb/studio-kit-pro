@@ -52,7 +52,7 @@ test('Remotion actually blurs glass and applies repeatable, subtle social finish
  }finally{await fs.rm(root,{recursive:true,force:true});}
 });
 test('265 presenter directions preserve the original collection, with 1060 distinct complete reference frames and honest requirements',async()=>{
- validateCatalog(catalog);assert.equal(catalog.styles.length,1425);assert.equal(catalog.families.length,30);
+ validateCatalog(catalog);assert.equal(catalog.styles.length,1455);assert.equal(catalog.families.length,30);
  const previous=JSON.parse(await fs.readFile(new URL('../style-atlas/records/presenter-20/previous-catalog.json',import.meta.url),'utf8'));
  assert.equal(digest(Buffer.from(JSON.stringify(catalog.styles.slice(0,1160)))),previous.stylesSha256);
  const rows=catalog.styles.filter(s=>s.family==='explicadores'),hashes=new Set();assert.equal(rows.length,265);
