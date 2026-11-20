@@ -1,11 +1,49 @@
-/* Keep the browser's form control and provide the same picker theme where CSS cannot. */
+/* The fallback button owns interaction. The select retains the form value. */
 (()=>{
  if(CSS.supports('(appearance:base-select) and selector(::picker(select))'))return;
  document.documentElement.dataset.distevenSelectFallback='';
- const selector='body[data-disteven=true] select:not([multiple],[size],.sr,:disabled)';
+ const selector='select:not([multiple],[size],.sr)';
+ const fields=new WeakMap(),controls=new WeakMap();
  const menu=document.createElement('div');
  menu.id='disteven-select-menu';menu.className='disteven-select-menu';menu.setAttribute('role','listbox');menu.setAttribute('aria-label','Opções');
- let select=null,entries=[],active=-1,typed='',lastTyped=0,touchStart=null,consumedTouch=null;
+ let select=null,trigger=null,entries=[],active=-1,typed='',lastTyped=0,touchOption=null;
+
+ function sync(control){
+  const field=fields.get(control);
+  if(!field)return;
+  field.button.disabled=control.disabled;
+  const value=control.selectedOptions[0]?.label;
+  field.button.setAttribute('aria-label',[field.label,value].filter(Boolean).join(': '));
+ }
+ function enhance(control){
+  if(fields.has(control))return;
+  const label=control.labels?.[0]?.cloneNode(true);
+  label?.querySelectorAll('select,input,textarea,button').forEach(node=>node.remove());
+  const name=control.getAttribute('aria-label')||label?.textContent.trim()||'Opções';
+  const wrapper=document.createElement('span'),button=document.createElement('button');
+  wrapper.className='disteven-select-field';
+  button.type='button';button.className='disteven-select-trigger';
+  button.setAttribute('role','combobox');button.setAttribute('aria-haspopup','listbox');button.setAttribute('aria-expanded','false');
+  fields.set(control,{button,label:name});controls.set(button,control);
+  control.tabIndex=-1;control.setAttribute('aria-hidden','true');
+  control.before(wrapper);wrapper.append(control,button);sync(control);
+ }
+ function scan(node){
+  if(node.matches?.(selector))enhance(node);
+  node.querySelectorAll?.(selector).forEach(enhance);
+ }
+ // Briefing rows can be added or replaced after the page is ready.
+ if(document.body.matches('[data-disteven-startup],[data-disteven=true]')){
+  scan(document.body);
+  new MutationObserver(records=>{
+   for(const record of records){
+    const control=record.target.closest?.('select');
+    if(control)sync(control);
+    if(record.type==='childList')record.addedNodes.forEach(scan);
+   }
+   if(select&&(!select.isConnected||select.disabled))close();
+  }).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});
+ }
 
  function position(){
   if(!select)return;
@@ -20,19 +58,19 @@
  }
  function close(){
   if(!select)return;
-  select.setAttribute('aria-expanded','false');select.removeAttribute('aria-controls');select.removeAttribute('aria-activedescendant');
-  menu.remove();select=null;entries=[];active=-1;typed='';
+  trigger.setAttribute('aria-expanded','false');trigger.removeAttribute('aria-controls');trigger.removeAttribute('aria-activedescendant');
+  menu.remove();select=null;trigger=null;entries=[];active=-1;typed='';touchOption=null;
  }
  function activate(index){
   if(index===-1)return;
   entries[active]?.removeAttribute('data-active');active=index;
-  const item=entries[active];item.setAttribute('data-active','');select.setAttribute('aria-activedescendant',item.id);
+  const item=entries[active];item.setAttribute('data-active','');trigger.setAttribute('aria-activedescendant',item.id);
   const rect=item.getBoundingClientRect(),panel=menu.getBoundingClientRect();
   if(rect.top<panel.top)menu.scrollTop-=panel.top-rect.top;
   if(rect.bottom>panel.bottom)menu.scrollTop+=rect.bottom-panel.bottom;
  }
  function open(control){
-  close();select=control;
+  close();select=control;trigger=fields.get(control).button;
   const groups=new Map();
   menu.replaceChildren();
   for(const option of control.options){
@@ -54,49 +92,63 @@
   }
   if(!entries.length){close();return;}
   (control.closest('dialog[open]')||document.body).append(menu);
-  menu.scrollTop=0;select.setAttribute('aria-expanded','true');select.setAttribute('aria-controls',menu.id);
+  menu.scrollTop=0;trigger.setAttribute('aria-expanded','true');trigger.setAttribute('aria-controls',menu.id);
   position();
   if(select)activate(entries.findIndex(item=>item.getAttribute('aria-selected')==='true'&&!item.hasAttribute('aria-disabled')));
  }
  function choose(item){
   if(!select||!item||item.hasAttribute('aria-disabled'))return;
   const control=select,index=Number(item.dataset.index),changed=control.selectedIndex!==index;
-  control.selectedIndex=index;close();
+  control.selectedIndex=index;sync(control);close();
   if(changed){control.dispatchEvent(new Event('input',{bubbles:true}));control.dispatchEvent(new Event('change',{bubbles:true}));}
  }
  function toggle(control){
-  control.focus({preventScroll:true});
+  if(control.disabled)return;
+  fields.get(control).button.focus({preventScroll:true});
   if(select===control)close();else open(control);
  }
 
  document.addEventListener('pointerdown',event=>{
-  const control=event.target.closest(selector),inMenu=menu.contains(event.target);
-  consumedTouch=null;touchStart=null;
-  if(!control&&!inMenu){close();return;}
-  event.preventDefault();
-  if(event.pointerType==='touch')touchStart={control,item:inMenu?event.target.closest('[role=option]'):null,id:event.pointerId,x:event.clientX,y:event.clientY};
+  if(!menu.contains(event.target)&&!event.target.closest('.disteven-select-field'))close();
  },true);
- // WebKit may skip the synthesized click after cancelling a touch's pointerdown.
- document.addEventListener('pointerup',event=>{
-  const start=touchStart;touchStart=null;
-  if(!start||event.pointerId!==start.id||Math.hypot(event.clientX-start.x,event.clientY-start.y)>10)return;
-  if(start.control){consumedTouch=start.control;toggle(start.control);}
-  else if(start.item&&menu.contains(start.item))choose(start.item);
- },true);
- document.addEventListener('pointercancel',()=>{touchStart=null;},true);
  document.addEventListener('click',event=>{
-  const control=event.target.closest(selector);
-  if(!control)return;
+  const target=event.target;
+  const buttonControl=controls.get(target);
+  if(!buttonControl&&target.closest('button,input,textarea,a'))return;
+  const control=buttonControl||target.closest('label')?.control;
+  if(!fields.has(control))return;
   event.preventDefault();
-  if(consumedTouch===control&&event.detail!==0){consumedTouch=null;return;}
-  consumedTouch=null;
   toggle(control);
  },true);
+ // Preserve focus on the trigger until the option is committed, including
+ // WebKit's focus change before a synthesized click on a tapped option.
+ menu.addEventListener('mousedown',event=>event.preventDefault());
  menu.addEventListener('click',event=>choose(event.target.closest('[role=option]')));
- document.addEventListener('focusin',event=>{if(event.target!==select)close();});
+ menu.addEventListener('touchstart',event=>{
+  const item=event.target.closest('[role=option]'),touch=event.changedTouches[0];
+  touchOption=item&&event.touches.length===1?{item,id:touch.identifier,x:touch.clientX,y:touch.clientY}:null;
+ },{passive:true});
+ menu.addEventListener('touchend',event=>{
+  const start=touchOption;touchOption=null;
+  if(!start)return;
+  const touch=[...event.changedTouches].find(candidate=>candidate.identifier===start.id);
+  if(!touch||Math.hypot(touch.clientX-start.x,touch.clientY-start.y)>10)return;
+  event.preventDefault();
+  choose(start.item);
+ },{passive:false});
+ menu.addEventListener('touchcancel',()=>{touchOption=null;});
+
+ document.addEventListener('change',event=>sync(event.target),true);
+ document.addEventListener('focusin',event=>{
+  const button=fields.get(event.target)?.button;
+  if(button){button.focus({preventScroll:true});return;}
+  const control=controls.get(event.target);
+  if(control)sync(control);
+  if(event.target!==trigger)close();
+ });
  document.addEventListener('keydown',event=>{
-  const control=event.target.closest(selector);
-  if(!control)return;
+  const control=controls.get(event.target);
+  if(!control||control.disabled)return;
   const key=event.key,moves=['ArrowDown','ArrowUp','Home','End'];
   if(key==='Tab'){close();return;}
   if(event.ctrlKey||event.metaKey||event.altKey&&!moves.includes(key))return;

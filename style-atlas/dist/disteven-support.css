@@ -36,7 +36,7 @@ body[data-disteven-support] .boards img{border-color:transparent;background:#151
 body[data-disteven-support] :is(main>nav,.mast){display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 body[data-disteven-support] .mast{max-width:1120px;margin:auto;padding:20px 24px;background:#101010;border-bottom:1px solid var(--disteven-edge)}
 body[data-disteven-support] :is(.support-brand,.mast .brand){display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-size:28px;font-weight:600;line-height:1;letter-spacing:-1px}
-body[data-disteven-support] :is(.support-brand,.mast .brand) img{width:28px;height:32px;object-fit:contain;box-shadow:none}
+body[data-disteven-support] :is(.support-brand,.mast .brand) .zapvideo-logo{width:150px;height:auto;box-shadow:none}
 body[data-disteven-support] .mast .brand span{display:inline;font-size:28px;color:var(--ink);letter-spacing:-1px}
 body[data-disteven-support] :is(main>header a,main>nav a,.back,main>a:first-child){min-height:44px;display:inline-flex;align-items:center;padding:8px 0;font-size:var(--disteven-type-compact)}
 body[data-disteven-support] .support-brand{padding:0;font-size:28px}

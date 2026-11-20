@@ -6,7 +6,7 @@
   button.href=new URL('/#instalar',base).href;button.removeAttribute('download');
   button.target='_blank';button.rel='noopener';button.textContent='Abrir instalador no site ↗';
   tutorial.href=new URL('como-instalar.html',base).href;
-  status.textContent='O site do DiSteven verifica o pacote disponível para download.';
+  status.textContent='O site da zapvideo verifica o pacote disponível para download.';
  }else{
  button.removeAttribute('href');button.setAttribute('aria-disabled','true');status.textContent='Conferindo o pacote disponível…';
  const manifest=window.ATLAS_INSTALL_MANIFEST?Promise.resolve(window.ATLAS_INSTALL_MANIFEST):fetch(new URL('installation.json',base)).then(response=>{if(!response.ok)throw Error();return response.json()});

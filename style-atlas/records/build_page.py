@@ -26,8 +26,9 @@ for node in soup.find_all('footer'):
  if node.find_parent('dialog') is None:node.decompose()
 for link in soup.find_all('link',rel='stylesheet'):link.decompose()
 # The wordmark is native text and uses the same Inter face as the local interface.
-for link in soup.select('link[href^="assets/"]'):
- link['href']=runtime_origin+link['href']
+for asset in soup.select('link[href^="assets/"], img[src^="assets/"]'):
+ attribute='href' if asset.name=='link' else 'src'
+ asset[attribute]=runtime_origin+asset[attribute]
 css=((r/'dist/styles.css').read_text()+'\n'+(r/'dist/app-shell.css').read_text()+'\n'+(r/'dist/disteven.css').read_text()+'\n'+(r/'dist/disteven-components.css').read_text()).replace("url('assets/","url('"+runtime_origin+"assets/")
 for font in ['Geist-Regular.ttf','Geist-Bold.ttf']:
  face=TTFont(r/'dist/assets'/font)
