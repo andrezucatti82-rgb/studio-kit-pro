@@ -43,6 +43,28 @@ def gray_hairline(image,strip):
   for a,b,c in zip(*samples)
  )
  return matches/length>=.85
+def pale_margin_depth(image,strip,limit):
+ # A baked-in paper margin can have uneven color or rounded corners.
+ # Require a continuous band with an abrupt transition into the picture.
+ def sample(depth):
+  pixels=list(image.crop(strip(depth)).getdata())
+  margin=max(1,len(pixels)//12)
+  return pixels[margin:-margin:max(1,len(pixels)//256)]
+ previous=None
+ for depth in range(limit+1):
+  pixels=sample(depth)
+  if not pixels:
+   return 0
+  coverage=sum(sum(p)>=585 and max(p)-min(p)<=45 for p in pixels)/len(pixels)
+  if coverage>=.78:
+   previous=pixels
+   continue
+  if depth<2 or coverage>.35:
+   return 0
+  following=sample(depth+1)
+  drops=[(sum(a)-max(sum(b),sum(c)))/3 for a,b,c in zip(previous,pixels,following)]
+  return depth if median(drops)>=38 and sum(d>=25 for d in drops)/len(drops)>=.70 else 0
+ return 0
 def scan(entry):
  src,frames=entry;raw=(root/src).read_bytes();out=[];partial=[]
  with Image.open(root/src) as opened:
@@ -59,7 +81,7 @@ def scan(entry):
     return depths,[d if 0<d<=limit else 0 for d in depths]
    depths,bounded=edge_depths();warm_depths,warm_bounded=edge_depths(True)
    warm_frame=sum(d>=2 for d in warm_bounded)>=3
-   fringes=[];gray_edges=[]
+   fringes=[];gray_edges=[];margin_edges=[]
    if warm_frame:
     bounded=[max(a,b) for a,b in zip(bounded,warm_bounded)]
     # A coherent frame can end in one antialiased light row/column. Omit it
@@ -76,6 +98,9 @@ def scan(entry):
      elif light_transition(panel,strip,0):d=1
     if not d and depths[edge]==0 and gray_hairline(panel,strip):
      d=1;gray_edges.append(edge)
+    if not d:
+     d=pale_margin_depth(panel,strip,limit)
+     if d:margin_edges.append(edge)
     for _ in range(2):
      if not 0<d<limit or not light_fringe(panel,strip(d),strip(d+1)):break
      d+=1
@@ -89,10 +114,11 @@ def scan(entry):
     vx=max(x,(box[0]+l)/W);vy=max(y,(box[1]+t)/H);vr=min(x+w,(box[2]-r)/W);vb=min(y+h,(box[3]-b)/H)
     vw,vh=round((vr-vx)*W,6),round((vb-vy)*H,6)
     crop=[round(vx,9),round(vy,9),round(vr-vx,9),round(vb-vy,9)]
-    rule='coherent_light_frame' if warm_frame else 'neutral_strips' if any(depths) else 'gray_hairline' if gray_edges else 'light_transition'
+    rule='coherent_light_frame' if warm_frame else 'neutral_strips' if any(depths) else 'pale_margin' if margin_edges else 'gray_hairline' if gray_edges else 'light_transition'
     record={'style':sid,'frame':i,'source':src,'sourceSha256':hashlib.sha256(raw).hexdigest(),'insetPixels':[l,t,r,b],'edgeRule':rule,'view':[crop,vw,vh]}
     if fringes:record['fringeEdges']=fringes
     if gray_edges:record['grayHairlineEdges']=gray_edges
+    if margin_edges:record['paleMarginEdges']=margin_edges
     out.append(record)
    elif sum(0<d<=limit for d in depths)>=2:partial.append({'style':sid,'frame':i,'source':src,'depths':depths,'limit':limit})
  return out,partial
@@ -104,5 +130,5 @@ with ThreadPoolExecutor(max_workers=4) as pool:
 presentation={}
 for r in found:presentation.setdefault(r['style'],{})[str(r['frame'])]=r['view']
 (root/'frame-presentation.js').write_text('/* Thin neutral borders are omitted only in the UI; original media is unchanged. */\nwindow.AtlasFramePresentation='+json.dumps(presentation,separators=(',',':'))+';\n')
-report={'styleCount':len(catalog['styles']),'frameCount':sum(len(v) for v in sources.values()),'sourceCount':len(sources),'adjustedFrames':len(found),'adjustedStyles':len(presentation),'criterion':'Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. A gray hairline requires brightness of at least 30, limited variation across the edge, and 85% neutral pixels at least 12 levels brighter than both adjoining strips. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.','imageFilesModified':False,'frames':found,'partialCandidates':partial}
+report={'styleCount':len(catalog['styles']),'frameCount':sum(len(v) for v in sources.values()),'sourceCount':len(sources),'adjustedFrames':len(found),'adjustedStyles':len(presentation),'criterion':'Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. A gray hairline requires brightness of at least 30, limited variation across the edge, and 85% neutral pixels at least 12 levels brighter than both adjoining strips. An uneven pale margin requires at least two contiguous rows or columns with 78% pale neutral pixels and an abrupt drop into the next two strips. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.','imageFilesModified':False,'frames':found,'partialCandidates':partial}
 Path(__file__).with_name('report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:report[k] for k in ['styleCount','frameCount','sourceCount','adjustedFrames','adjustedStyles']}))

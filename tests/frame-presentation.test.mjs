@@ -38,4 +38,9 @@ test('presentation crops address only their original logical panels and never mu
   assert(ctx.AtlasViews.picture(bench,i,'','',true).includes(original.thumbnail));
  }
  assert.equal(ctx.AtlasViews.frameView(bench,0).crop,undefined);
+ const fashion=report.frames.filter(f=>f.style==='natural-moda-feminina-uma-peca-o-seu-dia');
+ assert.equal(fashion.length,4);
+ assert(fashion.every(f=>f.insetPixels.every(n=>n>0)),'the pale margin must be trimmed on all four sides');
+ assert.deepEqual(fashion[0].paleMarginEdges,[3]);
+ assert.deepEqual(fashion[3].paleMarginEdges,[1,3]);
 });
