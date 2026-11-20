@@ -7,6 +7,12 @@ test('presentation crops address only their original logical panels and never mu
  const catalog=JSON.parse(await readFile(new URL('style-atlas/dist/catalog.json',root),'utf8')),original=JSON.stringify(catalog);
  const ctx={};ctx.window=ctx;vm.createContext(ctx);
  for(const name of ['frame-presentation.js','gallery-views.js'])vm.runInContext(await readFile(new URL('style-atlas/dist/'+name,root),'utf8'),ctx);
+ ctx.AtlasSearch={styleCode:id=>id};
+ for(const style of catalog.styles){
+  assert(style.uses.trim().length>0,style.id);
+  const summary='<section class="direction-use direction-summary"><h3>Resumo do estilo</h3><p>'+ctx.AtlasViews.esc(style.uses)+'</p></section>';
+  assert(ctx.AtlasViews.detail(style,{requirementsHtml:()=>'',readinessHtml:()=>''}).includes(summary),style.id);
+ }
  let frames=0,changed=0;
  for(const style of catalog.styles)for(const [i,source]of style.sequence.frames.entries()){
   frames++;const view=ctx.AtlasViews.frameView(style,i);
