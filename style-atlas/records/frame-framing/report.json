@@ -2,9 +2,9 @@
   "styleCount": 1425,
   "frameCount": 5700,
   "sourceCount": 4905,
-  "adjustedFrames": 983,
-  "adjustedStyles": 270,
-  "criterion": "Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.",
+  "adjustedFrames": 1018,
+  "adjustedStyles": 287,
+  "criterion": "Neutral strips require 94% coverage/min224/tint30. Coherent warm frames require 98% coverage/min190/tint60 and at least 3 bounded sides of 2px or more. An isolated light strip requires 75% coverage/min185/tint60 and a matching transition. A gray hairline requires brightness of at least 30, limited variation across the edge, and 85% neutral pixels at least 12 levels brighter than both adjoining strips. On any confirmed border, trim up to two further pixels while the median brightness falls by at least 17 and 70% of positions fall by at least 12, then inset two pixels to avoid resampling the line. Each side is bounded to 3.5%/24px and each dimension retains at least 92%.",
   "imageFilesModified": false,
   "frames": [
     {
@@ -712,6 +712,142 @@
       ]
     },
     {
+      "style": "terminal-ascii",
+      "frame": 0,
+      "source": "assets/style-sequences/terminal-ascii-01.webp",
+      "sourceSha256": "54936cdd6441a92be5d35196371be44091ed1e64f1413ced6c43510bf2dbc6b7",
+      "insetPixels": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0.00390625,
+          0.98828125,
+          0.9921875
+        ],
+        506.0,
+        762.0
+      ],
+      "fringeEdges": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "grayHairlineEdges": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "style": "terminal-ascii",
+      "frame": 1,
+      "source": "assets/style-sequences/terminal-ascii-02.webp",
+      "sourceSha256": "edcd8aed57c67ec939aa7a8e800f703eb1f4f153d0be1d036c9324eefbaf528f",
+      "insetPixels": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0.00390625,
+          0.98828125,
+          0.9921875
+        ],
+        506.0,
+        762.0
+      ],
+      "fringeEdges": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "grayHairlineEdges": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "style": "terminal-ascii",
+      "frame": 2,
+      "source": "assets/style-sequences/terminal-ascii-03.webp",
+      "sourceSha256": "2ff652141019cf097244104cacac47786a41c81eaa940bbe9af58845ca280935",
+      "insetPixels": [
+        3,
+        3,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0.00390625,
+          0.98828125,
+          0.99609375
+        ],
+        506.0,
+        765.0
+      ],
+      "fringeEdges": [
+        0,
+        1,
+        2
+      ],
+      "grayHairlineEdges": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "style": "terminal-ascii",
+      "frame": 3,
+      "source": "assets/style-sequences/terminal-ascii-04.webp",
+      "sourceSha256": "c3567ec215d17e215ae44889de07d3a4229b88d9902ad7bae8e5fa1d3862d6e8",
+      "insetPixels": [
+        3,
+        3,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0.00390625,
+          0.98828125,
+          0.99609375
+        ],
+        506.0,
+        765.0
+      ],
+      "fringeEdges": [
+        0,
+        1,
+        2
+      ],
+      "grayHairlineEdges": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
       "style": "hud-futurista",
       "frame": 0,
       "source": "assets/style-sequences/hud-futurista-01.webp",
@@ -869,6 +1005,35 @@
       ],
       "fringeEdges": [
         3
+      ]
+    },
+    {
+      "style": "frame-a-frame",
+      "frame": 3,
+      "source": "assets/style-sequences/frame-a-frame-04.webp",
+      "sourceSha256": "b3cdcdcfd6625d9477c1f6653ee576cce2dcca2ee40b1001858b64f9b8d24688",
+      "insetPixels": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0.00390625,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -1410,23 +1575,27 @@
       "sourceSha256": "14b119e267220fa5819ca2b28c054f360a69a1cf47c6dba73f30623bfd53655e",
       "insetPixels": [
         4,
-        0,
+        3,
         0,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0.0078125,
-          0,
+          0.00390625,
           0.9921875,
-          1
+          0.99609375
         ],
         508.0,
-        768
+        765.0
       ],
       "fringeEdges": [
-        0
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -1505,6 +1674,35 @@
       ],
       "fringeEdges": [
         0
+      ]
+    },
+    {
+      "style": "macro-tatil-de-materiais",
+      "frame": 0,
+      "source": "assets/style-sequences/macro-tatil-de-materiais-01.webp",
+      "sourceSha256": "63f7a64333c9e3f502f21db89eb4dd5170fd14f204bb272e1da653e104f61540",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        4
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.995215311
+        ],
+        470,
+        832.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
       ]
     },
     {
@@ -2680,6 +2878,35 @@
       ]
     },
     {
+      "style": "avatar-do-corretor-sobre-fotos",
+      "frame": 1,
+      "source": "assets/style-sequences/avatar-do-corretor-sobre-fotos-02.webp",
+      "sourceSha256": "cb924e7f0629895db8fea4a642f80f6ef4dec8ce885e86f9985e182cc78fc1db",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.995856354
+        ],
+        543,
+        721.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
+      ]
+    },
+    {
       "style": "planta-que-orienta-a-visita",
       "frame": 0,
       "source": "assets/style-sequences/planta-que-orienta-a-visita-01.webp",
@@ -3081,22 +3308,26 @@
       "insetPixels": [
         0,
         0,
-        0,
+        3,
         6
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0,
           0,
-          1,
+          0.994140625,
           0.9921875
         ],
-        512,
+        509.0,
         762.0
       ],
       "fringeEdges": [
+        2,
         3
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -3150,6 +3381,35 @@
       ],
       "fringeEdges": [
         0
+      ]
+    },
+    {
+      "style": "vidro-editorial-em-camadas",
+      "frame": 1,
+      "source": "assets/style-sequences/vidro-editorial-em-camadas-02.webp",
+      "sourceSha256": "cc3e72f6689545f259a4affcf603c71e49c94eb2df17de13a05bddfeea253bb2",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
       ]
     },
     {
@@ -3364,6 +3624,35 @@
       ]
     },
     {
+      "style": "cianotipia",
+      "frame": 1,
+      "source": "assets/style-sequences/cianotipia-02.webp",
+      "sourceSha256": "b146723155f2809fb2a6ffb05d22026400329d944584821b76ffe36ec0186b93",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
+      ]
+    },
+    {
       "style": "rede-topologica",
       "frame": 0,
       "source": "assets/style-sequences/rede-topologica-01.webp",
@@ -3372,21 +3661,25 @@
         0,
         0,
         3,
-        0
+        3
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0,
           0,
           0.994140625,
-          1
+          0.99609375
         ],
         509.0,
-        768
+        765.0
       ],
       "fringeEdges": [
-        2
+        2,
+        3
+      ],
+      "grayHairlineEdges": [
+        3
       ]
     },
     {
@@ -3395,24 +3688,28 @@
       "source": "assets/style-sequences/rede-topologica-02.webp",
       "sourceSha256": "c5aa4c67e7a45f3812f49290f0083f19cca3e58d59401e8e4ed3eee0db5c6c17",
       "insetPixels": [
-        0,
+        3,
         0,
         0,
         4
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
+          0.005859375,
           0,
-          0,
-          1,
+          0.994140625,
           0.994791667
         ],
-        512,
+        509.0,
         764.0
       ],
       "fringeEdges": [
+        0,
         3
+      ],
+      "grayHairlineEdges": [
+        0
       ]
     },
     {
@@ -3448,24 +3745,28 @@
       "source": "assets/style-sequences/rede-topologica-04.webp",
       "sourceSha256": "671345b0e480f553df2f57f2d921590837d5140deb3034a02b9988c3f6acdeb4",
       "insetPixels": [
-        0,
+        3,
         3,
         0,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
-          0,
+          0.005859375,
           0.00390625,
-          1,
+          0.994140625,
           0.99609375
         ],
-        512,
+        509.0,
         765.0
       ],
       "fringeEdges": [
+        0,
         1
+      ],
+      "grayHairlineEdges": [
+        0
       ]
     },
     {
@@ -3476,22 +3777,26 @@
       "insetPixels": [
         0,
         0,
-        0,
+        3,
         3
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0,
           0,
-          1,
+          0.994475138,
           0.995856354
         ],
-        543,
+        540.0,
         721.0
       ],
       "fringeEdges": [
+        2,
         3
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -3529,22 +3834,26 @@
       "insetPixels": [
         0,
         3,
-        0,
+        3,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0,
           0.004143646,
-          1,
+          0.994475138,
           0.995856354
         ],
-        543,
+        540.0,
         721.0
       ],
       "fringeEdges": [
-        1
+        1,
+        2
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -3575,6 +3884,35 @@
       ]
     },
     {
+      "style": "dendrograma-de-classificacao",
+      "frame": 3,
+      "source": "assets/style-sequences/dendrograma-de-classificacao-04.webp",
+      "sourceSha256": "7c180871849b4d719f0a2b7594826f2dd5dedeaf6c617c1754375794c03c9c16",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        0
+      ],
+      "grayHairlineEdges": [
+        0
+      ]
+    },
+    {
       "style": "matriz-de-decisao",
       "frame": 0,
       "source": "assets/style-sequences/matriz-de-decisao-01.webp",
@@ -3582,7 +3920,7 @@
       "insetPixels": [
         0,
         0,
-        0,
+        3,
         4
       ],
       "edgeRule": "neutral_strips",
@@ -3590,14 +3928,18 @@
         [
           0,
           0,
-          1,
+          0.994475138,
           0.994475138
         ],
-        543,
+        540.0,
         720.0
       ],
       "fringeEdges": [
+        2,
         3
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -3628,6 +3970,35 @@
     },
     {
       "style": "matriz-de-decisao",
+      "frame": 2,
+      "source": "assets/style-sequences/matriz-de-decisao-03.webp",
+      "sourceSha256": "12a9421df859d65d28db2e0c1ac2f2e86beded9f7670cb05f349b3148ad6c1e4",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994475138,
+          1
+        ],
+        540.0,
+        724
+      ],
+      "fringeEdges": [
+        2
+      ],
+      "grayHairlineEdges": [
+        2
+      ]
+    },
+    {
+      "style": "matriz-de-decisao",
       "frame": 3,
       "source": "assets/style-sequences/matriz-de-decisao-04.webp",
       "sourceSha256": "64d120b2f005c2da4081d927ecb766f6d6e49ab6cb36ddf00504dba4b8f7c0dd",
@@ -3651,6 +4022,95 @@
       "fringeEdges": [
         0,
         1
+      ]
+    },
+    {
+      "style": "calendario-radial",
+      "frame": 0,
+      "source": "assets/style-sequences/calendario-radial-01.webp",
+      "sourceSha256": "5e0ad6eb189e0b58d84be6a3979c5ccb7d96185fe2869fa427fdc6736c785b31",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994475138,
+          0.995856354
+        ],
+        540.0,
+        721.0
+      ],
+      "fringeEdges": [
+        2,
+        3
+      ],
+      "grayHairlineEdges": [
+        2,
+        3
+      ]
+    },
+    {
+      "style": "calendario-radial",
+      "frame": 1,
+      "source": "assets/style-sequences/calendario-radial-02.webp",
+      "sourceSha256": "40d2c425aee86f71d53f50b38ea178d79e6cf1b3d18b0e01e0601f05316db6c8",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.995856354
+        ],
+        543,
+        721.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
+      ]
+    },
+    {
+      "style": "calendario-radial",
+      "frame": 2,
+      "source": "assets/style-sequences/calendario-radial-03.webp",
+      "sourceSha256": "4a5a1432969d8d5dd614bb02a6e209817d39c5e1789afcc43d981b299b061038",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994475138,
+          1
+        ],
+        540.0,
+        724
+      ],
+      "fringeEdges": [
+        2
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -3848,23 +4308,27 @@
       "sourceSha256": "7c58ebf09feb88f7e8b5195d3f8173a7aa887e58957ccf7ade820da5d0ad4522",
       "insetPixels": [
         3,
-        0,
+        3,
         0,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0.005859375,
-          0,
+          0.00390625,
           0.994140625,
-          1
+          0.99609375
         ],
         509.0,
-        768
+        765.0
       ],
       "fringeEdges": [
-        0
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -4102,6 +4566,35 @@
       ],
       "fringeEdges": [
         3
+      ]
+    },
+    {
+      "style": "mito,-teste-e-evidencia",
+      "frame": 0,
+      "source": "assets/style-sequences/mito,-teste-e-evidencia-01.webp",
+      "sourceSha256": "73c53c776b0c58a95082bc1c35ba6d0a371020a5e44e09c93e85ec43c332a1c2",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994475138,
+          1
+        ],
+        540.0,
+        724
+      ],
+      "fringeEdges": [
+        2
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -4404,23 +4897,27 @@
       "sourceSha256": "5d930a46f656078c56c60ad60a9544027e3fe8476494a70a82f29fb13f80747c",
       "insetPixels": [
         3,
-        0,
+        3,
         0,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0.005859375,
-          0,
+          0.00390625,
           0.994140625,
-          1
+          0.99609375
         ],
         509.0,
-        768
+        765.0
       ],
       "fringeEdges": [
-        0
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -5083,6 +5580,35 @@
       ],
       "fringeEdges": [
         3
+      ]
+    },
+    {
+      "style": "estudo-solar-identificado",
+      "frame": 2,
+      "source": "assets/style-sequences/estudo-solar-identificado-03.webp",
+      "sourceSha256": "692e48cb747107acabbede70999f487b2a097fc57faf8b3609c3155ad9c30e1d",
+      "insetPixels": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0.00390625,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -5913,7 +6439,7 @@
       "sourceSha256": "9f4bcde5246d3902b30341eeabc190d1d40f363ab7f8753e5ea35b0224bec19d",
       "insetPixels": [
         0,
-        0,
+        3,
         4,
         0
       ],
@@ -5921,15 +6447,19 @@
       "view": [
         [
           0,
-          0,
+          0.00390625,
           0.9921875,
-          1
+          0.99609375
         ],
         508.0,
-        768
+        765.0
       ],
       "fringeEdges": [
+        1,
         2
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -5939,7 +6469,7 @@
       "sourceSha256": "848ea713a91b2d6ef299b150f7d5ab4995af85d866e15a10ad15d5fad5f0b2dc",
       "insetPixels": [
         4,
-        0,
+        3,
         0,
         0
       ],
@@ -5947,15 +6477,19 @@
       "view": [
         [
           0.0078125,
-          0,
+          0.00390625,
           0.9921875,
-          1
+          0.99609375
         ],
         508.0,
-        768
+        765.0
       ],
       "fringeEdges": [
-        0
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -6536,6 +7070,35 @@
       ]
     },
     {
+      "style": "apresentador-de-negocios-em-rua",
+      "frame": 3,
+      "source": "assets/style-sequences/apresentador-de-negocios-em-rua-04.webp",
+      "sourceSha256": "596a85ae4b2e334cc99be0fbd4b38342d2625ace80fd122b182ed4ada2335301",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        0
+      ],
+      "grayHairlineEdges": [
+        0
+      ]
+    },
+    {
       "style": "apresentadora-despojada-em-cafe-externo",
       "frame": 0,
       "source": "assets/style-sequences/apresentadora-despojada-em-cafe-externo-01.webp",
@@ -6716,6 +7279,64 @@
         ],
         509.0,
         768
+      ]
+    },
+    {
+      "style": "scratchboard-de-luz-escavada",
+      "frame": 3,
+      "source": "assets/style-sequences/scratchboard-de-luz-escavada-04.webp",
+      "sourceSha256": "8430afa6a2b5ff3f1ce8686a7e3c7caa76e21a2ec6475f5d4dd8d13607789449",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        0
+      ],
+      "grayHairlineEdges": [
+        0
+      ]
+    },
+    {
+      "style": "grisaille-que-recebe-uma-cor",
+      "frame": 2,
+      "source": "assets/style-sequences/grisaille-que-recebe-uma-cor-03.webp",
+      "sourceSha256": "5555f0773f32b8b6ef6824a9c029b6c40129dde59c52d8228141b81041ce5e80",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        2
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -7144,6 +7765,35 @@
       ]
     },
     {
+      "style": "filme-fino-iridescente",
+      "frame": 1,
+      "source": "assets/style-sequences/filme-fino-iridescente-02.webp",
+      "sourceSha256": "f42109bbdb7ca2bcc1c95f8a6ac9d4763a27e38dae502cb20d22ee7f7460d74a",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
+      ]
+    },
+    {
       "style": "malha-auxetica-que-se-expande",
       "frame": 0,
       "source": "assets/style-sequences/malha-auxetica-que-se-expande-01.webp",
@@ -7239,6 +7889,64 @@
       ],
       "fringeEdges": [
         0
+      ]
+    },
+    {
+      "style": "lava-mineral-de-resfriamento",
+      "frame": 3,
+      "source": "assets/style-sequences/lava-mineral-de-resfriamento-04.webp",
+      "sourceSha256": "25cf9de7f14eda214fbe52f43ad88813685a598b21d1a90ce93801a1fbabfed6",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        0
+      ],
+      "grayHairlineEdges": [
+        0
+      ]
+    },
+    {
+      "style": "inventario-afetivo-de-objetos",
+      "frame": 2,
+      "source": "assets/style-sequences/inventario-afetivo-de-objetos-03.webp",
+      "sourceSha256": "e6dc6aba1e46690539c75722441101aba8974fa5600001b6c95b5f3f87655e82",
+      "insetPixels": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0.00390625,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -7452,6 +8160,35 @@
       ],
       "fringeEdges": [
         0
+      ]
+    },
+    {
+      "style": "gabinete-de-especimes-de-produto",
+      "frame": 0,
+      "source": "assets/style-sequences/gabinete-de-especimes-de-produto-01.webp",
+      "sourceSha256": "701cb352287e7667e4687368187ec08b112593a757109ddb8dadeded030d7f10",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        2
+      ],
+      "grayHairlineEdges": [
+        2
       ]
     },
     {
@@ -8190,28 +8927,92 @@
     },
     {
       "style": "maquete-fotogrametrica-com-cobertura-declarada",
+      "frame": 1,
+      "source": "assets/style-sequences/maquete-fotogrametrica-com-cobertura-declarada-02.webp",
+      "sourceSha256": "9eba756e4e73b752181b798136111f0e2a3f5bc3fc431db77863bfe6e4d403a1",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          0.99609375
+        ],
+        509.0,
+        765.0
+      ],
+      "fringeEdges": [
+        0,
+        3
+      ],
+      "grayHairlineEdges": [
+        0,
+        3
+      ]
+    },
+    {
+      "style": "maquete-fotogrametrica-com-cobertura-declarada",
       "frame": 2,
       "source": "assets/style-sequences/maquete-fotogrametrica-com-cobertura-declarada-03.webp",
       "sourceSha256": "7c390c2c6c1b4e58a8f5664a222af2f54abf513707ed351f155d417f474001c4",
       "insetPixels": [
         0,
-        0,
+        3,
         3,
         0
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
           0,
-          0,
+          0.00390625,
           0.994140625,
-          1
+          0.99609375
         ],
         509.0,
-        768
+        765.0
       ],
       "fringeEdges": [
+        1,
         2
+      ],
+      "grayHairlineEdges": [
+        1
+      ]
+    },
+    {
+      "style": "maquete-fotogrametrica-com-cobertura-declarada",
+      "frame": 3,
+      "source": "assets/style-sequences/maquete-fotogrametrica-com-cobertura-declarada-04.webp",
+      "sourceSha256": "ecd8b84306305c882f7f0c5f8be4d49c0224435c534a9c371a866b44b0effc7b",
+      "insetPixels": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0.00390625,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -9417,6 +10218,35 @@
       ]
     },
     {
+      "style": "arcada-em-pecas-de-funcao",
+      "frame": 0,
+      "source": "assets/style-sequences/arcada-em-pecas-de-funcao-01.webp",
+      "sourceSha256": "9fb2c1ac7cf90f6fe0da52c24f6f46efcbe7fedc96c794f86ac7960b5f6bbaf6",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.995856354
+        ],
+        543,
+        721.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
+      ]
+    },
+    {
       "style": "trajeto-do-fio-em-escala-de-bancada",
       "frame": 0,
       "source": "assets/style-sequences/trajeto-do-fio-em-escala-de-bancada-01.webp",
@@ -9601,7 +10431,7 @@
       "sourceSha256": "892cf0a7a004a06535f9e40ec6c6faafa04f1d3686a6630553b4e1a864cd3f5c",
       "insetPixels": [
         4,
-        0,
+        3,
         0,
         0
       ],
@@ -9609,15 +10439,19 @@
       "view": [
         [
           0.007366483,
-          0,
+          0.004143646,
           0.992633517,
-          1
+          0.995856354
         ],
         539.0,
-        724
+        721.0
       ],
       "fringeEdges": [
-        0
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -10342,7 +11176,7 @@
       "sourceSha256": "c0027eea92a976244c17fa34fc106710168a0212b68c6f710e7d2bbb9cefc973",
       "insetPixels": [
         4,
-        0,
+        3,
         0,
         0
       ],
@@ -10350,15 +11184,19 @@
       "view": [
         [
           0.0078125,
-          0,
+          0.00390625,
           0.9921875,
-          1
+          0.99609375
         ],
         508.0,
-        768
+        765.0
       ],
       "fringeEdges": [
-        0
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -11502,6 +12340,35 @@
     },
     {
       "style": "pagina-sem-som-em-sequencia-de-gestos-claros",
+      "frame": 0,
+      "source": "assets/style-sequences/pagina-sem-som-em-sequencia-de-gestos-claros-01.webp",
+      "sourceSha256": "48642eb537f62f3b3e0e06fe3fc4308145f28f6d34adabe2a31494bd2eb7542f",
+      "insetPixels": [
+        0,
+        0,
+        3,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        2
+      ],
+      "grayHairlineEdges": [
+        2
+      ]
+    },
+    {
+      "style": "pagina-sem-som-em-sequencia-de-gestos-claros",
       "frame": 1,
       "source": "assets/style-sequences/pagina-sem-som-em-sequencia-de-gestos-claros-02.webp",
       "sourceSha256": "afbb34d22a7e9fec08ec424400b761e790656c0fecbac3fad19ec3ed9b8c4432",
@@ -11761,6 +12628,95 @@
       ]
     },
     {
+      "style": "conceito-em-exemplo-e-nao-exemplo",
+      "frame": 1,
+      "source": "assets/style-sequences/conceito-em-exemplo-e-nao-exemplo-02.webp",
+      "sourceSha256": "b241f40be73302ff9be97dfd8ceb2a560050438807ee2f3d392f559668bbc6de",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005524862,
+          0,
+          0.994475138,
+          1
+        ],
+        540.0,
+        724
+      ],
+      "fringeEdges": [
+        0
+      ],
+      "grayHairlineEdges": [
+        0
+      ]
+    },
+    {
+      "style": "conceito-em-exemplo-e-nao-exemplo",
+      "frame": 2,
+      "source": "assets/style-sequences/conceito-em-exemplo-e-nao-exemplo-03.webp",
+      "sourceSha256": "69d0cb6d7935fb586ef4d9a7dbc1a18d8de7447d8fb947db4cf3719d5c8b2c17",
+      "insetPixels": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0.004143646,
+          1,
+          0.995856354
+        ],
+        543,
+        721.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
+      ]
+    },
+    {
+      "style": "conceito-em-exemplo-e-nao-exemplo",
+      "frame": 3,
+      "source": "assets/style-sequences/conceito-em-exemplo-e-nao-exemplo-04.webp",
+      "sourceSha256": "d983b91835f46354d10f62abc8bc170336d4e3f7b24c0828e4981631348a0329",
+      "insetPixels": [
+        3,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005524862,
+          0.004143646,
+          0.994475138,
+          0.995856354
+        ],
+        540.0,
+        721.0
+      ],
+      "fringeEdges": [
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        0,
+        1
+      ]
+    },
+    {
       "style": "certificado-em-janela-de-criterios-reais",
       "frame": 0,
       "source": "assets/style-sequences/certificado-em-janela-de-criterios-reais-01.webp",
@@ -11821,7 +12777,7 @@
       "sourceSha256": "3d7bb4c8b0c572199b7e22c6f0e0ef5a78c283d7395a0b3f2d3507721c5bcf8d",
       "insetPixels": [
         0,
-        0,
+        3,
         4,
         0
       ],
@@ -11829,15 +12785,19 @@
       "view": [
         [
           0,
-          0,
+          0.004143646,
           0.992633517,
-          1
+          0.995856354
         ],
         539.0,
-        724
+        721.0
       ],
       "fringeEdges": [
+        1,
         2
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -11847,7 +12807,7 @@
       "sourceSha256": "28a964a196f5234b44895379600c11d30c608c5283c3546315e72e5c018d5085",
       "insetPixels": [
         4,
-        0,
+        3,
         0,
         0
       ],
@@ -11855,12 +12815,18 @@
       "view": [
         [
           0.007366483,
-          0,
+          0.004143646,
           0.992633517,
-          1
+          0.995856354
         ],
         539.0,
-        724
+        721.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -12733,6 +13699,35 @@
       ]
     },
     {
+      "style": "exp-desenho-em-tambor-de-luz",
+      "frame": 3,
+      "source": "assets/style-sequences/exp-desenho-em-tambor-de-luz-04.webp",
+      "sourceSha256": "c21f3a8a70c996e5b9cdaad584702390dec0c99c9279585d1732e08b51c00291",
+      "insetPixels": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0.00390625,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
+      ]
+    },
+    {
       "style": "exp-historia-por-aquilo-que-fica-fora",
       "frame": 0,
       "source": "assets/style-sequences/exp-historia-por-aquilo-que-fica-fora-01.webp",
@@ -13260,6 +14255,68 @@
       ],
       "fringeEdges": [
         2
+      ]
+    },
+    {
+      "style": "exp-anuncio-em-mesa-de-gravacao-sonora",
+      "frame": 1,
+      "source": "assets/style-sequences/exp-anuncio-em-mesa-de-gravacao-sonora-02.webp",
+      "sourceSha256": "0fa40746554f85e71958c5bbdec721861ab9b0cf584bf7fb00af3773a1939b58",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          0.99609375
+        ],
+        509.0,
+        765.0
+      ],
+      "fringeEdges": [
+        0,
+        3
+      ],
+      "grayHairlineEdges": [
+        0,
+        3
+      ]
+    },
+    {
+      "style": "exp-anuncio-em-mesa-de-gravacao-sonora",
+      "frame": 3,
+      "source": "assets/style-sequences/exp-anuncio-em-mesa-de-gravacao-sonora-04.webp",
+      "sourceSha256": "eb98db34fe9dd803c97cc71fbb1be81cf7330bcd75d12a8e84d9c411d0679dbd",
+      "insetPixels": [
+        3,
+        3,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0.00390625,
+          0.994140625,
+          0.99609375
+        ],
+        509.0,
+        765.0
+      ],
+      "fringeEdges": [
+        0,
+        1
+      ],
+      "grayHairlineEdges": [
+        0,
+        1
       ]
     },
     {
@@ -15015,6 +16072,35 @@
     },
     {
       "style": "exp-anfitriao-em-pista-de-skate-vazia",
+      "frame": 1,
+      "source": "assets/style-sequences/exp-anfitriao-em-pista-de-skate-vazia-02.webp",
+      "sourceSha256": "e86893052b063a3301e1a1c0b189b020507165dd2a7a8e36b26d53bcc9b989dc",
+      "insetPixels": [
+        0,
+        0,
+        0,
+        3
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0,
+          0,
+          1,
+          0.99609375
+        ],
+        512,
+        765.0
+      ],
+      "fringeEdges": [
+        3
+      ],
+      "grayHairlineEdges": [
+        3
+      ]
+    },
+    {
+      "style": "exp-anfitriao-em-pista-de-skate-vazia",
       "frame": 3,
       "source": "assets/style-sequences/exp-anfitriao-em-pista-de-skate-vazia-04.webp",
       "sourceSha256": "a94768c3c41d0e8753c81dcae8c1c41a35bb144baadb3acee77beb67e54a6953",
@@ -16091,6 +17177,35 @@
       ],
       "fringeEdges": [
         2
+      ]
+    },
+    {
+      "style": "exp-uma-habilidade-em-criterio-de-dominio",
+      "frame": 1,
+      "source": "assets/style-sequences/exp-uma-habilidade-em-criterio-de-dominio-02.webp",
+      "sourceSha256": "582f623ffb425d5c2af826ec4a80ecd8760973a74879d3e1b6f6c53b5ba094f9",
+      "insetPixels": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "edgeRule": "gray_hairline",
+      "view": [
+        [
+          0.005859375,
+          0,
+          0.994140625,
+          1
+        ],
+        509.0,
+        768
+      ],
+      "fringeEdges": [
+        0
+      ],
+      "grayHairlineEdges": [
+        0
       ]
     },
     {
@@ -23085,7 +24200,7 @@
       "sourceSha256": "bb37f19c49e406ab65d08eb73b6f75aadb3a4c1894c8eb431f67164848c73437",
       "insetPixels": [
         5,
-        0,
+        3,
         5,
         5
       ],
@@ -23093,12 +24208,18 @@
       "view": [
         [
           0.504604052,
-          0.5,
+          0.502071823,
           0.490791897,
-          0.496546961
+          0.494475138
         ],
         533.0,
-        719.0
+        716.0
+      ],
+      "fringeEdges": [
+        1
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -23163,7 +24284,7 @@
       "sourceSha256": "4e5c06ba5939681db3e3219faadd5e3d805669384d9322e9a550ec4392400bcc",
       "insetPixels": [
         6,
-        0,
+        3,
         4,
         7
       ],
@@ -23171,17 +24292,21 @@
       "view": [
         [
           0.005524862,
-          0.5,
+          0.502071823,
           0.490791897,
-          0.495165746
+          0.493093923
         ],
         533.0,
-        717.0
+        714.0
       ],
       "fringeEdges": [
         0,
+        1,
         2,
         3
+      ],
+      "grayHairlineEdges": [
+        1
       ]
     },
     {
@@ -25628,24 +26753,28 @@
       "source": "assets/presenter-realistic/explicador-limpeza-o-contrato-explica-a-entrega.webp",
       "sourceSha256": "ed4db83f7993a729724adc968e50566057f9f6b8eb492090aca9e5900a50ad8e",
       "insetPixels": [
-        0,
+        3,
         0,
         0,
         4
       ],
-      "edgeRule": "light_transition",
+      "edgeRule": "gray_hairline",
       "view": [
         [
-          0.5,
+          0.502762431,
           0,
-          0.5,
+          0.497237569,
           0.497237569
         ],
-        543.0,
+        540.0,
         720.0
       ],
       "fringeEdges": [
+        0,
         3
+      ],
+      "grayHairlineEdges": [
+        0
       ]
     },
     {
