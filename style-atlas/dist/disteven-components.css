@@ -120,10 +120,10 @@ body[data-disteven=true] #briefVisual .reference-panel>img{max-height:none}
   background:transparent;
  }
  body[data-disteven=true] #briefVisual>.frame-expand>.reference-panel{
-  width:min(100%,calc(100cqh * var(--frame-ratio,.75)));margin:0 auto;border-radius:12px;
+  width:min(100cqw,calc(100cqh * var(--frame-ratio,.75)));margin:0 auto;border-radius:12px;
  }
  body[data-disteven=true] #briefVisual>.frame-expand>img{
-  height:100%;max-height:100%;object-fit:contain;
+  width:auto;height:100cqh;max-width:100cqw;max-height:none;aspect-ratio:auto;object-fit:contain;object-position:center top;
  }
  body[data-disteven=true] #briefDialog[data-stage=review] .brief-preview{align-self:start}
  body[data-disteven=true] #briefDialog[data-stage=review] #briefVisual>.frame-expand{flex:none;container-type:normal}
@@ -131,7 +131,7 @@ body[data-disteven=true] #briefVisual .reference-panel>img{max-height:none}
   width:min(100%,calc(var(--disteven-brief-image-limit) * var(--frame-ratio,.75)));
  }
  body[data-disteven=true] #briefDialog[data-stage=review] #briefVisual>.frame-expand>img{
-  height:auto;max-height:var(--disteven-brief-image-limit);
+  height:auto;max-width:100%;max-height:var(--disteven-brief-image-limit);
  }
  body[data-disteven=true] #briefVisual .sequence-strip{display:flex}
  body[data-disteven=true] #briefVisual .sequence-strip button{width:40px}

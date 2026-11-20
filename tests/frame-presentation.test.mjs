@@ -26,4 +26,16 @@ test('presentation crops address only their original logical panels and never mu
  const jewelry=report.frames.filter(f=>f.style==='natural-joias-do-gesto-a-assinatura');assert.equal(jewelry.length,4);for(const frame of jewelry){assert.equal(frame.edgeRule,'coherent_light_frame');assert(frame.insetPixels.every(n=>n>0),'warm paper must be handled on every side');}
  const smile=report.frames.filter(f=>f.style==='explicador-orbita-frente-tras');
  assert.deepEqual(smile.map(f=>f.insetPixels),[[5,5,4,4],[3,5,5,4],[5,3,4,5],[3,3,5,5]]);
+ const bench=catalog.styles.find(s=>s.id==='conceito-em-exemplo-e-nao-exemplo');
+ for(const [i,edges] of [[1,[0]],[2,[1]],[3,[0,1]]]){
+  const original=bench.sequence.frames[i],view=ctx.AtlasViews.frameView(bench,i);
+  const audit=report.frames.find(f=>f.style===bench.id&&f.frame===i);
+  assert.equal(original.crop,undefined);
+  assert.equal(audit.edgeRule,'gray_hairline');
+  assert.deepEqual(audit.grayHairlineEdges,edges);
+  for(const edge of edges)assert(audit.insetPixels[edge]>=3);
+  assert(view.crop);
+  assert(ctx.AtlasViews.picture(bench,i,'','',true).includes(original.thumbnail));
+ }
+ assert.equal(ctx.AtlasViews.frameView(bench,0).crop,undefined);
 });
