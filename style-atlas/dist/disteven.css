@@ -522,22 +522,31 @@ body[data-disteven=true] .disteven-header .disteven-category-bar>button:is([aria
 }
 
 /* Shared type scale: captions, compact navigation, reading/controls and headings. */
-body[data-disteven=true]{--disteven-type-meta:12px;--disteven-type-compact:14px;--disteven-type-body:16px;--disteven-type-section:20px;--disteven-type-title:28px;font-size:var(--disteven-type-body)}
-body[data-disteven=true] :is(.disteven-goals button,.disteven-niche select,.disteven-search input,.primary,.outline,.button,.disteven-add){font-size:var(--disteven-type-body)}
-body[data-disteven=true] :is(.disteven-header-progress button,#sequencePrev,#sequenceNext){font-size:var(--disteven-type-body)}
-body[data-disteven=true] #distevenPanelHost .disteven-panel-back{font-size:var(--disteven-type-body)}
+body[data-disteven=true]{
+ --disteven-type-meta:.75rem;--disteven-type-compact:.875rem;--disteven-type-body:.9375rem;
+ --disteven-type-section:1.125rem;--disteven-type-title:1.625rem;--disteven-type-library-title:1.5rem;
+ --disteven-type-control:var(--disteven-type-body);
+ font-size:var(--disteven-type-body);
+}
+body[data-disteven=true] :is(.disteven-niche select,.disteven-search input){font-size:var(--disteven-type-control)}
+body[data-disteven=true] :is(.disteven-goals button,.primary,.outline,.button,.disteven-add,.disteven-header-progress button,#sequencePrev,#sequenceNext){font-size:var(--disteven-type-compact)}
+body[data-disteven=true] #distevenPanelHost .disteven-panel-back{font-size:var(--disteven-type-compact)}
 body[data-disteven=true] :is(.disteven-card h3,.disteven-scope .text-button,.disteven-shelf-tools>button,.disteven-story-link,.brief-steps button){font-size:var(--disteven-type-compact)}
 body[data-disteven=true] :is(.disteven-reference,.disteven-card-actions>span,.small,.eyebrow,.guided-step-count,.concept-note,.font-label,.font-state){font-size:var(--disteven-type-meta)}
 body[data-disteven=true] :is(.guided-dialog label,.guided-preferences>h3,.brief-editor form label){font-size:var(--disteven-type-compact)}
-body[data-disteven=true] :is(.guided-dialog section>h3,.film-heading>h3,#handoff h2){font-size:var(--disteven-type-section)}
+body[data-disteven=true] :is(.guided-dialog section>h3,.film-heading>h3,#handoff h2,#installTitle,#sequenceTitle){font-size:var(--disteven-type-section)}
 body[data-disteven=true] .disteven-shelf h2{font-size:var(--disteven-type-section)}
 body[data-disteven=true] .request-summary dt{font-size:var(--disteven-type-meta)}
 body[data-disteven=true] .request-summary dd{font-size:var(--disteven-type-body)}
-body[data-disteven=true] :is(.disteven-discovery h1,.disteven-collection-heading h1,.direction-header h2,.brief-heading h1,#guidedTitle,.disteven-sheet header h2){font-size:var(--disteven-type-title)}
+body[data-disteven=true] :is(.direction-header h2,.brief-heading h1,#guidedTitle,.disteven-sheet header h2){font-size:var(--disteven-type-title)}
+body[data-disteven=true] :is(.disteven-discovery h1,.disteven-collection-heading h1){font-size:var(--disteven-type-library-title)}
 body[data-disteven=true] #briefDialog form label{font-size:var(--disteven-type-compact)}
-body[data-disteven=true] #briefDialog :is(input,select,textarea){font-size:var(--disteven-type-body)}
+body[data-disteven=true] #briefDialog :is(input,select,textarea){font-size:var(--disteven-type-control)}
 @media(max-width:700px){
- body[data-disteven=true] .disteven-shelf h2{font-size:var(--disteven-type-body)}
+ body[data-disteven=true]{
+  --disteven-type-body:.875rem;--disteven-type-compact:.8125rem;--disteven-type-control:1rem;
+  --disteven-type-section:1rem;--disteven-type-title:1.375rem;--disteven-type-library-title:1.25rem;
+ }
  body[data-disteven=true] :is(.disteven-catalogue-controls button,.disteven-collection-heading p){font-size:var(--disteven-type-compact)}
 }
 body[data-disteven=true] .disteven-header-progress small{font-size:var(--disteven-type-meta)}

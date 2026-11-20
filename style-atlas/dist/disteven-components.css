@@ -1,7 +1,5 @@
 /* Shared finishing layer. Media and production recipes keep their own appearance. */
 body[data-disteven=true]{
- --disteven-type-meta:.75rem;--disteven-type-compact:.875rem;--disteven-type-body:1rem;
- --disteven-type-section:1.25rem;--disteven-type-title:1.75rem;
  --disteven-radius:24px;--disteven-radius-field:18px;
  --disteven-edge:rgba(255,255,255,.075);--disteven-highlight:rgba(255,255,255,.045);
  --disteven-depth:0 12px 32px rgba(0,0,0,.22),inset 0 1px 0 var(--disteven-highlight);
@@ -30,7 +28,7 @@ body[data-disteven=true] :is(.primary,.outline,.button,.disteven-add,.disteven-p
 body[data-disteven=true] :is(#briefDialog,#distevenPanelHost,#appHelp,#myProject) :is(button.primary,button.outline,a.button,button.disteven-panel-back){
  min-height:48px;max-width:100%;padding:12px 20px;gap:8px;
  display:inline-flex;align-items:center;justify-content:center;
- font-size:var(--disteven-type-body);font-weight:600;line-height:1.35;text-align:center;
+ font-size:var(--disteven-type-compact);font-weight:600;line-height:1.35;text-align:center;
  white-space:normal;overflow-wrap:anywhere;border-radius:999px;
  box-shadow:var(--disteven-control-depth);text-decoration:none;
 }
@@ -141,7 +139,7 @@ body[data-disteven=true] #briefDialog .brief-font-choice{padding:12px 16px;gap:1
 body[data-disteven=true] :is(input:not([type=checkbox],[type=radio]),select,textarea),
 body[data-disteven=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),select,textarea){
  min-height:50px;padding:13px 16px;border:1px solid var(--disteven-edge);border-radius:var(--disteven-radius-field);
- font-size:var(--disteven-type-body);line-height:1.5;box-shadow:inset 0 2px 5px rgba(0,0,0,.14);
+ font-size:var(--disteven-type-control);line-height:1.5;box-shadow:inset 0 2px 5px rgba(0,0,0,.14);
 }
 body[data-disteven=true] #briefDialog :is(input:not([type=checkbox],[type=radio]),select,textarea){background:var(--surface-raised)}
 @supports (appearance:base-select) and selector(::picker(select)){
@@ -186,9 +184,10 @@ body[data-disteven=true] .disteven-select-trigger:disabled{cursor:default}
 .disteven-select-menu [role=option]:is(:hover,[aria-selected=true],[data-active]){background:#303030;color:var(--disteven-accent,#e2ff3b)}
 .disteven-select-menu [aria-disabled=true]{opacity:.5;cursor:default}
 .disteven-select-menu [role=group]>div:first-child{padding:8px 12px;color:#b5b5b5;font-size:.85em}
-body[data-disteven=true] .disteven-search input{min-height:54px;padding-left:48px;padding-right:16px;border-radius:999px}
+body[data-disteven=true] .disteven-search input{min-height:48px;padding:8px 16px 8px 48px;border-radius:999px}
 body[data-disteven=true] .disteven-search .search>span{left:20px}
 body[data-disteven=true] :is(textarea,#briefDialog #topic){line-height:1.6}
+body[data-disteven=true] #briefDialog #topic{min-height:120px}
 body[data-disteven=true] .brief-steps{gap:8px;padding:4px;border-radius:24px;background:rgba(255,255,255,.035)}
 body[data-disteven=true] .brief-steps button{padding:12px 16px;min-height:48px;line-height:1.4}
 body[data-disteven=true] .guided-progress{gap:6px;padding:4px;border-radius:20px;background:rgba(255,255,255,.035)}
@@ -208,8 +207,11 @@ body[data-disteven=true] .disteven-catalogue-controls :is(button,select){border-
 /* The header is the single visible place to browse categories. */
 body[data-disteven=true] :is(.disteven-goals,.disteven-niche,.inline-type-filter,#presenterSectorWrap){display:none!important}
 body[data-disteven-browse=category] .disteven-search{margin:8px 0 16px}
-body[data-disteven=true][data-disteven-mode=catalogue] .disteven-collection-heading{--disteven-type-title:1.5rem}
 body[data-disteven=true][data-disteven-mode=catalogue] .disteven-collection-heading h1{letter-spacing:-.45px}
+body[data-disteven=true] .disteven-discovery h1{margin:0 0 6px;line-height:1.25;letter-spacing:-.025em}
+body[data-disteven=true][data-disteven-mode=home] .disteven-scope{min-height:44px;margin:2px 0}
+body[data-disteven=true] .disteven-shelf{padding-block:12px 18px}
+body[data-disteven=true] .disteven-shelf>header{align-items:center;margin-bottom:8px}
 @media(min-width:701px){
  body[data-disteven=true][data-disteven-mode=catalogue] .disteven-library-header{
   display:grid;grid-template-columns:minmax(0,1fr) min(46%,520px);
@@ -235,15 +237,14 @@ body[data-disteven=true] #favoriteFilter{width:auto;flex:0 0 auto;min-height:44p
  body[data-disteven=true] .brief-steps button{padding:10px 8px;font-size:var(--disteven-type-compact)}
  body[data-disteven=true] .guided-progress li{padding:8px 6px;font-size:var(--disteven-type-meta)}
  body[data-disteven=true] .guided-dialog footer{padding-top:16px;margin-top:16px}
- body[data-disteven=true] .disteven-shelf h2{font-size:var(--disteven-type-section)}
- body[data-disteven=true] .disteven-shelf>header{align-items:flex-start;gap:12px}
+ body[data-disteven=true] .disteven-shelf>header{gap:12px}
  body[data-disteven=true] .disteven-shelf-tools{align-self:center}
  body[data-disteven=true] .disteven-shelf-tools>button{padding:10px 0 10px 8px}
  body[data-disteven=true] .disteven-shelf-tools>.disteven-rail-arrow{display:none}
  body[data-disteven=true] .disteven-goals button{padding-inline:12px}
  body[data-disteven=true] #appHelp .workflow>div{padding:20px}
  body[data-disteven=true] .disteven-catalogue-controls{gap:4px 8px}
- body[data-disteven=true] .disteven-catalogue-controls select{font-size:var(--disteven-type-body)}
+ body[data-disteven=true] .disteven-catalogue-controls select{font-size:var(--disteven-type-control)}
 }
 @media(max-width:360px){
  body[data-disteven=true] .disteven-header-progress #distevenContinue{padding-inline:14px}
@@ -360,11 +361,6 @@ body[data-disteven=true] #empty button[hidden]{display:none!important}
 /* Compact visual scale with the same touch sizing and readable form controls. */
 @media(max-width:700px){
  body[data-disteven=true]{
-  --disteven-type-body:.875rem;
-  --disteven-type-compact:.8125rem;
-  --disteven-type-meta:.75rem;
-  --disteven-type-section:1.125rem;
-  --disteven-type-title:clamp(1.375rem,6vw,1.5rem);
   --disteven-radius:18px;
   --disteven-radius-field:12px;
   --mobile-gutter:14px;
@@ -380,22 +376,20 @@ body[data-disteven=true] #empty button[hidden]{display:none!important}
 
  body[data-disteven=true] :is(.app-main main,#distevenPanelHost,#briefDialog.brief-workspace){padding-inline:var(--mobile-gutter)}
  body[data-disteven=true] :is(.app-main main,#distevenPanelHost){padding-top:8px}
- body[data-disteven=true] .disteven-library-header{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:10px 8px}
+ body[data-disteven=true] .disteven-library-header{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:8px}
  body[data-disteven=true] .disteven-mobile-browse{margin:0}
  body[data-disteven=true] #distevenCategoryToggle{gap:6px;padding:6px 10px}
  body[data-disteven=true] #distevenSearch{display:block;min-width:0;margin:0}
- body[data-disteven=true] #distevenSearch input{min-height:44px;padding:7px 34px;font-size:16px;line-height:1.3}
+ body[data-disteven=true] #distevenSearch input{min-height:44px;padding:7px 34px;font-size:var(--disteven-type-control);line-height:1.3}
  body[data-disteven=true] #distevenSearch .search>span{left:12px;font-size:20px}
  body[data-disteven=true] :is(.disteven-discovery,.disteven-collection-heading){grid-column:1/-1}
  body[data-disteven=true] :is(.disteven-discovery h1,.disteven-collection-heading h1){margin-bottom:4px;line-height:1.2}
- body[data-disteven=true] .disteven-collection-heading{--disteven-type-title:1.375rem;margin:0}
+ body[data-disteven=true] .disteven-collection-heading{margin:0}
  body[data-disteven=true] .disteven-result-count{margin-top:3px}
  body[data-disteven=true] #favoriteFilter{padding:6px 4px;gap:6px}
- body[data-disteven=true] .disteven-shelf{padding-block:10px 14px}
+ body[data-disteven=true] .disteven-shelf{padding-block:8px 12px}
  body[data-disteven=true] .disteven-shelf>header{margin-bottom:6px;gap:6px}
- body[data-disteven=true] .disteven-shelf h2{font-size:16px}
- body[data-disteven=true] .disteven-card h3{font-size:13px;line-height:1.35}
- body[data-disteven=true] .disteven-reference{font-size:12px}
+ body[data-disteven=true] .disteven-card h3{line-height:1.35}
  body[data-disteven=true] #grid{row-gap:14px}
  body[data-disteven=true] #distevenMenu{inset-inline:var(--mobile-gutter)}
  #distevenMenu .disteven-menu-heading{min-height:46px}
@@ -406,7 +400,7 @@ body[data-disteven=true] #empty button[hidden]{display:none!important}
  #distevenMenu button{padding-block:8px}
  .disteven-select-menu [role=option]{min-height:44px;padding:10px;font-size:14px}
 
- body[data-disteven=true] :is(#briefDialog,#guidedDialog,#distevenPanelHost,#appHelp,#myProject) :is(.primary,.outline,.button,.disteven-panel-back){min-height:44px;padding:8px 13px;font-size:14px}
+ body[data-disteven=true] :is(#briefDialog,#guidedDialog,#distevenPanelHost,#appHelp,#myProject) :is(.primary,.outline,.button,.disteven-panel-back){min-height:44px;padding:8px 13px;font-size:var(--disteven-type-compact)}
  body[data-disteven=true] :is(.brief-editor,.brief-preview,#guidedDialog>section,.request-summary,.material-assignments,.material-item){padding:12px;border-radius:var(--disteven-radius)}
  body[data-disteven=true] :is(.brief-heading,.direction-header,#guidedDialog>header){margin-bottom:10px}
  body[data-disteven=true] #briefDialog .brief-heading h1{font-size:var(--disteven-type-title)}
@@ -415,7 +409,7 @@ body[data-disteven=true] #empty button[hidden]{display:none!important}
  body[data-disteven=true] .guided-progress li{min-height:34px;padding:5px 3px;font-size:12px;line-height:1.25}
  body[data-disteven=true] #guidedDialog label{margin:6px 0;line-height:1.4}
  body[data-disteven=true] :is(#briefDialog,#guidedDialog,#myProject,#fontDialog,#stylePicker)
- :is(input:not([type=checkbox],[type=radio]),select,textarea){min-height:44px;padding-block:8px;font-size:16px;line-height:1.35}
+ :is(input:not([type=checkbox],[type=radio]),select,textarea){min-height:44px;padding-block:8px;font-size:var(--disteven-type-control);line-height:1.35}
  body[data-disteven=true] :is(#briefDialog,#guidedDialog,#myProject,#fontDialog,#stylePicker) select{padding-inline-start:11px}
  body[data-disteven=true] #briefDialog #topic{min-height:104px}
  body[data-disteven=true] :is(.guided-dialog footer,.direction-actions,.brief-editor .actions){gap:7px}
