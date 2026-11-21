@@ -32,6 +32,7 @@ const guided=()=>draft.guided ??= {url:'',name:'',category:'',description:'',sty
 let stylePreview,productRequest;
 const boardUrls=[];
 let planningIndex=0;
+let deliveryLookup;
 
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
@@ -592,6 +593,7 @@ function showPlanningStep(index,{focus=true}={}) {
     draft.planningStep=button.dataset.step;
     save();
   }
+  if (button.dataset.step==='delivery') void refreshDeliveryLinks();
 }
 planningButtons.forEach((button,index)=>{button.onclick=()=>{
   if (index===1 && !confirmOrigin()) return showPlanningStep(0);
@@ -619,6 +621,7 @@ function showWorkspace() {
     showPlanningStep(savedIndex<0 && draft.planningStep==='materials'?storyboardIndex:Math.max(0,savedIndex),{focus:false});
   } else {
     for (const panel of planningPanels) panel.hidden=panel.dataset.planStep!=='delivery';
+    void refreshDeliveryLinks();
   }
   $('workspace-title').focus();
   $('subject').value=draft.subject;
@@ -811,6 +814,7 @@ $('connect').onclick=async()=>{
     await refreshCapabilities();
     sessionStorage.setItem(accessKey,token);
     $('token').value='';note('Acesso confirmado.');
+    void refreshDeliveryLinks();
     if (lastJob?.project === draft.id && !task) void runTask(lastJob.kind,true);
   } catch (error) {
     token='';sessionStorage.removeItem(accessKey);note(error.message);
@@ -913,6 +917,115 @@ async function showResults(projectPath, job, signal) {
     }
   }
 }
+
+function deliveryOutput(projectPath, revision, jobId, output) {
+  const row=document.createElement('article');
+  const heading=document.createElement('h3');
+  heading.textContent=output.label+' · revisão '+revision;
+  const player=document.createElement('video');
+  player.controls=true;player.playsInline=true;player.preload='metadata';player.hidden=true;
+  player.setAttribute('aria-label',output.label);
+  const controls=document.createElement('div');
+  controls.className='button-row';
+  const report=document.createElement('p');
+  report.className='small';report.setAttribute('role','status');
+  const preview=action('Revisar vídeo',async()=>{
+    preview.disabled=true;
+    try {
+      const grant=await api(projectPath+'/jobs/'+jobId+'/grant',{method:'POST',body:{file:output.id}});
+      if (!row.isConnected) return;
+      player.src=grant.url;player.hidden=false;
+      player.focus();
+    } catch (error) { report.textContent=error.message; }
+    finally {preview.disabled=false;}
+  });
+  const linkControls=document.createElement('div');
+  const linkActions=document.createElement('div');
+  linkActions.className='button-row';
+  const field=document.createElement('input');
+  field.type='url';field.readOnly=true;field.setAttribute('aria-label','Link de entrega de '+output.label.toLowerCase());
+  const open=document.createElement('a');
+  open.textContent='Abrir página';open.target='_blank';open.rel='noopener noreferrer';
+  const copy=action('Copiar link',async()=>{
+    try { await navigator.clipboard.writeText(field.value);report.textContent='Link copiado.'; }
+    catch { field.focus();field.select();report.textContent='Link selecionado para copiar.'; }
+  });
+  let currentLink=output.link;
+  const setLink=link=>{
+    currentLink=link;
+    generate.hidden=Boolean(link);linkControls.hidden=!link;
+    field.value=link?new URL(link.url,location.origin).href:'';
+    if (link) open.href=field.value;
+    else open.removeAttribute('href');
+  };
+  const generate=action('Gerar link de entrega',async()=>{
+    generate.disabled=true;
+    report.textContent='';
+    try {
+      const link=await api(projectPath+'/deliveries',{method:'POST',body:{jobId,fileId:output.id,sha256:output.sha256}});
+      if (!row.isConnected) return void refreshDeliveryLinks();
+      setLink(link);field.focus();field.select();
+      report.textContent='Link de entrega criado.';
+    } catch (error) {report.textContent=error.message;}
+    finally {generate.disabled=false;}
+  });
+  generate.className='primary';
+  const revoke=action('Desativar link',async()=>{
+    if (!currentLink || !window.confirm('Desativar este link de entrega? Quem já o recebeu perderá o acesso.')) return;
+    revoke.disabled=true;
+    try {
+      const code=currentLink.url.split('/')[2];
+      await api(projectPath+'/deliveries/'+code,{method:'DELETE'});
+      if (!row.isConnected) return void refreshDeliveryLinks();
+      setLink(null);generate.focus();report.textContent='Link desativado.';
+    } catch (error) {report.textContent=error.message;}
+    finally {revoke.disabled=false;}
+  });
+  const expires=document.createElement('p');
+  expires.className='small';
+  expires.textContent='Disponível até '+new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'short'})
+    .format(output.expiresAt*1000)+'.';
+  controls.append(preview,generate);
+  linkActions.append(copy,open,revoke);
+  linkControls.append(field,linkActions);
+  row.append(heading,expires,player,controls,linkControls,report);
+  setLink(currentLink);
+  return row;
+}
+
+async function refreshDeliveryLinks() {
+  const section=$('delivery-links-list');
+  if (!draft || $('delivery-title').closest('[hidden]')) return;
+  deliveryLookup?.abort();
+  const status=$('delivery-links-status');
+  const project=draft.id, projectPath='/projects/'+project;
+  section.replaceChildren();
+  if (!token) {
+    status.textContent='Conecte o piloto para ver as entregas deste projeto.';
+    return;
+  }
+  if (lastJob?.project!==project) {
+    status.textContent='Após concluir o vídeo online, gere aqui o link para assistir e baixar.';
+    return;
+  }
+  const controller=new AbortController();
+  deliveryLookup=controller;
+  status.textContent='Consultando vídeos concluídos…';
+  try {
+    const {deliveries}=await api(projectPath+'/deliveries',{signal:controller.signal});
+    if (controller.signal.aborted || project!==draft.id) return;
+    if (!deliveries.length) {
+      status.textContent='Após concluir o vídeo online, gere aqui o link para assistir e baixar.';
+      return;
+    }
+    status.textContent=(deliveries[0].revision!==draft.revision?'O último vídeo verificado é de uma revisão anterior. ':'')+
+      'Gere o link após revisar a imagem e o áudio. Quem tiver o link poderá assistir e baixar.';
+    section.append(...deliveries.flatMap(({jobId,revision,outputs})=>outputs.map(output=>
+      deliveryOutput(projectPath,revision,jobId,output))));
+  } catch (error) {
+    if (!controller.signal.aborted && project===draft.id) status.textContent=error.message;
+  }
+}
 function showAnalysis(state) {
   const list=$('analysis-result');
   list.replaceChildren(...state.result.analysis.map(source=>{
@@ -983,7 +1096,10 @@ async function runTask(kind, resume=false, clipQuote=null) {
     while (!signal.aborted) {
       const state=await api(path,{signal});
       if (state.state==='verified') {
-        if (['edit','clip','asset','assembly'].includes(kind)) await showResults(projectPath,state,signal);
+        if (['edit','clip','asset','assembly'].includes(kind)) {
+          await showResults(projectPath,state,signal);
+          if (!resume && (kind==='edit' || (kind==='assembly' && state.result.phase==='full'))) void refreshDeliveryLinks();
+        }
         else if (kind==='analysis') showAnalysis(state);
         else if (state.result.product) productView(state.result,state.revision);
         else proposalView(state.result,state.revision);

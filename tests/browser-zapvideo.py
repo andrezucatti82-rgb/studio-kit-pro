@@ -1,6 +1,8 @@
 """Smoke the locally hosted ZapVideo in desktop and mobile Chromium."""
 import argparse
+import hashlib
 import json
+import re
 import zipfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
@@ -152,6 +154,31 @@ with sync_playwright() as p:
             expect(page.locator("[aria-current=step]")).to_have_text("5 Entrega")
             expect(page.locator("#planning-next")).to_be_hidden()
             expect(page.locator("#zip")).to_be_visible()
+            page.get_by_role("button",name="Gerar link de entrega").click()
+            link = page.get_by_role("textbox",name="Link de entrega de vídeo final")
+            expect(link).to_have_value(re.compile(r"/entrega/[a-f0-9]{48}/$"))
+            public_url = link.input_value()
+            visitor = browser.new_context(viewport={"width":390,"height":844},is_mobile=True,has_touch=True)
+            shared = visitor.new_page()
+            shared.goto(public_url)
+            expect(shared.get_by_role("heading",name="Vídeo final")).to_be_visible()
+            shared.wait_for_function("() => document.querySelector('video').readyState >= 2",polling=100)
+            shared.locator("video").evaluate("video => video.play()")
+            shared.wait_for_function("() => document.querySelector('video').ended",polling=100)
+            assert shared.evaluate("() => document.documentElement.scrollWidth <= innerWidth")
+            with shared.expect_download() as saved:
+                shared.get_by_role("link",name="Baixar MP4").click()
+            assert saved.value.suggested_filename == "video-final.mp4"
+            assert hashlib.sha256(Path(saved.value.path()).read_bytes()).hexdigest() == page.evaluate("""async () => {
+                const data = await (await fetch(document.querySelector('#files video').src)).arrayBuffer();
+                const bytes = new Uint8Array(await crypto.subtle.digest('SHA-256', data));
+                return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+            }""")
+            page.once("dialog",lambda dialog:dialog.accept())
+            page.get_by_role("button",name="Desativar link").click()
+            expect(page.get_by_text("Link desativado.")).to_be_visible()
+            assert shared.goto(public_url).status == 404
+            visitor.close()
             page.screenshot(path=artifacts / "1280-montagem.png")
             page.locator("[data-back]").click()
             page.get_by_role("button", name="Criar a partir de um link").click()

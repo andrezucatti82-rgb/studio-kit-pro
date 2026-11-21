@@ -92,6 +92,10 @@ async function run(phase,approvalId) {
   return {jobId:state.id,sha256:file.sha256,basis:state.result.basis};
 }
 const sample=await run('sample');
+const deliveries=prefix+'/deliveries';
+const share=(video)=>({jobId:video.jobId,fileId:'montagem',sha256:video.sha256});
+assert.deepEqual(await check(await call(deliveries),200),{deliveries:[]});
+await check(await post(deliveries,share(sample)),404);
 const approvalRequest={revision:1,sampleJob:sample.jobId,sampleSha256:sample.sha256,
   storyboard:evidence.image,animatic:evidence.video,seen:true,message:'Aceite registrado exclusivamente para a fixture sintética de engenharia.'};
 await check(await post(prefix+'/assembly/approve',{...approvalRequest,seen:false}),400);
@@ -99,6 +103,35 @@ await check(await call(prefix+'/assembly/approve',{method:'POST',body:approvalRe
 const approval=await check(await post(prefix+'/assembly/approve',approvalRequest),201);
 const full=await run('full',approval.id);
 assert.equal(full.basis,sample.basis);
+const list=await check(await call(deliveries),200);
+assert.equal(list.deliveries[0].jobId,full.jobId);
+assert.equal(list.deliveries[0].outputs[0].link,null);
+await check(await call(deliveries,{user:stranger}),404);
+await check(await call(deliveries,{method:'POST',body:share(full),user:stranger}),404);
+await check(await post(deliveries,{...share(full),sha256:'0'.repeat(64)}),404);
+await check(await post(deliveries,{...share(full),fileId:'clipe'}),404);
+const link=await check(await post(deliveries,share(full)),200);
+assert.deepEqual(await check(await post(deliveries,share(full)),200),link);
+assert.deepEqual((await check(await call(deliveries),200)).deliveries[0].outputs[0].link,link);
+const page=await stageFetch(link.url);
+assert.equal(page.status,200);
+assert.match(page.headers.get('X-Robots-Tag'),/noindex/);
+assert.match(await page.text(),/Baixar MP4[\s\S]*<video controls/);
+const media=link.url+'video.mp4';
+const download=await stageFetch(media+'?download=1');
+assert.equal(download.status,200);
+assert.equal(download.headers.get('Content-Disposition'),'attachment; filename="video-final.mp4"');
+const delivered=Buffer.from(await download.arrayBuffer());
+assert.equal(createHash('sha256').update(delivered).digest('hex'),full.sha256);
+const range=await stageFetch(media,{headers:{Range:'bytes=0-31'}});
+assert.equal(range.status,206);
+assert.equal(range.headers.get('Content-Range'),'bytes 0-31/'+delivered.length);
+assert.deepEqual(Buffer.from(await range.arrayBuffer()),delivered.subarray(0,32));
+const revoke=deliveries+link.url.replace('/entrega','').replace(/\/$/,'');
+await check(await call(revoke,{method:'DELETE',user:stranger}),404);
+assert.equal((await call(revoke,{method:'DELETE'})).status,204);
+assert.equal((await stageFetch(link.url)).status,404);
+assert.equal((await stageFetch(media)).status,404);
 plan.revision=2;
 plan.scenes[0].shots[0].overlay='Alteração de título invalida a amostra.';
 await check(await call(prefix,{method:'PUT',body:plan}),200);

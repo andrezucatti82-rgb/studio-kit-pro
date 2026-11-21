@@ -9,6 +9,7 @@ import {mediaMode,quoteMedia} from './media-assets.mjs';
 import {approveAssembly,assemblyMode} from './assembly.mjs';
 import {startUpload, uploadRoute} from './uploads.mjs';
 import {forwardGemini} from './google-provider.mjs';
+import {manageDeliveries, publicDelivery} from './delivery.mjs';
 export {ZapVideoRenderer, ZapVideoWorkflow} from './workflow.mjs';
 
 export class ZapVideoGeminiProvider extends WorkerEntrypoint {
@@ -139,6 +140,7 @@ async function api(request,env,url) {
   const project = await sql(env,'SELECT id,revision FROM projects WHERE id=? AND owner=?',id,owner).first();
   if (!project) reject(404,'Projeto indisponível.');
   if (segments.length === 2 && request.method === 'GET') return json(await readRevision(env,id,project.revision));
+  if (scope === 'deliveries' && segments.length <= 4) return manageDeliveries(request,env,id,item);
   if (scope === 'uploads' && !item && request.method === 'POST') return startUpload(request,env,project,owner);
   if (scope === 'uploads' && isId(item)) return uploadRoute(request,env,id,item,action,number);
   if (scope === 'jobs' && !item && request.method === 'POST') return startJob(request,env,project,owner);
@@ -206,6 +208,7 @@ export default {
       if (!isGet(request) && request.headers.get('Origin') && request.headers.get('Origin') !== url.origin) reject(403,'Origem inválida.');
       let response;
       if (url.pathname === API || url.pathname.startsWith(API+'/')) response = await api(request,env,url);
+      else if (url.pathname.startsWith('/entrega/')) response = await publicDelivery(request,env,url);
       else if (/\.php(?:\/|$)/i.test(url.pathname)) reject(404,'Rota indisponível.');
       else if (url.pathname === '/catalog.json' && isGet(request)) response = await catalog(request,env,url);
       else if (isGet(request) && ['/','/catalogo'].includes(url.pathname)) {

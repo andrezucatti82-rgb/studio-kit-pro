@@ -19,6 +19,8 @@ Com o ZIP extraído ou com um pacote recuperado pelo importador, a ficha de arqu
 
 O pacote criptografado temporário pode ser enviado ao Codex ou Claude Code. Sua validade é de duas horas. O comando histórico `scripts/retrieve-disteven-handoff.mjs` aceita a rota de pacote em `https://zapvideo.com.br/api/zapvideo/handoff` e as rotas PHP explicitamente permitidas da origem antiga. O limite da rota anterior é 64 MiB. O limite do novo pacote criptografado é 32 MiB, separado do upload retomável. Para materiais maiores, use o ZIP local, o upload de edição ou envie os originais separadamente. Trate a instrução com o link como credencial temporária.
 
+Em **Entrega**, revise o MP4 da montagem completa ou da edição e clique em **Gerar link de entrega**. A página é acessível a quem tiver o link, sem código do piloto, e permite assistir e baixar o arquivo da revisão indicada. O link expira junto com o MP4, sete dias após a criação do trabalho, e pode ser desativado pelo dono do projeto. Cada link aponta para uma única saída verificada. As amostras integradas, os clipes de planos e os materiais de trabalho usam somente a revisão privada.
+
 ## Infraestrutura
 
 | Componente | Papel |
