@@ -929,12 +929,14 @@ function deliveryOutput(projectPath, revision, jobId, output) {
   controls.className='button-row';
   const report=document.createElement('p');
   report.className='small';report.setAttribute('role','status');
+  let currentLink=output.link;
   const preview=action('Revisar vídeo',async()=>{
     preview.disabled=true;
     try {
-      const grant=await api(projectPath+'/jobs/'+jobId+'/grant',{method:'POST',body:{file:output.id}});
+      const url=currentLink?.expiresAt===null ? currentLink.url+'video.mp4' :
+        (await api(projectPath+'/jobs/'+jobId+'/grant',{method:'POST',body:{file:output.id}})).url;
       if (!row.isConnected) return;
-      player.src=grant.url;player.hidden=false;
+      player.src=url;player.hidden=false;
       player.focus();
     } catch (error) { report.textContent=error.message; }
     finally {preview.disabled=false;}
@@ -950,45 +952,55 @@ function deliveryOutput(projectPath, revision, jobId, output) {
     try { await navigator.clipboard.writeText(field.value);report.textContent='Link copiado.'; }
     catch { field.focus();field.select();report.textContent='Link selecionado para copiar.'; }
   });
-  let currentLink=output.link;
+  const validity=document.createElement('label');
+  validity.textContent='Validade do link';
+  const validityChoice=document.createElement('select');
+  validityChoice.append(new Option('Temporário','temporary'),new Option('Sem validade','permanent'));
+  validity.append(validityChoice);
+  const expires=document.createElement('p');
+  expires.className='small';
   const setLink=link=>{
     currentLink=link;
     generate.hidden=Boolean(link);linkControls.hidden=!link;
+    validity.hidden=Boolean(link);
+    makePermanent.hidden=!link || link.expiresAt===null;
     field.value=link?new URL(link.url,location.origin).href:'';
     if (link) open.href=field.value;
     else open.removeAttribute('href');
+    expires.textContent=link?.expiresAt===null ? 'Link sem validade.' :
+      'Disponível até '+new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'short'})
+        .format((link?.expiresAt??output.expiresAt)*1000)+'.';
   };
-  const generate=action('Gerar link de entrega',async()=>{
-    generate.disabled=true;
+  const createLink=async permanent=>{
+    generate.disabled=makePermanent.disabled=revoke.disabled=true;
     report.textContent='';
     try {
-      const link=await api(projectPath+'/deliveries',{method:'POST',body:{jobId,fileId:output.id,sha256:output.sha256}});
+      const link=await api(projectPath+'/deliveries',{method:'POST',body:{jobId,fileId:output.id,sha256:output.sha256,permanent}});
       if (!row.isConnected) return void refreshDeliveryLinks();
       setLink(link);field.focus();field.select();
-      report.textContent='Link de entrega criado.';
+      report.textContent=link.expiresAt===null?'Link sem validade pronto.':'Link de entrega criado.';
     } catch (error) {report.textContent=error.message;}
-    finally {generate.disabled=false;}
-  });
+    finally {generate.disabled=makePermanent.disabled=revoke.disabled=false;}
+  };
+  const generate=action('Gerar link de entrega',()=>createLink(validityChoice.value==='permanent'));
   generate.className='primary';
+  const makePermanent=action('Tornar link sem validade',()=>createLink(true));
   const revoke=action('Desativar link',async()=>{
     if (!currentLink || !window.confirm('Desativar este link de entrega? Quem já o recebeu perderá o acesso.')) return;
-    revoke.disabled=true;
+    revoke.disabled=makePermanent.disabled=true;
     try {
       const code=currentLink.url.split('/')[2];
       await api(projectPath+'/deliveries/'+code,{method:'DELETE'});
       if (!row.isConnected) return void refreshDeliveryLinks();
+      if (output.expiresAt*1000<=Date.now()) return void refreshDeliveryLinks();
       setLink(null);generate.focus();report.textContent='Link desativado.';
     } catch (error) {report.textContent=error.message;}
-    finally {revoke.disabled=false;}
+    finally {revoke.disabled=makePermanent.disabled=false;}
   });
-  const expires=document.createElement('p');
-  expires.className='small';
-  expires.textContent='Disponível até '+new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'short'})
-    .format(output.expiresAt*1000)+'.';
   controls.append(preview,generate);
-  linkActions.append(copy,open,revoke);
+  linkActions.append(copy,open,makePermanent,revoke);
   linkControls.append(field,linkActions);
-  row.append(heading,expires,player,controls,linkControls,report);
+  row.append(heading,expires,player,validity,controls,linkControls,report);
   setLink(currentLink);
   return row;
 }
