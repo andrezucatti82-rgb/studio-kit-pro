@@ -69,33 +69,33 @@
   "packages": {
     "video-multimarcas-claude-plugin.zip": {
       "bytes": 218869,
-      "sha256": "93689eb90a4e91c00807920fb954f06bfa133b8f2fbfa185914df7bfa0395305"
+      "sha256": "6c160bbaae508cd8330c67ea4ae752052f8ca993693a775a5421a5754bc207dc"
     },
     "video-multimarcas-plugin.zip": {
       "bytes": 219383,
-      "sha256": "0ef4cbd0adf9723f9aaa505fe49fc7199ab4c664363d29dac3a998b128294a1b"
+      "sha256": "85c5e8dfac55bba73134c0de5aa96445296cdc922e14f54b5ff6034b2b267ebd"
     },
     "video-multimarcas-runtime.zip": {
-      "bytes": 4913333,
-      "sha256": "bb053d86a1d87a95c1e8491bcfa5fc6b9083121981dcb9c69737f2075353764d"
+      "bytes": 4917383,
+      "sha256": "a18a556a3baa3d4973b9d1231cf41351f9d45966f67b4223b2f4ef02d011ba29"
     },
     "video-multimarcas.skill": {
       "bytes": 217846,
-      "sha256": "f103a2ddbdc4ace1daab70a46907949932545bbf24d1e6c366292cf574a4b582"
+      "sha256": "c7ee9523060d3cc6740912081ac015e5969cf89aba0862b9bd430137112721c0"
     },
     "video-multimarcas.zip": {
       "bytes": 217846,
-      "sha256": "f103a2ddbdc4ace1daab70a46907949932545bbf24d1e6c366292cf574a4b582"
+      "sha256": "c7ee9523060d3cc6740912081ac015e5969cf89aba0862b9bd430137112721c0"
     }
   },
   "installer": {
     "version": 1,
     "kitVersion": "2.16.0",
-    "sourceRevision": "7cd8202017879bc3a3ed08e441d9e23df30afdb6",
+    "sourceRevision": "105679333c3d94d5c239a3f2855edd26c7b2ffaa",
     "sourceReady": true,
     "download": "downloads/studio-kit-pro-installer.zip",
-    "bytes": 692855,
-    "sha256": "3240ad6ef06348dac595aeb68b9dc4b8dc081e94d5d14f62d2db56fedc87259c",
+    "bytes": 704903,
+    "sha256": "b6a1f67f7edf99d48ea8d3cf5f26586718115a76bac458f5694b141c7fa1eb5d",
     "tutorial": "como-instalar.html",
     "scope": "local project for Codex and Claude Code; no automatic web-account installation",
     "internetRequired": true,
@@ -105,7 +105,7 @@
       "verification": "on each target machine",
       "binariesBundled": false
     },
-    "fullProjectDownloadMiB": 829,
+    "fullProjectDownloadMiB": 843,
     "skills": 1,
     "internalModules": 7,
     "presenterStyles": 265,
