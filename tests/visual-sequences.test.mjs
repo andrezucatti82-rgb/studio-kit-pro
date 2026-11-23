@@ -26,6 +26,18 @@ test('B-roll collection is discoverable and exports stock guidance within the ch
  }
  for(const s of styles){
   assert.equal(s.family,'apresentacoes');
+  const {layout,sequence,exampleCaptions}=s.executionPlan.supportMedia;
+  const [width,height]=layout.frame;
+  const split=Math.floor(height/3);
+  assert.deepEqual(layout.media,[0,0,width,split],s.id);
+  assert.deepEqual(layout.presenter,[0,split,width,height],s.id);
+  const [left,top,right,bottom]=layout.captions;
+  assert.ok(left>0&&right<width&&left+right===width,s.id);
+  assert.ok(top<split&&bottom>split&&top+bottom===split*2,s.id);
+  assert.equal(layout.subtitleMaxLines,2);
+  assert.deepEqual(sequence,['video_context','screen_capture','video_detail','screen_capture']);
+  assert.equal(exampleCaptions.length,4);
+  assert.ok(s.sequence.frames.every(frame=>frame.width/frame.height===9/16),s.id);
   assert.ok(search.search('B-roll '+s.name).some(result=>result.style.id===s.id),s.id);
   assert.deepEqual(search.search(globalThis.AtlasSearch.styleCode(s.id)).map(result=>result.style.id),[s.id]);
  }
@@ -51,6 +63,7 @@ test('B-roll collection is discoverable and exports stock guidance within the ch
  for(const s of bundle.brief.selectedStyles){
   assert.match(s.executionPlan.planningRule,/curadoria-de-conteudos/);
   assert.ok(prompt.includes(s.executionPlan.planningRule));
+  assert.equal(s.executionPlan.supportMedia.layout.subtitleMaxLines,2);
  }
 });
 
@@ -67,7 +80,8 @@ test('1455 distinct visual sequences preserve IDs, four complete frames and revi
   assert.equal(s.sequence.motionValidated,false);
   assert.equal(s.sequence.conceptOnly,true);
   assert.equal(record.motionValidated,false);
-  assert.ok(['approved_by_user_2026-11-11','approved_by_user_2026-11-12','pending_user_review'].includes(s.sequence.conceptApproval));
+  if(s.broll)assert.equal(s.sequence.conceptApproval,'approved_by_user_2026-11-23');
+  else assert.ok(['approved_by_user_2026-11-11','approved_by_user_2026-11-12','pending_user_review'].includes(s.sequence.conceptApproval));
   for(const [i,f] of s.sequence.frames.entries()){
    assert.ok(f.width>=300&&f.height>=300,s.id);
    const data=fs.readFileSync(new URL('dist/'+f.src,root));

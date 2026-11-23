@@ -1,10 +1,10 @@
 {
   "version": 2,
   "styleCount": 1455,
-  "tagAssociations": 33016,
+  "tagAssociations": 33093,
   "referenceFramesAnalyzed": 1455,
   "analysisBasis": "positive catalogue descriptions, intended commercial uses, declared palettes and measured reference colors; not a claim of visual or audiovisual review",
-  "styleDataSha256": "6fc20252a13d5b6609d8277c7c1a215e20e538802f1f698520f5bd99ffd20944",
+  "styleDataSha256": "2d3c4a876850abf2df8d22d4d9b53ea77d4c07d3ca3b2b638d40198fb9bfd0e2",
   "styles": {
     "publicidade-cinematografica": {
       "tags": [
@@ -158539,9 +158539,12 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
         "gesto",
+        "interface",
+        "laranja",
         "legenda",
         "localização",
         "marrom",
@@ -158569,10 +158572,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -158580,11 +158585,19 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
+        ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -158592,7 +158605,10 @@
         "localizacao": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a bola toma forma": [
@@ -158607,16 +158623,19 @@
         "sorveteria mostre a colher saindo da cuba e a bola chegando a casquinha": [
           "topic"
         ],
-        "cinza": [
+        "vermelho": [
           "reference_color_analysis"
         ],
         "marrom": [
           "reference_color_analysis"
         ],
-        "vermelho": [
+        "cinza": [
           "reference_color_analysis"
         ],
         "vinho": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
           "reference_color_analysis"
         ]
       }
@@ -158630,13 +158649,15 @@
         "apresentar",
         "camadas",
         "Camadas no copo",
+        "cinza",
         "explicar",
         "gesto",
-        "janela",
+        "interface",
         "legenda",
         "realista",
         "reels",
         "rosa",
+        "rosto",
         "stories",
         "tipografia",
         "vermelho",
@@ -158645,7 +158666,8 @@
       "evidence": {
         "camadas": [
           "name",
-          "frames"
+          "frames",
+          "appearance"
         ],
         "apresentar": [
           "family",
@@ -158661,10 +158683,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -158672,15 +158696,20 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
           "appearance"
         ],
         "camadas no copo": [
@@ -158695,10 +158724,13 @@
         "acaiteria revele a base e depois a cobertura que o cliente pode escolher": [
           "topic"
         ],
-        "rosa": [
+        "cinza": [
           "reference_color_analysis"
         ],
         "vinho": [
+          "reference_color_analysis"
+        ],
+        "rosa": [
           "reference_color_analysis"
         ],
         "vermelho": [
@@ -158714,8 +158746,10 @@
         "apresentar",
         "bar",
         "Bar e pub — Mostre o fluxo da torneira e o colarinho se formando.",
+        "camadas",
         "Do puxador ao copo",
         "explicar",
+        "interface",
         "janela",
         "laranja",
         "legenda",
@@ -158724,6 +158758,7 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -158748,18 +158783,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -158767,12 +158802,24 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
         "localizacao": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "do puxador ao copo": [
@@ -158787,10 +158834,10 @@
         "bar e pub mostre o fluxo da torneira e o colarinho se formando": [
           "topic"
         ],
-        "marrom": [
+        "preto": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "marrom": [
           "reference_color_analysis"
         ],
         "laranja": [
@@ -158804,14 +158851,16 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "explicar",
         "gesto",
-        "laranja",
+        "interface",
         "legenda",
         "loja",
         "Loja de roupas — Mostre a peça inteira e aproxime a trama e a costura.",
         "marrom",
         "O tecido em movimento",
+        "preto",
         "realista",
         "reels",
         "rosto",
@@ -158854,10 +158903,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -158865,16 +158916,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "o tecido em movimento": [
@@ -158895,7 +158957,7 @@
         "vinho": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "preto": [
           "reference_color_analysis"
         ]
       }
@@ -158907,10 +158969,11 @@
         "apresentador",
         "apresentar",
         "calçado",
+        "camadas",
         "Da passada ao solado",
         "explicar",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "loja",
@@ -158919,6 +158982,7 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -158951,10 +159015,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -158962,15 +159028,23 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "da passada ao solado": [
@@ -158988,10 +159062,10 @@
         "marrom": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "laranja": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "preto": [
           "reference_color_analysis"
         ]
       }
@@ -159002,9 +159076,13 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "azul",
+        "bege",
+        "camadas",
         "cinza",
         "É o papel que muda a linha",
         "explicar",
+        "interface",
         "janela",
         "legenda",
         "papel",
@@ -159012,6 +159090,7 @@
         "Papelaria — Mostre o mesmo traço em duas superfícies e aproxime a diferença visível.",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -159040,18 +159119,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159059,9 +159138,21 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "e o papel que muda a linha": [
@@ -159078,6 +159169,12 @@
         ],
         "cinza": [
           "reference_color_analysis"
+        ],
+        "bege": [
+          "reference_color_analysis"
+        ],
+        "azul": [
+          "reference_color_analysis"
         ]
       }
     },
@@ -159088,8 +159185,10 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "explicar",
         "gesto",
+        "interface",
         "laranja",
         "legenda",
         "livraria",
@@ -159097,6 +159196,7 @@
         "livro",
         "localização",
         "marrom",
+        "preto",
         "realista",
         "reels",
         "rosto",
@@ -159129,10 +159229,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159140,11 +159242,19 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
+        ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -159152,7 +159262,10 @@
         "localizacao": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "abra e encontre seu livro": [
@@ -159172,6 +159285,9 @@
         ],
         "marrom": [
           "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
         ]
       }
     },
@@ -159184,12 +159300,13 @@
         "apresentar",
         "banho",
         "cachorro",
+        "camadas",
         "cinza",
         "Do pelo à escova",
         "escova",
         "explicar",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "marrom",
@@ -159197,6 +159314,7 @@
         "Pet shop — Enquadre o cão e mostre o movimento da escova no pelo.",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -159236,10 +159354,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159247,7 +159367,9 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -159255,10 +159377,16 @@
         "banho": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "do pelo a escova": [
@@ -159294,8 +159422,10 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
+        "interface",
         "janela",
         "laranja",
         "legenda",
@@ -159304,6 +159434,7 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -159328,18 +159459,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159347,9 +159478,21 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a conexao certa": [
@@ -159367,10 +159510,10 @@
         "cinza": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "preto": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "laranja": [
           "reference_color_analysis"
         ]
       }
@@ -159381,14 +159524,15 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
         "gesto",
+        "interface",
         "laranja",
         "legenda",
         "loja",
         "Loja de celulares — Demonstre a posição da câmera e o enquadramento que ela produz.",
-        "marrom",
         "O enquadramento no celular",
         "realista",
         "reels",
@@ -159418,10 +159562,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159429,16 +159575,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "o enquadramento no celular": [
@@ -159453,13 +159610,10 @@
         "loja de celulares demonstre a posicao da camera e o enquadramento que ela produz": [
           "topic"
         ],
-        "laranja": [
-          "reference_color_analysis"
-        ],
         "cinza": [
           "reference_color_analysis"
         ],
-        "marrom": [
+        "laranja": [
           "reference_color_analysis"
         ]
       }
@@ -159471,13 +159625,14 @@
         "apresentador",
         "apresentar",
         "buquê",
+        "camadas",
         "cinza",
         "Como nasce um buquê",
         "explicar",
         "flores",
         "Floricultura — Mostre a montagem das flores e como o buquê é amarrado.",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "madeira",
@@ -159485,6 +159640,7 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -159518,10 +159674,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159529,7 +159687,9 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -159537,10 +159697,16 @@
         "madeira": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "como nasce um buque": [
@@ -159561,10 +159727,10 @@
         "marrom": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "preto": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "cinza": [
           "reference_color_analysis"
         ]
       }
@@ -159575,8 +159741,10 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
+        "interface",
         "janela",
         "Jardinagem — Leve do vaso inicial ao momento em que a raiz passa para outro recipiente.",
         "laranja",
@@ -159586,6 +159754,7 @@
         "Raízes têm espaço",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -159603,18 +159772,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159622,12 +159791,24 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
         "luz": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "raizes tem espaco": [
@@ -159645,10 +159826,10 @@
         "marrom": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "laranja": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "cinza": [
           "reference_color_analysis"
         ]
       }
@@ -159660,8 +159841,10 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "explicar",
         "gesto",
+        "interface",
         "laranja",
         "legenda",
         "marrom",
@@ -159695,10 +159878,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159706,16 +159891,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a armacao de perto": [
@@ -159730,10 +159926,10 @@
         "otica compare a forma geral com o detalhe da dobradica": [
           "topic"
         ],
-        "marrom": [
+        "laranja": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "marrom": [
           "reference_color_analysis"
         ]
       }
@@ -159744,18 +159940,21 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "Do mostrador ao fecho",
         "explicar",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "madeira",
         "marrom",
         "realista",
         "reels",
+        "relógio",
         "Relojoaria — Siga do mostrador ao fecho para explicar o uso.",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -159778,10 +159977,12 @@
           "appearance"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159789,7 +159990,12 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
+        ],
+        "relogio": [
+          "frames"
         ],
         "realista": [
           "appearance"
@@ -159797,10 +160003,16 @@
         "madeira": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "do mostrador ao fecho": [
@@ -159833,8 +160045,10 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
+        "interface",
         "janela",
         "laranja",
         "legenda",
@@ -159842,6 +160056,7 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
         "salão de beleza",
         "Salão de beleza — Relacione a separação das mechas à direção do acabamento.",
         "stories",
@@ -159868,18 +160083,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159887,9 +160102,21 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a mecha muda de direcao": [
@@ -159910,10 +160137,10 @@
         "laranja": [
           "reference_color_analysis"
         ],
-        "preto": [
+        "cinza": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "preto": [
           "reference_color_analysis"
         ]
       }
@@ -159926,9 +160153,11 @@
         "apresentador",
         "apresentar",
         "Barbearia — Demonstre onde começa a linha e como o acabamento aparece.",
+        "camadas",
         "cinza",
         "explicar",
         "gesto",
+        "interface",
         "laranja",
         "legenda",
         "marrom",
@@ -159961,10 +160190,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -159972,16 +160203,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a linha do acabamento": [
@@ -159996,13 +160238,13 @@
         "barbearia demonstre onde comeca a linha e como o acabamento aparece": [
           "topic"
         ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
         "laranja": [
           "reference_color_analysis"
         ],
         "marrom": [
-          "reference_color_analysis"
-        ],
-        "cinza": [
           "reference_color_analysis"
         ]
       }
@@ -160015,17 +160257,19 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
         "fitness",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "mão",
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -160057,10 +160301,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160068,15 +160314,23 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a pegada em detalhe": [
@@ -160109,9 +160363,11 @@
         "apresentador",
         "apresentar",
         "azul",
+        "camadas",
         "cinza",
         "Estúdio de pilates — Mostre o carrinho e destaque o trajeto sobre o trilho.",
         "explicar",
+        "interface",
         "janela",
         "legenda",
         "O caminho do carrinho",
@@ -160119,6 +160375,8 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
+        "rota",
         "stories",
         "tipografia"
       ],
@@ -160143,18 +160401,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160162,9 +160420,24 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
+        ],
+        "rota": [
+          "frames"
         ],
         "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "o caminho do carrinho": [
@@ -160197,21 +160470,24 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
+        "cinza",
         "cosmético",
         "explicar",
         "gesto",
+        "interface",
         "laranja",
         "legenda",
         "loja",
         "Loja de cosméticos — Demonstre a consistência e como a textura se espalha.",
         "marrom",
+        "preto",
         "realista",
         "reels",
         "rosto",
         "stories",
         "textura",
-        "tipografia",
-        "vermelho"
+        "tipografia"
       ],
       "evidence": {
         "textura": [
@@ -160249,10 +160525,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160260,16 +160538,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a textura aparece": [
@@ -160287,10 +160576,13 @@
         "laranja": [
           "reference_color_analysis"
         ],
+        "cinza": [
+          "reference_color_analysis"
+        ],
         "marrom": [
           "reference_color_analysis"
         ],
-        "vermelho": [
+        "preto": [
           "reference_color_analysis"
         ]
       }
@@ -160301,11 +160593,12 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "Do frasco à fita",
         "explicar",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "luz",
@@ -160314,6 +160607,7 @@
         "perfume",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -160339,10 +160633,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160350,7 +160646,9 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -160358,10 +160656,16 @@
         "luz": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "do frasco a fita": [
@@ -160395,14 +160699,16 @@
         "apresentador",
         "apresentar",
         "azul",
+        "camadas",
         "cinza",
         "explicar",
+        "interface",
         "janela",
         "Lavanderia — Aproxime a etiqueta depois de mostrar a separação das peças.",
         "legenda",
-        "marrom",
         "realista",
         "reels",
+        "rosto",
         "roupa",
         "stories",
         "tipografia"
@@ -160421,18 +160727,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160440,12 +160746,24 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
         "roupa": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a etiqueta guia a lavagem": [
@@ -160465,9 +160783,6 @@
         ],
         "azul": [
           "reference_color_analysis"
-        ],
-        "marrom": [
-          "reference_color_analysis"
         ]
       }
     },
@@ -160480,11 +160795,12 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
-        "azul",
+        "camadas",
         "cinza",
         "Do mapa ao percurso",
         "explicar",
         "gesto",
+        "interface",
         "legenda",
         "mapa",
         "realista",
@@ -160493,7 +160809,8 @@
         "rota",
         "stories",
         "tipografia",
-        "turismo"
+        "turismo",
+        "verde"
       ],
       "evidence": {
         "mapa": [
@@ -160535,10 +160852,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160546,16 +160865,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "do mapa ao percurso": [
@@ -160570,13 +160900,13 @@
         "agencia de turismo associe a rota ao tipo de caminho que a pessoa vai percorrer": [
           "topic"
         ],
-        "azul": [
+        "cinza": [
+          "reference_color_analysis"
+        ],
+        "verde": [
           "reference_color_analysis"
         ],
         "amarelo": [
-          "reference_color_analysis"
-        ],
-        "cinza": [
           "reference_color_analysis"
         ]
       }
@@ -160587,19 +160917,21 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "Da planta à passagem",
         "explicar",
         "gesto",
         "Imobiliária — Relacione o traço na planta ao espaço que ele representa.",
         "imóvel",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "marrom",
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -160625,10 +160957,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160636,15 +160970,23 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "da planta a passagem": [
@@ -160659,16 +161001,16 @@
         "imobiliaria relacione o traco na planta ao espaco que ele representa": [
           "topic"
         ],
-        "preto": [
-          "reference_color_analysis"
-        ],
         "cinza": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "preto": [
           "reference_color_analysis"
         ],
         "marrom": [
+          "reference_color_analysis"
+        ],
+        "laranja": [
           "reference_color_analysis"
         ]
       }
@@ -160679,12 +161021,14 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "Da caixa ao detalhe",
         "E-commerce — Mostre como o produto chega e o que aparece ao abrir.",
         "ecommerce",
         "embalagem",
         "explicar",
+        "interface",
         "janela",
         "laranja",
         "legenda",
@@ -160693,6 +161037,7 @@
         "produto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -160723,18 +161068,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160742,7 +161087,10 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -160751,6 +161099,15 @@
           "appearance"
         ],
         "loja": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "da caixa ao detalhe": [
@@ -160765,10 +161122,10 @@
         "e commerce mostre como o produto chega e o que aparece ao abrir": [
           "topic"
         ],
-        "laranja": [
+        "cinza": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "laranja": [
           "reference_color_analysis"
         ],
         "preto": [
@@ -160782,14 +161139,17 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
         "gesto",
+        "interface",
         "legenda",
         "loja",
         "luz",
         "Material de construção — Demonstre a diferença entre as superfícies sob a mesma luz.",
         "obra",
+        "preto",
         "realista",
         "reels",
         "rosto",
@@ -160800,6 +161160,7 @@
       "evidence": {
         "rosto": [
           "name",
+          "motion",
           "frames",
           "appearance"
         ],
@@ -160830,10 +161191,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160841,7 +161204,10 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
@@ -160851,6 +161217,12 @@
           "appearance"
         ],
         "loja": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "uma face dois acabamentos": [
@@ -160867,6 +161239,9 @@
         ],
         "cinza": [
           "reference_color_analysis"
+        ],
+        "preto": [
+          "reference_color_analysis"
         ]
       }
     },
@@ -160877,16 +161252,18 @@
         "apresentador",
         "apresentar",
         "azul",
+        "camadas",
         "cinza",
         "Da cabeça ao encaixe",
         "explicar",
         "Ferragem — Mostre como o perfil de cada ponta se relaciona à cabeça.",
         "gesto",
-        "janela",
+        "interface",
         "laranja",
         "legenda",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -160905,10 +161282,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -160916,15 +161295,23 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
         ],
-        "janela": [
+        "gesto": [
           "appearance"
         ],
-        "gesto": [
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "da cabeca ao encaixe": [
@@ -160939,10 +161326,10 @@
         "ferragem mostre como o perfil de cada ponta se relaciona a cabeca": [
           "topic"
         ],
-        "azul": [
+        "laranja": [
           "reference_color_analysis"
         ],
-        "laranja": [
+        "azul": [
           "reference_color_analysis"
         ],
         "cinza": [
@@ -160958,13 +161345,16 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "explicar",
+        "interface",
         "janela",
         "laranja",
         "legenda",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia",
         "vermelho",
@@ -160984,18 +161374,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -161003,9 +161393,21 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "a fibra indica o corte": [
@@ -161040,10 +161442,12 @@
         "Apresentações e tipografia",
         "apresentador",
         "apresentar",
+        "camadas",
         "cinza",
         "Da peça ao filé",
         "explicar",
         "gesto",
+        "interface",
         "legenda",
         "Peixaria — Ligue o plano da peça ao detalhe do filé.",
         "realista",
@@ -161068,10 +161472,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -161079,16 +161485,27 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "gesto": [
           "motion",
           "frames"
         ],
+        "rosto": [
+          "motion",
+          "frames",
+          "appearance"
+        ],
         "realista": [
           "appearance"
         ],
-        "rosto": [
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "da peca ao file": [
@@ -161103,10 +161520,10 @@
         "peixaria ligue o plano da peca ao detalhe do file": [
           "topic"
         ],
-        "vermelho": [
+        "cinza": [
           "reference_color_analysis"
         ],
-        "cinza": [
+        "vermelho": [
           "reference_color_analysis"
         ]
       }
@@ -161118,10 +161535,12 @@
         "apresentador",
         "apresentar",
         "Cafeteria — Relacione a moagem à extração na xícara.",
+        "camadas",
         "cinza",
         "Da moagem à xícara",
         "explicar",
         "gesto",
+        "interface",
         "janela",
         "laranja",
         "legenda",
@@ -161131,6 +161550,7 @@
         "preto",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -161149,10 +161569,12 @@
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -161160,7 +161582,9 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "frames",
+          "appearance"
         ],
         "realista": [
           "appearance"
@@ -161175,6 +161599,15 @@
           "appearance"
         ],
         "gesto": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "da moagem a xicara": [
@@ -161192,13 +161625,13 @@
         "marrom": [
           "reference_color_analysis"
         ],
+        "preto": [
+          "reference_color_analysis"
+        ],
         "laranja": [
           "reference_color_analysis"
         ],
         "cinza": [
-          "reference_color_analysis"
-        ],
-        "preto": [
           "reference_color_analysis"
         ]
       }
@@ -161210,9 +161643,11 @@
         "apresentador",
         "apresentar",
         "azul",
+        "camadas",
         "carro",
         "cinza",
         "explicar",
+        "interface",
         "janela",
         "legenda",
         "oficina",
@@ -161220,6 +161655,7 @@
         "Onde conferir a pressão",
         "realista",
         "reels",
+        "rosto",
         "stories",
         "tipografia"
       ],
@@ -161251,18 +161687,18 @@
         "janela": [
           "signature",
           "resources",
-          "motion",
-          "frames",
           "appearance"
         ],
         "explicar": [
           "uses"
         ],
         "reels": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "stories": [
-          "uses"
+          "uses",
+          "appearance"
         ],
         "apresentador": [
           "resources",
@@ -161270,9 +161706,21 @@
           "appearance"
         ],
         "legenda": [
-          "resources"
+          "resources",
+          "motion",
+          "frames",
+          "appearance"
         ],
         "realista": [
+          "appearance"
+        ],
+        "rosto": [
+          "appearance"
+        ],
+        "interface": [
+          "appearance"
+        ],
+        "camadas": [
           "appearance"
         ],
         "onde conferir a pressao": [

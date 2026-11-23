@@ -1,0 +1,1082 @@
+{
+  "version": 1,
+  "layout": {
+    "frame": [
+      720,
+      1280
+    ],
+    "presenter": [
+      0,
+      426,
+      720,
+      1280
+    ],
+    "media": [
+      0,
+      0,
+      720,
+      426
+    ],
+    "captions": [
+      76,
+      384,
+      644,
+      468
+    ],
+    "subtitleMaxLines": 2
+  },
+  "styles": {
+    "sorveteria": {
+      "screenTitle": "Sabores do dia",
+      "screenKind": "Cardápio",
+      "screenPoints": [
+        "Morango|Fruta e acidez",
+        "Baunilha|Base cremosa"
+      ],
+      "exampleCaptions": [
+        "Quer ver como a bola ganha forma?",
+        "Primeiro, escolha o sabor.",
+        "A colher desenha a bola.",
+        "Na casquinha, ela mantém a forma."
+      ]
+    },
+    "acaiteria": {
+      "screenTitle": "Monte o seu copo",
+      "screenKind": "Montagem",
+      "screenPoints": [
+        "Base|Açaí",
+        "Cobertura|Frutas e granola"
+      ],
+      "exampleCaptions": [
+        "Cada camada tem sua vez.",
+        "Veja as escolhas do seu copo.",
+        "A granola entra por último.",
+        "Assim, a textura aparece na colherada."
+      ]
+    },
+    "bar-pub": {
+      "screenTitle": "Escolha no balcão",
+      "screenKind": "Cardápio",
+      "screenPoints": [
+        "Chope|Servido na torneira",
+        "Copo|Confira a opção da casa"
+      ],
+      "exampleCaptions": [
+        "Olha o que acontece no copo.",
+        "O cardápio mostra as opções.",
+        "O colarinho se forma no final.",
+        "É assim que o copo chega à mesa."
+      ]
+    },
+    "roupas": {
+      "screenTitle": "Detalhes da peça",
+      "screenKind": "Ficha de produto",
+      "screenPoints": [
+        "Tecido|Confira a composição",
+        "Corte|Compare o caimento"
+      ],
+      "exampleCaptions": [
+        "O tecido muda quando a peça se move.",
+        "Veja a composição na ficha.",
+        "De perto, dá para ver a trama.",
+        "Agora repare no caimento."
+      ]
+    },
+    "calcados": {
+      "screenTitle": "Encontre seu tamanho",
+      "screenKind": "Guia de compra",
+      "screenPoints": [
+        "Comprimento|Meça o pé",
+        "Numeração|Compare com a tabela"
+      ],
+      "exampleCaptions": [
+        "O solado aparece a cada passo.",
+        "Confira o tamanho antes da prova.",
+        "Aqui dá para ver a flexão.",
+        "Compare com o seu jeito de andar."
+      ]
+    },
+    "papelaria": {
+      "screenTitle": "Escolha o papel",
+      "screenKind": "Comparativo",
+      "screenPoints": [
+        "Textura|Lisa ou granulada",
+        "Uso|Escrita ou desenho"
+      ],
+      "exampleCaptions": [
+        "O papel muda o desenho da linha.",
+        "Compare a textura das folhas.",
+        "Mesma caneta, outro traço.",
+        "Escolha pelo acabamento que quer."
+      ]
+    },
+    "livraria": {
+      "screenTitle": "Explore a estante",
+      "screenKind": "Catálogo",
+      "screenPoints": [
+        "Tema|Filtre por assunto",
+        "Formato|Confira a edição"
+      ],
+      "exampleCaptions": [
+        "O livro certo começa por uma pista.",
+        "Filtre pelo tema que interessa.",
+        "Folheie para sentir o ritmo.",
+        "Aí fica mais fácil decidir."
+      ]
+    },
+    "pet-shop": {
+      "screenTitle": "Escova para cada pelo",
+      "screenKind": "Guia de cuidados",
+      "screenPoints": [
+        "Pelo curto|Veja a escova macia",
+        "Pelo longo|Confira o formato"
+      ],
+      "exampleCaptions": [
+        "Qual escova combina com este pelo?",
+        "O tipo de pelo guia a escolha.",
+        "Observe como a escova desliza.",
+        "O movimento deve ser leve."
+      ]
+    },
+    "eletronicos": {
+      "screenTitle": "Confira a entrada",
+      "screenKind": "Comparativo",
+      "screenPoints": [
+        "Conector|Identifique o formato",
+        "Cabo|Confirme a compatibilidade"
+      ],
+      "exampleCaptions": [
+        "Este detalhe evita o cabo errado.",
+        "Compare as entradas na ficha.",
+        "Veja como o conector encaixa.",
+        "Confira o seu aparelho primeiro."
+      ]
+    },
+    "celulares": {
+      "screenTitle": "Ajuste a câmera",
+      "screenKind": "Passo a passo",
+      "screenPoints": [
+        "Enquadramento|Ative a grade",
+        "Foco|Toque no objeto"
+      ],
+      "exampleCaptions": [
+        "Vamos acertar o enquadramento?",
+        "A grade ajuda a centralizar.",
+        "Toque no assunto para focar.",
+        "Confira a imagem antes de gravar."
+      ]
+    },
+    "floricultura": {
+      "screenTitle": "Escolha do buquê",
+      "screenKind": "Composição",
+      "screenPoints": [
+        "Flor principal|Defina a cor",
+        "Folhagem|Preencha os espaços"
+      ],
+      "exampleCaptions": [
+        "O buquê começa pela flor principal.",
+        "Escolha cor e folhagem.",
+        "As hastes se reúnem no mesmo ponto.",
+        "Agora veja o volume do conjunto."
+      ]
+    },
+    "jardinagem": {
+      "screenTitle": "Tamanho do vaso",
+      "screenKind": "Guia de escolha",
+      "screenPoints": [
+        "Raízes|Observe o espaço",
+        "Drenagem|Veja a saída de água"
+      ],
+      "exampleCaptions": [
+        "O vaso precisa dar espaço às raízes.",
+        "Veja o tamanho e a drenagem.",
+        "Repare no volume da muda.",
+        "As raízes cabem sem apertar."
+      ]
+    },
+    "otica": {
+      "screenTitle": "Ajuste da armação",
+      "screenKind": "Ficha de produto",
+      "screenPoints": [
+        "Ponte|Confira o apoio",
+        "Hastes|Experimente o ajuste"
+      ],
+      "exampleCaptions": [
+        "A armação também precisa encaixar.",
+        "Compare ponte e hastes.",
+        "Veja a união de perto.",
+        "Experimente no rosto para decidir."
+      ]
+    },
+    "relojoaria": {
+      "screenTitle": "Detalhes do relógio",
+      "screenKind": "Ficha de produto",
+      "screenPoints": [
+        "Mostrador|Repare nos marcadores",
+        "Fecho|Confira o mecanismo"
+      ],
+      "exampleCaptions": [
+        "Comece olhando o mostrador.",
+        "A ficha separa peças e acabamento.",
+        "O fecho encaixa neste ponto.",
+        "Veja como fica no pulso."
+      ]
+    },
+    "salao-beleza": {
+      "screenTitle": "Planeje o acabamento",
+      "screenKind": "Sequência",
+      "screenPoints": [
+        "Preparação|Divida as mechas",
+        "Finalização|Defina o sentido"
+      ],
+      "exampleCaptions": [
+        "A direção da mecha muda o resultado.",
+        "O plano começa pela divisão.",
+        "A escova guia a curva.",
+        "Repare onde a mecha termina."
+      ]
+    },
+    "barbearia": {
+      "screenTitle": "Escolha do contorno",
+      "screenKind": "Guia de corte",
+      "screenPoints": [
+        "Referência|Mostre o contorno desejado",
+        "Detalhe|Confira a linha no espelho"
+      ],
+      "exampleCaptions": [
+        "O contorno dá forma ao corte.",
+        "Alinhe a referência antes.",
+        "A linha aparece no acabamento.",
+        "Veja o resultado de lado."
+      ]
+    },
+    "academia": {
+      "screenTitle": "Posição da mão",
+      "screenKind": "Pontos de atenção",
+      "screenPoints": [
+        "Pegada|Observe os apoios",
+        "Execução|Siga a orientação"
+      ],
+      "exampleCaptions": [
+        "A mão faz parte do movimento.",
+        "Veja onde ficam os apoios.",
+        "Observe a pegada durante a ação.",
+        "Repita com orientação adequada."
+      ]
+    },
+    "estudio-pilates": {
+      "screenTitle": "Percurso no aparelho",
+      "screenKind": "Sequência",
+      "screenPoints": [
+        "Partida|Observe a posição",
+        "Retorno|Controle a trajetória"
+      ],
+      "exampleCaptions": [
+        "Repare no caminho do carrinho.",
+        "Veja onde o movimento começa.",
+        "O retorno também pede controle.",
+        "O percurso todo importa."
+      ]
+    },
+    "cosmeticos": {
+      "screenTitle": "Visualize a textura",
+      "screenKind": "Ficha de produto",
+      "screenPoints": [
+        "Textura|Observe a consistência",
+        "Uso|Leia as instruções no rótulo"
+      ],
+      "exampleCaptions": [
+        "A textura aparece logo no toque.",
+        "Confira as orientações do produto.",
+        "Veja como a porção se espalha.",
+        "Compare a sensação na aplicação."
+      ]
+    },
+    "perfumaria": {
+      "screenTitle": "Conheça as notas",
+      "screenKind": "Ficha de produto",
+      "screenPoints": [
+        "Saída|Primeiras notas",
+        "Fundo|Notas percebidas depois"
+      ],
+      "exampleCaptions": [
+        "As notas mudam com o tempo.",
+        "A ficha organiza essa leitura.",
+        "Aplique na fita para experimentar.",
+        "Dê tempo para perceber a mudança."
+      ]
+    },
+    "lavanderia": {
+      "screenTitle": "Leia a etiqueta",
+      "screenKind": "Guia de lavagem",
+      "screenPoints": [
+        "Lavagem|Confira símbolo e instrução",
+        "Secagem|Veja o cuidado indicado"
+      ],
+      "exampleCaptions": [
+        "A etiqueta orienta a lavagem.",
+        "Olhe também a instrução de secagem.",
+        "Ache o símbolo antes de começar.",
+        "O cuidado depende da peça."
+      ]
+    },
+    "agencia-turismo": {
+      "screenTitle": "Organize o roteiro",
+      "screenKind": "Itinerário",
+      "screenPoints": [
+        "Partida|Local de encontro",
+        "Parada|Consulte o trajeto"
+      ],
+      "exampleCaptions": [
+        "O mapa mostra o caminho da visita.",
+        "Confira a partida e as paradas.",
+        "Veja como é um trecho do percurso.",
+        "Consulte o roteiro da data escolhida."
+      ]
+    },
+    "imobiliaria": {
+      "screenTitle": "Caminho pela planta",
+      "screenKind": "Planta ilustrativa",
+      "screenPoints": [
+        "Entrada|Ponto de chegada",
+        "Sala|Conexão com a passagem"
+      ],
+      "exampleCaptions": [
+        "A planta ajuda a imaginar a visita.",
+        "Localize a entrada e a sala.",
+        "Agora acompanhe a passagem.",
+        "Compare o percurso com a planta."
+      ]
+    },
+    "ecommerce": {
+      "screenTitle": "Confira o que vem",
+      "screenKind": "Ficha de pedido",
+      "screenPoints": [
+        "Pedido|Itens selecionados",
+        "Embalagem|Confira o conteúdo"
+      ],
+      "exampleCaptions": [
+        "Da embalagem ao produto em mãos.",
+        "A ficha mostra o que está incluso.",
+        "Veja o item saindo da proteção.",
+        "Confira antes de finalizar o pedido."
+      ]
+    },
+    "material-construcao": {
+      "screenTitle": "Compare acabamentos",
+      "screenKind": "Amostruário",
+      "screenPoints": [
+        "Liso|Observe o reflexo",
+        "Texturizado|Veja o relevo"
+      ],
+      "exampleCaptions": [
+        "A luz muda a leitura da superfície.",
+        "Compare os acabamentos de perto.",
+        "O relevo aparece com a luz lateral.",
+        "Escolha com a amostra em mãos."
+      ]
+    },
+    "ferragem": {
+      "screenTitle": "Confira o encaixe",
+      "screenKind": "Comparativo",
+      "screenPoints": [
+        "Cabeça|Identifique o formato",
+        "Ponta|Compare tipo e tamanho"
+      ],
+      "exampleCaptions": [
+        "O formato da ponta faz diferença.",
+        "Compare a ferramenta e o parafuso.",
+        "Veja o encaixe no centro.",
+        "Confirme a medida antes de usar."
+      ]
+    },
+    "acougue": {
+      "screenTitle": "Conheça o corte",
+      "screenKind": "Guia visual",
+      "screenPoints": [
+        "Fibra|Observe a direção",
+        "Preparo|Converse sobre o uso"
+      ],
+      "exampleCaptions": [
+        "A direção da fibra aparece de perto.",
+        "O guia destaca o ponto a observar.",
+        "Veja o desenho na superfície.",
+        "Escolha conforme o preparo."
+      ]
+    },
+    "peixaria": {
+      "screenTitle": "Da peça ao filé",
+      "screenKind": "Guia visual",
+      "screenPoints": [
+        "Peça inteira|Reconheça o formato",
+        "Filé|Veja o corte limpo"
+      ],
+      "exampleCaptions": [
+        "Veja o que muda da peça ao filé.",
+        "A ficha distingue as apresentações.",
+        "Repare na textura do corte.",
+        "Escolha a apresentação do seu prato."
+      ]
+    },
+    "cafeteria": {
+      "screenTitle": "Ajustes do espresso",
+      "screenKind": "Guia visual",
+      "screenPoints": [
+        "Moagem|Observe a granulometria",
+        "Extração|Acompanhe o fluxo"
+      ],
+      "exampleCaptions": [
+        "Tudo começa na moagem.",
+        "O guia separa as duas etapas.",
+        "Repare no fluxo na xícara.",
+        "Observe a passagem do começo ao fim."
+      ]
+    },
+    "automotivo": {
+      "screenTitle": "Onde ler a pressão",
+      "screenKind": "Guia do veículo",
+      "screenPoints": [
+        "Etiqueta|Localize a indicação",
+        "Manual|Confira a condição de uso"
+      ],
+      "exampleCaptions": [
+        "O carro indica a pressão recomendada.",
+        "Procure a etiqueta e o manual.",
+        "Veja onde fica a indicação.",
+        "Use o valor indicado para o veículo."
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "broll-sorveteria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-sorveteria-01.webp",
+          "sha256": "88d98ed3e194bfbd2a5f08d8769833686870a29e54f182ce1ad8f427adba504d"
+        },
+        {
+          "path": "assets/broll-reels/broll-sorveteria-02.webp",
+          "sha256": "bb4cd4602abfeff6108cc7f560dce9f3ab89149bce1f18615a15c4e1a0c956c6"
+        },
+        {
+          "path": "assets/broll-reels/broll-sorveteria-03.webp",
+          "sha256": "fed8d9ad3413d1f66fda4e0ca03d64e777d5bf696ff9153b25b59b7e5599b070"
+        },
+        {
+          "path": "assets/broll-reels/broll-sorveteria-04.webp",
+          "sha256": "ed183750c8c41970a188ab73b3369570303ebb5989fad271bf8c391a7e0fd8b9"
+        }
+      ]
+    },
+    {
+      "id": "broll-acaiteria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-acaiteria-01.webp",
+          "sha256": "87c955938d1dbe7457b8c50050170d7309287a651de643645785d12ddd045ba5"
+        },
+        {
+          "path": "assets/broll-reels/broll-acaiteria-02.webp",
+          "sha256": "7541f30ed25f49d9fa95bd5c32b261dcb282e5953041af0375c699887cdab19f"
+        },
+        {
+          "path": "assets/broll-reels/broll-acaiteria-03.webp",
+          "sha256": "53ea4516dae76e3184c9f073401cd936f22511dac7294eada598799e486e00cb"
+        },
+        {
+          "path": "assets/broll-reels/broll-acaiteria-04.webp",
+          "sha256": "74e8782f4573b50aad2c6778b064a959472e4d658c1fc533977678114a8b237f"
+        }
+      ]
+    },
+    {
+      "id": "broll-bar-pub",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-bar-pub-01.webp",
+          "sha256": "ff8aa7b27a15873fb38f146cf57a1d871e04b1e1cf6603bb559c0cc4f3bc2729"
+        },
+        {
+          "path": "assets/broll-reels/broll-bar-pub-02.webp",
+          "sha256": "34d2a13ef29a250dc3eb42a17db1112bfd73fd1b92d7dd7a325da7193a2fb600"
+        },
+        {
+          "path": "assets/broll-reels/broll-bar-pub-03.webp",
+          "sha256": "f548e171a551c0c862ae9e4947455dbf8e915378434f99a381a842e30a3cbb05"
+        },
+        {
+          "path": "assets/broll-reels/broll-bar-pub-04.webp",
+          "sha256": "fe0bf1a00c93c218bcb14847c35e813ad37f9096db9660db26bd5de72fcf5504"
+        }
+      ]
+    },
+    {
+      "id": "broll-roupas",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-roupas-01.webp",
+          "sha256": "eebc2be0af3d516838e0bc4bab0de6a2f5d759c2ef8718a692b37612269c79f3"
+        },
+        {
+          "path": "assets/broll-reels/broll-roupas-02.webp",
+          "sha256": "6a1fe829ae490734f7ab31791198900ca6ad8dc5fbac548957e89605c67e0f79"
+        },
+        {
+          "path": "assets/broll-reels/broll-roupas-03.webp",
+          "sha256": "0f62f23817e130f91a6ef1246e83f070a96c43be2bdbc93b8bba7e31d349c283"
+        },
+        {
+          "path": "assets/broll-reels/broll-roupas-04.webp",
+          "sha256": "ad37f5ebce20340617e23f0a00d7ad71e9978c70e081aa9af492fd1c3680263d"
+        }
+      ]
+    },
+    {
+      "id": "broll-calcados",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-calcados-01.webp",
+          "sha256": "0925da8b3401ef002412b6f18deb46442abc3255be0b9b74e555cd0a31dddf41"
+        },
+        {
+          "path": "assets/broll-reels/broll-calcados-02.webp",
+          "sha256": "f3a10b0254794d12474901e5507d3a40e3a235cebb46b138b2dfba88a8e7f6e1"
+        },
+        {
+          "path": "assets/broll-reels/broll-calcados-03.webp",
+          "sha256": "561fcc144db56247ff524b9d4e0cc415ac8946bc8250c44ae443271aafa53a9b"
+        },
+        {
+          "path": "assets/broll-reels/broll-calcados-04.webp",
+          "sha256": "7b6bb1d40c318efc942c23e5422cc668473affabeba2e93d2640717d12dc8a47"
+        }
+      ]
+    },
+    {
+      "id": "broll-papelaria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-papelaria-01.webp",
+          "sha256": "f1e15ed40b8b3a116e31e148ce80a86b65a0fc7bd562ec9a0e30f1a4e11cc39a"
+        },
+        {
+          "path": "assets/broll-reels/broll-papelaria-02.webp",
+          "sha256": "ea30a81d0e2f8431bdc1ed2631a1e714fce95e85b55e921c29659882e00386bd"
+        },
+        {
+          "path": "assets/broll-reels/broll-papelaria-03.webp",
+          "sha256": "0fba1e3ac1cac339ee7026e8628237526214cebf66cd3fba09b97f4e1b1351d4"
+        },
+        {
+          "path": "assets/broll-reels/broll-papelaria-04.webp",
+          "sha256": "070a1587a239f9dd5934e3bee65b2fe29a3eceae83fa01e132e6f60f50216af6"
+        }
+      ]
+    },
+    {
+      "id": "broll-livraria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-livraria-01.webp",
+          "sha256": "3bc506a4fe9473a43d7139f85ad654fdc17743c711d5ce5b4b4d54f889187dce"
+        },
+        {
+          "path": "assets/broll-reels/broll-livraria-02.webp",
+          "sha256": "5bd35b60fee4a4fd2a890dbe7ad14ad6d377297d3b4e335078745938a0b8c3fb"
+        },
+        {
+          "path": "assets/broll-reels/broll-livraria-03.webp",
+          "sha256": "fc4dfef4f298126251285a43f189c11b2aa6d461820ba679f121dc49e145e0c1"
+        },
+        {
+          "path": "assets/broll-reels/broll-livraria-04.webp",
+          "sha256": "d305a413fc1b311dc544d2351a5ca9935a97e5de9a07edcc876a8de6ceb4a415"
+        }
+      ]
+    },
+    {
+      "id": "broll-pet-shop",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-pet-shop-01.webp",
+          "sha256": "9274dcee9d6f9e7b75ccceeed2bd8a900a7032f82b4d624871e759ade7acac74"
+        },
+        {
+          "path": "assets/broll-reels/broll-pet-shop-02.webp",
+          "sha256": "6a3ad48eacfb7529ce498c6c89c1d25a977ac3c1a21fb61e523a68f81aa9b477"
+        },
+        {
+          "path": "assets/broll-reels/broll-pet-shop-03.webp",
+          "sha256": "350f3c473cce41484d48a388927a93b29d95aee3227bbf6a2eaaf9de03392229"
+        },
+        {
+          "path": "assets/broll-reels/broll-pet-shop-04.webp",
+          "sha256": "551e281e85ba7adbac1f06471f1ff9a141391aab39a7d1bf3964a3809f80ab1b"
+        }
+      ]
+    },
+    {
+      "id": "broll-eletronicos",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-eletronicos-01.webp",
+          "sha256": "3c25aba4ebc309ab23b7954b1d1e362e894ce75c7346b8c7de4670181faf7a27"
+        },
+        {
+          "path": "assets/broll-reels/broll-eletronicos-02.webp",
+          "sha256": "985290baf4becdbb8dbb8021c601c6f6b4ce67630149c3773eb926bd162b3a9a"
+        },
+        {
+          "path": "assets/broll-reels/broll-eletronicos-03.webp",
+          "sha256": "5d725835041beb049211088bacd53220ebd15a0c1abfe4ba1e507fb9809efea5"
+        },
+        {
+          "path": "assets/broll-reels/broll-eletronicos-04.webp",
+          "sha256": "6d558566a85c32bb559517c57282e4ec2eccfdc9f881e907310c9dc58fbe9c07"
+        }
+      ]
+    },
+    {
+      "id": "broll-celulares",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-celulares-01.webp",
+          "sha256": "8342f4a2ff8b022bb036613be2ea36e4d121d671bae9c17ee09b8145a1f6357c"
+        },
+        {
+          "path": "assets/broll-reels/broll-celulares-02.webp",
+          "sha256": "cb844311088217e8097b1f72f9d3aa5be0058049b3986e33908c0045a874e724"
+        },
+        {
+          "path": "assets/broll-reels/broll-celulares-03.webp",
+          "sha256": "d0a9b0c512d2f61d4664585a696fd46ee905f3eef3217cdfc3d09685332f5c52"
+        },
+        {
+          "path": "assets/broll-reels/broll-celulares-04.webp",
+          "sha256": "6128385b8dac3e37f3cc376888f815d67dcfb492c0b0b2b63207aa381ca65c5c"
+        }
+      ]
+    },
+    {
+      "id": "broll-floricultura",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-floricultura-01.webp",
+          "sha256": "30ed981c096cd2cae2d5df0062c8bd527c52997b52f0b6777a95e5810d68e82c"
+        },
+        {
+          "path": "assets/broll-reels/broll-floricultura-02.webp",
+          "sha256": "f9c05f83135dffd38623baa399cb2fd03df54d3878abc5d6e17cb3eb858a7003"
+        },
+        {
+          "path": "assets/broll-reels/broll-floricultura-03.webp",
+          "sha256": "3aeb31991daa7bc391e61d8d1ac07b37f37fb505d8d1b449a2e9a040dda26e49"
+        },
+        {
+          "path": "assets/broll-reels/broll-floricultura-04.webp",
+          "sha256": "3c0f6b45b6e598c68cbff0df1137cd31403ab92900efa01096a4a978cc0cd116"
+        }
+      ]
+    },
+    {
+      "id": "broll-jardinagem",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-jardinagem-01.webp",
+          "sha256": "dcfd9d80acfca352ef02a877a07e3ca72ae7cac20c8f61a6a7ba017adcbd5ceb"
+        },
+        {
+          "path": "assets/broll-reels/broll-jardinagem-02.webp",
+          "sha256": "c83ef4d2737410e17b4b0fbc841f1cacd22e891b2d5b9d0dd88d4f672567cf6b"
+        },
+        {
+          "path": "assets/broll-reels/broll-jardinagem-03.webp",
+          "sha256": "cce3bc55669bf3e24aa4c81bba49259eaf01aa5aac061b026b17ccf948f94006"
+        },
+        {
+          "path": "assets/broll-reels/broll-jardinagem-04.webp",
+          "sha256": "2f161cd9afbef5c808e10e3413d638edb76a9dea7a97c9ac77b97533fefb0993"
+        }
+      ]
+    },
+    {
+      "id": "broll-otica",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-otica-01.webp",
+          "sha256": "9bff9def26ee898d5a8a01243fd10a06f759a70d3e2cdf8de82c6eed19cdcd37"
+        },
+        {
+          "path": "assets/broll-reels/broll-otica-02.webp",
+          "sha256": "86bf533ed5a35b9913d0b84c0a040b992d87d2975ae7d3da601be740790868a2"
+        },
+        {
+          "path": "assets/broll-reels/broll-otica-03.webp",
+          "sha256": "05b31f5978b7825e7d53b997a7856546a7bde4c735c51c28ead6dcbca9713aac"
+        },
+        {
+          "path": "assets/broll-reels/broll-otica-04.webp",
+          "sha256": "029704a92e1f3fe933fb7290c4f5fa1c580021d6efa627dc8e93588ed06bc3a8"
+        }
+      ]
+    },
+    {
+      "id": "broll-relojoaria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-relojoaria-01.webp",
+          "sha256": "1777a8b103779c9277a917ccac3ec9f20fea8202074848eefbc55253115b6864"
+        },
+        {
+          "path": "assets/broll-reels/broll-relojoaria-02.webp",
+          "sha256": "7a5bab59e8791c88602661b6bce66bf04b9442cafcb5314d3b708d4816566732"
+        },
+        {
+          "path": "assets/broll-reels/broll-relojoaria-03.webp",
+          "sha256": "8e01b5d116c465c212938b64f669333c75dbb6d9d467e2ed879789cecd2e6f6f"
+        },
+        {
+          "path": "assets/broll-reels/broll-relojoaria-04.webp",
+          "sha256": "a5684ac796af0182b6d3effd8586d08868310188496e815b2cd302d03887b1b7"
+        }
+      ]
+    },
+    {
+      "id": "broll-salao-beleza",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-salao-beleza-01.webp",
+          "sha256": "17ec8dfd3eff351a220693071a75705dee02fcfabbaa6ad1447251139828aaa8"
+        },
+        {
+          "path": "assets/broll-reels/broll-salao-beleza-02.webp",
+          "sha256": "d171d28a47cc79e19f346263f7d3aaa375cab1d4676c0d24c3a1b87ba17ada95"
+        },
+        {
+          "path": "assets/broll-reels/broll-salao-beleza-03.webp",
+          "sha256": "9f5e8a8d6d74e9fb1d1a989ff75b325ea4d9ecb61eb682e3d122e8d07d1c8b68"
+        },
+        {
+          "path": "assets/broll-reels/broll-salao-beleza-04.webp",
+          "sha256": "78fadec2c7dc1e5b7c0fe4991a3a75d37b8b6b4d52cf6ddf414131d205290d10"
+        }
+      ]
+    },
+    {
+      "id": "broll-barbearia",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-barbearia-01.webp",
+          "sha256": "eca41ce53be5c5062a68bdd4e4e9f9b74601a671c9b66bd8c5f3d53e4f4fca51"
+        },
+        {
+          "path": "assets/broll-reels/broll-barbearia-02.webp",
+          "sha256": "c26904739e5621f77eb581619fb3318fea7bdbc297c383ebeedec53cd454a176"
+        },
+        {
+          "path": "assets/broll-reels/broll-barbearia-03.webp",
+          "sha256": "2727990d2b8cb17ca6eade448995b070e5986c64e012674c7bd07028f79169eb"
+        },
+        {
+          "path": "assets/broll-reels/broll-barbearia-04.webp",
+          "sha256": "ebfa3b91852ab904f0470fe71d153b833efa46036aa206fbc430253a5cf1a5ac"
+        }
+      ]
+    },
+    {
+      "id": "broll-academia",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-academia-01.webp",
+          "sha256": "ae2de8e180f580c156a28bfe6c78fe475dcfefa4c37894e01a684d2dd1fc6caa"
+        },
+        {
+          "path": "assets/broll-reels/broll-academia-02.webp",
+          "sha256": "0c38ec3d268863001557e1b116544e39776c702f46a6e9fc00a7064e5266f5e1"
+        },
+        {
+          "path": "assets/broll-reels/broll-academia-03.webp",
+          "sha256": "a06679399b2777b93328728e3424a8dd4caaf1776c5dcea83f473dc3f1bd87ef"
+        },
+        {
+          "path": "assets/broll-reels/broll-academia-04.webp",
+          "sha256": "6c9eaa17f2ca2387af5ad563a616784bc05971cd44fe842423141a90098f54ff"
+        }
+      ]
+    },
+    {
+      "id": "broll-estudio-pilates",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-estudio-pilates-01.webp",
+          "sha256": "fe5703412282a46bfd010adceccd407238c36c39ce9f0f8c0cb8370272468dd4"
+        },
+        {
+          "path": "assets/broll-reels/broll-estudio-pilates-02.webp",
+          "sha256": "17f4f73971b5bee699a405c27b0c325e2ca6d14370affee6da1f1f35a28f5a06"
+        },
+        {
+          "path": "assets/broll-reels/broll-estudio-pilates-03.webp",
+          "sha256": "b731cebd8c6f6a4fa3c8ac561a368cddc8e0b827a486a074fd791e3cb501f03a"
+        },
+        {
+          "path": "assets/broll-reels/broll-estudio-pilates-04.webp",
+          "sha256": "7047dec43f06b9291a2ced4a12a1887dba7fb3ffa27f2417e7f929e2b4c1c01b"
+        }
+      ]
+    },
+    {
+      "id": "broll-cosmeticos",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-cosmeticos-01.webp",
+          "sha256": "d826cecae0e235f199a9fc166501e94d7dcc3e8177b60a655f5ac0bea1659ce1"
+        },
+        {
+          "path": "assets/broll-reels/broll-cosmeticos-02.webp",
+          "sha256": "f4b53e26b21aa16cc955a419d4f327ffc83411da48a4bfefe44e2c6fecc14d7c"
+        },
+        {
+          "path": "assets/broll-reels/broll-cosmeticos-03.webp",
+          "sha256": "0371aef7ee6c695c836bbe40ea0869eaf16ec8e10fa2b0982b438036b167218b"
+        },
+        {
+          "path": "assets/broll-reels/broll-cosmeticos-04.webp",
+          "sha256": "d8043d1310f1a65db7218148175c7efaa471deda0182e0acb698cd289601b4a5"
+        }
+      ]
+    },
+    {
+      "id": "broll-perfumaria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-perfumaria-01.webp",
+          "sha256": "3b01d9fcc357fd1eb4fde9e585b1436e4e8d65f69301b27c71c841a9e41eea67"
+        },
+        {
+          "path": "assets/broll-reels/broll-perfumaria-02.webp",
+          "sha256": "cf880703eafacefa36bb3f6979954bc4fb9df27dfd7be14cb501667282ef64f5"
+        },
+        {
+          "path": "assets/broll-reels/broll-perfumaria-03.webp",
+          "sha256": "15e4ae1044a5c6ac93f91e01b60f1d016b6bbe5c3819a7b54c418dec8fde3bad"
+        },
+        {
+          "path": "assets/broll-reels/broll-perfumaria-04.webp",
+          "sha256": "379e4d351d599a90907e1728ff19b04a566a9f4c9bb2b3a8fe2fffc82e2e868a"
+        }
+      ]
+    },
+    {
+      "id": "broll-lavanderia",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-lavanderia-01.webp",
+          "sha256": "1f8700d234b50fd533afde292ccec4d879824f37c4c031ededcb665feccf5227"
+        },
+        {
+          "path": "assets/broll-reels/broll-lavanderia-02.webp",
+          "sha256": "614a760766bd9fa4c79abcea24a65c2354420a82b6a5f3adc02780b32a837117"
+        },
+        {
+          "path": "assets/broll-reels/broll-lavanderia-03.webp",
+          "sha256": "bbd8690a8edd55e00041a6cd8748bca867ead3302d33ec2debb2bd1017b50e8e"
+        },
+        {
+          "path": "assets/broll-reels/broll-lavanderia-04.webp",
+          "sha256": "acd626533bedda48f157bfe3060ea98c25e3843a57ae6d53ef90b46d3e932520"
+        }
+      ]
+    },
+    {
+      "id": "broll-agencia-turismo",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-agencia-turismo-01.webp",
+          "sha256": "d81ca6daded0e2d49a1b55b3123cd1e67af1844475b2e6d5a2e5b4131aafbeab"
+        },
+        {
+          "path": "assets/broll-reels/broll-agencia-turismo-02.webp",
+          "sha256": "0b316bca0a2e5e6af41f179ce39a0738738a4c41cfc76df045f48864a4d1fdaf"
+        },
+        {
+          "path": "assets/broll-reels/broll-agencia-turismo-03.webp",
+          "sha256": "8e573ae1b22d0019bb033679f98374e8fb0d1280109125c3589a5e408cdcd0e4"
+        },
+        {
+          "path": "assets/broll-reels/broll-agencia-turismo-04.webp",
+          "sha256": "c7f6b3a364c53f375341842a2e5373473b840b70fa75d92519a81d8f1a350c12"
+        }
+      ]
+    },
+    {
+      "id": "broll-imobiliaria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-imobiliaria-01.webp",
+          "sha256": "f901844818ccf3a1308e3710250c7b96b86fcda1c8546eb531b0a4603a014543"
+        },
+        {
+          "path": "assets/broll-reels/broll-imobiliaria-02.webp",
+          "sha256": "0574efba9bf5c20b36b68176971e526f633143110808e20c2e10d812b2eada9d"
+        },
+        {
+          "path": "assets/broll-reels/broll-imobiliaria-03.webp",
+          "sha256": "9b53bc7f021c4ce97fcce063fb5a6da03abd2235b5f3c1ca5bd97439c6304351"
+        },
+        {
+          "path": "assets/broll-reels/broll-imobiliaria-04.webp",
+          "sha256": "25507a1c4d3e9c4dfdc7347cd496fa627b5a6287d67ff255242a38c16670bdf7"
+        }
+      ]
+    },
+    {
+      "id": "broll-ecommerce",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-ecommerce-01.webp",
+          "sha256": "b4ba2a38f6cc8eb3d9c90395e82a509d16661b0e9b4968904d26eab8252f0cf7"
+        },
+        {
+          "path": "assets/broll-reels/broll-ecommerce-02.webp",
+          "sha256": "67470c3e171113041920b93f6ebb1551215799587ff5b71c9dcc1a339b275058"
+        },
+        {
+          "path": "assets/broll-reels/broll-ecommerce-03.webp",
+          "sha256": "e91650faa814acccc3f6cd34ac47d8a2b7d7b723340258234e3f105606f4f647"
+        },
+        {
+          "path": "assets/broll-reels/broll-ecommerce-04.webp",
+          "sha256": "1f20e51c8718536662a33dca610fe29831f6929b12977100a1a2216cac79c85b"
+        }
+      ]
+    },
+    {
+      "id": "broll-material-construcao",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-material-construcao-01.webp",
+          "sha256": "bee05594ffc9952a2853c0e4fe7c9e1d0d4b62c67d2e54a7094540e2c4cf788f"
+        },
+        {
+          "path": "assets/broll-reels/broll-material-construcao-02.webp",
+          "sha256": "595b9eacf027ba33bdb5fdff9a35e845e106bef8cbcc966a8f942219ba962eaa"
+        },
+        {
+          "path": "assets/broll-reels/broll-material-construcao-03.webp",
+          "sha256": "790a239de734b2173dfd06d2c1283de020d8afad9b392f937c40f724c7e46aa3"
+        },
+        {
+          "path": "assets/broll-reels/broll-material-construcao-04.webp",
+          "sha256": "baa7033b1ea2ce6450a59195d37448481813e6eb54dbe785335f269e5d89c7c1"
+        }
+      ]
+    },
+    {
+      "id": "broll-ferragem",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-ferragem-01.webp",
+          "sha256": "09e294d1fa069d575168a2a285c0f98d4c2a546e214b6a66ed86c046635265b1"
+        },
+        {
+          "path": "assets/broll-reels/broll-ferragem-02.webp",
+          "sha256": "d7d1b4f9816e3e906cde1c86388e3e6f41570c8c43c2eeea9fd97c43aa840c66"
+        },
+        {
+          "path": "assets/broll-reels/broll-ferragem-03.webp",
+          "sha256": "fbb26249419b6b3972544685a16f773067e23e481600a254e847818fed357b25"
+        },
+        {
+          "path": "assets/broll-reels/broll-ferragem-04.webp",
+          "sha256": "0b04b12eedfa57ee83673a56dcdf7d41503a051b0ea3630ba1b1d428533a9ad3"
+        }
+      ]
+    },
+    {
+      "id": "broll-acougue",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-acougue-01.webp",
+          "sha256": "f07b5ee7bdca60cb94dfe72073cb9dd763f93cfeb91c347bc8d5de3e427d8b4f"
+        },
+        {
+          "path": "assets/broll-reels/broll-acougue-02.webp",
+          "sha256": "90a727472413a08fad91b3b28e9ab03e376390e65632fd500ea42795839bf003"
+        },
+        {
+          "path": "assets/broll-reels/broll-acougue-03.webp",
+          "sha256": "70a537fc6b18b7c7179e31a55a522656c75c17ef2c2592ee36c8303abc87fbb9"
+        },
+        {
+          "path": "assets/broll-reels/broll-acougue-04.webp",
+          "sha256": "9b85ab8650543bbabcffdb8ff9cc5f36b012486c127f9d1780e4ffffaf4620ad"
+        }
+      ]
+    },
+    {
+      "id": "broll-peixaria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-peixaria-01.webp",
+          "sha256": "9e99aaf33fe66154716e0c86ee5bf14596260698157f584e7efee6062194b705"
+        },
+        {
+          "path": "assets/broll-reels/broll-peixaria-02.webp",
+          "sha256": "10ceb76330243d4d3f3e08327694393ca2e80f95c82724c8373be3353e715299"
+        },
+        {
+          "path": "assets/broll-reels/broll-peixaria-03.webp",
+          "sha256": "0df20e63fc92d4a3a3b4687397ed6ab322b0f335a937374e6865cb5c3c762d28"
+        },
+        {
+          "path": "assets/broll-reels/broll-peixaria-04.webp",
+          "sha256": "728ce33b1cf22860a4c7e18c880ff3805ae00a2cc159b50ebad737189b801d8c"
+        }
+      ]
+    },
+    {
+      "id": "broll-cafeteria",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-cafeteria-01.webp",
+          "sha256": "c4a553de0434b737a7fd4035981d4dabeb3fa7c1c2b6df241f3c01e22744506a"
+        },
+        {
+          "path": "assets/broll-reels/broll-cafeteria-02.webp",
+          "sha256": "b5a5bec3667fa8881b1b8a96630d3151f381ac4389ff783893fe4c18ae18ffaa"
+        },
+        {
+          "path": "assets/broll-reels/broll-cafeteria-03.webp",
+          "sha256": "7eff18a8753005ffb18abbbbf2e1fffbd20ce94219e23f221e31a659cca8553c"
+        },
+        {
+          "path": "assets/broll-reels/broll-cafeteria-04.webp",
+          "sha256": "d9e0d7fcfa30187109661791ccb0f16dd11d29833bca67fd1d3c8e1d51ef010e"
+        }
+      ]
+    },
+    {
+      "id": "broll-automotivo",
+      "frames": [
+        {
+          "path": "assets/broll-reels/broll-automotivo-01.webp",
+          "sha256": "13ba8b5a3e0bfd6d4c1a0f0dbbb8f2edb2ea8d7a0c76b18c458c8e97b0490194"
+        },
+        {
+          "path": "assets/broll-reels/broll-automotivo-02.webp",
+          "sha256": "d61c04f42e7a4258c533a4715b916138484ae585bb65cda40e7b8ebf2e0fab9d"
+        },
+        {
+          "path": "assets/broll-reels/broll-automotivo-03.webp",
+          "sha256": "0e24de70c2826b675882df37297b9d5301311d248e453cb412a2f9c50db61e25"
+        },
+        {
+          "path": "assets/broll-reels/broll-automotivo-04.webp",
+          "sha256": "bde66ddcc08106ab3e67c604ffb8da528ac10e52db67d66271882e9d0b377979"
+        }
+      ]
+    }
+  ]
+}

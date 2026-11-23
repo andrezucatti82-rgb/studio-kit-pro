@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "date": "2026-11-18",
   "catalogVersion": "4.9",
-  "catalogSha256": "da049794ccf55f7e576725da9cb3ca97961af7f848f0e45f8a0c7275b2c6139b",
+  "catalogSha256": "27496969e4139e8faf57c310cc22f10a7ef53546eaf8f9c2b0b306ef0d2675e0",
   "skillRoutingVersion": 3,
   "publicSkillCount": 1,
   "internalModuleCount": 7,
@@ -14,7 +14,7 @@
     "video-explicador-interativo": 306,
     "video-publicidade": 440,
     "video-edicao": 1455,
-    "video-vfx": 385,
+    "video-vfx": 375,
     "video-tratamento": 1455,
     "video-revisao": 1455
   },
@@ -21875,7 +21875,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "0feb4554086963d597a0132cc846b4838bfc851d0fd94933a1d2272b37bf271f",
+      "promptSha256": "e763df41aa9ef5008bdcdd2f16e0420e45b9239daeee94c07da2d6626d005515",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21888,7 +21888,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "537ace2f6bb1cc044e987168a810aa2a72922abddc472c669469dd3ea258b012",
+      "promptSha256": "d808c4c8ad517a6131008e2b1c2c30c0ba4752c1d2f871d381f494c773ae5602",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21897,18 +21897,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-bar-pub",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "876c5672afc86264bf2329f82d35b99489c4f5a19bf8436f0b33763f180e462b",
+      "vfxContributions": [],
+      "promptSha256": "198a89128e5a9ebf7f4859065301326b6283be93047040bfd3f5a277564972fe",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21928,7 +21921,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "64b641ce1ddc09f03886aeef8a786a8f5429e29dbf0f5004de2109b4c9ca28ef",
+      "promptSha256": "090f96e30683849ff3eb8c96f374e38357e2c77639ccad48c4f404b3b1c07721",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21941,7 +21934,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "97c59b940ad3522dadac9b44c7637b80d3838b44aad974a6744f5fe1b9118ce4",
+      "promptSha256": "ba4545ab6b22117c3be3cb2545de9cc6ebcb857340a88a0655602acb94fdb9eb",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21950,18 +21943,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-papelaria",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "93ddb1d2602d46f60cdd54b2afdcb128459c361f55c85e9f9e19a5debe3601ed",
+      "vfxContributions": [],
+      "promptSha256": "1d010218e361ee7a63520aa3789fecf50c997f4237b1c4798b2f9d4310956cf4",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21981,7 +21967,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "3a96e0aa06da707be4e7fac39f1e9e2fc8d08d650053887d0eab52d0e7c744ec",
+      "promptSha256": "25163230e014db389eaf12479f7635769c9434f4cfb3f87bcaa062434c829d14",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -21994,7 +21980,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "c06036e36a3c1b10a0055ec73e330183f41aa9799313fd092e6b848bace3ce0e",
+      "promptSha256": "0c4e19e63622096cffe364155684b92ef4dae23e4180c50d3df77e4f0232b20d",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22003,18 +21989,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-eletronicos",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "c6bddd73443e83de1744c45b0a52e85c6954778516bc9b63eac42fb9ce91b594",
+      "vfxContributions": [],
+      "promptSha256": "fac4d077fb0d6095c1dc887674be9543d539e871a01973c8bdddc6470db1fb2d",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22034,7 +22013,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "3b1302a6512bed8c46060b14fe67c92a2178f2f7a999ae857bb3accafb917a14",
+      "promptSha256": "684676ced825811d5e8119ab5dfffe6474169fe128559184b0d45f46628babbd",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22047,7 +22026,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "408cfaa8f2d627b967e057581ca5003ac7079c5ff224bc844049b51e88e0bbf5",
+      "promptSha256": "bbbb2157f43b53457a9846ddf1f6b95339fbd54ba337e3d7a6fcae567f6cf42c",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22056,18 +22035,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-jardinagem",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "ff2528df580fd6922002394915e0bb47d668b4a2712f69b4570da00c6eade1bd",
+      "vfxContributions": [],
+      "promptSha256": "1079feb09e114a67a4725d6f0a7c8aeaa7d867f3ab22473bb91c42093375d843",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22087,7 +22059,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "c7760974c0b7f30d0fa2634cb7900ebad6984329a102ba90d05a49086a2a38a4",
+      "promptSha256": "fd54bed2489e07a7b108c33fcd9bb37649050e305255c981316a59181c55e597",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22100,7 +22072,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "69bad5c4dbc3e98aba706007c7b28976e8bce3d69bb897edb7a0158436b0eef1",
+      "promptSha256": "8e2ec4f60bd453ac50e64785035c288e5b9c0839d760d032278c7b5b8b42764b",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22109,18 +22081,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-salao-beleza",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "5f02cadf2e2c03bbbe5b0eb81ffcdecde8928a56fb0517150eeef7bedf0af962",
+      "vfxContributions": [],
+      "promptSha256": "32b259ab2b9dede60d9be1184e9a20f14a4ef172ef4450b04ff044e0bdfa6eac",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22140,7 +22105,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "2f118293a00d39918f9abe2ac0d9586bf5462ea6d00b17f6938f6020823bc8d7",
+      "promptSha256": "1255e8a0b25b64132c18137240af64b625b8568d3a98deddbb1a76a3cba3bbc9",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22153,7 +22118,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "583bcbccc5f9b0538d9956d6252f9c148574c25a44419d5d2a5637e077d0f910",
+      "promptSha256": "e4e39289a187fac4a3325932393cedbd80381b13ee41c3aaf415742df5af5ae7",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22162,18 +22127,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-estudio-pilates",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "1cdfd288240c7205540f7d44f013390bf2c2ba63a9f3ce2ffad98c48e1b1aae0",
+      "vfxContributions": [],
+      "promptSha256": "082430ff4f504c6815c52d31914aeab48ca0e704fd0eff141d67ba946d20583f",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22193,7 +22151,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "baf2ea9c3a96926603307efbbdd43ef8de56659789f6efa997691c33fc0fb2ea",
+      "promptSha256": "d7efc34831e4ba6b8c7b53380289ba0cf94c664084cf203b28bc7f2de66648e6",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22206,7 +22164,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "538011c9bb63968c090b544bf68a5cf61d3fcbb9f4fab50d337b3bf79acf7b7c",
+      "promptSha256": "9c1e7107fd92b403ed6d6a3f975bb04194f1747fa4f54527c4e568e676aa4432",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22215,18 +22173,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-lavanderia",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "1c745e6b0c23235216e71040facf4152155c63050998da0ec229183c913a8448",
+      "vfxContributions": [],
+      "promptSha256": "403b2fdfa27b63b54c1d4ff7261054631e10922145ee5ecdf82f7a9ee871b296",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22246,7 +22197,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "0a20608865543bf1fec6c1cbfb3dc1faadbaf0184ff649e573f91e056e516b97",
+      "promptSha256": "73ab18353a2d5c9366276fae94b9a0d1f8a1afe3b458ca3491111a9e7bc324f1",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22259,7 +22210,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "e5fef242b6531120726d64c841891f217cc2e472a714f1accca321ebd4cc8b4c",
+      "promptSha256": "2ddbbebebb22383949a400fcd981c82e98de3244c6f5454c08bbfbf16ea3f71c",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22268,18 +22219,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-ecommerce",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "57543b00824c97e5c88fc806a6e0ed9ce5191ee2c752d5368f54608a75919248",
+      "vfxContributions": [],
+      "promptSha256": "b3ccea36801ef6a77dc6d42767bf1c078ec82b880ec6ea611fede48415454599",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22299,7 +22243,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "83ae4c34f27848757c0bf3f365db7ea04469672a2c571a1a7194a8250eb2c3a6",
+      "promptSha256": "68a8f3d99c216bd2acbed1156dfe1b6bf1b8c0e396cdfe22124a7e3959905d92",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22312,7 +22256,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "e9f54b753c7ec219c4d3539abbefc65df701006838390eb71f7e72c45ddaa19b",
+      "promptSha256": "f8ddb921c007ce34c03ac05dee21e99793378a9139da4bad85459fba44172578",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22321,18 +22265,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-acougue",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "f8e4553a129345ac985c72b61e069b13f086e1359f0be80acd8373b8b4d06395",
+      "vfxContributions": [],
+      "promptSha256": "fe0eef07be55e89a20636a4fe705e9a411f45ee8993269e21469b19cedb3f6ee",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22352,7 +22289,7 @@
           "scope": "film"
         }
       ],
-      "promptSha256": "1e8e09d6cddd91966dc22f81ef80179247dfc9264df91e304b00966b77dd273d",
+      "promptSha256": "5c2574c9f12cd53e3fbc806e319aae83f7dcfb670414fb2311e8a58f26f427a0",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22365,7 +22302,7 @@
         "video-revisao"
       ],
       "vfxContributions": [],
-      "promptSha256": "0bb85ef3c48e0ad101164fef05da73c42c828cb9d13345234d8e3e17ee50304a",
+      "promptSha256": "e20f0238bd7405a8fa06596cc4bbc5d59c4ad48492ba05df0319f51f821c368a",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     },
@@ -22374,18 +22311,11 @@
       "modules": [
         "video-planejamento",
         "video-edicao",
-        "video-vfx",
         "video-tratamento",
         "video-revisao"
       ],
-      "vfxContributions": [
-        {
-          "styleId": "broll-automotivo",
-          "aspect": "style_direction",
-          "scope": "film"
-        }
-      ],
-      "promptSha256": "1fa42d029864b0398d023520ea0a6d2af787ef36a83db02ea866051daa66305e",
+      "vfxContributions": [],
+      "promptSha256": "aa4b744350711c29a3a6c0a026e7450d967dbdaf557cb37d168dda5061dd7bc7",
       "status": "contract_checked",
       "audiovisualValidation": "not_run"
     }
