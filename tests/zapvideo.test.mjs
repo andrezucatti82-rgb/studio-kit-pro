@@ -112,6 +112,34 @@ test('Gemini fail-closed capability, HTTP payload, structured validation and fai
   await assert.rejects(proposeBrief('Prévia',env,async()=>new Response(null,{status:503})),/Google pode ter aceitado/);
 });
 
+test('recipes bind the brief to a supported goal, style, aspect and duration without exposing materials',async()=>{
+  const recipe={id:'avatar',goal:'explain',style:'presenter',duration:15};
+  const project={...plan(),intent:{mode:'create',subject:'Como escolher café',recipe},actions:{},assembly:{aspect:'9:16'}};
+  assert.equal(validateProject(project),project);
+  for (const invalid of [{id:'arbitrary-mcp'}, {goal:'custom'}, {style:'arbitrary'}, {duration:45}, {id:'carrossel'}]) {
+    assert.throws(()=>validateProject({...project,intent:{...project.intent,recipe:{...recipe,...invalid}}}),/Confira a receita/);
+  }
+  const settings={...recipe,aspect:'9:16'};
+  const {proposal}=await proposeBrief(project.intent.subject,{ENVIRONMENT:'local',GEMINI_MOCK:'1'},undefined,settings);
+  assert.equal(proposal.scenes.flatMap(scene=>scene.shots).reduce((sum,shot)=>sum+shot.seconds,0),15);
+  const env={GEMINI_BRIEF_FREE_VERIFIED:'1',GEMINI_API_KEY:'synthetic',GEMINI_BRIEF_MODEL:'gemini-test'};
+  const mockResponse=value=>Response.json({steps:[{type:'model_output',content:[{type:'text',text:JSON.stringify(value)}]}]});
+  const result=await proposeBrief(project.intent.subject,env,async (_url,init)=>{
+    const {input,system_instruction}=JSON.parse(init.body);
+    const parsed=JSON.parse(input);
+    assert.deepEqual(Object.keys(parsed),['subject','language','direction']);
+    assert.equal(parsed.direction.style,'Pessoa em cena');
+    assert.equal(parsed.direction.aspect,'9:16');
+    assert.equal(parsed.direction.seconds,15);
+    assert.match(system_instruction,/Não inclua prompts/);
+    return mockResponse(proposal);
+  },settings);
+  assert.deepEqual(result.proposal,proposal);
+  const wrongDuration=structuredClone(proposal);
+  wrongDuration.scenes[0].shots[0].seconds+=1;
+  assert.match((await proposeBrief(project.intent.subject,env,async()=>mockResponse(wrongDuration),settings)).error,/sem uma proposta válida/);
+});
+
 test('multimodal sources use checked formats and known source IDs without calling a provider', async()=>{
   const asset={type:'image',mime_type:'image/png',data:'synthetic'};
   assert(detectType(Uint8Array.of(137,80,78,71,13,10,26,10),'image/png'));

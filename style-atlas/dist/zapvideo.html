@@ -14,6 +14,7 @@
   <link rel="canonical" href="https://zapvideo.com.br/">
   <link rel="icon" type="image/svg+xml" href="/assets/zapvideo-icon.svg">
   <link rel="stylesheet" href="/zapvideo-workspace.css">
+  <link rel="stylesheet" href="/zapvideo-recipes.css">
   <script type="module" src="/zapvideo-workspace.mjs"></script>
 </head>
 <body>
@@ -26,7 +27,20 @@
   </header>
   <main>
     <section aria-labelledby="start-title" id="choose">
-      <h1 id="start-title">O que você quer fazer?</h1>
+      <div class="start-hero">
+        <div class="start-copy">
+          <h1 id="start-title">O que você quer fazer?</h1>
+          <p>Escolha uma receita, veja como pode ficar e monte seu vídeo passo a passo.</p>
+          <div class="button-row">
+            <a class="primary start-cta" href="#receitas">Explorar receitas ↓</a>
+            <button id="resume-draft" class="secondary" type="button" hidden>Retomar meu projeto</button>
+          </div>
+        </div>
+        <button id="featured-recipe" class="featured-recipe" type="button" aria-label="Ver prévia de Criar vídeo do zero com avatar">
+          <img src="/assets/style-sequences/apresentadora-despojada-em-cafe-externo-03.webp" width="960" height="540" alt="">
+          <span class="featured-caption"><span class="featured-play" aria-hidden="true">▶</span><span><strong>Avatar apresenta seu assunto</strong><small>Ver receita</small></span></span>
+        </button>
+      </div>
       <div class="choices">
         <button class="choice" data-mode="edit" type="button">
           <img src="/assets/style-sequences/apresentadora-despojada-em-cafe-externo-02-small.webp" width="320" height="180" alt="">
@@ -44,7 +58,15 @@
           <span>Use a página do produto e escolha um estilo.</span>
         </button>
       </div>
-      <button id="resume-draft" class="secondary" type="button" hidden>Retomar meu projeto</button>
+      <section id="receitas" aria-labelledby="recipes-title">
+        <div class="recipes-heading">
+          <div><h2 id="recipes-title">Receitas de produção</h2><p class="muted">Compare exemplos pelo resultado que você quer criar.</p></div>
+          <div class="recipe-search"><label for="recipe-search">Buscar receita</label><input id="recipe-search" type="search" placeholder="Ex.: avatar, anúncio ou podcast"></div>
+        </div>
+        <div id="recipe-filters" class="recipe-filters" role="group" aria-label="Categorias de receitas"></div>
+        <p id="recipe-count" class="small" role="status"></p>
+        <div id="recipe-grid" class="recipe-grid"></div>
+      </section>
     </section>
 
     <section id="workspace" aria-labelledby="workspace-title" hidden>
@@ -159,7 +181,34 @@
           </section>
           <section id="create-section" class="panel planning-slide" data-plan-step="idea" aria-labelledby="brief-title" hidden>
             <h2 id="brief-title" tabindex="-1">Defina o assunto</h2>
-            <div class="button-row" role="group" aria-label="Origem do projeto">
+            <div id="recipe-intake" hidden>
+              <div class="recipe-intake-layout">
+                <div>
+                  <label for="recipe-subject">Sobre o que é o vídeo?</label>
+                  <input id="recipe-subject" maxlength="240" placeholder="Ex.: como escolher um café para coar">
+                  <label for="recipe-goal">O que você quer alcançar?</label>
+                  <select id="recipe-goal"></select>
+                  <div class="recipe-format">
+                    <label>Formato <select id="recipe-aspect"><option value="9:16">Vertical · 9:16</option><option value="16:9">Horizontal · 16:9</option></select></label>
+                    <label>Duração <select id="recipe-duration"><option value="9">9 s</option><option value="15">15 s</option><option value="20">20 s</option><option value="30">30 s</option></select></label>
+                  </div>
+                </div>
+                <div id="recipe-material-box" class="recipe-material-box" hidden>
+                  <label id="recipe-material-label" for="recipe-material"></label>
+                  <p id="recipe-material-hint" class="small"></p>
+                  <label id="recipe-permission-label" class="toggle" hidden><input id="recipe-permission" type="checkbox"> Tenho autorização para usar essa imagem e voz.</label>
+                  <input id="recipe-material" type="file" aria-describedby="recipe-material-hint recipe-material-state">
+                  <div id="recipe-voice-box" hidden>
+                    <label for="recipe-voice">Áudio com a sua voz <span class="muted">opcional</span></label>
+                    <input id="recipe-voice" type="file" accept="audio/mpeg,audio/wav,audio/mp4,.mp3,.wav,.m4a">
+                  </div>
+                  <p id="recipe-material-state" class="small" role="status"></p>
+                  <button id="recipe-remove-media" class="plain" type="button" hidden>Remover referências</button>
+                </div>
+              </div>
+              <p id="recipe-scope" class="muted" hidden></p>
+            </div>
+            <div id="origin-choices" class="button-row" role="group" aria-label="Origem do projeto">
               <button id="origin-link" class="secondary" type="button" aria-pressed="false">Link do produto</button>
               <button id="origin-manual" class="secondary" type="button" aria-pressed="true">Escrever ideia</button>
             </div>
@@ -204,6 +253,7 @@
             <h2 id="style-title" tabindex="-1">Escolha o estilo</h2>
             <p class="muted">Veja os exemplos antes de decidir.</p>
             <div id="style-cards" class="visual-grid"></div>
+            <div class="recipe-assist" id="recipe-assist" hidden></div>
             <p id="board-replace" class="muted" hidden>Refazer substitui as cenas da ficha. Seus arquivos ficam disponíveis em Referências.</p>
           </section>
           <section id="scene-section" class="panel planning-slide" data-plan-step="scenes" aria-labelledby="scene-title" hidden>
@@ -318,6 +368,35 @@
     </section>
   </main>
 
+  <dialog id="recipe-dialog" aria-labelledby="recipe-dialog-title">
+    <button id="recipe-close" class="plain recipe-close" type="button" aria-label="Fechar receita">×</button>
+    <div class="recipe-dialog-layout">
+      <div>
+        <video id="recipe-video" controls playsinline preload="none" hidden></video>
+        <div id="recipe-frame-view" class="recipe-frame-view"><img id="recipe-frame" width="960" height="540" alt="Exemplo visual da receita"></div>
+        <p id="recipe-reference" class="small" hidden></p>
+        <div id="recipe-frame-controls" class="button-row" aria-label="Quadros de exemplo">
+          <button id="recipe-frame-prev" class="secondary" type="button" aria-label="Quadro anterior">←</button>
+          <span id="recipe-frame-count" class="small" role="status"></span>
+          <button id="recipe-frame-next" class="secondary" type="button" aria-label="Próximo quadro">→</button>
+          <button id="recipe-play" class="secondary" type="button">Animar quadros</button>
+        </div>
+      </div>
+      <div>
+        <h2 id="recipe-dialog-title"></h2>
+        <ol id="recipe-beats"></ol>
+        <p id="recipe-dialog-scope" class="muted"></p>
+        <form id="recipe-plan" hidden>
+          <label for="recipe-plan-topic">Qual é o assunto?</label>
+          <input id="recipe-plan-topic" maxlength="240" required>
+          <label for="recipe-plan-goal">O que você quer alcançar?</label>
+          <select id="recipe-plan-goal"></select>
+          <button class="primary" type="submit">Baixar plano de produção</button>
+        </form>
+        <button id="recipe-use" class="primary" type="button">Usar receita →</button>
+      </div>
+    </div>
+  </dialog>
   <dialog id="style-dialog" aria-labelledby="style-example-title">
     <h2 id="style-example-title"></h2>
     <img id="style-example-image" width="512" height="288" alt="Quadro de exemplo do catálogo">

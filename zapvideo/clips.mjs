@@ -1,4 +1,5 @@
 import {isId,validClipSettings} from '../style-atlas/dist/zapvideo-contract.mjs';
+import {recipeCanGenerateClip} from '../style-atlas/dist/zapvideo-recipes.mjs';
 import {detectType,mediaType,encodeBase64} from './analysis-media.mjs';
 import {digest, googleDailyBudget, hex, isHash, json, now, readJson, reject, sql, uuid} from './http.mjs';
 import {hasGeminiProvider} from './google-provider.mjs';
@@ -21,6 +22,7 @@ export const clipModel=(env,mode=clipMode(env))=>mode==='mock'?omniModel:configu
 const reservedFor=(env,seconds,mode)=>mode==='mock'?0:unitPrice(env)*seconds;
 
 export function clipScope(plan,{sceneId,shotId,frameId,aspect}) {
+  if (!recipeCanGenerateClip(plan.intent.recipe?.id)) reject(400,'Esta receita está disponível para planejamento.');
   const scene=plan.scenes.find(item=>item.id===sceneId);
   const shot=scene?.shots.find(item=>item.id===shotId);
   const frame=plan.materials.find(item=>item.id===frameId);

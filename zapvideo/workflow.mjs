@@ -311,7 +311,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
                 WHERE p.id=? AND u.revoked_at IS NULL AND u.expires_at>?)`,now(),id,job.project_id,now()).run();
             if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
           }
-          return productUrl ? readProduct(productUrl,env) : proposeBrief(plan.intent.subject,env);
+          return productUrl ? readProduct(productUrl,env) : proposeBrief(plan.intent.subject,env,undefined,
+            plan.intent.recipe && {...plan.intent.recipe,aspect:plan.assembly?.aspect});
         }
         let media;
         try { media=await getAnalysisInput(env,plan,JSON.parse(job.parameters)); }

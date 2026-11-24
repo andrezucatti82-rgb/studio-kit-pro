@@ -16,11 +16,93 @@ artifacts = fixtures / "browser"
 artifacts.mkdir(exist_ok=True)
 source = fixtures / "câmera sintética.mp4"
 srt = fixtures / "legendas.srt"
-token = json.loads(Path(".cache/zapvideo/fixture-access.json").read_text())[0]["token"]
+seats = json.loads(Path(".cache/zapvideo/fixture-access.json").read_text())
+token = seats[0]["token"]
+
+
+def check_recipes(browser, width):
+    with browser.new_context(viewport={"width": width, "height": 890}, reduced_motion="reduce" if width == 390 else "no-preference") as ctx:
+        page = ctx.new_page()
+        errors = []
+        page.on("pageerror", lambda error: errors.append(str(error)))
+        page.goto(args.base)
+        expect(page.locator(".recipe-card")).to_have_count(56)
+        page.locator("#recipe-search").fill("podcast")
+        expect(page.locator(".recipe-card")).to_have_count(2)
+        page.locator("#recipe-search").fill("")
+        page.get_by_role("button", name="Anúncios e vendas", exact=True).click()
+        expect(page.locator(".recipe-card")).to_have_count(7)
+        page.locator('[data-recipe="foto-pessoa"]').click()
+        expect(page.locator("#recipe-video")).to_be_visible()
+        page.locator("#recipe-video").evaluate("(video) => video.play()")
+        page.wait_for_function("document.querySelector('#recipe-video').currentTime > 0")
+        page.keyboard.press("Escape")
+        expect(page.locator("#recipe-dialog")).to_be_hidden()
+        page.get_by_role("button", name="Todas", exact=True).click()
+        page.locator('[data-recipe="carrossel"]').click()
+        page.locator("#recipe-plan-topic").fill("Guia de café")
+        with page.expect_download() as downloaded:
+            page.get_by_role("button", name="Baixar plano de produção").click()
+        assert downloaded.value.suggested_filename == "plano-carrossel.txt"
+        page.locator("#recipe-close").click()
+        page.get_by_role("button", name="Apresentador e avatar", exact=True).click()
+        expect(page.locator(".recipe-card")).to_have_count(10)
+        page.locator('[data-recipe="dados-gesto"]').click()
+        expect(page.locator("#recipe-reference")).to_contain_text("Apresentador com dados")
+        page.locator("#recipe-frame-next").click()
+        expect(page.locator("#recipe-frame-view")).to_have_attribute("data-panel", "1")
+        page.locator("#recipe-close").click()
+        page.locator("#featured-recipe").click()
+        expect(page.locator("#recipe-dialog-title")).to_have_text("Criar vídeo do zero com avatar")
+        page.locator("#recipe-frame-next").click()
+        expect(page.locator("#recipe-frame-count")).to_have_text("Quadro 2 de 3")
+        if width == 390:
+            expect(page.locator("#recipe-play")).to_be_hidden()
+        else:
+            expect(page.locator("#recipe-play")).to_be_visible()
+        page.screenshot(path=artifacts / f"{width}-receita-avatar.png")
+        page.locator("#recipe-use").click()
+        expect(page.locator("#recipe-material")).to_be_disabled()
+        page.locator("#recipe-permission").check()
+        page.locator("#recipe-material").set_input_files(fixtures / "quadro para aprovação.png")
+        expect(page.locator("#recipe-material-state")).to_contain_text("adicionado")
+        page.locator("#recipe-subject").fill("Como escolher café")
+        page.locator("#recipe-aspect").select_option("16:9")
+        page.screenshot(path=artifacts / f"{width}-receita-assunto.png")
+        page.locator("#planning-next").click()
+        expect(page.locator("#style-cards h3").first).to_have_text("Pessoa em cena")
+        page.locator("#planning-next").click()
+        expect(page.locator("#moodboard")).to_contain_text("Pessoa em cena")
+        expect(page.locator("#scenes > fieldset")).to_have_count(3)
+        expect(page.locator("[data-step=assembly]")).to_be_hidden()
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+        if width == 1280:
+            page.locator("#pilot summary").click()
+            page.locator("#token").fill(seats[1]["token"])
+            page.locator("#connect").click()
+            expect(page.locator("#status")).to_have_text("Acesso confirmado.")
+            page.locator("[data-step=style]").click()
+            page.locator("#suggest").click()
+            expect(page.locator("#proposal-title")).to_contain_text("Proposta simulada", timeout=30000)
+            page.locator("#apply-proposal").click()
+            expect(page.locator("#scenes > fieldset")).to_have_count(3)
+            expect(page.get_by_role("button", name="Revisar clipe deste plano")).to_have_count(0)
+        page.locator("#planning-next").click()
+        expect(page.locator("[aria-current=step]")).to_contain_text("Entrega")
+        expect(page.locator("#request")).to_have_text("Baixar plano de produção")
+        page.reload()
+        page.locator("#resume-draft").click()
+        expect(page.locator("[aria-current=step]")).to_contain_text("Entrega")
+        page.locator("[data-step=idea]").click()
+        expect(page.locator("#recipe-subject")).to_have_value("Como escolher café")
+        expect(page.locator("#recipe-material-state")).to_contain_text("selecione de novo")
+        assert not errors, errors
+
 
 with sync_playwright() as p:
     browser = p.chromium.launch(executable_path=args.chrome, args=["--autoplay-policy=no-user-gesture-required"])
     for width in (390, 1280):
+        check_recipes(browser, width)
         mobile = width == 390
         ctx = browser.new_context(viewport={"width": width, "height": 890}, is_mobile=mobile, has_touch=mobile)
         ctx.add_init_script("window.showSaveFilePicker = undefined")

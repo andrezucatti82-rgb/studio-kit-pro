@@ -3,7 +3,9 @@ import {describeProject, editOutputs, isId, limits, parseTime, projectFormat, pr
 import {encryptHandoff} from './zapvideo-transfer.mjs';
 import {readSrt, suggestCuts} from './zapvideo-captions.mjs';
 import {assemblyPlan} from './zapvideo-assembly.mjs';
-import {styles,durations,objectives,makeBoard} from './zapvideo-guided.mjs';
+import {styles,recipeStyles,durations,objectives,makeBoard} from './zapvideo-guided.mjs';
+import {findRecipe,recipeGoals,recipePreviews,recipeCanGenerateClip} from './zapvideo-recipes.mjs';
+import {recipeGoalOptions,setupRecipes} from './zapvideo-recipe-ui.mjs';
 import {setupEditPreviews,showEditSource,positionCropGuide,captureEditFrame,refreshEditTreatment,softImage} from './zapvideo-edit-previews.mjs';
 
 const $ = id => document.getElementById(id);
@@ -12,6 +14,7 @@ const apiRoot = '/api/zapvideo';
 const files = new Map();
 const savedDrafts = {};
 const savedJobs = {};
+const draftKey = record => findRecipe(record.recipe?.id) ? 'recipe-'+record.recipe.id : record.mode;
 const editTitle = 'Editar um vídeo que já tenho';
 const createTitle = 'Criar um vídeo com IA';
 const accessKey = 'zapvideo-pilot';
@@ -29,6 +32,8 @@ const planningButtons=[...document.querySelectorAll('[data-step]')];
 const planningPanels=planningButtons.map(button=>document.querySelector(`[data-plan-step="${button.dataset.step}"]`));
 const planningNext=['Escolher estilo','Ver storyboard','Continuar para montagem','Revisar e entregar'];
 const storyboardIndex=planningButtons.findIndex(button=>button.dataset.step==='scenes');
+const currentRecipe=()=>findRecipe(draft?.recipe?.id);
+const styleOptions=()=>currentRecipe()?recipeStyles:styles;
 const guided=()=>draft.guided ??= {url:'',name:'',category:'',description:'',style:'',aspect:'9:16',duration:15,objective:'sell'};
 let stylePreview,productRequest;
 const boardUrls=[];
@@ -40,11 +45,12 @@ const pauseEditAudio=setupEditPreviews(editVideo);
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
   for (const [mode,record] of Object.entries(restored?.drafts || {})) {
-    if (['edit','create'].includes(mode) && record?.mode===mode && isId(record.id) && record.version===projectVersion) savedDrafts[mode]=record;
+    if (record && ['edit','create'].includes(record.mode) && draftKey(record)===mode &&
+      isId(record.id) && record.version===projectVersion) savedDrafts[mode]=record;
   }
   Object.assign(savedJobs,restored?.jobs || {});
   if (isId(restored?.draft?.id) && restored.draft.version === projectVersion) {
-    draft = savedDrafts[restored.draft.mode] ?? restored.draft;
+    draft = savedDrafts[draftKey(restored.draft)] ?? restored.draft;
     lastJob = savedJobs[draft.id] ?? restored.lastJob;
     $('resume-draft').hidden = false;
   }
@@ -56,7 +62,7 @@ if (location.pathname === '/' && location.hash && ['#instalar','#biblioteca','#p
 
 function note(message) { $('status').textContent = message; }
 function save() {
-  savedDrafts[draft.mode]=draft;
+  savedDrafts[draftKey(draft)]=draft;
   if (lastJob) savedJobs[draft.id]=lastJob;
   try { localStorage.setItem(storage,JSON.stringify({draft,drafts:savedDrafts,jobs:savedJobs})); }
   catch { note('Seu navegador restringiu o salvamento. Baixe a ficha para guardar as alterações.'); }
@@ -80,7 +86,8 @@ function draftPlan() {
   const analysisIds=new Set(draft.analysisIds || []);
   const assemblyIds=new Set(draft.assemblyIds || []);
   return {format:projectFormat,version:projectVersion,id:draft.id,revision:draft.revision,
-    intent:{mode:draft.mode,subject:draft.mode === 'create' ? draft.subject : ''},
+    intent:{mode:draft.mode,subject:draft.mode === 'create' ? draft.subject : '',
+      ...(currentRecipe()?{recipe:{id:draft.recipe.id,goal:draft.recipe.goal,style:guided().style,duration:guided().duration}}:{})},
     materials:draft.materials.filter(item => draft.mode === 'create' || item.kind !== 'subtitle' || draft.captions)
       .map(item => ({...item,permission:(draft.mode==='edit' && draft.permission) ||
         (draft.mode==='create' && ((draft.analysisPermit && analysisIds.has(item.id)) || draft.clipFrameIds?.includes(item.id) ||
@@ -114,15 +121,7 @@ function materialList(container, kinds) {
     button.textContent = 'Remover';
     button.setAttribute('aria-label','Remover '+item.name);
     button.onclick = () => {
-      draft.materials = draft.materials.filter(value => value.id !== item.id);
-      if (draft.musicMaterialId===item.id) delete draft.musicMaterialId;
-      for (const scene of draft.scenes) if (scene.narrationMaterialId===item.id) delete scene.narrationMaterialId;
-      draft.analysisIds=(draft.analysisIds || []).filter(id=>id!==item.id);
-      draft.analysisPermit=false;
-      for (const scene of draft.scenes) for (const shot of scene.shots) {
-        shot.layers = shot.layers.filter(layer => layer.materialId !== item.id);
-      }
-      files.delete(item.id);
+      removeMaterials(new Set([item.id]));
       renderScenes();
       renderAnalysisFiles();
       update();
@@ -130,6 +129,23 @@ function materialList(container, kinds) {
     row.append(button);
     container.append(row);
   }
+}
+function removeMaterials(ids) {
+  draft.materials=draft.materials.filter(item=>!ids.has(item.id));
+  if (ids.has(draft.musicMaterialId)) delete draft.musicMaterialId;
+  if (draft.recipe) draft.recipe.media=(draft.recipe.media || []).filter(id=>!ids.has(id));
+  draft.analysisIds=(draft.analysisIds || []).filter(id=>!ids.has(id));
+  draft.assemblyIds=(draft.assemblyIds || []).filter(id=>!ids.has(id));
+  draft.clipFrameIds=(draft.clipFrameIds || []).filter(id=>!ids.has(id));
+  draft.analysisPermit=false;
+  for (const scene of draft.scenes) {
+    if (ids.has(scene.narrationMaterialId)) delete scene.narrationMaterialId;
+    for (const shot of scene.shots) {
+      shot.layers=shot.layers.filter(layer=>!ids.has(layer.materialId));
+      if (ids.has(shot.referenceFrameId)) delete shot.referenceFrameId;
+    }
+  }
+  for (const id of ids) files.delete(id);
 }
 function refresh() {
   if (!draft) return;
@@ -157,19 +173,22 @@ function refresh() {
   $('suggest-note').textContent = capabilities.brief === 'mock' ? 'Proposta simulada para testes.' :
     capabilities.brief === 'unavailable' ? (connectPilot ? 'Conecte seu código em Acesso ao piloto para usar o Gemini.' :
       'Gemini indisponível. Você pode montar o briefing aqui.') :
-      capabilities.briefReservedMicros>0 ? 'Reserva por proposta de '+briefPrice(capabilities.briefReservedMicros)+'. Envia apenas o assunto ao Gemini.' :
-        'Apenas seu assunto será enviado ao Gemini.';
+      [capabilities.briefReservedMicros>0?'Reserva por proposta de '+briefPrice(capabilities.briefReservedMicros)+'.':'',
+        currentRecipe()?'O Google recebe o assunto e as escolhas desta etapa.':'Apenas seu assunto será enviado ao Gemini.'].filter(Boolean).join(' ');
   $('analysis-controls').hidden=capabilities.analysis==='unavailable';
   $('analysis-note').textContent=capabilities.analysis==='unavailable'?'Análise online indisponível. Suas referências podem acompanhar a ficha.' :
     (capabilities.analysis==='mock'?'Análise simulada para testes. ':'O Gemini recebe somente o assunto e as fontes selecionadas. ')+
     'Até 4 arquivos, com 8 MiB somados. Capturas, fotos, PDF, áudio, vídeo e uma página pública.';
   $('produce').hidden = !online;
-  $('send-handoff').hidden = !token || !capabilities.limits;
+  $('send-handoff').hidden = Boolean(currentRecipe()) || !token || !capabilities.limits;
   $('local-help').hidden = draft.mode !== 'edit';
   $('asset-music').hidden=!availableAsset('music');
   refreshAssembly();
-  if (draft.mode==='create') refreshGuided();
-  $('generation-note').textContent=capabilities.clip==='mock'?'Clipe em simulação local. Aprovações e arquivos de teste ficam neste ambiente.':
+  if (draft.mode==='create') {
+    refreshGuided();
+    if (currentRecipe()) refreshRecipeMedia();
+  }
+  $('generation-note').textContent=!recipeCanGenerateClip(currentRecipe()?.id)?'Revise o storyboard e baixe seu plano em Entrega.':capabilities.clip==='mock'?'Clipe em simulação local. Aprovações e arquivos de teste ficam neste ambiente.':
     capabilities.clip==='unavailable'?'Geração de clipes, imagens, narração e trilha indisponível no piloto.':
       'A geração de cada clipe exige aprovação do quadro e confirmação do valor.';
 }
@@ -301,6 +320,7 @@ function renderScenes() {
   for (const url of boardUrls.splice(0)) URL.revokeObjectURL(url);
   $('scenes-empty').hidden=draft.scenes.length>0;
   const container = $('scenes');
+  const canGenerate=recipeCanGenerateClip(currentRecipe()?.id);
   container.classList.toggle('has-examples',draft.scenes.some(scene=>scene.shots.some(shot=>shot.example)));
   const opened=new Set([...container.querySelectorAll('details[open][data-editor]')].map(item=>item.dataset.editor));
   const editor=(title,id)=>{
@@ -340,7 +360,8 @@ function renderScenes() {
       const check = document.createElement('input');
       check.type='checkbox';check.checked=shot.generateSupport;
       const clipButton=action('Revisar clipe deste plano',()=>openClip(scene,shot));
-      clipButton.hidden=!shot.generateSupport || capabilities.clip==='unavailable';
+      clipButton.hidden=!canGenerate || !shot.generateSupport || capabilities.clip==='unavailable';
+      support.hidden=!canGenerate;
       check.onchange=()=>{shot.generateSupport=check.checked;clipButton.hidden=!check.checked || capabilities.clip==='unavailable';update();};
       support.append(check,'Planejar mídia de apoio com IA para este plano');
       const material = document.createElement('select');
@@ -412,7 +433,7 @@ function renderScenes() {
 }
 
 function renderMoodboard() {
-  const board=$('moodboard'),style=styles[draft.guided?.boardStyle];
+  const board=$('moodboard'),style=styleOptions()[draft.guided?.boardStyle];
   board.hidden=$('board-note').hidden=!style || !draft.scenes.some(scene=>scene.shots.some(shot=>shot.example));
   board.replaceChildren();
   if (board.hidden) return;
@@ -429,12 +450,101 @@ function renderMoodboard() {
 }
 
 function renderOrigin() {
-  const linking=draft.origin==='link',settings=guided();
+  const recipe=currentRecipe(),linking=draft.origin==='link' && !recipe,settings=guided();
+  $('recipe-intake').hidden=!recipe;
+  $('origin-choices').hidden=Boolean(recipe);
+  $('brief-title').textContent=recipe?'Conte sua ideia':'Defina o assunto';
+  if (recipe) {
+    $('recipe-subject').value=draft.subject;
+    recipeGoalOptions($('recipe-goal'),draft.recipe.goal);
+    $('recipe-aspect').value=draft.assemblyAspect || '9:16';
+    $('recipe-duration').value=settings.duration;
+    const material=recipe.material;
+    $('recipe-material-box').hidden=!material;
+    if (material) {
+      $('recipe-material-label').textContent=material.label;
+      $('recipe-material-hint').textContent=recipe.hint || material.hint;
+      $('recipe-material').multiple=Boolean(material.multiple);
+      $('recipe-material').accept=material.accept;
+    }
+    const person=material?.kind==='person';
+    $('recipe-permission-label').hidden=$('recipe-voice-box').hidden=!person;
+    $('recipe-permission').checked=Boolean(draft.recipe.permission);
+    $('recipe-material').value=$('recipe-voice').value='';
+    $('recipe-scope').hidden=recipeCanGenerateClip(recipe.id);
+    $('recipe-scope').textContent='Você consegue planejar e revisar aqui. A produção deste formato acontece fora do ZapVideo.';
+    refreshRecipeMedia();
+  }
+  $('subject').hidden=$('subject').labels[0].hidden=Boolean(recipe);
+  const briefControls=['suggest','suggest-note','proposal'];
+  for (const id of briefControls) (recipe?$('recipe-assist'):$('manual-intake')).append($(id));
+  $('recipe-assist').hidden=!recipe;
+  $('suggest').textContent=recipe?'Criar proposta com IA':'Me ajude a montar';
   $('origin-link').setAttribute('aria-pressed',String(linking));
   $('origin-manual').setAttribute('aria-pressed',String(!linking));
   $('manual-intake').hidden=linking;$('guided-intake').hidden=!linking;
   for (const key of ['url','name','category','description','objective','aspect','duration']) $('product-'+key).value=settings[key];
 }
+function refreshRecipeMedia() {
+  const refs=(draft.recipe.media || []).map(id=>draft.materials.find(item=>item.id===id)).filter(Boolean);
+  const allowed=currentRecipe().material?.kind!=='person' || draft.recipe.permission;
+  $('recipe-material').disabled=$('recipe-voice').disabled=!allowed;
+  $('recipe-remove-media').hidden=!refs.length;
+  $('recipe-material-state').textContent=refs.length?refs.map(item=>files.has(item.id)?
+    `${item.name} · adicionado`:`${item.name} · selecione de novo para usar`).join(' • '):'';
+}
+function clearRecipeMedia() {
+  const ids=new Set(draft.recipe.media || []);
+  removeMaterials(ids);
+  $('recipe-material').value=$('recipe-voice').value='';
+  renderAnalysisFiles();
+  renderScenes();
+  update();
+}
+$('recipe-remove-media').onclick=clearRecipeMedia;
+$('recipe-permission').onchange=()=>{
+  draft.recipe.permission=$('recipe-permission').checked;
+  if (!draft.recipe.permission) clearRecipeMedia();
+  else update();
+};
+for (const id of ['recipe-material','recipe-voice']) $(id).onchange=event=>{
+  const picked=[...event.target.files];
+  if (!picked.length) return;
+  const material=currentRecipe()?.material?.kind;
+  try {
+    if (material==='person' && !draft.recipe.permission) throw new Error('Confirme que você tem autorização para usar a imagem e a voz.');
+    const batch=picked.map(file=>{
+      const kind=id==='recipe-voice'?'audio':supportedVideo.test(file.name)?'take':'reference';
+      const accepted=kind==='audio'?/\.(mp3|wav|m4a)$/i:kind==='take'?supportedVideo:/\.(png|jpg|jpeg|webp)$/i;
+      if (!file.size || file.size>limits.videoBytes || !accepted.test(file.name) ||
+        (material==='video' && kind!=='take') || (['image','product'].includes(material) && kind!=='reference')) {
+        throw new Error('Confira o formato e o tamanho dos arquivos selecionados.');
+      }
+      return {file,kind};
+    });
+    if (draft.materials.length+batch.length>24) throw new Error('Limite de 24 arquivos por ficha.');
+    const media=new Set(draft.recipe.media || []);
+    for (const [kind, entries] of Object.entries(Object.groupBy(batch,item=>item.kind))) {
+      selectFiles(kind,entries.map(item=>item.file),false);
+      for (const {file} of entries) {
+        const item=draft.materials.find(item=>item.kind===kind && item.name===file.name && item.bytes===file.size);
+        media.add(item.id);
+      }
+    }
+    draft.recipe.media=[...media];
+    save();
+    refreshRecipeMedia();
+    note('');
+  } catch (error) {
+    event.target.value='';
+    $('recipe-material-state').textContent=error.message;
+  }
+};
+$('recipe-subject').oninput=()=>{draft.subject=$('recipe-subject').value;update();};
+$('recipe-goal').onchange=()=>{draft.recipe.goal=$('recipe-goal').value;update();};
+$('recipe-aspect').onchange=()=>{draft.assemblyAspect=$('recipe-aspect').value;update();};
+$('recipe-duration').onchange=()=>{guided().duration=Number($('recipe-duration').value);update();};
+
 function setOrigin(origin) {
   draft.origin=origin;
   renderOrigin();
@@ -464,7 +574,8 @@ function refreshGuided() {
   $('product-source').textContent=settings.sourceMode==='mock'?'Dados simulados para homologação.':
     settings.sourceUrl?'Dados sugeridos pela página. Confira antes de usar.':'Você também pode preencher o nome diretamente.';
   $('board-replace').hidden=planningIndex!==1 || !draft.scenes.length || sameBoard();
-  $('planning-next').textContent=planningIndex===1 && !$('board-replace').hidden?'Refazer storyboard →':
+  const review=!recipeCanGenerateClip(currentRecipe()?.id);
+  $('planning-next').textContent=review && planningIndex===storyboardIndex?'Revisar e entregar →':planningIndex===1 && !$('board-replace').hidden?'Refazer storyboard →':
     planningNext[planningIndex]?`${planningNext[planningIndex]} →`:'';
 }
 
@@ -501,13 +612,13 @@ function productView(result,revision) {
 function renderStyles() {
   const list=$('style-cards'),settings=guided();
   list.replaceChildren();
-  const entries=Object.entries(styles).sort(([a],[b])=>Number(b===settings.recommended)-Number(a===settings.recommended));
+  const entries=Object.entries(styleOptions()).sort(([a],[b])=>Number(b===settings.recommended)-Number(a===settings.recommended));
   for (const [id,style] of entries) {
     const selected=id===settings.style;
     const card=document.createElement('article');card.className='style-card';card.classList.toggle('selected',selected);
     const title=document.createElement('h3');title.textContent=style.name;
     const caption=document.createElement('p');caption.className='muted';caption.textContent=style.description;
-    if (id===settings.recommended) caption.textContent+=' Recomendado para este produto.';
+    if (id===settings.recommended) caption.textContent+=currentRecipe()?' Sugerido para esta receita.':' Recomendado para este produto.';
     const choose=action(selected?'Selecionado':'Usar estilo',()=>{
       settings.style=id;update();renderStyles();
       list.querySelector('[aria-pressed="true"]').focus();
@@ -536,12 +647,13 @@ $('style-example-close').onclick=()=>$('style-dialog').close();
 
 function boardKey() {
   const settings=guided();
-  return JSON.stringify([draft.subject,settings.style,settings.duration,settings.objective]);
+  return JSON.stringify([draft.subject,settings.style,settings.duration,settings.objective,
+    ...(currentRecipe()?[draft.recipe.id,draft.recipe.goal,draft.assemblyAspect]:[])]);
 }
 function sameBoard() { return draft.scenes.length>0 && guided().boardKey===boardKey(); }
 function confirmOrigin() {
   if (draft.origin!=='link') {
-    if (!draft.subject.trim()) { $('subject').focus();note('Escreva uma frase sobre seu vídeo.');return false; }
+    if (!draft.subject.trim()) { $(currentRecipe()?'recipe-subject':'subject').focus();note('Escreva uma frase sobre seu vídeo.');return false; }
     return true;
   }
   const {name,category,description,objective,aspect}=guided();
@@ -554,11 +666,22 @@ function confirmOrigin() {
 }
 function prepareBoard() {
   const settings=guided();
-  if (!settings.style || !Object.hasOwn(styles,settings.style)) return note('Selecione um estilo para montar o storyboard.');
+  if (!settings.style || !Object.hasOwn(styleOptions(),settings.style)) return note('Selecione um estilo para montar o storyboard.');
   if (!sameBoard()) {
     const boardSettings={...settings,name:draft.origin==='link'?settings.name.trim():draft.subject.slice(0,120),
       duration:durations.includes(settings.duration)?settings.duration:15};
+    const recipe=currentRecipe();
     draft.scenes=makeBoard(boardSettings,unique);
+    if (recipe) {
+      const style=styleOptions()[settings.style];
+      draft.scenes.forEach((scene,index)=>{
+        scene.title=recipe.beats[index];
+        const shot=scene.shots[0];
+        shot.direction=`${scene.title} em um vídeo sobre ${draft.subject.trim()}. ${style.mood}.`;
+        shot.overlay='';
+        shot.generateSupport=recipeCanGenerateClip(recipe.id);
+      });
+    }
     settings.boardKey=boardKey();settings.boardStyle=settings.style;
     delete draft.sampleSceneId;
     delete draft.assemblySample;
@@ -569,6 +692,7 @@ function prepareBoard() {
 
 function showPlanningStep(index,{focus=true}={}) {
   if (draft.mode!=='create' || !planningPanels[index]) return;
+  if (index===3 && !recipeCanGenerateClip(currentRecipe()?.id)) index=2;
   $('grid').dataset.direction=index<planningIndex?'back':'next';
   $('grid').classList.toggle('planning-motion',focus && index!==planningIndex);
   planningIndex=index;
@@ -577,6 +701,9 @@ function showPlanningStep(index,{focus=true}={}) {
     if (i===index) button.setAttribute('aria-current','step');
     else button.removeAttribute('aria-current');
   });
+  const review=!recipeCanGenerateClip(currentRecipe()?.id);
+  planningButtons[3].closest('li').hidden=review;
+  planningButtons[4].querySelector('span').textContent=review?'4':'5';
   $('planning-prev').disabled=index===0;
   $('planning-next').hidden=index===planningPanels.length-1;
   if (index===1) renderStyles();
@@ -599,18 +726,21 @@ function showPlanningStep(index,{focus=true}={}) {
   if (button.dataset.step==='delivery') void refreshDeliveryLinks();
 }
 planningButtons.forEach((button,index)=>{button.onclick=()=>{
-  if (index===1 && !confirmOrigin()) return showPlanningStep(0);
+  if ((index===1 || (currentRecipe() && index===storyboardIndex)) && !confirmOrigin()) return showPlanningStep(0);
+  if (currentRecipe() && index===storyboardIndex && !draft.scenes.length) return prepareBoard();
   showPlanningStep(index);
 };});
-$('planning-prev').onclick=()=>showPlanningStep(planningIndex-1);
+$('planning-prev').onclick=()=>showPlanningStep(planningIndex===4 && !recipeCanGenerateClip(currentRecipe()?.id)?2:planningIndex-1);
 $('planning-next').onclick=()=>{
   if (planningIndex===0 && !confirmOrigin()) return;
   if (planningIndex===1) return prepareBoard();
-  showPlanningStep(planningIndex+1);
+  showPlanningStep(planningIndex===2 && !recipeCanGenerateClip(currentRecipe()?.id)?4:planningIndex+1);
 };
 
 function showWorkspace() {
-  $('workspace-title').textContent = draft.mode === 'edit' ? editTitle : createTitle;
+  $('workspace-title').textContent = currentRecipe()?.name ?? (draft.mode === 'edit' ? editTitle : createTitle);
+  $('request').textContent=currentRecipe()?'Baixar plano de produção':'Baixar pedido';
+  $('handoff-detail').hidden=true;
   $('choose').hidden=true;$('workspace').hidden=false;
   const creating=draft.mode==='create';
   $('grid').classList.toggle('planning',creating);
@@ -654,10 +784,17 @@ function clearPreview() {
   $('transcript').value = '';
   $('cut-suggestions').replaceChildren();
 }
-for (const button of document.querySelectorAll('[data-mode]')) button.onclick = () => {
-  if (draft?.mode !== button.dataset.mode) {
+function openMode(mode,{entry,recipe}={}) {
+  const key=recipe?'recipe-'+recipe.id:mode;
+  if (!draft || draftKey(draft)!==key) {
     clearPreview();
-    draft = savedDrafts[button.dataset.mode] ?? newDraft(button.dataset.mode);
+    draft = savedDrafts[key] ?? newDraft(mode);
+    if (recipe && !draft.recipe) {
+      draft.recipe={id:recipe.id,goal:recipe.goal,media:[]};
+      draft.assemblyAspect='9:16';
+      const style=recipePreviews[recipe.preview].style;
+      Object.assign(guided(),{style,recommended:style,duration:recipe.duration || 15});
+    }
     lastJob = savedJobs[draft.id] ?? null;
     proposal = null;
     $('analysis-url').value='';
@@ -668,11 +805,13 @@ for (const button of document.querySelectorAll('[data-mode]')) button.onclick = 
     $('resume-draft').hidden = false;
     save();
   }
-  if (button.dataset.entry==='link') {
+  if (entry==='link') {
     draft.origin='link';draft.planningStep='idea';save();
   }
   showWorkspace();
-};
+}
+for (const button of document.querySelectorAll('[data-mode]')) button.onclick=()=>openMode(button.dataset.mode,{entry:button.dataset.entry});
+setupRecipes(recipe=>recipe.route==='edit'?openMode('edit'):openMode('create',{recipe}),download);
 document.querySelector('[data-back]').onclick = () => {
   if (task) return note('Cancele a operação antes de trocar de projeto.');
   editVideo.pause();
@@ -888,10 +1027,19 @@ function proposalView(result, revision) {
 }
 $('apply-proposal').onclick=()=>{
   if (!proposal || proposal.revision!==draft.revision) return;
-  draft.scenes=proposal.proposal.scenes.map(scene=>({...scene,id:unique(),
-    shots:scene.shots.map(shot=>({...shot,...{id:unique(),generateSupport:false,layers:[]}}))}));
-  delete guided().boardKey;
-  delete guided().boardStyle;
+  const recipe=currentRecipe(),settings=guided(),style=recipe && recipeStyles[settings.style];
+  draft.scenes=proposal.proposal.scenes.map((scene,index)=>({...scene,id:unique(),
+    shots:scene.shots.map(shot=>({...shot,id:unique(),layers:[],generateSupport:Boolean(recipe && recipeCanGenerateClip(recipe.id)),
+      ...(style?{example:style.frames[index%style.frames.length]}:{})}))}));
+  if (style) {
+    settings.boardKey=boardKey();
+    settings.boardStyle=settings.style;
+    delete draft.sampleSceneId;
+    delete draft.assemblySample;
+  } else {
+    delete settings.boardKey;
+    delete settings.boardStyle;
+  }
   $('proposal').hidden=true;
   proposal=null;
   renderScenes();
@@ -1162,7 +1310,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
   }
 }
 $('produce').onclick=()=>runTask('edit');
-$('suggest').onclick=()=>runTask('brief');
+$('suggest').onclick=()=>{if (confirmOrigin()) void runTask('brief');};
 $('stop').onclick=async()=>{
   const pending=job;
   task?.abort();

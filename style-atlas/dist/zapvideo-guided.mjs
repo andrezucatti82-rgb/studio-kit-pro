@@ -1,3 +1,5 @@
+import {recipePreviews} from './zapvideo-recipes.mjs';
+
 const coffee = n => `/assets/segments-440/ads26-alimentacao-o-cafe-muda-o-ponto-de-vista-0${n}.webp`;
 
 export const styles = {
@@ -24,14 +26,33 @@ export const styles = {
   },
 };
 
-export const durations = [9,15,30];
+export const recipeStyles = {
+  ...styles,
+  presenter:{
+    name:'Pessoa em cena',description:'Uma pessoa conduz a mensagem olhando para a câmera.',frames:recipePreviews.presenter.frames,
+    palette:['#35362f','#b88567','#d5bf9f'], mood:'Luz natural e enquadramento próximo',
+    scenes:[['Apresente o assunto','Apresente {produto} olhando para a câmera.'],
+      ['Dê um exemplo','Ilustre {produto} com um exemplo cotidiano.'],
+      ['Conclua a ideia','Feche em plano médio com uma frase direta.']],
+  },
+  motion:{
+    name:'Gráficos em movimento',description:'Tipografia e gráficos acompanham as ideias.',frames:recipePreviews.motion.frames,
+    palette:['#255f5f','#e7dbca','#172c29'], mood:'Formas precisas e leitura em primeiro plano',
+    scenes:[['Apresente a ideia','Abra com um elemento que represente {produto}.'],
+      ['Construa a informação','Acrescente informações de {produto} em sequência.'],
+      ['Organize a conclusão','Dê espaço para a frase final.']],
+  },
+};
+
+export const boardTiming = {9:[3,3,3],15:[4,6,5],20:[5,8,7],30:[8,13,9]};
+export const durations = Object.keys(boardTiming).map(Number);
 export const objectives = {
   sell:'Vender produto', show:'Mostrar como funciona', brand:'Divulgar marca',
 };
 
 export function makeBoard(guided, id) {
-  const style=styles[guided.style];
-  const timing={9:[3,3,3],15:[4,6,5],30:[8,13,9]}[guided.duration];
+  const style=recipeStyles[guided.style];
+  const timing=boardTiming[guided.duration];
   return style.scenes.map(([title,direction],i)=>({id:id(),title,narration:'',shots:[{
     id:id(),seconds:timing[i],direction:direction.replace('{produto}',()=>guided.name),
     example:style.frames[i],generateSupport:true,layers:[],
