@@ -64,32 +64,88 @@
       <div id="grid">
         <div class="steps">
           <section class="panel" id="edit-section" aria-labelledby="original-title" hidden>
-            <h2 id="original-title">Vídeo original</h2>
-            <label for="source">Escolher um arquivo</label>
-            <input id="source" type="file" accept="video/mp4,video/quicktime,video/webm,.mkv,.m4v,.mov">
-            <p id="source-info" class="muted">Até 512 MiB e 15 minutos por vídeo.</p>
-            <div class="preview" id="preview-wrap" hidden><video id="preview" controls playsinline preload="metadata"></video></div>
+            <div class="editor-source-copy">
+              <h2 id="original-title">Vídeo original</h2>
+              <p id="source-info" class="muted">Até 512 MiB e 15 minutos por vídeo.</p>
+            </div>
+            <label class="editor-file" for="source">
+              <span>Escolher um arquivo</span>
+              <input id="source" type="file" aria-describedby="source-info" accept="video/mp4,video/quicktime,video/webm,.mkv,.m4v,.mov">
+            </label>
+            <p id="editor-source-error" class="small" role="status" hidden></p>
           </section>
           <section id="edit-actions" class="panel" aria-labelledby="actions-title" hidden>
-            <h2 id="actions-title">O que você quer ajustar?</h2>
+            <h2 id="actions-title">Ajustes do vídeo</h2>
+            <div class="editor-tabs" role="tablist" aria-label="Prévias de edição">
+              <button id="editor-tab-crop" type="button" role="tab" aria-selected="true" aria-controls="editor-crop">
+                <span class="editor-tab-visual editor-tab-crop" aria-hidden="true"></span><span>Enquadramento</span>
+              </button>
+              <button id="editor-tab-image" type="button" role="tab" aria-selected="false" aria-controls="editor-image" tabindex="-1">
+                <span class="editor-tab-visual editor-tab-image" aria-hidden="true"></span><span>Imagem</span>
+              </button>
+              <button id="editor-tab-audio" type="button" role="tab" aria-selected="false" aria-controls="editor-audio" tabindex="-1">
+                <span class="editor-tab-visual editor-tab-audio" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Áudio</span>
+              </button>
+            </div>
+            <section id="editor-crop" class="editor-panel" role="tabpanel" aria-labelledby="editor-tab-crop">
+              <div class="editor-panel-heading"><h3>Adaptar para 9:16</h3><span id="editor-crop-source" class="editor-tag">Exemplo</span></div>
+              <div id="editor-crop-demo" class="editor-frame">
+                <img src="/assets/zapvideo-editor/balcao.webp" width="960" height="640" alt="Pessoa atrás do balcão de uma cafeteria">
+                <span class="editor-crop-outline" aria-hidden="true"></span>
+              </div>
+              <div id="preview-wrap" hidden>
+                <div class="editor-frame" id="editor-video-frame">
+                  <video id="preview" controls playsinline preload="metadata"></video>
+                  <span id="editor-video-outline" class="editor-crop-outline" aria-hidden="true" hidden></span>
+                </div>
+                <p id="editor-crop-info" class="small">Selecione uma prévia de corte para ver a área mantida.</p>
+              </div>
+              <label class="toggle"><input id="cuts" type="checkbox"> Fazer três cortes verticais</label>
+              <div class="details" id="cut-fields" hidden></div>
+            </section>
+            <section id="editor-image" class="editor-panel" role="tabpanel" aria-labelledby="editor-tab-image" hidden>
+              <div class="editor-panel-heading"><h3>Melhorar a imagem</h3><span id="editor-image-source" class="editor-tag">Exemplo</span></div>
+              <div class="editor-compare">
+                <figure>
+                  <div class="editor-image-frame">
+                    <img src="/assets/zapvideo-editor/cafe.webp" width="960" height="640" alt="" loading="lazy">
+                    <canvas id="editor-image-original" aria-hidden="true" hidden></canvas>
+                  </div>
+                  <figcaption>Original</figcaption>
+                </figure>
+                <figure>
+                  <div class="editor-image-frame" id="editor-treated-frame">
+                    <img src="/assets/zapvideo-editor/cafe.webp" width="960" height="640" alt="" loading="lazy">
+                    <canvas id="editor-image-treated" aria-hidden="true" hidden></canvas>
+                  </div>
+                  <figcaption id="editor-treated-label">Melhoria suave</figcaption>
+                </figure>
+              </div>
+              <p class="small">Prévia aproximada de brilho, contraste e saturação.</p>
+              <div class="editor-image-options">
+                <label>Brilho <input id="brightness" type="range" min="-0.15" max="0.15" value="0" step="0.01"></label>
+                <label>Contraste <input id="contrast" type="range" min="0.8" max="1.2" value="1" step="0.01"></label>
+                <label>Saturação <input id="saturation" type="range" min="0.7" max="1.3" value="1" step="0.01"></label>
+              </div>
+              <button id="editor-soft-preset" class="secondary" type="button">Usar melhoria suave</button>
+            </section>
+            <section id="editor-audio" class="editor-panel" role="tabpanel" aria-labelledby="editor-tab-audio" hidden>
+              <div class="editor-panel-heading"><h3>Melhorar o áudio</h3><span class="editor-tag">Exemplo sonoro</span></div>
+              <div class="editor-compare editor-audio-compare">
+                <div><h4>Original</h4><audio id="editor-audio-original" controls preload="none" aria-label="Ouvir exemplo original" src="/assets/zapvideo-editor/audio-original.mp3"></audio></div>
+                <div><h4>Com tratamento</h4><audio id="editor-audio-treated" controls preload="none" aria-label="Ouvir exemplo com tratamento" src="/assets/zapvideo-editor/audio-balanced.mp3"></audio></div>
+              </div>
+              <label class="toggle"><input id="balance" type="checkbox" checked> Equilibrar volume</label>
+              <label class="toggle"><input id="denoise" type="checkbox"> Reduzir ruído moderado</label>
+            </section>
+            <div class="editor-output-options">
+            <label class="toggle"><input id="treatment" type="checkbox"> Melhorar imagem e áudio na saída</label>
             <label class="toggle"><input id="captions" type="checkbox"> Aplicar legendas de um SRT</label>
             <div class="details" id="captions-fields" hidden>
               <label for="srt">Arquivo de legenda</label>
               <input id="srt" type="file" accept=".srt">
               <p id="srt-info" class="muted">Até 2 MiB.</p>
               <label class="toggle"><input id="separate" type="checkbox" checked> Entregar o SRT separado</label>
-            </div>
-            <label class="toggle"><input id="cuts" type="checkbox"> Fazer três cortes verticais</label>
-            <div class="details" id="cut-fields" hidden></div>
-            <label class="toggle"><input id="treatment" type="checkbox"> Melhorar imagem e áudio</label>
-            <div class="details" id="treatment-fields" hidden>
-              <label class="toggle"><input id="balance" type="checkbox" checked> Equilibrar volume</label>
-              <label class="toggle"><input id="denoise" type="checkbox"> Reduzir ruído moderado</label>
-              <div class="ranges">
-                <label>Brilho <input id="brightness" type="range" min="-0.15" max="0.15" value="0" step="0.01"></label>
-                <label>Contraste <input id="contrast" type="range" min="0.8" max="1.2" value="1" step="0.01"></label>
-                <label>Saturação <input id="saturation" type="range" min="0.7" max="1.3" value="1" step="0.01"></label>
-              </div>
             </div>
             <details id="transcript-tools">
               <summary>Sugerir trechos pela fala</summary>
@@ -99,6 +155,7 @@
               <button id="suggest-cuts" class="secondary" type="button">Encontrar trechos</button>
               <ol id="cut-suggestions"></ol>
             </details>
+            </div>
           </section>
           <section id="create-section" class="panel planning-slide" data-plan-step="idea" aria-labelledby="brief-title" hidden>
             <h2 id="brief-title" tabindex="-1">Defina o assunto</h2>

@@ -9,6 +9,8 @@ O ZapVideo usa o domínio canônico [zapvideo.com.br](https://zapvideo.com.br/) 
 3. Baixe a ficha e mantenha os originais na mesma pasta, ou baixe o ZIP que inclui os arquivos selecionados. A alternativa online usa o código do piloto e pede autorização para enviar o material.
 4. Assista às prévias e confira áudio, enquadramento e legendas antes de divulgar.
 
+Use **Enquadramento** para ver a área conservada pelo corte 9:16. **Imagem** compara um quadro do vídeo selecionado com uma aproximação dos ajustes de brilho, contraste e saturação. **Áudio** reproduz uma amostra demonstrativa original e a versão com as opções de volume e redução de ruído selecionadas. As amostras de imagem e enquadramento funcionam antes do upload.
+
 ```sh
 npm run video -- import --preset caminho/projeto-video.json --out projects/zapvideo-local
 npm run video -- context --project projects/zapvideo-local

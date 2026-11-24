@@ -4,6 +4,7 @@ import {encryptHandoff} from './zapvideo-transfer.mjs';
 import {readSrt, suggestCuts} from './zapvideo-captions.mjs';
 import {assemblyPlan} from './zapvideo-assembly.mjs';
 import {styles,durations,objectives,makeBoard} from './zapvideo-guided.mjs';
+import {setupEditPreviews,showEditSource,positionCropGuide,captureEditFrame,refreshEditTreatment,softImage} from './zapvideo-edit-previews.mjs';
 
 const $ = id => document.getElementById(id);
 const storage = 'zapvideo-workspace-v1';
@@ -33,6 +34,8 @@ let stylePreview,productRequest;
 const boardUrls=[];
 let planningIndex=0;
 let deliveryLookup;
+const editVideo=$('preview');
+const pauseEditAudio=setupEditPreviews(editVideo);
 
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
@@ -134,7 +137,7 @@ function refresh() {
   $('analysis-permit').checked = Boolean(draft.analysisPermit);
   $('captions-fields').hidden = !draft.captions;
   $('cut-fields').hidden = !draft.cuts;
-  $('treatment-fields').hidden = !draft.treatment;
+  if (draft.mode==='edit') refreshEditTreatment(draft.finish,draft.treatment,$('editor-image-original').hidden);
   $('source-info').textContent = displayFile('source','Até 512 MiB e 15 minutos por vídeo.');
   $('srt-info').textContent = displayFile('subtitle','Até 2 MiB.');
   const plan = draftPlan();
@@ -191,10 +194,7 @@ function renderAnalysisFiles() {
 }
 function setPreview(index) {
   previewIndex = index;
-  const wrap = $('preview-wrap'), video = $('preview');
-  wrap.classList.toggle('vertical',index >= 0);
-  video.style.objectPosition = index < 0 ? 'center' :
-    `${draft.ranges[index].x*100}% ${draft.ranges[index].y*100}%`;
+  positionCropGuide(editVideo,index >= 0 ? draft.ranges[index] : null);
 }
 function initializeCuts() {
   const container = $('cut-fields');
@@ -212,8 +212,11 @@ function initializeCuts() {
       };
     }
     copy.querySelector('.preview-cut').onclick = () => {
-      if (!previewUrl) return note('Envie um vídeo original para ver o enquadramento.');
       setPreview(index);
+      if (!previewUrl || !editVideo.videoWidth) {
+        $('editor-crop-demo').scrollIntoView({block:'nearest'});
+        return;
+      }
       const time = parseTime(cut.start);
       if (Number.isFinite(time) && Number.isFinite($('preview').duration)) {
         $('preview').currentTime = Math.min(time,$('preview').duration);
@@ -641,9 +644,11 @@ function showWorkspace() {
 function clearPreview() {
   if (previewUrl) URL.revokeObjectURL(previewUrl);
   previewUrl = null;
-  $('preview').removeAttribute('src');
-  $('preview').load();
-  $('preview-wrap').hidden = true;
+  editVideo.removeAttribute('src');
+  editVideo.load();
+  showEditSource(false);
+  captureEditFrame(editVideo,false);
+  $('editor-source-error').hidden=true;
   $('source').value = '';
   $('srt').value = '';
   $('transcript').value = '';
@@ -670,6 +675,8 @@ for (const button of document.querySelectorAll('[data-mode]')) button.onclick = 
 };
 document.querySelector('[data-back]').onclick = () => {
   if (task) return note('Cancele a operação antes de trocar de projeto.');
+  editVideo.pause();
+  pauseEditAudio();
   $('workspace').hidden=true;$('choose').hidden=false;
   document.querySelector('[data-mode]').focus();
 };
@@ -682,7 +689,27 @@ for (const key of ['captions','separate','cuts','treatment']) $(key).onchange = 
 };
 for (const key of ['balance','denoise','brightness','contrast','saturation']) $(key).oninput = () => {
   draft.finish[key]=$(key).type==='checkbox'?$(key).checked:Number($(key).value);
+  $('treatment').checked=draft.treatment=true;
   update();
+};
+$('editor-soft-preset').onclick=()=>{
+  for (const [key,value] of Object.entries(softImage)) $(key).value=draft.finish[key]=value;
+  $('treatment').checked=draft.treatment=true;
+  update();
+};
+editVideo.onloadedmetadata=()=>setPreview(previewIndex);
+const refreshEditFrame=()=>{
+  if (draft?.mode!=='edit' || !previewUrl || editVideo.readyState<2) return;
+  captureEditFrame(editVideo);
+  refreshEditTreatment(draft.finish,draft.treatment,false);
+};
+editVideo.onloadeddata=editVideo.onseeked=editVideo.onpause=refreshEditFrame;
+editVideo.onerror=()=>{
+  if (!previewUrl) return;
+  showEditSource(false);
+  captureEditFrame(editVideo,false);
+  $('editor-source-error').textContent='Este formato não abriu na prévia. Você ainda pode salvar o pedido de edição.';
+  $('editor-source-error').hidden=false;
 };
 $('subject').oninput=()=>{draft.subject=$('subject').value;update();};
 $('add-scene').onclick=()=>{
@@ -725,8 +752,10 @@ function selectFiles(kind, picked, single) {
 function openPreview(file) {
   if (previewUrl) URL.revokeObjectURL(previewUrl);
   previewUrl=URL.createObjectURL(file);
-  $('preview').src=previewUrl;
-  $('preview-wrap').hidden=false;
+  $('editor-source-error').hidden=true;
+  captureEditFrame(editVideo,false);
+  editVideo.src=previewUrl;
+  showEditSource(true);
   setPreview(-1);
 }
 for (const [control,kind,single] of [['source','source',true],['srt','subtitle',true],['reference-files','reference',false],['takes','take',false]]) {
