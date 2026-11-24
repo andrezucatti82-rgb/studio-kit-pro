@@ -1,0 +1,84 @@
+
+
+<header class="hero">
+  <div class="in">
+    <img src="data:image/png;base64,__LOGO__" alt="GDA Gerenciador de Anúncios" width="102" height="34">
+    <h1>Arsenal de vídeo, motion e <em>conteúdo</em></h1>
+    <p>Escolha o que você quer produzir e a página monta um prompt completo: as ferramentas certas do seu Claude Code (skills, plugins e conectores), o que você precisa enviar e as perguntas que levam à entrega certa.</p>
+    <div class="steps">
+      <div><b>1. Escolha uma receita</b>Clique no que quer fazer: editar um vídeo, anúncio, carrossel, apresentação… As ferramentas certas já vêm marcadas.</div>
+      <div><b>2. Ajuste o objetivo</b>Troque os [colchetes] pelo seu caso ou digite um assunto: a página busca notícias recentes e reescreve o objetivo.</div>
+      <div><b>3. Copie o prompt</b>Cole no Claude Code, no Claude.ai ou no ChatGPT. Ele pede seus materiais e faz as perguntas antes de produzir.</div>
+    </div>
+  </div>
+</header>
+
+<div class="bar"><div class="in">
+  <input id="q" type="search" placeholder="Buscar receitas e ferramentas: anúncio, legenda, carrossel, avatar, loja…" aria-label="Buscar receitas e ferramentas">
+  <span id="count"></span>
+</div></div>
+
+<main><div class="in">
+  <section class="track" id="receitas">
+    <h2>O que você quer fazer?<small id="rcount"></small></h2>
+    <p class="sub">Cada receita mostra em 3 etapas o que vai acontecer. Ao clicar, a página marca as ferramentas, escreve um objetivo-modelo e abre o gerador de prompt.</p>
+    <div class="rchips" id="rchips"></div><div class="rgrid" id="rgrid"></div>
+  </section>
+  <div class="kit">
+    <b>Studio Kit Pro neste computador</b>
+    <ul>
+      <li>O projeto está em <code>C:\dev\studio-kit-pro</code>, na versão 2.16.0 (igual ao GitHub). Dentro dessa pasta, a skill, os 7 módulos e o conector de curadoria funcionam.</li>
+      <li>As 15 ferramentas gratuitas de VFX estão instaladas; o Natron ainda aparece como "não verificado".</li>
+      <li>O plugin do kit (2.16.0) está instalado: use <code>/video-multimarcas:video-multimarcas</code> em qualquer pasta. A skill global antiga <code>/video-multimarcas</code> (2.2.13) continua lá e pode confundir: vale removê-la.</li>
+    </ul>
+  </div>
+  <section class="track" id="ferramentas"><h2>Ferramentas, skills e conectores<small id="tcount"></small></h2><p class="sub">Para montar do seu jeito: marque “usar” nas ferramentas que quiser combinar. Funciona junto com uma receita ou sem ela.</p><div class="rchips" id="tchips"><button class="chip" data-t="all" aria-pressed="true">Todas</button><button class="chip" data-t="skill" aria-pressed="false">Skills</button><button class="chip" data-t="plugin" aria-pressed="false">Plugins</button><button class="chip" data-t="mcp" aria-pressed="false">Conectores (MCP / API)</button></div></section>
+  <div id="list"></div>
+  <footer>Atualizado em 24/11/2026 com as skills, plugins e conectores instalados neste Claude Code e o Studio Kit Pro 2.16.0. As prévias são ilustrações animadas do tipo de resultado, não vídeos gerados pelas ferramentas. Aviso em laranja: precisa conectar a conta (comando <code>/mcp</code>), gasta crédito ou depende de instalação.</footer>
+</div></main>
+
+<div class="tray" id="tray">
+  <div class="in">
+    <span><strong id="nsel">0</strong> selecionadas</span>
+    <span class="sel" id="selnames">Escolha uma receita ou marque ferramentas para montar o prompt.</span>
+    <button class="btn" id="clear" type="button">Limpar</button>
+    <button class="btn primary" id="toggle" type="button" aria-expanded="false" aria-controls="panel">Gerar prompt</button>
+  </div>
+  <div class="panel" id="panel" hidden>
+    <div class="in">
+      <div>
+        <label for="topic">Gerar pauta (opcional)</label>
+        <div class="seg" id="pmodes" role="group" aria-label="Tipo de pauta"><button class="chip" type="button" data-pm="noticia" aria-pressed="true">Notícias</button><button class="chip" type="button" data-pm="produto" aria-pressed="false">Produto ou serviço</button><button class="chip" type="button" data-pm="alta" aria-pressed="false">Em alta</button><button class="chip" type="button" data-pm="lancamento" aria-pressed="false">Lançamentos e novidades</button><button class="chip" type="button" data-pm="ferramenta" aria-pressed="false">Ferramentas e apps</button><button class="chip" type="button" data-pm="duvidas" aria-pressed="false">O que o público procura</button></div>
+        <div class="row">
+          <input id="topic" type="text" placeholder="Ex.: estoque parado no varejo de moda" aria-label="Assunto, produto, serviço ou nicho">
+          <button class="btn primary" id="pautaBtn" type="button">Gerar pauta</button>
+        </div>
+        <div class="status" id="pstatus"></div><ul class="conf" id="conf"></ul>
+        <div class="pauta" id="pauta" hidden></div>
+        <label for="links" style="margin-top:12px">Links do produto, da loja ou do site (opcional, um por linha)</label>
+        <textarea id="links" rows="3" placeholder="https://sualoja.com.br/produto/tenis-azul
+https://seusite.com.br"></textarea>
+        <p class="note">O prompt pede para abrir cada link e aproveitar as fotos, os vídeos, os textos, os preços e as cores que estiverem na página.</p>
+        <label for="goal" style="margin-top:12px">Objetivo</label>
+        <textarea id="goal" rows="5">Criar um Reels de 30s para a minha marca sobre por que lojas perdem dinheiro com estoque parado, com narração, legendas animadas e um gráfico.</textarea>
+        <label style="margin-top:10px">Onde vai colar</label>
+        <div class="seg" role="group" aria-label="Destino do prompt">
+          <button class="chip" data-d="code" aria-pressed="true" type="button">Claude Code</button>
+          <button class="chip" data-d="claude" aria-pressed="false" type="button">Claude.ai</button>
+          <button class="chip" data-d="gpt" aria-pressed="false" type="button">ChatGPT</button>
+        </div>
+        <p class="note" id="dnote"></p>
+      </div>
+      <div>
+        <label for="out">Prompt gerado</label>
+        <textarea id="out" rows="18" readonly></textarea>
+        <div class="row" style="margin-top:8px">
+          <button class="btn primary" id="copy" type="button">Copiar prompt</button>
+          <button class="btn" id="refine" type="button">Refinar perguntas com IA</button>
+          <span class="status" id="rstatus"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
