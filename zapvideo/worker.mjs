@@ -1,6 +1,6 @@
 import {WorkerEntrypoint} from 'cloudflare:workers';
 import {isId, limits, validateProject} from '../style-atlas/dist/zapvideo-contract.mjs';
-import {analysisMode, briefMode, briefReserve, productMode} from './gemini.mjs';
+import {analysisMode, briefMode, briefReserve, creativeBoardMode, productMode} from './gemini.mjs';
 import {analysisBytes, analysisTypes} from './analysis-media.mjs';
 import {digest, exactBody, hours, HttpError, isExpired, isHash, json, now, objectResponse, person, productionPilotOpen, randomHex, readJson, reject, sql} from './http.mjs';
 import {jobFiles,jobRoute, readRevision, renderMode, startJob} from './jobs.mjs';
@@ -125,7 +125,7 @@ async function api(request,env,url) {
     return json({
       pilotAvailable,render:renderMode(visible),brief:briefMode(visible),
       briefReservedMicros:briefMode(visible)==='gemini'?briefReserve(visible):0,
-      product:productMode(visible),analysis:analysisMode(visible),analysisBytes,analysisTypes,
+      product:productMode(visible),creativeBoard:creativeBoardMode(visible),analysis:analysisMode(visible),analysisBytes,analysisTypes,
       transcript:false,videoAI:clipMode(visible)==='gemini',clip:clipMode(visible),clipModel:clipModel(visible),clipFrameMaxBytes,
       imageAI:mediaMode(visible,'frame')==='gemini',tts:mediaMode(visible,'speech')==='gemini',music:mediaMode(visible,'music')==='gemini',
       assets:Object.fromEntries(['frame','speech','music'].map(kind=>[kind,mediaMode(visible,kind)])),assembly:assemblyMode(visible),limits,

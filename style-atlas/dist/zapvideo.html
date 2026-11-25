@@ -15,6 +15,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/zapvideo-icon.svg">
   <link rel="stylesheet" href="/zapvideo-workspace.css">
   <link rel="stylesheet" href="/zapvideo-recipes.css">
+  <link rel="stylesheet" href="/zapvideo-creative.css">
   <script type="module" src="/zapvideo-workspace.mjs"></script>
 </head>
 <body>
@@ -181,6 +182,7 @@
           </section>
           <section id="create-section" class="panel planning-slide" data-plan-step="idea" aria-labelledby="brief-title" hidden>
             <h2 id="brief-title" tabindex="-1">Defina o assunto</h2>
+            <div id="creative-origin" class="creative-origin" hidden></div>
             <div id="recipe-intake" hidden>
               <div class="recipe-intake-layout">
                 <div>
@@ -253,11 +255,17 @@
             <h2 id="style-title" tabindex="-1">Escolha o estilo</h2>
             <p class="muted">Veja os exemplos antes de decidir.</p>
             <div id="style-cards" class="visual-grid"></div>
+            <div id="creative-styles" hidden></div>
             <div class="recipe-assist" id="recipe-assist" hidden></div>
             <p id="board-replace" class="muted" hidden>Refazer substitui as cenas da ficha. Seus arquivos ficam disponíveis em Referências.</p>
           </section>
           <section id="scene-section" class="panel planning-slide" data-plan-step="scenes" aria-labelledby="scene-title" hidden>
             <h2 id="scene-title" tabindex="-1">Revise o storyboard</h2>
+            <details id="creative-review-notes" hidden>
+              <summary>Pedir ajustes</summary>
+              <label>O que quer mudar nas cenas?<textarea id="creative-adjustment" rows="2" maxlength="500"></textarea></label>
+              <button class="secondary" id="creative-revise" type="button">Revisar com IA</button>
+            </details>
             <div id="moodboard" class="moodboard" hidden></div>
             <p id="board-note" class="muted" hidden>As imagens do catálogo mostram a direção escolhida. Adicione ou prepare um quadro do seu produto para aprovar cada plano.</p>
             <p id="scenes-empty" class="muted">Adicione uma cena ou volte à ideia para pedir uma proposta de roteiro.</p>
@@ -368,6 +376,12 @@
     </section>
   </main>
 
+  <dialog id="creative-preview" aria-labelledby="creative-preview-title">
+    <div class="creative-preview-head"><h2 id="creative-preview-title"></h2><button class="plain creative-close" type="button">Fechar</button></div>
+    <p class="muted creative-preview-caption"></p>
+    <div class="creative-strip"></div>
+    <button class="primary creative-use" type="button">Escolher este estilo</button>
+  </dialog>
   <dialog id="recipe-dialog" aria-labelledby="recipe-dialog-title">
     <button id="recipe-close" class="plain recipe-close" type="button" aria-label="Fechar receita">×</button>
     <div class="recipe-dialog-layout">

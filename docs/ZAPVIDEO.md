@@ -95,6 +95,14 @@ O workflow `.github/workflows/zapvideo-renderer.yml` compila o Dockerfile em um 
 
 Em caso de incidente de aplicativo, suspenda as capacidades do piloto e volte à versão anterior do Worker, com catálogo da mesma versão ainda no R2. Mantenha migrações D1 aditivas e não remova tabelas como parte do retorno de código. Se o problema for no Custom Domain, remova somente o vínculo criado do ZapVideo e restaure os registros do apex/www que constarem do inventário. Se for a delegação, recoloque os nameservers anteriores documentados na HostGator e trate o DS de acordo com o provedor efetivo. Confira A, MX, resolução pública e TLS. O endereço anterior continua como alternativa enquanto isso.
 
+## Planejamento guiado com Gemini
+
+A criação começa com uma receita, um link público HTTPS ou uma frase e o rumo escolhido. **Gerar objetivos e estilos com IA** usa o Gemini 3.8 Flash para sugerir três objetivos. Para um link, a resposta exige confirmação de leitura via URL Context. O resultado do Google indica direções da lista do kit. O ZapVideo filtra e ordena os estilos reais do catálogo pela direção, pelo assunto e pelo segmento. A lista tem busca, filtros e carregamento por páginas, com prévias verticais. A escolha do estilo é explícita.
+
+O wizard oferece perguntas sobre abordagem visual, ritmo e som. **Gerar storyboard com IA** usa o Gemini 3.1 Pro Preview para propor três cenas de acordo com essas escolhas. O ritmo define os tempos dos planos em um vídeo de 15 segundos. Os quadros exibidos são referências do catálogo. **Pedir ajustes** cria uma nova proposta no mesmo fluxo. Aprovações de mídia, geração e montagem continuam exigindo os registros dessas etapas. A amostra integrada tem exatamente 5 segundos.
+
+O modelo do storyboard é configurado em `GEMINI_BOARD_MODEL`. Leitura de links, objetivos e storyboard usam a autorização e a reserva dos trabalhos de briefing. O piloto mantém o acesso por código, limites diários e o provedor atrás do Service Binding. A alternativa **Planejar manualmente** continua disponível sem a API.
+
 ## Gemini e aprovações
 
 `Me ajude a montar` envia um assunto à Interactions API, valida um retorno estruturado e registra a proposta na revisão pedida. Aplicar a proposta exige uma ação explícita. Se o assunto, material ou plano mudar durante a espera, a página mantém a edição atual e bloqueia a aplicação daquela resposta. Os testes cobrem respostas válidas, rejeição do provedor e saída inválida com dublês da API. O piloto mantém `GEMINI_BRIEF_FREE_VERIFIED=0`. Para uma prova real futura, identifique projeto e região, capacidade e modelo específico, verifique o tipo de faturamento no Google AI Studio, confira os termos de uso de dados e instale `GEMINI_API_KEY` como segredo. [Saída estruturada](https://aistudio.google.com/docs/structured-output) · [Preços](https://aistudio.google.com/docs/pricing) · [Termos do Gemini](https://aistudio.google.com/docs/terms).

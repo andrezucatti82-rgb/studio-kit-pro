@@ -4,7 +4,7 @@ import {assetOutputs,clipOutput,editOutputs} from '../style-atlas/dist/zapvideo-
 import {assemblyOutput} from '../style-atlas/dist/zapvideo-assembly.mjs';
 import {exactBody, isHash, now, sql} from './http.mjs';
 import {readRevision, renderMode} from './jobs.mjs';
-import {analyzeMaterials, briefReserve, productMode, proposeBrief, readProduct} from './gemini.mjs';
+import {analyzeMaterials, briefReserve, creativeBoardMode, productMode, proposeBrief, proposeCreative, proposeCreativeBoard, readProduct} from './gemini.mjs';
 import {getAnalysisInput} from './analysis-media.mjs';
 import {checkClipBeforeRun,clipMaxBytes} from './clips.mjs';
 import {downloadOmni,omniFileState,submitOmni} from './omni.mjs';
@@ -301,7 +301,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
         const job = await getJob(env,id);
         const plan = await readRevision(env,job.project_id,job.revision);
         if (job.kind==='brief') {
-          const {productUrl}=JSON.parse(job.parameters);
+          const {productUrl,operation}=JSON.parse(job.parameters);
+          if (operation==='storyboard' && creativeBoardMode(env)==='unavailable') return {error:'Modelo de storyboard indisponível.',providerId:null};
           if (productUrl && productMode(env)==='unavailable') return {error:'Leitura de links indisponível.',providerId:null};
           if (job.reserved_micros!==briefReserve(env)) return {error:'A configuração da reserva mudou.',providerId:null};
           if (job.reserved_micros>0) {
@@ -311,6 +312,8 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
                 WHERE p.id=? AND u.revoked_at IS NULL AND u.expires_at>?)`,now(),id,job.project_id,now()).run();
             if (!claim.meta.changes) throw new Error('Aceitação anterior sem confirmação.');
           }
+          if (operation==='objectives') return proposeCreative(plan,env);
+          if (operation==='storyboard') return proposeCreativeBoard(plan,env);
           return productUrl ? readProduct(productUrl,env) : proposeBrief(plan.intent.subject,env,undefined,
             plan.intent.recipe && {...plan.intent.recipe,aspect:plan.assembly?.aspect});
         }
@@ -321,7 +324,7 @@ export class ZapVideoWorkflow extends WorkflowEntrypoint {
       });
       await step.do('Registrar proposta',recoverable,async () => {
         await sql(env,"UPDATE jobs SET state=?,result=?,error=?,provider_id=? WHERE id=? AND state='processing'",
-          result.error?'failed':'verified',result.error?null:JSON.stringify({mode:result.mode,proposal:result.proposal,analysis:result.analysis,product:result.product}),
+          result.error?'failed':'verified',result.error?null:JSON.stringify({mode:result.mode,model:result.model,proposal:result.proposal,creative:result.creative,analysis:result.analysis,product:result.product}),
           result.error ?? null,result.providerId,id).run();
       });
     } catch {

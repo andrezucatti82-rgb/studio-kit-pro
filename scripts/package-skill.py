@@ -91,7 +91,7 @@ for folder in ['server','src','scripts','tools','templates','docs','packaging','
     for source in (root/folder).rglob('*'):
         if source.is_file() and (source.suffix in ['.mjs','.js','.ts','.mts','.tsx','.json','.md','.txt','.py','.html','.svg','.ttf','.woff2','.woff','.sh','.cmd','.ps1'] or source.name.startswith('LICENSE')):
             runtime_files.add(source)
-for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js','search.js','frame-presentation.js','zapvideo-contract.mjs','zapvideo-captions.mjs','zapvideo-assembly.mjs']:
+for runtime_name in ['catalog.json','fonts.json','workflow.js','guided.js','search.js','frame-presentation.js','zapvideo-contract.mjs','zapvideo-planning.mjs','zapvideo-recipes.mjs','zapvideo-guided.mjs','zapvideo-captions.mjs','zapvideo-assembly.mjs']:
     runtime_files.add(root/'style-atlas/dist'/runtime_name)
 for runtime_name in ['local.mjs','renderer.mjs']:
     runtime_files.add(root/'zapvideo'/runtime_name)

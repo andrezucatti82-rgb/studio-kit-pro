@@ -1,3 +1,4 @@
+import {validateCreative} from './zapvideo-planning.mjs';
 import {findRecipe,recipeGoals} from './zapvideo-recipes.mjs';
 import {durations,recipeStyles} from './zapvideo-guided.mjs';
 
@@ -37,6 +38,11 @@ export function validateProject(input) {
   require(isId(id) && Number.isSafeInteger(revision) && revision > 0, 'Identificação da revisão inválida.');
   require(intent && ['edit', 'create'].includes(intent.mode) && typeof intent.subject === 'string' &&
     intent.subject.length <= 1220, 'Informe o objetivo do vídeo.');
+  if (intent.creative !== undefined) {
+    require(intent.mode==='create','A direção pertence à criação com IA.');
+    validateCreative(intent.creative,intent.subject);
+    require(intent.creative.recipeId===(intent.recipe?.id ?? null),'Use a receita desta ficha.');
+  }
   if (intent.recipe !== undefined) {
     const {id:recipeId,goal,style,duration} = intent.recipe ?? {};
     const route=findRecipe(recipeId)?.route;
@@ -107,9 +113,14 @@ export function editOutputs(project) {
 
 export function describeProject(project) {
   const lines = [project.intent.mode === 'edit' ? 'Editar um vídeo que já tenho' : 'Criar um vídeo com IA', project.intent.subject];
-  if (project.intent.recipe) {
+  if (project.intent.recipe && !project.intent.creative) {
     const {id,goal,style,duration}=project.intent.recipe;
     lines.push(`${findRecipe(id).name} · ${recipeGoals[goal]}`, `${recipeStyles[style].name} · ${duration} s · ${project.assembly?.aspect || '9:16'}`);
+  }
+  if (project.intent.creative?.goal) {
+    const {goal,styleId,visual,sound,pace}=project.intent.creative;
+    lines.push(goal.detail,styleId?'Estilo do catálogo · '+styleId:'',
+      visual?'Direção visual · '+visual:'',sound?'Som · '+sound:'',pace?'Ritmo · '+pace:'');
   }
   const {cuts, captions, treatment} = project.actions;
   if (captions) lines.push(captions === 'mp4+srt' ? 'Aplicar SRT ao MP4 e entregar o SRT separado.' : 'Aplicar SRT ao MP4.');

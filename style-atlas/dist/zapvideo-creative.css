@@ -1,0 +1,30 @@
+.creative-origin[hidden],#creative-styles[hidden],.creative-active #style-cards[hidden]{display:none}
+.creative-active .recipe-intake-layout > :first-child,.creative-active #recipe-scope,.creative-active #recipe-assist{display:none}
+.creative-origin,#creative-styles{display:grid;gap:1rem}
+.creative-pills,.creative-preview-head{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.creative-preview-head{justify-content:space-between}
+.creative-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}
+.creative-options button{display:grid;text-align:left;align-content:start;gap:.45rem;line-height:1.35;padding:.8rem}
+.creative-options button span,.creative-options button small{display:block;font-weight:400;color:var(--muted);font-size:.87rem}
+.creative-options button small{color:#dceaa1}
+.creative-active button[aria-pressed=true],.creative-card button[aria-pressed=true]{border-color:#b5cc2d;background:#293117;color:#f0ffc3}
+.creative-goals{display:grid;gap:.6rem;padding-top:.5rem;border-top:1px solid var(--line)}
+.creative-context{color:#e6fb75;font-weight:700}
+.creative-cards,.creative-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;align-items:start}
+.creative-card{display:grid;gap:.4rem;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.creative-card>:not(.creative-portrait){margin:0 .65rem}
+.creative-card .button-row{padding-bottom:.7rem;gap:.4rem}
+.creative-card button{font-size:.82rem;padding:.5rem}
+.creative-portrait{position:relative;display:block;width:100%;aspect-ratio:2/3;overflow:hidden;background:#22221e}
+.creative-portrait img{display:block;width:100%;height:100%;object-fit:cover}
+.creative-strip figure{margin:0;min-width:0}
+.creative-strip .creative-portrait{border-radius:8px}
+.creative-strip figcaption{margin-top:.4rem;font-weight:700;line-height:1.3}
+.creative-strip figcaption small{display:block;margin-top:.2rem;font-weight:400}
+#creative-preview{width:min(960px,calc(100% - 1.5rem));max-width:960px}
+#creative-preview .creative-strip{margin:1rem 0}
+#creative-review-notes{margin:.6rem 0}
+#receitas .recipe-card picture,#recipe-frame-view{aspect-ratio:2/3}
+#recipe-frame-view img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.creative-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.creative-options{grid-template-columns:1fr}.creative-cards,.creative-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}

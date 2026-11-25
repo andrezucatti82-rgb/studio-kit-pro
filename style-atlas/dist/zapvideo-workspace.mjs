@@ -1,3 +1,4 @@
+import {setupCreative,styleFrame} from './zapvideo-creative-ui.mjs';
 import {describeProject, editOutputs, isId, limits, parseTime, projectFormat, projectVersion,
   supportedVideo, validateProject} from './zapvideo-contract.mjs';
 import {encryptHandoff} from './zapvideo-transfer.mjs';
@@ -41,6 +42,48 @@ let planningIndex=0;
 let deliveryLookup;
 const editVideo=$('preview');
 const pauseEditAudio=setupEditPreviews(editVideo);
+const creativeUI=setupCreative({
+  getDraft:()=>draft,getCapabilities:()=>capabilities,busy:()=>Boolean(task),changed:update,notify:note,
+  request:requestCreative,
+  manual:()=>{
+    if (task) return;
+    const state=draft.creative;
+    if (!state) return;
+    if (state.source==='link') {
+      if (currentRecipe()) draft.subject=state.result?.name || '';
+      else {
+        draft.origin='link';
+        Object.assign(guided(),{url:state.url || '',name:state.result?.name || '',description:state.result?.description || ''});
+      }
+    } else {
+      if (state.idea) draft.subject=state.idea;
+      draft.origin='idea';
+    }
+    delete draft.creative;delete guided().catalogBoard;delete guided().boardKey;
+    update();renderOrigin();
+  }
+});
+function requestCreative(operation) {
+  const state=draft?.creative;
+  if (!state || task) return;
+  if (!token) {
+    $('pilot').open=true;$('token').focus();note('Conecte seu código para usar a IA.');return;
+  }
+  const mode=operation==='storyboard'?capabilities.creativeBoard:state.source==='link'?capabilities.product:capabilities.brief;
+  if (!['mock','gemini'].includes(mode)) {note('Planejamento com IA indisponível.');return;}
+  const subject=state.source==='idea'?state.idea?.trim():state.result?.name || 'Identificar conteúdo da página pública';
+  if (!subject) {note('Informe a ideia em uma frase.');return;}
+  if (operation==='storyboard' && sameBoard()) {showPlanningStep(storyboardIndex);return;}
+  if (operation==='objectives') draft.subject=subject;
+  if (state.source==='link') {
+    try {
+      const url=new URL(state.url.trim());
+      if (url.protocol!=='https:' || url.username || url.password || url.search || url.hash) throw Error();
+    } catch {note('Use o endereço público HTTPS sem parâmetros.');return;}
+  }
+  update();void runTask('brief',false,{operation});
+}
+
 
 try {
   const restored = JSON.parse(localStorage.getItem(storage));
@@ -87,7 +130,8 @@ function draftPlan() {
   const assemblyIds=new Set(draft.assemblyIds || []);
   return {format:projectFormat,version:projectVersion,id:draft.id,revision:draft.revision,
     intent:{mode:draft.mode,subject:draft.mode === 'create' ? draft.subject : '',
-      ...(currentRecipe()?{recipe:{id:draft.recipe.id,goal:draft.recipe.goal,style:guided().style,duration:guided().duration}}:{})},
+      ...(currentRecipe()?{recipe:{id:draft.recipe.id,goal:draft.recipe.goal,style:guided().style,duration:draft.creative?15:guided().duration}}:{}),
+      ...(draft.creative?{creative:creativeUI.payload()}:{})},
     materials:draft.materials.filter(item => draft.mode === 'create' || item.kind !== 'subtitle' || draft.captions)
       .map(item => ({...item,permission:(draft.mode==='edit' && draft.permission) ||
         (draft.mode==='create' && ((draft.analysisPermit && analysisIds.has(item.id)) || draft.clipFrameIds?.includes(item.id) ||
@@ -433,7 +477,18 @@ function renderScenes() {
 }
 
 function renderMoodboard() {
-  const board=$('moodboard'),style=styleOptions()[draft.guided?.boardStyle];
+
+  const board=$('moodboard'),catalogBoard=draft.creative && guided().catalogBoard;
+  if (catalogBoard) {
+    board.hidden=$('board-note').hidden=false;
+    const text=document.createElement('h3');text.textContent='Referência do catálogo · '+catalogBoard.label;
+    const strip=document.createElement('div');strip.className='creative-strip';
+    strip.append(...catalogBoard.frames.map(styleFrame));
+    board.replaceChildren(text,strip);
+    $('board-note').textContent='Os quadros mostram o estilo escolhido. Revise abaixo as cenas propostas para o seu projeto.';
+    return;
+  }
+  const style=styleOptions()[draft.guided?.boardStyle];
   board.hidden=$('board-note').hidden=!style || !draft.scenes.some(scene=>scene.shots.some(shot=>shot.example));
   board.replaceChildren();
   if (board.hidden) return;
@@ -451,9 +506,10 @@ function renderMoodboard() {
 
 function renderOrigin() {
   const recipe=currentRecipe(),linking=draft.origin==='link' && !recipe,settings=guided();
+  $('create-section').classList.toggle('creative-active',Boolean(draft.creative));
   $('recipe-intake').hidden=!recipe;
-  $('origin-choices').hidden=Boolean(recipe);
-  $('brief-title').textContent=recipe?'Conte sua ideia':'Defina o assunto';
+  $('origin-choices').hidden=Boolean(recipe)||Boolean(draft.creative);
+  $('brief-title').textContent=draft.creative?'Qual é o ponto de partida?':recipe?'Conte sua ideia':'Defina o assunto';
   if (recipe) {
     $('recipe-subject').value=draft.subject;
     recipeGoalOptions($('recipe-goal'),draft.recipe.goal);
@@ -482,7 +538,8 @@ function renderOrigin() {
   $('suggest').textContent=recipe?'Criar proposta com IA':'Me ajude a montar';
   $('origin-link').setAttribute('aria-pressed',String(linking));
   $('origin-manual').setAttribute('aria-pressed',String(!linking));
-  $('manual-intake').hidden=linking;$('guided-intake').hidden=!linking;
+  $('manual-intake').hidden=linking || Boolean(draft.creative);$('guided-intake').hidden=!linking || Boolean(draft.creative);
+  creativeUI.renderOrigin();
   for (const key of ['url','name','category','description','objective','aspect','duration']) $('product-'+key).value=settings[key];
 }
 function refreshRecipeMedia() {
@@ -568,6 +625,15 @@ function refreshGuided() {
   const settings=guided(),reserve=capabilities.briefReservedMicros;
   const available=['mock','gemini'].includes(capabilities.product);
   $('read-product').disabled=!available || Boolean(task) || !settings.url.trim();
+  if (draft.creative) {
+    creativeUI.refresh();
+    $('planning-next').textContent=planningIndex===0?'Escolher estilo →':planningIndex===1?
+      (draft.creative.substep==='sound'?'Gerar storyboard com IA':'Continuar →'):planningIndex===storyboardIndex?'Aprovar e avançar →':'Revisar e entregar →';
+    $('planning-next').disabled=Boolean(task) || (planningIndex===0 && !creativeUI.originReady({silent:true}));
+    $('board-replace').hidden=true;
+    return;
+  }
+  $('planning-next').disabled=false;
   $('product-note').textContent=capabilities.product==='mock'?'Análise simulada com dados fictícios.':
     available?`Envia só o link ao Google. Reserva de ${briefPrice(reserve)}.`:
       capabilities.pilotAvailable && !token?'Conecte o piloto para verificar o acesso à análise de links.':'Leitura de links indisponível. Informe o produto para continuar.';
@@ -610,6 +676,12 @@ function productView(result,revision) {
 }
 
 function renderStyles() {
+  $('style-cards').hidden=Boolean(draft.creative);
+  $('recipe-assist').hidden=Boolean(draft.creative)||!currentRecipe();
+  $('style-section').classList.toggle('creative-active',Boolean(draft.creative));
+  $('creative-styles').hidden=!draft.creative;
+  if (draft.creative) {void creativeUI.renderStyles();return;}
+  $('style-title').textContent='Escolher um estilo';
   const list=$('style-cards'),settings=guided();
   list.replaceChildren();
   const entries=Object.entries(styleOptions()).sort(([a],[b])=>Number(b===settings.recommended)-Number(a===settings.recommended));
@@ -646,12 +718,14 @@ $('style-example-next').onclick=()=>{stylePreview.index++;renderStylePreview();}
 $('style-example-close').onclick=()=>$('style-dialog').close();
 
 function boardKey() {
+  if (draft.creative) return JSON.stringify([draft.subject,creativeUI.payload()]);
   const settings=guided();
   return JSON.stringify([draft.subject,settings.style,settings.duration,settings.objective,
     ...(currentRecipe()?[draft.recipe.id,draft.recipe.goal,draft.assemblyAspect]:[])]);
 }
 function sameBoard() { return draft.scenes.length>0 && guided().boardKey===boardKey(); }
 function confirmOrigin() {
+  if (draft.creative) return creativeUI.originReady();
   if (draft.origin!=='link') {
     if (!draft.subject.trim()) { $(currentRecipe()?'recipe-subject':'subject').focus();note('Escreva uma frase sobre seu vídeo.');return false; }
     return true;
@@ -665,6 +739,7 @@ function confirmOrigin() {
   return true;
 }
 function prepareBoard() {
+  if (draft.creative) return requestCreative('storyboard');
   const settings=guided();
   if (!settings.style || !Object.hasOwn(styleOptions(),settings.style)) return note('Selecione um estilo para montar o storyboard.');
   if (!sameBoard()) {
@@ -727,13 +802,23 @@ function showPlanningStep(index,{focus=true}={}) {
 }
 planningButtons.forEach((button,index)=>{button.onclick=()=>{
   if ((index===1 || (currentRecipe() && index===storyboardIndex)) && !confirmOrigin()) return showPlanningStep(0);
+  if (draft.creative && index>=storyboardIndex && !sameBoard()) {
+    showPlanningStep(creativeUI.originReady({silent:true})?1:0);note('Revise o objetivo e monte o storyboard atual.');return;
+  }
   if (currentRecipe() && index===storyboardIndex && !draft.scenes.length) return prepareBoard();
   showPlanningStep(index);
 };});
-$('planning-prev').onclick=()=>showPlanningStep(planningIndex===4 && !recipeCanGenerateClip(currentRecipe()?.id)?2:planningIndex-1);
+$('planning-prev').onclick=()=>{
+  if (draft.creative && planningIndex===1 && creativeUI.previousDirection()) return;
+  showPlanningStep(planningIndex===4 && !recipeCanGenerateClip(currentRecipe()?.id)?2:planningIndex-1);
+};
 $('planning-next').onclick=()=>{
   if (planningIndex===0 && !confirmOrigin()) return;
-  if (planningIndex===1) return prepareBoard();
+  if (planningIndex===1) return draft.creative?creativeUI.nextDirection():prepareBoard();
+  if (draft.creative && planningIndex===storyboardIndex) {
+    if (!sameBoard()) {note('Conclua a revisão antes de avançar.');return;}
+    draft.creative.approvedBoardKey=boardKey();save();
+  }
   showPlanningStep(planningIndex===2 && !recipeCanGenerateClip(currentRecipe()?.id)?4:planningIndex+1);
 };
 
@@ -743,6 +828,7 @@ function showWorkspace() {
   $('handoff-detail').hidden=true;
   $('choose').hidden=true;$('workspace').hidden=false;
   const creating=draft.mode==='create';
+  $('creative-review-notes').hidden=!draft.creative;
   $('grid').classList.toggle('planning',creating);
   $('planning-header').hidden=$('planning-footer').hidden=$('planning-feedback').hidden=!creating;
   (creating?$('planning-header'):$('edit-pilot')).append($('pilot'));
@@ -789,6 +875,7 @@ function openMode(mode,{entry,recipe}={}) {
   if (!draft || draftKey(draft)!==key) {
     clearPreview();
     draft = savedDrafts[key] ?? newDraft(mode);
+    if (mode==='create' && !savedDrafts[key]) draft.creative={source:entry==='link'||recipe?.group==='loja'?'link':'idea',origin:'product',substep:'catalog'};
     if (recipe && !draft.recipe) {
       draft.recipe={id:recipe.id,goal:recipe.goal,media:[]};
       draft.assemblyAspect='9:16';
@@ -806,7 +893,9 @@ function openMode(mode,{entry,recipe}={}) {
     save();
   }
   if (entry==='link') {
-    draft.origin='link';draft.planningStep='idea';save();
+    draft.origin='link';draft.planningStep='idea';
+    if (draft.creative && draft.creative.source!=='link' && !draft.creative.result) draft.creative.source='link';
+    save();
   }
   showWorkspace();
 }
@@ -1012,6 +1101,30 @@ async function upload(projectPath, attachment, signal) {
   progress.hidden=true;
   return row.id;
 }
+async function applyCreativeBoard(result, revision) {
+  await creativeUI.getIndex();
+  const style=creativeUI.selectedStyle();
+  if (!draft.creative || draft.revision!==revision || !style) {
+    note('Storyboard de uma revisão anterior. As escolhas atuais foram preservadas.');return;
+  }
+  draft.scenes=result.proposal.scenes.map((scene,index)=>({...scene,id:unique(),shots:scene.shots.map(shot=>({
+    ...shot,id:unique(),layers:[],generateSupport:recipeCanGenerateClip(currentRecipe()?.id),
+    example:style.frames[index]?.image,
+  }))}));
+  guided().catalogBoard={label:style.label,frames:style.frames};
+  guided().boardKey=boardKey();
+  delete draft.sampleSceneId;delete draft.assemblySample;delete draft.creative.approvedBoardKey;
+  $('creative-review-notes').open=false;$('creative-adjustment').value='';
+  renderScenes();update();showPlanningStep(storyboardIndex);
+  note('Storyboard pronto para revisão.');
+}
+$('creative-revise').onclick=()=>{
+  if (!draft?.creative || task) return;
+  const feedback=$('creative-adjustment').value.trim();
+  if (!feedback) {note('Diga em uma frase o que quer ajustar.');return;}
+  draft.creative.feedback=feedback;
+  requestCreative('storyboard');
+};
 function proposalView(result, revision) {
   proposal = {...result,revision};
   $('proposal-title').textContent=proposal.proposal.title;
@@ -1235,6 +1348,7 @@ async function runTask(kind, resume=false, clipQuote=null) {
   }
   const controller=new AbortController(),signal=controller.signal;
   task=controller;
+  creativeUI.refresh();
   $('stop').hidden=false;$('produce').disabled=$('suggest').disabled=$('analyze').disabled=true;
   $('read-product').disabled=true;
   try {
@@ -1243,10 +1357,15 @@ async function runTask(kind, resume=false, clipQuote=null) {
     else {
       // User can keep editing while the immutable snapshot is sent.
       const form=draftPlan(),productUrl=kind==='brief'?clipQuote?.productUrl:undefined;
+      const operation=kind==='brief'?clipQuote?.operation:undefined;
       if (productUrl && !form.intent.subject.trim()) form.intent.subject='Identificar produto pela página pública';
       const plan=structuredClone(validateProject(form));
       const agreedMicros=kind==='brief'?(productUrl?clipQuote.agreedMicros:capabilities.briefReservedMicros):undefined;
-      if (!productUrl && agreedMicros>0 && !window.confirm('Confirma a reserva de '+briefPrice(agreedMicros)+' para pedir uma proposta ao Gemini?')) return;
+      if (!productUrl && agreedMicros>0) {
+        const purpose=operation==='storyboard'?'enviar suas escolhas e preparar o storyboard':
+          operation==='objectives'?'enviar o ponto de partida e sugerir objetivos':'pedir uma proposta';
+        if (!window.confirm('Confirma a reserva de '+briefPrice(agreedMicros)+' para '+purpose+' com o Gemini?')) return;
+      }
       if (kind==='edit' && !$('permit').checked) throw new Error('Autorize o envio dos arquivos para processar online.');
       let selected=kind==='edit'?requireSelected(plan):[];
       if (kind==='assembly') selected=clipQuote?.filesToSend || [];
@@ -1274,9 +1393,10 @@ async function runTask(kind, resume=false, clipQuote=null) {
       }
       const body=['clip','asset'].includes(kind)?{kind,revision:plan.revision,quoteId:clipQuote?.id,confirmed:clipQuote?.revision===plan.revision}:
         {kind,revision:plan.revision,inputs,url:publicAddress,phase:clipQuote?.phase,approvalId,agreedMicros,
-          ...(productUrl?{productUrl,confirmed:true}:{}),key:(productUrl?'product':kind)+(kind==='assembly'?'-'+clipQuote.phase:'')+'-'+plan.revision};
+          ...(productUrl?{productUrl,confirmed:true}:{}),...(operation?{operation,confirmed:true}:{}),
+          key:(operation || (productUrl?'product':kind))+(kind==='assembly'?'-'+clipQuote.phase:'')+'-'+plan.revision};
       const started=await api(projectPath+'/jobs',{method:'POST',body,signal});
-      job={id:started.id,project:plan.id,kind,revision:plan.revision};
+      job={id:started.id,project:plan.id,kind,revision:plan.revision,...(operation?{operation}:{})};
       lastJob=job;save();
     }
     const path=projectPath+'/jobs/'+job.id;
@@ -1290,7 +1410,13 @@ async function runTask(kind, resume=false, clipQuote=null) {
           if (!resume && (kind==='edit' || (kind==='assembly' && state.result.phase==='full'))) void refreshDeliveryLinks();
         }
         else if (kind==='analysis') showAnalysis(state);
+        else if (state.result.creative) {
+          if (draft.creative && draft.revision===state.revision) creativeUI.applyObjectives(state.result);
+          else note('Objetivos de uma revisão anterior. As escolhas atuais foram preservadas.');
+        }
         else if (state.result.product) productView(state.result,state.revision);
+        else if (draft.creative && (clipQuote?.operation==='storyboard' || lastJob?.operation==='storyboard'))
+          await applyCreativeBoard(state.result,state.revision);
         else proposalView(state.result,state.revision);
         return;
       }
