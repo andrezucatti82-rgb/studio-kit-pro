@@ -1,5 +1,8 @@
 import {findRecipe, recipeGoals, recipeGroups, recipePreviews, recipes} from './zapvideo-recipes.mjs';
 
+const publicRecipes = recipes.filter(recipe => recipe.group !== 'gda');
+const publicGroups = recipeGroups.filter(group => publicRecipes.some(recipe => recipe.group === group.id));
+
 export function recipeGoalOptions(select, current) {
   select.replaceChildren(...Object.entries(recipeGoals).map(([value,label])=>new Option(label,value)));
   select.value=current;
@@ -14,7 +17,7 @@ export function setupRecipes(startRecipe, download) {
   const normalize=value=>value.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().trim();
   function render() {
     const query=normalize(search.value);
-    const matches=recipes.filter(recipe=>(!group || recipe.group===group) &&
+    const matches=publicRecipes.filter(recipe=>(!group || recipe.group===group) &&
       normalize([recipe.name,...recipe.beats].join(' ')).includes(query));
     $('recipe-count').textContent=matches.length===0?'Nenhuma receita encontrada.':
       matches.length===1?'1 receita':`${matches.length} receitas`;
@@ -37,7 +40,7 @@ export function setupRecipes(startRecipe, download) {
       return button;
     }));
   }
-  for (const {id,name} of [{id:'',name:'Todas'},...recipeGroups]) {
+  for (const {id,name} of [{id:'',name:'Todas'},...publicGroups]) {
     const button=document.createElement('button');
     button.type='button';button.className='secondary';button.textContent=name;
     button.dataset.group=id;
