@@ -124,7 +124,7 @@ O teto aprovado para testes no Google em 19/11/2026 foi de R$ 50 por dia. O ZapV
 
 ### Montagem
 
-Organize os planos em ordem e vincule uma tomada, B-roll, quadro ou clipe verificado a cada um. Escolha 9:16 ou 16:9, informe a duração, adicione títulos com entrada animada, selecione a aproximação suave nas imagens e marque se quer manter o áudio da tomada. A narração é selecionada por cena. A trilha e o SRT podem ser selecionados para o vídeo. A amostra reúne a cena indicada e, quando couber em 24 segundos, a cena seguinte. O piloto aceita 16 planos e 120 segundos. O FFmpeg preserva os materiais enviados e valida o MP4 H.264/AAC de saída.
+Organize os planos em ordem e vincule uma tomada, B-roll, quadro ou clipe verificado a cada um. Escolha 9:16 ou 16:9, informe a duração, adicione títulos com entrada animada, selecione a aproximação suave nas imagens e marque se quer manter o áudio da tomada. A narração é selecionada por cena. A trilha e o SRT podem ser selecionados para o vídeo. A amostra tem exatamente 5 segundos. Quando a cena indicada tem uma seguinte, a amostra inclui a transição. A montagem precisa de pelo menos 5 segundos de material. O piloto aceita 16 planos e 120 segundos. O FFmpeg preserva os materiais enviados e valida o MP4 H.264/AAC de saída.
 
 O botão de montagem completa exige que a pessoa apresente a prancha de moodboard, styleframes e storyboard, o animatic e a amostra verificada. O aceite grava os três hashes e a marca digital da versão dos planos e insumos. Editar um título, mudar o tempo, trocar um material ou mudar a trilha invalida o aceite da montagem. Todo resultado sai como prévia para revisão audiovisual.
 

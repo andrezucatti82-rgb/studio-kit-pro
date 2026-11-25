@@ -20,7 +20,7 @@ Se a capacidade ainda for incerta, declare essa incerteza antes do teste e siga 
 
 ## Teste obrigatório antes do vídeo completo
 
-Gere um teste curto representativo do movimento mais exigente, preferencialmente dentro da amostra de 10 segundos já prevista. Compare lado a lado com os originais, em reprodução e por quadros do início, meio, fim e mudanças de ângulo. Examine também momentos de oclusão, contato, fala e retorno ao quadro quando existirem. Confira rosto **e corpo visível**, cabelo, tom de pele, idade aparente, proporções e anatomia em movimento; não confunda mudança de iluminação com mudança de pele, nem tolere mudança estrutural como efeito de câmera.
+Gere um teste curto representativo do movimento mais exigente, preferencialmente dentro da amostra de 5 segundos já prevista. Compare lado a lado com os originais, em reprodução e por quadros do início, meio, fim e mudanças de ângulo. Examine também momentos de oclusão, contato, fala e retorno ao quadro quando existirem. Confira rosto **e corpo visível**, cabelo, tom de pele, idade aparente, proporções e anatomia em movimento; não confunda mudança de iluminação com mudança de pele, nem tolere mudança estrutural como efeito de câmera.
 
 Se não houver mudança de ângulo no teste, registre isso como limite; ele não valida ângulos que não foram testados. Da mesma forma, um close não valida corpo inteiro. Uma cena nova que exceda a cobertura ou o movimento aprovados requer novo teste específico. Alteração perceptível de identidade ou anatomia bloqueia a produção completa: corrigir fonte/ação, substituir técnica ou pedir referência e testar novamente. Não aprovar automaticamente pelo prompt, por similaridade de um único quadro ou por um render concluído.
 

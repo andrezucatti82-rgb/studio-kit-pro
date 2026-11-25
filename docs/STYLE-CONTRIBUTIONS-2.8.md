@@ -18,7 +18,7 @@ O modo Page usa widget state, sem localStorage. O site comum conserva a escolha 
 
 Testes automatizados verificam os 780 pedidos, escopos, conflitos, arquivos de planejamento, roundtrip, dados inválidos e invalidação dos aceites. Testes de navegador devem conferir o seletor, retorno do foco, teclado, persistência, downloads, importação e larguras desktop/mobile. Registre os resultados da execução antes de dizer que passaram.
 
-Esses testes verificam transporte e regras, não a qualidade do vídeo. O teste audiovisual proposto é produzir, após aprovação dos visuais e orçamento, uma amostra integrada de 10 segundos combinando tipografia, luz, textura e cor, e comparar referências, storyboard e vídeo nas quatro travas. Não há autorização de novos créditos embutida no seletor.
+Esses testes verificam transporte e regras, não a qualidade do vídeo. O teste audiovisual proposto é produzir, após aprovação dos visuais e orçamento, uma amostra integrada de 5 segundos combinando tipografia, luz, textura e cor, e comparar referências, storyboard e vídeo nas quatro travas. Não há autorização de novos créditos embutida no seletor.
 
 ## Resultado desta revisão
 

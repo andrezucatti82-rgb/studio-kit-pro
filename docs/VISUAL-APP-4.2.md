@@ -8,7 +8,7 @@ O site continua público, estático e sem login. A identidade DiSteven existe ap
 2. Examine a capa e os três momentos adicionais. Abra a ficha para ampliar os quatro quadros e consultar recursos, som e limitações.
 3. Escolha um estilo principal e até nove complementares. Em Meu vídeo, informe tema, marca opcional, formato e duração.
 4. Prepare e copie o pedido. Baixe o quadro principal e a sequência e anexe-os à conversa de produção. Abrir ChatGPT não transmite o briefing ou os arquivos automaticamente.
-5. Aprove separadamente moodboard, storyboard e amostra de dez segundos da ação mais difícil. O vídeo completo depende desses aceites.
+5. Aprove separadamente moodboard, storyboard e amostra de cinco segundos da ação mais difícil. O vídeo completo depende desses aceites.
 
 ## O que as imagens demonstram
 

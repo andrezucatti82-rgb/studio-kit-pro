@@ -9,7 +9,7 @@ Revisão de 12/11/2026. Os 780 estilos, IDs, imagens e readiness foram preservad
 - A condução usa Agora / Entrega / Preciso de você / Próximo passo. Na revisão do pedido há uma explicação compacta de como preservar o estilo; os detalhes técnicos ficam recolhidos.
 - `fidelity-plan.json` registra referências com hash, observações, aprovações, ferramentas, planos e desvios. `npm run fidelity-check` verifica arquivos e registros, aceita somente o quadro/referências corretos do job e invalida o aceite quando a direção muda.
 - O adaptador HeyGen exige esse controle antes da API paga. Há suporte documental e testes locais para até nove imagens de referência, com ordem e hashes conferidos. Referências de áudio/vídeo não implementadas são recusadas. O aprimoramento automático do prompt fica desativado por padrão; sua ativação exige decisão explícita.
-- Para avançar ao filme completo, o registro exige amostra de 10 s, comparação lado a lado, playback, escuta, quatro travas e aceite do arquivo/direção exatos. Chamadas fora do adaptador dependem da aplicação do protocolo pelo agente; o site público não intercepta APIs.
+- Para avançar ao filme completo, o registro exige amostra de 5 s, comparação lado a lado, playback, escuta, quatro travas e aceite do arquivo/direção exatos. Chamadas fora do adaptador dependem da aplicação do protocolo pelo agente; o site público não intercepta APIs.
 - O diagnóstico local distingue ferramenta ausente de execução não verificada por permissão. Isso evita orientar uma instalação desnecessária quando o problema é o ambiente.
 
 ## Conexões e recursos conferidos nesta sessão

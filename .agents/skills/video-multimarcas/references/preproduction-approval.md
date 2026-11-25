@@ -1,6 +1,6 @@
 # Moodboard e storyboard: aprovação antes da amostra
 
-Fluxo: materiais → pesquisa e roteiro → moodboard visual → aprovação do moodboard → storyboard visual → aprovação do storyboard → amostra de 10 segundos → revisão e aprovação da amostra → vídeo completo.
+Fluxo: materiais → pesquisa e roteiro → moodboard visual → aprovação do moodboard → storyboard visual → aprovação do storyboard → amostra de 5 segundos → revisão e aprovação da amostra → vídeo completo.
 
 ## Moodboard: direção visual
 

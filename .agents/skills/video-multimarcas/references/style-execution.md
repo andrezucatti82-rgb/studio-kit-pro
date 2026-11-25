@@ -17,7 +17,7 @@ Preencha `templates/style-execution-plan.json`: `selectedStyles` guarda os crit�
 
 ## Pré-produção e validação
 
-Siga materiais e recursos → roteiro → moodboard visual aprovado → storyboard visual completo aprovado → amostra de 10 segundos → revisão e aprovação → vídeo final. Escolha a cena mais exigente e sua transição, justificando a escolha. A duração alvo pertence ao filme, não à amostra. Para 60 segundos ou mais, aprove blocos depois da amostra. Tempos por plano seguem a locução real; estimativas de clipes servem apenas ao orçamento.
+Siga materiais e recursos → roteiro → moodboard visual aprovado → storyboard visual completo aprovado → amostra de 5 segundos → revisão e aprovação → vídeo final. Escolha a cena mais exigente e sua transição, justificando a escolha. A duração alvo pertence ao filme, não à amostra. Para 60 segundos ou mais, aprove blocos depois da amostra. Tempos por plano seguem a locução real; estimativas de clipes servem apenas ao orçamento.
 
 Priorize HeyGen via API direta para geração de vídeo, verificando capacidade e custo antes de consumir créditos. A escolha de um estilo não conecta ferramentas nem autoriza novos gastos. Não transforme estudo 3D em promessa de geometria, 360°, tracking ou física sem referências e implementação compatíveis. Se houver bloqueio, apresente motivo verificado e execução alternativa para aprovação, preservando as autorizações existentes.
 

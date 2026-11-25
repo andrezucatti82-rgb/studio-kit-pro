@@ -15,7 +15,7 @@ if(!args.includes('--stills')){
  const record=arg('--workflow',path.join(path.dirname(config),'workflow.json'));
  const stage=arg('--stage','full-render');
  if(!['animatic','sample','full-render'].includes(stage))throw Error('Use --stage animatic, sample or full-render');
- if(stage==='sample'&&props.scenes.reduce((n,s)=>n+s.durationFrames,0)/props.fps>15)throw Error('Sample must be <= 15 seconds; render the representative excerpt');
+ if(stage==='sample'&&props.scenes.reduce((n,s)=>n+s.durationFrames,0)!==AtlasWorkflow.sampleSeconds*props.fps)throw Error('Sample must be exactly five seconds; render the representative excerpt');
  const gate=checkWorkflow(JSON.parse(fs.readFileSync(record,'utf8')),stage==='full-render'?'full-render':'ai-video',path.dirname(path.resolve(record)));
  if(!gate.ready)throw Error('Production approval pending: '+gate.errors.join('; '));
 }

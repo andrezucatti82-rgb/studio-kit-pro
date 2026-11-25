@@ -119,7 +119,7 @@ for family,title,kind,rows in families:
   if name in ['Interfaces reais','Tutorial de interface']:note='Esta amostra é uma ilustração IA. Na produção com interfaces reais, usar captura autorizada e dados demonstrativos; nunca apresentar esta imagem como screenshot autêntico.'
   if name=='Infografia de dados':note='Os números desta amostra são fictícios e não servem como evidência. Na produção, usar dados com fonte e escalas verificadas.'
   if family=='motion':note='Um quadro estático não demonstra esta técnica em movimento. A amostra representa uma intenção visual; a prévia de 10 segundos é a prova de execução.'
-  styles.append({'id':slug,'name':name,'family':family,'familyName':title,'kind':kind,'signature':signature,'exampleTopic':topic,'uses':use,'resources':resources.split('; '),'motion':motion,'complexity':complexity,'note':note,'image':{'atlas':f'assets/{family}.webp','column':i%4,'row':i//4,'columns':4,'rows':3,'source':'Estudo visual gerado por IA'},'preset':{'version':1,'skill':'video-multimarcas','firstDelivery':['roteiro','storyboard visual','vídeo de 10 segundos para aprovação'],'avatar':False,'camera':'Livre e motivada pela narrativa; sem tremor aleatório.','brand':'Adaptar à marca fornecida. Sem marca, identidade editorial provisória.','approvalGate':'Não produzir o vídeo completo antes da aprovação da amostra de 10 segundos.','research':'Pesquisar fontes confiáveis e distinguir fatos de exemplos fictícios.','quality':'Ação interna, imagens grandes, profundidade coerente quando aplicável, ritmo pela voz e revisão audiovisual honesta.'}})
+  styles.append({'id':slug,'name':name,'family':family,'familyName':title,'kind':kind,'signature':signature,'exampleTopic':topic,'uses':use,'resources':resources.split('; '),'motion':motion,'complexity':complexity,'note':note,'image':{'atlas':f'assets/{family}.webp','column':i%4,'row':i//4,'columns':4,'rows':3,'source':'Estudo visual gerado por IA'},'preset':{'version':1,'skill':'video-multimarcas','firstDelivery':['roteiro','storyboard visual','vídeo de 10 segundos para aprovação'],'avatar':False,'camera':'Livre e motivada pela narrativa; sem tremor aleatório.','brand':'Adaptar à marca fornecida. Sem marca, identidade editorial provisória.','approvalGate':'Não produzir o vídeo completo antes da aprovação da amostra de 5 segundos.','research':'Pesquisar fontes confiáveis e distinguir fatos de exemplos fictícios.','quality':'Ação interna, imagens grandes, profundidade coerente quando aplicável, ritmo pela voz e revisão audiovisual honesta.'}})
 from product_styles import extend, GROUPS
 from property_styles import GROUP, PROPERTY_LOCK
 GROUPS.append(GROUP)
@@ -139,7 +139,7 @@ for s in styles:
   s['image']['source']='Interface demonstrativa construída em HTML/CSS/SVG'
  if s['family']=='apresentacoes':
   s['preset']['productFidelity']=PRESENTATION_RULE
-  s['note']='Estudo estático IA de composição e tipografia. O texto final será composto como texto editável; movimentos e som precisam ser demonstrados na amostra de 10 segundos.'
+  s['note']='Estudo estático IA de composição e tipografia. O texto final será composto como texto editável; movimentos e som precisam ser demonstrados na amostra de 5 segundos.'
 from extra_styles import extend as extend_extra
 extend_extra(styles,families)
 from avatar_styles import extend as extend_avatars

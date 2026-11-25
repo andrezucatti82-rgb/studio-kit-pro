@@ -3,7 +3,7 @@
 Branch: `feat/fidelity-project-workflow`. Trabalho local para revisão; não autoriza publicação, merge ou geração. Nenhuma API de geração foi chamada.
 
 1. **Contrato:** PNG por estilo (atlas ou imagem individual), referência e quatro travas no preset/pedido, campos completos nos 540 IDs. Readiness preservada. Validação inicial do catálogo passou; downloads foram verificados na revisão integrada.
-2. **Duração:** 15/30/60 ou 61–3600 segundos; amostra sempre 10 s. Estimativa por limites do adaptador, sem distribuir uniformemente as cenas. Testes puros de estimativa, migração e pedido passaram.
+2. **Duração:** 15/30/60 ou 61–3600 segundos; amostra sempre 5 s. Estimativa por limites do adaptador, sem distribuir uniformemente as cenas. Testes puros de estimativa, migração e pedido passaram.
 3. **Contato:** menu Produzir meu vídeo e escolha fazer sozinho/produção pela DiSteven. A versão final remove WhatsApp por decisão posterior do usuário; somente link institucional, sem briefing na URL. GA4 vazio: nenhum script de medição. Se configurado futuramente, carregamento somente após consentimento explícito da sessão; só três eventos permitidos e nenhum campo digitado nos eventos. Fluxo de medição com ID real não foi verificado.
 4. **Continuidade:** ficha versionada exportável/importável, histórico e parser limitado. Dados colados são renderizados como texto. Aprovação exige quatro decisões do usuário; status nunca as concede. Projetos CLI antigos preservam evidências e recebem a etapa final pendente. Testes de ficha e parser passaram.
 5. **Escolha:** seis recomendações determinísticas, selos conforme preview (seis existentes), estilos selecionados no briefing e avisos técnicos acessíveis. Integração inclui retirada do WhatsApp, validadores de travas e compilação Page compatível.
@@ -40,7 +40,7 @@ Abra http://127.0.0.1:8770/. Para reproduzir os testes de navegador, instale Pyt
 
 ## Teste real proposto, não executado
 
-Escolher um dos 534 estilos sem preview e usar o mesmo tema, originais, modelo e orçamento nos dois fluxos. No novo, anexar PNG e escolher a cena mais difícil; no antigo, usar só nome/texto. Gerar apenas a amostra de 10 s após autorização. Comparar aparência lado a lado, movimento em playback integral, texto em celular e invariantes de produto/pessoa/marca contra os originais. Registrar hashes, custos, diferenças, correções e aprovação do usuário. Não inferir fidelidade do vídeo inteiro a partir da amostra.
+Escolher um dos 534 estilos sem preview e usar o mesmo tema, originais, modelo e orçamento nos dois fluxos. No novo, anexar PNG e escolher a cena mais difícil; no antigo, usar só nome/texto. Gerar apenas a amostra de 5 s após autorização. Comparar aparência lado a lado, movimento em playback integral, texto em celular e invariantes de produto/pessoa/marca contra os originais. Registrar hashes, custos, diferenças, correções e aprovação do usuário. Não inferir fidelidade do vídeo inteiro a partir da amostra.
 
 ## Revisão de experiência após a publicação
 

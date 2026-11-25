@@ -45,7 +45,7 @@ O adaptador pago exige no job `fidelityPlan` (caminho relativo ao job), `shotId`
 
 ## Comparação e entrega
 
-Depois dos dois aceites visuais, amostra de 10 s da ação e transição mais difíceis. Mostre referência → storyboard → quadros do início/meio/fim lado a lado, junto do vídeo reproduzível. Assista e escute integralmente; inspecione mudanças de ângulo, identidade, textura, física, rótulo, letras, foco, flicker, voz e mixagem. Registre divergências concretas e as quatro travas. Peça aprovação para o hash/versão exatos. Não use similaridade de pixels ou nota de IA como prova de identidade; imagens bonitas não comprovam movimento.
+Depois dos dois aceites visuais, amostra de 5 s da ação e transição mais difíceis. Mostre referência → storyboard → quadros do início/meio/fim lado a lado, junto do vídeo reproduzível. Assista e escute integralmente; inspecione mudanças de ângulo, identidade, textura, física, rótulo, letras, foco, flicker, voz e mixagem. Registre divergências concretas e as quatro travas. Peça aprovação para o hash/versão exatos. Não use similaridade de pixels ou nota de IA como prova de identidade; imagens bonitas não comprovam movimento.
 
 `sample` registra vídeo/hash, justificativa, comparações com hashes, playback, listening, locks e decisão do usuário vinculada ao mesmo hash. Para `final`, o validador exige esses registros além dos materiais e aceites. Repita a revisão em todos os planos; o aceite da amostra não libera desvios posteriores. Sem acesso real a playback/escuta, marque pendente e solicite revisão do usuário, sem alegar que foi feita. Entregue MP4, legendas/textos editáveis, projeto, fontes e pendências honestas. Ferramentas e agente não garantem reprodução idêntica.
 

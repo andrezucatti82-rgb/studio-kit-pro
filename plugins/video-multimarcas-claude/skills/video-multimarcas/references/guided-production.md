@@ -39,7 +39,7 @@ Cada receita começa como **planejada**. Só pode receber evidência de teste de
 | Apresentação de serviço | Escopo, informações oficiais, diferenciais comprovados, materiais autorizados e CTA | Explicação visual do serviço com ação concreta e áudio, 10 s | Demonstração editorial identificada sem fingir depoimento, cliente ou resultado real |
 | Interfaces e gráficos | Capturas atuais, fluxo real, dados autorizados/demonstrativos e marca | Mudança de estado legível e coerente, com texto editável e locução, 10 s | Reconstrução em código conferida ou gráfico explicativo, deixando clara sua natureza |
 
-Em todas: materiais → roteiro → moodboard aprovado → storyboard aprovado → amostra de 10 s → revisão técnica e aprovação criativa → vídeo completo. A amostra prova a cena mais difícil; não precisa ser a abertura. O filme mantém sua duração alvo; tempos por plano vêm da locução, sem divisão uniforme.
+Em todas: materiais → roteiro → moodboard aprovado → storyboard aprovado → amostra de 5 s → revisão técnica e aprovação criativa → vídeo completo. A amostra prova a cena mais difícil; não precisa ser a abertura. O filme mantém sua duração alvo; tempos por plano vêm da locução, sem divisão uniforme.
 
 ## Coordenador e responsabilidades
 

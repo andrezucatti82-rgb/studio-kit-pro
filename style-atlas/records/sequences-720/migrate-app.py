@@ -34,7 +34,7 @@ s=s.replace("referenceFrame:AtlasWorkflow.referenceFrame(s),id:s.id", "reference
 s=s.replace("['3.2','4.0','4.1'].includes(catalog.version)&&['3.1','3.2','4.0'].includes", "['3.2','4.0','4.1','4.2'].includes(catalog.version)&&['3.1','3.2','4.0','4.1'].includes")
 s=s.replace("window.AtlasCurrentChoice=choice;window.ATLAS_READY=true", "window.AtlasCurrentChoice=choice;window.AtlasApp={getStyle:id=>byId.get(id),prompt};window.ATLAS_READY=true")
 s=s.replace('ROTEIRO → STORYBOARD VISUAL → AMOSTRA','ROTEIRO → MOODBOARD APROVADO → STORYBOARD APROVADO → AMOSTRA')
-s=s.replace('Depois da coleta, entregar roteiro, storyboard visual e prévia de 10 segundos para aprovação.', 'Depois da coleta, entregar roteiro, moodboard e storyboard para aceites separados; só então amostra de 10 segundos para aprovação.')
+s=s.replace('Depois da coleta, entregar roteiro, storyboard visual e prévia de 10 segundos para aprovação.', 'Depois da coleta, entregar roteiro, moodboard e storyboard para aceites separados; só então amostra de 5 segundos para aprovação.')
 p.write_text(s)
 q=p.parent/'app-shell.js';s=q.read_text().replace("behavior:'instant'", "behavior:'auto'");q.write_text(s)
 print('Navigation, selection, sequence viewer and collapsed prompt wired')

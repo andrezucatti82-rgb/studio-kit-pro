@@ -68,7 +68,7 @@ R$50 é teto inicial de planejamento por vídeo aprovado, não crédito ou autor
 
 Quando bloquear: etapa afetada, causa verificada ou desconhecida, arquivos realmente existentes, ação necessária, alternativa e impacto. Continuar etapas independentes. Não repetir chamada paga sem diagnóstico.
 
-Em cada etapa: **Agora / Entrega / Preciso de você / Próximo passo**. Mostrar arquivos concretos e oferecer Aprovar / Ajustar / Voltar. Primeiro roteiro, moodboard/styleframes e storyboard aprovados, animatic conforme política visual, depois amostra representativa de 10s com a ação e passagem mais exigentes. Duração completa ajustável; 60s ou mais por blocos. Comparar referência, direção aprovada e resultado nas quatro travas. Arquivo final acessível e reproduzível; somente declarar revisão audiovisual após assistir e escutar integralmente. Uma receita permanece planejada sem essa execução e revisão reais.
+Em cada etapa: **Agora / Entrega / Preciso de você / Próximo passo**. Mostrar arquivos concretos e oferecer Aprovar / Ajustar / Voltar. Primeiro roteiro, moodboard/styleframes e storyboard aprovados, animatic conforme política visual, depois amostra representativa de 5 s com a ação e passagem mais exigentes. Duração completa ajustável; 60s ou mais por blocos. Comparar referência, direção aprovada e resultado nas quatro travas. Arquivo final acessível e reproduzível; somente declarar revisão audiovisual após assistir e escutar integralmente. Uma receita permanece planejada sem essa execução e revisão reais.
 
 ## Contrato compartilhado e dependências
 

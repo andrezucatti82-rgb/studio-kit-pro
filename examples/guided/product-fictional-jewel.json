@@ -5,7 +5,7 @@
   "brand": "Ateliê Vira — marca fictícia",
   "format": "9:16",
   "targetDurationSeconds": 30,
-  "firstDeliverySeconds": 10,
+  "firstDeliverySeconds": 5,
   "guidedBrief": {
     "objective": "product",
     "subject": "Apresentar uma joia artesanal fictícia em uma embalagem de presente",
@@ -79,14 +79,14 @@
       "Briefing e lista de materiais.",
       "Roteiro, fontes e plano de cenas.",
       "Moodboard e storyboard com aprovações separadas.",
-      "Amostra representativa de 10 segundos e comparação referência → storyboard → resultado.",
+      "Amostra representativa de 5 segundos e comparação referência → storyboard → resultado.",
       "Após os aceites: vídeo completo, legendas, projeto editável e relatório de revisão."
     ],
     "acceptance": [
       "Identificar variante e preservar o produto em camadas quando necessário.",
       "Só demonstrar um atributo com referência ou prova disponível.",
       "Estado inicial → ação → resultado por plano; zoom em foto não prova ação interna.",
-      "Amostra de 10 s escolhida pela ação e passagem mais exigentes, depois dos dois aceites visuais.",
+      "Amostra de 5 s escolhida pela ação e passagem mais exigentes, depois dos dois aceites visuais.",
       "Quatro travas: aparência, movimento, texto e identidade; comparação com originais e referências.",
       "Playback e escuta reais, pendências registradas e aceite do arquivo/direção exatos."
     ],

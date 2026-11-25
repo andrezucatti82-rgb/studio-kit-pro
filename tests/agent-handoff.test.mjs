@@ -34,7 +34,7 @@ test('source duration stays pending until measured and constrains the actual ren
  try{
   assert.equal(h.context.durationMode,'source');assert.equal(h.context.targetDurationSeconds,null);
   assert.equal(h.context.contract.brief.targetDurationSeconds,null);
-  assert.equal(h.context.contract.sampleDurationRule,'up_to_original_duration');
+  assert.equal(h.context.contract.sampleDurationRule,'five_seconds_within_original');
   for(const prompt of [W.buildPrompt(h.c),W.pagePrompt(h.c.catalogUrl),W.starterFiles(h.c).find(f=>f.name==='pedido.txt').text]){
    assert.match(prompt,/Meça a duração do vídeo original autorizado/);
    assert.match(prompt,/--duration-source/);
@@ -51,7 +51,8 @@ test('source duration stays pending until measured and constrains the actual ren
   const request=graphRequestSchema.parse(await makeGraphRequest(h.context,store,{durationSeconds:30}));
   assert.equal(request.durationSeconds,duration.seconds);
   assert.equal(request.durationSource.assetId,item.id);
-  await assert.rejects(makeGraphRequest(h.context,store,{phase:'sample',durationSeconds:10}),/Sample exceeds/);
+  assert.equal((await makeGraphRequest(h.context,store,{phase:'sample'})).durationSeconds,5);
+  await assert.rejects(makeGraphRequest(h.context,store,{phase:'sample',durationSeconds:10}),/exactly five seconds/);
   assert.throws(()=>assertHandoffContext(h.context,{...request,durationSeconds:30}),/original video duration/);
   const plan=planFor(h.context);plan.output.durationFrames=201;plan.scenes[0].durationFrames=100;plan.scenes[1].durationFrames=101;
   assert.equal(validateGraphPlan(plan,[item],request,h.context).output.durationFrames,201);
@@ -90,7 +91,7 @@ test('explicit typography, narrated ad requirements and avatar selection cannot 
 test('graph sample runs only after its independent approvals and executes the approved plan without another model call',async()=>{
  const h=await imported();let o;
  try{
-  const request=graphRequestSchema.parse({...requestFor(h.context),durationSeconds:10,phase:'sample'}),plan=planFor(h.context);plan.output.durationFrames=300;for(const scene of plan.scenes)scene.durationFrames=150;
+  const request=graphRequestSchema.parse({...requestFor(h.context),durationSeconds:5,phase:'sample'}),plan=planFor(h.context);plan.output.durationFrames=150;for(const scene of plan.scenes)scene.durationFrames=75;
   const bytes=Buffer.from('explicit unit render stub, not a video'),root=path.join(h.project,'worker');
   o=await new Orchestrator({root,context:h.context,planner:{name:'agent',plan:async()=>{throw Error('Must not replan an approved sample');}},editor:async plan=>({plan,score:{origin:'unit-test stub'}}),renderer:async(e,w)=>{const output=path.join(w,'stub');await fs.writeFile(output,bytes);return {output,reviewFrames:[]};},validator:async()=>({status:'passed',sha256:digest(bytes),bytes:bytes.length})}).init();
   const w={schemaVersion:1,productionRequestSha256:digest(Buffer.from(JSON.stringify(request))),artifacts:{},approvals:{}};

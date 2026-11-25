@@ -50,7 +50,7 @@
   },
   "sample": {
     "blockedUntilBothApproved": true,
-    "targetSeconds": 10,
+    "targetSeconds": 5,
     "representativeShotId": "",
     "validatedInitialFrame": "",
     "selectionReason": ""

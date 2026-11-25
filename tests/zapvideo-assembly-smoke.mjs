@@ -77,7 +77,7 @@ async function run(phase,approvalId) {
   assert.equal(state.result.phase,phase);
   const [file]=state.result.outputs;
   assert.deepEqual([file.width,file.height,file.audio],[720,1280,true]);
-  assert(Math.abs(file.duration-(phase==='sample'?6:9))<0.17);
+  assert(Math.abs(file.duration-(phase==='sample'?5:9))<0.17);
   const grant=await post(route+'/grant',{file:file.id});
   const cookieHeader=grant.headers.get('Set-Cookie');
   if (stage) assert.match(cookieHeader,/Secure/);

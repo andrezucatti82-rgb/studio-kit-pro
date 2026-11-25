@@ -14,7 +14,7 @@ Use explicit per-shot frame durations, media and transitions (schemaVersion 2). 
 
 ## Universal visual approval
 
-Before any AI video generation (including free tests, avatar previews and paid samples), present concrete visual frames and obtain explicit user approval. Budget, voice or avatar selection never approves unseen visuals. Read docs/VISUAL-APPROVAL.md and run scripts/workflow-gate.mjs before production. Preserve scoped evidence; never infer approval or call technical validation full audiovisual review.
+Before any AI video generation (including free tests, avatar previews and paid samples), present concrete visual frames and obtain explicit user approval. Budget, voice or avatar selection never approves unseen visuals. Read docs/VISUAL-APPROVAL.md and run scripts/workflow-gate.mjs before production. Use an integrated five-second sample for new approvals. Preserve scoped evidence; never infer approval or call technical validation full audiovisual review.
 
 ## Free local VFX toolchain
 

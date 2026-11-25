@@ -42,7 +42,7 @@ test('approval receipt must match an existing artifact version and hash',()=>{
 test('shared production contract carries dependencies and distinguishes receipts from declarations',()=>{
  for(const b of [{objective:'product',materials:['one_photo']},{objective:'service',materials:['idea']},{objective:'explain',materials:['screens']}]){
   const c=choice();c.guidedBrief=G.normalizeBrief({...b,subject:c.topic});const contract=W.productionContract(c);
-  assert.equal(contract.version,1);assert.equal(contract.brief.subject,c.topic);assert.equal(contract.recipe.status,'planned');assert.equal(contract.references.styles.length,1);assert.equal(contract.sampleSeconds,10);
+  assert.equal(contract.version,1);assert.equal(contract.brief.subject,c.topic);assert.equal(contract.recipe.status,'planned');assert.equal(contract.references.styles.length,1);assert.equal(contract.sampleSeconds,5);
   for(const n of contract.materials.dependencies)for(const k of ['id','label','why','stage','how','alternative','status','adequacy'])assert.ok(n[k],k);
   assert.deepEqual(contract.approvalCriteria,W.fidelityContract);assert.ok(W.buildPrompt(c).includes(JSON.stringify(contract)));assert.doesNotMatch(JSON.stringify(contract),/\bGDA\b|wa\.me/);
  }

@@ -1,4 +1,7 @@
 import {clipAspects,validateProject} from './zapvideo-contract.mjs';
+import './workflow.js';
+
+export const assemblySampleFrames = AtlasWorkflow.sampleSeconds * 30;
 
 export const assemblyOutput=Object.freeze({id:'montagem',name:'montagem-previa.mp4',type:'video/mp4'});
 const supportedImages=/\.(?:jpe?g|png|webp)$/i;
@@ -65,9 +68,10 @@ export function assemblyPlan(raw) {
   }
   require(shots.length>0 && shots.length<=16 && totalFrames<=3600,'A montagem do piloto aceita até 16 planos e 120 segundos.');
   const scene=spans.find(span=>span.id===sampleSceneId) || spans[0];
-  const next=spans[spans.indexOf(scene)+1];
-  const sampleEnd=next && next.end-scene.start<=720?next.end:scene.end;
-  require(sampleEnd-scene.start<=720,'Escolha uma cena de até 24 segundos para a amostra.');
-  return {aspect,music,captions,shots,narrations,totalFrames,sample:{start:scene.start,end:sampleEnd},
+  require(totalFrames>=assemblySampleFrames,'A montagem precisa ter pelo menos cinco segundos para criar a amostra.');
+  const hasTransition=scene.end<totalFrames;
+  const candidate=hasTransition?Math.max(scene.start,scene.end-Math.floor(assemblySampleFrames/2)):scene.start;
+  const start=Math.min(candidate,totalFrames-assemblySampleFrames);
+  return {aspect,music,captions,shots,narrations,totalFrames,sample:{start,end:start+assemblySampleFrames},
     materials:[...selected.values()]};
 }

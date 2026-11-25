@@ -4,7 +4,7 @@
 
 Pesquisa realizada em 5 de novembro de 2026 com Firecrawl e Exa. Foram criadas 140 direções: dez em cada uma das 14 categorias, elevando o atlas a 420 opções (30 por categoria). São combinações autorais de estética, técnica e narrativa, não uma taxonomia universal nem reprodução de campanhas.
 
-Cada proposta foi comparada com uma direção próxima das 280 anteriores. A ficha registra a diferença de composição ou mecanismo, movimento, recursos, uso, intenção sonora e o que deve ser demonstrado na amostra de 10 segundos. Semelhanças de família são naturais; trocar apenas paleta ou assunto não foi o critério de expansão.
+Cada proposta foi comparada com uma direção próxima das 280 anteriores. A ficha registra a diferença de composição ou mecanismo, movimento, recursos, uso, intenção sonora e o que deve ser demonstrado na amostra de 5 segundos. Semelhanças de família são naturais; trocar apenas paleta ou assunto não foi o critério de expansão.
 
 Foram produzidas 120 amostras visuais IA e 20 estudos de dados/interfaces em código. São referências estáticas e fictícias, sem áudio ou animação executada. Obras e imagens das fontes não foram copiadas para o catálogo. A pesquisa foi textual; vídeos incorporados não foram considerados assistidos. Resumos de livros não equivalem à leitura integral.
 

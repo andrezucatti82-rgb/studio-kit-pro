@@ -13,7 +13,7 @@
   "deviations": [],
   "preproductionRecord": "preproduction-plan.json",
   "sample": {
-    "targetSeconds": 10,
+    "targetSeconds": 5,
     "shotIds": [],
     "selectionReason": "",
     "file": "",

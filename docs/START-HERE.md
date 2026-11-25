@@ -17,7 +17,7 @@ As três receitas iniciais são planejadas: anúncio de produto, apresentação 
 2. Escolha uma das três sugestões. Uma direção basta; combinar partes de outros estilos é opcional. No celular, use as setas para comparar as três e abra a sequência para entender a evolução.
 3. Confira os materiais e prepare o pedido. Escolha **ChatGPT** ou **Claude**, copie e cole o pedido e anexe os originais indicados. Se os links não abrirem, baixe os quadros/seqüência PNG identificados e anexe-os.
 4. Em **Salvar o kit e retomar depois**, baixe pedido TXT, projeto JSON, instruções TXT e manifesto JSON separadamente. O JSON guarda escolhas e registros, não os arquivos de mídia. Guarde os originais e entregas da conversa também. Não é necessário conseguir abrir ZIP nem instalar a skill para usar o pedido.
-5. A IA confere anexos e capacidades, resume o entendimento e pergunta somente o necessário. Deve preparar roteiro e visuais concretos para aprovação; só depois dos aceites e da confirmação de custo pode gerar a amostra representativa de 10s. A política visual inclui styleframes e animatic conforme [aprovação visual](VISUAL-APPROVAL.md).
+5. A IA confere anexos e capacidades, resume o entendimento e pergunta somente o necessário. Deve preparar roteiro e visuais concretos para aprovação; só depois dos aceites e da confirmação de custo pode gerar a amostra representativa de 5 s. A política visual inclui styleframes e animatic conforme [aprovação visual](VISUAL-APPROVAL.md).
 
 **O que devo receber?** Uma primeira resposta curta com o que já existe, o que falta e a próxima entrega. Até três perguntas pertinentes por rodada, em menu quando disponível ou opções numeradas. Não repita escolhas já claras. Se a IA pedir o mesmo arquivo, indique o nome já anexado e peça que verifique acesso antes de reenviar.
 
@@ -55,7 +55,7 @@ Abra o endereço local informado. O servidor só atende no computador local e n�
 
 O repositório contém `.agents/skills/video-multimarcas/SKILL.md`, suas referências e templates. Abra a pasta no agente e peça explicitamente:
 
-> Leia AGENTS.md e a skill .agents/skills/video-multimarcas/SKILL.md. Verifique as capacidades disponíveis. Vou fornecer tema, marca e estilo. Entregue primeiro roteiro e moodboard para aprovação; após o aceite, storyboard para aprovação própria; só depois, amostra de 10 segundos.
+> Leia AGENTS.md e a skill .agents/skills/video-multimarcas/SKILL.md. Verifique as capacidades disponíveis. Vou fornecer tema, marca e estilo. Entregue primeiro roteiro e moodboard para aprovação; após o aceite, storyboard para aprovação própria; só depois, amostra de 5 segundos.
 
 Em superfícies que aceitam importação de skills, importe `dist/video-multimarcas.skill` ou o ZIP conforme a interface disponível. Se a superfície não oferecer importação, use a pasta no ambiente do agente ou os arquivos como instruções de projeto. **Copiar arquivos não instala um plugin na conta nem sincroniza automaticamente desktop e nuvem.** Faça a ativação em cada superfície e confira se o agente consegue ler as referências.
 
@@ -133,7 +133,7 @@ Se não conseguir gerar, o agente deve explicar a etapa bloqueada, o motivo conf
 
 ## Naturalidade e acabamento em todos os estilos
 
-Os pedidos e presets incluem avaliação obrigatória de imagens IA, clipes IA e tratamento/edição final, com correção e nova revisão. A regra vale também para estilos anteriores e para a amostra de 10 segundos: fidelidade aos originais, continuidade, composição e áudio natural. Linguagens ilustradas mantêm seu estilo. Estudos estáticos não certificam vídeo pronto; sem playback e escuta reais, a revisão permanece pendente. Veja [o protocolo](../.agents/skills/video-multimarcas/references/natural-finish.md).
+Os pedidos e presets incluem avaliação obrigatória de imagens IA, clipes IA e tratamento/edição final, com correção e nova revisão. A regra vale também para estilos anteriores e para a amostra de 5 segundos: fidelidade aos originais, continuidade, composição e áudio natural. Linguagens ilustradas mantêm seu estilo. Estudos estáticos não certificam vídeo pronto; sem playback e escuta reais, a revisão permanece pendente. Veja [o protocolo](../.agents/skills/video-multimarcas/references/natural-finish.md).
 
 ## Pessoas e preservação de identidade
 

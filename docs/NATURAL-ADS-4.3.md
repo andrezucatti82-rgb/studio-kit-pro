@@ -10,7 +10,7 @@ Cada estilo apresenta quatro momentos conceituais, recursos, ação, argumento, 
 2. Abra uma direção para ver os quatro quadros e sua estrutura narrativa.
 3. Escolha o estilo, informe tema e marca e selecione a duração. Há agora uma opção direta de **45 segundos**, além das existentes.
 4. Prepare o pedido. O contrato inclui `advertising`: DBO (Dor, Benefício, Objeção e CTA) ou AIDA (Atenção, Interesse, Desejo e Ação), faixa sugerida de 30–45 s, narração em português, legendas sincronizadas editáveis e CTA no encerramento.
-5. Anexe os originais necessários no chat. Aprovar roteiro, moodboard, storyboard e depois a amostra representativa de 10 s continua fazendo parte da produção. A duração escolhida pelo usuário prevalece sobre a recomendação do estilo.
+5. Anexe os originais necessários no chat. Aprovar roteiro, moodboard, storyboard e depois a amostra representativa de 5 s continua fazendo parte da produção. A duração escolhida pelo usuário prevalece sobre a recomendação do estilo.
 
 Não há geração de vídeos no site, contas compartilhadas ou áudio nas fotografias. Os seis vídeos históricos continuam sendo amostras pendentes. Cada pessoa utiliza suas próprias ferramentas, contas e créditos.
 

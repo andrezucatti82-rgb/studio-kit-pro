@@ -41,6 +41,6 @@ DBO/AIDA organiza o roteiro, não impõe quatro cenas ou quatro tempos iguais. A
 
 Itens reais exigem originais e confirmação de variante, atributos, alegações e condições. Não inventar rótulo, ângulo oculto, depoimento, antes/depois ou resultado. Jurídico: conteúdo informativo, revisão profissional e chamada sóbria. Infantil: público adulto responsável, instruções e uso seguro. Beleza: pele real e ausência de resultado fabricado. Pets: anatomia, comportamento e bem-estar. Turismo: arquitetura, localização e comodidades confirmadas. Serviços e automotivo: processo, escopo, aplicação e segurança reais.
 
-As quatro imagens ilustram estados narrativos, não comprovam movimento, áudio ou execução. Moodboard, storyboard e amostra representativa de 10 segundos continuam sujeitos a aprovação separada. Não foi gerado vídeo nesta expansão.
+As quatro imagens ilustram estados narrativos, não comprovam movimento, áudio ou execução. Moodboard, storyboard e amostra representativa de 5 segundos continuam sujeitos a aprovação separada. Não foi gerado vídeo nesta expansão.
 
 Atualização jurídica: notícia oficial da OAB Goiás em 16/06/2026 descreve propostas ainda em debate. Essa notícia não é tratada como aprovação de nova norma. Conferir legislação e orientação profissional atuais no projeto; evitar ostentação, promoção da estrutura física do escritório e símbolos oficiais da OAB.

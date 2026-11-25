@@ -1,6 +1,6 @@
 # Avaliação de naturalidade e acabamento profissional
 
-Regra obrigatória para **todos os estilos e todos os vídeos**, incluindo a primeira amostra de 10 segundos. O alvo é acabamento convincente e intencional, próximo de uma edição profissional, sem os defeitos recorrentes da geração automática. Não prometer realismo perfeito ou ausência absoluta de artefatos. Não remover identificação sintética, procedência ou avisos necessários para fazer uma simulação passar por registro real.
+Regra obrigatória para **todos os estilos e todos os vídeos**, incluindo a primeira amostra de 5 segundos. O alvo é acabamento convincente e intencional, próximo de uma edição profissional, sem os defeitos recorrentes da geração automática. Não prometer realismo perfeito ou ausência absoluta de artefatos. Não remover identificação sintética, procedência ou avisos necessários para fazer uma simulação passar por registro real.
 
 Estas são regras de avaliação e direção, não uma lista de filtros implementados. Consulte `video-tratamento` e sua matriz de cobertura antes de prometer correção de cor, restauração ou masterização.
 

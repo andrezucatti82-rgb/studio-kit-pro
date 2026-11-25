@@ -18,7 +18,7 @@ Continuação autorizada em 14/11/2026 do plano e da candidata no PR #17. Integr
 2. Opcionalmente, aproveita a iluminação de outra referência somente nos detalhes. O pedido guarda fonte, característica e escopo; a IA deve propor a aplicação nos planos e mostrá-la integrada no moodboard/storyboard.
 3. Confere os materiais, formato e duração. Copia o pedido para ChatGPT ou Claude e anexa a foto original, informações comprovadas e PNGs caso os links não abram. Não precisa enviar arquivos ao site.
 4. A IA verifica o que de fato recebeu e as capacidades da sessão. Uma foto não autoriza inventar verso ou giro. A IA propõe roteiro e visuais adequados à vista disponível, com perguntas apenas sobre faltas relevantes.
-5. Após os aceites das entregas visuais e da cotação específica, pode haver amostra representativa de 10s. A amostra e o filme completo continuam sujeitos às quatro travas, playback/escuta integrais e aprovação do usuário.
+5. Após os aceites das entregas visuais e da cotação específica, pode haver amostra representativa de 5 s. A amostra e o filme completo continuam sujeitos às quatro travas, playback/escuta integrais e aprovação do usuário.
 6. Uma correção como “texto mais legível” deve preservar clipes válidos, alterar a composição editável e renovar os aceites afetados. A conversa oferece ficha atualizada e arquivos individuais. Para retomar, a pessoa envia a ficha e as entregas relevantes, sem reconstruir o briefing.
 
 Exemplo ilustrativo da primeira resposta quando ainda faltam anexos e os links não abriram — não é registro de teste real em ChatGPT/Claude:
@@ -48,7 +48,7 @@ Commit, merge, publicação e instalação são estados distintos. Pacotes gerad
 
 ## Próximo teste audiovisual
 
-Produto fictício com uma foto utilizável, variante e atributos confirmados. Primeiro apresentar roteiro, moodboard/styleframes, storyboard e animatic conforme a política visual. Após os aceites, cotar a amostra de 10s da ação/passagem mais exigentes na rota HeyGen direta compatível, incluindo voz, imagens e tentativas. Aguardar autorização financeira específica — R$50 é teto de planejamento, não permissão de gasto.
+Produto fictício com uma foto utilizável, variante e atributos confirmados. Primeiro apresentar roteiro, moodboard/styleframes, storyboard e animatic conforme a política visual. Após os aceites, cotar a amostra de 5 s da ação/passagem mais exigentes na rota HeyGen direta compatível, incluindo voz, imagens e tentativas. Aguardar autorização financeira específica — R$50 é teto de planejamento, não permissão de gasto.
 
 Comparar originais, referências, direção aprovada e amostra nas quatro travas; reproduzir e escutar integralmente; pedir avaliação do usuário. O teste completo só termina quando uma pessoa sem conhecimento técnico consegue acessar, reproduzir e avaliar o arquivo produzido. Medir decisões, perguntas repetidas, reenvios, bloqueios, ajuda, tempos, tentativas e custo por vídeo aprovado. Esse piloto não foi executado nesta entrega.
 

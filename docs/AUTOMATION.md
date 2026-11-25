@@ -1,6 +1,6 @@
 # Produção retomável e HeyGen direto
 
-O fluxo é **materiais e recursos → roteiro → moodboard aprovado → storyboard aprovado → amostra de 10 segundos → revisão técnica → aprovação do usuário**. O atlas informa os requisitos e o estado de cada direção. Uma imagem de referência não comprova que o vídeo daquele estilo já foi executado.
+O fluxo é **materiais e recursos → roteiro → moodboard aprovado → storyboard aprovado → amostra de 5 segundos → revisão técnica → aprovação do usuário**. O atlas informa os requisitos e o estado de cada direção. Uma imagem de referência não comprova que o vídeo daquele estilo já foi executado.
 
 ## Retomar sem refazer o briefing
 

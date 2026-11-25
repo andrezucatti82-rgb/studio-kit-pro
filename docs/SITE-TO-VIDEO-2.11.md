@@ -33,7 +33,7 @@ npm run video -- context --project projects/cliente
 # O próprio agente escreve o plano com o schema/contexto e os arquivos reais.
 npm run video -- validate --project projects/cliente --plan projects/cliente/plan.json --phase full
 CHROME_PATH=/usr/bin/chromium npm run video -- stills --project projects/cliente --plan projects/cliente/plan.json
-# Depois dos aceites reais; para a amostra, use seu plano de até 15 s:
+# Depois dos aceites reais; para a amostra, use seu plano de exatamente 5 s:
 CHROME_PATH=/usr/bin/chromium npm run video -- render --project projects/cliente --plan projects/cliente/sample-plan.json --phase sample --workflow projects/cliente/workflow.json
 # Após os gates do filme completo:
 CHROME_PATH=/usr/bin/chromium npm run video -- render --project projects/cliente --plan projects/cliente/plan.json --phase full --workflow projects/cliente/workflow.json

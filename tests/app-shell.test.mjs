@@ -96,7 +96,7 @@ test('narrated ads: eleven segments, 45 second handoff and local restore retain 
  click('#grid [data-choose]');change('duration','45');change('topic','Uma coleção demonstrativa');
  d.getElementById('briefForm').dispatchEvent(new ctx.Event('submit',{bubbles:true,cancelable:true}));
  await new Promise(r=>setTimeout(r,20));
- const c=ctx.AtlasCurrentChoice();assert.equal(c.targetDurationSeconds,45);assert.equal(c.firstDeliverySeconds,10);
+ const c=ctx.AtlasCurrentChoice();assert.equal(c.targetDurationSeconds,45);assert.equal(c.firstDeliverySeconds,5);
  assert.equal(c.selectedStyles[0].advertising.narrationRequired,true);assert.equal(c.selectedStyles[0].advertising.captionsRequired,true);
  assert.match(d.getElementById('promptOutput').value,/Duração alvo: 45 segundos/);
  assert.ok(d.getElementById('promptOutput').value.includes(c.selectedStyles[0].advertising.cta));

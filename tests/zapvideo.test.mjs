@@ -1,13 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync,spawnSync} from 'node:child_process';
-import {mkdtemp,readFile,stat,writeFile} from 'node:fs/promises';
+import {mkdtemp,readFile,rm,stat,writeFile} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import {projectFormat, validateProject, editOutputs, parseTime} from '../style-atlas/dist/zapvideo-contract.mjs';
 import {encryptHandoff} from '../style-atlas/dist/zapvideo-transfer.mjs';
 import {parseHandoffLink,unpackHandoff} from '../scripts/retrieve-disteven-handoff.mjs';
-import {probeVideo,renderEdit} from '../zapvideo/renderer.mjs';
+import {assemblyPlan,assemblySampleFrames} from '../style-atlas/dist/zapvideo-assembly.mjs';
+import {probeVideo,renderAssembly,renderEdit} from '../zapvideo/renderer.mjs';
 import {readSrt,suggestCuts} from '../style-atlas/dist/zapvideo-captions.mjs';
 import {analyzeMaterials,proposeBrief,readProduct} from '../zapvideo/gemini.mjs';
 import {detectType,publicUrl} from '../zapvideo/analysis-media.mjs';
@@ -23,6 +24,28 @@ function plan() {
       treatment:{brightness:0.02,contrast:1.02,saturation:1,balance:true,denoise:true}}};
 }
 const hasFfmpeg = spawnSync('ffmpeg',['-version']).status === 0 && spawnSync('ffprobe',['-version']).status === 0;
+
+test('an integrated sample clips both sides of the chosen transition to exactly 150 frames', {skip:!hasFfmpeg}, async()=>{
+  const root=await mkdtemp(path.join(os.tmpdir(),'zapvideo-sample-'));
+  try {
+    const original=path.join(root,'original.mp4');
+    execFileSync('ffmpeg',['-v','error','-nostdin','-f','lavfi','-i','testsrc=size=160x240:rate=30:duration=6',
+      '-vcodec','libx264','-pix_fmt','yuv420p','-threads','2',original]);
+    const media={...source,name:'original.mp4',permission:'process'};
+    const makeScene=(id,seconds)=>({id,title:id,narration:'',shots:[{
+      id:'shot-'+id,seconds,generateSupport:false,direction:'Mostrar a gravação.',layers:[{kind:'video',materialId:media.id}]
+    }]});
+    const project={format:projectFormat,version:1,id:'amostra',revision:1,intent:{mode:'create',subject:'Prova sintética'},
+      materials:[media],actions:{},assembly:{aspect:'9:16',sampleSceneId:'opening'},scenes:[makeScene('opening',6),makeScene('closing',4)]};
+    assert.deepEqual(assemblyPlan(project).sample,{start:105,end:255});
+    assert.equal(assemblyPlan(project).totalFrames,300);
+    assert.throws(()=>assemblyPlan({...project,scenes:[makeScene('opening',4)]}),/pelo menos cinco segundos/);
+    const rendered=await renderAssembly(project,'sample',{[media.id]:original},path.join(root,'sample'));
+    const video=await probeVideo(path.join(root,'sample',rendered.outputs[0].name));
+    assert.equal(Number(video.video.nb_frames),assemblySampleFrames);
+    assert.equal(video.duration,5);
+  }finally {await rm(root,{recursive:true,force:true});}
+});
 
 test('production pilot expires and authenticates Gemini only in the private staging entrypoint',async()=>{
   const google='https://generativelanguage.googleapis.com';

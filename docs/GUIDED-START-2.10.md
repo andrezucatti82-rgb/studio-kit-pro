@@ -57,7 +57,7 @@ O protocolo depende do agente seguir as instruções; JSON bem formado não comp
 
 ## Próxima validação proposta, sem execução
 
-Fazer uma sessão acompanhada com pessoa sem conhecimento técnico: produto fictício com uma foto e informações comprovadas. Comparar o fluxo anterior e o novo nas quatro travas. Obter antes a foto utilizável, restrições e proposta de ação compatível; preparar e aprovar roteiro, moodboard/styleframes, storyboard e animatic conforme a política visual. A amostra de 10s deve conter a ação/passagem mais difícil, com justificativa, voz e legendas editáveis.
+Fazer uma sessão acompanhada com pessoa sem conhecimento técnico: produto fictício com uma foto e informações comprovadas. Comparar o fluxo anterior e o novo nas quatro travas. Obter antes a foto utilizável, restrições e proposta de ação compatível; preparar e aprovar roteiro, moodboard/styleframes, storyboard e animatic conforme a política visual. A amostra de 5 s deve conter a ação/passagem mais difícil, com justificativa, voz e legendas editáveis.
 
 Antes de qualquer imagem, voz ou clipe cobrado, verificar rota HeyGen direta compatível, conta, preço atual e estimativa de tentativas. Apresentar custo e solicitar autorização específica; R$50 é teto de planejamento, não gasto autorizado. Não trocar provedor ou reduzir a direção silenciosamente. Comparar originais, referências, storyboard e amostra; reproduzir e escutar integralmente, registrar diferenças e pedir aprovação. Só depois considerar o vídeo completo. A entrega termina com o usuário acessando e avaliando o MP4, não no clique de copiar.
 

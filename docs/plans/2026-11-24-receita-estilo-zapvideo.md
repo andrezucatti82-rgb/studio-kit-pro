@@ -2,6 +2,14 @@
 
 Plano de 24/11/2026. Base do site `8d775f4c`. Fonte do Arsenal `16b63fc0` no branch `docs/arsenal-receitas-fonte`, pasta `docs/arsenal-receitas/`. Nomes de rotas, campos novos, metas e limites indicados abaixo são propostas para implementação e validação.
 
+## Revisão do protótipo v2
+
+Na criação, a pessoa escolhe a receita e o ponto de partida. Com um link, o Gemini sugere produto, assunto, segmento e objetivo a partir da página. O objetivo aparece numa pergunta de confirmação. A pessoa pode aprovar, voltar ou pedir uma mudança. Os estilos e as respostas seguintes complementam a direção. O pedido técnico fica disponível para copiar apenas na saída escolhida. Se a página não puder ser lida, avise e ofereça enviar uma referência ou continuar com uma ideia breve.
+
+Na edição, o vídeo enviado abre perguntas específicas para os ajustes marcados. Reaproveite as prévias de enquadramento, imagem e som. Inclua corte, legenda e B-roll de arquivos próprios ou do acervo mediante direitos. A revisão mostra o trecho e permite pedir ajustes. Separe o MP4 produzido no ZapVideo do pedido preparado para o kit ou outra conversa.
+
+Em cada revisão, mantenha as ações Voltar, Pedir ajustes e Aprovar e avançar. Sugira ajustes de um toque e deixe o comentário livre opcional. Alterações revogam os aceites afetados e geram uma revisão dos materiais correspondentes. A amostra de aprovação tem exatamente 5 segundos. O protótipo local demonstra o percurso com dados e mídia de exemplo. As propostas abaixo são referência da v1 quando houver diferença de interface e aguardam a validação da v2 antes da implementação.
+
 ## 1. Decisões de produto
 
 | Decisão | Resultado |
@@ -392,7 +400,7 @@ Links são dados. Limitar HTTPS público, sem credencial, portas alternativas, I
 
 ### Produção no site
 
-Primário para as duas receitas escolhidas. Converter estilo e escopo em roteiro com ações, cortes, locução e tempos explícitos, com insumos autorizados. Moodboard e styleframes propostos vêm antes do storyboard. Mostrar os arquivos reais que poderão guiar a produção e registrar hash, revisão, escopo e aceite literal. Usar animatic com os quadros aprovados para checar ritmo. A amostra integrada de até 10 s representa a ação mais difícil e sua transição. Exigir cotação e autorização de custo, apoio dos operadores e visual aprovado antes da chamada de vídeo. Geração pode ser por plano e posterior montagem no Container, sem alterar as características selecionadas. Se o vídeo for mais curto que 10 s, a amostra cobre a dificuldade proporcional e registra a duração real. Se a proposta depender de avatar personalizado, o job permanece na etapa de material/modalidade compatível. Identidade e voz necessitam consentimento verificável. Sem recurso, encaminhar ao kit ou pedir escolha explícita de direção, sem substituir silenciosamente.
+Primário para as duas receitas escolhidas. Converter estilo e escopo em roteiro com ações, cortes, locução e tempos explícitos, com insumos autorizados. Moodboard e styleframes propostos vêm antes do storyboard. Mostrar os arquivos reais que poderão guiar a produção e registrar hash, revisão, escopo e aceite literal. Usar animatic com os quadros aprovados para checar ritmo. A amostra integrada de 5 s representa a ação mais difícil e sua transição. Exigir cotação e autorização de custo, apoio dos operadores e visual aprovado antes da chamada de vídeo. Geração pode ser por plano e posterior montagem no Container, sem alterar as características selecionadas. A amostra exige pelo menos cinco segundos de material autorizado. Um clipe isolado mais curto mantém a revisão dos quadros e do clipe. Se a proposta depender de avatar personalizado, o job permanece na etapa de material/modalidade compatível. Identidade e voz necessitam consentimento verificável. Sem recurso, encaminhar ao kit ou pedir escolha explícita de direção, sem substituir silenciosamente.
 
 ```mermaid
 flowchart TD
@@ -402,7 +410,7 @@ flowchart TD
     A --> B[Storyboard com quadro e direção por plano]
     B --> C[Revisar e aprovar storyboard e animatic]
     C --> D[Aprovar escopo e reserva da amostra]
-    D --> E[Gerar e montar amostra de até 10 s]
+    D --> E[Gerar e montar amostra de 5 s]
     E --> F{Amostra integrada aprovada}
     F -->|Sim| Q[Confirmar orçamento e a versão do filme]
     F -->|Ajustar| B
@@ -488,7 +496,7 @@ Ainda preciso enviar a gravação da Marina e a planta que posso usar. Posso env
 
 Use a lógica de planejamento, explicador e edição da skill Vídeo Multimarcas quando disponível. Confirme os operadores necessários de VFX e os direitos de uso. Reserve um único motor para a montagem da peça. Se Remotion ou HyperFrames não estiver disponível nesta conversa, entregue roteiro, mapa de fala e acendimento, quadros de revisão e a instrução de continuar no kit com o projeto anexado.
 
-Apresente roteiro, moodboard, styleframes e storyboard para conferência. Depois do aceite visual, mostre o animatic, cote uma amostra representativa de até 10s e aguarde autorização de custo antes da geração. Filme completo após aceite da amostra e da versão. Entregue MP4, legenda separada e plano editável com o estado de revisão correspondente.
+Apresente roteiro, moodboard, styleframes e storyboard para conferência. Depois do aceite visual, mostre o animatic, cote uma amostra representativa de 5 s e aguarde autorização de custo antes da geração. Filme completo após aceite da amostra e da versão. Entregue MP4, legenda separada e plano editável com o estado de revisão correspondente.
 ```
 
 **Saída 3 — Produzir no ZapVideo**
@@ -564,12 +572,12 @@ A foto frontal e a do detalhe estão declaradas. Confira arquivos e direitos. A 
 
 Use a lógica de planejamento, publicidade e edição da skill Vídeo Multimarcas. Recorte de foto opcional com Adobe autorizado. Use um único motor para a entrega. Se só houver planejamento nesta conversa, devolva roteiro, mapa dos planos, storyboard e instrua a renderização no kit mantendo as mesmas escolhas. HyperFrames é alternativa que exige confirmação de uso e escopo.
 
-Apresente roteiro e quadros do meu produto para eu revisar. Com os visuais aprovados, mostre o animatic e reserve a amostra de até 10s cobrindo a passagem da apresentação ao uso. Aguarde meu aceite visual e de custo para gerar. Filme completo só depois de aprovar a amostra e a nova cotação. Entregue a versão para revisão integral de imagem e som antes da entrega final.
+Apresente roteiro e quadros do meu produto para eu revisar. Com os visuais aprovados, mostre o animatic e reserve a amostra de 5 s cobrindo a passagem da apresentação ao uso. Aguarde meu aceite visual e de custo para gerar. Filme completo só depois de aprovar a amostra e a nova cotação. Entregue a versão para revisão integral de imagem e som antes da entrega final.
 ```
 
 **Saída 3 — Produzir no ZapVideo**
 
-A revisão lista “Caneca Brisa · anúncio vertical · 15s”, visual “Demonstração de produto”, insumos “Foto frontal + detalhe declarados” e “Falta tomada do uso”. Botão “Preparar moodboard” disponível para planejamento. Carregue as fotos autorizadas e gere os quadros do projeto após a cotação e a autorização aplicáveis. Apresente a composição, montagem e animatic previstos, com o quadro da caneca e seus detalhes. Para amostra, selecione os primeiros 10s que cobrem a passagem da peça para o seu uso. Confira cor, forma e movimento com os originais. “Gerar amostra” só aparece ativa com originais verificados e aceite de todos os visuais e da reserva. Registre o aceite da amostra e da nova estimativa antes dos 5s restantes e da montagem do MP4 de 15s. “Assistir e baixar” abre após verificação técnica e mostra o estado de revisão. O resultado tem compartilhamento separado, se autorizado. Este exemplo não representa um job iniciado.
+A revisão lista “Caneca Brisa · anúncio vertical · 15s”, visual “Demonstração de produto”, insumos “Foto frontal + detalhe declarados” e “Falta tomada do uso”. Botão “Preparar moodboard” disponível para planejamento. Carregue as fotos autorizadas e gere os quadros do projeto após a cotação e a autorização aplicáveis. Apresente a composição, montagem e animatic previstos, com o quadro da caneca e seus detalhes. Para amostra, selecione os primeiros 5 s que cobrem a passagem da peça para o seu uso. Confira cor, forma e movimento com os originais. “Gerar amostra” só aparece ativa com originais verificados e aceite de todos os visuais e da reserva. Registre o aceite da amostra e da nova estimativa antes dos 10 s restantes e da montagem do MP4 de 15s. “Assistir e baixar” abre após verificação técnica e mostra o estado de revisão. O resultado tem compartilhamento separado, se autorizado. Este exemplo não representa um job iniciado.
 
 
 ## 10. Migração e publicação futura

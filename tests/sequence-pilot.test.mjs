@@ -43,7 +43,7 @@ test('all 144 separate portrait frames exist, are unique and match their provena
       hashes.add(hash);
     }
     assert.match(example.productionPrompt,/moodboard e storyboard/);
-    assert.match(example.productionPrompt,/amostra de 10 s/);
+    assert.match(example.productionPrompt,/amostra de 5 s/);
     assert.match(example.productionPrompt,/aprovação do usuário/);
     assert.doesNotMatch(example.productionPrompt,/DiSteven|gerenciadordeanuncios/i);
   }

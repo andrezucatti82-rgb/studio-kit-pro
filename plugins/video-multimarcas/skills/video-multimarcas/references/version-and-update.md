@@ -13,7 +13,7 @@ Ao informar a versão ao usuário, confira o arquivo efetivamente carregado e o 
 A instalação não fornece gerador de vídeo, contas, créditos ou credenciais. Descubra as capacidades reais e explique bloqueios verificados conforme `intake-and-diagnostics.md`. Nunca altere permissões, remova plugins ou troque uma skill pessoal pela genérica para tentar resolver uma atualização.
 
 
-Confira os 1.425 estilos, os quadros individuais, o contrato de fidelidade, o moodboard e storyboard com aprovações próprias, e a amostra de 10 segundos.
+Confira os 1.425 estilos, os quadros individuais, o contrato de fidelidade, o moodboard e storyboard com aprovações próprias, e a amostra de 5 segundos.
 
 A edição 2.7 acrescenta produção guiada, três receitas planejadas, ajustes por intenção e coordenação registrada. Conferir `references/guided-production.md` e `templates/coordinator-plan.json`. Preparar um pedido ou uma receita não comprova geração/revisão audiovisual.
 

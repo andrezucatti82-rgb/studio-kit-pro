@@ -13,7 +13,7 @@ O usuário aprovou os 36 conceitos de sequência em 11/11/2026 e solicitou sua e
 - Identidade atual do DiSteven com tema escuro e Inter; colunas adaptadas ao espaço disponível; imagens completas sem distorção.
 - Catálogo público, sem login, backend, chaves, rastreamento novo ou geração embutida.
 - IDs, favoritos e ficha atual; modo Page sem localStorage.
-- Até dez estilos, duração alvo e amostra de dez segundos após moodboard e storyboard aprovados.
+- Até dez estilos, duração alvo e amostra de cinco segundos após moodboard e storyboard aprovados.
 - Instruções completas no pedido copiado, incluindo continuidade e fidelidade. Recolher a exibição não significa remover essas instruções do agente.
 - Arquivos enviados no ChatGPT; não simular upload, processamento ou integração automática inexistentes no site.
 - Aprovação de direção visual separada da revisão e aprovação do vídeo.

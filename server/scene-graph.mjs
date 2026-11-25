@@ -1,15 +1,16 @@
 import {z} from 'zod';
 import {dimensions} from './schema.mjs';
+import '../style-atlas/dist/workflow.js';
 
 const id=z.string().regex(/^[a-zA-Z0-9_-]{1,100}$/),hash=z.string().regex(/^[a-f0-9]{64}$/);
 const frame=z.number().int().nonnegative(),unit=z.number().min(0).max(1),color=z.string().regex(/^#[0-9a-fA-F]{6}$/);
 const easing=z.tuple([unit,z.number().min(-1).max(2),unit,z.number().min(-1).max(2)]);
-export const sourceSampleFrames=(seconds,fps)=>Math.floor(Math.min(10,seconds)*fps+1e-8);
+export const sourceSampleFrames=(seconds,fps)=>Math.floor(Math.min(AtlasWorkflow.sampleSeconds,seconds)*fps+1e-8);
 export const graphRequestSchema=z.object({
  requestVersion:z.literal(2),prompt:z.string().min(3).max(12000),styleId:id,selectedStyleIds:z.array(id).min(1).max(10),
  contextSha256:hash,assetIds:z.array(id).max(100),durationSeconds:z.number().positive().max(3600),format:z.enum(['16:9','9:16','1:1','4:5']),fps:z.union([z.literal(24),z.literal(30)]),phase:z.enum(['sample','full']),
  durationSource:z.object({assetId:id,sha256:hash,seconds:z.number().positive().max(3600)}).strict().optional(),
-}).strict().superRefine((r,c)=>{if(r.styleId!==r.selectedStyleIds[0]||new Set(r.selectedStyleIds).size!==r.selectedStyleIds.length)c.addIssue({code:'custom',message:'Keep one principal and unique selected styles'});if(new Set(r.assetIds).size!==r.assetIds.length)c.addIssue({code:'custom',message:'Duplicate assets'});if(r.phase==='sample'&&r.durationSeconds>15)c.addIssue({code:'custom',message:'Representative sample must be <=15 seconds'});if(!r.durationSource&&r.durationSeconds<1)c.addIssue({code:'custom',message:'Duration must be at least one second'});});
+}).strict().superRefine((r,c)=>{if(r.styleId!==r.selectedStyleIds[0]||new Set(r.selectedStyleIds).size!==r.selectedStyleIds.length)c.addIssue({code:'custom',message:'Keep one principal and unique selected styles'});if(new Set(r.assetIds).size!==r.assetIds.length)c.addIssue({code:'custom',message:'Duplicate assets'});if(r.phase==='sample'&&r.durationSeconds!==AtlasWorkflow.sampleSeconds)c.addIssue({code:'custom',message:'Representative sample must be exactly five seconds'});if(!r.durationSource&&r.durationSeconds<1)c.addIssue({code:'custom',message:'Duration must be at least one second'});});
 const animation=z.object({property:z.enum(['x','y','opacity','scale','rotation','reveal','tracking','pathProgress']),keyframes:z.array(z.object({frame,value:z.number().finite(),easing:easing.default([.22,.75,.2,1])}).strict()).min(2).max(40)}).strict();
 const anchorTrack=z.object({sourceAssetId:id,sourceStartSeconds:z.number().nonnegative().max(3600),origin:z.enum(['manual','externally_measured']),space:z.literal('output-normalized'),offsetX:z.number().min(-1).max(1).default(0),offsetY:z.number().min(-1).max(1).default(0),points:z.array(z.object({frame,x:unit,y:unit,confidence:unit.min(.7)}).strict()).min(2).max(20000)}).strict();
 const base={id,x:unit,y:unit,width:unit.min(.005),height:unit.min(.005),opacity:unit.default(1),rotation:z.number().min(-180).max(180).default(0),scale:z.number().min(.25).max(2).default(1),animations:z.array(animation).max(8).default([]),active:z.object({fromFrame:frame,durationFrames:frame.min(1)}).strict().optional(),anchorTrack:anchorTrack.optional()};

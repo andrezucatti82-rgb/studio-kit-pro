@@ -14,7 +14,7 @@
       "styleId": "natural-joias-o-presente-antes-da-caixa",
       "format": "9:16",
       "targetDurationSeconds": 30,
-      "sampleSeconds": 10,
+      "sampleSeconds": 5,
       "materialsDeclared": [
         "one_photo",
         "logo"
@@ -75,7 +75,7 @@
       "styleId": "documental-observacional",
       "format": "9:16",
       "targetDurationSeconds": 30,
-      "sampleSeconds": 10,
+      "sampleSeconds": 5,
       "materialsDeclared": [
         "video",
         "website"
@@ -136,7 +136,7 @@
       "styleId": "campanhas-em-camadas",
       "format": "9:16",
       "targetDurationSeconds": 30,
-      "sampleSeconds": 10,
+      "sampleSeconds": 5,
       "materialsDeclared": [
         "screens"
       ],

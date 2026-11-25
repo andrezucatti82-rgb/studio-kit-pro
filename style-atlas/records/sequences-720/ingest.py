@@ -64,7 +64,7 @@ for s in catalog['styles']:
         'planningRule':'Os quatro quadros são referências da evolução, não quatro cenas obrigatórias. Adaptar ao roteiro e à locução, sem divisão uniforme. Preencher por plano os campos shotPlanFields e provar a ação em vídeo.',
         'textRule':'Recompor texto e dados em código editável; a tipografia no conceito não é um asset final. Conferir fonte, acentos, valores e leitura no formato escolhido.',
         'invariants':s['preset']['productFidelity'],
-        'validation':'Comparar cada estado proposto com os quadros e originais aplicáveis. Confirmar recursos antes de gastar créditos; apresentar desvios. Moodboard e storyboard exigem aceites separados; depois amostra de 10 s da ação mais difícil, com quatro travas. Não prometer fidelidade total.'
+        'validation':'Comparar cada estado proposto com os quadros e originais aplicáveis. Confirmar recursos antes de gastar créditos; apresentar desvios. Moodboard e storyboard exigem aceites separados; depois amostra de 5 s da ação mais difícil, com quatro travas. Não prometer fidelidade total.'
     }
     records.append(record);count+=1
 if '--complete' in sys.argv:assert count==720,f'Only {count}/720 generated'

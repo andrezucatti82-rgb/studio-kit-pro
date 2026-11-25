@@ -10,7 +10,7 @@ Os 60 anúncios anteriores foram agrupados, com seus IDs, ordem, imagens e sequ�
 2. Examine capa, três momentos adicionais e ações descritas. A aparência é conceitual e fictícia; não há vídeo novo nem narração embutida nesses arquivos.
 3. Escolha o principal e, se necessário, características dos complementares. O briefing conserva a seleção; navegar não a substitui. Um argumento principal organiza o filme, sem empilhar vários anúncios.
 4. Informe tema, marca opcional, duração e formato. O pedido inclui referências, layout, ações, DBO/AIDA, narração, legendas editáveis, CTA e limites de cada nicho.
-5. Na conversa de produção, o agente confere materiais, ferramentas e custos da própria conta. Aprove roteiro, moodboard e storyboard; depois a amostra representativa de 10 segundos. O filme completo depende do seu aceite.
+5. Na conversa de produção, o agente confere materiais, ferramentas e custos da própria conta. Aprove roteiro, moodboard e storyboard; depois a amostra representativa de 5 segundos. O filme completo depende do seu aceite.
 
 O alvo sugerido dos anúncios é 30–45 segundos, mas a duração do briefing prevalece. Quatro quadros indicam evolução narrativa, não quatro cenas obrigatórias ou blocos de tempo iguais. Os tempos seguem a locução. Letreiros, legendas, gráficos e CTA são compostos em código ou editor. Rótulos reais preservam os originais protegidos; não são reinventados por IA.
 

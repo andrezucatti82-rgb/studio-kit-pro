@@ -6,7 +6,7 @@ O catálogo 4.8 preserva 440 direções de anúncios em 11 subcategorias, com 40
 
 Leia `advertising` junto com `sequence` e `executionPlan`. DBO significa **Dor → Benefício → Objeção**, seguida de chamada para ação; AIDA significa **Atenção → Interesse → Desejo → Ação**. Não confundir DBO com oferta. Estruture o argumento a partir do tema e dos fatos do cliente, sem repetir literalmente instruções técnicas como locução.
 
-Para estas direções, narração em português brasileiro, legendas sincronizadas editáveis e CTA final falada e escrita são obrigatórias, salvo mudança explícita do usuário. O alvo sugerido é 30–45 segundos; a duração escolhida no briefing prevalece. Meça a locução real e atribua a cada plano o tempo necessário. Quatro imagens representam momentos da história, não quatro cenas de duração igual. A amostra continua com 10 segundos e testa a ação mais difícil depois dos aceites de moodboard e storyboard.
+Para estas direções, narração em português brasileiro, legendas sincronizadas editáveis e CTA final falada e escrita são obrigatórias, salvo mudança explícita do usuário. O alvo sugerido é 30–45 segundos; a duração escolhida no briefing prevalece. Meça a locução real e atribua a cada plano o tempo necessário. Quatro imagens representam momentos da história, não quatro cenas de duração igual. A amostra continua com 5 segundos e testa a ação mais difícil depois dos aceites de moodboard e storyboard.
 
 Se combinar estilos, mantenha um argumento principal. Distribua as contribuições visuais e sonoras dos complementares sem criar dez anúncios concorrentes no mesmo filme. Não colocar a plataforma de veiculação obrigatoriamente no nome do estilo; adaptar áreas seguras e formato ao destino informado.
 

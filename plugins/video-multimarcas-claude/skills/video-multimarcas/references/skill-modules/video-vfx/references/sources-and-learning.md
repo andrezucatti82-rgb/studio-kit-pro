@@ -77,6 +77,6 @@ Bibliotecas não são aplicativos completos; repositório público não signific
 3. **Cor:** preparar ida/volta EXR entre DCC, compositor e editor. Prova: inputs/view/output documentados e comparação consistente sem transform duplicado.
 4. **Cleanup e set:** reconstruir trecho com revelação e paralaxe. Prova: sem fervura, costura ou perspectiva deslizando.
 5. **FX:** integrar fumaça em camadas; se volume for necessário, simular/cachear uma prova. Prova: escala, profundidade e luz coerentes com produto preservado.
-6. **Produção:** integrar o plano mais difícil na amostra de 10 s, revisar e registrar o arquivo exato; só depois escalar.
+6. **Produção:** integrar o plano mais difícil na amostra de 5 s, revisar e registrar o arquivo exato; só depois escalar.
 
 Para evoluir a biblioteca: registrar lacuna → buscar fonte primária → ler seção/aula pertinente → testar técnica em material autorizado → documentar ambiente, limites e resultado → acrescentar receita e teste de uso. Não transformar hipótese em procedimento comprovado.

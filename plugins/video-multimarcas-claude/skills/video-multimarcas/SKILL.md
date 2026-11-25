@@ -43,7 +43,7 @@ Em chat sem execução verificada, faça as etapas disponíveis e informe qual r
 
 ## Aprovação, custo e resultado
 
-Antes de vídeo IA, apresente visuais concretos e obtenha aceites aplicáveis: roteiro, moodboard, storyboard e amostra integrada representativa antes do filme completo. Use [aprovação visual](references/universal-visual-approval.md) e [pré-produção](references/preproduction-approval.md). Executar `workflow-gate` valida registros; não cria consentimento. Mudanças locais preservam aceites não afetados.
+Antes de vídeo IA, apresente visuais concretos e obtenha aceites aplicáveis: roteiro, moodboard, storyboard e amostra integrada de cinco segundos antes do filme completo. Use [aprovação visual](references/universal-visual-approval.md) e [pré-produção](references/preproduction-approval.md). Executar `workflow-gate` valida registros; não cria consentimento. Mudanças locais preservam aceites não afetados.
 
 Preço atual, quantidade/escopo/tentativas e autorização específica antecedem geração cobrada. HeyGen pode ser conexão/API apropriada à cena; preferência não garante acesso, saldo, identidade ou capacidade. Não gastar para diagnosticar nem trocar pessoa/provedor ou simplificar promessa silenciosamente.
 

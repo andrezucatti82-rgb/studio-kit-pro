@@ -193,9 +193,11 @@ export async function renderAssembly(raw,phase,inputs,directory,signal) {
   const work=await fs.mkdtemp(path.join(os.tmpdir(),'zapvideo-assembly-'));
   try {
     const parts=[];
-    const localShots=timeline.shots.filter(shot=>shot.start>=span.start && shot.start<span.end);
+    const localShots=timeline.shots.filter(shot=>shot.start+shot.frames>span.start && shot.start<span.end);
     for (const [index,shot] of localShots.entries()) {
-      const source=await lookup(shot.id), length=seconds(shot.frames);
+      const source=await lookup(shot.id);
+      const offset=Math.max(0,span.start-shot.start);
+      const length=seconds(Math.min(shot.start+shot.frames,span.end)-shot.start-offset);
       const image=shot.type==='image';
       let audio;
       let videoIndex;
@@ -203,11 +205,11 @@ export async function renderAssembly(raw,phase,inputs,directory,signal) {
         const probe=await probeVideo(source,signal);
         audio=shot.audio?probe.audio:null;
         videoIndex=probe.video.index;
-        if (probe.duration+0.045<length) throw new Error('A tomada é mais curta que o tempo marcado no plano '+(index+1)+'.');
+        if (probe.duration+0.045<seconds(shot.frames)) throw new Error('A tomada é mais curta que o tempo marcado no plano '+(index+1)+'.');
       }
       const filters=[`scale=${width}:${height}:force_original_aspect_ratio=decrease:force_divisible_by=2`,
         `pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2`,'setsar=1'];
-      if (shot.motion) filters.push(`zoompan=z='min(pzoom+0.0012,1.12)':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s=${width}x${height}:fps=30`);
+      if (shot.motion) filters.push(`zoompan=z='min(1.0012+(on+${offset})*0.0012,1.12)':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s=${width}x${height}:fps=30`);
       filters.push('fps=30','format=yuv420p');
       if (shot.overlay) {
         await titleFile(work,shot.overlay,width,height);
@@ -215,7 +217,7 @@ export async function renderAssembly(raw,phase,inputs,directory,signal) {
       }
       const name='part-'+index+'.mp4';
       const sourceInput=image?await stillInput(source):ffmpegInput;
-      await run('ffmpeg',['-nostdin','-v','error','-xerror','-n','-threads','2','-filter_threads','2',...sourceInput,'-i',source,
+      await run('ffmpeg',['-nostdin','-v','error','-xerror','-n','-threads','2','-filter_threads','2',...sourceInput,...(!image&&offset?['-ss',String(seconds(offset))]:[]),'-i',source,
         ...(!audio?['-f','lavfi','-i','anullsrc=r=48000:cl=stereo']:[]),
         '-t',String(length),'-map',image?'0:v:0':`0:${videoIndex}`,'-map',audio?`0:${audio.index}`:'1:a:0',
         '-vf',filters.join(','),'-af','aresample=48000,apad','-c:v','libx264','-preset','veryfast','-crf','20',
@@ -226,13 +228,16 @@ export async function renderAssembly(raw,phase,inputs,directory,signal) {
     const args=['-nostdin','-v','error','-xerror','-n','-filter_threads','2','-filter_complex_threads','2',
       '-f','concat','-safe','1','-protocol_whitelist','file,pipe','-i','parts.txt'];
     const tracks=[];
-    for (const track of timeline.narrations.filter(item=>item.start>=span.start&&item.start<span.end)) {
+    for (const track of timeline.narrations.filter(item=>item.start+item.frames>span.start&&item.start<span.end)) {
       const source=await lookup(track.id);
-      if (await audioDuration(source,signal)>seconds(track.frames)+0.08) {
+      const duration=await audioDuration(source,signal);
+      if (duration>seconds(track.frames)+0.08) {
         throw new Error('A narração é mais longa que a cena. Ajuste os tempos antes de montar.');
       }
-      args.push(...audioInput,'-i',source);
-      tracks.push(`aresample=48000,adelay=${milliseconds(track.start-span.start)}:all=1`);
+      const offset=Math.max(0,span.start-track.start);
+      if (duration<=seconds(offset)) continue;
+      args.push(...audioInput,...(offset?['-ss',String(seconds(offset))]:[]),'-i',source);
+      tracks.push(`aresample=48000,adelay=${milliseconds(Math.max(0,track.start-span.start))}:all=1`);
     }
     if (timeline.music) {
       const source=await lookup(timeline.music);
@@ -261,7 +266,8 @@ export async function renderAssembly(raw,phase,inputs,directory,signal) {
     await run('ffmpeg',args,{cwd:work,signal});
     const proof=await probeVideo(target,signal);
     if (proof.video.codec_name!=='h264' || proof.video.width!==width || proof.video.height!==height ||
-      proof.audio?.codec_name!=='aac' || Math.abs(proof.duration-duration)>0.18) throw new Error('A montagem não corresponde à ficha.');
+      proof.audio?.codec_name!=='aac' || Math.abs(proof.duration-duration)>0.18 ||
+      (phase==='sample' && Number(proof.video.nb_frames)!==total)) throw new Error('A montagem não corresponde à ficha.');
     await run('ffmpeg',['-nostdin','-v','error','-xerror','-threads','2',...ffmpegInput,'-i',target,'-map','0','-f','null','-'],{signal});
     return {status:'review_pending',phase,project:raw.id,revision:raw.revision,
       outputs:[{...assemblyOutput,width,height,audio:true,duration:proof.duration,bytes:(await fs.stat(target)).size,sha256:await checksum(target)}]};

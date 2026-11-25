@@ -22,7 +22,7 @@ Todo texto, número, linha e rótulo deve permanecer editável. Transcrição pr
 
 Se a duração seguir o original, confirme qual vídeo autorizado é a referência e meça sua duração total antes de planejar. Ajuste edição, fala, legendas e efeitos a esse tempo. Não estime nem retime a fala para caber em um valor fixo, e não ultrapasse o original na amostra.
 
-Apresente roteiro/EDL, moodboard e storyboard visuais para os aceites aplicáveis. Depois, proponha a amostra de até 10 segundos da interação mais difícil e de sua transição. Não iniciar geração de vídeo IA antes dos aceites exigidos, nem o filme completo antes da aprovação da amostra. Reutilize aprovações válidas já documentadas.
+Apresente roteiro/EDL, moodboard e storyboard visuais para os aceites aplicáveis. Depois, proponha a amostra de 5 segundos da interação mais difícil e de sua transição. Não iniciar geração de vídeo IA antes dos aceites exigidos, nem o filme completo antes da aprovação da amostra. Reutilize aprovações válidas já documentadas.
 
 Quando a produção estiver autorizada, execute pelo runtime da galeria e entregue arquivos reais: MP4, legenda, projeto editável, fontes/licenças, EDL e relatório. Verificação técnica não substitui assistir e ouvir o vídeo inteiro; sem revisão audiovisual integral, manter review_pending. Pergunte apenas o que bloquear a próxima etapa.
 

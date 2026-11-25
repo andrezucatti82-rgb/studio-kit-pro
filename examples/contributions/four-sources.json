@@ -5,7 +5,7 @@
   "typography": "auto",
   "catalogVersion": "4.8",
   "targetDurationSeconds": 30,
-  "firstDeliverySeconds": 10,
+  "firstDeliverySeconds": 5,
   "selectedStyles": [
     {
       "id": "tipografia-cinetica"

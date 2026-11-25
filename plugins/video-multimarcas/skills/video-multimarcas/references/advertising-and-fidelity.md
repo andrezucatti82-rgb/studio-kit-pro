@@ -82,7 +82,7 @@ Comércio eletrônico: confirmar SKU, variante, rótulo, dimensões, compatibili
 
 Infoprodutores: pedir ementa, método, atividades, oferta, pré-requisitos, suporte e condições relevantes. Demonstrar ensino, prática e feedback reais. Trabalhos de alunos exigem autorização; não fabricar depoimentos, renda, empregabilidade ou reconhecimento de certificado. Distinguir assistir aulas de demonstrar aprendizagem. Reduzir estímulos que disputem atenção com explicação e tarefa.
 
-Os novos presets entram na coleta guiada e no diagnóstico: conferir anexos e ferramentas, pedir apenas faltas pertinentes, explicar bloqueio com causa verificada e alternativa. Aplicar `preproduction-approval.md`: aprovar moodboard e storyboard antes da amostra de 10 segundos. Pesquisa e fontes: https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/style-atlas/records/RESEARCH.md .
+Os novos presets entram na coleta guiada e no diagnóstico: conferir anexos e ferramentas, pedir apenas faltas pertinentes, explicar bloqueio com causa verificada e alternativa. Aplicar `preproduction-approval.md`: aprovar moodboard e storyboard antes da amostra de 5 segundos. Pesquisa e fontes: https://github.com/andrezucatti82-rgb/studio-kit-pro/blob/main/style-atlas/records/RESEARCH.md .
 
 ## Infoprodutores: formato não é uma estética única
 

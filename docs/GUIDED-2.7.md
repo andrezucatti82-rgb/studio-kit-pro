@@ -4,7 +4,7 @@ O modo opcional “Criar meu vídeo” organiza a preparação em Objetivo → A
 
 ## Percurso de exemplo
 
-Uma pessoa quer divulgar uma joia artesanal e possui uma foto. Ela informa o objetivo e o assunto, compara três opções visuais e declara seu material. O pedido registra uma execução com o original protegido, sem prometer verso ou rotação completa. Na conversa, o agente confere a foto, apresenta roteiro e moodboard, depois storyboard e amostra de 10 segundos com aprovações separadas. O filme completo depende do aceite da amostra.
+Uma pessoa quer divulgar uma joia artesanal e possui uma foto. Ela informa o objetivo e o assunto, compara três opções visuais e declara seu material. O pedido registra uma execução com o original protegido, sem prometer verso ou rotação completa. Na conversa, o agente confere a foto, apresenta roteiro e moodboard, depois storyboard e amostra de 5 segundos com aprovações separadas. O filme completo depende do aceite da amostra.
 
 A pessoa pode continuar usando a biblioteca diretamente e combinar estilos. As referências externas removidas anteriormente não fazem parte desse percurso.
 

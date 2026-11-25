@@ -1,6 +1,6 @@
 # Pré-produção visual — edição 2.3.0
 
-Fluxo: materiais e roteiro → moodboard visual para aprovação → storyboard visual completo para aprovação própria → amostra de 10 segundos → revisão e aprovação → filme completo.
+Fluxo: materiais e roteiro → moodboard visual para aprovação → storyboard visual completo para aprovação própria → amostra de 5 segundos → revisão e aprovação → filme completo.
 
 O pedido exige painéis visuais concretos, fontes e quadros individuais. O moodboard traduz conceito, atmosfera, paleta, materiais, luz e tipografia; o storyboard cobre todos os planos na sequência do roteiro, com ação, enquadramento, texto editável, transições e áudio. Nenhum deles comprova movimento, identidade ou atributos reais. Originais continuam prioritários.
 
