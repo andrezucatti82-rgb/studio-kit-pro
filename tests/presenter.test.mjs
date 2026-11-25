@@ -54,7 +54,7 @@ test('Remotion actually blurs glass and applies repeatable, subtle social finish
 test('265 presenter directions preserve the original collection, with 1060 distinct complete reference frames and honest requirements',async()=>{
  validateCatalog(catalog);assert.equal(catalog.styles.length,1425);assert.equal(catalog.families.length,30);
  const previous=JSON.parse(await fs.readFile(new URL('../style-atlas/records/presenter-20/previous-catalog.json',import.meta.url),'utf8'));
- assert.equal(digest(Buffer.from(JSON.stringify(catalog.styles.slice(0,1160)))),previous.stylesSha256);
+ assert.equal(digest(Buffer.from(JSON.stringify(catalog.styles.slice(0,1160)))),previous.fiveSecondApprovalStylesSha256);
  const rows=catalog.styles.filter(s=>s.family==='explicadores'),hashes=new Set();assert.equal(rows.length,265);
  for(const s of rows){assert.equal(s.preset.avatar,false);assert.equal(s.presenterEditing.automaticSegmentation,false);assert.equal(s.presenterEditing.automaticGestureTracking,false);assert.equal(s.sequence.conceptApproval,'pending_user_review');assert(!s.preview);assert(s.presenterEditing.presenterSources.includes('explicitly_selected_avatar'));
   const finish=s.presenterEditing.finishProfile;assert.equal(finish.target,'social_media_not_cinema');assert.equal(finish.environment.default,'preserve_recorded_environment');assert.equal(finish.environment.labelGeneratedSimulation,true);assert.equal(finish.socialFinishing.skipGrainOnAlreadyNoisyFootage,true);

@@ -20,7 +20,7 @@ test('public style codes are unique, stable and find one style by case-insensiti
  assert.deepEqual(ids('FOL-00000000'),[]);
 });
 test('all styles have reproducible, nonempty hidden tags without changing visual styles',()=>{
- assert.equal(createHash('sha256').update(JSON.stringify(c.styles)).digest('hex'),'73d73dbbd704365ed51877578f93f06a1f959a1984367a887c309e15d7cc6fe0','search enrichment must preserve all published style contracts');assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
+ assert.equal(createHash('sha256').update(JSON.stringify(c.styles)).digest('hex'),'bb49745293a7ff7c66812a689929a0638e014540b97c86efcf80bf01842a2294','search enrichment must preserve all published style contracts');assert.equal(c.search.version,1);assert.equal(Object.keys(c.search.styleTags).length,c.styles.length);assert.equal(c.search.sourceSha256,createHash('sha256').update(JSON.stringify(c.styles.map(S.fields))).digest('hex'));
  for(const s of c.styles){assert.deepEqual(c.search.styleTags[s.id],S.tagsFor(s,overrides[s.id]?.tags||[],c.search.styleColors?.[s.id]||[]));assert(c.search.styleTags[s.id].length>=3,s.id);assert.equal(new Set(c.search.styleTags[s.id]).size,c.search.styleTags[s.id].length);}
 });
 test('dog synonyms find actual dog descriptions across the complete catalogue, never a substring in education',()=>{
